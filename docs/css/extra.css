@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+
+:root {
+  --md-primary-fg-color:        #916f40;
+  --md-primary-fg-color--light: #b38a52;
+  --md-primary-fg-color--dark:  #654d2c;
+  --md-accent-fg-color:        #916f40;
+  --md-accent-fg-color--light: #b38a52;
+  --md-accent-fg-color--dark:  #654d2c;
+}
+
+body {
+    font-family: 'Inter', sans-serif !important;
+}
+
+header.md-header, nav.md-tabs {
+    background-color: #b31b1b;
+}
+
+footer {
+    margin-top: 2.5rem;
+}
+
+.md-content p a:not(.md-button), p a:hover, p a:focus {
+    text-decoration: underline;
+}
+
+.md-content p a:hover:not(.md-button), p a:focus:not(.md-button) {
+    color: #b31b1b;
+}
+
+.md-content li a:not(.md-button), p a:hover, p a:focus {
+    text-decoration: underline;
+}
+
+.md-content li a:hover:not(.md-button), p a:focus:not(.md-button) {
+    color: #b31b1b;
+}
+
+h2, h3, h4, h5, h6 {
+    font-weight: 600 !important;
+}
+
+h1 {
+    border-bottom: 2px solid var(--md-primary-fg-color);
+    padding-bottom: 10px;
+    font-weight: 500 !important;
+}
+
+.md-logo {
+    display: none;
+}
+
+.md-header-nav__title {
+    padding-left: 10px;
+}
+
+.md-nav--primary .md-nav__item {
+    font-size: 14px;
+}
+
+.md-nav__title{
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #111111;
+}
+
+.md-tabs__item {
+    height: 30px;
+}
+
+.md-tabs__link {
+    margin-top: 0;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.md-button--primary:hover, .md-button--primary:focus {
+    background-color: #212121 !important;
+    border-color: #212121 !important;
+}
+
+/*.md-sidebar--secondary, .md-nav--secondary, .md-nav--secondary .md-nav__list {
+    background-color: #eeeeee !important;
+}*/
+
+.md-sidebar--secondary {
+    border: 1px solid var(--md-primary-fg-color) !important;
+}
+
+#customlogo {
+    text-align: right;
+    height: 50px;
+    width: auto;
+}
+
+.md-announce__inner {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 0;
+}
+
+/* ADMONITION STYLES */
+
+.admonition p, details p {
+    font-size: .75rem;
+}
+
+.admonition li, details li {
+    font-size: .75rem;
+}
+
+.admonition code, details code {
+    font-size: .7rem;
+}
+
+.admonition p.admonition-title, details summary {
+    font-size: .8rem;
+}
+
+.admonition-title::before {
+    top: .5rem;
+}
+
+/* OUTPUT CODE STYLES */
+
+.custom-jn-output {
+    font-family: "",SFMono-Regular,Consolas,Menlo,monospace;
+    font-size: .7rem;
+}
