@@ -94,7 +94,10 @@ For the purposes of this lesson, we are stating explicitly what the class is so 
 
 Let us start by utilising the attribute ‘Gives Birth’ to split the data. Using RapidMiner we can build a quick model that helps us to do so. You will watch a video at the end of this section on how to easily build a decision tree model in RapidMiner, and you can do the same exercise in a Python Jupyter notebook. But first let us see the resultant tree when we split by ‘Gives Birth’:
 
-<mark>DS_IMG029</mark> Figure () Decision Tree Graph for mammalian dataset with the data is split according to ‘Gives Birth’ features, the graph is exported from RapidMiner.
+<figure role="group">
+  <img src="../images/DS_IMG029.png" alt="Test image." />
+  <figcaption><strong>Figure 3.1.</strong> Decision Tree Graph for mammalian dataset with the data is split according to ‘Gives Birth’ features. The graph is exported from RapidMiner.</figcaption>
+</figure>
 
 This figure exported from RapidMiner combines the tree structure into the data that is distributed between the nodes. In RapidMiner the condition is represented as a rectangle without a colour bar while the leaves are with colour bars. The colour represents the class, red is ‘non-mammal’ and blue is ‘mammal’. The thickness of the colour represents the data percentage, in our dataset $10/15≈67%$  of the animals are ‘non-mammals’ and $5/15≈33%$ are ‘mammals’. Here in the above decision tree graph we have 60% of the data in the left and 40% of the data in the right node. The left hand side node is pure red (‘non-mammals’) and the right hand side is mainly blue (‘mammals’) with some red.
 
@@ -102,9 +105,12 @@ The figure shows that if we split according to the ‘Gives Birth’ feature onl
 
 Now let's move to the next feature, and we continue to split our data in our tree with feature ‘Warm-blooded’. If we do so we get the following graph:
 
-<mark>DS_IMG030</mark>Figure () Decision Tree Graph for mammalian dataset with two features splits (‘Gives Birth’ and ‘Warm-blooded’), exported from RapidMiner.
+<figure role="group">
+  <img src="../images/DS_IMG030.png" alt="Test image." />
+  <figcaption><strong>Figure 3.2.</strong> Decision tree graph for mammalian dataset with two features splits (‘gives birth’ and ‘warm-blooded’), exported from RapidMiner.</figcaption>
+</figure>
 
-this shows that we can actually decide whether an animal is a mammal using only the two features shown above and all other features are not needed to do so. We can discard all other features and suffice by the ‘Gives Birth’ and ‘Warm-blooded’ features. Later we will see that we cannot do so if we want to know finer classification for the animal such as ‘reptile’ or ‘fish’.
+This shows that we can actually decide whether an animal is a mammal using only the two features shown above and all other features are not needed to do so. We can discard all other features and suffice by the ‘Gives Birth’ and ‘Warm-blooded’ features. Later we will see that we cannot do so if we want to know finer classification for the animal such as ‘reptile’ or ‘fish’.
 
 Name|Gives birth|Warm-blooded| **Mammality class**
 ----|-----------|------------|--------------------
@@ -150,6 +156,13 @@ Complex structures that are called decision trees may not satisfy the definition
 ##Decision boundaries of decision trees and the limitations of decision trees
 
 So far we have seen how decision trees work and how they are inducted (trained). Later we will see how to measure their performance. But first we would like to study further their inner properties. In particular we would like to see what type of decision boundaries they constitute. The idea of decision boundaries is  central to classification and not unique to decision trees. It will reappear in other types of classification techniques we will study later, such as the perceptron and k-nearest neighbour (k-NN) algorithms. One way to understand the decision boundaries of a classifier is by plotting a dataset in 2d or 3d, note however that the discussion extends to any space dimension not just 2d but it would be harder to visualise it. Let us start with a simple decision tree with its decision boundary.
+
+
+![Alt text.](images/DS_IMG041.png)
+
+
+![alt-text-2](images/DS_IMG042.png)
+
 
 <mark>7 x graphs with corresponding decision trees</mark>
 Figure () (left) Linearly and non-linearly separable classes data with their virtual decision boundaries. (Right) expected corresponding decision trees.

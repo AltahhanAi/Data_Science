@@ -42,14 +42,15 @@ The **Information Gain of a split** refers to how much information we gain by ch
 
 If we would like to decide which of the above two splits is better, then we just calculate the information gain and we choose the one that has the highest information gain.
 
-<mark>Equation</mark>
-$Information Gain = Impurity of parent – weighted average impurity of children$
-
-
-Info Gain('makes calls') $=0.5 –( 26×0+46×0.375)=0.25$
-
-
-Info Gain('screen size=8') $=0.5 –( 56×0.48+16×0)=0.1$
+$$
+\begin{array}{l}
+\text { Information Gain }=\text { Impurityof parent-weighted average impurity of children } \\
+\qquad \begin{array}{l}
+\text { Info Gain('makes calls') }=0.5-\left(\frac{2}{6} \times 0+\frac{4}{6} \times 0.375\right)=0.25 \\
+\text { Info Gain('screen size } \left.=8^{\prime}\right)=0.5-\left(\frac{5}{6} \times 0.48+\frac{1}{6} \times 0\right)=0.1
+\end{array}
+\end{array}
+$$
 
 This shows that the first split based on the ‘makes calls’ feature is better since we gain form information by using it and we will intuitively move toward more pure leaves.
 
@@ -58,45 +59,91 @@ This shows that the first split based on the ‘makes calls’ feature is better
 **It is time now to see how we calculate the Gini impurity. We take the probability of one label in the node and we multiply it with the probability of the other label (or sum of other labels probabilities if we have multi-class dataset). And we do that again for the second label and so on.**
 
 So, to see this measure in action in a binary class dataset (like our dataset), let us take the probability of an item being a tablet in our dataset, which we denote as
-$p(Tab)=3/6=0.5$. This is because we have 6 items in total 3 of them are tablets. The same applies for the phones where we have $p(Pho)=3/6=0.5$. Hence, the Gini Impurity of the dataset before any split is:  
+$p(T a b)=\frac{3}{6}=0.5$. This is because we have 6 items in total 3 of them are tablets. The same applies for the phones where we have $p(P h o)=\frac{3}{6}=0.5$. Hence, the Gini Impurity of the dataset before any split is:  
 
-$Gini Impurity(set)=p(Tab)[1-p(Tab)]+p(Pho)[1-p(Pho)]=p(Tab)+p(Pho)- [p^2 (Tab)+p^2 (Pho)]$
+$$
+\begin{array}{c}
+\text { Gini Impurity }(\text { set })=p(T a b)[1-p(T a b)]+p(\text { Pho })[1-p(\text { Pho })] \\
+\qquad=p(\text { Tab })+p(\text { Pho })-\left[p^{2}(T a b)+p^{2}(\text { Pho })\right]
+\end{array}
+$$
 
-However we have $p(Tab)+p(Pho)=1$, therefore:
+However we have $p(T a b)+p(P h o)=1$, therefore:
 
-$Gini Impurity(set) = 1- [p^2 (Tab)+p^2 (Pho)]$
+$$
+\text { Gini Impurity(set) }=1-\left[p^{2}(\mathrm{Tab})+p^{2}(\mathrm{Pho})\right]
+$$
 
 Below we will see the calculations of the Gini Impurity for the subsets of the nodes (the items that belong to each node). We start always from the whole dataset and then the data will be distributed based on the type of question that we ask in the node. The summary of how we evaluate the two splits is in <mark>Figure ().</mark>
 
 <mark>equations table</mark>
 
-$Impurity(■(G_1@P)■(S_1@P)■(A_1@P)■(G_2@T)■(S_2@T)■(A_2@T))=1-[〖(□(3/6))〗^2+〖(□(3/6))〗^2 ]=0.5$
+$$
+\text { Impurity }\left(\begin{array}{c}
+G_{1} S_{1} A_{1} G_{2} S_{2} A_{2} \\
+P P P T T T
+\end{array}\right)=1-\left[\left(\frac{3}{6}\right)^{2}+\left(\frac{3}{6}\right)^{2}\right]=0.5
+$$
 
 <figure role="group">
   <img src="../images/DS_IMG017.png" alt="Test image." />
-  <figcaption><strong>Figure 2.2.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset, showing information gain calculations. Split based on ‘makes calls’ feature.</figcaption>
+  <figcaption><strong>Figure 2.2.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset. Split based on ‘makes calls’ feature. Information gains calculations shown below. </figcaption>
 </figure>
 
-$Impurity(■(G_2@T)■(S_2@T))=1-[〖(□(2/2))〗^2+〖(□0)〗^2 ]=0
-Impurity(■(G_1@P)■(S_1@P)■(A_1@P)■(A_2@T))=1-[〖(□(1/3))〗^2+〖(□(2/3))〗^2 ]=0.375
-Gain('makes calls')  =0.5 –( □(2/6)×0+□(4/6)×0.375)$
-
+$$
+\begin{array}{l}
+\text { Impurity }\left(\begin{array}{c}
+G_{2} S_{2} \\
+T
+\end{array}\right)=1-\left[\left(\frac{2}{2}\right)^{2}+(0)^{2}\right]=0 \\
+\text { Impurity }\left(\begin{array}{c}
+G_{1} S_{1} A_{1} A_{2} \\
+P P P T
+\end{array}\right)=1-\left[\left(\frac{1}{3}\right)^{2}+\left(\frac{2}{3}\right)^{2}\right]=0.375 \\
+\text { Gain ('makes calls') }=0.5-\left(\frac{2}{6} \times 0+\frac{4}{6} \times 0.375\right)
+\end{array}
+$$
 
 <figure role="group">
   <img src="../images/DS_IMG018.png" alt="Test image." />
-  <figcaption><strong>Figure 2.3.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset, showing information gain calculations. Split based on ‘screen size=8’.</figcaption>
+  <figcaption><strong>Figure 2.3.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=8’. Information gain calculations are shown below. </figcaption>
 </figure>
 
-$Impurity(■(G_1@P)■(S_1@P)■(A_1@P)■(G_2@T)■(S_2@T))=1-[(□(3/5))^2+(□(2/5))^2 ]=0.48
-Impurity(■(A_2@T))=1-[〖(□(1/1))〗^2+〖(□0)〗^2 ]=0
-Gain('screen size=8')  =0.5 –( □(5/6)×0.48+□(1/6)×0)=0.1$
+$$
+\begin{array}{l}
+\text { Impurity }\left(\begin{array}{c}
+G_{1} S_{1} A_{1} G_{2} S_{2} \\
+P P P T T
+\end{array}\right)=1-\left[\left(\frac{3}{5}\right)^{2}+\left(\frac{2}{5}\right)^{2}\right]=0.48 \\
+\text { Impurity }\left(\begin{array}{c}
+A_{2} \\
+T
+\end{array}\right)=1-\left[\left(\frac{1}{1}\right)^{2}+(0)^{2}\right]=0 \\
+\text { Gain('screen size } \left.=8^{n}\right)=0.5-\left(\frac{5}{6} \times 0.48+\frac{1}{6} \times 0\right)=0.1
+\end{array}
+$$
 
 Figures 2.2 and 2.3 above illustrate step 1 of CART algorithm for tablet vs phone dataset, showing information gain calculations. In figure 2.2 the split is based on ‘makes calls’, and in figure 2.3 the split is based on ‘screen size=8’.  Both are shown here with the full information gain calculations needed to decide which split to choose, and in this case we can see that 'makes calls' wins.
 
 The algorithm will go ahead and calculate the information gain for another two splits possibilities, these are ‘screen size=6’ and ‘screen size=7’. We have not shown these, so if you’d like to give it a try yourself you can do the calculations now. The results should be in favour of ‘makes calls’ split.
 
-!!! note
-     The Gini impurity deals with classes in a binary manner (one versus the rest). So, if we have multi-class dataset then we would simply enumerate through the different classes and deal with each label in the node as the target class and the rest as misclassification. For example, if we have say 3 classes, {‘tablet’, ‘phone’, ‘portable PC’} the Gini impurity will be:
+The Gini impurity deals with classes in a binary manner (one versus the rest). So, if we have multi-class dataset then we would simply enumerate through the different classes and deal with each label in the node as the target class and the rest as misclassification. For example, if we have say 3 classes, {‘tablet’, ‘phone’, ‘portable PC’} the Gini impurity will be:
+
+$$
+\text { Gini Impurity(node set) }=p(T a b)[1-p(T a b)]+p(P h o)[1-p(P h o)]+p(P C)[1-p(P C)] .
+$$
+
+By noting that $p(T a b)+p(P h o)+p(P C)=1$, we get:
+
+$$
+\text { Gini Impurity (node set) }=1-\left[p^{2}(\mathrm{Tab})+p^{2}(\mathrm{Pho})+p^{2}(\mathrm{PC})\right]
+$$
+
+In the general case if we have $I$ classes each with a probability $p(i)$ in the concerned node set then:
+
+$$
+\text { Gini Impurity (node set) }=1-\sum_{c=1}^{I} p^{2}(i)
+$$
 
       <mark>equations</mark>
 
