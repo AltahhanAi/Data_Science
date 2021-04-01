@@ -145,8 +145,6 @@ $$
 \text { Gini Impurity (node set) }=1-\sum_{c=1}^{I} p^{2}(i)
 $$
 
-      <mark>equations</mark>
-
 Tan et al (2020) use Entropy and a slightly different algorithm for building the tree called Hunt’s Algorithm, here we use the CART algorithm which is widely used for DT.  
 
 ##Step 2 of CART algorithm
@@ -166,21 +164,43 @@ If you’d like to try it yourself now, you can calculate the information gain f
 
 <figure role="group">
   <img src="../images/DS_IMG020.png" alt="Test image." />
-  <figcaption><strong>Figure 2.5.</strong> Illustration of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=8’ feature’.</figcaption>
+  <figcaption><strong>Figure 2.5.</strong> Illustration of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=8’ feature’. Calculations are shown below. </figcaption>
 </figure>
 
-Impurity(■(G_1@P)■(S_1@P)■(A_1@P))=1-[(□(3/3))^2+(□0)^2 ]=0
-Impurity(■(A_2@T))=1-[(0)^2+(□(1/1))^2 ]=0
-Gain('scr size=8')  =0.375 –( □(3/4)×0+□(1/4)×0)=0.375
+$$
+\begin{array}{l}
+\operatorname{Impurity}\left(\begin{array}{c}
+G_{1} S_{1} A_{1} \\
+P P P
+\end{array}\right)=1-\left[\left(\frac{3}{3}\right)^{2}+(0)^{2}\right]=0 \\
+\operatorname{Impurity}\left(\begin{array}{c}
+A_{2} \\
+T
+\end{array}\right)=1-\left[(0)^{2}+\left(\frac{1}{1}\right)^{2}\right]=0 \\
+\text { Gain ('scr size } \left.=8^{\prime}\right)=0.375-\left(\frac{3}{4} \times 0+\frac{1}{4} \times 0\right) \\
+=0.375
+\end{array}
+$$
 
 <figure role="group">
   <img src="../images/DS_IMG021.png" alt="Test image." />
-  <figcaption><strong>Figure 2.6.</strong> Illustration of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=7’.</figcaption>
+  <figcaption><strong>Figure 2.6.</strong> Illustration of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=7’. Calculations are shown below. </figcaption>
 </figure>
 
-Impurity(■(G_1@P)■(S_1@P)■(A_2@T))=1-[(□(2/3))^2+(□(1/3))^2 ]=0.44
-Impurity(■(A_1@P))=1-[〖(□(1/1))〗^2+〖(□0)〗^2 ]=0
-Gain('scr size=7')=0.375 –( □(3/4)×0.44+□(1/4)×0)=0.0416
+$$
+\begin{array}{l}
+\text { Impurity }\left(\begin{array}{c}
+G_{1} S_{1} A_{2} \\
+p P T
+\end{array}\right)=1-\left[\left(\frac{2}{3}\right)^{2}+\left(\frac{1}{3}\right)^{2}\right]=0.44 \\
+\operatorname{Impurity}\left(\begin{array}{c}
+\left.A_{1}\right)=1 \\
+P
+\end{array}\right)=1-\left[\left(\frac{1}{1}\right)^{2}+(0)^{2}\right]=0 \\
+\text { Gain ('scr size }=7)=0.375-\left(\frac{3}{4} \times 0.44+\frac{1}{4} \times 0\right) \\
+=0.0416
+\end{array}
+$$
 
 Figures 2.5 and 2.6 above illustrate step 2 of CART algorithm for tablet vs phone dataset, showing information gain calculations. In figure 2.5 the split is based on ‘screen size=8’, and in figure 2.6 the split is based on ‘screen size=7’.  Both are shown here with the full information gain calculations needed to decide which split to choose, and in this case we can see that ‘screen size=8’ wins.
 
@@ -292,7 +312,12 @@ Annual income ranges £K | Annual income increment £K | Annual income category
 
 As can be seen, the increments take a long tailed (skewed) distribution that is not a Gaussian, but more of a reversed Pareto distribution. This is not surprising as the Pareto distribution has historically been used to describe wealth in society. The 80-29 Pareto principle is related to this distribution but is precisely realised when the alpha value is 1.16. It takes the form:
 
-<mark>Equation</mark>$Pr(X>x)={1−(xminx)αwhen x≥xmin1  when x<xmin$
+$$
+\operatorname{Pr}(X>x)=\left\{\begin{array}{c}
+1-\left(\frac{x_{\min }}{x}\right)^{\alpha} \text { when } x \geq x_{\min } \\
+1 \text { when } x<x_{\min }
+\end{array} \mid\right.
+$$
 
 Note that the categories’ names {‘Basic, ‘Intermediary L’ Exec’} are arbitrary and could be changed to any values that suit the usage of the model (L, M, H, T stands for Low, Medium, High and Top, respectively).
 
@@ -353,31 +378,34 @@ For Class 1 with probability $p$, we want to make sure that:
 
 1. When the probability $p$ is low, the $Entropy$ is low. Hence, we simply include $p$ in $Entropy$ formula at the same time.
 
-2. When the probability $p$ is high, the $Entropy$ is low. Hence, we include the term $−logp$ in the $Entropy$ formula.
+2. When the probability $p$ is high, the $Entropy$ is low. Hence, we include the term $-\log p$ in the $Entropy$ formula.
 
-Note that $logp≤0$ because $p≤1$. Hence $−logp≥0$.
+Note that $\log p \leq 0$ because $p≤1$. Hence $-\log p \geq 0$.
 
-Note that $−logp$ is monotonically decreasing function.
+Note that $-\log p$ is monotonically decreasing function.
 
-Note also that the base of $log$ is normally 2 but any can do as long as we are consistent. The behaviour of $−logp$ for class C1 and $−log(p′)$ for class C2 can be seen below. When the probability increases $−logp$ decreases but it is still positive (to be precise it is non-negative). Note that $−log(p′)$ is monotonically increasing function with respect to $p$ and is non-negative as well.
+Note also that the base of $log$ is normally 2 but any can do as long as we are consistent. The behaviour of $−\log p$ for class C1 and $-\log \left(p^{\prime}\right)$ for class C2 can be seen below. When the probability increases $-\log p$ decreases but it is still positive (to be precise it is non-negative). Note that $-\log \left(p^{\prime}\right)$ is monotonically increasing function with respect to $p$ and is non-negative as well.
 
 <figure role="group">
   <img src="../images/DS_IMG034.png" alt="Test image." />
-  <figcaption><strong>Figure 2.14.</strong>  Behaviour of the term $−plog p$ which is the entropy for class C1. Note that C1 has a probability $p$ and the figure shows how the entropy of C1 is varying with the probability $p$..</figcaption>
+  <figcaption><strong>Figure 2.14.</strong>  Behaviour of the term $-p \log p$ which is the entropy for class C1. Note that C1 has a probability $p$ and the figure shows how the entropy of C1 is varying with the probability $p$.</figcaption>
 </figure>
 
-To take into account both of the points above, the entropy for class C1 will be written as $−plog p$, which has a behaviour that is described in the left hand side of figure 2.15 below. In addition, since we have two classes then we also need a similar term for the second class C2. Given that C2 has a probability $p′=1−p$, its entropy is $(1−p)log(1−p)$. The behaviour of this term is shown in the right hand side of the figure below.
+To take into account both of the points above, the entropy for class C1 will be written as $-p \log p$, which has a behaviour that is described in the left hand side of figure 2.15 below. In addition, since we have two classes then we also need a similar term for the second class C2. Given that C2 has a probability $p^{\prime}=1-p$, its entropy is $(1-p) \log (1-p)$. The behaviour of this term is shown in the right hand side of the figure below.
 
 <figure role="group">
   <img src="../images/DS_IMG035.png" alt="Test image." />
-  <figcaption><strong>Figure 2.15.</strong>  Left: The entropy for class C1= $−plog p$. C1 has a probability $p$, the figure shows how the entropy of C1 varies with the probability $p$. Right: The entropy for class C2= $−p'log p′$. C2 has a probability $p′=1−p$, the figure shows how the entropy of C2 varies with the probability $p$.</figcaption>
+  <figcaption><strong>Figure 2.15.</strong>  Left: The entropy for class C1= $-p log⁡p$. C1 has a probability p, the figure shows how the entropy of C1 varies with the probability p. Right: The entropy for class C2= $-p'log⁡〖p^' 〗. C2 has a probability $p^{\prime}=1-p$, the figure shows how the entropy of C2 varies with the probability p. .</figcaption>
 </figure>
 
 We can finally define the entropy as:
 
-$Entropy=−plogp−p′logp′$
-
-$Entropy=−plogp−(1−p)log(1−p)$
+$$
+\begin{array}{c}
+\text { Entropy }=-p \log p-p^{\prime} \log p^{\prime} \\
+\text { Entropy }=-p \log p-(1-p) \log (1-p)
+\end{array}
+$$
 
 Its behaviour is shown figure 2.16 below.
 
@@ -388,7 +416,9 @@ Its behaviour is shown figure 2.16 below.
 
 Note that we are talking about two classes (events) not two probability distributions. In the case of two probability distributions we use cross-entropy which is outside the scope of this discussion. In general if we have more than $K$ classes, then:
 
-$Entropy=∑Ki=1pilogpi$
+$$
+\text { Entropy }=\sum_{i=1}^{K} p_{i} \log p_{i}
+$$
 
 ###Comparison of the entropy with Gini Index
 
@@ -412,13 +442,17 @@ To take into account both of the points above, the Gini index should include the
 
 Note that $1−p$ happens to be the probability of class C2 but it is not what is meant here, this becomes clearer when we consider a multi-class situation where the term $(1−p)$ is still used to calculate the impurity of C1 but the probability of C2 is likely to be different due to the involvement of other classes. This coincidence makes the left and right hand sides identical for the binary classes problems. Note that the term has a max of 0.5*0.5=0.25.
 
-In addition, since we have two classes then we need also similar term for the second class. Given that its probability is $p′$
+In addition, since we have two classes then we need also similar term for the second class. Given that its probability is $p^{\prime}$
 
-$Gini=p(1−p)+p′(1−p')$
+$$
+\operatorname{Gini}=p(1-p)+p^{\prime}\left(1-p^{\prime}\right)
+$$
 
-In the case of Gini impurity it is helpful to realise that $p+p′=1$ hence:
+In the case of Gini impurity it is helpful to realise that $p+p^{\prime}=1$ hence:
 
-$Gini=p(1−p)+p′(1−p′)=(p+p′)−(p2+p′2)=1−(p2+p′2)$
+$$
+\text { Gini }=p(1-p)+p^{\prime}\left(1-p^{\prime}\right)=\left(p+p^{\prime}\right)-\left(p^{2}+p^{\prime 2}\right)=1-\left(p^{2}+p^{\prime 2}\right)
+$$
 
 Its behaviour is shown in figure 2.19 below:
 
@@ -429,7 +463,9 @@ Its behaviour is shown in figure 2.19 below:
 
 In general if we have more than $K$ classes, then:
 
-$Gini=∑Ki=1pi(1−pi)=1−∑Ki=1p2i$
+$$
+\text { Gini }=\sum_{i=1}^{K} p_{i}\left(1-p_{i}\right)=1-\sum_{i=1}^{K} p_{i}^{2}
+$$
 
 Figure 2.20 below summarises all of the terms included in both the entropy and Gini. As we have said earlier, both produce consistent trees and have a similar behaviour albeit having different ranges.
 
@@ -442,7 +478,9 @@ Note that the colours are representative of the terms involved in the calculatio
 
 Finally the classification error is given as:  
 
-$Classificaiton error=1−max(pi)$
+$$
+\text { Classification error }=1-\max \left(p_{i}\right)
+$$
 
 The behaviour of all of the three impurity measures have been already shown in <mark>Figure (20)</mark>
 

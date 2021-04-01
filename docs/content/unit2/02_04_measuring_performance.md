@@ -12,7 +12,11 @@ We will start by classification of a binary class problem, and we will generalis
 
 The classification would be effectively stating yes or 1 or + if the instant belongs to the main class of concern or stating no or 0 or – if the instant does not belong to the main class (which implicitly means it belongs to the complement of the class). We just have to be consistent in our approach. So in this context it is a binary choice, and it is useful to represent one of the classes as positive + and the other as negative –. Now, our classifier (our DT) mission is to predict whether an instant is of class + or class –. Therefore, we contrast what the classifier has **predicted** and what was the **actual class** of all instances to measure how good our classifier is. This can be done for the training set, the validation set or the testing set, all of which we have answers for (i.e. we know the classes for these sets). When we contrast the prediction against the actual class of each instant we have four possibilities:
 
-<mark>predictions</mark>
+1.	**The actual class is + and    the predicted class is + 	(True Positive-TP)**
+2.	**The actual class is – while the predicted class is +	(False Positive-FP)**
+
+3.	**The actual class is + while the predicted class is –	(False Negative-FN)**
+4.	**The actual class is – and    the predicted class is –	(True Negative-TN)**
 
 These 4 cases can be better summarised in <mark>the figure</mark> below. This is called the confusion matrix because the red boxes represent the cases confused by the prediction model, while the black boxes represent the cases where the predictions of the model are aligned with the reality. The aim of any model is to reduce the cases in the red boxes and make them as close to 0 as possible. We can actually do a lot with these counts, and below we show several metrics that can be defined based on them.
 
@@ -25,17 +29,23 @@ These 4 cases can be better summarised in <mark>the figure</mark> below. This is
 
 Note that the total number of instances is the sum of all of the numbers in the boxes of the confusion matrix:
 
-<mark> red/black issue</mark> $𝒏 = TP+ TN+ FP+ FN$
+$$
+𝒏 = TP+ TN+ FP+ FN
+$$
 
 this is regardless of the distribution of the correctly and incorrectly classified instances.
 
 We define the Accuracy of a classifier as the rate of correctly classified instances out of the total number of instances:
 
-$Accuracy=(TP+TN)/n$
+$$
+Accuracy=(TP+TN)/n
+$$
 
 On the other hand, we define the Error rate as the rate of the incorrectly classified instances out of the total number of instances:
 
-𝑬𝒓𝒓𝒐𝒓 𝒓𝒂𝒕𝒆=(𝐅𝐏+𝐅𝐍)/𝒏
+$$
+\text { Error rate }=(F P+F N) / n
+$$
 
 All classifiers try to increase its accuracy or equivalently reduce its error rate. However, in some special cases these metrics do not reflect how good the model is. For example, if the classes are not balanced, the accuracy can be misleading. We will study these cases and more suitable measures for them in unit 4.
 
@@ -49,41 +59,47 @@ If we are less concerned with false positives then we can use the hit rate (aka 
 
 <mark>Figure (): Detective Metrics related to actual classes (new suggested names used for consistency. Left: performance metrics. Right: error metrics. </mark>
 
-The bar on top represents a complement of an event in a probabilistic sense. The true positive detection rate is denoted as $p(detect+)$ and it represents the probability of correctly detecting positive instances by the model. Similarly, the true negative detection rate is denoted as $p(detect−)$. It represents the probability of correctly detecting negative instances by the model.  
+The bar on top represents a complement of an event in a probabilistic sense. The true positive detection rate is denoted as $p\left(\right.$ detect $\left._{+}\right)$ and it represents the probability of correctly detecting positive instances by the model. Similarly, the true negative detection rate is denoted as $p\left(\right.$ detect $\left._{-}\right)$. It represents the probability of correctly detecting negative instances by the model.  
 
-On the other hand, the false positive detection rate is denoted $p(detect−+)$ and it represents the probability of incorrectly detecting positive instances by the model. While, the false negative detection rate is denoted $p(detect−−)$ and represents the probability of incorrectly detecting negative instances by the model.
+On the other hand, the false positive detection rate is denoted $p\left(\overline{\text { detect }}_{+}\right)$ and it represents the probability of incorrectly detecting positive instances by the model. While, the false negative detection rate is denoted $p\left(\overline{\text { detect }}_{-}\right)$ and represents the probability of incorrectly detecting negative instances by the model.
 
 We can now easily verify that:
 
-$p(detect+)+p(detect−+)=1$
+<mark>not showing top line</mark>
 
-$p(detect−)+p(detect−−)=1$
+$$
+\begin{array}{l}
+p\left(\text { detect }_{+}\right)+p\left(\text { detect }_{+}\right)=1 \\
+p\left(\text { detect }_{-}\right)+p\left(\text { detect }_{-}\right)=1
+\end{array}
+$$
 
 The names are meant to reflect the inner relationship between the different metrics. To see why, we first note that
-$¬ TP = FN, ¬ TN=FP$, where we use $¬$ to denote the logical not. Now, if we negate both sides of the positive detection rate equation: $¬(Detect+=TP/(TP+FN))$ we get $¬Detect+= FN/(FN+TP)=Detect−+$.
+$¬ TP = FN, ¬ TN=FP$, where we use $¬$ to denote the logical not. Now, if we negate both sides of the positive detection rate equation: $\neg\left(\right.$ Detect $\left._{+}=T P /(T P+F N)\right)$ we get $\neg$ Detect $_{+}=F N /(F N+T P)=\overline{\text { Detect }}_{+}$.
 
-Similarly, if we negate both sides of the negative detection rate equation: $¬(Detect−= TN/(FP+TN))$ we get $¬Detect−= FP/(TN+FP)=Detect−−$. In other words, $Detect−+ Detect−−$ represents the model inability to detect the positive and negative instances, respectively.
+Similarly, if we negate both sides of the negative detection rate equation: $\neg\left(\right.$ Detect $\left._{-}=T N /(F P+T N)\right)$ we get $\neg$ Detect $_{-}=F P /(T N+F P)=\overline{\text { Detect }}$.
+
+In other words, $\overline{\text { Detect }}_{+}$ $\overline{\text { Detect }}_{-}$ represents the model inability to detect the positive and negative instances, respectively.
 
 Similar argument is used for the prediction related metrics. The true positive prediction value is denoted as
-$p(predict+)$ and represents the probability of correctly predicting positive instances by the model. The true negative prediction value is denoted as $p(predict−)$ and represents the probability of correctly predicting negative instances by the model. On the other hand, the false positive prediction value is denoted $p(predict−+)$, it represents the probability of incorrectly predicting positive instances by the model. While, the false negative prediction value is denoted $p(predict−−)$, it represents the probability of incorrectly predicting negative instances by the model.  
+$p\left(\right.$ predict $\left._{+}\right)$ and represents the probability of correctly predicting positive instances by the model. The true negative prediction value is denoted as $p($ predict_ $)$ and represents the probability of correctly predicting negative instances by the model. On the other hand, the false positive prediction value is denoted $p\left(\overline{\text { predict }}_{+}\right)$, it represents the probability of incorrectly predicting positive instances by the model. While, the false negative prediction value is denoted $p\left(\overline{\text { predict }}_{-}\right)$, it represents the probability of incorrectly predicting negative instances by the model.  
 
 We can now easily verify that:
 
-$p(predict+)+p(predict−+)=1$
-
-$p(predict−)+p(predict−−)=1$
+$$
+\begin{array}{l}
+p\left(\text { predict }_{+}\right)+p\left(\overline{\text { predict }}_{+}\right)=1 \\
+p\left(\text { predict }_{-}\right)+p\left(\overline{\text { predict }}_{-}\right)=1
+\end{array}
+$$
 
 <mark>Figure (): Predictive Metrics related to predicted classes (new suggested names used for consistency). Left: performance related predictive metrics. Right: error related predictive metrics. </mark>
 
-Negation on the prediction metrics yields similar but not quite the same relationship as for the detection metrics. This is because if we negate both sides of the positive prediction value equation:
+Negation on the prediction metrics yields similar but not quite the same relationship as for the detection metrics. This is because if we negate both sides of the positive prediction value equation: $\neg\left(\right.$ Predict $\left._{+}=T P /(T P+F P)\right)$ we get $\neg$ Predict $_{+}=F N /(F N+T N)=\overline{\text { Predict }}_{-}$.
 
-$¬(Predict+=TP/(TP+FP))$
-we get $¬Predict+=FN/(FN+TN)=Predict−−$
+Similarly, if we negate both sides of the negative prediction value equation: $\neg\left(\right.$ Predict $\left._{-}=T N /(T N+F N)\right)$ we get $\neg$ Predict $_{-}=F P /(F P+T P)=\overline{\text { Predict }}_{+}$. Note that the negation here changed also the prediction metric form positive to negative.  
 
-Similarly, if we negate both sides of the negative prediction value equation: $¬(Predict−=TN/(TN+FN))$
-we get $¬Predict−=FP/(FP+TP)=Predict−+$. Note that the negation here changed also the prediction metric form positive to negative.  
-
-Note that we used capital initial for the metrics to express them as a rate, while we uses small letter when we place them in the context of probabilities, so for example $Predict−−=p(Predict−−)$, $Predict+=p(predict+)$ and so on.
+Note that we used capital initial for the metrics to express them as a rate, while we uses small letter when we place them in the context of probabilities, so for example $\overline{\text { Predict }}_{-}=p\left(\overline{\text { Predict }}_{-}\right),$ Predict $_{+}=p\left(\right.$ predict $\left._{+}\right)$ and so on.
 
 ###Which type of metric is more important?
 
@@ -91,20 +107,22 @@ Note that predictive metrics are concerned with the model ability to predict or 
 
 ###Holistic metrics
 
-**Holistic metrics** are those metrics that look at both horizontal and vertical views and involve both positive and negative classes. These are better metrics for model comparison of most problems when we are concerned with an overall good performance without a particular preference of guessing ability or discrimination ability of the model. Among these holistic metrics are the F1 score and Matthew Correlation Coefficient. The F1 score is defined as the harmonic mean of the precision and recall. Harmonic means differs from the usual arithmetic mean. The harmonic mean for $n$ numbers $xi$ is defined as the reciprocal of the arithmetic mean of the reciprocals of the given numbers:
+**Holistic metrics** are those metrics that look at both horizontal and vertical views and involve both positive and negative classes. These are better metrics for model comparison of most problems when we are concerned with an overall good performance without a particular preference of guessing ability or discrimination ability of the model. Among these holistic metrics are the F1 score and Matthew Correlation Coefficient. The F1 score is defined as the harmonic mean of the precision and recall. Harmonic means differs from the usual arithmetic mean. The harmonic mean for $n$ numbers $x_{i}$ is defined as the reciprocal of the arithmetic mean of the reciprocals of the given numbers: $\left(\frac{\sum_{i=1}^{k} x_{i}^{-1}}{k}\right)^{-1}$.
 
- $(∑ki=1x−1ik)−1$
+Therefore, for two numbers it is defined as $\left(\frac{1 / x_{1}+1 / x_{2}}{2}\right)^{-1}=\frac{2 x_{1} x_{2}}{x_{1}+x_{2}}$
 
-Therefore, for two numbers it is defined as $(1/x1 + 1/x22)−1=2 x1x2x1+x2$
-
-Therefore, F1 score is given as $F1 score=2 PPV.TPRPPV+TPR=2TP2TP+ FP+ FN$
+Therefore, F1 score is given as $F 1$ score $=\frac{2 \text { PPV.TPR }}{P P V+T P R}=\frac{\text { 2TP }}{2TP \text { (1) }+\text { FP }+\text { FN }}$
 
 !!! Note
     Note that $𝑨𝒄𝒄𝒖𝒓𝒂𝒄𝒚=(𝐓𝐏+𝐓𝐍)/𝒏 =(𝐓𝐏+𝐓𝐍)/(𝐓𝐏+ 𝐓𝐍+ 𝐅𝐏+ 𝐅𝐍)$. If we compare this with the F1 score formula, we realise that we can obtain F1 score directly from the accuracy formula, by replacing the term $TN$ with $TP$. In other words, we can view the F1 score from another perspective as being a measure of overall accuracy for the true positive predicted cases only (no true negative).
 
 <mark>Figure (): Holistic Metrics that are comprehensively involving both predicted and actual classes. Left: F1 score. Right: Matthew Correlation Coefficient. Both are suitable for any binary class problem even when the classes’ counts are imbalanced. (i.e. when the number of instances form one class – normally the positive class – are much smaller than number of instances from the second class – normally the negative class).  </mark>
 
-The Matthew correlation coefficient (MCC) is defined as  $MCC=TN.TP−FP.FN(TP+FP)(TN+FN)(TP+FN)(TN+FP)−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−√$
+The Matthew correlation coefficient (MCC) is defined as:
+
+$$
+M C C=\frac{\text { TN. TP }-\text { FP.FN }}{\sqrt{(T P+F P)(T N+F N)(T P+F N)(T N+F P)}}
+$$
 
 <mark>Figure (): Holistic Metrics that are comprehensively involving both predicted and actual classes. Left: Accuracy. Right: Error rate. Both performs poorly when the classes count is imbalanced (i.e. when the number of instances form one class – normally the positive – are much smaller than number of instances from the second class – normally the negative class). Nevertheless, these are the basic metrics that several algorithms use. </mark>
 
@@ -121,7 +139,16 @@ Ok let us now have a look at some examples. Let us assume that we trained a deci
 
 By comparing the Accuracy (or F1 score or MCC) we accordingly prefer classifier 4.
 
-<mark> unlabeled figure</mark>
+<mark>DS_IMG70-73</mark>
+
+$$
+\begin{array}{cc}
+\text { Detect }_{+}=\frac{10}{10+40}=0.2 & \text { Detect }_{-}=\frac{40}{40+10}=0.8 \\
+\text { Predict }_{+}=\frac{10}{10+10}=0.5 & \text { Predict }_{-}=\frac{40}{40+40}=0.5 \\
+\text { Accuracy }=\frac{10+40}{100}=0.5 \quad F 1=\frac{2 \times 10}{2 \times 10+40+10}=0.286 \\
+M C C=\frac{10 \times 40-10 \times 40}{\sqrt{(10+10)(10+40)(40+40)(40+10)}}=0.0
+\end{array}
+$$
 
 ###Examples of metrics on classifiers comparison
 Let us now assume that we trained a further two classifiers that produced the following two confusion matrices. Comparing the classifiers we can see how the different metrics react to the changes in the way the instances has been classified. In particular we can see that F1 score reflect a balanced estimation of the quality of the classifier, while accuracy can be quite optimistic in its estimation of the quality of the classifier. MCC is the more reserved of holistic metrics and it tends to be more pessimistic in its estimation.
@@ -154,24 +181,27 @@ Different sources uses these two formatting as well. On the right also you can s
 
 <mark> 2x confusion matrix graphs, unlabeled </mark>
 
-For multi-class problems, the recall or $pr(detectclass)$ can be defined in terms of averaged sum of true instances of each class. To demonstrate how, let us look into the above confusion matrix. The recall for each class separately give us the following:  
+For multi-class problems, the recall or pr(detect $\left._{\text {class }}\right)$ can be defined in terms of averaged sum of true instances of each class. To demonstrate how, let us look into the above confusion matrix. The recall for each class separately give us the following:  
 
-$pr(〖detect〗_setosa )=13/13 , pr(〖detect〗_versicolor )=15/18 ,  pr(〖detect〗_virginica )=6/7$
+$$
+\operatorname{pr}\left(\text { detect }_{\text {setosa }}\right)=\frac{13}{13}, \operatorname{pr}\left(\text { detect }_{\text {versicolor }}\right)=\frac{15}{18}, \text { pr }\left(\text { detect }_{\text {virginica }}\right)=\frac{6}{7}
+$$
 
 ###Holistic metric for multi-class: $pr(detect)$ aka recall score
 
 Which yields 1.0,0.83 and 0.86 for the classes 'setosa' 'versicolor' 'virginica', respectively. Now, the recall for the above model can be calculated in several ways, some of them are:
 
-1. Macro $pr(detect)=(pr(〖detect〗_setosa )+pr(〖detect〗_versicolor )+pr(〖detect〗_virginica ))/3=0.8968$
+1. Macro $p r($ detect $)=\frac{p r\left(\text { detect }_{\text {setosa }}\right)+p r\left(\text { detect }_{\text {versicolor }}\right)+p r\left(\text { detect }_{\text {virginica }}\right)}{3}=0.8968$
 
-2. Weighted $n=13+18+7=38$ This is not 150 because the above confusion matrix is for a testing set not the total dataset. The weights for the classes are: $w_setosa=13/38  w_versicolor=18/38, w_virginica=7/38$. Hence, the balanced accuracy is: $pr(detect)=(13pr(〖detect〗_setosa )+18pr(〖detect〗_versicolor )+7pr(〖detect〗_virginica ))/38=0.8947$. Note that we can calculate the weighted balanced accuracy by just taking the counts of
-$pr(detect)=(#True(setosa)+#True(versicolor)+#True(virginica))/38=(13+18+6)/38=0.8947$ which means we simply sum the diagonal of the confusion matrix and divide by the total number.
+2. Weighted $n=13+18+7=38$. This is not 150 because the above confusion matrix is for a testing set not the total dataset. The weights for the classes are: $w_{\text {setosa }}=13 / 38 \quad w_{\text {versicolor }}=18 / 38, w_{\text {virginica }}=7 / 38$. Hence, the balanced accuracy is: $p r($ detect $)=\frac{13 p r\left(\text { detect }_{\text {setosa }}\right)+18 p r\left(\text { detect }_{\text {versicolor }}\right)+7 p r\left(\text { detect }_{\text {virginica }}\right)}{38}=0.8947$. Note that we can calculate the weighted balanced accuracy by just taking the counts of $p r($ detect $)=\frac{\# \text { True }(\text { setosa })+\# \text { True }(\text { versicolor })+\# \text { True }(\text { virginica })}{38}=\frac{13+18+6}{38}=0.8947$ which means we simply sum the diagonal of the confusion matrix and divide by the total number.
 
-Here we would like to point out that sometimes the above score is called the balanced accuracy metric. It is defined for binary class’s problem as:
+Here we would like to point out that sometimes the above score is called the balanced accuracy metric. It is defined for binary class problem as:
 
 <mark> unlabeled figure</mark>
 
-$Balanced Accuracy=1/2 (TP/(TP+FN)+TN/(TN+FP))=1/2 pr(〖detect〗_+ )+1/2 pr(〖detect〗_-)$
+$$
+Balanced Accuracy =\frac{1}{2} (\frac{TP}{TP+FN}+\frac{TN}{TN+FP}) =\frac{1}{2} \boldsymbol{p} \boldsymbol{r}\left(\boldsymbol{d e t e c} \boldsymbol{t}_{+}\right)+\frac{1}{2} \boldsymbol{p} \boldsymbol{r}\left(\boldsymbol{d e t e c} \boldsymbol{t}_{-}\right)
+$$
 
 This metric is the macro average of the $pr(detect)$ so there is nothing new here really except that we are taking the average of both detection rates. A weighted average version can be defined as we showed earlier.
 
@@ -179,11 +209,15 @@ This metric is the macro average of the $pr(detect)$ so there is nothing new her
 
 All calculations for $pr(predict)$ (aka precision) extends naturally similar to what we did for the $pr(detect)$ (aka recall). As before we can calculate the precision for each class as follows:
 
-$pr(〖predict〗_setosa )=13/13 , pr(〖predict〗_versicolor )=15/16 ,  pr(〖predict〗_virginica )=6/9$
+$$
+\operatorname{pr}\left(\text { predict }_{\text {setosa }}\right)=13 / 13, \text { pr }\left(\text { predict }_{\text {versicolor }}\right)=15 / 16, \text { pr }\left(\text { predict }_{\text {virginica }}\right)=6 / 9
+$$
 
-1. Macro $pr(predict)=(pr(〖predict〗_setosa )+pr(〖predict〗_versicolor )+pr(〖predict〗_virginica ))/3=0.868$
+1. Macro $\operatorname{pr}($ predict $)=\frac{ \text { pr(predict } \left._{\text {setosa }}\right)+\text { pr }\left(\text { predict }_{\text {versicolor }}\right)+\text { pr }\left(\text { predict }_{\text {virginica }}\right)}{3}=0.868$
 
-2. Weighted $n=13+18+7=38$ This is not 150 because the above confusion matrix is for a testing set not the total dataset. The weights for the classes are: $w_setosa=13/38  w_versicolor=18/38, w_virginica=7/38$. Hence, the balanced accuracy is: $pr(predict)=(13pr(〖predict〗_setosa )+18pr(〖predict〗_versicolor )+7pr(〖predict〗_virginica ))/38=0.9089$
+2. Weighted $n=13+18+7=38$. The weights for the classes are: $w_{\text {setosa }}=13 / 38 w_{\text {versicolor }}=18 / 38, w_{\text {virginica }}=7 / 38$.
+
+Hence, the balanced accuracy is: $\operatorname{pr}($ predict $)=\frac{13 \text { pr }\left(\text { predict }_{\text {setosa }}\right)+18 \text { pr }\left(\text { predict }_{\text {versicolor }}\right)+\text { 7pr }\left(\text { predict }_{\text {virginica }}\right)}{38}=0.9089$
 
 Note here that we cannot use the counts on the diagonal of the confusion matrix as in $pr(detect)$
 
