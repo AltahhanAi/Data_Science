@@ -164,8 +164,6 @@ Ok let us now have a look at some examples. Let us assume that we trained a deci
 
 By comparing the Accuracy (or F1 score or MCC) we accordingly prefer classifier 4.
 
-<mark>DS_IMG70-73</mark>
-
 <figure role="group">
   <img src="../images/DS_IMG070.png" alt="Test image." />
   <figcaption><strong>Figure 4.9</strong> Caption. See calculations below. </figcaption>
@@ -341,8 +339,6 @@ Note that F1 score only applies to binary class problems. If the problem is mult
 
 Note that the true labels are placed horizontally while the prediction is vertically. This is opposite to what we have used before, but as we said earlier it should not matter as long as we are vigilant about it.
 
-<mark> 2x confusion matrix graphs, unlabeled </mark>
-
 <figure role="group">
   <img src="../images/DS_IMG081.png" alt="Test image." />
   <figcaption><strong>Figure 4.20</strong> Confusion matrix without normalisation. </figcaption>
@@ -354,8 +350,6 @@ Note that the true labels are placed horizontally while the prediction is vertic
 </figure>
 
 Different sources uses these two formatting as well. On the right also you can see the same confusion matrix after normalisation. We normalise by dividing each entry by the sum along the **true label axis**. Below you will see an example that clarifies this.
-
-<mark> 2x confusion matrix graphs, unlabeled </mark>
 
 <figure role="group">
   <img src="../images/DS_IMG083.png" alt="Test image." />
