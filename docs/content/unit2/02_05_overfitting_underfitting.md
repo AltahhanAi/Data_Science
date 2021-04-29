@@ -78,14 +78,19 @@ $\left\{S_{2} \cup S_{3}\right\}$ and test on subset $S_{1}$ to obtain the gener
 
 After we have selected the best parameters for our model, we want to evaluate the performance of the model. A pitfall would be to use the averaged cross validation error as an indication for the performance of the model. This a biased estimation of the generalisation ability of our model because we have already used the validation data to select the best hyper parameters. Therefore, we need to reserve a portion of the dataset for this final evaluation of the resultant selected model. <mark>Figure () below</mark> shows this complete process.
 
-<mark>Figure (): Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as $modelv$. Note that $v.$ takes the best value of ${v1, v2}$ that minimises the average errors $Errv1.,Errv2.$. So for example if we assume that $Errv1.>Errv2.$ then $v.=v2$.  </mark>
+<figure role="group">
+  <img src="../images/DS_IMG088.png" alt="Test image." />
+  <figcaption><strong>Figure 5.5</strong>  Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as $modelv$. Note that $v.$ takes the best value of ${v1, v2}$ that minimises the average errors $Errv1.,Errv2.$. So for example if we assume that $Errv1.>Errv2.$ then $v.=v2$. </figcaption>
+</figure>
 
 ###Evaluation of cross validation selected model with grid search for hyper parameters
 
 When we have multiple hyper parameters and we want to select the best combination of values for them, we can employ several search techniques. Here we can take two approaches. One simple approach is to perform an exhaustive search of all the possible combinations of the hyper parameters. We evaluate the models that stems from them and we select the model with the least generalisation error or highest overall accuracy. This is called grid search because each hyper parameter adds a dimension to a grid of possible values. For example if we have three hyper parameters the first with 5 values, the second with 5 values and the third with 2 values, then the number of combinations of these values is $5×5×2=100$ different combinations. So in this approach we need to evaluate all of these values to select the best model among them. There are less computationally expensive but inexact methods that we can employ to search for close to optimal values. These include hill climbing, simulated annealing some of these search methods will be covered in the Algorithms module.
 
-<mark> Figure (): Model selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as $modelv$. Note that $v.$ takes the best value of ${v1, v2}$
-that minimises the average errors $Errv1.,Errv2.$. So for example if we assume that $Errv1.>Errv2.$ then $v.=v2$.</mark>
+<figure role="group">
+  <img src="../images/DS_IMG089.png" alt="Test image." />
+  <figcaption><strong>Figure 5.6</strong>  Model selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as $modelv$. Note that $v.$ takes the best value of ${v1, v2}$ that minimises the average errors $Errv1.,Errv2.$. So for example if we assume that $Errv1.>Errv2.$ then $v.=v2$. </figcaption>
+</figure>
 
 ###Model evaluation with nested cross validation and hyper parameters
 
@@ -93,11 +98,17 @@ We have shown how to evaluate a selected model on an unseen data in the previous
 
 This where  nested cross validation comes to the rescue. The idea now is that we split our data into folds and we use cross validation to evaluate the performance of the model on an **unseen** dataset while we use the rest of the data to perform another inner cross validation to select the best parameters. This called nested cross validation. Note that we cannot use this to select a model (we have already done that in each inner CV) we use it just to come up with an unbiased estimate of the generalisation ability of a technique. There are no specific hyper parameters that we will get out of this procedure. Note, however that you still can use the outer splitting regime without the use of outer cross validation to get a final performance on an unseen test set for a particular selected best model hyper parameters, but bear in mind that this estimation is still a reflection on only part of the dataset. The figure below shows this procedure.
 
-<mark> Figure (): Nested Cross Validation Evaluation selected models, both inner and outer cross-validation have 3 folds. Note that we have $3×3×2$ models to be trained and this can be consuming and computational expensive depending on the size of the dataset. </mark>
+<figure role="group">
+  <img src="../images/DS_IMG090.png" alt="Test image." />
+  <figcaption><strong>Figure 5.7</strong>  Nested Cross Validation Evaluation selected models, both inner and outer cross-validation have 3 folds. Note that we have $3×3×2$ models to be trained and this can be consuming and computational expensive depending on the size of the dataset. </figcaption>
+</figure>
 
 For simplicity of presentation, the hyper parameter $h$ is assumed to have two different values that it can take $\left\{v_{1}, v_{2}\right\}$. Each fold of the outer CV has an inner CV process that will be executed inside it to suggest a best value for the hyper parameter $h$. As we saw earlier an inner CV gives its own best value for $h$ that stems from its error comparisons.  Since we have 3 –fold outer CV we get 3 values which might all be $v_{1}$ or $v_{2}$ or a mix of both (ex. $v_{1}$, $v_{1}$ and $v_{2}$). We have represented the best values of the three outer folds as $\dot{v}, \ddot{v}$ and $\dddot{v}$ (ex. $\dot{v}=v_{1}, \ddot{v}=v_{1}, \dddot v=v_{2}$). These values in turn give us 3 (possibly different) models $\operatorname{model}_{\dot{v}},$ model $_{\ddot{v}}$ and model $_{\dddot{v}}$, therefore, the final results is an average of the errors or accuracy of the 3 different models. We can take a vote on the best value of h to produce a final model (ex. $v_{1}$) but the final averaged errors is not guaranteed to be unbiased unless we do yet another third CV process.
 
-<mark>Figure (): Nested cross-validation evaluation for grid-search model selection, both inner and outer cross-validation have 3 folds. Note that we have $3×3×4$ models to be trained and this can be consuming and computational expensive depending on the size of the dataset. </mark>
+<figure role="group">
+  <img src="../images/DS_IMG091.png" alt="Test image." />
+  <figcaption><strong>Figure 5.8</strong>  Nested cross-validation evaluation for grid-search model selection, both inner and outer cross-validation have 3 folds. Note that we have $3×3×4$ models to be trained and this can be consuming and computational expensive depending on the size of the dataset. </figcaption>
+</figure>
 
 For simplicity of presentation, the two hyper parameters $h$ and $h'$ are assumed to have two different values $\left\{v_{1}, v_{2}\right\}$ and $\left\{v_{1}^{\prime}, v_{2}^{\prime}\right\}$ that they can take respectively. Each fold of the outer CV has an inner CV process that will be executed inside it to suggest a best value for the hyper parameter $\left(h, h^{\prime}\right)$. In the grid search process we take all the possible combinations of the hyper parameters values. So in our simple case we have $2×2$ possible combinations. Note that this has an exponential growth rate. So, if we have 5 hyper parameters, each with 3 values then to perform the grid search we need to consider $3^{5}=243$ combinations, i.e. we have 243 models to train. So grid search for this case can quickly becomes intractable.  If we take into account also an outer and an inner CV operations that we would like to perform to obtain unbiased results then the results would be $3×3×243=2187$
 models to train. The bottom line is that we have to be careful on how many models we are training when we use exhaustive search methods such as the grid search. There are cheaper but inexact methods that we can employ to search for close to optimal values. This include hill climbing, simulated annealing some of these search methods will be covered in the Algorithms module.
@@ -130,14 +141,37 @@ It is expected that the performance for the test set would be slightly lower (ro
 
 Below we see an example of overfitting. The data can be classified by rectilinear decision boundaries that are specified by four conditions, however due to the noise that we added by spreading out some of the class C1 points and overly trying to isolate and classify those pockets, the tree in turn is overly grown and has become unnecessarily complex. Bear in mind that there is no perfect solution here due to noise there will be always inaccuracy that occurs in the classification decision of the tree and we just need to live with them.  
 
-<mark>2 graphs, 2 decision trees</mark>Figure (): Top: Overfitting of decision trees on the noisy Gaussian data (yellow points). Top Left: DT with lots of branching’s to accommodate the noise that we added to the Gaussian data. Top Right: the decision boundaries of the DT shows how the tree is trying to isolate pockets of data to decrease the training error.   Bottom: Decision trees with no overfitting for the same noisy Gaussian data. Bottom Left: Overfitting is solved by reducing the maximum depth and confining the splitting of leafs to a minimum of around 240 points for 10% (pro rata) of the 5400x2 data points. Note that this is problem specific and it shows that it is hard to overcome overfitting specifically with DT. Bottom Right: DT ignores the noise in the Gaussian data and just isolate the Gaussian data in a rectangle
+####Overfitting of decision trees on the noisy Gaussian data (yellow points)
 
-<mark>Figures () above </mark> are important to show the signs or symptoms of overfitting. As it can be seen the training error is successfully decreased when we overly grow the tree, however the testing error (the more precise indicator of the generalisation ability of the model) has actually remained more or less the same. The elbow shape of the testing error is a clear indicator of overfitting and the reasonable size of the tree lies exactly around the elbow (angle) itself. So for this example the angle lies on around 4 (the number of conditions/nodes required to classify the data). <mark>See the following Jupyer notebook exercise on DT overfitting.</mark>
+<figure role="group">
+  <img src="../images/DS_IMG092.png" alt="Test image." />
+  <figcaption><strong>Figure 5.9</strong>  DT with lots of branching to accommodate the noise that we added to the Gaussian data. </figcaption>
+</figure>
 
-On the other hand, overfitting can occur when we excessively add data horizontally. In other words if we increase the number of attributes that are not really needed to make a decision then potentially the tree will over grow and the training error will be reduced without reducing the testing error. So the symptoms of overfitting are the same but the underlying cause is different. In the first the data is noisy in the second the attributes are unnecessary. <mark>Figure ()</mark> below shows this phenomena.
+<figure role="group">
+  <img src="../images/DS_IMG094.png" alt="Test image." />
+  <figcaption><strong>Figure 5.10</strong> The decision boundaries of the DT shows how the tree is trying to isolate pockets of data to decrease the training error. </figcaption>
+</figure>
 
-<mark>Figure (): Decision trees training and testing with phenomenon of overfitting. Note how when we increase the max depth of the tree the testing error forked from the training error which continued to deceivingly decrease, while in reality the testing error were increased for depth > 4. </mark>
+####Decision trees with no overfitting for the same noisy Gaussian data
 
+<figure role="group">
+  <img src="../images/DS_IMG093.png" alt="Test image." />
+  <figcaption><strong>Figure 5.11</strong>  Overfitting is solved by reducing the maximum depth and confining the splitting of leafs to a minimum of around 240 points for 10% (pro rata) of the 5400x2 data points. Note that this is problem specific and it shows that it is hard to overcome overfitting specifically with DT. </figcaption>
+</figure>
 
+<figure role="group">
+  <img src="../images/DS_IMG095.png" alt="Test image." />
+  <figcaption><strong>Figure 5.12</strong> DT ignores the noise in the Gaussian data and just isolate the Gaussian data in a rectangle . </figcaption>
+</figure>
+
+Figures 5.9-5.12 above are important to show the signs or symptoms of overfitting. As it can be seen the training error is successfully decreased when we overly grow the tree, however the testing error (the more precise indicator of the generalisation ability of the model) has actually remained more or less the same. The elbow shape of the testing error is a clear indicator of overfitting and the reasonable size of the tree lies exactly around the elbow (angle) itself. So for this example the angle lies on around 4 (the number of conditions/nodes required to classify the data). <mark>See the following Jupyter notebook exercise on DT overfitting.</mark>
+
+On the other hand, overfitting can occur when we excessively add data horizontally. In other words if we increase the number of attributes that are not really needed to make a decision then potentially the tree will over grow and the training error will be reduced without reducing the testing error. So the symptoms of overfitting are the same but the underlying cause is different. In the first the data is noisy in the second the attributes are unnecessary. Figure 5.13 below shows this phenomena.
+
+<figure role="group">
+  <img src="../images/DS_IMG096.png" alt="Test image." />
+  <figcaption><strong>Figure 5.13</strong> Decision trees training and testing with phenomenon of overfitting. Note how when we increase the max depth of the tree the testing error forked from the training error which continued to deceivingly decrease, while in reality the testing error were increased for depth . </figcaption>
+</figure>
 
 <mark>In the next unit you will look at...</mark>
