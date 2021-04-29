@@ -115,7 +115,8 @@ models to train. The bottom line is that we have to be careful on how many model
 
 As we saw earlier an inner CV gives its own best value for $h$ that stems from its error comparisons.  Since we have 3 –fold outer CV we get 3 values which might all be v1 or v2 or a mix of both (ex. $v1$, $v1$ and $v2$). We have represented the best values of the three outer folds as $\dot{v}, \ddot{v}$ and $\ddot{v}(e x . \dot{v}=v 1, \ddot{v}=v 1, \dddot v=v 2)$. These values in turn give us 3 (possibly different) models model $_{\dot{v}}$, model $_{\ddot{v}}$ and model $_{\ddot{v}}$, therefore, the final result is an average of the errors or accuracy of the 3 different models. We can take a vote on the best value of $h$ to produce a final model (ex. $v1$) but the final averaged errors is not guaranteed to be unbiased unless we do yet another third CV process.
 
-See <mark>the following Jupyter notebook exercise on Nested CV.</mark>
+See the following <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/code/Netsed_CV_with_Grid_Search.ipynb?csf=1&web=1&e=rPWVm8" target="_blank">Jupyter notebook excercise on nested CV</a>
+
 
 ###Model comparison with cross validation
 
@@ -165,7 +166,7 @@ Below we see an example of overfitting. The data can be classified by rectilinea
   <figcaption><strong>Figure 5.12</strong> DT ignores the noise in the Gaussian data and just isolate the Gaussian data in a rectangle . </figcaption>
 </figure>
 
-Figures 5.9-5.12 above are important to show the signs or symptoms of overfitting. As it can be seen the training error is successfully decreased when we overly grow the tree, however the testing error (the more precise indicator of the generalisation ability of the model) has actually remained more or less the same. The elbow shape of the testing error is a clear indicator of overfitting and the reasonable size of the tree lies exactly around the elbow (angle) itself. So for this example the angle lies on around 4 (the number of conditions/nodes required to classify the data). <mark>See the following Jupyter notebook exercise on DT overfitting.</mark>
+Figures 5.9-5.12 above are important to show the signs or symptoms of overfitting. As it can be seen the training error is successfully decreased when we overly grow the tree, however the testing error (the more precise indicator of the generalisation ability of the model) has actually remained more or less the same. The elbow shape of the testing error is a clear indicator of overfitting and the reasonable size of the tree lies exactly around the elbow (angle) itself. So for this example the angle lies on around 4 (the number of conditions/nodes required to classify the data). See the following <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/code/DecisionTrees_DecisionBoundaries_and_OverfittingSymptoms.ipynb?csf=1&web=1&e=0pXxpq" target="_blank">Jupyter notebook exercise on DT overfitting.</a>
 
 On the other hand, overfitting can occur when we excessively add data horizontally. In other words if we increase the number of attributes that are not really needed to make a decision then potentially the tree will over grow and the training error will be reduced without reducing the testing error. So the symptoms of overfitting are the same but the underlying cause is different. In the first the data is noisy in the second the attributes are unnecessary. Figure 5.13 below shows this phenomena.
 
