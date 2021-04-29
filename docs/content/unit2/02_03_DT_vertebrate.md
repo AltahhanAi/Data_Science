@@ -159,13 +159,34 @@ So far we have seen how decision trees work and how they are inducted (trained).
 
 
 ![Alt text.](images/DS_IMG041.png)
-
-
 ![alt-text-2](images/DS_IMG042.png)
 
+![alt-text-2](images/DS_IMG043.png)
+![alt-text-2](images/DS_IMG044.png)
 
-<mark>7 x graphs with corresponding decision trees</mark>
-Figure () (left) Linearly and non-linearly separable classes data with their virtual decision boundaries. (Right) expected corresponding decision trees.
+![alt-text-2](images/DS_IMG045.png)
+
+![alt-text-2](images/DS_IMG046.png)
+
+![alt-text-2](images/DS_IMG047.png)
+
+![alt-text-2](images/DS_IMG048.png)
+
+![alt-text-2](images/DS_IMG049.png)
+
+![alt-text-2](images/DS_IMG050.png)
+
+![alt-text-2](images/DS_IMG051.png)
+
+![alt-text-2](images/DS_IMG052.png)
+
+![alt-text-2](images/DS_IMG053.png)
+
+![alt-text-2](images/DS_IMG054.png)
+
+
+<mark>CAPTION</mark>
+**Figure () (left) Linearly and non-linearly separable classes data with their virtual decision boundaries. (Right) expected corresponding decision trees.**
 
 In the above cases, we showed the data and the decision boundary on the left-hand side and on the right-hand side we showed the corresponding expected decision trees that can express the data concisely. In classification such decision boundaries are crucial in two ways: they help us understand the nature of the data, and they help us to assign a suitable technique to the problem in hand. It is not always possible to represent the data in two-dimensional space, in fact it is rarely the case. However, even when we move to higher space dimension, a similar argument can hold.  
 
@@ -173,8 +194,22 @@ The boundaries are assumed when we constructed the datasets. The boundaries do n
 
 So let us see if we hand in the generated data to the CART decision tree induction algorithm, would it be able to recognise the decision boundaries of the data and would it be able to build  corresponding trees as per our expectations. Below are the results.
 
-<mark>7 x graphs with corresponding decision trees</mark>
-Figure () (left) Linearly and non-linearly separable classes data with the decision boundaries of the corresponding decision tree which are shown to the right. (Right) actual corresponding decision trees.
+![alt-text-2](images/DS_IMG055.png)
+
+![alt-text-2](images/DS_IMG056.png)
+
+![alt-text-2](images/DS_IMG057.png)
+
+![alt-text-2](images/DS_IMG058.png)
+
+![alt-text-2](images/DS_IMG059.png)
+
+![alt-text-2](images/DS_IMG060.png)
+
+![alt-text-2](images/DS_IMG061.png)
+
+<mark>CAPTION</mark>
+**Figure () (left) Linearly and non-linearly separable classes data with the decision boundaries of the corresponding decision tree which are shown to the right. (Right) actual corresponding decision trees.**
 
 Note how the algorithm struggled with the last case as the classes and its corresponding boundary becomes non-linearly separable. Linearly separable classes are those classes that we separate by just a line. Non-linearly separable classes are those that need more than one line to separate them or those that need another more complex shape to separate them, whether the shape is regular such as a circle or hyperbola or non-regular such as a convoluted curve. Here the boundaries are inferred from the decision tree itself, unlike the previous set of figures where the boundaries were assumed when we constructed the datasets. As we can see, the DT struggles the most when the data is diagonal. This is because the CART deals with one feature at a time in its conditions. Obviously, there are ways to work around this issue. The most obvious is to allow the DT to deal with two features inside its conditions. This would add to the complexity of the algorithms, and the problem becomes <mark>extenuated very expensive</mark> when we consider hundreds of features. If we are to consider all possible combinations of even 20 features this would amount to checking $2^{20}=1,048,576$ combinations. If each one has 10 possible values we are talking about
 $10^{20}=100,000,000,000,000,000,000$ which is clearly problematic. So the DT might not be the best in dealing with these cases. In fact, it is not great at dealing with numerical data in general. Please note that the decision boundary idea is quite powerful and we will utilise it in other techniques more centrally. These better suited techniques include the perceptron, multi-layer perceptron and nearest neighbours classifiers.

@@ -76,7 +76,7 @@ $$
 
 Below we will see the calculations of the Gini Impurity for the subsets of the nodes (the items that belong to each node). We start always from the whole dataset and then the data will be distributed based on the type of question that we ask in the node. The summary of how we evaluate the two splits is in <mark>Figure ().</mark>
 
-<mark>equations table</mark>
+####Before split:
 
 $$
 \text { Impurity }\left(\begin{array}{c}
@@ -84,6 +84,74 @@ G_{1} S_{1} A_{1} G_{2} S_{2} A_{2} \\
 P P P T T T
 \end{array}\right)=1-\left[\left(\frac{3}{6}\right)^{2}+\left(\frac{3}{6}\right)^{2}\right]=0.5
 $$
+
+####After spilt:
+
+#####Impurity for children of 'makes calls':
+
+######Left (No)
+
+$$
+\text { Gini Impurity }\left(\begin{array}{c}
+G_{2} S_{2} \\
+T T
+\end{array}\right)=1-\left[\left(\frac{2}{2}\right)^{2}+(0)^{2}\right]=0
+$$
+
+######Right (Yes):
+
+$$
+\text { Gini Impurity } \begin{array}{r}
+\left(\begin{array}{c}
+G_{1} S_{1} A_{1} A_{2} \\
+P P P T
+\end{array}\right)=1-\left[\left(\frac{1}{3}\right)^{2}+\left(\frac{2}{3}\right)^{2}\right] \\
+=0.375
+\end{array}
+$$
+
+######Info gain
+
+$$
+\begin{array}{l}
+\text { Info Gain('makes calls {\prime} \text { ) } \\
+=0.5-\left(\frac{2}{6} \times 0+\frac{4}{6} \times 0.375\right) \\
+=0.25
+\end{array}
+$$
+
+#####Impurity for children of 'screen size =8':
+
+######Left (No)
+
+$$
+\begin{array}{c}
+\text { Gini Impurity }\left(\begin{array}{c}
+G_{1} S_{1} A_{1} G_{2} S_{2} \\
+P P P T T
+\end{array}\right)=1-\left[\left(\frac{3}{5}\right)^{2}+\left(\frac{2}{5}\right)^{2}\right] \\
+=0.48
+\end{array}
+$$
+
+######Right (Yes):
+
+$$
+\text { Gini Impurity }\left(\begin{array}{c}
+A_{2} \\
+T
+\end{array}\right)=1-\left[\left(\frac{1}{1}\right)^{2}+(0)^{2}\right]=0
+$$
+
+######Info gain
+
+$$
+\begin{array}{l}
+\text { Info Gain('screen size }=8^{\prime} \text { ) } \\
+\qquad=0.5-\left(\frac{5}{6} \times 0.48+\frac{1}{6} \times 0\right)=0.1
+\end{array}
+$$
+
 
 <figure role="group">
   <img src="../images/DS_IMG017.png" alt="Test image." />
@@ -158,7 +226,81 @@ Tan et al (2020) use Entropy and a slightly different algorithm for building the
 
 After we have chosen the ‘makes calls’ split where we have exhausted its different possibilities (the yes and no values), we move to the next feature ‘screen size’ (which happens to be the last feature that we have in our simple dataset). Since we said that there are only three values that this feature can take {6, 7, 8} we have three splits that can be done based on this feature. The algorithm will evaluate each split and we will choose the best one.
 
-<mark>equations table</mark>
+####Before split:
+
+$$
+\text { Gini Impurity }\left(\begin{array}{c}
+G_{1} S_{1} A_{1} A_{2} \\
+P P P T
+\end{array}\right)=1-\left[\left(\frac{3}{4}\right)^{2}+\left(\frac{1}{4}\right)^{2}\right]=0.375 \mid
+$$
+
+####After split:
+
+#####Impurity of children of ‘screen size=8’
+
+######Left (No):
+
+$$
+\text { Gini Impurity }\left(\begin{array}{c}
+G_{1} S_{1} A_{1} \\
+P P P
+\end{array}\right)=1-\left[\left(\frac{3}{3}\right)^{2}+(0)^{2}\right]=0
+$$
+
+######Right (Yes):
+
+$$
+\text { Gini Impurity }\left(\begin{array}{c}
+A_{2} \\
+T
+\end{array}\right)=1-\left[(0)^{2}+\left(\frac{1}{1}\right)^{2}\right]=0
+$$
+
+######Info gain:
+
+$$
+\begin{aligned}
+\text { Info Gain('screen } & \text { size }=8^{\prime} \text { ) } \\
+\qquad \begin{aligned}
+=& 0.375-\left(\frac{3}{4} \times 0+\frac{1}{4} \times 0\right) \\
+&=0.375
+\end{aligned}
+\end{aligned}
+$$
+
+#####Impurity of children of ‘screen size=7’
+
+######Left (No):
+
+$$
+\text { Gini Impurity }\left(\begin{array}{c}
+G_{1} S_{1} A_{2} \\
+P P T
+\end{array}\right)=1-\left[\left(\frac{2}{3}\right)^{2}+\left(\frac{1}{3}\right)^{2}\right]=0.44
+$$
+
+######Right (Yes):
+
+$$
+\text { Gini Impurity }\left(\begin{array}{c}
+A_{1} \\
+P
+\end{array}\right)=1-\left[\left(\frac{1}{1}\right)^{2}+(0)^{2}\right]=0
+$$
+
+######Info gain:
+
+$$
+\begin{array}{l}
+\text { Info Gain('screen } \text { size }=7^{\prime} \text { ) } \\
+\qquad \begin{aligned}
+=& 0.375-\left(\frac{3}{4} \times 0.44+\frac{1}{4} \times 0\right) \\
+=& 0.0416
+\end{aligned}
+\end{array}
+$$
+
 
 If you’d like to try it yourself now, you can calculate the information gain for ‘screen size=6’.The results should be in favour of ‘screen size=8’. The final results are summarised in figures 2.5 and 2.6.
 
@@ -228,7 +370,54 @@ At this stage the algorithm stops since all lower levels nodes are pure and prod
 
 ##Cart algorithm
 
-<mark>code box?</mark>
+Scroll right inside the algorithm box to view all.
+
+!!! algorithm-heading "Algorithms 1: Build a decision tree (aka DT induction)"
+
+    **Grow** (*Data, attributes*)
+
+    !!! algorithm ""
+
+        **If** (number of rows |*Data*|*<h*):
+		<span class="algorithm-line-comment"># *h is a stopping condition*</span>
+
+		!!! algorithm ""
+
+	      	**Create** (a *leaf* that has the dominant *label* of the *Data*)
+			<span class="algorithm-line-comment"># *label represents the class*</span>
+
+			**Return** the *leaf* with its *label*
+
+        **Else:**
+
+		!!! algorithm ""
+
+			*AttributesGain* = **InfoGain**(Attributes)
+			<span class="algorithm-line-comment"># *for possible splits of data based on Attributes*</span>
+
+			*attribute* = **Max**(*AttributesGain*)
+			<span class="algorithm-line-comment"># *best condition that yields max InfoGain*</span>
+
+			*bsNode* = **Create** (*attribute*)
+			<span class="algorithm-line-comment"># *create a node that represents the best split*</span>
+
+			**For** each *value* of *attribute*:
+
+			!!! algorithm ""
+
+				*Data* = **Split**(*attribute, value*)
+				<span class="algorithm-line-comment"># *return the data based on the split*</span>
+
+				*Child* = **Grow** (*Data, Attributes*)
+				<span class="algorithm-line-comment"># *recursive function call itself*</span>*
+
+				*bsNode* = **Add** (*Child* to *bsNode*) and name the *edge*(node $\overrightarrow{\text { value }}$ child)
+				<span class="algorithm-line-comment"># *label the edge for inference*</span>
+
+		Return *bsNode*
+
+
+
 
 To summarise, the CART algorithm does the following:
 
@@ -348,7 +537,7 @@ Table (): Borrowers dataset with possible splits for the Annual Income feature
 
 3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. See <mark>table ()</mark> below for the different Information Gain and Gini Index calculations.
 
-<mark>Table (7)</mark>: Borrowers dataset with information gain calculations for possible splits for the Annual Income feature. The datasheet with all the formulas is available as an <mark>Excel file here.</mark>
+<mark>Table (7)</mark>: Borrowers dataset with information gain calculations for possible splits for the Annual Income feature. The datasheet with all the formulas is available as an <mark>(Excel file here).</mark>
 
 Figure 2.12 shows the advantage of a test condition for a continuous attributes, the branching of the tree is much simpler and will lead to a more elegant and less cultured and easy to interpret tree.
 
@@ -428,7 +617,7 @@ The same idea applies for the Gini index, but it is less complex.
 
 2. When the probability $p$ is high, the $Gini$ is low. Hence, we include the term $1−p$ in the $Gini$ formula.
 
-To take into account both of the points above, the Gini index should include the term $p(1−p)$. Its behaviour is shown in <mark>figure 24</mark> below.
+To take into account both of the points above, the Gini index should include the term $p(1−p)$. Its behaviour is shown in figure 2.17 below.
 
 <figure role="group">
   <img src="../images/DS_IMG037.png" alt="Test image." />

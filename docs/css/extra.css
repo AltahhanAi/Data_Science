@@ -128,3 +128,56 @@ h1 {
     font-family: "",SFMono-Regular,Consolas,Menlo,monospace;
     font-size: .7rem;
 }
+
+/* ALGORITHM ADMONITION STYLES */
+
+/* ALGORITHM HEADING */
+.md-typeset .admonition.algorithm-heading,
+.md-typeset details.algorithm-heading {
+  border-color: #cccccc;
+  border-width: 2px;
+  padding-left: 1.25em;
+  padding-right: 10px;
+  overflow: visible;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  position: relative;
+}
+.md-typeset .algorithm-heading > .admonition-title,
+.md-typeset .algorithm-heading > summary {
+  background-color: #eeeeee;
+  border-color: #cccccc;
+  min-width: 900px;
+}
+.md-typeset .algorithm-heading > .admonition-title::before,
+.md-typeset .algorithm-heading > summary::before {
+  background-color: #aaaaaa;
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}
+
+/* ALGORITHM CONTENT */
+.md-typeset .admonition.algorithm,
+.md-typeset details.algorithm {
+  border-color: #cccccc;
+  border-width: 2px;
+  padding-left: 1.25em;
+  min-width: 800px;
+  overflow: visible;
+  box-shadow: none;
+}
+.md-typeset .admonition.algorithm p span.algorithm-line-comment,
+.md-typeset details.algorithm p span.algorithm-line-comment {
+  float: right;
+}
+.md-typeset .algorithm > .admonition-title,
+.md-typeset .algorithm > summary {
+  background-color: #eeeeee;
+  border-color: #cccccc;
+}
+.md-typeset .algorithm > .admonition-title::before,
+.md-typeset .algorithm > summary::before {
+  background-color: #aaaaaa;
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}
