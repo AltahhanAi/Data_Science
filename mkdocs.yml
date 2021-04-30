@@ -35,6 +35,7 @@ nav:
             - '2d. Batch learning': content/unit4/04_02d_Batch_learning.md
             - '2e. Implementing a stochastic gradient descent with gaussian basis': content/unit4/04_02e_linear_regression_training.md
             - '2f. Regression models': content/unit4/04_02f_regression_models.md
+            - '2g. Least squares with basis': content/unit4/04_02g_least_squares_with_basis.md
             - '2g. Linear regression models': content/unit4/04_02g_linear_regression_models.md
             - '2h. Preventing Overfitting the Data and Overshooting the Loss Minimum': content/unit4/04_02h_preventing_overfitting.md
         - '3. Linear Regression with Linear and Non-Linear Basis Function': content/unit4/04_03a_multi_layer_multi_output.md
