@@ -19,6 +19,27 @@ nav:
         - '4. Measuring the performance of a classification model': content/unit2/02_04_measuring_performance.md
         - '5. Overfitting, underfitting and generalisation': content/unit2/02_05_overfitting_underfitting.md
         - '6. References': content/unit2/02_06_unit_references.md
+    - Unit 4:
+        - 'Regression and Classification': content/unit4/04_00_regression_classification.md
+        - '1. Simple Linear Regression Models':
+            - '1a. Simple linear regression models': content/unit4/04_01a_linear_regression_models.md
+            - '1b. Example of linear regression models': content/unit4/04_01b_example_linear_regression.md
+            - '1c. Loss, objective, error or cost function for regression': content/unit4/04_01c_loss_error_cos_function.md
+            - '1d. Simple linear model exercise': content/unit4/04_01d_simple_linear_model_exercise.md
+            - '1e. Approximate solutions - gradient descent': content/unit4/04_01e_Gradient_decent.md
+            - '1f. Stochastic gradient decent and sequential learning linear models exercises': content/unit4/04_01f_sgd_exercises.md
+        - '2. Linear Regression with Linear and Non-Linear Basis Functions':
+            - '2a. Linear Regression with Linear and Non-Linear Basis Functions': content/unit4/04_02a_linear_regression_basis_functions.md
+            - '2b. Basis functions': content/unit4/04_02b_basis_functions.md
+            - '2c. Linear basis model exercise': content/unit4/04_02c_linear_basis_model_exercise.md
+            - '2d. Batch learning': content/unit4/04_02d_Batch_learning.md
+            - '2e. Implementing a stochastic gradient descent with gaussian basis': content/unit4/04_02e_linear_regression_training.md
+            - '2f. Regression models': content/unit4/04_02f_regression_models.md
+            - '2g. Linear regression models': content/unit4/04_02g_linear_regression_models.md
+            - '2h. Preventing Overfitting the Data and Overshooting the Loss Minimum': content/unit4/04_02h_preventing_overfitting.md
+        - '3. Linear Regression with Linear and Non-Linear Basis Function': content/unit4/04_03a_multi_layer_multi_output.md
+        - '4. Learning from A Probabilistic Perspective': content/unit4/04_4_learning_from_probabilistic_perspective.md
+        - '5. References': content/unit4/04_05_unit_references.md
 
 theme:
   name: material
