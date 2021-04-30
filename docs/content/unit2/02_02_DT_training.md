@@ -361,12 +361,13 @@ At this stage the algorithm stops since all lower levels nodes are pure and prod
 </figure>
 
 !!! abstract "Exercise"
-        Mimic a DT inference to deduce the class of the following devices:
 
-				Device | Screen size  | Makes calls | Classification
-				-------|--------------|-------------|---------------
-				M1     | 7 inches     | Yes         |  **?**
-				K1     | 8 inches     | Yes         |  **?**
+		Mimic a DT inference to deduce the class of the following devices:
+
+		Device | Screen size  | Makes calls | Classification
+		-------|--------------|-------------|---------------
+		M1     | 7 inches     | Yes         |  **?**
+		K1     | 8 inches     | Yes         |  **?**
 
 ##Cart algorithm
 
@@ -611,7 +612,7 @@ $$
 
 The same idea applies for the Gini index, but it is less complex.
 
-1. When the probability $p$ is low, the $Gini$ is low. Hence, we simply include $p$ in $Gini$ formula. <mark>At the same time</mark>
+1. When the probability $p$ is low, the $Gini$ is low. Hence, we simply include $p$ in $Gini$ formula. 
 
 2. When the probability $p$ is high, the $Gini$ is low. Hence, we include the term $1−p$ in the $Gini$ formula.
 

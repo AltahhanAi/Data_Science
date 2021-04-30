@@ -1,7 +1,5 @@
 # What is data science?
 
-<mark>In this lesson you will</mark>
-
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:
 
@@ -82,7 +80,7 @@ Read through the following examples of questions a data scientist might attempt 
 
 * **Environmental Science:** How is land temperature affecting ocean temperatures?
 
-      - Oceans play a crucial role in the planet's weather, in both cooling and rising temperatures and violent hurricanes. Both land and ocean temperatures affect each other in obvious and subtle ways. It is important want to know how this is happening, what factors are playing the major role and hopefully predict when one would have a drastic effect on the other. This is a very complex model that involves immense number of features and factors, so data scientists are not expected to model it all; only parts of these natural phenomena are normally addressed in a specific project (although there are some serious attempts to have a comprehensive model). 
+      - Oceans play a crucial role in the planet's weather, in both cooling and rising temperatures and violent hurricanes. Both land and ocean temperatures affect each other in obvious and subtle ways. It is important want to know how this is happening, what factors are playing the major role and hopefully predict when one would have a drastic effect on the other. This is a very complex model that involves immense number of features and factors, so data scientists are not expected to model it all; only parts of these natural phenomena are normally addressed in a specific project (although there are some serious attempts to have a comprehensive model).
 
 * **Farming:** How are the monsoon rainfall ratios likely to affect this year's crops?
 

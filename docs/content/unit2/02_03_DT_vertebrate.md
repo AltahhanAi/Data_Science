@@ -34,19 +34,17 @@ salamander|0|0|1|0|1|1|amphibians
 The data is taken from Tan et at (2020), and shows the attributes (features) of different vertebrate. The attribute class is the label and it shows the classification of the vertebrate, there are 5 classes {mammals, reptiles, fishes, amphibians or birds}. We have 6 features (excluding the label); these are {Warm-blooded, Gives Birth, Aquatic Creature, Aerial Creature, Has Legs and Hibernates}. Our dataset consists of 16 records each with its values of 0 or 1. So our features are all binary (true/false or yes/no) hence they are categorical (but these can be treated as numerical if necessary). Our task is to build a decision tree classifier that is able to model the relationship of the vertebrate and its class. These relationships are studies in biology, so we want to teach our tree a biological lesson and we want it to tell us later in the future if we give it a vertebrate whether this is a mammal, reptile etc.
 
 !!! abstract "Exercise"
-        Think of ways to build a decision tree similar to what we had earlier and that is able to infer the class of a given vertebrate.
+    Think of ways to build a decision tree similar to what we had earlier and that is able to infer the class of a given vertebrate.
 
-  			**Step 1:** What do you expect the decision tree will look like? Try to come up with a DT based on your own analysis of the dataset.
+  	**Step 1:** What do you expect the decision tree will look like? Try to come up with a DT based on your own analysis of the dataset.
 
-        **Step 2:** Make an attempt to create a DT as per CART algorithm for the given dataset. Don’t worry about doing this perfectly at this stage, as we will go through this together later.
+    **Step 2:** Make an attempt to create a DT as per CART algorithm for the given dataset. Don’t worry about doing this perfectly at this stage, as we will go through this together later.
 
-        **Step 3:** Compare your outcomes from step 1 and 2. Reflect on what you have done differently from the CART algorithm.
-
-##<mark>sub heading needed</mark>
+    **Step 3:** Compare your outcomes from step 1 and 2. Reflect on what you have done differently from the CART algorithm.
 
 Perhaps you realised that it is possible to solve the problem just using a priori domain knowledge. If we already know how to tell the difference between mammals and non-mammals, it may seem like a waste of time to involve a decision tree in the process. But if we approach this simple-seeming problem as we would a more complex one, we lay the groundwork for solving much more advanced problems. In fact, we will see later that we can automate the process by creating decision tree learning algorithms that are capable of structuring a tree to be used for inferencing.
 
-<mark>(Later in section X)</mark> we will solve the full classification problem involving all of the vertebrate classes (mammals, reptiles, fish, amphibians etc). First however, we will simplify this dataset to make the problem a binary classification task, the two classes being {mammal, non-mammal}, so our new dataset is as follows:
+Later we will solve the full classification problem involving all of the vertebrate classes (mammals, reptiles, fish, amphibians etc). First however, we will simplify this dataset to make the problem a binary classification task, the two classes being {mammal, non-mammal}, so our new dataset is as follows:
 
 X|A|B|C|D|E|F| **G**
 -|-|-|-|-|-|-|------
@@ -138,17 +136,17 @@ Please watch this <a href="https://leeds365-my.sharepoint.com/:v:/r/personal/scs
 
 
 !!! abstract "Exercise"
-        Pick another feature to start with, and try the process again. What happens?. Hint: compare between the information gain when we start the split by ‘Gives Birth’ and when we start the split by ‘Warm-blooded’.
+    Pick another feature to start with, and try the process again. What happens?. Hint: compare between the information gain when we start the split by ‘Gives Birth’ and when we start the split by ‘Warm-blooded’.
 
 
 !!! abstract "Exercise"
 
-			 Build a decision tree for the original dataset including all of the original features. This is a good opportunity to try using RapidMiner if you want to.
+		Build a decision tree for the original dataset including all of the original features. This is a good opportunity to try using RapidMiner if you want to.
 
 
 !!! abstract "Exercise"
 
-			Take away all the features except for ‘Gives Birth’ and ‘Warm Blooded’ from the original dataset. Now attempt to build a decision tree from this new dataset. Are the leaves pure? Can you estimate the accuracy of the decisions that will be made by this tree?
+		Take away all the features except for ‘Gives Birth’ and ‘Warm Blooded’ from the original dataset. Now attempt to build a decision tree from this new dataset. Are the leaves pure? Can you estimate the accuracy of the decisions that will be made by this tree?
 
 ##Validity of decision trees
 

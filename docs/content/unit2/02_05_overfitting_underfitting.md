@@ -76,7 +76,7 @@ $\left\{S_{2} \cup S_{3}\right\}$ and test on subset $S_{1}$ to obtain the gener
 
 ###Model evaluation of cross-validated selected model with hyper parameters
 
-After we have selected the best parameters for our model, we want to evaluate the performance of the model. A pitfall would be to use the averaged cross validation error as an indication for the performance of the model. This a biased estimation of the generalisation ability of our model because we have already used the validation data to select the best hyper parameters. Therefore, we need to reserve a portion of the dataset for this final evaluation of the resultant selected model. <mark>Figure () below</mark> shows this complete process.
+After we have selected the best parameters for our model, we want to evaluate the performance of the model. A pitfall would be to use the averaged cross validation error as an indication for the performance of the model. This a biased estimation of the generalisation ability of our model because we have already used the validation data to select the best hyper parameters. Therefore, we need to reserve a portion of the dataset for this final evaluation of the resultant selected model. Figure 5.5 below shows this complete process.
 
 <figure role="group">
   <img src="../images/DS_IMG088.png" alt="Test image." />
