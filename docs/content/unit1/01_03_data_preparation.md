@@ -30,7 +30,7 @@ A data scientist must often wrestle with the data to make it suitable for their 
 
 The concept of sampling is widely used in statistics and data mining. In statistics the default position is that obtaining the entire data population is often infeasible and physically too expensive. In data mining, processing the entire dataset, even if it is available in some storage, might be too computationally expensive to do.
 
-<a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">Read section 2.3.2 (pp.72-76) of Chapter 2</a> in the text Introduction to Data Mining. This section will give you further information on sampling and the different types of data sampling that can be conducted.
+<a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">Read section 2.3.2 (pp.72-76) of Chapter 2</a> in the text Introduction to Data Mining (Tan et al 2019). This section will give you further information on sampling and the different types of data sampling that can be conducted.
 
 In both statistics and data mining, a subset of the data is sampled, by selecting some of the rows rather than all of them). Sampling is done randomly to avoid a biased representation of the data, which would be misleading for the model.
 
@@ -64,9 +64,9 @@ In this case the scheme for the desired sampling also applies for splitting the 
 
 This invites discussion on whether several splits need to be performed and the average reported on, as well as how several models or techniques are compared and validated. Both of these topics will be discussed later, along with how to measure the performance of a model in the next couple of units.
 
-!!! "Note"
+!!! note
 
-		Make sure to differentiate between sampling rows and selecting a subset of fields or columns.
+	  Make sure to differentiate between sampling rows and selecting a subset of fields or columns.
 
 ###Filtering
 
@@ -76,7 +76,7 @@ For example, from a set of artefacts, two features are the mass and volume. The 
 
 An example of a more involved process is a Fourier Transformation (FT). FT is used to extract or map the data into a new space. It is well known that if two time series with different frequencies and some noise are combined, a surprisingly chaotic signal would be received (which would be what is normally looked at when a real time series is dealt with). However, if FT is applied it will show exactly two time series with two different frequencies. This can be used to filter noise and to extract specific information from regarding one of the two time series.
 
-Please see Figure 2.12 of the reading book. To learn more about intuition of FT, watch this YouTube video: <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">What is the Fourier Transform? A visual introduction.</a>
+Please see Figure 2.12 of Tan et al (2019). To learn more about intuition of FT, watch this YouTube video: <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">What is the Fourier Transform? A visual introduction.</a>
 
 ![Diagram showing the application of the Fourier transform to identify the underlying frequencies in time series data.](images/DS_IMG004.png)
 
@@ -113,7 +113,7 @@ The number of items in a set is called the cardinality of the set – which seem
 The diagram summarises a feature subset selection process, which is a search over all possible feature subsets.
 
 ![Flowchart of a feature subset selection process.](images/DS_IMG005.png)
-Tan, P., et.al. (2020), Introduction to Data Mining by Second Edition, Pearson
+Tan, P., et.al. (2019), Introduction to Data Mining by Second Edition, Pearson
 
 As another example, Principal Component Analysis (PCA) applies the ideas of Eigen vectors of a matrix to obtain a new set of features that are more concise and better represent the problem being dealt with. Normally it is not necessarily known what physical measurements the new features represent. Rather, by using PCA it is certain that transforming to the new set of dimensions guarantees a better performance for the model.
 
@@ -192,7 +192,6 @@ These are standard techniques used to convert a continuous attribute which poten
 ####Melting and pivoting
 
 Melting and pivoting are often overlooked operations. When they are applicable, it is important that they are performed to make the shape of the data suitable for further processing. These are often part of a more elaborate operation involving data preparation along other operations such as sorting etc. Please refer to the next exercise for a full working example in Python. See the following <a href="https://leeds365-my.sharepoint.com/:p:/g/personal/scsaalt_leeds_ac_uk/EXYe9TF0RytAh6KlMnMU3aYBslNRRDa-QNQwpOTHPWUwpA?e=OyGir5" target="_blank">slides.</a>
-<mark>Will slides be video or a link out to powerpoint? Needs confirming and editing accordingly.</mark>
 
 !!! abstract "Exercise"
 		In this exercise you will be given a dataset to prepare for further analysis.

@@ -1,6 +1,4 @@
-# The data quality and its structure 
-
-<mark>In this lesson you will</mark>
+# The data quality and its structure
 
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:
@@ -85,7 +83,6 @@ In the following exercises, you will see some of the most common data management
 		###Data querying, aggregation and summary: structured data
 
 		Let's see how we can deal with SQL in Jupyter <a href="https://leeds365-my.sharepoint.com/:u:/g/personal/scsaalt_leeds_ac_uk/EbkNWoP5CQhJqjg9XypyuUMB0kD64D2FGFDCEpFRQN3-yA?e=WQohCK" target="_blank">Notebook</a>. We will do this activity in the SQL Database exercise.
-		<mark>Link is to personal onedrive - activity will need hosting somewhere else</mark>
 
 !!! abstract "Exercise"
 		###Data querying, aggregation and summary: semi-structured and unstructured data.

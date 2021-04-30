@@ -8,7 +8,7 @@ We will start by classification of a binary class problem, and we will generalis
 
 ##Measuring the performance of a binary class model
 
-**For a binary class problem, we have two classes <mark>that an instant is either belongs to</mark> class C1 or to class C2 but cannot belong to both at the same time. In fact, the question can be posed as whether an instant belongs to a one class of concern or not.**
+**For a binary class problem, we have two classes that an instant can belong to. It can belong to class C1 or to class C2 but cannot belong to both at the same time. In fact, the question can be posed as whether an instant belongs to a one class of concern or not.**
 
 The classification would be effectively stating yes or 1 or + if the instant belongs to the main class of concern or stating no or 0 or – if the instant does not belong to the main class (which implicitly means it belongs to the complement of the class). We just have to be consistent in our approach. So in this context it is a binary choice, and it is useful to represent one of the classes as positive + and the other as negative –. Now, our classifier (our DT) mission is to predict whether an instant is of class + or class –. Therefore, we contrast what the classifier has **predicted** and what was the **actual class** of all instances to measure how good our classifier is. This can be done for the training set, the validation set or the testing set, all of which we have answers for (i.e. we know the classes for these sets). When we contrast the prediction against the actual class of each instant we have four possibilities:
 
@@ -18,7 +18,7 @@ The classification would be effectively stating yes or 1 or + if the instant bel
 3.	**The actual class is + while the predicted class is –	(False Negative-FN)**
 4.	**The actual class is – and    the predicted class is –	(True Negative-TN)**
 
-These 4 cases can be better summarised in <mark>the figure</mark> below. This is called the confusion matrix because the red boxes represent the cases confused by the prediction model, while the black boxes represent the cases where the predictions of the model are aligned with the reality. The aim of any model is to reduce the cases in the red boxes and make them as close to 0 as possible. We can actually do a lot with these counts, and below we show several metrics that can be defined based on them.
+These 4 cases can be better summarised in figure 4.1 below. This is called the confusion matrix because the red boxes represent the cases confused by the prediction model, while the black boxes represent the cases where the predictions of the model are aligned with the reality. The aim of any model is to reduce the cases in the red boxes and make them as close to 0 as possible. We can actually do a lot with these counts, and below we show several metrics that can be defined based on them.
 
 <figure role="group">
   <img src="../images/DS_IMG062.png" alt="Test image." />
@@ -335,7 +335,39 @@ $$
 
 Note that F1 score only applies to binary class problems. If the problem is multi-class we can use other metrics, including accuracy, recall (positive detection rate) and precision (positive prediction value). We can also treat the classes as one vs. the rest fashion (yielding the problem into a binary class problem) and obtain the F1 score for each class separately. Below we show the confusion matrix for the IRIS dataset.  For more information about the IRIS dataset read the following passage extracted from SKLearn description for the dataset.
 
-<mark> iris dataset table</mark>
+!!! abstract "Iris plants dataset"
+    **Data Set Characteristics:**
+
+    * Number of Instances: 150 (50 in each of three classes)
+    * Number of Attributes: 4 numeric, predictive attributes and the class
+    * Attribute Information:
+        - sepal length in cm
+        - sepal width in cm
+        - petal length in cm
+        - petal width in cm
+        - class:
+            - Iris-Setosa
+            - Iris-Versicolour
+            - Iris-Virginica
+
+    **Summary Statistics:**
+
+    | Attribute     |  Min | Max | Mean |  SD  | Class Correlation |
+    ----------------|------|-----|------|------|-------------------|
+    | sepal length: |  4.3 | 7.9 | 5.84 | 0.83 |   0.7826          |
+    | sepal width:  |  2.0 | 4.4 | 3.05 | 0.43 |  -0.4194          |
+    | petal length: |  1.0 | 6.9 | 3.76 | 1.76 |   0.9490  (high!) |
+    | petal width:  |  0.1 | 2.5 | 1.20 | 0.76 |   0.9565  (high!) |
+    - Missing Attribute Values: None
+    - Class Distribution: 33.3% for each of 3 classes.
+    - Creator: R.A. Fisher
+    - Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)
+    - Date: July, 1988
+
+    **Description:**
+
+    The famous Iris database, first used by Sir R.A. Fisher. The dataset is taken from Fisher's paper. Note that it's the same as in R, but not as in the UCI Machine Learning Repository, which has two wrong data points.
+    This is perhaps the best known database to be found in the pattern recognition literature.  Fisher's paper is a classic in the field and is referenced frequently to this day.  (See Duda & Hart, for example.)  The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant.  One class is linearly separable from the other 2; the latter are NOT linearly separable from each other.
 
 Note that the true labels are placed horizontally while the prediction is vertically. This is opposite to what we have used before, but as we said earlier it should not matter as long as we are vigilant about it.
 
