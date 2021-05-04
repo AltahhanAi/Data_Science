@@ -19,6 +19,8 @@ nav:
         - '4. Measuring the performance of a classification model': content/unit2/02_04_measuring_performance.md
         - '5. Overfitting, underfitting and generalisation': content/unit2/02_05_overfitting_underfitting.md
         - '6. References': content/unit2/02_06_unit_references.md
+    - Unit 3:
+        - '1. Title': content\unit3\03_01_title.md
     - Unit 4:
         - 'Regression and Classification': content/unit4/04_00_regression_classification.md
         - '1. Simple Linear Regression Models':
@@ -41,6 +43,15 @@ nav:
         - '3. Linear Regression with Linear and Non-Linear Basis Function': content/unit4/04_03a_multi_layer_multi_output.md
         - '4. Learning from A Probabilistic Perspective': content/unit4/04_4_learning_from_probabilistic_perspective.md
         - '5. References': content/unit4/04_05_unit_references.md
+    - Unit 5:
+        - '1. Title':  content/unit5/05_01_title.md
+        - '2. Title':  content/unit5/05_02_title.md
+        - '3. Title':  content/unit5/05_03_title.md
+        - '4. Title':  content/unit5/05_04_title.md
+        - '5. Title':  content/unit5/05_05_title.md
+        - '6. Title':  content/unit5/05_06_title.md
+        - '7. Title':  content/unit5/05_07_title.md
+        - '8. Title':  content/unit5/05_08_unit_references.md
 
 theme:
   name: material
