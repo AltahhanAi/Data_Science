@@ -20,7 +20,10 @@ nav:
         - '5. Overfitting, underfitting and generalisation': content/unit2/02_05_overfitting_underfitting.md
         - '6. References': content/unit2/02_06_unit_references.md
     - Unit 3:
-        - '1. Title': content\unit3\03_01_title.md
+        - 'Clustering and classification in algorithms': content/unit3/03_01_clustering_classification.md
+        - '1. Clustering':
+            - '1a. Two clusters case': content/unit3/03_02a_two_clusters.md
+            - '1b. General case multi clusters: K-means algorithm': content/unit3/03_02b_general_case_multi_K.md
     - Unit 4:
         - 'Regression and Classification': content/unit4/04_00_regression_classification.md
         - '1. Simple Linear Regression Models':

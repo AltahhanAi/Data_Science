@@ -1,4 +1,4 @@
-# Decision trees
+# Clustering
 
 <mark>In this lesson you will</mark>
 
@@ -8,11 +8,3 @@
     * <mark>outcome 1</mark>
 
     * <mark>outcome 2</mark>
-
-
-
-##Summary
-
-<mark>**In this lesson you have....**
-
-In the next lesson you will ...</mark>
