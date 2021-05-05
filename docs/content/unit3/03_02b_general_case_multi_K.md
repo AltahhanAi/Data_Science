@@ -4,21 +4,38 @@ So far, you might have realised that the centres depend on the clusters, and at 
 
 What we have talked about so far was actually the **k-means** algorithm. The name comes from assuming in priori that we have **k clusters** and from the fact that we take the **means** of the clusters (centroids), and based on them we reassign the data points and then calculate the means again and so on. The algorithm is shown below:
 
-!!! algorithm-heading "Algorithms 1: Basic K-means"
+!!! info "Algorithms 1: Basic K-means"
 
-Algorithms 1: Basic K-means
-Input:
-Dataset X={x_1,x_2,…,x_N}
-K: The number of clusters.
-Output: Cluster Labels C=[l_1,l_2,…,l_N ]     l_n∈{1,…,K}
-K-means(X,K):
-Cent={c_i} Select K points form X as initial centroids or at random
-Repeat
-For each x_n  in   X
-l_n=〖arg min┬i〗⁡〖d(c_i,x_n)〗    i=1,…,K 	  # Form K Clusters by assigning each point to its closest centroid
+    **Input:**
 
-For each Cluster C_i of size m_i
-c_i=1/m_i  ∑_(x∈C_i)▒x 	  # Recalculate the centroids for each cluster
+    Dataset $X$=$\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$
 
-until the centroids do not change
-return the labels C=[l_1,l_2,…,l_N ]
+    $K$: The number of clusters
+
+    **Output**: Cluster labels $\boldsymbol{C}=\left[l_{1}, l_{2}, \ldots, l_{N}\right] \quad l_{n} \in\{1, \ldots, K\}$
+
+    **K-means** (**X**, *K*):
+
+    !!! quote ""
+        *Cent=*$\left\{\mathbf{c}_{i}\right\}$ Select $K$ points form $\mathbf{X}$ as initial centroids or at random
+
+        **Repeat**
+
+        !!! quote ""
+            **For** each $\mathbf{x}_{n}$ in $\mathbf{X}$  
+
+            !!! quote ""
+
+                $l_{n}=\arg \min _{i} d\left(\mathbf{c}_{i}, \mathbf{x}_{n}\right) \quad i=1, \ldots, \mathrm{K}$ <span style="float: right;"># Form K Clusters by assigning each point to its closest centroid</span>
+
+
+            **For** each Cluster $C_{i}$ of size $m_{i}$   
+
+            !!! quote ""    
+
+                $\boldsymbol{c}_{\boldsymbol{i}}=\frac{1}{m_{i}} \sum_{\mathrm{x} \in C_{i}} \mathbf{x}$ <span style="float: right;"># Recalculate the centroids for each cluster </span>
+
+
+            **until** the centroids do not change
+
+        **Return** the labels $\boldsymbol{C}=\left[l_{1}, l_{2}, \ldots, l_{N}\right]$
