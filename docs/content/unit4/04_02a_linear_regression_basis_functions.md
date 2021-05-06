@@ -58,7 +58,7 @@ However, it is also more useful if we express the whole model using vectors. To 
 Where <mark>$\mathbf{w}=\left(w_{0}, w_{1}, w_{2}, \ldots, w_{M}\right)$ and $\boldsymbol{\phi}=\left(\phi_{0}, \phi_{1}, \phi_{2}, \ldots, \phi_{M}\right)^{\mathrm{T}}$ and $\phi_{0}=1$.</mark>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG104.png" alt="Schematic representation of a linear regression model with basis." />
   <figcaption><strong>Figure 4.7</strong> Chematic representation of a linear regression model with basis.</figcaption>
 </figure>
 

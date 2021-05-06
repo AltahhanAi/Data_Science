@@ -20,12 +20,12 @@ We start with the latest architecture that we have developed in the previous sec
 We will adopt an approach where we will now develop an architecture that will allow us to adapt the basis function that we have assumed previously as being fixed. The number of the features are usually fixed in neural networks because it corresponds with number of neurons in a layers. Other techniques such as support vector machine allow for the flexibility of the adapting the number of feature basis according to the dataset but on the expense of less efficiency during the prediction. In neural networks the adaptation takes place in changing the expressing powers of the basis function by changing the weights of the hidden layer. Below we show how we move from a fixed basis model architecture into flexible adapted basis model architecture.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG122.png" alt="Schematic representation of a multiple outputs multi-layers linear regression model with fixed basis." />
   <figcaption><strong>Figure 4.25</strong> Schematic representation of a multiple outputs multi-layers linear regression model with fixed basis.</figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG123.png" alt="Schematic representation of a non-linear, multi-layer neural network model with adaptive basis." />
   <figcaption><strong>Figure 4.26</strong> **Non-linear** multi-layer **Neural Network** model with adaptive basis.</figcaption>
 </figure>
 
@@ -64,7 +64,7 @@ Note that for the activation function, we have $w^⊤ x$ on the horizontal axis 
 If we want to confine the values to a $]0,1[$ interval while allowing the activation function to take values in between to reflect the strength of the belief, or the probability, that a data point $x_n$ belongs (or not) to the positive class then we can use the logistic function shown below.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG124.png" alt="Graph showing a logistic activation function." />
   <figcaption><strong>Figure 4.27</strong> </figcaption>
 </figure>
 

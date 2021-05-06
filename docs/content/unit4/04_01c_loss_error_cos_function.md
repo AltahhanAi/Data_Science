@@ -47,7 +47,7 @@ Where $N'$ is the size of the validation set. For the majority of the coverage h
 Below we show an example of a linear model with its loss function, the learning algorithm mission will be to find the parameter settings that minimise the loss function for the given data, i.e. to find the bottom of the bowl shaped loss function. Linear models have a similar shaped loss function, but not all models have loss functions that look as nice and tidy as this example, in particular non-linear models might have very difficult terrain to navigate.
 
 <figure role="group">
-  <img src="../images/DS_IMG011.png" alt="Test image." />
+  <img src="../images/DS_IMG102.png" alt="Left: graph showing an example of a linear model y = 2 + 3x. Right: surface chart, showing the loss function of different settings for W0 and W1 and also the loss function contours plot." />
   <figcaption><strong>Figure 4.5.</strong> (left) Example of a linear model (right) the loss function of a different settings for w0 and w1 (shown in purple) and the loss function contours plot shown in orange. The task of learning is to reach the bottom of the loss function where are the optimal settings of the weights values. Contour plots project the surface above it and signifies the J by the darkness of the colour so the more orange the higher J is and more error we have. </figcaption>
 </figure>
 

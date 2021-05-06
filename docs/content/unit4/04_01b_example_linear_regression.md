@@ -12,7 +12,7 @@ We can fit a linear model that we show below on the left. On the right we show a
   <a href="https://leeds365-my.sharepoint.com/:x:/g/personal/scsaalt_leeds_ac_uk/ESH0W2_VRM1DtqzyY890SrUBSIkhqjhRbPyU39E6eOi0dg?e=fdYfYc" target="_blank" class="md-button">Data set XML</a>
 
 <figure role="group">
-  <img src="../images/DS_IMG011.png" alt="Test image." />
+  <img src="../images/DS_IMG099.png" alt="Two line graphs showing a linear regression model fitting to data points. Left: 10 data points. Right: 50 data points." />
   <figcaption><strong>Figure 4.2.</strong> A linear regression model (red line) that fits the blue data points. Left: 10 data points, right: 50 data points.</figcaption>
 </figure>
 
@@ -76,7 +76,7 @@ Ok, let us start with the simplest linear regression model.
 This is the simplest type of linear models. It defines a relationship between $y$ and $x_1$ as a straight line. If you remember from high school that we define a straight line as <mark>$y=c+mx$</mark> you can immediately realise that $w0$ is the intercept of the straight line on the $y$ axis (corresponding to $c$) and $w1$ are just the slope of the straight line (corresponding to $m$).
 
 <figure role="group">
-  <img src="../images/DS_IMG011.png" alt="Test image." />
+  <img src="../images/DS_IMG100.png" alt="Line graph showing three different linear models, in the form y = W0 + W1x. Each linear model has one variable, x, a bias W0, and a slope W1. " />
   <figcaption><strong>Figure 4.3.</strong> Shows three different linear models with one variable $x$, each has its bias <mark>$w0$</mark> and slope <mark>$w1$</mark>. Note that the red and blue has the same slope, while the green and the blue has the same bias. </figcaption>
 </figure>
 
@@ -116,7 +116,7 @@ Where <mark>$w^⊤=[w_0,w_1,w_2,…,w_D]$</mark> and **our extended input space*
 So, we added the dummy feature $x_0$ to the input space. The operation $w^⊤ x$ gives us one value because w is a vector, later we will adjust this to get multi-output via $W^⊤ x$ where $W$ is a matrix not a vector. Below we show a schematic representation of a linear regression model.
 
 <figure role="group">
-  <img src="../images/DS_IMG011.png" alt="Test image." />
+  <img src="../images/DS_IMG101.png" alt="Schematic representation of a linear regression model." />
   <figcaption><strong>Figure 4.4.</strong> Schematic representation of a linear regression model.</figcaption>
 </figure>
 

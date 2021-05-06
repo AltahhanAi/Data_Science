@@ -27,6 +27,6 @@ The second question to ask is how we can verify that the model is good enough fo
 So, really the difference between classification and regression is the nature if the labels. Not that we can sometimes convert a regression problem into classification if we categorised the labels. Of course, this is not desired since we lose a lot of granularity of the labels and we only obtain very rough estimates of the answers, and usually it is not a good idea. The figure below shows a schematic illustration of the regression model, y here is a continuous value.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG098.png" alt="Schematic illustration of regression." />
   <figcaption><strong>Figure 4.1</strong> A Schematic Illustration of regression.</figcaption>
 </figure>
