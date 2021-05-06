@@ -22,13 +22,17 @@ nav:
     - Unit 3:
         - 'Clustering and classification in algorithms': content/unit3/03_01_clustering_classification.md
         - '1. Clustering':
-            - '1a. Two clusters case': content/unit3/03_02a_two_clusters.md
-            - '1b. General case multi clusters: K-means algorithm': content/unit3/03_02b_general_case_multi_K.md
-            - '1c. Clusters loss function: measuring the quality of the cluster': content/unit3/03_02c_clusters_loss_function.md
-            - '1d. Specifying K through elbow method': content/unit3/03_02d_specifying_K_through.md
-            - '1e. Initialising the centroids': content/unit3/03_02e_initialising_centroids.md
-            - '1f. Mini-batch K means++': content/unit3/03_02f_mini_batch_K.md
-            - '1g. Bisecting K-means algorithm': content/unit3/03_02g_bisecting_K_means.md
+            - '1a. Two clusters case': content/unit3/03_01a_two_clusters.md
+            - '1b. General case multi clusters: K-means algorithm': content/unit3/03_01b_general_case_multi_K.md
+            - '1c. Clusters loss function: measuring the quality of the cluster': content/unit3/03_01c_clusters_loss_function.md
+            - '1d. Specifying K through elbow method': content/unit3/03_01d_specifying_K_through.md
+            - '1e. Initialising the centroids': content/unit3/03_01e_initialising_centroids.md
+            - '1f. Mini-batch K means++': content/unit3/03_01f_mini_batch_K.md
+            - '1g. Bisecting K-means algorithm': content/unit3/03_01g_bisecting_K_means.md
+        - '2. Basic numerical classification':
+            - '2a. Introduction': content/unit3/03_02a_intro_basic_numerical_classification.md
+            - '2b. Lazy classification': content/unit3/03_02b_lazy_classification.md
+            - '2c. K-nearest neighbour algorithm': content/unit3/03_02c_K_nearest.md
     - Unit 4:
         - 'Regression and Classification': content/unit4/04_00_regression_classification.md
         - '1. Simple Linear Regression Models':
@@ -45,10 +49,10 @@ nav:
             - '2d. Batch learning': content/unit4/04_02d_Batch_learning.md
             - '2e. Implementing a stochastic gradient descent with gaussian basis': content/unit4/04_02e_linear_regression_training.md
             - '2f. Regression models': content/unit4/04_02f_regression_models.md
-            - '2g. Least squares with basis': content/unit4/04_02g_least_squares_with_basis.md
-            - '2g. Linear regression models': content/unit4/04_02g_linear_regression_models.md
-            - '2h. Preventing Overfitting the Data and Overshooting the Loss Minimum': content/unit4/04_02h_preventing_overfitting.md
-        - '3. Linear Regression with Linear and Non-Linear Basis Function': content/unit4/04_03a_multi_layer_multi_output.md
+            - '2g. Regularisation exercise': content/unit4/04_02g_least_squares_with_basis.md
+            - '2h. Linear regression models': content/unit4/04_02h_linear_regression_models.md
+            - '2i. Preventing Overfitting the Data and Overshooting the Loss Minimum': content/unit4/04_02i_preventing_overfitting.md
+        - '3. Non-linear Regression via Neural Networks': content/unit4/04_03a_multi_layer_multi_output.md
         - '4. Learning from A Probabilistic Perspective': content/unit4/04_4_learning_from_probabilistic_perspective.md
         - '5. References': content/unit4/04_05_unit_references.md
     - Unit 5:
