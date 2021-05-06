@@ -1,14 +1,5 @@
 #Learning from A Probabilistic Perspective
 
-<mark>In this lesson you will</mark>
-
-!!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
-
-    * <mark>outcome 1</mark>
-
-    * <mark>outcome 2</mark>
-
 In this section we will discuss link between minimising a loss functions with probability theory, to see how learning can take a probabilistic perspective. We will also establish links with a particular probabilistic framework namely the Bayesian framework for learning. This lesson and its subsections can be safely skipped, without consequences on other sections or future sections in the module. Similar material will be also covered in some form in the Machine Learning module.
 
 ##Minimising Least Squares Loss via Maximising the Likelihood

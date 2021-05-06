@@ -20,11 +20,11 @@ There are broadly two main reasons to do this:
 
 ##Data pre-processing in context
 
-Before you do any processing, you need to understand the specific task and in what way the data will be utilised and in what context. The data can come in a form or format that, if not changed, will make the analysis process itself unnecessarily more difficult. This applies to simple queries or more complicated tasks – they all require an appropriate level of preparation to ensure that the analysis or querying process is smooth
+Before you do any processing, you need to understand the specific task and in what way the data will be utilised and in what context. The data can come in a form or format that, if not changed, will make the analysis process itself unnecessarily more difficult. This applies to simple queries or more complicated tasks – they all require an appropriate level of preparation to ensure that the analysis or querying process is smooth.
 
 ##Data wrangling and ways of data pre-processing
 
-A data scientist must often wrestle with the data to make it suitable for their needs, a process known as data wrangling. The process somehow involves a bit of haggling and hacking and often, in order to perform the process, the structure and shape of the date needs to be checked and reviewed. This section will give you a quick overview of some of the techniques used.
+A data scientist must often wrestle with the data to make it suitable for their needs, a process known as data wrangling. The process somehow involves a bit of haggling and hacking and often, in order to perform the process, the structure and shape of the data needs to be checked and reviewed. This section will give you a quick overview of some of the techniques used.
 
 ###Sampling
 
@@ -32,7 +32,7 @@ The concept of sampling is widely used in statistics and data mining. In statist
 
 <a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">Read section 2.3.2 (pp.72-76) of Chapter 2</a> in the text Introduction to Data Mining (Tan et al 2019). This section will give you further information on sampling and the different types of data sampling that can be conducted.
 
-In both statistics and data mining, a subset of the data is sampled, by selecting some of the rows rather than all of them). Sampling is done randomly to avoid a biased representation of the data, which would be misleading for the model.
+In both statistics and data mining, a subset of the data is sampled, by selecting some of the rows rather than all of them. Sampling is done randomly to avoid a biased representation of the data, which would be misleading for the model.
 
 There are several approaches to this randomisation, and the most notable is **stratification**, which is maintaining the distribution of the underlying data when it is sampled. The idea of stratification is commonly used in data science, so understanding it helps in several situations.
 
@@ -64,9 +64,9 @@ In this case the scheme for the desired sampling also applies for splitting the 
 
 This invites discussion on whether several splits need to be performed and the average reported on, as well as how several models or techniques are compared and validated. Both of these topics will be discussed later, along with how to measure the performance of a model in the next couple of units.
 
-!!! note
+!!!note
 
-	  Make sure to differentiate between sampling rows and selecting a subset of fields or columns.
+	 Make sure to differentiate between sampling rows and selecting a subset of fields or columns.
 
 ###Filtering
 
@@ -94,7 +94,7 @@ For example, correlation between the features can be used to select a subset of 
 
 Another example is the subset selection process. This involves removing redundant features, like in the correlation example, and irrelevant features, like the IDs example in the filtering technique.  
 
-Common sense and domain knowledge can be used, although this is not necessarily always accurate. However, the best way to apply a subset selection process is to systematically eliminate features and test how good or bad the data mining task becomes. If it is not affected or improved, then it is the feature can be removed. If the performance of the model is reduced, this is an indication that the feature plays an important role in the task and it needs to stay.  
+Common sense and domain knowledge can be used, although this is not necessarily always accurate. However, the best way to apply a subset selection process is to systematically eliminate features and test how good or bad the data mining task becomes. If it is not affected or improved, then it is a feature that can be removed. If the performance of the model is reduced, this is an indication that the feature plays an important role in the task and it needs to stay.  
 
 There is a drawback here; sometimes removing one feature alone reduces the performance of the model by magnifying the noise coming from another feature, but removing a few features (a subset of features) will improve the performance of the model. Please note that both the removed and retained features are subsets of the original set of features. The subset that is kept for the data mining task is referred to as the Feature Subset Selection. Therefore, different subsets should be tried, rather than just individual features.  
 
@@ -169,7 +169,7 @@ This is a common problem for realistic datasets. Most likely, the same informati
 
 Sometimes the missing data is completely random and is due to collection issues, but may reveal a tendency related to the underlying object or phenomena that is being analysed. For example, a notion of privacy might prevent people from revealing their information.  
 
-In this case, the missing-ness issue of the dataset needs to be dealt with. One drastic thing to do is to illuminate any record that has a missing field in it – called imputation. This would make the dataset more uniformed and ready for applying whatever data mining technique intended, but at the expense of losing the data points that have missing fields. Such an approach is not usually advised, especially with small or medium datasets. Even if the data is large, if the missing data is not random then removing the related data points can introduce a bias in the model.
+In this case, the missing-ness issue of the dataset needs to be dealt with. One drastic thing to do is to eliminate any record that has a missing field in it – called imputation. This would make the dataset more uniformed and ready for applying whatever data mining technique intended, but at the expense of losing the data points that have missing fields. Such an approach is not usually advised, especially with small or medium datasets. Even if the data is large, if the missing data is not random then removing the related data points can introduce a bias in the model.
 
 For example, you have dataset for people’s ages, salaries and marital statuses, which will be used to predict if a person will default on a debt or not. If people with high salaries tend not to reveal their salaries, then removing all data points with a missing salary will introduce a bias in the build model. This will result in much less accuracy in performing the data mining task for people with high salaries.
 
@@ -200,8 +200,3 @@ Melting and pivoting are often overlooked operations. When they are applicable, 
 
 		You can access the code in the <a href="https://leeds365-my.sharepoint.com/:u:/g/personal/scsaalt_leeds_ac_uk/EX9xS8O3x-dCso4VwiUBoH0BjDzN3ujjSUSXPgRhFlq0mA?e=fkIcRw" target="_blank">Data Wrangling Jupyter Notebook.</a>
 		<mark>Exercise currently hosted in personal onedrive, needs to be moved to appropriate location.</mark>
-
-
-##Summary
-
-<mark>**In this lesson you have**</mark>

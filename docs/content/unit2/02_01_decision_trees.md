@@ -1,14 +1,5 @@
 # Decision trees
 
-<mark>In this lesson you will</mark>
-
-!!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
-
-    * <mark>outcome 1</mark>
-
-    * <mark>outcome 2</mark>
-
 **Let us assume that we have the following binary tree structure:**
 
 <figure role="group">
@@ -16,10 +7,11 @@
   <figcaption><strong>Figure 1.1.</strong> A binary tree structure.</figcaption>
 </figure>
 
-In this diagram you can see that we have used leaves (round edged rectangles) and nodes (ovals). The nodes represent the conditions that need to be checked, while the leaves represent a decision to isolate or not to isolate. This is a binary tree since each condition has two results only (either yes or no). In other words each node can have two children only representing the two possible results of the condition that the node represents. The tree structure represents a binary decision tree. Note that DTs do not necessarily need to be binary, each node can have any number of children. However, a condition of a tree structure is for each node to have one and only one parent (if not then it is just a graph- a tree is special type of a graph). This condition helps the tree to satisfy several guarantees that simplify the inference and its inception process. Ok, so you might be asking now, what do you mean inference? We talk about it in the next section.
+In this diagram you can see that we have used leaves (round edged rectangles) and nodes (ovals). The nodes represent the conditions that need to be checked, while the leaves represent a decision to isolate or not to isolate. This is a binary tree since each condition has two results only (either yes or no). In other words each node can have two children only representing the two possible results of the condition that the node represents. The tree structure represents a binary decision tree. Note that decision trees (DTs) do not necessarily need to be binary, each node can have any number of children. However, a condition of a tree structure is for each node to have one, and only one parent (if not then, it is just a graph- a tree is special type of a graph). This condition helps the tree to satisfy several guarantees that simplify the inference and its inception process. Ok, so you might be asking now, what do you mean inference? We talk about it in the next section.
 
 ##Decision trees inference
-An **inference** is the process of using a model (such as a DT) in order to **infer** what is the class (label in general) of a given record (case, or data point). The process of creating a DT is called **training the tree**. We will see an algorithm that shows us to build a DT automatically form the data. But first we will have a look at how we can infer the class of a case from the DT.
+
+An **inference** is the process of using a model (such as a DT) in order to **infer** what is the class (label in general) of a given record (case, or data point). The process of creating a DT is called **training the tree**. We will see an algorithm that shows us to build a DT automatically from the data. But first we will have a look at how we can infer the class of a case from the DT.
 
 Let us assume that we have been given the following new case and we want our DT to tell the concerned person whether to isolate or not.
 
@@ -69,7 +61,7 @@ Those conditions constitute the features or the attribute for our data. The case
 
 ###Example of an invalid DT
 
-The following structure is not valid decision tree since we have several possibilities of the same ‘Has a Job’ condition:
+The following structure is not a valid decision tree since we have several possibilities of the same ‘Has a Job’ condition:
 
 <figure role="group">
   <img src="../images/DS_IMG012.png" alt="Test image." />
@@ -119,12 +111,3 @@ Steve|  Yes         | Yes        | Band 2     |     ?
 Name |  Home Owner  | Has a job  |Income band | Eligible
 -----|--------------|------------|------------|---------
 Mitch|  No          | Yes        | Band 1     |     ?
-
-
-
-
-##Summary
-
-<mark>**In this lesson you have....**
-
-In the next lesson you will ...</mark>
