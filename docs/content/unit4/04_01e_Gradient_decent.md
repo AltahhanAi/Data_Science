@@ -160,7 +160,7 @@ We can also apply SGD regression on a static dataset, we get a similar result to
 Comparing Algorithm 3 and Algorithm 4. It becomes clear that in Algorithm 4 the weights fixed *during* learning. In contrast Algorithm 3 accumulates all the changes of the weights and apply them all at once.
 
 <figure role="group">
-  <img src="../images/DS_IMG011.png" alt="Test image." />
+  <img src="../images/DS_IMG103.png" alt="Surface chart showing stochastic gradient descent (SGD) algorithm behaviour. The SGD takes gradual steps towards the mimimum of the loss function by following the gradient of the loss." />
   <figcaption><strong>Figure 4.6.</strong> SGD algorithm behaviour: SGD takes gradual steps towards the minimum of the loss function by  following the gradient of the loss. The line shows an example of the paths of a batch gradient descent (blue on the loss surface function and its projection is orange on the loss contour) and stochastic gradient descent algorithms(green on the loss surface function and brown on the loss contours). </figcaption>
 </figure>
 

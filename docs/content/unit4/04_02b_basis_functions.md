@@ -7,7 +7,7 @@ As we said earlier, we can use any basis function in our linear model as long as
 The main advantage of using such basis is its ability to represent the more complex shaped relationship between the input and the output. Sometimes this is exactly what we want, see Figure 4.8.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG105.png" alt="Graph showing a set of different polynomial basis for 4 linear models with the single input variable x." />
   <figcaption><strong>Figure 4.8</strong> Shows a set of different polynomial basis for 4 linear models with single input variable x.</figcaption>
 </figure>
 
@@ -26,22 +26,22 @@ Where $\mu_{j}$ specifies the centre of the basis and $\sigma$ specifies the spr
 Note however, that the max value that the RBF basis can take is 1, contrary to the Gaussian distribution which has its sum over all x’s is 1. See Figures 4.9-4.12.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG106.png" alt="Graph showing three examples of RBF basis, with means of 0, 0 ,2 and variances of 1, 0.4, 4, respectively. " />
   <figcaption><strong>Figure 4.9</strong> Shows three examples of RBF basis with means of 0,0,2 and variances of 1, 0.4, 4 respectively.</figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG107.png" alt="Graph showing the same RBF when used in linear models with the same weights of 0 and 4, respectively." />
   <figcaption><strong>Figure 4.10</strong> Same RBF when used in linear models with same weights of 0 and 4 respectively. </figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG108.png" alt="Graph showing the same RBF when used in linear models with the same weights of 10 and 4, respectively." />
   <figcaption><strong>Figure 4.11</strong> Same RBF when used in linear models with same weights of 10 and 4 respectively.</figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG109.png" alt="Graph showing the same RBF when used in linear models with different weights of (0,2), (5,2) and (5,2), respectively." />
   <figcaption><strong>Figure 4.12</strong> Same RBF when used in linear models with different weights of (0,2), (5,2) and (5,2) respectively.</figcaption>
 </figure>
 
@@ -85,22 +85,22 @@ Note that the term $\alpha_{j}=\frac{\left(x-\mu_{j}\right)}{\sigma}$ appears wi
 Below we show some examples of the behaviour of the sigmoid for 1d input space.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG110.png" alt="Graph showing three examples of sigmoidal basis with means of 0, 0, 2 and variances of 0.4, 4, 4, respectively." />
   <figcaption><strong>Figure 4.13</strong> Shows three examples of sigmoidal basis with means of 0,0,2 and variances of 1, 0.4, 4 respectively. </figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG111.png" alt="Graph showing the same sigmoidal basis when used in linear models with the same weights of 0 and 4, respectively." />
   <figcaption><strong>Figure 4.14</strong> Same sigmoidal basis when used in linear models with same weights of 0 and 4 respectively.  </figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG112.png" alt="Graph showing the same sigmoidal basis when used in linear models with the same weights of 10 and 4, respectively." />
   <figcaption><strong>Figure 4.15</strong> Same sigmoidal basis when used in linear models with same weights of 10 and 4 respectively.</figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG113.png" alt="Graph showing the same sigmoidal basis with different weights of (0,2), (5,2) and (5,2), respectively." />
   <figcaption><strong>Figure 4.16</strong> Same sigmoidal basis when used in linear models with different weights of (0,2), (5,2) and (5,2) respectively.</figcaption>
 </figure>
 

@@ -5,17 +5,17 @@
 Similar to classification models, regression models can suffer from overfitting. Linear regression models are relatively less exposed to this phenomenon because it is a simple regression model. The more complex the model is the more exposed to overfitting. So more complex regression model tends to be more exposed to overfitting. There is a famous principle called Occam razor which roughly speaking states that we should prefer less complex model if they give us the capability that we want for our model and only use more complex models if necessary. Let us see an example of how overfitting for a regression model looks like in figures 4.17-4.19.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG114.png" alt="Graph showing polynomial basis degree 1, where the model is underfitting." />
   <figcaption><strong>Figure 4.17</strong> Model underfitting.</figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG115.png" alt="Graph showing polynomial basis degree 4, where there is good model fitting." />
   <figcaption><strong>Figure 4.1</strong> Good model fitting.</figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG116.png" alt="Graph showing polynomial basis degree 15, where the model is overfitting." />
   <figcaption><strong>Figure 4.19</strong> Model overfitting.</figcaption>
 </figure>
 
@@ -42,13 +42,13 @@ If the matrix $(Φ^⊤ Φ+λI)$ is invertible then the solution exists. The resu
 This technique is also called Ridge regression. See figure 4.20 below for how linear regression with polynomial basis of degree 15 overfitting problem can be brought under control using regularisation. The problem is contrived but because in the first place we should not be using that high degree polynomial in the first place, but it demonstrates the effect of regularisation. Note that the value of $λ$ has a major effect of whether the model underfit or makes a good fit, this type of hyper parameters requires tuning which is a trial and error process and a time-consuming exercise. There are some ways to automate the process a bit. For example, one use grid search method to try out different values for $λ$ and choose the optimal one as we saw previously in Unit 2.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG117.png" alt="Graph showing regularised least squares on a linear regression with polynomial basis of dgree 15 and 70 data points." />
   <figcaption><strong>Figure 4.20</strong> Regularised least squares on linear regression with polynomial basis of degree 15 and 70 data points.</figcaption>
 </figure>
 
 Note in figure 4.21 how both the problems of underfitting of a regularised linear regression models and the overfitting of a linear regression model were greatly reduced when we increased the data from 70 to 500. Both figures shows 40% only of the actual data. This illustrate an important aspect of modelling which is that the models are going to be much more resilient with more data and less resilient and more sensitive to overfitting and underfitting and outliers with less data. We will talk about outliers in later units.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG118.png" alt="Graph showing regularised least squares on a linear regression with polynomial basis of dgree 15 and 500 data points." />
   <figcaption><strong>Figure 4.21</strong> Regularised least squares on linear regression with polynomial basis of degree 15 and 500 data points.</figcaption>
 </figure>
