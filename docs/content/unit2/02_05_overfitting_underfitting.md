@@ -174,5 +174,3 @@ On the other hand, overfitting can occur when we excessively add data horizontal
   <img src="../images/DS_IMG096.png" alt="Test image." />
   <figcaption><strong>Figure 5.13</strong> Decision trees training and testing with phenomenon of overfitting. Note how when we increase the max depth of the tree the testing error forked from the training error which continued to deceivingly decrease, while in reality the testing error were increased for depth . </figcaption>
 </figure>
-
-<mark>In the next unit you will look at...</mark>

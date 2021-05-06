@@ -1,13 +1,4 @@
-# DT training on a vertebrate dataset
-
-<mark>In this lesson you will</mark>
-
-!!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
-
-	* <mark>outcome 1</mark>
-	* <mark>outcome 2</mark>
-	* <mark>outcome 3</mark>
+#DT training on a vertebrate dataset
 
 Now let’s take a look at an example of a simple classification task. Let us assume that we have the following data:
 
@@ -29,7 +20,7 @@ porcupine|1|1|0|0|1|1|mammals
 eel|0|0|1|0|0|0| fish
 salamander|0|0|1|0|1|1|amphibians
 
-<mark>Table ()</mark>: Animals class dataset
+Table: Animals class dataset
 
 The data is taken from Tan et at (2020), and shows the attributes (features) of different vertebrate. The attribute class is the label and it shows the classification of the vertebrate, there are 5 classes {mammals, reptiles, fishes, amphibians or birds}. We have 6 features (excluding the label); these are {Warm-blooded, Gives Birth, Aquatic Creature, Aerial Creature, Has Legs and Hibernates}. Our dataset consists of 16 records each with its values of 0 or 1. So our features are all binary (true/false or yes/no) hence they are categorical (but these can be treated as numerical if necessary). Our task is to build a decision tree classifier that is able to model the relationship of the vertebrate and its class. These relationships are studies in biology, so we want to teach our tree a biological lesson and we want it to tell us later in the future if we give it a vertebrate whether this is a mammal, reptile etc.
 
@@ -64,7 +55,7 @@ porcupine|1|1|0|0|1|1| **mammal**
 eel|0|0|1|0|0|0| **non-mammal**
 salamander|0|0|1|0|1|1| **non-mammal**
 
-<mark>Table ()</mark>: Mammals class dataset
+Table: Mammals class dataset
 
 Note that we can represent the new ‘Mammalian Class’ using {0, 1} or {yes, no}, as in the revised table below.
 
@@ -86,7 +77,7 @@ porcupine|1|1|0|0|1|1| **1**
 eel|0|0|1|0|0|0| **0**
 salamander|0|0|1|0|1|1| **0**
 
-<mark>Table ()</mark>: Binary class mammalians dataset
+Table: Binary class mammalians dataset
 
 For the purposes of this lesson, we are stating explicitly what the class is so that these instructions don’t seem confusing. However normally, we would just use {0,1}.  If the dataset is large, it is almost always the case that we use {0, 1} as a compact way of describing binary features and binary labels. For the output to be expressive we can convert the {0, 1} values when we need to visualise the data or display model classification results into more expressive representations. Our mission is now to build a decision tree that automatically learns how to classify a vertebrate into mammal and non-mammal classes. We will not tell the tree what the relationship is between the features and the label, we want it to learn by itself. To show how the tree learns this dataset we will show the steps that a decision tree learning algorithm will do to build the tree.
 
@@ -128,25 +119,26 @@ porcupine|1|1| **mammal**
 eel|0|0| **non-mammal**
 salamander|0|0| **non-mammal**
 
-<mark>Table ()</mark>: Mammals class dataset with necessary and sufficient features.
+Table: Mammals class dataset with necessary and sufficient features.
 
 ###Video
 
 Please watch this <a href="https://leeds365-my.sharepoint.com/:v:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/presentations/DT_Vertebrate.mp4?csf=1&web=1&e=4rwQdH" target="_blank">video link</a> to see how we can easily build a decision tree model in RapidMiner.
 
 
-!!! abstract "Exercise"
-    Pick another feature to start with, and try the process again. What happens?. Hint: compare between the information gain when we start the split by ‘Gives Birth’ and when we start the split by ‘Warm-blooded’.
+!!!abstract "Exercise"
+
+	Pick another feature to start with, and try the process again. What happens?. Hint: compare between the information gain when we start the split by ‘Gives Birth’ and when we start the split by ‘Warm-blooded’.
 
 
-!!! abstract "Exercise"
+!!!abstract "Exercise"
 
-		Build a decision tree for the original dataset including all of the original features. This is a good opportunity to try using RapidMiner if you want to.
+	Build a decision tree for the original dataset including all of the original features. This is a good opportunity to try using RapidMiner if you want to.
 
 
-!!! abstract "Exercise"
+!!!abstract "Exercise"
 
-		Take away all the features except for ‘Gives Birth’ and ‘Warm Blooded’ from the original dataset. Now attempt to build a decision tree from this new dataset. Are the leaves pure? Can you estimate the accuracy of the decisions that will be made by this tree?
+	Take away all the features except for ‘Gives Birth’ and ‘Warm Blooded’ from the original dataset. Now attempt to build a decision tree from this new dataset. Are the leaves pure? Can you estimate the accuracy of the decisions that will be made by this tree?
 
 ##Validity of decision trees
 
@@ -154,7 +146,7 @@ Complex structures that are called decision trees may not satisfy the definition
 
 ##Decision boundaries of decision trees and the limitations of decision trees
 
-So far we have seen how decision trees work and how they are inducted (trained). Later we will see how to measure their performance. But first we would like to study further their inner properties. In particular we would like to see what type of decision boundaries they constitute. The idea of decision boundaries is  central to classification and not unique to decision trees. It will reappear in other types of classification techniques we will study later, such as the perceptron and k-nearest neighbour (k-NN) algorithms. One way to understand the decision boundaries of a classifier is by plotting a dataset in 2d or 3d, note however that the discussion extends to any space dimension not just 2d but it would be harder to visualise it. Let us start with a simple decision tree with its decision boundary.
+So far we have seen how decision trees work and how they are inducted (trained). Later we will see how to measure their performance. But first we would like to further study their inner properties. In particular, we would like to see what type of decision boundaries they constitute. The idea of decision boundaries is  central to classification and not unique to decision trees. It will reappear in other types of classification techniques we will study later, such as the perceptron and k-nearest neighbour (k-NN) algorithms. One way to understand the decision boundaries of a classifier is by plotting a dataset in 2D or 3D, note however that the discussion extends to any space dimension not just 2D but it would be harder to visualise it. Let us start with a simple decision tree with its decision boundary.
 
 
 ![Alt text.](images/DS_IMG041.png)
@@ -184,12 +176,11 @@ So far we have seen how decision trees work and how they are inducted (trained).
 ![alt-text-2](images/DS_IMG054.png)
 
 
-<mark>CAPTION</mark>
-**Figure () (left) Linearly and non-linearly separable classes data with their virtual decision boundaries. (Right) expected corresponding decision trees.**
+**Figures (left) Linearly and non-linearly separable classes data with their virtual decision boundaries. (Right) expected corresponding decision trees.**
 
 In the above cases, we showed the data and the decision boundary on the left-hand side and on the right-hand side we showed the corresponding expected decision trees that can express the data concisely. In classification such decision boundaries are crucial in two ways: they help us understand the nature of the data, and they help us to assign a suitable technique to the problem in hand. It is not always possible to represent the data in two-dimensional space, in fact it is rarely the case. However, even when we move to higher space dimension, a similar argument can hold.  
 
-The boundaries are assumed when we constructed the datasets. The boundaries do not exist separately form the dataset, instead they are inferred from the dataset. In the decision trees, the nodes correspond to the condition as usual. These conditions that help us decide the classes of the dataset create their own boundaries. In the first case, any point above the boundary is of class 1 and any point below the boundary is from class 2.  In the second case, we have a large margin decision boundaries and we can express the tree in several ways, one of them is shown. In the third case, the tree is simplified to reflect a midpoint margin. In the fourth we sandwiched class1 between two parts of class 2. The fifth a sandwiched class 1 but class 2 is separated in two different quarters. The sixth, we distribute the two classes into four crossed quarters. In the seventh, the data is distributed above and below a diagonal line.
+The boundaries are assumed when we constructed the datasets. The boundaries do not exist separately form the dataset, instead they are inferred from the dataset. In the decision trees, the nodes correspond to the condition as usual. These conditions that help us decide the classes of the dataset create their own boundaries. In the first case, any point above the boundary is of class 1 and any point below the boundary is from class 2. In the second case, we have a large margin decision boundaries and we can express the tree in several ways, one of them is shown. In the third case, the tree is simplified to reflect a midpoint margin. In the fourth we sandwiched class 1 between two parts of class 2. The fifth a sandwiched class 1 but class 2 is separated in two different quarters. The sixth, we distribute the two classes into four crossed quarters. In the seventh, the data is distributed above and below a diagonal line.
 
 So let us see if we hand in the generated data to the CART decision tree induction algorithm, would it be able to recognise the decision boundaries of the data and would it be able to build  corresponding trees as per our expectations. Below are the results.
 
@@ -207,11 +198,9 @@ So let us see if we hand in the generated data to the CART decision tree inducti
 
 ![alt-text-2](images/DS_IMG061.png)
 
-<mark>CAPTION</mark>
-**Figure () (left) Linearly and non-linearly separable classes data with the decision boundaries of the corresponding decision tree which are shown to the right. (Right) actual corresponding decision trees.**
+**Figures (left) Linearly and non-linearly separable classes data with the decision boundaries of the corresponding decision tree which are shown to the right. (Right) actual corresponding decision trees.**
 
-Note how the algorithm struggled with the last case as the classes and its corresponding boundary becomes non-linearly separable. Linearly separable classes are those classes that we separate by just a line. Non-linearly separable classes are those that need more than one line to separate them or those that need another more complex shape to separate them, whether the shape is regular such as a circle or hyperbola or non-regular such as a convoluted curve. Here the boundaries are inferred from the decision tree itself, unlike the previous set of figures where the boundaries were assumed when we constructed the datasets. As we can see, the DT struggles the most when the data is diagonal. This is because the CART deals with one feature at a time in its conditions. Obviously, there are ways to work around this issue. The most obvious is to allow the DT to deal with two features inside its conditions. This would add to the complexity of the algorithms, and the problem becomes <mark>extenuated very expensive</mark> when we consider hundreds of features. If we are to consider all possible combinations of even 20 features this would amount to checking $2^{20}=1,048,576$ combinations. If each one has 10 possible values we are talking about
-$10^{20}=100,000,000,000,000,000,000$ which is clearly problematic. So the DT might not be the best in dealing with these cases. In fact, it is not great at dealing with numerical data in general. Please note that the decision boundary idea is quite powerful and we will utilise it in other techniques more centrally. These better suited techniques include the perceptron, multi-layer perceptron and nearest neighbours classifiers.
+Note how the algorithm struggled with the last case as the classes and its corresponding boundary becomes non-linearly separable. Linearly separable classes are those classes that we separate by just a line. Non-linearly separable classes are those that need more than one line to separate them or those that need another more complex shape to separate them, whether the shape is regular such as a circle or hyperbola or non-regular such as a convoluted curve. Here the boundaries are inferred from the decision tree itself, unlike the previous set of figures where the boundaries were assumed when we constructed the datasets. As we can see, the DT struggles the most when the data is diagonal. This is because the CART deals with one feature at a time in its conditions. Obviously, there are ways to work around this issue. The most obvious is to allow the DT to deal with two features inside its conditions. This would add to the complexity of the algorithms, and the problem becomes extenuated when we consider hundreds of features. If we are to consider all possible combinations of even 20 features this would amount to checking $2^{20}=1,048,576$ combinations. If each one has 10 possible values we are talking about $10^{20}=100,000,000,000,000,000,000$ which is clearly problematic. So the DT might not be the best in dealing with these cases. In fact, it is not great at dealing with numerical data in general. Please note that the decision boundary idea is quite powerful and we will utilise it in other techniques more centrally. These better suited techniques include the perceptron, multi-layer perceptron and nearest neighbours classifiers.
 
 !!! abstract "Exercise"
      You can experiment with how to build a decision tree and visualise the decision boundaries for each of the above datasets in this <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/code/DecisionTrees_DecisionBoundaries_and_OverfittingSymptoms.ipynb?csf=1&web=1&e=ADag4L" target="_blank">Jupyter notebook</a>. The exercise shows that DT are not very good at recognising the margin of the dataset when we have the data distributed in rectilinear but non-linearly separable boundaries.

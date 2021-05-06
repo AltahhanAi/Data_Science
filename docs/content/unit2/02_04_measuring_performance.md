@@ -18,7 +18,7 @@ The classification would be effectively stating yes or 1 or + if the instant bel
 3.	**The actual class is + while the predicted class is –	(False Negative-FN)**
 4.	**The actual class is – and    the predicted class is –	(True Negative-TN)**
 
-These 4 cases can be better summarised in figure 4.1 below. This is called the confusion matrix because the red boxes represent the cases confused by the prediction model, while the black boxes represent the cases where the predictions of the model are aligned with the reality. The aim of any model is to reduce the cases in the red boxes and make them as close to 0 as possible. We can actually do a lot with these counts, and below we show several metrics that can be defined based on them.
+These 4 cases can be better summarised in figure 4.1 below. This is called the confusion matrix because the red boxes represent the cases confused by the prediction model, while the blue boxes represent the cases where the predictions of the model are aligned with the reality. The aim of any model is to reduce the cases in the white boxes and make them as close to 0 as possible. We can actually do a lot with these counts, and below we show several metrics that can be defined based on them.
 
 <figure role="group">
   <img src="../images/DS_IMG062.png" alt="Test image." />
@@ -39,7 +39,7 @@ $$
 𝒏 = TP+ TN+ FP+ FN
 $$
 
-this is regardless of the distribution of the correctly and incorrectly classified instances.
+This is regardless of the distribution of the correctly and incorrectly classified instances.
 
 We define the Accuracy of a classifier as the rate of correctly classified instances out of the total number of instances:
 
@@ -79,8 +79,6 @@ The bar on top represents a complement of an event in a probabilistic sense. The
 On the other hand, the false positive detection rate is denoted $p\left(\overline{\text { detect }}_{+}\right)$ and it represents the probability of incorrectly detecting positive instances by the model. While, the false negative detection rate is denoted $p\left(\overline{\text { detect }}_{-}\right)$ and represents the probability of incorrectly detecting negative instances by the model.
 
 We can now easily verify that:
-
-<mark>not showing top line</mark>
 
 $$
 \begin{array}{l}
@@ -154,19 +152,23 @@ Therefore, F1 score is given as $F 1$ score $=\frac{2 \text { PPV.TPR }}{P P V+T
 The range of MCC is between -1 and 1. -1 represents total disagreement between the model predictions and the actual classes, 1 represents total agreement between the predicted and actual classes and 0 means no correlation, i.e. the model is not better than a random guess.
 
 In terms of comparison, we can meaningfully compare as follows:
-<mark>equations table</mark>
+
+<figure role="group">
+  <img src="../images/DS_IMG194b.png" alt="Test image." />
+  <figcaption><strong>Figure 4.9</strong> </figcaption>
+</figure>
 
 As can be seen we either compare using the left-hand side for performance or the right-hand side for errors. We do not need to use both, and we must be aware not to mingle the left with right when we compare different models' performance.
 
 ###Examples of metrics for a classifier
 
-Ok let us now have a look at some examples. Let us assume that we trained a decision tree classifier and it gave us the confusion matrix that can be seen below. We have stated all the metrics that we have covered so far and we demonstrated the calculations in a separate box underneath. Later we might just state the metrics values without the calculations.  
+Let us now have a look at some examples. Let us assume that we trained a decision tree classifier and it gave us the confusion matrix that can be seen below. We have stated all the metrics that we have covered so far and we demonstrated the calculations in a separate box underneath. Later we might just state the metrics values without the calculations.  
 
 By comparing the Accuracy (or F1 score or MCC) we accordingly prefer classifier 4.
 
 <figure role="group">
   <img src="../images/DS_IMG070.png" alt="Test image." />
-  <figcaption><strong>Figure 4.9</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.10</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -181,7 +183,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG071.png" alt="Test image." />
-  <figcaption><strong>Figure 4.10</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.11</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -195,7 +197,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG072.png" alt="Test image." />
-  <figcaption><strong>Figure 4.11</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.12</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -209,7 +211,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG073.png" alt="Test image." />
-  <figcaption><strong>Figure 4.12</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.13</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -222,11 +224,12 @@ M C C=\frac{40 \times 40-10 \times 10}{\sqrt{(40+10)(40+10)(40+10)(40+10)}}=0.6
 $$
 
 ###Examples of metrics on classifiers comparison
+
 Let us now assume that we trained a further two classifiers that produced the following two confusion matrices. Comparing the classifiers we can see how the different metrics react to the changes in the way the instances has been classified. In particular we can see that F1 score reflect a balanced estimation of the quality of the classifier, while accuracy can be quite optimistic in its estimation of the quality of the classifier. MCC is the more reserved of holistic metrics and it tends to be more pessimistic in its estimation.
 
 <figure role="group">
   <img src="../images/DS_IMG074.png" alt="Test image." />
-  <figcaption><strong>Figure 4.13</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.14</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -240,7 +243,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG075.png" alt="Test image." />
-  <figcaption><strong>Figure 4.14</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.15</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -254,7 +257,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG076.png" alt="Test image." />
-  <figcaption><strong>Figure 4.15</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.16</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -266,7 +269,7 @@ M C C=\frac{99 \times 99-1 \times 1}{\sqrt{(99+1)(99+1)(99+1)(99+1)}}=0.98
 \end{array}
 $$
 
-Accordingly we prefer classifier 3 since we are comparing on the same dataset. Please refer to the section of model comparison <mark>[LINK]</mark> for a more detailed discussion of model comparison. In particular, the reader needs to be careful on what constitutes a statistically significant difference of two different models.
+Accordingly we prefer classifier 3 since we are comparing on the same dataset. In particular, the reader needs to be careful on what constitutes a statistically significant difference of two different models.
 
 ###Classes imbalance and metrics
 
@@ -274,7 +277,7 @@ Let us now see how these metrics react to an increase in one of the classes, i.e
 
 <figure role="group">
   <img src="../images/DS_IMG078.png" alt="Test image." />
-  <figcaption><strong>Figure 4.16</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.17</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -289,7 +292,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG077.png" alt="Test image." />
-  <figcaption><strong>Figure 4.17</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.18</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -305,7 +308,7 @@ Ok now let us see how the metrics react when the problem has a rare class. i.e. 
 
 <figure role="group">
   <img src="../images/DS_IMG079.png" alt="Test image." />
-  <figcaption><strong>Figure 4.18</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.19</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -319,7 +322,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG080.png" alt="Test image." />
-  <figcaption><strong>Figure 4.19</strong> Caption. See calculations below. </figcaption>
+  <figcaption><strong>Figure 4.20</strong> Caption. See calculations below. </figcaption>
 </figure>
 
 $$
@@ -373,24 +376,24 @@ Note that the true labels are placed horizontally while the prediction is vertic
 
 <figure role="group">
   <img src="../images/DS_IMG081.png" alt="Test image." />
-  <figcaption><strong>Figure 4.20</strong> Confusion matrix without normalisation. </figcaption>
+  <figcaption><strong>Figure 4.21</strong> Confusion matrix without normalisation. </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG082.png" alt="Test image." />
-  <figcaption><strong>Figure 4.21</strong> Confusion matrix normalised. </figcaption>
+  <figcaption><strong>Figure 4.22</strong> Confusion matrix normalised. </figcaption>
 </figure>
 
 Different sources uses these two formatting as well. On the right also you can see the same confusion matrix after normalisation. We normalise by dividing each entry by the sum along the **true label axis**. Below you will see an example that clarifies this.
 
 <figure role="group">
   <img src="../images/DS_IMG083.png" alt="Test image." />
-  <figcaption><strong>Figure 4.22</strong> Confusion matrix without normalisation. </figcaption>
+  <figcaption><strong>Figure 4.23</strong> Confusion matrix without normalisation. </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG084.png" alt="Test image." />
-  <figcaption><strong>Figure 4.23</strong> Confusion matrix normalised. </figcaption>
+  <figcaption><strong>Figure 4.24</strong> Confusion matrix normalised. </figcaption>
 </figure>
 
 For multi-class problems, the recall or pr(detect $\left._{\text {class }}\right)$ can be defined in terms of averaged sum of true instances of each class. To demonstrate how, let us look into the above confusion matrix. The recall for each class separately give us the following:  
@@ -411,7 +414,7 @@ Here we would like to point out that sometimes the above score is called the bal
 
 <figure role="group">
   <img src="../images/DS_IMG085.png" alt="Test image." />
-  <figcaption><strong>Figure 4.24</strong> Caption. </figcaption>
+  <figcaption><strong>Figure 4.25</strong> Caption. </figcaption>
 </figure>
 <mark> caption</mark>
 
@@ -421,7 +424,7 @@ $$
 
 This metric is the macro average of the $pr(detect)$ so there is nothing new here really except that we are taking the average of both detection rates. A weighted average version can be defined as we showed earlier.
 
-###	Holistic metric for multi-class: $pr(predict)$ aka precision score
+###Holistic metric for multi-class: $pr(predict)$ aka precision score
 
 All calculations for $pr(predict)$ (aka precision) extends naturally similar to what we did for the $pr(detect)$ (aka recall). As before we can calculate the precision for each class as follows:
 

@@ -1,14 +1,5 @@
 #Linear Regression with Linear and Non-Linear Basis Functions
 
-<mark>In this lesson you will</mark>
-
-!!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
-
-    * <mark>outcome 1</mark>
-
-    * <mark>outcome 2</mark>
-
 In the previous lesson we saw how to minimise a loss function of a linear model of the form:
 
 $y(\mathbf{x}, \mathbf{w})=w_{0}+w_{1} x_{1}+w_{2} x_{2}+\cdots+w_{D} x_{D}$

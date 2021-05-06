@@ -214,5 +214,3 @@ In this case it makes sense to use multi-layer model as the model becomes a non-
 Specifically, when we are trying to infuse multiple layer of abstraction for an application, adding non-linear hidden layers forms an excellent tool for us to do so. In fact, deep neural network uses many non-linear hidden layers and they are very successful in a wide range of applications that is ever increasing. What we are trying to do here is to develop your intuition into when adding layers make sense. This explains why we only have few fully connected linear output layers in deep learning architectures, but we have plenty of non-linear hidden layers. We normally have one (or two) fully connected output layers, but normally not more (the reason we have two is to reduce processing at the last couple of layers if we ended up with high number of features produced by the hidden layers).
 
 <mark>Watch a video2 that explains the above concepts.</mark>
-
-<mark>In the next lesson you will look at...</mark>

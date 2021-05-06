@@ -7,15 +7,15 @@
 
     * know how to query both structured and unstructured data.
 
-**Data is the blood stream of intelligence; it carries with it the power to capture the intricate details of the internal and external mechanism of a complex process. Yet it can be simpler and easier to deal with than directly trying to come up with model of even physical phenomena.**
+**Data is the blood stream of intelligence; it carries with it the power to capture the intricate details of the internal and external mechanism of a complex process. Yet it can be simpler and easier to deal with than directly trying to come up with models of even physical phenomena.**
 
 However, the data can come in many different forms and stats. The integrity and accuracy of the data is problematic, and often a sanity check (checking the data makes sense) and cleaning (removing inconsistencies) need to be employed in order to be able to utilise the data. It may be that something called data wrangling is undertaken, where the structure of the data is changed to better suit the task.  
 
 The data can come in different forms. For example, it might be static, meaning it does not change with time and it can be stored permanently without changing it. This is currently the prevailing dataset types that you will come across, at least in the context of learning about data mining.  
 
-However, the data might come in a more dynamic form. For example, you may need to deal with data that is generated from a continuous stream, such as data that is dealing with sensors reading of a patient. Or a stream of tweets regarding a specific event that need to be processed in real-time to deal with ethical or security issues that might arises or to from an opinion of sentiment of the event that will be utilised by a market.  
+However, the data might come in a more dynamic form. For example, you may need to deal with data that is generated from a continuous stream, such as data that is dealing with sensors reading of a patient. Or a stream of tweets regarding a specific event that need to be processed in real-time to deal with ethical or security issues that might arise or to from an opinion of sentiment about the event that will be utilised by a market.  
 
-##Structured, semi-structured and unstructured dataset
+##Structured, semi-structured and unstructured datasets
 
 **In the previous lesson, you explored categorising data using the data mining model. Similarly, there are several other ways data can be categorised.**
 
@@ -35,11 +35,11 @@ The opportunities are obvious; the more data that can be incorporated, the bette
 
 ###JSON files
 
-An example of semi-structured data is a JavaScript Object Notation (JSON) files, which is an alternative to XML. It is minimal and readable format for slightly structuring the data. The main addition is that there is a pre-defined minimal set of types that we can utilise to add a bit of structure to our data. In a sense XML is a more general but looser way of defining data.
+An example of semi-structured data is a JavaScript Object Notation (JSON) files, which is an alternative to XML. It is a minimal and readable format for slightly structuring the data. The main addition is that there is a pre-defined minimal set of types that we can utilise to add a bit of structure to our data. In a sense XML is a more general but looser way of defining data.
 
 ###CSV files
 
-A less structured alternative to JSON is a comma-separated value (CSV) file. CSV files are comma delimited text files – a text file that has commas added between its entries to separate them. There are some tools that allows data fields to be added to a CSV file but in its original form there are no field types. These are intended to provide the least imposed structure but are intended to be dealt with like a text file; there is some structure giving the field names that are being dealt with without specifying the types of the fields. The type needs to be defined, at least whether it is numerical or non-numerical fields, when the data is processed.  
+A less structured alternative to JSON is a comma-separated value (CSV) file. CSV files are comma delimited text files – a text file that has commas added between its entries to separate them. There are some tools that allows data fields to be added to a CSV file but in its original form there are no field types. These are intended to provide the least imposed structure but are intended to be dealt with like a text file; there is some structure giving the field names that are being dealt with without specifying the types of the fields. The type needs to be defined, at least whether they are numerical or non-numerical fields, when the data is processed.  
 
 To summarise, a database:
 
@@ -73,7 +73,7 @@ A txt file:
 
 Inconsistencies and other issues arise when data is read into a specific algorithm for processing. Microsoft Excel files provide a built-in structure and ways to migrate to different formats. The result depends on the file content.  
 
-It worth mentioning here that the data can be structured either in a loose way similar to a JSON or CSV file, or strongly structured when tables are used within Excel as there are plenty of inner links to give the data a stronger structure. However, a database is still more structured and provide more capabilities if the goal is to add more integrity and structure to the data.  
+It worth mentioning here that the data can be structured either in a loose way similar to a JSON or CSV file, or strongly structured when tables are used within Excel as there are plenty of inner links to give the data a stronger structure. However, a database is still more structured and provides more capabilities if the goal is to add more integrity and structure to the data.  
 
 One positive aspect of Excel which contributed to its popularity is that it provides simple ways to see the data along with its visualisation (via charts, graphs, etc.). Having said that, you must differentiate between providing a storage capability for your data and acting on it in terms of processing and visualisation. If visualisation is important in the application, then Tableau provides such capabilities in an excellent way. You will see some examples of data visualisation at the end of this unit.
 
@@ -97,11 +97,11 @@ In the following exercises, you will see some of the most common data management
 
 ###Noise
 
-Regardless of the way it is collected, data will always have some level of inaccuracies, even when it is automatic sensor readings. This is called the noise of the data. The less noise in the data the better the data quality is, but it is impossible to collect date with zero noise.
+Regardless of the way it is collected, data will always have some level of inaccuracies, even when it is automatic sensor readings. This is called the noise of the data. The less noise in the data the better the data quality is, but it is impossible to collect data with zero noise.
 
-For example, if reading physical phenomena such as the temperature, there is always going to be some level of inaccuracy and estimation from taking the measurement, coming from the used devises themselves or from both. This is part of the life of a data scientist and needs to be accepted, albeit while trying to reduce the noise as much as possible.
+For example, if reading physical phenomena such as the temperature, there is always going to be some level of inaccuracy and estimation from taking the measurement, coming from the used devices themselves or from both. This is part of the life of a data scientist and needs to be accepted, albeit while trying to reduce the noise as much as possible.
 
-The noise can be treated either during the collection process, by increasing the level of the accuracies of the sued devises, or by accounting for these inaccuracies when building a model for the data. It is assumed there is some level of noise that will affect and offset the analysis and model predictive capabilities.  
+The noise can be treated either during the collection process, by increasing the level of the accuracies of the used devices, or by accounting for these inaccuracies when building a model for the data. It is assumed there is some level of noise that will affect and offset the analysis and model predictive capabilities.  
 
 The question is how much noise is there? This question by itself is difficult to address but it would raise the accuracies of the analysis to know exactly how much noise the data has. But the question itself contradicts with the data scientist’s abilities; had they been able to measure accurately how much inaccuracy there is, there would have been accuracy in the collection process.
 

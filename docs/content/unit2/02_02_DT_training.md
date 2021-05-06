@@ -1,14 +1,5 @@
 # Decision tree induction (training)
 
-In this lesson you will learn about...
-!!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
-
-	* <mark>outcome 1</mark>
-	* <mark>outcome 2</mark>
-	* <mark>outcome 3</mark>
-	* <mark>outcome 4</mark>
-
 In the below dataset, the possible values for the features and the class are as follows:  
 
 Screen size = {6, 7, 8}, Makes calls = {Yes, No}, Class = {Phone, Tablet}
@@ -22,7 +13,7 @@ G2     |    7 inches  | No          |Tablet
 S2     |   7 inches   | No          |Tablet
 A2     |   8 inches   | Yes         |Tablet
 
-Intuitively, the ‘screen size’ feature does not have an easy binary decision since in this dataset we have phones that are 6 and 7 inches and we have tablets that are also 7 or 8 inches. On the other hand, ‘makes calls’ feature is more regular, **all** phones ‘make calls’ while **most** tablets do not ‘make calls’. This suggests that if we were to make decisions about a devise class being a phone or a tablet, we should first look at the ‘makes calls’ attribute and if it is ‘no’ then it is a ‘tablet’ if it is ‘yes’ then it is most likely a ‘phone’. In this second instance we would then need to check its ‘screen size’ if it is = 8 then it is a tablet, if it is not then it is a phone.
+Intuitively, the ‘screen size’ feature does not have an easy binary decision since in this dataset we have phones that are 6 and 7 inches and we have tablets that are also 7 or 8 inches. On the other hand, ‘makes calls’ feature is more regular, **all** phones ‘make calls’ while **most** tablets do not ‘make calls’. This suggests that if we were to make decisions about a device class being a phone or a tablet, we should first look at the ‘makes calls’ attribute and if it is ‘no’ then it is a ‘tablet’ if it is ‘yes’ then it is most likely a ‘phone’. In this second instance we would then need to check its ‘screen size’ if it is = 8 then it is a tablet, if it is not then it is a phone.
 
 So how we can create an algorithm that does this type of decisions for us? We need an algorithm that can strategically pick the more promising features first and then develop the tree based on that. The algorithm that we will talk about is called CART (Classification and Regression Tree) and we will show it in action in the following steps.
 
@@ -35,7 +26,7 @@ So how we can create an algorithm that does this type of decisions for us? We ne
   <figcaption><strong>Figure 2.1.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset. Left split based on ‘makes calls’ feature, right split based on ‘screen size=8’ .</figcaption>
 </figure>
 
-To quantify the quality of each split, we use the **Gini Impurity** of each **node data**. The Gini impurity describes how pure or mixed the data labels in a node. The purer the data the closer Gini is to 0, while the more mixed the data in the node the closer Gini is to 0.5. We will look at how to calculate the Gini Impurity a bit later. For now I want you to assume that you know how to calculate it.
+To quantify the quality of each split, we use the **Gini Impurity** of each **node data**. The Gini impurity describes how pure or mixed the data labels in a node are. The purer the data the closer Gini is to 0, while the more mixed the data in the node the closer Gini is to 0.5. We will look at how to calculate the Gini Impurity a bit later. For now I want you to assume that you know how to calculate it.
 
 ###Information gain
 The **Information Gain of a split** refers to how much information we gain by choosing one of the possible splits. If the decision tree is binary, then each feature is a possible split. If it is not binary, then each pair of a feature with a value is represented as (feature, value), and will constitute a possible split.  
@@ -47,12 +38,12 @@ $$
 \text { Information Gain }=\text { Impurityof parent-weighted average impurity of children } \\
 \qquad \begin{array}{l}
 \text { Info Gain('makes calls') }=0.5-\left(\frac{2}{6} \times 0+\frac{4}{6} \times 0.375\right)=0.25 \\
-\text { Info Gain('screen size } \left.=8^{\prime}\right)=0.5-\left(\frac{5}{6} \times 0.48+\frac{1}{6} \times 0\right)=0.1
+\text { Info Gain('screen size } \left.=8'{\prime}\right)=0.5-\left(\frac{5}{6} \times 0.48+\frac{1}{6} \times 0\right)=0.1
 \end{array}
 \end{array}
 $$
 
-This shows that the first split based on the ‘makes calls’ feature is better since we gain form information by using it and we will intuitively move toward more pure leaves.
+This shows that the first split based on the ‘makes calls’ feature is better since we gain more information by using it and we will intuitively move toward more pure leaves.
 
 ###Gini impurity
 
@@ -74,7 +65,7 @@ $$
 \text { Gini Impurity(set) }=1-\left[p^{2}(\mathrm{Tab})+p^{2}(\mathrm{Pho})\right]
 $$
 
-Below we will see the calculations of the Gini Impurity for the subsets of the nodes (the items that belong to each node). We start always from the whole dataset and then the data will be distributed based on the type of question that we ask in the node. The summary of how we evaluate the two splits is in <mark>Figure ().</mark>
+Below we will see the calculations of the Gini Impurity for the subsets of the nodes (the items that belong to each node). We start always from the whole dataset and then the data will be distributed based on the type of question that we ask in the node.
 
 ####Before split:
 
@@ -353,7 +344,7 @@ Based on the above step, the algorithm will reach the following form:
   <figcaption><strong>Figure 2.7.</strong> Final Step of CART algorithm tree induction (training).</figcaption>
 </figure>
 
-At this stage the algorithm stops since all lower levels nodes are pure and produces the following final tree which can be used for inference as we did earlier in the previous section <mark>[link].</mark>
+At this stage the algorithm stops since all lower levels nodes are pure and produces the following final tree which can be used for inference as we did earlier in the previous section.
 
 <figure role="group">
   <img src="../images/DS_IMG023.png" alt="Test image." />
@@ -426,7 +417,7 @@ The above box shows the pseudocode for a decision tree induction algorithm. The 
 
 ###Discretising continuous variables
 
-Given the following dataset, we want to build a decision tree that can predict whether or not a borrower is going to default on their debt. This type of decision is important for banks to decide upon the eligibility of customers to be lent money. While our dataset is simple, the ideas can be easily expanded into a fully developed scenario for an actual bank. <mark>Intermediate</mark>
+Given the following dataset, we want to build a decision tree that can predict whether or not a borrower is going to default on their debt. This type of decision is important for banks to decide upon the eligibility of customers to be lent money. While our dataset is simple, the ideas can be easily expanded into a fully developed scenario for an actual bank.
 
 ID | Home Owner  | Marital Status | Annual Income | Defaulted Borrower
 ---|-------------|----------------|---------------|-------------------
@@ -530,15 +521,15 @@ ID | Home owner| Marital status | Annual income | Defaulted borrower | **Possibl
 1  | Yes       | Single         | 125           | No                 | **122.5**
 7  | Yes       | Divorced       | 150           | No                 | **172.5**
 
-Table (): Borrowers dataset with possible splits for the Annual Income feature
+Table: Borrowers dataset with possible splits for the Annual Income feature
 
 1. We need to sort the dataset according to this feature, and we take the split values to be in-between the feature values in the dataset.  
 
-2. We take the in-between values instead of the values themselves because we do not want to make any of the dataset records a boundary case. We do not need to worry about the first and last values since they cannot be a split condition otherwise they yield the feature ineffective- all data is greater than the first value and smaller than the last values. So if we have N records in our dataset (N=10 in the Borrowers dataset), we try N-1 in-between splits. See Table <mark>()</mark> above for the possible splits for annual income after sorting the dataset according to ‘Annual Income’.
+2. We take the in-between values instead of the values themselves because we do not want to make any of the dataset records a boundary case. We do not need to worry about the first and last values since they cannot be a split condition otherwise they yield the feature ineffective- all data is greater than the first value and smaller than the last values. So if we have N records in our dataset (N=10 in the Borrowers dataset), we try N-1 in-between splits. See Table above for the possible splits for annual income after sorting the dataset according to ‘Annual Income’.
 
 3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. See this <a href="https://leeds365-my.sharepoint.com/:x:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/code/datasets/Borrowers-Split%20for%20Continous%20Values.xlsx?d=w068064a3a6024c47800dc3ddd4d385b9&csf=1&web=1&e=uJMYto" target="_blank">Excel spreadsheet</a> for the different Information Gain and Gini Index calculations for the borrowers dataset.
 
-Figure 2.12 shows the advantage of a test condition for a continuous attributes, the branching of the tree is much simpler and will lead to a more elegant and less cultured and easy to interpret tree.
+Figure 2.12 shows the advantage of a test condition for a continuous attributes, the branching of the tree is much simpler and will lead to a more elegant and less cluttered and easy to interpret tree.
 
 <figure role="group">
   <img src="../images/DS_IMG032.png" alt="Test image." />
@@ -556,7 +547,7 @@ We only show one probability on the x axis because the other is just the complem
   <figcaption><strong>Figure 2.13.</strong>  Comparison of different impurity measures.</figcaption>
 </figure>
 
-In fact, these are all valid and you can use any. Albeit an important element of decision tree induction which must be used, changing the impurity measure between these three measures has a limited effect on the tree structure. In fact, although they vary in range, they produce consistent decision trees. What matters more in the context of decision trees is the use of pruning and pre-pruning. Therefore we will only briefly discuss them here, but you should try to familiarise yourself with these other types of impurity measures from Tan et al (2020), particularly entropy which has applications in a wide range of disciplines.  
+In fact, these are all valid and you can use any. Albeit an important element of decision tree, induction which must be used, changing the impurity measure between these three measures has a limited effect on the tree structure. In fact, although they vary in range, they produce consistent decision trees. What matters more in the context of decision trees is the use of pruning and pre-pruning. Therefore we will only briefly discuss them here, but you should try to familiarise yourself with these other types of impurity measures from Tan et al (2020), particularly entropy which has applications in a wide range of disciplines.  
 
 The entropy is a measure of chaos in a system. It is also used as a measure of information- in fact, information theory depends heavily on it. In this lesson however, we will concentrate on it as a measure of chaos or surprise. If the set of events or items have a probability peak, i.e. a subset of those items have high probability, then the system is less chaotic and the entropy is small. On the other hand, if the events or items have similar probabilities, without a clear winner, then the system is harder to predict and its chaos or entropy is maximal.  
 
@@ -612,7 +603,7 @@ $$
 
 The same idea applies for the Gini index, but it is less complex.
 
-1. When the probability $p$ is low, the $Gini$ is low. Hence, we simply include $p$ in $Gini$ formula. 
+1. When the probability $p$ is low, the $Gini$ is low. Hence, we simply include $p$ in $Gini$ formula.
 
 2. When the probability $p$ is high, the $Gini$ is low. Hence, we include the term $1−p$ in the $Gini$ formula.
 
@@ -671,7 +662,3 @@ $$
 $$
 
 The behaviour of all of the three impurity measures have been already shown in <mark>Figure (20)</mark>
-
-##Summary
-
-<mark>**In this lesson you have**</mark>

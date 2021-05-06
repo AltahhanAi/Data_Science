@@ -1,4 +1,4 @@
-# What is data science?
+# What is Data Science?
 
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:
@@ -33,7 +33,7 @@ Tan, P., et.al. (2020), Introduction to Data Mining by Second Edition, Pearson
 
 ### Data science vs data mining
 
-The terms data science and data mining are sometimes used interchangeably. However, the term data science is a more general term and includes data mining. However, the data mining is so important that it eclipses the other term.
+The terms data science and data mining are sometimes used interchangeably. However, the term data science is a more general term and includes data mining. However, data mining is so important that it eclipses the other term.
 
 ## A day in the life of a data scientist
 
@@ -49,21 +49,21 @@ The terms data science and data mining are sometimes used interchangeably. Howev
 8. Have lunch and talk/rant to other colleagues about issues you all are facing in your daily analysis and how fast things are moving.
 9. Come back to your senses and start think what to do for your afternoon (apart from your tea-time).
 10. Read about the latest technology updates and analysis tools available for data scientists to help you overcome some of the difficulties that you are facing.
-11. Finish your light-hearted self-education time and check who is at risk to be lost for a competitor. Analyse the latest customer feedbacks and send a list of customers that need attention and to be contacted offered discounts (by the customer services team).
-12.	Use your latest developed model to predict the market trend and recommend a set of appropriate pre-empting actions that are expected to mitigate risks and ensure profitability on the long run. Put everything in a nice technical report with lots of visualisation (make sure it is clear and simple even if you spend a lot of time on it) and send to your manager.
-13.	Conduct a hypothesis testing to see if a product/service is profitable on the mid and short term for this year and send the results to the project lead for further actions.
-14.	 Answer some emails, promising the earth regarding those tasks that you could not finish and wrap up for the day.
+11. Finish your light-hearted self-education time and check who is at risk to be lost for a competitor. Analyse the latest customer feedback and send a list of customers that need attention and to be contacted and offered discounts (by the customer services team).
+12.	Use your latest developed model to predict the market trend and recommend a set of appropriate pre-empting actions that are expected to mitigate risks and ensure profitability in the long run. Put everything in a nice technical report with lots of visualisation (make sure it is clear and simple even if you spend a lot of time on it) and send to your manager.
+13.	Conduct a hypothesis testing to see if a product/service is profitable in the mid and short term for this year and send the results to the project lead for further actions.
+14.	Answer some emails, promising the earth regarding those tasks that you could not finish and wrap up for the day.
 
 
-## Understanding the business needs of the application domain
+##Understanding the business needs of the application domain
 
 **In order to gain better insight into factors that can affect their decision process or visualise a situation effectively, or create predictions or analysis to improve efficiency, data scientists need to understand the domain of the company, business or institute.**
 
-It is crucial to be aware of the applications and scenarios that are likely to arise and to have a good insight into the way the business is conducted and delivered. Ideally, this awareness should be formed before starting to do anything then refined during the analysis and by further contacting the people that your model or analysis is going to serve.
+It is crucial to be aware of the applications and scenarios that are likely to arise and to have a good insight into the way the business is conducted and delivered. Ideally, this awareness should be formed before starting to do anything, then refined during the analysis and by further contacting the people that your model or analysis is going to serve.
 
-The domains that require data analysis are really diverse. Most domains, including science, entertainment and sport, are making use of the data available to them, for example the time users spend playing a video game, so data scientists may be asked to analyse data from any field to help in the decision-making process.
+The domains that require data analysis are really diverse. Most domains, including science, entertainment and sport, are making use of the data available to them; for example the time users spend playing a video game, so data scientists may be asked to analyse data from any field to help in the decision-making process.
 
-The diversity of the application domains warrant specialisation into different data science areas; some data scientists specialise in one specific domain, such as medical science. Other times experts from the domain try to gain experience or qualifications to analysis their own data or include a data scientist in their project. In all cases, insight and understanding of the domain application is needed in the data mining project, either by a data scientist's interaction with domain experts from the company they are helping or by contracting an external expert into the team.
+The diversity of the application domains warrant specialisation into different data science areas; some data scientists specialise in one specific domain, such as medical science. In other cases experts from the domain try to gain experience or qualifications to analyse their own data or include a data scientist in their project. In all cases, insight and understanding of the domain application is needed in the data mining project, either by a data scientist's interaction with domain experts from the company they are helping or by contracting an external expert into the team.
 
 ###What questions might a data scientist attempt to answer?
 
@@ -71,12 +71,12 @@ Read through the following examples of questions a data scientist might attempt 
 
 * **Nutrition:** Is this a suitable and realistic diet for me?
 
-      - Society is sharing more of its daily eating habits through social media feeds, likes and interactions as well as through active engagement in specific diets apps. All of this data can be utilised en mass to create recommendations for the best and most realistic diets that individuals will respond to, given past habits, determination and the target that people set for themselves. Although this is not easy, it is doable and more successful apps are being developed that are capable of giving such recommendations.
+      - Society is sharing more of its daily eating habits through social media feeds, likes and interactions as well as through active engagement in specific diet apps. All of this data can be utilised en mass to create recommendations for the best and most realistic diets that individuals will respond to, given past habits, determination and the target that people set for themselves. Although this is not easy, it is doable and more successful apps are being developed that are capable of giving such recommendations.
 
 
 * **Medicine:** As per the sensor readings, how well is the ICU patient responding to the current treatment?
 
-      - Electronic Health Record data is becoming crucial for collective patients' analysis for diseases and behaviour to aid health specialists in their daily tasks of diagnosis etc.
+      - Electronic Health Record data is becoming crucial for collective patients' analyses for diseases and behaviour to aid health specialists in their daily tasks of diagnosis etc.
 
 * **Environmental Science:** How is land temperature affecting ocean temperatures?
 
@@ -88,14 +88,14 @@ Read through the following examples of questions a data scientist might attempt 
 
 * **Sport science:** Are the current coach's tactics/strategy working well for our team?
 
-      - Data is power and particularly in sport science as it allows the strategy of the team to be set, examined and changed through past experience and trying different tactics. Reinforcement learning (RL) is particularly useful for such task. You will study this branch of machine learning in the Robotics module but bear in mind that RL application is huge and anything that potentially has a set of actions to choose from is a candidate take advantage of RL capabilities.
+      - Data is power and particularly in sport science as it allows the strategy of the team to be set, examined and changed through past experience and trying different tactics. Reinforcement learning (RL) is particularly useful for such a task. You will study this branch of machine learning in the Robotics module. However, you should bear in mind that RL application is huge and anything that potentially has a set of actions to choose from may take advantage of RL capabilities.
 
 
 ##Technology that you might need:
 
 ###Jupyter Notebook
 
-Jupyter notebook is an interactive tool that uses Interactive Python (IPython) to edit and execute Python programmes from a web browser. It provides maximum flexibility and availability for a wide range of devises and users.
+Jupyter Notebook is an interactive tool that uses Interactive Python (IPython) to edit and execute Python programmes from a web browser. It provides maximum flexibility and availability for a wide range of devices and users.
 
 You need to install it via python using ‘python -m pip install jupyter’ (pip is now shipped by default with Python 3.4 and above). Alternatively, you can install it alongside many useful programming tools and packages by installing Anaconda Distribution.
 
@@ -122,9 +122,9 @@ We will be running several examples and exercises in the module with code that i
 
 RapidMiner is a graphical user interface tool that allows you to build and use machine learning and data mining models. You simply can drag and drop operators that represent a technique and then link it up with a data source.
 
-It allows you to apply the technique on the data easily and intuitively. There are a set of model parameters that you can set up, which allow you to control the behaviour of the technique. Concepts such as validation and performance measures are also offered as operators that you can add to your model.
+It allows you to apply the techniques you are studying on the data easily and intuitively. There are a set of model parameters that you can set up, which allow you to control the behaviour of the technique. Concepts such as validation and performance measures are also offered as operators that you can add to your model.
 
-This, and similar tools such as Weka, allows you to create a data mining model (prototype) quickly without having to use a programming language to do it. You can still integrate it with other programming languages such as python. Bear in mind though, that the flexibility and control offered by a programming language cannot be matched by such a tool.
+This, and similar tools such as Weka, allow you to create a data mining model (prototype) quickly without having to use a programming language to do it. You can still integrate it with other programming languages such as Python. Bear in mind though, that the flexibility and control offered by a programming language cannot be matched by such a tool.
 
 !!! warning "Installing RapidMiner"
     To install RapidMiner, follow the instructions below:
@@ -182,15 +182,15 @@ For more information on using Radoop, watch this video on YouTube: <a href="http
 
 To deal with big data later in the module, it will be useful to have the same environment that businesses normally use to process big data.  
 
-This is the Hadoop ecosystem. Although Hadoop requires a commodity hardware, which can be provided via virtual machines, running multiple virtual machines inside your pc and processing a big data set might be challenging.  
+This is the Hadoop ecosystem. Although Hadoop requires a commodity hardware, which can be provided via virtual machines, running multiple virtual machines inside your PC and processing a big dataset might be challenging.  
 
-Therefore, in order to mimic the producers and constrains that are normally faced in business scenarios, you will deal with a reasonably sized dataset that is big in the context of capabilities of average machines. You will need an 8 GB RAM and 10GB disk space, if you do not have this then you may need to use a cloud-based or remotely accessed machine. For more information about Hadoop see the tutorial in LinkedIn. You will not be required to be familiar with all the Hadoop ecosystem, you will just make use of its infrastructure to process and analyse some data. This will be easily done by using the Hortonworks Sandbox.  
+Therefore, in order to mimic the producers and constraints that are normally faced in business scenarios, you will deal with a reasonably sized dataset that is big in the context of capabilities of average machines. You will need an 8 GB RAM and 10GB disk space, if you do not have this then you may need to use a cloud-based or remotely accessed machine. For more information about Hadoop see the tutorial in LinkedIn. You will not be required to be familiar with all the Hadoop ecosystem, you will just make use of its infrastructure to process and analyse some data. This will be easily done by using the Hortonworks Sandbox.  
 
 The basics about MapReduce as a distributed programming paradigm will be explored in Unit5. Some of the most well-known Hadoop tools include HDFS, Yarn, MapReduce, Hive and Spark. More information on these tools is available by selecting this link: <a href="https://databricks.com/glossary/hadoop-ecosystem" target="_blank">Databricks: Hadoop Ecosystem</a>.  
 
 ###Hortonworks sandbox
 
-To run Hadoop ecosystem along the side of RapidMiner you need to setup a Hortonworks sandbox. Basically, it is a virtual machine that has the Hadoop ecosystem readily setup and available.  
+To run Hadoop ecosystem alongside of RapidMiner you need to setup a Hortonworks sandbox. Basically, it is a virtual machine that has the Hadoop ecosystem readily set up and available.  
 
 To learn more about Hortonworks Sandbox, watch this video from Hadoop on YouTube: <a href="https://www.youtube.com/watch?v=H0KXnfE9Z9s" target="_blank">Hadoop Tutorial: Introduction to Hortonworks Sandbox</a>.
 
@@ -202,7 +202,7 @@ To learn more about Hortonworks Sandbox, watch this video from Hadoop on YouTube
  This module will focus on the cross industry standard process (CRISP) model of the data mining process, which is outlined in the diagram.
 
  ![Diagram showing the CRISP model of the data mining process; surrounding data are business understanding, data understanding, data preparation, modelling, evaluation and deployment.](images/DS_IMG003.png)
-Tan, P., et.al. (2020), Introduction to Data Mining by Second Edition, Pearson
+Tan, P., et.al. (2020), Introduction to Data Mining by Second Edition, Pearson.
 
 CRISP is a widely used analytical model. It is an open standard process model that describes common approaches used in data mining, involving the following phases:
 
@@ -231,14 +231,13 @@ In short, the dataset or data stream has a nominal value already available and t
 
 ###Clustering
 
-Clustering is the second prevailing task performed by a data scientist. In this case there is a dataset or data stream representing a set of objects but the dataset does not reveal what the label of a record is. The data records still need to be categorises or clustered into related sets to help with other tasks.  
+Clustering is the second prevailing task performed by a data scientist. In this case there is a dataset or data stream representing a set of objects but the dataset does not reveal what the label of a record is. The data records still need to be categorised or clustered into related sets to help with other tasks.  
 
-For example, a set of social media users could be categorised into clusters of strongly connected groups based on their likes of specific kinds of products in order to target them with relevant ads.
+For example, a set of social media users could be categorised into clusters of strongly connected groups based on their likes of specific kinds of products in order to target them with relevant adverts.
 
 ###Regression
 
-Regression is the task of developing a specific value rather than a class for a record. For example, to identify the price of a house based on set of its features, such as address, number of bedrooms, square footage, floors, open kitchen aspects, on-suits etc. In this case, a dataset of houses with their prices (label) is needed and a model needs to be built that predicts house prices to be used later with new houses coming to the market to correctly estimate their values.  
-
+Regression is the task of developing a specific value rather than a class for a record. For example, to identify the price of a house based on set of its features, such as address, number of bedrooms, square footage, floors, open kitchen aspects, en-suits etc. In this case, a dataset of houses with their prices (label) is needed and a model needs to be built that predicts house prices, which can be used later with new houses coming to the market to correctly estimate their values.  
 
 ##Supervised learning vs unsupervised learning
 
@@ -255,7 +254,7 @@ As an example of learning vs following instructions (programming), consider a ro
 
 To allow it to learn by itself, it still needs to be provided with suitable learning algorithms, that are eventually programmed, but these are not tied to the current setting. If the plan is changed to move the robot to a third point, point C, these can be employed regardless of when this change happens. In this case, the robot will be left to learn again by itself how to move from A to C and the programme should not be changed.  
 
-From this example, you can see that learning is more generic and will achieve real intelligence with time, while programming precise steps forces the programmer to solve a problem.  When this programming happens, the devise will only implement the programmed solution, however when the agent is provided with the capability of learning it is equipped with more intelligence. This will make it more powerful and useful (at least for the time being, you will see more in-depth discussions of the issues of ethics of AI in a separate module).
+From this example, you can see that learning is more generic and will achieve real intelligence with time, while programming precise steps forces the programmer to solve a problem.  When this programming happens, the device will only implement the programmed solution, however when the agent is provided with the capability of learning, it is equipped with more intelligence. This will make it more powerful and useful (at least for the time being, you will see more in-depth discussions of the issues of ethics of AI in a separate module).
 
 
 ##Systems and unit testing vs model testing
@@ -272,16 +271,15 @@ These types of faults can be categorised into accidental, logical, flow, and imp
 
 ###Unit testing
 
-Unit testing is testing an individual module or component of a system. As with system testing, it is normally conducted for logical or implementational error regarding the intended functionality of the unit. This type of testing is more prevalent and occurs several times in the life of the competent, whenever there is a change to its functionality or coding.  
+Unit testing is testing an individual module or component of a system. As with system testing, it is normally conducted for logical or implementational error regarding the intended functionality of the unit. This type of testing is more prevalent and occurs several times in the life of the component, whenever there is a change to its functionality or coding.  
 
 ###Model testing
 
-Note that systems and unit testing are not likely to be performed by a data scientist. The likely testing activity that a data scientist is going to perform is a model testing.
+Note that systems and unit testing are not likely to be performed by a data scientist. The likely testing activity that a data scientist is going to perform is model testing.
 
-Model testing depends on the task in hand whether it is classification, clustering or regression. In Model testing the prediction performance of the model and its level of accuracy in performing the required task are tested.
+Model testing depends on the task in hand whether it is classification, clustering or regression. In model testing the prediction performance of the model and its level of accuracy in performing the required task are tested.
 
 Often, when dealing with graphical user interface (GUI) based data mining tools such as RapidMiner (or other industry used tools you may come across such as Weka), the concern will be on raising the model performance by changing its parameters or the technique used. Alternatively, several techniques are employed and their performance compared. Model testing is not concerned with whether the coding for a technique is working properly but whether the model is capturing the internal mechanism of the data generation process or whether it is able of dedifferentiating between a set of different classes.  
-
 
 ##Types of models: generative vs discriminative
 
@@ -294,7 +292,6 @@ However, this simply expresses the type of task that the model is dealing with. 
 **Generative models:** These are another type of model, capable of generating synthetic data that is likely to come with the tasks being dealt with. These are more powerful than discriminative models, but they are more difficult to build and often need more computational power. The quality of the data they generate depends on the task and the technique employed to build such models. Often, they are built by employing statistical distribution and statistical techniques, in particular Bayesian models, which depend on Bayesian Inference and Bayesian Statistics as opposite to Frequentist Statistics. Bayes Theorem will be explored further later in the unit.
 
 Whether you build generative or discriminative models will depend on the context that the model will be used in. Sometimes it is completely unnecessary for the model to be able to generate the data and in this case discriminative models are sufficient to the task in hand. Sometimes you might want to combine a discriminative and generative model to train each other to get better at the task. An example of such models is the generative Adversarial Neural Networks. You will be studying such models in later modules (Machine Learning, Deep Learning and Reinforcement Learning).
-
 
 ##Bayes Theorem and its application
 
@@ -315,7 +312,7 @@ In this example there are three diseases (D) and one symptom (E).
 
 In a set of 100 patients:
 
-* twenty-five have disease D1
+* 25 have disease D1
 * 15 have D2
 * 50 has D3.
 
@@ -394,7 +391,7 @@ Note that the probability framework does not assign a degree to which a symptom 
 
 **A way to measure the performance of any prediction or data mining model that is developed must be specified. The metrics will depend on the type of the data mining task that is performed.**
 
-Classification has different metrics than regression which in turn has different metrics than clustering;. You  will see each one in their respective unit. It is worth mentioning here that these metrics will be essential in developing the model as they will provide the guiding lines along which several different algorithms can be developed.
+Classification has different metrics than regression which in turn has different metrics than clustering. You  will see each one in their respective unit. It is worth mentioning here that these metrics will be essential in developing the model as they will provide the guidelines along which several different algorithms can be developed.
 
 
 ##Summary
