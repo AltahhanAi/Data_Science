@@ -29,7 +29,7 @@ Kotu, V., and Deshpande B., (2018), Data Science Concepts and Practices, Morgan 
 The term ‘data mining’ implies excavating a mine (the data archive) to find precious assets (patterns). These patterns are precious because they allow you to make decisions or predictions that are not directly known either from the available data or the process behind it. For example, predicting the best house price from an available set of house prices and their different descriptions. These descriptions when formulated in terms of numerical measures or categories are called the features. The diagram shows the relationship of data mining to other areas.
 
 ![Diagram showing the relationship of data mining to statistics, AI, machine learning and pattern recognition.](images/DS_IMG002.png)
-Tan, P., et.al. (2020), Introduction to Data Mining by Second Edition, Pearson
+Tan, P., et.al. (2019), Introduction to Data Mining Second Edition, Pearson
 
 ### Data science vs data mining
 
@@ -137,8 +137,6 @@ This, and similar tools such as Weka, allow you to create a data mining model (p
 
     Installation in Windows is straightforward. In Linux, it may need a couple of tweaks and below are steps for installation (the Linux flavour that we show is for Ubuntu).
 
-    A video that shows how to install RapidMiner on Ubuntu is here. <mark>Link to video needed from SME</mark>
-
     To start RapidMiner:
         ```
         bash ~/Downloads/rapidminer-studio/RapidMiner-Studio.sh
@@ -197,12 +195,10 @@ To learn more about Hortonworks Sandbox, watch this video from Hadoop on YouTube
 
 ##Data pipeline and mining process (CRISP, ETL)
 
-**(This video) gives a general overview of the data mining process.** (<a href="https://leeds365-my.sharepoint.com/:p:/g/personal/scsaalt_leeds_ac_uk/EdBOKEnF2dZOo1YC1EIxFJ0BDBSdRiWZzJ--EatHDFSGbA?e=AH9ngQ" target="_blank">here</a>.) <mark>Powerpoint to be turned into video</mark>
-
- This module will focus on the cross industry standard process (CRISP) model of the data mining process, which is outlined in the diagram.
+**This module will focus on the cross industry standard process (CRISP) model of the data mining process, which is outlined in the diagram below.**
 
  ![Diagram showing the CRISP model of the data mining process; surrounding data are business understanding, data understanding, data preparation, modelling, evaluation and deployment.](images/DS_IMG003.png)
-Tan, P., et.al. (2020), Introduction to Data Mining by Second Edition, Pearson.
+Tan, P., et.al. (2019), Introduction to Data Mining Second Edition, Pearson.
 
 CRISP is a widely used analytical model. It is an open standard process model that describes common approaches used in data mining, involving the following phases:
 

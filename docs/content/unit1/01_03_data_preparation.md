@@ -68,6 +68,8 @@ This invites discussion on whether several splits need to be performed and the a
 
 	 Make sure to differentiate between sampling rows and selecting a subset of fields or columns.
 
+See the following	<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738960_4" target="_blank">powerpoint slides.</a>
+
 ###Filtering
 
 Sometimes a feature must be obtained or deduced from other features. This can be done via a simple calculation on some features, or by larger processing of a set of features to obtain better representation for the task in hand.  
@@ -191,12 +193,11 @@ These are standard techniques used to convert a continuous attribute which poten
 
 ####Melting and pivoting
 
-Melting and pivoting are often overlooked operations. When they are applicable, it is important that they are performed to make the shape of the data suitable for further processing. These are often part of a more elaborate operation involving data preparation along other operations such as sorting etc. Please refer to the next exercise for a full working example in Python. See the following <a href="https://leeds365-my.sharepoint.com/:p:/g/personal/scsaalt_leeds_ac_uk/EXYe9TF0RytAh6KlMnMU3aYBslNRRDa-QNQwpOTHPWUwpA?e=OyGir5" target="_blank">slides.</a>
+Melting and pivoting are often overlooked operations. When they are applicable, it is important that they are performed to make the shape of the data suitable for further processing. These are often part of a more elaborate operation involving data preparation along other operations such as sorting etc. Please refer to the next exercise for a full working example in Python. 
 
 !!! abstract "Exercise"
 		In this exercise you will be given a dataset to prepare for further analysis.
 
 		The exercise covers several of the techniques mentioned in this lesson for data preparation and data wrangling. Follow the steps and execute them in order and experience the effect of the data preparation procedure on the data.
 
-		You can access the code in the <a href="https://leeds365-my.sharepoint.com/:u:/g/personal/scsaalt_leeds_ac_uk/EX9xS8O3x-dCso4VwiUBoH0BjDzN3ujjSUSXPgRhFlq0mA?e=fkIcRw" target="_blank">Data Wrangling Jupyter Notebook.</a>
-		<mark>Exercise currently hosted in personal onedrive, needs to be moved to appropriate location.</mark>
+		You can access the code in the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18737871_4" target="_blank">Data preparation</a> Jupyter notebook.

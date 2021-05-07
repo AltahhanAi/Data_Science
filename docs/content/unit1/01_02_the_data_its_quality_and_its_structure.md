@@ -80,16 +80,10 @@ One positive aspect of Excel which contributed to its popularity is that it prov
 In the following exercises, you will see some of the most common data management activities in a structured data (database) and a similar activity in a non-structural data. These types of operations are normally done during the data engineering process. The first activity might be harder to set up and is optional, while the second activity is more important and easier to setup.
 
 !!! abstract "Exercise"
-		###Data querying, aggregation and summary: structured data
-
-		Let's see how we can deal with SQL in Jupyter <a href="https://leeds365-my.sharepoint.com/:u:/g/personal/scsaalt_leeds_ac_uk/EbkNWoP5CQhJqjg9XypyuUMB0kD64D2FGFDCEpFRQN3-yA?e=WQohCK" target="_blank">Notebook</a>. We will do this activity in the SQL Database exercise.
-
-!!! abstract "Exercise"
 		###Data querying, aggregation and summary: semi-structured and unstructured data.
 
-		We will do this activity in the Data Wrangling exercise.
+		Try this <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18737872_4" target="_blank">Data Wrangling exercise</a> in Jupyter notebook.
 
-		<mark>This activity still needs addressing - if it is not included here then it doesn't need to be mentioned here?</mark>
 
 ##Data quality and issues due to data mining
 
