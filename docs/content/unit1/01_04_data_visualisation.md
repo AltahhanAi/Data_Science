@@ -1,6 +1,4 @@
-# Data visualisation
-
-<mark>In this lesson you will</mark>
+# Data generation and visualisation
 
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:
@@ -11,11 +9,19 @@
 
 **Data visualisation is an important topic, and will therefore be covered throughout this module. Data visualisation is important and provides a great insight into the underlying mechanism and the data being dealt with.**
 
-The best tool for visualisation is Tableau as it provides intuitive and easy to manipulate ways to visualise your data. RapidMiner also provides several visualisation graphs. It is important to differentiate between business intelligence and data mining.  
-
 Business intelligence relies heavily on data visualisation and understanding the data to aid the human-decision-making process. It normally uses Dashboards to integrate different visualisation perspectives and to facilitate the decision-making process. The decision-making lies on the shoulders of the humans who operate the business intelligence solution. In data mining this is taken further into prediction capabilities. In other words, the data mining models can guess what the outcome of a process could be and can learn to model its internal mechanism. It also can employ decision-making processes and provide it to human operators to take the final decision for mission critical decisions.  
 
 In AI a fully automated process can be provided that takes decisions and acts per second, such as financial market bots that make a purchase decision within a second to be able to compete against other bots. The topic here is visualisation which is often employed by Business Intelligence, but it is a valuable tool for data mining and both BI and DM can work together and be part of the same overall system as different components.
+
+!!! abstract "Exercise"
+    Please see the following Jupyter notebook <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18737874_4" target="_blank">numpy tutorial</a>.
+
+!!! abstract "Exercise"
+		Please see the following Jupyter notebook <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18737873_4" target="_blank">data sampling and generation tutorial</a>.
+
+!!! abstract "Exercise"
+		Please see the following Jupyter notebook <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18737875_4" target="_blank">sklearn tutorial</a>. 		
+
 
 Here are some examples of how insights into data can be gained by visualisation.
 
