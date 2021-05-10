@@ -94,9 +94,19 @@ h1 {
     width: auto;
 }
 
+#versionIndicator {
+    border: 1px solid white;
+    padding: .75rem .5rem;
+    font-size: 12px;
+}
+
 .md-announce__inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: flex-end;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     padding-right: 0;
 }
 
