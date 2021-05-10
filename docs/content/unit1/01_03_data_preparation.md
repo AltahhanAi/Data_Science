@@ -208,3 +208,5 @@ Melting and pivoting are often overlooked operations. When they are applicable, 
 See the following slides and video for a summary.
 
 <iframe title="Data Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/016cea25684048e6aa0e29b7ad3e982d1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video</a>
