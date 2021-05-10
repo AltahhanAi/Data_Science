@@ -180,3 +180,43 @@ $\mathbf{x}_{\mathbf{4}}=$|0.94|0.83|0.84|0.78|versicolor|0.475|2.11
 **weight sum k=6** for setosa: 2.7  +  2.65  +  2.49  =  7.84
 
 This means that eventually the algorithm should classify the given instance as setosa.
+
+##kNN algorithm
+
+To summarise, in the k-nearest neighbour classification technique, we look at $k$ of the nearest neighbours to the presented data point and we take a simple (possibly weighted) vote to classify the data point $x$ based on the classes of its closest neighbours $\mathbf{y}_{i} i=1, \ldots k$. We must consider rescaling as kNN is susceptible to issues related to feature dominance. Note that this is a classification techniques, i.e. there are a set of $K$ labels representing the classes that are already provided in the dataset (differentiate between $k$ and $K$). Unlike clustering, where we do not have these labels available and instead the algorithms will come up with cluster labels to represent the clusters. kNN can produce decision boundaries of arbitrary shape. This gives it a lot of power to express complex problems, albeit a simple algorithm by nature. In comparison with decision trees, kNN gives far more flexibility of representing complex decision boundaries. kNN face difficulties when dealing with missing values for some of the attributes. Irrelevant features can distort some important distance metric which in turn reduce the effectiveness of kNN. The kNN algorithm is shown below.
+
+!!! info "Algorithms 4: k-nearest neighbours"
+
+    **Input:**
+
+    Input training set $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$
+
+    Corresponding target labels $\boldsymbol{t}=\left\{t_{1}, t_{2}, \ldots, t_{N}\right\}$
+
+    Input test set $\mathbf{X}^{\prime}=\left\{\mathbf{x}_{1}^{\prime}, \mathbf{x}_{2}^{\prime}, \ldots, \mathbf{x}_{S}^{\prime}\right\}$ S is the size of the test set.
+
+    $k$: The number of neighbours.
+
+    **Output**: Class Labels $\boldsymbol{C}=\left\{y_{1}, y_{2}, \ldots, y_{S}\right\}$ for the test set $\mathbf{X}^{\prime}$ where $y_{n} \in\left\{l_{1}, \ldots, l_{K}\right\}$
+
+    $\mathbf{k N N}\left(\mathbf{X}, \boldsymbol{t}, \mathbf{X}^{\prime}, k\right)$:
+
+    !!! quote ""
+
+        **For** each $\mathbf{x}_{i}^{\prime}$ in $\mathbf{X}^{\prime}$
+
+        !!! quote ""
+
+            **For** each $\mathbf{x}_{j}$ in $\mathbf{X}$
+
+            !!! quote ""
+
+                **Compute** $d\left(\mathbf{x}_{i}^{\prime}, \mathbf{x}_{j}\right)=\mathbf{x}_{j}^{\top} \mathbf{x}_{i}^{\prime}$<span style="float: right;"># or other appropriate distance for the problem in hand</span>
+
+                **Select** the set of $k$ nearest neighbours $\boldsymbol{D}_{i}$ for $\mathbf{X}_{i}^{\prime}$
+
+                $y_{i}=\max _{l} \sum_{\left(\mathrm{x}_{j}, t_{j}\right) \in \boldsymbol{D}_{i}} I\left(t_{j}=l\right)$            
+
+        **return** $\left\{y_{i}\right\} \quad i=1, \ldots, S$
+
+        

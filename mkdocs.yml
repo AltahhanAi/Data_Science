@@ -32,6 +32,9 @@ nav:
             - '2a. Introduction': content/unit3/03_02a_intro_basic_numerical_classification.md
             - '2b. Lazy classification': content/unit3/03_02b_lazy_classification.md
             - '2c. K-nearest neighbour algorithm': content/unit3/03_02c_K_nearest.md
+            - '2d. Choosing best k': content/unit3/03_02d_choosing_best_k.md
+        - '3. Support vector machine': content/unit3/03_03_support_vector.md
+        - '4. Ensemble methods': content/unit3/03_04_ensemble_methods.md   
     - Unit 4:
         - 'Regression and Classification': content/unit4/04_00_regression_classification.md
         - '1. Simple Linear Regression Models':
