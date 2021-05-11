@@ -1,20 +1,11 @@
 #Two clusters case
 
-<mark>In this lesson you will</mark>
-
-!!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
-
-    * <mark>outcome 1</mark>
-
-    * <mark>outcome 2</mark>
-		
 **Let us assume that we pre-specified a number of clusters. The simplest case is two clusters, i.e. a binary clustering problem.**
 
 We start with a feature space that has two attributes f1 and f2. Visualising the dataset looks like the figure below. It is obvious to our eyes that there are two distinctive groups in this dataset. Note that we have given them all the same colours because our dataset will not tell us the labels: there are no labels. We want to build a technique that can automatically tell us what could be reasonable clusters for the dataset. Bear in mind that we need the technique to be generalisable to higher dimensional space. The 2d space is always convenient because we can easily discern the groups (clusters), but when we move to higher dimensional space, like a 10d input space, then it is not that easy for the human eye to recognise the clusters.
 
 <figure role="group">
-  <img src="../images/DS_IMG170.png" alt="Test image." />
+  <img src="../images/DS_IMG170.png" alt="Graph showing a simple binary clusters dataset." />
   <figcaption><strong>Figure 1.1</strong> A simple binary clusters dataset.</figcaption>
 </figure>
 
@@ -32,11 +23,9 @@ OK, now once we have compared all pairs of our dataset (as we said earlier there
 ###Calculating the centroids
 
 <figure role="group">
-  <img src="../images/DS_IMG171.png" alt="Test image." />
-  <figcaption><strong>Figure 1.2</strong> CAPTION NEEDED.</figcaption>
+  <img src="../images/DS_IMG171.png" alt="Graph showing a simple binary clusters dataset with the centroids initialised to a random point." />
+  <figcaption><strong>Figure 1.2</strong> The same dataset as fig 1.1, with the centroids initialised to a random point.</figcaption>
 </figure>
-
-<mark>CAPTION</mark>
 
 start by assuming that we have two centres that have been given to us and we want to see how accurate those centres are (it might come to our mind that we should start by looking at the clusters and calculate their centres, but we will come to that in a moment). The figure below shows an example of two centres – the red x for the two clusters. Visually, it is clear that both are not in the centres of their respective clusters, but how should we calculate the centres? Please be aware that in clustering terminology we call the groups clusters, we call the centres centroids and we call the sum of squared errors of each cluster the inertia (from mechanics).
 
@@ -147,12 +136,4 @@ $$
 E J=\frac{\mathbf{x}^{\top} \mathbf{y}}{\mathbf{x}^{\top} \mathbf{x}+\mathbf{y}^{\top} \mathbf{y}-\mathbf{x}^{\top} \mathbf{y}}
 $$
 
-!!! abstract "Exercise"
-    Please refer to chapter 2 of Tan et al (2019) and read sections 2.4.1-2.4.6.
-
-
-##Summary
-
-<mark>**In this lesson you have....**
-
-In the next lesson you will ...</mark>
+You can refer to sections 2.4.1-2.4.6 of Tan et al (2019) for more details of other metrics.

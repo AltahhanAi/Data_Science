@@ -12,8 +12,6 @@ In figure 1.7 below we see an example where the clusters are either being merged
 
 **<p style="text-align: center;">Figure 1.7:** *K-means not working well due an unlucky choice of the initial centroids. Figures are due to Tan et al. (2019)*</p>
 
-<mark>PAGE REF NEEDED</mark>
-
 Let us see another example where we have 10 clusters (10 centroids). As we can see below, the data is actually divided into two pairs of clusters. If we placed two centroids in one of the paired clusters then the k-means will be able to correctly adjust the centroids and reach a satisfactory result.
 
 ![Graph illustrating k-means working well due to good, informative choice of initial centroids.](images/DS_IMG181.png)
@@ -23,8 +21,6 @@ Let us see another example where we have 10 clusters (10 centroids). As we can s
 
 **<p style="text-align: center;">Figure 1.8:** *K-means working well due to a good informative choice of the initial centroids. Figures are due to Tan et al. (2019)*</p>
 
-<mark>PAGE REF NEEDED</mark>
-
 However, if we shift one of the initial centroids (second pair from the left) to another pair (last pair on the right), then the centroids end up mingled for these two pairs of clusters (as we can see in on the right), then the centroids end up mingled for these two pairs of clusters (as we can see in iteration 4 below).
 
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG185.png)
@@ -33,8 +29,6 @@ However, if we shift one of the initial centroids (second pair from the left) to
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG188.png)
 
 **<p style="text-align: center;">Figure 1.9:** *K-means not working well due an unlucky choice of the initial centroids. Figures are due to Tan et al. (2019)*</p>
-
-<mark>PAGE REF NEEDED</mark>
 
 Hence it is paramount to come up with a viable strategy to initialise the centroids.
 
