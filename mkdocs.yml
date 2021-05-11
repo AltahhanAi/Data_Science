@@ -11,13 +11,14 @@ nav:
         - '4. Data visualisation': content/unit1/01_04_data_visualisation.md
         - '5. Unit references': content/unit1/01_06_unit_references.md
     - Unit 2:
-        - 'Classification': content/unit2/02_00_classification.md
-        - '1. Decision trees': content/unit2/02_01_decision_trees.md
-        - '2. Decision tree training': content/unit2/02_02_DT_training.md
-        - '3. DT training on a vertebrate dataset': content/unit2/02_03_DT_vertebrate.md
-        - '4. Measuring the performance of a classification model': content/unit2/02_04_measuring_performance.md
-        - '5. Overfitting, underfitting and generalisation': content/unit2/02_05_overfitting_underfitting.md
-        - '6. References': content/unit2/02_06_unit_references.md
+        - 'Introduction': content/unit2/02_00_classification.md
+        - '1. Decision trees':
+            - '1a. Decision trees': content/unit2/02_01_decision_trees.md
+            - '1b. Decision tree training': content/unit2/02_02_DT_training.md
+            - '1c. DT training on a vertebrate dataset': content/unit2/02_03_DT_vertebrate.md
+        - '2. Measuring the performance of a classification model': content/unit2/02_04_measuring_performance.md
+        - '3. Overfitting, underfitting and generalisation': content/unit2/02_05_overfitting_underfitting.md
+        - '4. References': content/unit2/02_06_unit_references.md
     - Unit 3:
         - 'Clustering and classification in algorithms': content/unit3/03_01_clustering_classification.md
         - '1. Clustering':
@@ -34,7 +35,7 @@ nav:
             - '2c. K-nearest neighbour algorithm': content/unit3/03_02c_K_nearest.md
             - '2d. Choosing best k': content/unit3/03_02d_choosing_best_k.md
         - '3. Support vector machine': content/unit3/03_03_support_vector.md
-        - '4. Ensemble methods': content/unit3/03_04_ensemble_methods.md   
+        - '4. Ensemble methods': content/unit3/03_04_ensemble_methods.md
     - Unit 4:
         - 'Regression and Classification': content/unit4/04_00_regression_classification.md
         - '1. Simple Linear Regression Models':
