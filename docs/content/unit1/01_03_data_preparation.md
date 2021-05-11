@@ -70,8 +70,9 @@ This invites discussion on whether several splits need to be performed and the a
 
 ####Video
 
-Now see the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738960_4" target="_blank">slides</a>
+<iframe title="Data Part" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/3db1a6348efd446696e14a3a53f5ec241d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738960_4" target="_blank">slides shown in the video</a>
 
 ###Filtering
 

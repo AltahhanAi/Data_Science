@@ -3,15 +3,17 @@
 !!! success "Learning outcomes:"
 	After completing this unit you should be able to:
 
-    * <mark>outcome 1</mark>
-
-    * <mark>outcome 2</mark>
-
-    * <mark>outcome 3</mark>
+    * build partitional and hierarchical clusters
+    *	differentiate between k-means clustering algorithm variants and their advantages
+    *	understand the concept of loss function optimisation in the context of clustering
+    *	build a nearest neighbour distance based classifier
+    *	understand the issues of overfitting and underfitting related to distance-based clustering and classification algorithms
+    *	optimise the two different hyper parameters k and K in k-NN classification and K-means clustering respectively.
+    *	build an ensemble of classification models and to take advantage of their consorted prediction outcome
 
 **In this unit, we explore a set of unsupervised learning techniques and focus on clustering. These techniques allow us to investigate inner properties of the dataset without any labels.**
 
-We are interested in the relationships of the attributes with each other, not with a dependent variable as we did with supervised learning techniques such as clustering and classification. Please make sure not to confuse clustering with classification. In clustering, we group the data points in our set into groups. Data points in a group share a set of common properties judged by how close the attributes of these data points are to each other.  More importantly there is no label that we can utilise in order to discover the groups as in classification; we just need to bootstrap/depend on the available features. As we saw in regression, we do not need to use the input space directly, we can map the input space into a feature space and we work from there. Below we show a schematic illustration of clustering.
+We are interested in the relationships of the attributes with each other, not with a dependent variable as we did with supervised learning techniques such as clustering and classification. Please make sure not to confuse clustering with classification. In clustering, we assign the data points in our set into groups. Data points in a group share a set of common properties judged by how close the attributes of these data points are to each other.  More importantly there is no label that we can utilise in order to discover the groups as in classification; we just need to bootstrap/depend on the available features. As we saw in regression, we do not need to use the input space directly, we can map the input space into a feature space and we work from there. Below we show a schematic illustration of clustering.
 
 <figure role="group">
   <img src="../images/DS_IMG169.png" alt="Test image." />

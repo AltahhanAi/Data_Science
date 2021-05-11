@@ -1,14 +1,5 @@
 # Clusters loss function: measuring the quality of the cluster
 
-<mark>In this lesson you will</mark>
-
-!!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
-
-	* <mark>outcome 1</mark>
-	* <mark>outcome 2</mark>
-	* <mark>outcome 3</mark>
-
 **We need a way to tell us how suitable our clusters are for the data. In other words, how well our algorithm did on the clustering problem.**
 
 This is where we need to employ some of the concepts of loss function. A loss function measures how much less than perfect our solution is, or how many errors or discrepancies are in our solution and how big these errors are. One popular way of doing this is by using the sum of the squares of the error for each data point in the dataset. But what could the errors be here? After all, we do not assume that we have labels here (although we might, more on that later). Take a moment to think about this.
@@ -93,4 +84,4 @@ $$
 
 This is the formula for calculating the centroids (the means) that we have used already. This shows that the K-means algorithm is indeed minimising the loss function SSE by assigning each centroid to the mean of the cluster. Note that we denoted the derivative with $\nabla J$ because it is the gradient of a function with respect of a vector $\boldsymbol{c}_{k}$ (each point in multi-dimensional space is actually a vector since we have multiple attributes for each centroid).
 
-See this video <mark>DS_VID09</mark> for explanation of the above concepts. 
+See this video <mark>DS_VID09</mark> for explanation of the above concepts.
