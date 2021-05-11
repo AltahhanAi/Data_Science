@@ -1,4 +1,4 @@
-# Data generation and visualisation
+# Data Generation and Visualisation
 
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:
