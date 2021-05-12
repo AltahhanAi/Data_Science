@@ -1,8 +1,13 @@
 # Decision tree induction (training)
 
-In the below dataset, the possible values for the features and the class are as follows:  
+In this section, we cover the decision tree building algorithm which is also known as induction. We will look here at the CART algorithm.
+
+In the simplistic dataset below, you can see a set of  records relating to phones and tablets. The dataset allows us to classify a devices that is not part of the dataset to find out whether it is a phone or a tablet.
+
+In the  dataset, the possible values for the features and the class are as follows:
 
 Screen size = {6, 7, 8}, Makes calls = {Yes, No}, Class = {Phone, Tablet}
+
 
 Device | Screen size  | Makes calls | Classification
 -------|--------------|-------------|---------------
@@ -22,7 +27,7 @@ So how we can create an algorithm that does this type of decisions for us? We ne
 **To be able to develop this algorithm we need to measure how promising a feature (with a specific value) is as a partition for our dataset. Think about the above dataset. The ‘makes calls’ feature allowed us to split the data two ways with a low impurity.**
 
 <figure role="group">
-  <img src="../images/DS_IMG016.png" alt="Test image." />
+  <img src="../images/DS_IMG016.png" alt="Diagram of step 1 of CART algorithm for tablet vs phone dataset. Left split based on ‘makes calls’ feature, right split based on ‘screen size=8’." />
   <figcaption><strong>Figure 2.1.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset. Left split based on ‘makes calls’ feature, right split based on ‘screen size=8’ .</figcaption>
 </figure>
 
@@ -145,7 +150,7 @@ $$
 
 
 <figure role="group">
-  <img src="../images/DS_IMG017.png" alt="Test image." />
+  <img src="../images/DS_IMG017.png" alt="Diagram of step 1 of CART algorithm for tablet vs phone dataset, showing information gain calculations. Split based on ‘makes calls’ feature." />
   <figcaption><strong>Figure 2.2.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset. Split based on ‘makes calls’ feature. Information gains calculations shown below. </figcaption>
 </figure>
 
@@ -164,7 +169,7 @@ P P P T
 $$
 
 <figure role="group">
-  <img src="../images/DS_IMG018.png" alt="Test image." />
+  <img src="../images/DS_IMG018.png" alt="Diagram of step 1 of CART algorithm for tablet vs phone dataset, showing information gain calculations. Split based on ‘screen size=8’ feature." />
   <figcaption><strong>Figure 2.3.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=8’. Information gain calculations are shown below. </figcaption>
 </figure>
 
@@ -211,7 +216,7 @@ Tan et al (2020) use Entropy and a slightly different algorithm for building the
 **Next, the CART algorithm will convert the branch on the left of the ‘makes calls’ into a leaf since it’s a pure node (all of its data point are of class ‘tablet’). The right hand side node is a mixture of 3 ‘phones’ and a ‘tablet’.**
 
 <figure role="group">
-  <img src="../images/DS_IMG019.png" alt="Test image." />
+  <img src="../images/DS_IMG019.png" alt="Diagram of step 2 of CART algorithm for tablet vs phone dataset, showing information gain calculations. Left split based on ‘screen size=8’ feature, right split based on ‘screen size=7’." />
   <figcaption><strong>Figure 2.4.</strong> Illustration of step 2 of CART algorithm for tablet vs phone dataset. Left split based on ‘screen size=8’ feature, right split based on ‘screen size=7’.</figcaption>
 </figure>
 
@@ -296,7 +301,7 @@ $$
 If you’d like to try it yourself now, you can calculate the information gain for ‘screen size=6’.The results should be in favour of ‘screen size=8’. The final results are summarised in figures 2.5 and 2.6.
 
 <figure role="group">
-  <img src="../images/DS_IMG020.png" alt="Test image." />
+  <img src="../images/DS_IMG020.png" alt="Diagram of step 2 of CART algorithm for tablet vs phone dataset, showing information gain calculations. Split based on ‘screen size=8’ feature." />
   <figcaption><strong>Figure 2.5.</strong> Illustration of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=8’ feature’. Calculations are shown below. </figcaption>
 </figure>
 
@@ -316,7 +321,7 @@ T
 $$
 
 <figure role="group">
-  <img src="../images/DS_IMG021.png" alt="Test image." />
+  <img src="../images/DS_IMG021.png" alt="Diagram of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=8’ feature." />
   <figcaption><strong>Figure 2.6.</strong> Illustration of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=7’. Calculations are shown below. </figcaption>
 </figure>
 
@@ -340,14 +345,14 @@ Figures 2.5 and 2.6 above illustrate step 2 of CART algorithm for tablet vs phon
 Based on the above step, the algorithm will reach the following form:
 
 <figure role="group">
-  <img src="../images/DS_IMG022.png" alt="Test image." />
+  <img src="../images/DS_IMG022.png" alt="Diagram of the final Step of CART algorithm tree induction (training)." />
   <figcaption><strong>Figure 2.7.</strong> Final Step of CART algorithm tree induction (training).</figcaption>
 </figure>
 
 At this stage the algorithm stops since all lower levels nodes are pure and produces the following final tree which can be used for inference as we did earlier in the previous section.
 
 <figure role="group">
-  <img src="../images/DS_IMG023.png" alt="Test image." />
+  <img src="../images/DS_IMG023.png" alt="Diagram of Final Tree structure after CART algorithm finished training for phone vs tablet dataset." />
   <figcaption><strong>Figure 2.8.</strong> Final Tree structure after CART algorithm finished training for phone vs tablet dataset.</figcaption>
 </figure>
 
@@ -444,7 +449,7 @@ Annual income ranges £K | Annual income Bands
 [160, [                 | Exec
 
 <figure role="group">
-  <img src="../images/DS_IMG024.png" alt="Test image." />
+  <img src="../images/DS_IMG024.png" alt="Bar graph showing salary bands uniformly distributed." />
   <figcaption><strong>Figure 2.9.</strong> Annual Income bands uniformly distributed, note that the width of all the ranges are £30k.</figcaption>
 </figure>
 
@@ -466,7 +471,7 @@ Annual Income Ranges £K | Annual income category
 [160, [                 | Exec
 
 <figure role="group">
-  <img src="../images/DS_IMG025.png" alt="Test image." />
+  <img src="../images/DS_IMG025.png" alt="Bar graph showing annual income categories with an inverse normal distribution." />
   <figcaption><strong>Figure 2.10.</strong>  Annual Income categories with an inverted normal distribution.</figcaption>
 </figure>
 
@@ -487,7 +492,7 @@ Annual income ranges £K | Annual income increment £K | Annual income category
 175,000                 | 54,000                     | Exec
 
 <figure role="group">
-  <img src="../images/DS_IMG026.png" alt="Test image." />
+  <img src="../images/DS_IMG026.png" alt="Bar graph showing Top 10 UK actual annual income in 2018. The increments have reversed Pareto distribution." />
   <figcaption><strong>Figure 2.11.</strong>  Top 10 UK actual annual income in 2018, the increments have reversed Pareto distribution..</figcaption>
 </figure>
 
@@ -532,7 +537,7 @@ Table: Borrowers dataset with possible splits for the Annual Income feature
 Figure 2.12 shows the advantage of a test condition for a continuous attributes, the branching of the tree is much simpler and will lead to a more elegant and less cluttered and easy to interpret tree.
 
 <figure role="group">
-  <img src="../images/DS_IMG032.png" alt="Test image." />
+  <img src="../images/DS_IMG032.png" alt="Diagram showing comparing two decision trees (DT) with the continuous attribute of 'annual income'. The left-hand DT has a test condition of 'annual income >£100k' allowing a simple and elegant 'yes' or 'no' branching. The right-hand DT with a condition of 'annual income' leads to more complicated branching." />
   <figcaption><strong>Figure 2.12.</strong>  Test condition for a continuous attribute.</figcaption>
 </figure>
 
@@ -543,7 +548,7 @@ Figure 2.12 shows the advantage of a test condition for a continuous attributes,
 We only show one probability on the x axis because the other is just the complement of p, i.e. 1-p. As you can see, when both probabilities of the two classes are close to 0.5 the impurity is maximal. When either is close to the 1 (the other 1-p would be close to 0) the impurity is minimised. The figure shows that the max of the Gini and misclassification error is 0.5 while the max for the entropy is 1.
 
 <figure role="group">
-  <img src="../images/DS_IMG033.png" alt="Test image." />
+  <img src="../images/DS_IMG033.png" alt="Chart comparing three different impurity measures: entropy, Gini and missclassification error." />
   <figcaption><strong>Figure 2.13.</strong>  Comparison of different impurity measures.</figcaption>
 </figure>
 
@@ -566,14 +571,14 @@ Note that $-\log p$ is monotonically decreasing function.
 Note also that the base of $log$ is normally 2 but any can do as long as we are consistent. The behaviour of $−\log p$ for class C1 and $-\log \left(p^{\prime}\right)$ for class C2 can be seen below. When the probability increases $-\log p$ decreases but it is still positive (to be precise it is non-negative). Note that $-\log \left(p^{\prime}\right)$ is monotonically increasing function with respect to $p$ and is non-negative as well.
 
 <figure role="group">
-  <img src="../images/DS_IMG034.png" alt="Test image." />
+  <img src="../images/DS_IMG034.png" alt="Two graphs showing the behaviour of −logp for class C1 and −log(p′) for class C2." />
   <figcaption><strong>Figure 2.14.</strong>  Behaviour of the term $-p \log p$ which is the entropy for class C1. Note that C1 has a probability $p$ and the figure shows how the entropy of C1 is varying with the probability $p$.</figcaption>
 </figure>
 
 To take into account both of the points above, the entropy for class C1 will be written as $-p \log p$, which has a behaviour that is described in the left hand side of figure 2.15 below. In addition, since we have two classes then we also need a similar term for the second class C2. Given that C2 has a probability $p^{\prime}=1-p$, its entropy is $(1-p) \log (1-p)$. The behaviour of this term is shown in the right hand side of the figure below.
 
 <figure role="group">
-  <img src="../images/DS_IMG035.png" alt="Test image." />
+  <img src="../images/DS_IMG035.png" alt="Two graphs. Left: the entropy for class C1= -P*log(p), probability p. The entropy of C1 varies with the probability p. Right: the entropy for class C2= -p'*log(p'), probability p'. The entropy for C2 varies with the probability p." />
   <figcaption><strong>Figure 2.15.</strong>  Left: The entropy for class C1= $-p log⁡p$. C1 has a probability p, the figure shows how the entropy of C1 varies with the probability p. Right: The entropy for class C2= $-p'log⁡〖p^' 〗. C2 has a probability $p^{\prime}=1-p$, the figure shows how the entropy of C2 varies with the probability p. .</figcaption>
 </figure>
 
@@ -589,7 +594,7 @@ $$
 Its behaviour is shown figure 2.16 below.
 
 <figure role="group">
-  <img src="../images/DS_IMG036.png" alt="Test image." />
+  <img src="../images/DS_IMG036.png" alt="Two graphs. Left: the entropy of both classes C1 and C2 who have probabilities p and p′=1−p, respectively. Right: the different components of the entropy fitted together." />
   <figcaption><strong>Figure 2.16.</strong>  Left: The entropy of both classes C1 and C2 who have probabilities $p$ and $p′=1−p$, respectively. Right: The different components of the entropy fit together.</figcaption>
 </figure>
 
@@ -610,12 +615,12 @@ The same idea applies for the Gini index, but it is less complex.
 To take into account both of the points above, the Gini index should include the term $p(1−p)$. Its behaviour is shown in figure 2.17 below.
 
 <figure role="group">
-  <img src="../images/DS_IMG037.png" alt="Test image." />
+  <img src="../images/DS_IMG037.png" alt="Two graphs, comparing the behaviour of the term 1-p with respect to class C1, which has the probability p." />
   <figcaption><strong>Figure 2.17.</strong> The behaviour of the term $(1−p)$ with respect to class C1 which has probability $p$.</figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG038.png" alt="Test image." />
+  <img src="../images/DS_IMG038.png" alt="Two graphs. Left: the Gini impurity for class C1 = p*(1-p), with probability p. Right: the Gini impurity for class C2= p'*(1-p'). with probability p'." />
   <figcaption><strong>Figure 2.18.</strong> left: The Gini impurity for class C1 = $p(1−p)$, C1 has probability $p$. Note that the term $1−p$ replaces the $−logp$ in the entropy and it is easier to calculate.</figcaption>
 </figure>
 
@@ -636,7 +641,7 @@ $$
 Its behaviour is shown in figure 2.19 below:
 
 <figure role="group">
-  <img src="../images/DS_IMG039.png" alt="Test image." />
+  <img src="../images/DS_IMG039.png" alt="Two graphs showing the Gini impurity for two classes C1 and C2, with probabilities p and p' respectively." />
   <figcaption><strong>Figure 2.19.</strong> Left: The Gini impurity for two classes C1 and C2 with probabilities $p$ and $p′=1−p$ respectively. Note that the Gini impurity has a max of 0.25+0.25=0.5. Right: The different components of the Gini impurity fit together..</figcaption>
 </figure>
 
@@ -649,7 +654,7 @@ $$
 Figure 2.20 below summarises all of the terms included in both the entropy and Gini. As we have said earlier, both produce consistent trees and have a similar behaviour albeit having different ranges.
 
 <figure role="group">
-  <img src="../images/DS_IMG040.png" alt="Test image." />
+  <img src="../images/DS_IMG040.png" alt="Graph summarising all of the terms included in both the entropy and Gini." />
   <figcaption><strong>Figure 2.20.</strong> The behaviour of the entropy Gini with respect to both class 1 which has probability	$p$ and class 2 which has probability $1−p$.</figcaption>
 </figure>
 

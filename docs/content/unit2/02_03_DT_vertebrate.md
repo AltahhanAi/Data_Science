@@ -35,7 +35,7 @@ The data is taken from Tan et at (2020), and shows the attributes (features) of 
 
 Perhaps you realised that it is possible to solve the problem just using a priori domain knowledge. If we already know how to tell the difference between mammals and non-mammals, it may seem like a waste of time to involve a decision tree in the process. But if we approach this simple-seeming problem as we would a more complex one, we lay the groundwork for solving much more advanced problems. In fact, we will see later that we can automate the process by creating decision tree learning algorithms that are capable of structuring a tree to be used for inferencing.
 
-Later we will solve the full classification problem involving all of the vertebrate classes (mammals, reptiles, fish, amphibians etc). First however, we will simplify this dataset to make the problem a binary classification task, the two classes being {mammal, non-mammal}, so our new dataset is as follows:
+You will solve the full classification problem involving all of the vertebrate classes (mammals, reptiles, fish, amphibians etc) at the end of the section. First however, we will simplify this dataset to make the problem a binary classification task, the two classes being {mammal, non-mammal}, so our new dataset is as follows:
 
 X|A|B|C|D|E|F| **G**
 -|-|-|-|-|-|-|------
@@ -84,7 +84,7 @@ For the purposes of this lesson, we are stating explicitly what the class is so 
 Let us start by utilising the attribute ‘Gives Birth’ to split the data. Using RapidMiner we can build a quick model that helps us to do so. You will watch a video at the end of this section on how to easily build a decision tree model in RapidMiner, and you can do the same exercise in a Python Jupyter notebook. But first let us see the resultant tree when we split by ‘Gives Birth’:
 
 <figure role="group">
-  <img src="../images/DS_IMG029.png" alt="Test image." />
+  <img src="../images/DS_IMG029.png" alt="RapidMiner image. A decision tree (DT) for mammalian dataset with the data split according to the ‘gives birth’ feature." />
   <figcaption><strong>Figure 3.1.</strong> Decision Tree Graph for mammalian dataset with the data is split according to ‘Gives Birth’ features. The graph is exported from RapidMiner.</figcaption>
 </figure>
 
@@ -95,7 +95,7 @@ The figure shows that if we split according to the ‘Gives Birth’ feature onl
 Now let's move to the next feature, and we continue to split our data in our tree with feature ‘Warm-blooded’. If we do so we get the following graph:
 
 <figure role="group">
-  <img src="../images/DS_IMG030.png" alt="Test image." />
+  <img src="../images/DS_IMG030.png" alt="RapidMiner image. A decision tree (DT) for mammalian dataset with two feature splits (‘gives birth’ and ‘warm-blooded’)." />
   <figcaption><strong>Figure 3.2.</strong> Decision tree graph for mammalian dataset with two features splits (‘gives birth’ and ‘warm-blooded’), exported from RapidMiner.</figcaption>
 </figure>
 

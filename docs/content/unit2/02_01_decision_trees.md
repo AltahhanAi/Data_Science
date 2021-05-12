@@ -1,10 +1,24 @@
 # Decision trees
 
+In this lesson we will see how to build a decision tree using CART induction algorithm. We also gain an insight into using impurity measures, including Gini impurity, entropy, and misclassification error. You will use these techniques to come up with a powerful model that will have the ability to classify records which we don’t have the label for. We call these unseen records or unlabelled records.
+
+!!! success "Learning outcomes:"
+	After completing this lesson you should be able to:
+
+    - Ability to understand the intricate details of the induction process,
+
+    - Ability to understand how the impurity measures work in combination with the splitting procedure,
+
+    - Ability to understand the differences between splitting a continuous variable, and splitting categorical variables,
+
+    - Ability to carry out deduction using a decision tree and induction to build the tree.
+
+
 **Let us assume that we have the following binary tree structure:**
 
 <figure role="group">
   <img src="../images/DS_IMG008.png" alt="Test image." />
-  <figcaption><strong>Figure 1.1.</strong> A binary tree structure.</figcaption>
+  <figcaption><strong>Figure 1.1.</strong> Diagram of a decision tree (DT) with a binary structure. Each condition node in this decision tree structure has two results only (either 'yes' or 'no').</figcaption>
 </figure>
 
 In this diagram you can see that we have used leaves (round edged rectangles) and nodes (ovals). The nodes represent the conditions that need to be checked, while the leaves represent a decision to isolate or not to isolate. This is a binary tree since each condition has two results only (either yes or no). In other words each node can have two children only representing the two possible results of the condition that the node represents. The tree structure represents a binary decision tree. Note that decision trees (DTs) do not necessarily need to be binary, each node can have any number of children. However, a condition of a tree structure is for each node to have one, and only one parent (if not then, it is just a graph- a tree is special type of a graph). This condition helps the tree to satisfy several guarantees that simplify the inference and its inception process. Ok, so you might be asking now, what do you mean inference? We talk about it in the next section.
@@ -22,14 +36,14 @@ Let us assume that we have been given the following new case and we want our DT 
 The DT then checks first if the person has symptoms.
 
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG009.png" alt="Diagram showing level 0 of a decision tree (DT). The DT checks the answer ('yes' or 'no') to the condition node ('symptoms?'). The answer in this example is 'no'." />
   <figcaption><strong>Figure 1.2.</strong> Inference in a decision tree, following left hand side branch of level 0.</figcaption>
 </figure>
 
 Since the person has no symptoms, the inference process will go to the next node to check if they have been in contact with a positive case recently:
 
 <figure role="group">
-  <img src="../images/DS_IMG010.png" alt="Test image." />
+  <img src="../images/DS_IMG010.png" alt="Diagram showing level 1 of the decision tree (DT). The DT uses the inference process to check the next condition node ('close contact to a positive case?'). " />
   <figcaption><strong>Figure 1.3.</strong> Inference in a decision tree, following left hand side branch of level 1.</figcaption>
 </figure>
 
@@ -47,7 +61,7 @@ So as we can see the path that has been taken by the tree is specified with a re
 The inference process for the DT will look like the following:
 
 <figure role="group">
-  <img src="../images/DS_IMG011.png" alt="Test image." />
+  <img src="../images/DS_IMG011.png" alt="Diagram showing level 0 of a decision tree (DT). The DT checks the answer ('yes' or 'no') to the condition node ('symptoms?'). The answer in this example is 'yes'. The inference process leads to decision ('isolate')." />
   <figcaption><strong>Figure 1.4.</strong> Inference in a decision tree, following right hand side branch of level 0.</figcaption>
 </figure>
 
@@ -64,14 +78,14 @@ Those conditions constitute the features or the attribute for our data. The case
 The following structure is not a valid decision tree since we have several possibilities of the same ‘Has a Job’ condition:
 
 <figure role="group">
-  <img src="../images/DS_IMG012.png" alt="Test image." />
+  <img src="../images/DS_IMG012.png" alt="Diagram of an invalid decision tree (DT) for loan eligibility. The DT is unable to conduct inference due to multiple answer branches of the same value ('yes') and multiple for a single condition node ('has a job')." />
   <figcaption><strong>Figure 1.5.</strong> Invalid decision tree for loan eligibility. This decision tree is invalid due to multiple branches of the same value for ‘Has a Job’ feature.</figcaption>
 </figure>
 
 We can alter it to make a valid decision tree as follows:
 
 <figure role="group">
-  <img src="../images/DS_IMG013.png" alt="Test image." />
+  <img src="../images/DS_IMG013.png" alt="Diagram of a valid decision tree (DT) for loan eligibility. This DT adds a new condition node ('income band') which then allows inference to be conducted at each level towards a binary set of decisions ('eligible' or 'not eligible')." />
   <figcaption><strong>Figure 1.6.</strong> A valid decision tree for loan eligibility.</figcaption>
 </figure>
 
@@ -84,14 +98,14 @@ Emma |  Yes         | Yes        | Band 1     |     ?
 The decision tree path will be shown in red all at once (but bear in mind that it will be conducted in stages as we showed earlier).
 
 <figure role="group">
-  <img src="../images/DS_IMG014.png" alt="Test image." />
+  <img src="../images/DS_IMG014.png" alt="Diagram of a decision tree for loan eligibility showing the inference path (in red)." />
   <figcaption><strong>Figure 1.7.</strong> Loan eligibility decision tree, showing the inference path.</figcaption>
 </figure>
 
 Given that both cases of High and Low Bands are eligible then we can further simplify the tree as follows:
 
 <figure role="group">
-  <img src="../images/DS_IMG015.png" alt="Test image." />
+  <img src="../images/DS_IMG015.png" alt="Diagram of a further-simplified decision tree for loan eligibility." />
   <figcaption><strong>Figure 1.8.</strong> A better decision tree structure for loan eligibility.</figcaption>
 </figure>
 
