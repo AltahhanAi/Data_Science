@@ -1,0 +1,5 @@
+# Lesson summary
+
+**In this lesson you have learnt about partitioning and density based clustering techniques; these include variations of K-means with different centroid initialisation strategies to overcome the issues that stem from poor random initialisation for the centroids.**
+
+K-means clustering techniques can be a great compliment for classification problems, in order to adjust hyper parameters for some of the classification techniques that you will see later. The way we constructed K-means can be motivated both by intuition and by optimisation for a loss function. It is important to understand how we arrived at the centroids formula by the latter (loss function optimisation). In the next couple of units, the loss function will play a central role in deriving several regression and classification techniques. In the next lesson you will see an example of a classification technique called kNN that, like K-means, depends on the distances in the dataset. It is important to note that kNN is a classification technique, while K-means is a clustering technique.
