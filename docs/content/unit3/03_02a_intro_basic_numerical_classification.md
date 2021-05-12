@@ -1,13 +1,14 @@
 # Basic numerical classification
 
 !!! success "Learning outcomes:"
-	After completing this unit you should be able to:
+	After completing this lesson you should be able to:
 
-    * <mark>outcome 1</mark>
+    * build a nearest neighbour distance-based classifier
 
-    * <mark>outcome 2</mark>
+    *	understand the issues of overfitting and underfitting related to distance-based clustering and classification algorithms
 
-    * <mark>outcome 3</mark>
+    *	optimise hyper parameters k in a k-NN classification.
+
 
 **In unit 2, we covered an important and basic classification technique that depends on decision trees. Remember that classification is an important and pervasive type of data mining problem, where we have in our dataset a categorical label for each instance in the dataset. The set of labels are called the classes, and when we are presented with an instance x, we are required to guess/predict what the label for the presented instance is.**
 

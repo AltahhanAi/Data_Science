@@ -26,19 +26,19 @@ Let us assume that we are presented with the following instance:
 
 Dataset|S length|S width|P length|P width
 -----|---|---|---|---
-$x$= |4.7|3.2|1.3|0.2
+$x$= |6.1|2.8|4.7|1
 
-In this case, the rote classifier will be able to match it directly with record 3, and the predicted label (class) will be setosa:
+In this case, the rote classifier will be able to match it directly with record 6, and the predicted label (class) will be setosa:
 
 Dataset|S length|S width|P length|P width|species
 -----|---|---|---|---|---
-$\mathbf{x}_{\mathbf{3}}=$|4.7|3.2|1.3|0.2|setosa
+$\mathbf{x}_{\mathbf{6}}=$|6.1|2.8|4.7|1|setosa
 
 Obviously, the problem with such a classifier is that if the instance does not exactly match any instance in the dataset, the classifier cannot make any decision on what would be a best match that can be utilised to label the provided instance. For example, if the classifier is presented with the following instance:
 
 Dataset|S length|S width|P length|P width
 -----|---|---|---|---
-$x$= |6.1|2.8|4.7|1
+$x$= |4.1|2.6|1.3|1
 
 It will not be able to classify the instance since there is no match for it in the dataset.
 Rote classifier is an extreme case of lazy classifiers. In the next section we see something a bit less restrictive, which has much better generalisation capabilities.

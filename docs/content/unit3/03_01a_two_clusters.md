@@ -48,7 +48,7 @@ Where $m_{i}$ is the number of data points in cluster $C_{i}$ and $\boldsymbol{c
 So for example, if we have the following clusters as in figure 1.3 below:
 
 <figure role="group">
-  <img src="../images/DS_IMG172.png" alt="Test image." />
+  <img src="../images/DS_IMG172.png" alt="Left: a simple clusters dataset. Right: Graph showing a clusters visualisation. Cluster 1 datapoints are represented by circles, cluster 2 by triangles. Each centroid is represented as a +." />
   <figcaption><strong>Figure 1.3</strong> (left) Simple clusters dataset, (right) clusters visualisation, Cluster 1 data points are blue circles, Cluster 2 data points are red triangles. Each centroid is represented as +. Note that the cluster labels are not known a priori, instead they are inferred through a clustering algorithm. The centroid of Cluster 1 is given as (4.,3.) and the centroid for Cluster 2 is given as (6.6,2.3).</figcaption>
 </figure>
 
@@ -63,7 +63,7 @@ We need now to know how to assign the data points to a cluster. To do so, we sim
 Below in figure 1.4, we show how we start with a dataset without any clusters (or you can think of it as all data points belonging to the same cluster) with the blue circles on the top left figure. Then we initialise two random centroids represented as +. We calculate the distance of each data point to these two centroids and compare to find out the minimum which specifies the membership to the cluster corresponding to the centroids (the centroid represents the cluster in that sense). On the top right-hand side, we see how one data point was assigned to the centroid on the top and the rest were assigned to the centroid on the bottom.
 
 <figure role="group">
-  <img src="../images/DS_IMG173-176.png" alt="Test image." />
+  <img src="../images/DS_IMG173-176.png" alt="Graph showing a step of K-means clustering algorithms on a simple 2D dataset." />
   <figcaption><strong>Figure 1.4</strong> Steps of K-means clustering algorithms on a simple 2-d dataset. Each axis represents an attribute. The + represents the means or centroids.</figcaption>
 </figure>
 

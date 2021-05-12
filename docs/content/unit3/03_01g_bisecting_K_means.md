@@ -46,20 +46,12 @@ The set of bisected K clusters, however, may not need refinement because the spl
 
         **Return** the labels $\boldsymbol{C}=\left[l_{1}, l_{2}, \ldots, l_{N}\right]$
 
-Below in figure 1.10, we show results of bisecting K-means on the problem that we mentioned previously in Figure 1.8 regarding centroid initialisation. As we can see, the algorithm is less susceptible to this problem.   
+Below in figure 1.10, we show results of bisecting K-means on the problem that we mentioned previously in Figure 1.9 regarding centroid initialisation. As we can see, the algorithm is less susceptible to this problem.   
 
 <figure role="group">
   <img src="../images/DS_IMG189.png" alt="Illustration of Bisecting K-means overcoming the issues of unlucky centroid initialisation." />
-  <figcaption><strong>Figure 1.10</strong> Bisecting K-means overcoming the issues of unlucky centroid initialisation. Figures are due to Tan et al. (2019).</figcaption>
+  <figcaption><strong>Figure 1.10</strong> Bisecting K-means overcoming the issues of unlucky centroid initialisation. Image reproduced from slides by Tan et al (2019), <a href="[https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.</figcaption>
 </figure>    
-
-##Agglomerative hierarchical clustering algorithm
-
-Please refer to section 5.3.1 of Tan et al 2019.
-
-!!! Abstract "Exercise"
-
-    See the following <a href="https://scikit-learn.org/stable/auto_examples/cluster/plot_agglomerative_clustering.html#sphx-glr-auto-examples-cluster-plot-agglomerative-clustering-py" target="_blank">Jupyter notebook</a> on agglomerative clustering.
 
 ##Density-based clustering: DBSCAN algorithm
 
