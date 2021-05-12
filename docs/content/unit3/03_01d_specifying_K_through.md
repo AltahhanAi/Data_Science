@@ -4,7 +4,7 @@
 
 The more we increase $K$ the more localised and spread our clusters are and the less our loss function is going to be. There is however a sweet spot, where if we try to increase $K$ the loss function does not decrease that much. This is a viable root to specify $K$ itself. We can employ the elbow method that shows how the SSE is trending down until it slows down, creating an elbow shaped figure on the way.
 
-This elbow is an indication of where the SSE is saturated and further increase of K will not benefit. Figure 1.6 below shows an example:
+This elbow is an indication of where the SSE is saturated and further increase of $K$ will not benefit. Figure 1.6 below shows an example:
 
 user | Jaws | Star Wars | The Exorcist | The Omen |
 -----|------|-----------|--------------|----------|

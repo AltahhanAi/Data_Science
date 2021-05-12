@@ -4,7 +4,7 @@
 	After completing this unit you should be able to:
 
     * build partitional and hierarchical clusters
-    *	differentiate between k-means clustering algorithm variants and their advantages
+    *	differentiate between K-means clustering algorithm variants and their advantages
     *	understand the concept of loss function optimisation in the context of clustering
     *	build a nearest neighbour distance based classifier
     *	understand the issues of overfitting and underfitting related to distance-based clustering and classification algorithms

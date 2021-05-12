@@ -1,6 +1,6 @@
 # Mini-batch K-means++
 
-**Since we have a loop that goes through *all instances/records* of the dataset then potentially we can employ the idea of min-batch on clustering.**
+**Since we have a loop that goes through *all instances/records* of the dataset then potentially we can employ the idea of mini-batch on clustering.**
 
 A mini-batch is a compromise that aims at preserving the autonomy of the algorithm but also makes sure it is practical. Instead of iterating through the whole dataset before calculating the centroids, we can iterate through a part of the dataset to quickly update the centroids. This update is based on a sample of the dataset called a mini-batch. But then we repeat the picking another mini-batch and update until either we covered all the dataset or repetitively until convergence. To cover the whole dataset we need to iterate through several mini-batches, this is called an epoch. The procedure is as follows:
 

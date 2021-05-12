@@ -18,9 +18,9 @@ $$
 J=\sum_{i=1}^{K} \sum_{\mathbf{x} \in C_{i}} d\left(\boldsymbol{c}_{i}, \mathbf{x}\right)^{2} \mid
 $$
 
-This is a function of the centroids. So if we change the centroids the loss will change. How many values can these centroids take? Yes, they can take any real value, so it is infinite because of the continuity of real numbers. We need a way to search through all of these infinite values to find the ones that minimise this error or loss function. Luckily, there is a straightforward and nice way to do this. You may recognise it from calculus.
+This is a function of the centroids. So if we change the centroids the loss will change. How many values can these centroids take? Yes, they can take any real value, so it is infinite because of the continuity of real numbers. We need a way to search through all of these infinite values to find the ones that minimise this error or loss function. Luckily, there is a straightforward way to do this. You may recognise it from calculus.
 
-Any continuous function has some stationary points. These are the optimums and the saddle points. We will not talk about the saddle points now, but you are encouraged to do some research yourself, although it is not needed in this unit. Optimal points of a function are the points from the input space where the value of the function is either maximum or minimum in comparison with other values in the function. In our case, it is the minimums that we are interested in. Back to calculus; we can employ the idea of derivatives to obtain the minimum of a function.
+Any continuous function has some stationary points. These are the optimums and the saddle points. We will not talk about saddle points in this unit, but you are encouraged to do some research yourself. Optimal points of a function are the points from the input space where the value of the function is either maximum or minimum in comparison with other values in the function. In our case, it is the minimums that we are interested in. Back to calculus; we can employ the idea of derivatives to obtain the minimum of a function.
 
 For example, if we have the following function:
 
@@ -28,7 +28,7 @@ $$
 y=(x-5)^{2}+8
 $$
 
-This function has the following shape:
+This function has the following shape, shown in figure 1.5:
 
 ![Graph showing the plot of minimum y=(x−5)2+8, with its minimum at x=5.](images/DS_IMG177.png)
 
@@ -49,7 +49,7 @@ x=5
 \end{array}
 $$
 
-That is cool because we can see that $x=5$ is indeed where the function become the least, before that it was decreasing and after this point it is increasing. So there you have it, this is how we find the minimum of a function.
+That is cool because we can see that $x=5$ is indeed where the function becomes the least. Before that it was decreasing and after this point it is increasing. So there you have it, this is how we find the minimum of a function.
 
 This was for one variable function, but for functions with multiple variables (attributes) we have to take partial derivative with respect to the variable that we want to minimise the function at. If we want to find the minimum for multiple variables at once, we take the gradient of the function, which is nothing but a series of partial derivatives with specific direction. You can find out more about this from any source such as Khan Academy or any calculus course. But the idea is really simple, we take the derivative and we set to 0. We are going to utilise this trick in several units, so please familiarise yourself with it. This process is called optimisation.
 
