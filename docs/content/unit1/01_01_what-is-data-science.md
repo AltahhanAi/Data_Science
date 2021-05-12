@@ -260,6 +260,7 @@ Please watch the following video, in which Abdulrahman Altahan introduces data s
 
 You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18739454_4" target="_blank">slides shown in the video</a>
 
+Slides are reproduced from Tan et al (2019), <a href="[https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
 ##Systems and unit testing vs model testing
 
@@ -309,7 +310,9 @@ The rule states that the probability of having a disease (H) given that a patien
 
 This rule is useful due to its practicality. Bear in mind that calculating the probability when it is known that a patient has a disease is much easier than trying to diagnose or estimate the probability that a patient has a disease given they have a symptom.
 
-Read each of the following examples to see this rule used in different contexts.
+In the following set of examples you will see how we can apply the Bayesian rule in order to come up with a probability of a patient having a particular disease given a set of symptoms (diagnosis).
+
+Your understanding of how we apply these rules will be beneficial to you later in the course.
 
 ####Example 1
 In this example there are three diseases (D) and one symptom (E).
