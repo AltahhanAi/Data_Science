@@ -149,31 +149,33 @@ Complex structures that are called decision trees may not satisfy the definition
 So far we have seen how decision trees work and how they are inducted (trained). Later we will see how to measure their performance. But first we would like to further study their inner properties. In particular, we would like to see what type of decision boundaries they constitute. The idea of decision boundaries is  central to classification and not unique to decision trees. It will reappear in other types of classification techniques we will study later, such as the perceptron and k-nearest neighbour (k-NN) algorithms. One way to understand the decision boundaries of a classifier is by plotting a dataset in 2D or 3D, note however that the discussion extends to any space dimension not just 2D but it would be harder to visualise it. Let us start with a simple decision tree with its decision boundary.
 
 
-![Alt text.](images/DS_IMG041.png)
-![alt-text-2](images/DS_IMG042.png)
+![Scatter graph showing binary class balanced data with a linearly separable decision boundaries. Any point above the boundary is of class 1 and any point below the boundary is of class 2.](images/DS_IMG041.png)
 
-![alt-text-2](images/DS_IMG043.png)
-![alt-text-2](images/DS_IMG044.png)
+![Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable decision boundaries.](images/DS_IMG042.png)
 
-![alt-text-2](images/DS_IMG045.png)
+![Scatter graph showing binary class balanced data with large margin linearly separable decision boundaries.](images/DS_IMG043.png)
 
-![alt-text-2](images/DS_IMG046.png)
+![Decision tree (DT) expected to concisely express binary class balanced data with large margin linearly separable decision boundaries. One of several ways to express the DT is shown.](images/DS_IMG044.png)
 
-![alt-text-2](images/DS_IMG047.png)
+![Scatter graph showing binary class balanced data with three large margin linearly separable decision boundaries.](images/DS_IMG045.png)
 
-![alt-text-2](images/DS_IMG048.png)
+![Decision tree (DT) expected to concisely express binary class balanced data with three large margine linearly separable decision boundaries. The tree is simplified to reflect a midpoint margin.](images/DS_IMG046.png)
 
-![alt-text-2](images/DS_IMG049.png)
+![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries. Class 1 is sandwiched between two parts of class 2.](images/DS_IMG047.png)
 
-![alt-text-2](images/DS_IMG050.png)
+![Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries.](images/DS_IMG048.png)
 
-![alt-text-2](images/DS_IMG051.png)
+![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quaratiles.  Class 1 is sandwiched, but class 2 is separated in two different quarters.](images/DS_IMG049.png)
 
-![alt-text-2](images/DS_IMG052.png)
+![Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.](images/DS_IMG050.png)
 
-![alt-text-2](images/DS_IMG053.png)
+![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quaratiles. The two classes are distributed into four crossed quarters.](images/DS_IMG051.png)
 
-![alt-text-2](images/DS_IMG054.png)
+![Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.](images/DS_IMG052.png)
+
+![Scatter graph showing binary class balanced data with a linearly separable diagonal decision boundary.](images/DS_IMG053.png)
+
+![Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable diagonal decision boundary.](images/DS_IMG054.png)
 
 
 **Figures (left) Linearly and non-linearly separable classes data with their virtual decision boundaries. (Right) expected corresponding decision trees.**
@@ -184,19 +186,19 @@ The boundaries are assumed when we constructed the datasets. The boundaries do n
 
 So let us see if we hand in the generated data to the CART decision tree induction algorithm, would it be able to recognise the decision boundaries of the data and would it be able to build  corresponding trees as per our expectations. Below are the results.
 
-![alt-text-2](images/DS_IMG055.png)
+![Left: Scatter graph showing classes data with a no margin horizontal decision boundary. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG055.png)
 
-![alt-text-2](images/DS_IMG056.png)
+![Left: Scatter graph showing classes data with wide margin horizontal decision boundary. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG056.png)
 
-![alt-text-2](images/DS_IMG057.png)
+![Left: Scatter graph showing classes data with a sandwich class 1 decision boundary. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG057.png)
 
-![alt-text-2](images/DS_IMG058.png)
+![Left: Scatter graph showing classes data with a sandwich class 1 decision boundary. The classes are imbalanced. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG058.png)
 
-![alt-text-2](images/DS_IMG059.png)
+![Left: Scatter graph showing classes data with a sandwich class 1 decision boundary and class 2 quartered decision boundaries. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG059.png)
 
-![alt-text-2](images/DS_IMG060.png)
+![Left: Scatter graph showing classes data with quartered, cross-class decision boundaries. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG060.png)
 
-![alt-text-2](images/DS_IMG061.png)
+![Left: Scatter graph showing classes data with diagonal classes decision boundaries. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm. The algorithm has struggled as the classes and corresponding decision boundary become non-linearly separable. ](images/DS_IMG061.png)
 
 **Figures (left) Linearly and non-linearly separable classes data with the decision boundaries of the corresponding decision tree which are shown to the right. (Right) actual corresponding decision trees.**
 
@@ -214,4 +216,4 @@ Note how the algorithm struggled with the last case as the classes and its corre
 
 ##Summary
 
-In this lesson we have covered decision trees, an important and pervasive technique for classification. We have looked at the CART algorithm and seen examples of its inner mechanism. We have also discussed limitations and decision boundaries of DT. DT is quite a powerful technique in terms of interpretation and can provide an excellent tool to convey and explain decisions made by it. However it employs a local search strategy when it comes to growing its branches and it has rectilinear decision boundaries. Although there are ways to mitigate these limitations, DT might not be the best technique when we deal with numerical data because it is discretised by nature. Please have a look at the following <a href="https://leeds365-my.sharepoint.com/:p:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/presentations/chap3_basic_classification.pptx?d=w10ccb4e0a990464989246bab43dd4b16&csf=1&web=1&e=pa3F5T" target="_blank">DT presentation</a> for a summary of this lesson with this <mark>video</mark>.
+In this lesson we have covered decision trees, an important and pervasive technique for classification. We have looked at the CART algorithm and seen examples of its inner mechanism. We have also discussed limitations and decision boundaries of DT. DT is quite a powerful technique in terms of interpretation and can provide an excellent tool to convey and explain decisions made by it. However it employs a local search strategy when it comes to growing its branches and it has rectilinear decision boundaries. Although there are ways to mitigate these limitations, DT might not be the best technique when we deal with numerical data because it is discretised by nature. Please have a look at the following <a href="exercises/Borrowers-Split for Continuous" target="_blank">DT presentation</a> for a summary of this lesson with this <mark>video</mark>.

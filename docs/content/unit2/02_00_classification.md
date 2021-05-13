@@ -5,15 +5,15 @@
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:
 
-    - Understanding the deduction and induction process for decision tree,
+    - understand the deduction and induction process for decision tree,
 
-    - Understanding the CART algorithm,
+    - understand the CART algorithm,
 
-    - Ability to evaluate splits of trees, using impurity measures,
+    - evaluate splits of trees, using impurity measures,
 
-    - Understanding how to use cross validation and GRID method to optimise prediction model hyper parameters,
+    - use cross validation and GRID method to optimise prediction model hyper parameters,
 
-    - Be able to evaluate a general classification technique using extensive set of performance metrics that depend on confusion matrices.
+    - evaluate a general classification technique using extensive set of performance metrics that depend on confusion matrices.
 
 
 In a classification scenario, we have a supervised learning problem with labels. The labels themselves are a categorical data, i.e. they have a set of confined values, be it numerical or categorical that we can enumerate through. We call these values the classes, and our task is to take an input data point and place it in the area or under one of the classes. This type of task is pervasive in all aspects of data mining, and we will find ourselves facing it in one form or the other in several settings. One distinction we need to make here is between classification and clustering. While classification uses predefined classes with names, clustering is unsupervised learning, in which data points are placed in clusters based on their intrinsic properties and the similarities between them.  

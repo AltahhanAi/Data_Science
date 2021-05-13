@@ -5,19 +5,19 @@ In this lesson we will see how to build a decision tree using CART induction alg
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:
 
-    - Ability to understand the intricate details of the induction process,
+    - understand the intricate details of the induction process
 
-    - Ability to understand how the impurity measures work in combination with the splitting procedure,
+    - explain how the impurity measures work in combination with the splitting procedure
 
-    - Ability to understand the differences between splitting a continuous variable, and splitting categorical variables,
+    - understand the differences between splitting a continuous variable, and splitting categorical variables
 
-    - Ability to carry out deduction using a decision tree and induction to build the tree.
+    - carry out deduction using a decision tree and induction to build the tree.
 
 
 **Let us assume that we have the following binary tree structure:**
 
 <figure role="group">
-  <img src="../images/DS_IMG008.png" alt="Test image." />
+  <img src="../images/DS_IMG008.png" alt="Diagram of a decision tree (DT) with a binary structure. Each condition node in this decision tree structure has two results only (either 'yes' or 'no')." />
   <figcaption><strong>Figure 1.1.</strong> Diagram of a decision tree (DT) with a binary structure. Each condition node in this decision tree structure has two results only (either 'yes' or 'no').</figcaption>
 </figure>
 
@@ -110,18 +110,18 @@ Given that both cases of High and Low Bands are eligible then we can further sim
 </figure>
 
 
-###Exercise
+!!! abstract "Exercise"
 
-Given the following cases, show the path the inference process will take on the above DT:
+		Given the following cases, show the path the inference process will take on the above DT:
 
-Name |  Home Owner  | Has a job  |Income band | Eligible
------|--------------|------------|------------|---------
-Jeff |  Yes         | No         | Band 1     |     ?
+		Name |  Home Owner  | Has a job  |Income band | Eligible
+		-----|--------------|------------|------------|---------
+		Jeff |  Yes         | No         | Band 1     |     ?
 
-Name |  Home Owner  | Has a job  |Income band | Eligible
------|--------------|------------|------------|---------
-Steve|  Yes         | Yes        | Band 2     |     ?
+		Name |  Home Owner  | Has a job  |Income band | Eligible
+		-----|--------------|------------|------------|---------
+		Steve|  Yes         | Yes        | Band 2     |     ?
 
-Name |  Home Owner  | Has a job  |Income band | Eligible
------|--------------|------------|------------|---------
-Mitch|  No          | Yes        | Band 1     |     ?
+		Name |  Home Owner  | Has a job  |Income band | Eligible
+		-----|--------------|------------|------------|---------
+		Mitch|  No          | Yes        | Band 1     |     ?
