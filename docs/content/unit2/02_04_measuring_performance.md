@@ -1,5 +1,15 @@
 # Measuring the performance of a classification model
 
+!!! success "Learning outcomes:"
+	After completing this lesson you should be able to:
+
+    - understand the essential metrics needed to evaluate different classification models
+
+    - distinguish between metrics that are based on actual classes, and metrics that are concerned with predicted classes
+
+    - understand the holistic metrics for classification.
+
+
 **In this section we will study how we can measure how accurate our classification model is. The concepts and ideas will be applied to a decision tree because this is the only classification technique we have covered so far, but the concepts and ideas are equally applicable regardless of the technique. Indeed, we will be utilising these metrics in later sections and units directly without explanation.**
 
 Measuring the effectiveness of a model is an essential skill, since we will often face problems that we can solve in several techniques. To objectively choose among them we need to compare their respective predictive models' capabilities and pick the one that suits best our problem. There is also the issue of picking the right **metric** for the problem in hand. Therefore, we will cover several metrics and we will learn which suits a specific problem, both in terms of the dataset structure and in terms of the aim of the analysis that we intend to perform in order to solve the problem in hand.
@@ -21,7 +31,7 @@ The classification would be effectively stating yes or 1 or + if the instant bel
 These 4 cases can be better summarised in figure 4.1 below. This is called the confusion matrix because the red boxes represent the cases confused by the prediction model, while the blue boxes represent the cases where the predictions of the model are aligned with the reality. The aim of any model is to reduce the cases in the white boxes and make them as close to 0 as possible. We can actually do a lot with these counts, and below we show several metrics that can be defined based on them.
 
 <figure role="group">
-  <img src="../images/DS_IMG062.png" alt="Test image." />
+  <img src="../images/DS_IMG062.png" alt="Confusion matrix for binary classification model. Actual class on the x axis and predicted class on the y axis." />
   <figcaption><strong>Figure 4.1</strong> Confusion matrix for binary classification mode .</figcaption>
 </figure>
 
@@ -29,7 +39,7 @@ These 4 cases can be better summarised in figure 4.1 below. This is called the c
     Be mindful that some sources present the confusion matrix using the transpose of the above matrix (with actual classes on the left and the predicted classes on top) as in figure 4.2 below. This will not change anything but the presentation. RapidMiner and Weka for example use the first form, while Tan et al (2020) uses the second form. We will adopt the first form as it is more common. Note that **FP** is called **type I error**, while **FN** is called **type II error**, accordingly it makes more sense to present the matrix in the first form.
 
     <figure role="group">
-      <img src="../images/DS_IMG063.png" alt="Test image." />
+      <img src="../images/DS_IMG063.png" alt="Confusion matrix for binary classification model. Actual class on the y axis and predicted class on the x axis." />
       <figcaption><strong>Figure 4.2</strong> Confusion matrix for binary classification model presented differently.</figcaption>
     </figure>
 
@@ -56,12 +66,12 @@ $$
 All classifiers try to increase its accuracy or equivalently reduce its error rate. However, in some special cases these metrics do not reflect how good the model is. For example, if the classes are not balanced, the accuracy can be misleading. We will study these cases and more suitable measures for them in unit 4.
 
 <figure role="group">
-  <img src="../images/DS_IMG064.png" alt="Test image." />
+  <img src="../images/DS_IMG064.png" alt="Two confusion matrices with metrics related to actual classes (common names used). Left: positive actual classes' related metrics. Right: negative actual classes' related metrics." />
   <figcaption><strong>Figure 4.3</strong> Metrics that are related to actual classes (common names used). Left: positive actual classes related metrics. Right: negative actual classes related metrics.</figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG065.png" alt="Test image." />
+  <img src="../images/DS_IMG065.png" alt="Two confusion matrices with metrics related to predicted classes (common names used). Left: positive predicted classes' related metrics. Right: negative predicted classes' related metrics." />
   <figcaption><strong>Figure 4.4</strong> Metrics that are related to predicted classes (common names used). Left: positive predicted classes’ related metrics. Right: negative predicted classes’ related metrics.</figcaption>
 </figure>
 
@@ -70,7 +80,7 @@ As it can be seen, all possible ways of taking the rate of either of the four va
 If we are less concerned with false positives then we can use the hit rate (aka recall) to choose between two models. If we are diagnosing cancer for example, then misdiagnosing people as having cancer is preferred over missing those who actually have cancer (given that there would be further checking to confirm the positive cases). In this case if we have to choose between two models with the same accuracy, but with different hit rates then we choose the one with the higher hit rate. We note however that these names are a bit confusing and some simplification and uniformity is needed in order to reveal their intrinsic properties and the relationship between each other. Therefore, we propose to rename them for consistency and uniformity as in the below figures. Note that these are our own naming and some coincide with the metrics names in the literature and some do not.
 
 <figure role="group">
-  <img src="../images/DS_IMG066.png" alt="Test image." />
+  <img src="../images/DS_IMG066.png" alt="Two confusion matrices with detective metrics related to actual classes. Left: performance metrics. Right: error metrics." />
   <figcaption><strong>Figure 4.5</strong> Detective Metrics related to actual classes (new suggested names used for consistency. Left: performance metrics. Right: error metrics..</figcaption>
 </figure>
 
@@ -81,10 +91,11 @@ On the other hand, the false positive detection rate is denoted $p\left(\overlin
 We can now easily verify that:
 
 $$
-\begin{array}{l}
-p\left(\text { detect }_{+}\right)+p\left(\text { detect }_{+}\right)=1 \\
-p\left(\text { detect }_{-}\right)+p\left(\text { detect }_{-}\right)=1
-\end{array}
+p\left(\text { detect }_{+}\right)+p\left(\overline{\text { detect }}_{+}\right)=1
+$$
+
+$$
+p\left(\text { detect }_{-}\right)+p\left(\overline{\text { detect }}_{-}\right)=1
 $$
 
 The names are meant to reflect the inner relationship between the different metrics. To see why, we first note that
@@ -107,7 +118,7 @@ p\left(\text { predict }_{-}\right)+p\left(\overline{\text { predict }}_{-}\righ
 $$
 
 <figure role="group">
-  <img src="../images/DS_IMG067.png" alt="Test image." />
+  <img src="../images/DS_IMG067.png" alt="Two confusion matrices with predictive metrics related to predicted classes. Left: performance metrics. Right: error metrics." />
   <figcaption><strong>Figure 4.6</strong> Predictive Metrics related to predicted classes (new suggested names used for consistency). Left: performance related predictive metrics. Right: error related predictive metrics. </figcaption>
 </figure>
 
@@ -133,7 +144,7 @@ Therefore, F1 score is given as $F 1$ score $=\frac{2 \text { PPV.TPR }}{P P V+T
     Note that $𝑨𝒄𝒄𝒖𝒓𝒂𝒄𝒚=(𝐓𝐏+𝐓𝐍)/𝒏 =(𝐓𝐏+𝐓𝐍)/(𝐓𝐏+ 𝐓𝐍+ 𝐅𝐏+ 𝐅𝐍)$. If we compare this with the F1 score formula, we realise that we can obtain F1 score directly from the accuracy formula, by replacing the term $TN$ with $TP$. In other words, we can view the F1 score from another perspective as being a measure of overall accuracy for the true positive predicted cases only (no true negative).
 
 <figure role="group">
-  <img src="../images/DS_IMG068.png" alt="Test image." />
+  <img src="../images/DS_IMG068.png" alt="Two confusion matrices with holistic metrics that comprehensively involve both predicted and actual classes. Left: F1 score. Right: Matthew Correlation Coefficient (MCC)." />
   <figcaption><strong>Figure 4.7</strong> Holistic Metrics that are comprehensively involving both predicted and actual classes. Left: F1 score. Right: Matthew Correlation Coefficient. Both are suitable for any binary class problem even when the classes’ counts are imbalanced. (i.e. when the number of instances form one class – normally the positive class – are much smaller than number of instances from the second class – normally the negative class).. </figcaption>
 </figure>
 
@@ -145,8 +156,8 @@ Therefore, F1 score is given as $F 1$ score $=\frac{2 \text { PPV.TPR }}{P P V+T
     $$
 
 <figure role="group">
-  <img src="../images/DS_IMG069.png" alt="Test image." />
-  <figcaption><strong>Figure 4.8</strong> Holistic Metrics that are comprehensively involving both predicted and actual classes. Left: Accuracy. Right: Error rate. Both performs poorly when the classes count is imbalanced (i.e. when the number of instances form one class – normally the positive – are much smaller than number of instances from the second class – normally the negative class). Nevertheless, these are the basic metrics that several algorithms use. </figcaption>
+  <img src="../images/DS_IMG069.png" alt="Two confusion matrices with holistic metrics that comprehensively involve both predicted and actual classes. Left: Accuracy. Right: error rate." />
+  <figcaption><strong>Figure 4.8</strong> Holistic Metrics that are comprehensively involving both predicted and actual classes. Left: Accuracy. Right: Error rate. Both perform poorly when the classes count is imbalanced (i.e. when the number of instances form one class – normally the positive – are much smaller than number of instances from the second class – normally the negative class). Nevertheless, these are the basic metrics that several algorithms use. </figcaption>
 </figure>
 
 The range of MCC is between -1 and 1. -1 represents total disagreement between the model predictions and the actual classes, 1 represents total agreement between the predicted and actual classes and 0 means no correlation, i.e. the model is not better than a random guess.
@@ -154,8 +165,8 @@ The range of MCC is between -1 and 1. -1 represents total disagreement between t
 In terms of comparison, we can meaningfully compare as follows:
 
 <figure role="group">
-  <img src="../images/DS_IMG194b.png" alt="Test image." />
-  <figcaption><strong>Figure 4.9</strong> </figcaption>
+  <img src="../images/DS_IMG194b.png" alt="Table comparing model performance metrics with model error metrics." />
+  <figcaption><strong>Figure 4.9</strong> Comparison of model performance metrics with model error metrics. </figcaption>
 </figure>
 
 As can be seen we either compare using the left-hand side for performance or the right-hand side for errors. We do not need to use both, and we must be aware not to mingle the left with right when we compare different models' performance.
@@ -167,8 +178,8 @@ Let us now have a look at some examples. Let us assume that we trained a decisio
 By comparing the Accuracy (or F1 score or MCC) we accordingly prefer classifier 4.
 
 <figure role="group">
-  <img src="../images/DS_IMG070.png" alt="Test image." />
-  <figcaption><strong>Figure 4.10</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG070.png" alt="Confusion matrix, generated by the decision tree (DT) classifier 'Classifier 1'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'." />
+  <figcaption><strong>Figure 4.10</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -182,8 +193,8 @@ $$
 
 
 <figure role="group">
-  <img src="../images/DS_IMG071.png" alt="Test image." />
-  <figcaption><strong>Figure 4.11</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG071.png" alt="Confusion matrix, generated by the decision tree (DT) classifier 'Classifier 2'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'." />
+  <figcaption><strong>Figure 4.11</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -196,8 +207,8 @@ M C C=\frac{25 \times 25-25 \times 25}{\sqrt{(25+25)(25+25)(25+25)(25+25)}}=0.0
 $$
 
 <figure role="group">
-  <img src="../images/DS_IMG072.png" alt="Test image." />
-  <figcaption><strong>Figure 4.12</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG072.png" alt="Confusion matrix, generated by the decision tree (DT) classifier 'Classifier 3'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'." />
+  <figcaption><strong>Figure 4.12</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -210,8 +221,8 @@ M C C=\frac{40 \times 10-40 \times 10}{\sqrt{(40+40)(40+10)(10+40)(10+10)}}=0.0
 $$
 
 <figure role="group">
-  <img src="../images/DS_IMG073.png" alt="Test image." />
-  <figcaption><strong>Figure 4.13</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG073.png" alt="Confusion matrix, generated by the decision tree (DT) classifier 'Classifier 4'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'." />
+  <figcaption><strong>Figure 4.13</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -228,8 +239,8 @@ $$
 Let us now assume that we trained a further two classifiers that produced the following two confusion matrices. Comparing the classifiers we can see how the different metrics react to the changes in the way the instances has been classified. In particular we can see that F1 score reflect a balanced estimation of the quality of the classifier, while accuracy can be quite optimistic in its estimation of the quality of the classifier. MCC is the more reserved of holistic metrics and it tends to be more pessimistic in its estimation.
 
 <figure role="group">
-  <img src="../images/DS_IMG074.png" alt="Test image." />
-  <figcaption><strong>Figure 4.14</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG074.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 1'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are effected by the way the instances are classified." />
+  <figcaption><strong>Figure 4.14</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -242,8 +253,8 @@ M C C=\frac{50 \times 99-50 \times 1}{\sqrt{(50+1)(99+50)(50+50)(99+1)}}=0.56
 $$
 
 <figure role="group">
-  <img src="../images/DS_IMG075.png" alt="Test image." />
-  <figcaption><strong>Figure 4.15</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG075.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 2'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are effected by the way the instances are classified. " />
+  <figcaption><strong>Figure 4.15</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -256,8 +267,8 @@ M C C=\frac{90 \times 99-10 \times 1}{\sqrt{(90+1)(99+10)(90+10)(99+1)}}=0.893
 $$
 
 <figure role="group">
-  <img src="../images/DS_IMG076.png" alt="Test image." />
-  <figcaption><strong>Figure 4.16</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG076.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 3'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are effected by the way the instances are classified. " />
+  <figcaption><strong>Figure 4.16</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -276,8 +287,8 @@ Accordingly we prefer classifier 3 since we are comparing on the same dataset. I
 Let us now see how these metrics react to an increase in one of the classes, i.e. when the problem has imbalanced classes issue.
 
 <figure role="group">
-  <img src="../images/DS_IMG078.png" alt="Test image." />
-  <figcaption><strong>Figure 4.17</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG078.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 1'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are effected by a rare class." />
+  <figcaption><strong>Figure 4.17</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -291,8 +302,8 @@ $$
 
 
 <figure role="group">
-  <img src="../images/DS_IMG077.png" alt="Test image." />
-  <figcaption><strong>Figure 4.18</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG077.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 2'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are effected by an increase in one of the classes. " />
+  <figcaption><strong>Figure 4.18</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -307,8 +318,8 @@ $$
 Ok now let us see how the metrics react when the problem has a rare class. i.e. it is a severe imbalanced classes problem.
 
 <figure role="group">
-  <img src="../images/DS_IMG079.png" alt="Test image." />
-  <figcaption><strong>Figure 4.19</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG079.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 1'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are effected by a rare class." />
+  <figcaption><strong>Figure 4.19</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -321,8 +332,8 @@ M C C=\frac{50 \times 9900-50 \times 100}{\sqrt{(50+100)(9900+50)(50+50)(9900+10
 $$
 
 <figure role="group">
-  <img src="../images/DS_IMG080.png" alt="Test image." />
-  <figcaption><strong>Figure 4.20</strong> Caption. See calculations below. </figcaption>
+  <img src="../images/DS_IMG080.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 2'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are effected by a rare class." />
+  <figcaption><strong>Figure 4.20</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -375,24 +386,24 @@ Note that F1 score only applies to binary class problems. If the problem is mult
 Note that the true labels are placed horizontally while the prediction is vertically. This is opposite to what we have used before, but as we said earlier it should not matter as long as we are vigilant about it.
 
 <figure role="group">
-  <img src="../images/DS_IMG081.png" alt="Test image." />
+  <img src="../images/DS_IMG081.png" alt="Confusion matrix, without normalisation." />
   <figcaption><strong>Figure 4.21</strong> Confusion matrix without normalisation. </figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG082.png" alt="Test image." />
+  <img src="../images/DS_IMG082.png" alt="Normalised confusion matrix." />
   <figcaption><strong>Figure 4.22</strong> Confusion matrix normalised. </figcaption>
 </figure>
 
 Different sources uses these two formatting as well. On the right also you can see the same confusion matrix after normalisation. We normalise by dividing each entry by the sum along the **true label axis**. Below you will see an example that clarifies this.
 
 <figure role="group">
-  <img src="../images/DS_IMG083.png" alt="Test image." />
+  <img src="../images/DS_IMG083.png" alt="Confusion matrix, without normalisation." />
   <figcaption><strong>Figure 4.23</strong> Confusion matrix without normalisation. </figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG084.png" alt="Test image." />
+  <img src="../images/DS_IMG084.png" alt="Normalised confusion matrix." />
   <figcaption><strong>Figure 4.24</strong> Confusion matrix normalised. </figcaption>
 </figure>
 
@@ -413,10 +424,9 @@ Which yields 1.0,0.83 and 0.86 for the classes 'setosa' 'versicolor' 'virginica'
 Here we would like to point out that sometimes the above score is called the balanced accuracy metric. It is defined for binary class problem as:
 
 <figure role="group">
-  <img src="../images/DS_IMG085.png" alt="Test image." />
-  <figcaption><strong>Figure 4.25</strong> Caption. </figcaption>
+  <img src="../images/DS_IMG085.png" alt="Confusion matrix showing application and workings of the balanced accuracy metric." />
+  <figcaption><strong>Figure 4.25</strong> Confusion matrix showing application and workings of the balanced accuracy metric. </figcaption>
 </figure>
-<mark> caption</mark>
 
 $$
 Balanced Accuracy =\frac{1}{2} (\frac{TP}{TP+FN}+\frac{TN}{TN+FP}) =\frac{1}{2} \boldsymbol{p} \boldsymbol{r}\left(\boldsymbol{d e t e c} \boldsymbol{t}_{+}\right)+\frac{1}{2} \boldsymbol{p} \boldsymbol{r}\left(\boldsymbol{d e t e c} \boldsymbol{t}_{-}\right)
@@ -445,3 +455,9 @@ Note here that we cannot use the counts on the diagonal of the confusion matrix 
 
 !!! abstract "Exercise"    
     Research into extending the F score into a multi-class case and calculate it for the above example.
+
+##Lesson summary
+
+**In this lesson we have covered various metrics for binary and multiclass problems to evaluate classification models in general.**
+
+Please note that these metrics are not necessarily related only to decision trees. They are general metrics that can be used for any classification model. In later units we will see different classification techniques, and these metrics will also be applicable to them. Please be aware that we have used a unified and simple notation for the metrics, but these have different names in the wider community and you should be aware of these names. We denoted precision as predict, and recall as detect.

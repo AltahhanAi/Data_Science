@@ -108,9 +108,10 @@ $$
 
 ######Info gain
 
+<p style="text-align: center;">Info Gain('makes calls')</p>
+
 $$
 \begin{array}{l}
-\text { Info Gain('makes calls {\prime} \text { ) } \\
 =0.5-\left(\frac{2}{6} \times 0+\frac{4}{6} \times 0.375\right) \\
 =0.25
 \end{array}
@@ -298,7 +299,7 @@ $$
 $$
 
 
-If you’d like to try it yourself now, you can calculate the information gain for ‘screen size=6’.The results should be in favour of ‘screen size=8’. The final results are summarised in figures 2.5 and 2.6.
+If you’d like to try it yourself now, you can calculate the information gain for ‘screen size=6’. The results should be in favour of ‘screen size=8’. The final results are summarised in figures 2.5 and 2.6.
 
 <figure role="group">
   <img src="../images/DS_IMG020.png" alt="Diagram of step 2 of CART algorithm for tablet vs phone dataset, showing information gain calculations. Split based on ‘screen size=8’ feature." />
@@ -367,7 +368,9 @@ At this stage the algorithm stops since all lower levels nodes are pure and prod
 
 ##Cart algorithm
 
-Scroll right inside the algorithm box to view all.
+To summarise, the CART algorithm does the following:
+
+**Scroll right inside the algorithm box to view all.**
 
 !!! algorithm-heading "Algorithms 1: Build a decision tree (aka DT induction)"
 
@@ -413,12 +416,9 @@ Scroll right inside the algorithm box to view all.
 
 		Return *bsNode*
 
-
-
-
-To summarise, the CART algorithm does the following:
-
 The above box shows the pseudocode for a decision tree induction algorithm. The algorithm works by expanding the tree using the best split attribute that yields the best information gain. E is a set of data inside a node and F is the set of attributes that we can use to split the data E.
+
+<mark>DT Video1 for presentation part1</mark>
 
 ###Discretising continuous variables
 
@@ -532,7 +532,7 @@ Table: Borrowers dataset with possible splits for the Annual Income feature
 
 2. We take the in-between values instead of the values themselves because we do not want to make any of the dataset records a boundary case. We do not need to worry about the first and last values since they cannot be a split condition otherwise they yield the feature ineffective- all data is greater than the first value and smaller than the last values. So if we have N records in our dataset (N=10 in the Borrowers dataset), we try N-1 in-between splits. See Table above for the possible splits for annual income after sorting the dataset according to ‘Annual Income’.
 
-3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. See this <a href="https://leeds365-my.sharepoint.com/:x:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/code/datasets/Borrowers-Split%20for%20Continous%20Values.xlsx?d=w068064a3a6024c47800dc3ddd4d385b9&csf=1&web=1&e=uJMYto" target="_blank">Excel spreadsheet</a> for the different Information Gain and Gini Index calculations for the borrowers dataset.
+3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. See this <a href="exercises/Borrowers-Split for Continuous Values.xlsx" target="_blank">Excel spreadsheet</a> for the different Information Gain and Gini Index calculations for the borrowers dataset.
 
 Figure 2.12 shows the advantage of a test condition for a continuous attributes, the branching of the tree is much simpler and will lead to a more elegant and less cluttered and easy to interpret tree.
 
@@ -570,17 +570,15 @@ Note that $-\log p$ is monotonically decreasing function.
 
 Note also that the base of $log$ is normally 2 but any can do as long as we are consistent. The behaviour of $−\log p$ for class C1 and $-\log \left(p^{\prime}\right)$ for class C2 can be seen below. When the probability increases $-\log p$ decreases but it is still positive (to be precise it is non-negative). Note that $-\log \left(p^{\prime}\right)$ is monotonically increasing function with respect to $p$ and is non-negative as well.
 
-<figure role="group">
-  <img src="../images/DS_IMG034.png" alt="Two graphs showing the behaviour of −logp for class C1 and −log(p′) for class C2." />
-  <figcaption><strong>Figure 2.14.</strong>  Behaviour of the term $-p \log p$ which is the entropy for class C1. Note that C1 has a probability $p$ and the figure shows how the entropy of C1 is varying with the probability $p$.</figcaption>
-</figure>
+![Two graphs showing the behaviour of −logp for class C1 and −log(p′) for class C2.](images/DS_IMG034.png)
+
+**<p style="text-align: center;">Figure 2.14:** *Behaviour of the term $-p \log p$ which is the entropy for class C1. Note that C1 has a probability $p$ and the figure shows how the entropy of C1 is varying with the probability $p$.*</p>
 
 To take into account both of the points above, the entropy for class C1 will be written as $-p \log p$, which has a behaviour that is described in the left hand side of figure 2.15 below. In addition, since we have two classes then we also need a similar term for the second class C2. Given that C2 has a probability $p^{\prime}=1-p$, its entropy is $(1-p) \log (1-p)$. The behaviour of this term is shown in the right hand side of the figure below.
 
-<figure role="group">
-  <img src="../images/DS_IMG035.png" alt="Two graphs. Left: the entropy for class C1= -P*log(p), probability p. The entropy of C1 varies with the probability p. Right: the entropy for class C2= -p'*log(p'), probability p'. The entropy for C2 varies with the probability p." />
-  <figcaption><strong>Figure 2.15.</strong>  Left: The entropy for class C1= $-p log⁡p$. C1 has a probability p, the figure shows how the entropy of C1 varies with the probability p. Right: The entropy for class C2= $-p'log⁡〖p^' 〗. C2 has a probability $p^{\prime}=1-p$, the figure shows how the entropy of C2 varies with the probability p. .</figcaption>
-</figure>
+![Two graphs. Left: the entropy for class C1= -P*log(p), probability p. The entropy of C1 varies with the probability p. Right: the entropy for class C2= -p'*log(p'), probability p'. The entropy for C2 varies with the probability p.](images/DS_IMG035.png)
+
+**<p style="text-align: center;">Figure 2.15:** *Left: The entropy for class $\mathrm{C} 1=-p \log p$. C1 has a probability $p$, the figure shows how the entropy of C1 varies with the probability $p$. Right: The entropy for class $\mathrm{C} 2=-p^{\prime} \log p^{\prime}$. C2 has a probability $p^{\prime}=1-p$, the figure shows how the entropy of C2 varies with the probability $p$.*</p>
 
 We can finally define the entropy as:
 
@@ -593,10 +591,9 @@ $$
 
 Its behaviour is shown figure 2.16 below.
 
-<figure role="group">
-  <img src="../images/DS_IMG036.png" alt="Two graphs. Left: the entropy of both classes C1 and C2 who have probabilities p and p′=1−p, respectively. Right: the different components of the entropy fitted together." />
-  <figcaption><strong>Figure 2.16.</strong>  Left: The entropy of both classes C1 and C2 who have probabilities $p$ and $p′=1−p$, respectively. Right: The different components of the entropy fit together.</figcaption>
-</figure>
+![Two graphs. Left: the entropy of both classes C1 and C2 who have probabilities p and p′=1−p, respectively. Right: the different components of the entropy fitted together.](images/DS_IMG036.png)
+
+**<p style="text-align: center;">Figure 2.16:** *Left: The entropy of both classes C1 and C2 who have probabilities $p$ and $p^{\prime}=1-p$, respectively. Right: The different components of the entropy fit together.*</p>
 
 Note that we are talking about two classes (events) not two probability distributions. In the case of two probability distributions we use cross-entropy which is outside the scope of this discussion. In general if we have more than $K$ classes, then:
 
@@ -614,15 +611,13 @@ The same idea applies for the Gini index, but it is less complex.
 
 To take into account both of the points above, the Gini index should include the term $p(1−p)$. Its behaviour is shown in figure 2.17 below.
 
-<figure role="group">
-  <img src="../images/DS_IMG037.png" alt="Two graphs, comparing the behaviour of the term 1-p with respect to class C1, which has the probability p." />
-  <figcaption><strong>Figure 2.17.</strong> The behaviour of the term $(1−p)$ with respect to class C1 which has probability $p$.</figcaption>
-</figure>
+![Two graphs, comparing the behaviour of the term 1-p with respect to class C1, which has the probability p.](images/DS_IMG037.png)
 
-<figure role="group">
-  <img src="../images/DS_IMG038.png" alt="Two graphs. Left: the Gini impurity for class C1 = p*(1-p), with probability p. Right: the Gini impurity for class C2= p'*(1-p'). with probability p'." />
-  <figcaption><strong>Figure 2.18.</strong> left: The Gini impurity for class C1 = $p(1−p)$, C1 has probability $p$. Note that the term $1−p$ replaces the $−logp$ in the entropy and it is easier to calculate.</figcaption>
-</figure>
+**<p style="text-align: center;">Figure 2.17:** *The behaviour of the term $(1−p)$ with respect to class C1 which has probability $p$.*</p>
+
+![Two graphs. Left: the Gini impurity for class C1 = p*(1-p), with probability p. Right: the Gini impurity for class C2= p'*(1-p'). with probability p'.](images/DS_IMG038.png)
+
+**<p style="text-align: center;">Figure 2.18:** *Left: The Gini impurity for class C1 = $p(1−p)$, C1 has probability $p$. Note that the term $1−p$ replaces the $-\log p$ in the entropy and it is easier to calculate.*</p>
 
 Note that $1−p$ happens to be the probability of class C2 but it is not what is meant here, this becomes clearer when we consider a multi-class situation where the term $(1−p)$ is still used to calculate the impurity of C1 but the probability of C2 is likely to be different due to the involvement of other classes. This coincidence makes the left and right hand sides identical for the binary classes problems. Note that the term has a max of 0.5*0.5=0.25.
 
@@ -640,10 +635,9 @@ $$
 
 Its behaviour is shown in figure 2.19 below:
 
-<figure role="group">
-  <img src="../images/DS_IMG039.png" alt="Two graphs showing the Gini impurity for two classes C1 and C2, with probabilities p and p' respectively." />
-  <figcaption><strong>Figure 2.19.</strong> Left: The Gini impurity for two classes C1 and C2 with probabilities $p$ and $p′=1−p$ respectively. Note that the Gini impurity has a max of 0.25+0.25=0.5. Right: The different components of the Gini impurity fit together..</figcaption>
-</figure>
+![Two graphs showing the Gini impurity for two classes C1 and C2, with probabilities p and p' respectively.](images/DS_IMG039.png)
+
+**<p style="text-align: center;">Figure 2.19:** *Left: The Gini impurity for two classes C1 and C2 with probabilities $p$ and $p^{\prime}=1-p$ respectively. Note that the Gini impurity has a max of 0.25+0.25=0.5. Right: The different components of the Gini impurity fit together.*</p>
 
 In general if we have more than $K$ classes, then:
 
@@ -653,10 +647,9 @@ $$
 
 Figure 2.20 below summarises all of the terms included in both the entropy and Gini. As we have said earlier, both produce consistent trees and have a similar behaviour albeit having different ranges.
 
-<figure role="group">
-  <img src="../images/DS_IMG040.png" alt="Graph summarising all of the terms included in both the entropy and Gini." />
-  <figcaption><strong>Figure 2.20.</strong> The behaviour of the entropy Gini with respect to both class 1 which has probability	$p$ and class 2 which has probability $1−p$.</figcaption>
-</figure>
+![Graph summarising all of the terms included in both the entropy and Gini.](images/DS_IMG040.png)
+
+**<p style="text-align: center;">Figure 2.20:** *The behaviour of the entropy Gini with respect to both class 1 which has probability	$p$ and class 2 which has probability $1−p$.*</p>
 
 Note that the colours are representative of the terms involved in the calculation of both measures. The Gini is represented as red since on $p$ and $1-p$ are involved in its calculations, while the entropy is represented as magenta since all the four terms in blue and red are involved in its calculations (red + blue=magenta).  
 
@@ -666,4 +659,4 @@ $$
 \text { Classification error }=1-\max \left(p_{i}\right)
 $$
 
-The behaviour of all of the three impurity measures have been already shown in <mark>Figure (20)</mark>
+The behaviour of all of the three impurity measures have been already shown in figure 2.13
