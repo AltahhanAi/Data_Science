@@ -121,9 +121,10 @@ models to train. The bottom line is that we have to be careful on how many model
 
 As we saw earlier an inner CV gives its own best value for $h$ that stems from its error comparisons.  Since we have 3 –fold outer CV we get 3 values which might all be v1 or v2 or a mix of both (ex. $v1$, $v1$ and $v2$). We have represented the best values of the three outer folds as $\dot{v}, \ddot{v}$ and $\ddot{v}(e x . \dot{v}=v 1, \ddot{v}=v 1, \dddot v=v 2)$. These values in turn give us 3 (possibly different) models model $_{\dot{v}}$, model $_{\ddot{v}}$ and model $_{\ddot{v}}$, therefore, the final result is an average of the errors or accuracy of the 3 different models. We can take a vote on the best value of $h$ to produce a final model (ex. $v1$) but the final averaged errors is not guaranteed to be unbiased unless we do yet another third CV process.
 
-!!!abstract "Exercise"
-    See the following <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/code/Netsed_CV_with_Grid_Search.ipynb?csf=1&web=1&e=rPWVm8" target="_blank">Jupyter notebook excercise on nested CV</a>
+!!! abstract "Exercise"
+     See the following Jupyter notebook exercise on nested CV:
 
+     - Download exercise (.ipynb): <a href="../exercises/Exercise3_plot_nested_cross_validation_iris.ipnyb" download>Nested CV</a>
 
 ###Model comparison with cross validation
 
@@ -175,8 +176,10 @@ Below we see an example of overfitting. The data can be classified by rectilinea
 
 Figures 5.9-5.12 above are important to show the signs or symptoms of overfitting. As it can be seen the training error is successfully decreased when we overly grow the tree, however the testing error (the more precise indicator of the generalisation ability of the model) has actually remained more or less the same. The elbow shape of the testing error is a clear indicator of overfitting and the reasonable size of the tree lies exactly around the elbow (angle) itself. So for this example the angle lies on around 4 (the number of conditions/nodes required to classify the data).
 
-!!!abstract "Exercise"
-    See the following <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/code/DecisionTrees_DecisionBoundaries_and_OverfittingSymptoms.ipynb?csf=1&web=1&e=0pXxpq" target="_blank">Jupyter notebook exercise on DT overfitting.</a>
+!!! abstract "Exercise"
+     See the following Jupyter notebook exercise on DT overfitting:
+
+     - Download exercise (.ipynb): <a href="../exercises/Exercise4_plot_DecisionTrees_Boundaries_Strengths_Limitations_Overfitting.ipnyb" download>DT overfitting</a>
 
 On the other hand, overfitting can occur when we excessively add data horizontally. In other words if we increase the number of attributes that are not really needed to make a decision then potentially the tree will over grow and the training error will be reduced without reducing the testing error. So the symptoms of overfitting are the same but the underlying cause is different. In the first the data is noisy in the second the attributes are unnecessary. Figure 5.13 below shows this phenomena.
 
@@ -185,8 +188,18 @@ On the other hand, overfitting can occur when we excessively add data horizontal
   <figcaption><strong>Figure 5.13</strong> Decision trees training and testing with phenomenon of overfitting. Note how when we increase the max depth of the tree the testing error forked from the training error which continued to deceivingly decrease, while in reality the testing error were increased for depth . </figcaption>
 </figure>
 
+!!! abstract "Exercise"
+     Please perform the following Jupyter notebook exercise on the Iris dataset that wraps up the unit:
+
+     - Download exercise (.ipynb): <a href="../exercises/Exercise5_Decision_Trees_on_iris.ipnyb" download>DT on Iris</a>
+
+
+!!! abstract "Exercise"
+		 Now try to do the same thing in RapidMiner. It is fun and easier.
+
+
 ##Lesson summary
 
 **In this lesson we have covered the common problems of overfitting and underfitting, and seen how we can detect these problems and address them.**
 
-We used cross validation to come up with an accurate measure for the performance of our model and its prediction ability. We have seen how the elbow method can provide an effective way to detect overfitting, and we can use a simple early stopping technique to overcome it. 
+We used cross validation to come up with an accurate measure for the performance of our model and its prediction ability. We have seen how the elbow method can provide an effective way to detect overfitting, and we can use a simple early stopping technique to overcome it.

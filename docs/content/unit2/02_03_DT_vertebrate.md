@@ -123,7 +123,10 @@ Table: Mammals class dataset with necessary and sufficient features.
 
 ###Video
 
-Please watch this <a href="https://leeds365-my.sharepoint.com/:v:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/presentations/DT_Vertebrate.mp4?csf=1&web=1&e=4rwQdH" target="_blank">video link</a> to see how we can easily build a decision tree model in RapidMiner.
+Watch this video to see how we can easily build a decision tree model in RapidMiner.
+
+<iframe title="Data Science U2: Data Set Vertebrate" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/77c2a17d18924fa49b3d082d6e73033e1d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
 
 
 !!!abstract "Exercise"
@@ -205,15 +208,10 @@ So let us see if we hand in the generated data to the CART decision tree inducti
 Note how the algorithm struggled with the last case as the classes and its corresponding boundary becomes non-linearly separable. Linearly separable classes are those classes that we separate by just a line. Non-linearly separable classes are those that need more than one line to separate them or those that need another more complex shape to separate them, whether the shape is regular such as a circle or hyperbola or non-regular such as a convoluted curve. Here the boundaries are inferred from the decision tree itself, unlike the previous set of figures where the boundaries were assumed when we constructed the datasets. As we can see, the DT struggles the most when the data is diagonal. This is because the CART deals with one feature at a time in its conditions. Obviously, there are ways to work around this issue. The most obvious is to allow the DT to deal with two features inside its conditions. This would add to the complexity of the algorithms, and the problem becomes extenuated when we consider hundreds of features. If we are to consider all possible combinations of even 20 features this would amount to checking $2^{20}=1,048,576$ combinations. If each one has 10 possible values we are talking about $10^{20}=100,000,000,000,000,000,000$ which is clearly problematic. So the DT might not be the best in dealing with these cases. In fact, it is not great at dealing with numerical data in general. Please note that the decision boundary idea is quite powerful and we will utilise it in other techniques more centrally. These better suited techniques include the perceptron, multi-layer perceptron and nearest neighbours classifiers.
 
 !!! abstract "Exercise"
-     You can experiment with how to build a decision tree and visualise the decision boundaries for each of the above datasets in this <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit2/code/DecisionTrees_DecisionBoundaries_and_OverfittingSymptoms.ipynb?csf=1&web=1&e=ADag4L" target="_blank">Jupyter notebook</a>. The exercise shows that DT are not very good at recognising the margin of the dataset when we have the data distributed in rectilinear but non-linearly separable boundaries.
+     In the following Jupyter notebook exercise you will be able to visualise the decision boundaries of a decision trees.
 
-!!! abstract "Exercise"
-     Now is a good time to have a proper build of a decision tree for a real dataset. See the following Jupyter notebook <mark>LINK NEEDED</mark> to see how to build a DT and test its performance for the IRIS dataset.
-
-!!! abstract "Exercise"
-     Now see how to do the same thing as above in RapidMiner, it is fun and easier.
-
+     - Download exercise (.ipynb): <a href="../exercises/Exercise2_Classifier_Decision_Boundaries.ipnyb" download>Classifier decision boundaries</a>
 
 ##Summary
 
-In this lesson we have covered decision trees, an important and pervasive technique for classification. We have looked at the CART algorithm and seen examples of its inner mechanism. We have also discussed limitations and decision boundaries of DT. DT is quite a powerful technique in terms of interpretation and can provide an excellent tool to convey and explain decisions made by it. However it employs a local search strategy when it comes to growing its branches and it has rectilinear decision boundaries. Although there are ways to mitigate these limitations, DT might not be the best technique when we deal with numerical data because it is discretised by nature. Please have a look at the following <a href="exercises/Borrowers-Split for Continuous" target="_blank">DT presentation</a> for a summary of this lesson with this <mark>video</mark>.
+In this lesson we have covered decision trees, an important and pervasive technique for classification. We have looked at the CART algorithm and seen examples of its inner mechanism. We have also discussed limitations and decision boundaries of DT. DT is quite a powerful technique in terms of interpretation and can provide an excellent tool to convey and explain decisions made by it. However it employs a local search strategy when it comes to growing its branches and it has rectilinear decision boundaries. Although there are ways to mitigate these limitations, DT might not be the best technique when we deal with numerical data because it is discretised by nature.

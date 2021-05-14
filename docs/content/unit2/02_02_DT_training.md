@@ -418,7 +418,15 @@ To summarise, the CART algorithm does the following:
 
 The above box shows the pseudocode for a decision tree induction algorithm. The algorithm works by expanding the tree using the best split attribute that yields the best information gain. E is a set of data inside a node and F is the set of attributes that we can use to split the data E.
 
-<mark>DT Video1 for presentation part1</mark>
+###Video
+
+<iframe title="Data Science U2: Decision Tree Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/b41a866336514e04b7de7bb83751ace91d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video</a>
+
+Slides are reproduced from Tan et al (2019), <a href="[https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
+
 
 ###Discretising continuous variables
 
@@ -532,7 +540,7 @@ Table: Borrowers dataset with possible splits for the Annual Income feature
 
 2. We take the in-between values instead of the values themselves because we do not want to make any of the dataset records a boundary case. We do not need to worry about the first and last values since they cannot be a split condition otherwise they yield the feature ineffective- all data is greater than the first value and smaller than the last values. So if we have N records in our dataset (N=10 in the Borrowers dataset), we try N-1 in-between splits. See Table above for the possible splits for annual income after sorting the dataset according to ‘Annual Income’.
 
-3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. See this <a href="exercises/Borrowers-Split for Continuous Values.xlsx" target="_blank">Excel spreadsheet</a> for the different Information Gain and Gini Index calculations for the borrowers dataset.
+3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. Download this <a href="../exercises/Borrowers-Split for Continuous Values.xlsx" download>Excel spreadsheet</a> for the different Information Gain and Gini Index calculations for the borrowers dataset.
 
 Figure 2.12 shows the advantage of a test condition for a continuous attributes, the branching of the tree is much simpler and will lead to a more elegant and less cluttered and easy to interpret tree.
 
@@ -540,6 +548,16 @@ Figure 2.12 shows the advantage of a test condition for a continuous attributes,
   <img src="../images/DS_IMG032.png" alt="Diagram showing comparing two decision trees (DT) with the continuous attribute of 'annual income'. The left-hand DT has a test condition of 'annual income >£100k' allowing a simple and elegant 'yes' or 'no' branching. The right-hand DT with a condition of 'annual income' leads to more complicated branching." />
   <figcaption><strong>Figure 2.12.</strong>  Test condition for a continuous attribute.</figcaption>
 </figure>
+
+###Video
+
+<iframe title="Data Science U2: Decision Tree Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6482d61353304814b630f3684495e8941d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video</a>
+
+Slides are reproduced from Tan et al (2019), <a href="[https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
+
 
 ##Other types of impurity measurements
 
@@ -556,7 +574,7 @@ In fact, these are all valid and you can use any. Albeit an important element of
 
 The entropy is a measure of chaos in a system. It is also used as a measure of information- in fact, information theory depends heavily on it. In this lesson however, we will concentrate on it as a measure of chaos or surprise. If the set of events or items have a probability peak, i.e. a subset of those items have high probability, then the system is less chaotic and the entropy is small. On the other hand, if the events or items have similar probabilities, without a clear winner, then the system is harder to predict and its chaos or entropy is maximal.  
 
-This is reflected in <mark>figure 2.13</mark> above, where we can see that when the two classes have a probability of 0.5 (remember if p=0.5 then 1-p=0.5) then the entropy is maximal =1. It fades away when one of the classes has high probability and the higher the probability the lower the entropy until it reaches 0, when the probability of either classes is 1 (same for one of the classes probability is close to 0 the other would be close to 1). There is always symmetry in all of those impurity when dealing with a binary class problem, but when it is multi-class this is not guaranteed. Below we contrast Gini and entropy to gain understanding of both.
+This is reflected in figure 2.13 above, where we can see that when the two classes have a probability of 0.5 (remember if p=0.5 then 1-p=0.5) then the entropy is maximal =1. It fades away when one of the classes has high probability and the higher the probability the lower the entropy until it reaches 0, when the probability of either classes is 1 (same for one of the classes probability is close to 0 the other would be close to 1). There is always symmetry in all of those impurity when dealing with a binary class problem, but when it is multi-class this is not guaranteed. Below we contrast Gini and entropy to gain understanding of both.
 
 For Class 1 with probability $p$, we want to make sure that:
 
@@ -660,3 +678,17 @@ $$
 $$
 
 The behaviour of all of the three impurity measures have been already shown in figure 2.13
+
+!!! abstract "Exercise"
+    See the following Jupyter notebook that implements and visualises the above impurity metrics.
+
+      - Download exercise (.ipynb): <a href="../exercises/Exercise1_Impurity_Measures.ipnyb" download>Impurity measures</a>
+
+###Video
+
+<iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/3520999e20754c7c85691459092d74701d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video</a>
+
+Slides are reproduced from Tan et al (2019), <a href="[https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.     
