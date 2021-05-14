@@ -1,11 +1,7 @@
 #!/usr/bin/env python
-# Code source: Gaël Varoquaux
-# Modified for documentation by Jaques Grobler
-# Modified by Abdulrahman Altahhan
-# License: BSD 3 clause
-
-# Plotting classifier decision boundaries
 import numpy as np
+# Disclaimer: code adopted from sklearn
+# Plotting classifier decision boundaries
 # Decision Regions
 # Below is a helper function to plot the decision boundaries of
 # any classifier (DT, KNN, Perceptron etc)
