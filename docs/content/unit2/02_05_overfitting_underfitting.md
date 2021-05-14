@@ -134,11 +134,12 @@ Cross validation is a suitable strategy to balance out the performance of the mo
 
 We divide as before into K folds and we try different hyper parameters values until we come up with best set of hyper parameters for Model 1 that uses Techniques 1, we refer to is as Model(Tech1), then we repeat the same process of choosing the best combination of hyper parameters for Model(Tech2). Now we cross validate both models on the outer loop by testing them on $\mathrm{S}_{1}, \mathrm{~S}_{2}$ and $\mathrm{S}_{3}$ folds and we finally come up with the average performances and we pick the technique with the best average.  
 
-On the other hand, in case we are comparing the performance of two techniques on two **different datasets**, then it is less obvious how to choose among the different techniques. This issue often arises when we do benchmarking of different techniques on two different datasets; one of them is already performed earlier and we want to add insight onto the techniques’ properties by applying them on a different problem. In this case, we need to employ statistically comparisons on the significance of the variation of the results. Please refer to section 3.9 of  Tan et al (2020) for more details.
+On the other hand, in case we are comparing the performance of two techniques on two **different datasets**, then it is less obvious how to choose among the different techniques. This issue often arises when we do benchmarking of different techniques on two different datasets; one of them is already performed earlier and we want to add insight onto the techniques’ properties by applying them on a different problem. In this case, we need to employ statistically comparisons on the significance of the variation of the results. Please refer to section 3.9 of  Tan et al (2019) for more details.
 
-###Example: RapidMiner and Jupyter
+!!! abstract "Exercise"
+     See the following RapidMiner model grid search procedure for selecting multiple hyper parameters for a model. The example shows how to optimise the depth of the tree along with the minimum leaf size.
 
-<mark>See this RapidMiner example</mark> of Grid search procedure for selecting multiple hyper parameters for a model. The example shows how to optimise the depth of the tree along with the minimum leaf size. Also how to optimise the K in KNN along with the best distance. The dataset is the iris dataset.
+     - Download exercise (.rmp): <a href="../exercises/DT_Optimise.mp" download>RapidMiner</a>
 
 ##Overfitting
 
