@@ -124,7 +124,7 @@ As we saw earlier an inner CV gives its own best value for $h$ that stems from i
 !!! abstract "Exercise"
      See the following Jupyter notebook exercise on nested CV:
 
-     - Download exercise (.ipynb): <a href="../exercises/Exercise3_plot_nested_cross_validation_iris.ipnyb" download>Nested CV</a>
+     - Download exercise (.ipynb): <a href="../exercises/Exercise3_plot_nested_cross_validation_iris.ipynb" download>Nested CV</a>
 
 ###Model comparison with cross validation
 
@@ -139,7 +139,7 @@ On the other hand, in case we are comparing the performance of two techniques on
 !!! abstract "Exercise"
      See the following RapidMiner model grid search procedure for selecting multiple hyper parameters for a model. The example shows how to optimise the depth of the tree along with the minimum leaf size.
 
-     - Download exercise (.rmp): <a href="../exercises/DT_Optimise.mp" download>RapidMiner</a>
+     - Download exercise (.rmp): <a href="../exercises/DT_Optimise.rmp" download>RapidMiner</a>
 
 ##Overfitting
 
@@ -180,7 +180,7 @@ Figures 5.9-5.12 above are important to show the signs or symptoms of overfittin
 !!! abstract "Exercise"
      See the following Jupyter notebook exercise on DT overfitting:
 
-     - Download exercise (.ipynb): <a href="../exercises/Exercise4_plot_DecisionTrees_Boundaries_Strengths_Limitations_Overfitting.ipnyb" download>DT overfitting</a>
+     - Download exercise (.ipynb): <a href="../exercises/Exercise4_DecisionTrees_Boundaries_Strengths_Limitations_Overfitting.ipynb" download>DT overfitting</a>
 
 On the other hand, overfitting can occur when we excessively add data horizontally. In other words if we increase the number of attributes that are not really needed to make a decision then potentially the tree will over grow and the training error will be reduced without reducing the testing error. So the symptoms of overfitting are the same but the underlying cause is different. In the first the data is noisy in the second the attributes are unnecessary. Figure 5.13 below shows this phenomena.
 
@@ -192,7 +192,7 @@ On the other hand, overfitting can occur when we excessively add data horizontal
 !!! abstract "Exercise"
      Please perform the following Jupyter notebook exercise on the Iris dataset that wraps up the unit:
 
-     - Download exercise (.ipynb): <a href="../exercises/Exercise5_Decision_Trees_on_iris.ipnyb" download>DT on Iris</a>
+     - Download exercise (.ipynb): <a href="../exercises/Exercise5_Decision_Trees_on_iris.ipynb" download>DT on Iris</a>
 
 
 !!! abstract "Exercise"
