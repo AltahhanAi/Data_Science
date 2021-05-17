@@ -682,7 +682,7 @@ The behaviour of all of the three impurity measures have been already shown in f
 !!! abstract "Exercise"
     See the following Jupyter notebook that implements and visualises the above impurity metrics.
 
-      - Download exercise (.ipynb): <a href="../exercises/Exercise1_Impurity_Measures.ipnyb" download>Impurity measures</a>
+      - Download exercise (.ipynb): <a href="../exercises/Exercise1_Impurity_Measures.ipynb" download>Impurity measures</a>
 
 ###Video
 

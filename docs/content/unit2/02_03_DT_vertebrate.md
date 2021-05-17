@@ -210,7 +210,7 @@ Note how the algorithm struggled with the last case as the classes and its corre
 !!! abstract "Exercise"
      In the following Jupyter notebook exercise you will be able to visualise the decision boundaries of a decision trees.
 
-     - Download exercise (.ipynb): <a href="../exercises/Exercise2_Classifier_Decision_Boundaries.ipnyb" download>Classifier decision boundaries</a>
+     - Download exercise (.ipynb): <a href="../exercises/Exercise2_Classifier_Decision_Boundaries.ipynb" download>Classifier decision boundaries</a>
 
 ##Summary
 

@@ -54,7 +54,9 @@ That is cool because we can see that $x=5$ is indeed where the function becomes 
 This was for one variable function, but for functions with multiple variables (attributes) we have to take partial derivative with respect to the variable that we want to minimise the function at. If we want to find the minimum for multiple variables at once, we take the gradient of the function, which is nothing but a series of partial derivatives with specific direction. You can find out more about this from any source such as Khan Academy or any calculus course. But the idea is really simple, we take the derivative and we set to 0. We are going to utilise this trick in several units, so please familiarise yourself with it. This process is called optimisation.
 
 !!! abstract "Exercise"
-    See this <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/MinimisingSimpleFunciton.ipynb?csf=1&web=1&e=EEtiim" target="_blank">notebook</a> for a quick hands on.
+    <mark>See this notebook for a quick hands on.</mark>
+
+    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/MinimisingSimpleFunciton.ipynb?csf=1&web=1&e=EEtiim" download>Notebook</a>
 
 **OK, let us direct our attention back into minimising our loss function. The loss function can be written as:**
 
