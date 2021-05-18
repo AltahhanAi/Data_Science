@@ -11,6 +11,8 @@ We can fit a linear model that we show below on the left. On the right we show a
 
   <a href="https://leeds365-my.sharepoint.com/:x:/g/personal/scsaalt_leeds_ac_uk/ESH0W2_VRM1DtqzyY890SrUBSIkhqjhRbPyU39E6eOi0dg?e=fdYfYc" target="_blank" class="md-button">Data set XML</a>
 
+<mark>file location</mark>  
+
 <figure role="group">
   <img src="../images/DS_IMG099.png" alt="Two line graphs showing a linear regression model fitting to data points. Left: 10 data points. Right: 50 data points." />
   <figcaption><strong>Figure 4.2.</strong> A linear regression model (red line) that fits the blue data points. Left: 10 data points, right: 50 data points.</figcaption>
@@ -19,19 +21,19 @@ We can fit a linear model that we show below on the left. On the right we show a
 !!! info "Important note"
 	We denote matrices by a bold face capital letter, vectors by a bold face letter and variables by a normal face letter and components of a vector will be italic. So for example:
 
-    * <mark>$x_n$ is a real value that corresponds to data point n in one dimension space.</mark>
+    * $\mathrm{X}_{n}$ is a real value that corresponds to data point n in one dimension space.
 
-    * <mark>while $x_n$ is a vector of multiple components that corresponds to data point $n$ in D-dimensional space.</mark>
+    * while $\mathbf{X}_{n}$ is a vector of multiple components that corresponds to data point $n$ in D-dimensional space.
 
-    * <mark>$t_n$ is a real value corresponds to a target $n$ in one dimension space.</mark>
+    * $t_{n}$ is a real value corresponds to a target $n$ in one dimensional space.
 
-    * <mark>$t_n$ is a real value vector that corresponds to a multi-output target n in $K$ dimensional space.</mark>
+    * $\boldsymbol{t}_{n}$ is a real value vector that corresponds to a multi-output target n in $K$ dimensional space.</mark>
 
-    * <mark>$x_i$ (and $x_(n,i)$ ) is components $i$ of some vector x (or $x_n$) depending on the context.</mark>
+    * $x_{i}\left(\right.$ and $\left.x_{n, i}\right)$ is components $i$ of some vector $\mathbf{x}\left(\right.$ or $\left.\mathbf{x}_{n}\right)$ depending on the context.
 
-    * <mark>while $w$ is a weight vector of $D$ (or $M$) components  in other words it is a vector of $D$ rows and 1 column.</mark>
+    * while $\mathbf{W}$ is a weight vector of $D$ (or $M)$ components; in other words it is a vector of $D$ rows and 1 column.
 
-    * <mark>while $W$ is a weight matrix of $D×K$ (or $M×K$) components. In other words it has $D rows and $K$ columns.</mark>
+    * $\mathbf{W}$ is a weight matrix of $D \times K($ or $M \times K)$ components. In other words it has $D$ rows and $K$ columns.
 
 
 ##Inference in Linear Regression Models

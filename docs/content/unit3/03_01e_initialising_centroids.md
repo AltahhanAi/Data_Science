@@ -12,8 +12,6 @@ In figure 1.7 below we see an example where the clusters are either being merged
 
 **<p style="text-align: center;">Figure 1.7:** *K-means not working well due an unlucky choice of the initial centroids. Images are reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.*</p>
 
-<a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>
-
 Let us see another example where we have 10 clusters (10 centroids). As we can see below, the data is actually divided into two pairs of clusters. If we placed two centroids in one of the paired clusters then the K-means will be able to correctly adjust the centroids and reach a satisfactory result.
 
 ![Graph illustrating k-means working well due to good, informative choice of initial centroids.](images/DS_IMG181.png)

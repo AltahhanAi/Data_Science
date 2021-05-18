@@ -1,4 +1,4 @@
-# Basic numerical classification
+# Basic numerical distance-based classification
 
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:

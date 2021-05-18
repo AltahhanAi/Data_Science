@@ -1,6 +1,8 @@
 #Simple Linear Regression Models
 
-In this unit we talk about a simple yet effective group of data mining models, namely linear models. These are called **supervised learning techniques** since we train our models via a training set that has the required answers that we are after. Those answers are called labels. The idea is that later on after we train our model, if we present a fresh new case to it, the model will be able to guess what its answers. This brings us to two issues that we will deal with.
+**In this unit we talk about a simple yet effective group of data mining models, namely linear models.**
+
+These are called **supervised learning techniques** since we train our models via a training set that has the required answers that we are after. Those answers are called labels. The idea is that later on after we train our model, if we present a fresh new case to it, the model will be able to guess what its answers. This brings us to two issues that we will deal with.
 
 ##What is regression?
 

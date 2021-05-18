@@ -57,6 +57,7 @@ Below in figure 1.10, we show results of bisecting K-means on the problem that w
 
 Please refer to section 5.4.2 of Tan et al 2019.
 
-!!! Abstract "Exercise"
+!!! abstract "Exercise"
+    <mark>See the following Jupyter Notebook exercise for the three types of clustering: partitional, hierarchical and spectral.
 
-    See the following tutorial in <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/ClusterAnalysisTutorial.ipynb?csf=1&web=1&e=XbPlrt" target="_blank">Jupyter notebook</a> for the three types of clustering: partitional, hierarchical and spectral.
+    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/ClusterAnalysisTutorial.ipynb?csf=1&web=1&e=XbPlrt" download>Cluster analysis</a>
