@@ -540,7 +540,7 @@ Table: Borrowers dataset with possible splits for the Annual Income feature
 
 2. We take the in-between values instead of the values themselves because we do not want to make any of the dataset records a boundary case. We do not need to worry about the first and last values since they cannot be a split condition otherwise they yield the feature ineffective- all data is greater than the first value and smaller than the last values. So if we have N records in our dataset (N=10 in the Borrowers dataset), we try N-1 in-between splits. See Table above for the possible splits for annual income after sorting the dataset according to ‘Annual Income’.
 
-3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. Download this <a href="../exercises/Borrowers-Split for Continuous Values.xlsx" download>Excel spreadsheet</a> for the different Information Gain and Gini Index calculations for the borrowers dataset.
+3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. Download this <a href="../exercises/Borrowers-Split-for-Continuous-Values.xlsx" download>Excel spreadsheet</a> for the different Information Gain and Gini Index calculations for the borrowers dataset.
 
 Figure 2.12 shows the advantage of a test condition for a continuous attributes, the branching of the tree is much simpler and will lead to a more elegant and less cluttered and easy to interpret tree.
 
@@ -556,7 +556,7 @@ Figure 2.12 shows the advantage of a test condition for a continuous attributes,
 
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video</a>
 
-Slides are reproduced from Tan et al (2019), <a href="[https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
+Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
 
 ##Other types of impurity measurements
