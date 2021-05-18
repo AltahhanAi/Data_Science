@@ -6,7 +6,7 @@
     * build an ensemble of classification models and to take advantage of their consorted prediction outcome
     *	build a random forest model.
 
-**Please read sections 6.10, 6.10.1, 6.10.2 and 6.10.3 of Tan et al (2019).**
+**Please read sections 6.10, 6.10.1, 6.10.2, 6.10.3 and 6.11.4 of Tan et al (2019).**
 
 Watch this video <mark>DS_VID011</mark> to learn more about the concepts of ensemble methods.
 
@@ -17,7 +17,9 @@ You can also download the slides shown in the video <mark>link once finalised</m
 **Read sections 6.10.4 and 6.10.6 from Tan et al (2019) before proceeding to the next exercise.**
 
 !!! abstract "Exercise"
-    See the following <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/plot_forest_iris_titanic.ipynb?csf=1&web=1&e=kE2TRQ" target="_blank">Jupyter notebook</a> for comparison of decision trees and RandomForests classifiers.
+    <mark>See the following Jupyter Notebook exercise for comparison of decision trees and RandomForests classifiers.
+
+    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/plot_forest_iris_titanic.ipynb?csf=1&web=1&e=kE2TRQ" download>DT and RandomForest</a>
 
 
 !!! abstract "Exercise"
@@ -27,4 +29,4 @@ Watch this video <mark>DS_VID012</mark> see how to do method comparison of multi
 
 ##Lesson summary
 
-In this lesson, you have learnt about the benefits of assorted set of models (ie an ensemble of models) that can be utilised to gain advantage over using one model. In particular, you became familiar with RandomForest as an example of a bagging ensemble technique to enhance the capabilities of decision trees. 
+In this lesson, you have learnt about the benefits of assorted set of models (ie an ensemble of models) that can be utilised to gain advantage over using one model. In particular, you became familiar with RandomForest as an example of a bagging ensemble technique to enhance the capabilities of decision trees.

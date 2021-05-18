@@ -56,7 +56,7 @@ This was for one variable function, but for functions with multiple variables (a
 !!! abstract "Exercise"
     <mark>See this notebook for a quick hands on.</mark>
 
-    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/MinimisingSimpleFunciton.ipynb?csf=1&web=1&e=EEtiim" download>Notebook</a>
+    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/Exercise_MinimisingSimpleFunciton.ipynb?csf=1&web=1&e=7z9dpP" download>Minimising simple function</a>
 
 **OK, let us direct our attention back into minimising our loss function. The loss function can be written as:**
 

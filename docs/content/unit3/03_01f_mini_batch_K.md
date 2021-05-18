@@ -75,6 +75,7 @@ See this video and presentation <mark>DS_VID010</mark> for a summary of the abov
 
 A very similar idea can be adopted to tackle clustering a stream of data, therefore we omit its details for brevity. See the apache spark example in the resources section for an idea, but bear in mind that you are not required to perform this activity, this is just for future reference.
 
-!!! Abstract "Exercise"
+!!! abstract "Exercise"
+    <mark>See the following Jupyter Notebook exercise for a comparison of K-means and mini-batch K-means in sklearn.
 
-    See the following <a href="https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/plot_mini_batch_kmeans.ipynb?csf=1&web=1&e=9shdJZ" target="_blank">Jupyter notebook</a> for a comparison of K-means and mini-batch K-means in sklearn.
+    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/Exercise_plot_mini_batch_kmeans.ipynb?csf=1&web=1&e=AXotQE" download>mini batch K-means</a>
