@@ -245,3 +245,23 @@ a.newtab code {
 .md-typeset .textdescription > summary::before {
     display: none;
 }
+
+/*  TABLES */
+
+.md-typeset table:not([class]) {
+    font-size: .7rem;
+}
+
+thead {
+    background: #212121;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+thead th:not(:last-of-type), tbody tr td:not(:last-of-type) {
+    border-right: 1px solid #ccc;
+}
+
+tbody tr td {
+    border-bottom: 1px solid #ccc;
+}

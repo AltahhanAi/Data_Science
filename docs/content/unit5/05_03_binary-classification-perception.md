@@ -16,8 +16,6 @@ $$
 \end{array}\right.
 $$
 
-<mark>CJ comment: Thi equation doesn't translate very well accessibly I don't think.</mark>
-
 So all data points that are misclassified will have a negative value,
 
 <span>3.</span> Hence the loss-like function (called the perceptron criterion) can be written be make positive by multiplying all the misclassified data points by -1 to get:
@@ -72,11 +70,12 @@ In fact, we can omit the learning rate because multiplying by it (or not) will n
 
 As we have seen earlier in regression, all algorithms and techniques can be directly applied when we move from the input space $\mathbf{x}$ into a feature space $\boldsymbol{\phi}$ often that have higher dimension than $\mathbf{x}$. The benefit of mapping into a new higher dimension feature space is that it will potentially render the non-linearity of the class's boundaries in $\mathbf{x}$ into linear boundaries in $\boldsymbol{\phi}$ as we can see in the figure 3.2 below.
 
+<mark>IMAGES NEEDED</mark>
+
 <figure role="group">
   <img src="../images/" alt="Brief description." />
   <figcaption>
     <p><strong>Figure 3.2.</strong> Two examples (top and bottom) of the benefit of mapping input space to a feature space, where the data becomes linearly separable.</p>
-    <p>IMAGES NEEDED</p>
   </figcaption>
 </figure>
 

@@ -12,7 +12,7 @@ the negative side belongs to class -1.
 <figure role="group">
   <img src="../images/DS_IMG127.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figure (2.1): xxx.</strong></p>
+    <p><strong>Figure 2.1: xxx.</strong></p>
   </figcaption>
 </figure>
 
@@ -31,7 +31,7 @@ We can expand this to an arbitrary decision boundary on the $x$ axis. The exampl
 <figure role="group">
   <img src="../images/DS_IMG128.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figure (2.2): xxx.</strong></p>
+    <p><strong>Figure 2.2: xxx.</strong></p>
   </figcaption>
 </figure>
 
@@ -46,28 +46,28 @@ Note that in this case $x_{2}$ does not play any role in the decision and our gr
 <figure role="group">
   <img src="../images/DS_IMG129.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.3): xxx.</strong></p>
+    <p><strong>Figure 2.3: xxx.</strong></p>
   </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG130.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.4): xxx.</strong></p>
+    <p><strong>Figure 2.4: xxx.</strong></p>
   </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG131.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.5): xxx.</strong></p>
+    <p><strong>Figure 2.5: xxx.</strong></p>
   </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG132.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.6): xxx.</strong></p>
+    <p><strong>Figure 2.6: xxx.</strong></p>
   </figcaption>
 </figure>
 
@@ -99,7 +99,7 @@ When our dataset is as shown in figure 2.7 below:
 <figure role="group">
   <img src="../images/DS_IMG133.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.7): xxx.</strong></p>
+    <p><strong>Figure 2.7: xxx.</strong></p>
   </figcaption>
 </figure>
 
@@ -142,7 +142,7 @@ It is important to note that we need to use a function $f$ to map the values $\m
 <figure role="group">
   <img src="../images/DS_IMG134.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.8): xxx.</strong></p>
+    <p><strong>Figure 2.8: xxx.</strong></p>
   </figcaption>
 </figure>
 
@@ -155,7 +155,7 @@ Function $f$ is called an activation function because it activates, or issues a 
 <figure role="group">
   <img src="../images/DS_IMG135.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.9): xxx.</strong></p>
+    <p><strong>Figure 2.9: xxx.</strong></p>
   </figcaption>
 </figure>
 
@@ -164,7 +164,7 @@ Also for example if we want to confine the values to a $] 0,1[$ interval while a
 <figure role="group">
   <img src="../images/DS_IMG136.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.10): xxx.</strong></p>
+    <p><strong>Figure 2.10: xxx.</strong></p>
   </figcaption>
 </figure>
 
@@ -179,7 +179,7 @@ In other words, it takes the same value of $x$ if $x$ is positive and 0 otherwis
 <figure role="group">
   <img src="../images/DS_IMG137.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.11): xxx.</strong></p>
+    <p><strong>Figure 2.11: xxx.</strong></p>
   </figcaption>
 </figure>
 
@@ -198,7 +198,7 @@ Some examples of different straight line decision boundaries are shown below in 
 <figure role="group">
   <img src="../images/DS_IMG138.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.12): Examples of linear models for classification.</strong> No data is shown.</p>
+    <p><strong>Figure 2.12: Examples of linear models for classification.</strong> No data is shown.</p>
   </figcaption>
 </figure>
 
@@ -207,7 +207,7 @@ You might ask, but how should we tune the model? And can we optimise its paramet
 <figure role="group">
   <img src="../images/DS_IMG139.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures (2.13): Schematic representation of a linear models for classification.</strong></p>
+    <p><strong>Figure 2.13: Schematic representation of a linear models for classification.</strong></p>
   </figcaption>
 </figure>
 

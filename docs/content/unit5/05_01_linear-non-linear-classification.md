@@ -7,7 +7,7 @@ There are numerous techniques for classification, but in this unit we will focus
 <figure role="group">
   <img src="../images/DS_IMG031.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figure (1): A Schematic Illustration of classification.</strong> Figure (1) shows a schematic representation of a classification model. As it can be seen, the classification model maps an input x with an output y. the input is a set of attributes for one record and the output is the predicted class of the record. The record can be any object or entity represented in our dataset as one record.</p>
+    <p><strong>Figure 1: A Schematic Illustration of classification.</strong> Figure (1) shows a schematic representation of a classification model. As it can be seen, the classification model maps an input x with an output y. the input is a set of attributes for one record and the output is the predicted class of the record. The record can be any object or entity represented in our dataset as one record.</p>
   </figcaption>
 </figure>
 
