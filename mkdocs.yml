@@ -61,11 +61,12 @@ nav:
         - '4. Learning from A Probabilistic Perspective': content/unit4/04_4_learning_from_probabilistic_perspective.md
         - '5. References': content/unit4/04_05_unit_references.md
     - Unit 5:
-        - '1. Title':  content/unit5/05_01_title.md
-        - '2. Title':  content/unit5/05_02_title.md
-        - '3. Title':  content/unit5/05_03_title.md
-        - '4. Title':  content/unit5/05_04_title.md
-        - '5. Title':  content/unit5/05_05_title.md
+        - '1. Linear and non-Linear classification': content/unit5/05_01_linear-non-linear-classification.md
+        - '2. Linear model for classification': content/unit5/05_02_linear-model-for-classification.md
+        - '3. Binary classification: The perception': content/unit5/05_03_binary-classification-perception.md
+        - '4. Binary classification: Logistic regression':  content/unit5/05_04_binary-classification-logistic-regression.md
+        - '5. Multi-class problems':  content/unit5/05_05_multi-class-problems.md
+        - '8. Unit references':  content/unit5/05_08_unit_references.md
 
 theme:
   name: material
