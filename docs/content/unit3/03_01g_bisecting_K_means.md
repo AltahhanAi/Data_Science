@@ -53,11 +53,11 @@ Below in figure 1.10, we show results of bisecting K-means on the problem that w
   <figcaption><strong>Figure 1.10</strong> Bisecting K-means overcoming the issues of unlucky centroid initialisation. Image reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.</figcaption>
 </figure>    
 
-##Density-based clustering: DBSCAN algorithm
+##Agglomerative clustering
 
-Please refer to section 5.4.2 of Tan et al 2019.
+Please refer to section 5.3 of Tan et al 2019.
 
 !!! abstract "Exercise"
-    <mark>See the following Jupyter Notebook exercise for the three types of clustering: partitional, hierarchical and spectral.
+    See the following Jupyter Notebook exercise for two types of clustering: partitional and hierarchical.
 
-    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/ClusterAnalysisTutorial.ipynb?csf=1&web=1&e=XbPlrt" download>Cluster analysis</a>
+    - Download exercise (.ipynb): <a href="../files/Exercise4_ClusterAnalysisTutorial.ipynb" download>Exercise 4</a>
