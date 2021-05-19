@@ -113,57 +113,68 @@ From here it can be seen that we are unable to do least squares on the cost func
 
 The update rules can be written as:
 
-!!! info "Algorithm 4''': Regularised Mini-Batch Stochastic Gradient Descent learning for two layers Neural Network Model with sigmoid and identity activation functions for the hidden and output layers respectively‎"
+!!! algorithm-heading "Algorithm 4''': Regularised Mini-Batch Stochastic Gradient Descent learning for two layers Neural Network Model with sigmoid and identity activation functions for the hidden and output layers respectively‎"
 
   	**Input:**
 
-		Input set as a design matrix $\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top} \operatorname{each} \mathbf{x}_{n}$ is of size $D$
+    !!! algorithm ""
 
-		Labels set as a matrix $\mathbf{T}=\left[\boldsymbol{t}_{1}^{\top}, \ldots, \boldsymbol{t}_{N}^{\top}\right]^{\top}$ each $\boldsymbol{t}_{n}$ is of size $K$
+    	Input set as a design matrix $\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top} \operatorname{each} \mathbf{x}_{n}$ is of size $D$
 
-		$\mathbf{X}^{\prime}, \mathbf{T}^{\prime}$ holdout validation set that have similar structure to the above $\eta_{0}$ : initial learning rate
+    	Labels set as a matrix $\mathbf{T}=\left[\boldsymbol{t}_{1}^{\top}, \ldots, \boldsymbol{t}_{N}^{\top}\right]^{\top}$ each $\boldsymbol{t}_{n}$ is of size $K$
 
-		b: mini-batch size (specifies how frequent we want to update the weights $\mathbf{W}$ and $\mathbf{W}$ )
+    	$\mathbf{X}^{\prime}, \mathbf{T}^{\prime}$ holdout validation set that have similar structure to the above $\eta_{0}$ : initial learning rate
 
-		$\lambda:$ regularisation parameter
+    	b: mini-batch size (specifies how frequent we want to update the weights $\mathbf{W}$ and $\mathbf{W}$ )
 
-		ep: max number of epochs
+    	$\lambda:$ regularisation parameter
 
-		$\varepsilon:$ early stopping threshold
+    	ep: max number of epochs
+
+    	$\varepsilon:$ early stopping threshold
 
   	**Output**: $\mathbf{W}$ and $\mathbf{W}$ an approximation for optimum weights $\mathbf{W}^{*}$ and $\mathbf{W}^{*}$; a matrix of size $M \times K$ and $(D+1) \times M$ respectively.
 
   	**RegSGD VMiniBLRegressNN** (X, $\left.\mathbf{T}, \mathbf{X}^{\prime}, \mathbf{T}^{\prime}, \eta_{0}, b, \lambda, e p, \varepsilon\right)$:
 
-    !!! quote ""
+    !!! algorithm ""
         initialise $\mathbf{W}, \mathbf{w}, \mathbf{W}^{\prime}=\mathbf{W}, \dot{\mathbf{W}}^{\prime}=\mathbf{\mathbf { W }}, \eta=\eta_{0} \text { and } \bar{J}_{0}=\infty$
 
-        For epoch $= 1:ep$ <span style="float: right;"># hyper parameter: max number of epochs</span>
+        For epoch $= 1:ep$
+        <span class="algorithm-line-comment"># *hyper parameter: max number of epochs*</span>
 
-        !!! quote ""
-            For iteration $\tau=1: q$ <span style="float: right;"># $q≥N/ b$</span>
+        !!! algorithm ""
+            For iteration $\tau=1: q$
+            <span class="algorithm-line-comment"># *$q≥N/ b$*</span>
 
-            !!! quote ""
+            !!! algorithm ""
 
-                Select a mini-batch $\mathbf{X}_{\tau}, \mathbf{T}_{\tau}$ of size $b$ from $\mathbf{X}, \mathbf{T}$ <span style="float: right;"># randomly or by shuffling & partitioning</span>
+                Select a mini-batch $\mathbf{X}_{\tau}, \mathbf{T}_{\tau}$ of size $b$ from $\mathbf{X}, \mathbf{T}$
+                <span class="algorithm-line-comment"># *randomly or by shuffling & partitioning*</span>
 
-								$\mathbf{X}_{\tau}=\left[\mathbf{1}_{\mathbf{b}}, \mathbf{X}_{\tau}\right]$ <span style="float: right;"># add dummy feature to the design matrix</span>
+				$\mathbf{X}_{\tau}=\left[\mathbf{1}_{\mathbf{b}}, \mathbf{X}_{\tau}\right]$
+                <span class="algorithm-line-comment"># *add dummy feature to the design matrix*</span>
 
-                $\mathbf{\Phi}_{\tau}=g\left(\mathbf{x}_{\tau} \mathbf{w}\right)$ <span style="float: right;"># element-wise sigmoid $g(\alpha)=\frac{1}{1+e^{-\alpha}}$</span>
+                $\mathbf{\Phi}_{\tau}=g\left(\mathbf{x}_{\tau} \mathbf{w}\right)$
+                <span class="algorithm-line-comment"># *element-wise sigmoid $g(\alpha)=\frac{1}{1+e^{-\alpha}}$*</span>
 
-								$\mathbf{W}^{\prime}=\left(1-\frac{1}{b} \eta \lambda\right) \mathbf{W}^{\prime}+\frac{1}{b} \eta \mathbf{\Phi}_{\tau}^{\top}\left(\mathbf{T}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{W}^{\prime}\right)$ <span style="float: right;"># update with regularisation</span>
+				$\mathbf{W}^{\prime}=\left(1-\frac{1}{b} \eta \lambda\right) \mathbf{W}^{\prime}+\frac{1}{b} \eta \mathbf{\Phi}_{\tau}^{\top}\left(\mathbf{T}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{W}^{\prime}\right)$
+                <span class="algorithm-line-comment"># *update with regularisation*</span>
 
-								$\dot{\mathbf{W}}^{\prime}=\left(1-\frac{1}{b} \eta \lambda\right) \dot{\mathbf{W}}^{\prime}+\frac{1}{b} \eta \mathbf{X}_{\tau}^{\top}\left(\mathbf{T}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{W}^{\prime}\right) \mathbf{W}^{\prime \top} \mathbf{\Phi}_{\tau}\left(\mathbf{1}-\mathbf{\Phi}_{\tau}\right)$
+				$\dot{\mathbf{W}}^{\prime}=\left(1-\frac{1}{b} \eta \lambda\right) \dot{\mathbf{W}}^{\prime}+\frac{1}{b} \eta \mathbf{X}_{\tau}^{\top}\left(\mathbf{T}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{W}^{\prime}\right) \mathbf{W}^{\prime \top} \mathbf{\Phi}_{\tau}\left(\mathbf{1}-\mathbf{\Phi}_{\tau}\right)$
 
-								Decay $η$ <span style="float: right;"># if necessary</span>
+			Decay $η$
+            <span class="algorithm-line-comment"># *if necessary*</span>
 
-								$\mathbf{\Phi}^{\prime}=g\left(\mathbf{X}^{\prime} \mathbf{W}\right)$
+			$\mathbf{\Phi}^{\prime}=g\left(\mathbf{X}^{\prime} \mathbf{W}\right)$
 
-								$\bar{J}_{e p}=\frac{1}{2 N}\left\|\mathbf{T}^{\prime}-\mathbf{\Phi}^{\prime} \mathbf{W}^{\prime}\right\|^{2}$ <span style="float: right;"># calculate the loss or other metric on the validation set</span>
+			$\bar{J}_{e p}=\frac{1}{2 N}\left\|\mathbf{T}^{\prime}-\mathbf{\Phi}^{\prime} \mathbf{W}^{\prime}\right\|^{2}$
+            <span class="algorithm-line-comment"># *calculate the loss or other metric on the validation set*</span>
 
-								If $\bar{J}_{e p}>\bar{J}_{e p-1}+\varepsilon:$ break <span style="float: right;"># simple early stopping or other more sophisticate cond.</span>
+			If $\bar{J}_{e p}>\bar{J}_{e p-1}+\varepsilon:$ break
+            <span class="algorithm-line-comment"># *simple early stopping or other more sophisticate cond.*</span>
 
-								Else $\mathbf{W}=\mathbf{W}^{\prime}$ and $\mathbf{W}=\mathbf{W}^{\prime}$
+			Else $\mathbf{W}=\mathbf{W}^{\prime}$ and $\mathbf{W}=\mathbf{W}^{\prime}$
 
         Return the final solution $W$ and $\dot{\mathbf{W}}$
 
@@ -172,11 +183,14 @@ Note that we did not have an algorithm for the least squares because we cannot d
 !!!info "Preventing overfitting for neural networks"
 	To understand how to prevent overfitting in neural networks look at the section **Preventing overfitting the data and overshooting the loss minimum** and at Algorithm 5''.
 
-##Exercise
 
-See the following Jupyter notebook for an example of non-linear regression.
+!!! abstract "Exercise"
 
-<a href="https://leeds365-my.sharepoint.com/personal/scsaalt_leeds_ac_uk/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fscsaalt%5Fleeds%5Fac%5Fuk%2FDocuments%2FDownloads%2FResources%20for%20ODL%20MSc%2FData%20Science%20Contents%2Funit3%2Fcode%2Fnon%5Flinear%5Fregression%5Fneural%5Fnetwork%2Eipynb&parent=%2Fpersonal%2Fscsaalt%5Fleeds%5Fac%5Fuk%2FDocuments%2FDownloads%2FResources%20for%20ODL%20MSc%2FData%20Science%20Contents%2Funit3%2Fcode&originalPath=aHR0cHM6Ly9sZWVkczM2NS1teS5zaGFyZXBvaW50LmNvbS86dTovZy9wZXJzb25hbC9zY3NhYWx0X2xlZWRzX2FjX3VrL0VjbnFGWURfNjFsSG5sQTBZX2VuY1RNQjRxR0lTMzV1bGNFTnRFZnpDakV0LWc%5FcnRpbWU9OGhPREpoOEwyVWc" target="_blank" class="md-button">Non-linear regression neural network Jupyter Notebook</a>
+    See the following Jupyter notebook for an example of non-linear regression.
+
+    <mark>FILE MISSING</mark>
+
+    <a href="../exercises/xxx.ipynb" target="_blank" download>Non-linear regression neural network Jupyter Notebook (.ipynb)</a>
 
 ##Summary
 
