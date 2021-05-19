@@ -101,7 +101,7 @@ $$
 \left(\begin{array}{c}
 G_{1} S_{1} A_{1} A_{2} \\
 P P P T
-\end{array}\right)=1-\left[\left(\frac{1}{3}\right)^{2}+\left(\frac{2}{3}\right)^{2}\right] \\
+\end{array}\right)=1-\left[\left(\frac{1}{4}\right)^{2}+\left(\frac{3}{4}\right)^{2}\right] \\
 =0.375
 \end{array}
 $$
