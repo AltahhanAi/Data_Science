@@ -20,6 +20,6 @@ Harry|2|1|5|5|
 **<p style="text-align: center;">Figure 1.6:** *Elbow method for a simple movie dataset of 6 users and their ranking for 4 movies. The figure shows that SSE slowed down significantly at K=2, the elbow of the figure, which means K=2 is the optimal value for this clustering problem. Clearly two clusters is the optimal choice in this case.*</p>
 
 !!! abstract "Exercise"
-    <mark>See the following tutorial in Jupyter notebook for a for a pure Python K-means algorithm implementation.
+    See the following tutorial in Jupyter notebook for a pure Python K-means algorithm implementation.
 
-    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/Exercise_ClusteringAlgorithms.ipynb?csf=1&web=1&e=Ef4VxQ" download>Clustering algorithms</a>
+    - Download exercise (.ipynb): <a href="../files/Exercise2_ClusteringAlgorithms.ipynb" download>Exercise 2</a>

@@ -101,7 +101,7 @@ $$
 \left(\begin{array}{c}
 G_{1} S_{1} A_{1} A_{2} \\
 P P P T
-\end{array}\right)=1-\left[\left(\frac{1}{3}\right)^{2}+\left(\frac{2}{3}\right)^{2}\right] \\
+\end{array}\right)=1-\left[\left(\frac{1}{4}\right)^{2}+\left(\frac{3}{4}\right)^{2}\right] \\
 =0.375
 \end{array}
 $$
@@ -159,13 +159,13 @@ $$
 \begin{array}{l}
 \text { Impurity }\left(\begin{array}{c}
 G_{2} S_{2} \\
-T
-\end{array}\right)=1-\left[\left(\frac{2}{2}\right)^{2}+(0)^{2}\right]=0 \\
+T T
+\end{array}\right)=1-\left[\left(\frac{2}{2}\right)^{2}+(0)^{2}\right]=0\\
 \text { Impurity }\left(\begin{array}{c}
 G_{1} S_{1} A_{1} A_{2} \\
 P P P T
-\end{array}\right)=1-\left[\left(\frac{1}{3}\right)^{2}+\left(\frac{2}{3}\right)^{2}\right]=0.375 \\
-\text { Gain ('makes calls') }=0.5-\left(\frac{2}{6} \times 0+\frac{4}{6} \times 0.375\right)
+\end{array}\right)=1-\left[\left(\frac{1}{4}\right)^{2}+\left(\frac{3}{4}\right)^{2}\right]=0.375\\
+\text { Gain('makes calls') }=0.5-\left(\frac{2}{6} \times 0+\frac{4}{6} \times 0.375\right)=0.25
 \end{array}
 $$
 
@@ -686,8 +686,7 @@ The behaviour of all of the three impurity measures have been already shown in f
 
 ###Video
 
-<iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/3520999e20754c7c85691459092d74701d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
+<iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/649cc37c4bc446d9bb37fcf436121d471d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video</a>
 

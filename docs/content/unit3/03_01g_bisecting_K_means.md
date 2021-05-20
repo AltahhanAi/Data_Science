@@ -8,7 +8,7 @@ The idea is as follows: In order to specify the K centroids, we can employ the i
 
 The set of bisected K-clusters, however, may not need refinement because the splitting procedure (by using 2-means algorithm) is done by looking locally at a sub cluster and not at the level of the whole dataset. To refine further the chosen K-clusters, we choose the centroids of the bisected K-clusters as the initial centroids of a final new run of K-means algorithms, which in turn finds us the best K-clusters and their centroids. The algorithm is shown below.
 
-!!! info "Algorithms 3: Bisecting K-means"
+!!! algorithm-heading "Algorithms 3: Bisecting K-means"
 
     **Input:**
 
@@ -22,17 +22,17 @@ The set of bisected K-clusters, however, may not need refinement because the spl
 
     **Bisect K-means** (**X**, *K*, trials):
 
-    !!! quote ""
+    !!! algorithm ""
         Initiate a list of clusters $C L=\left\{C_{1}\right\}$, initially cluster $C_{1}=\mathbf{X}$ <span style="float: right;"># by assigning $\boldsymbol{C}=[1,1, \ldots, 1]$ </span>
 
         **Repeat**
 
-        !!! quote ""
+        !!! algorithm ""
             Remove a cluster from the list $C L$
 
             **For** $i=1$ to trials
 
-            !!! quote ""
+            !!! algorithm ""
 
                 Bisect the selected cluster using basic 2-means
 
@@ -53,11 +53,11 @@ Below in figure 1.10, we show results of bisecting K-means on the problem that w
   <figcaption><strong>Figure 1.10</strong> Bisecting K-means overcoming the issues of unlucky centroid initialisation. Image reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.</figcaption>
 </figure>    
 
-##Density-based clustering: DBSCAN algorithm
+##Agglomerative clustering
 
-Please refer to section 5.4.2 of Tan et al 2019.
+Please refer to section 5.3 of Tan et al 2019.
 
 !!! abstract "Exercise"
-    <mark>See the following Jupyter Notebook exercise for the three types of clustering: partitional, hierarchical and spectral.
+    See the following Jupyter Notebook exercise for two types of clustering: partitional and hierarchical.
 
-    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/ClusterAnalysisTutorial.ipynb?csf=1&web=1&e=XbPlrt" download>Cluster analysis</a>
+    - Download exercise (.ipynb): <a href="../files/Exercise4_ClusterAnalysisTutorial.ipynb" download>Exercise 4</a>

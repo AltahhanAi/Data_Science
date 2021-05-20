@@ -136,10 +136,9 @@ We divide as before into K folds and we try different hyper parameters values un
 
 On the other hand, in case we are comparing the performance of two techniques on two **different datasets**, then it is less obvious how to choose among the different techniques. This issue often arises when we do benchmarking of different techniques on two different datasets; one of them is already performed earlier and we want to add insight onto the techniques’ properties by applying them on a different problem. In this case, we need to employ statistically comparisons on the significance of the variation of the results. Please refer to section 3.9 of  Tan et al (2019) for more details.
 
-!!! abstract "Exercise"
-     See the following RapidMiner model grid search procedure for selecting multiple hyper parameters for a model. The example shows how to optimise the depth of the tree along with the minimum leaf size.
+See the following video on RapidMiner grid search procedure for selecting multiple hyper parameters for a model. The example shows how to optimise the depth of the tree along with the minimum leaf size.
 
-     - Download exercise (.rmp): <a href="../exercises/DT_Optimise.rmp" download>RapidMiner</a>
+<iframe title="Decision tree optimisation in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/e7c71cb44ef94e2388465125134182c71d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
 ##Overfitting
 

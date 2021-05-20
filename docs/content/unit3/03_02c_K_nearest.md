@@ -185,7 +185,7 @@ This means that eventually the algorithm should classify the given instance as s
 
 To summarise, in the k-nearest neighbour classification technique, we look at $k$ of the nearest neighbours to the presented data point and we take a simple (possibly weighted) vote to classify the data point $x$ based on the classes of its closest neighbours $\mathbf{y}_{i} i=1, \ldots k$. We must consider rescaling as kNN is susceptible to issues related to feature dominance. Note that this is a classification techniques, i.e. there are a set of $K$ labels representing the classes that are already provided in the dataset (differentiate between $k$ and $K$). Unlike clustering, where we do not have these labels available and instead the algorithms will come up with cluster labels to represent the clusters. kNN can produce decision boundaries of arbitrary shape. This gives it a lot of power to express complex problems, albeit a simple algorithm by nature. In comparison with decision trees, kNN gives far more flexibility of representing complex decision boundaries. kNN face difficulties when dealing with missing values for some of the attributes. Irrelevant features can distort some important distance metric which in turn reduce the effectiveness of kNN. The kNN algorithm is shown below.
 
-!!! info "Algorithms 4: k-nearest neighbours"
+!!! algorithm-heading "Algorithms 4: k-nearest neighbours"
 
     **Input:**
 
@@ -201,15 +201,15 @@ To summarise, in the k-nearest neighbour classification technique, we look at $k
 
     $\mathbf{k N N}\left(\mathbf{X}, \boldsymbol{t}, \mathbf{X}^{\prime}, k\right)$:
 
-    !!! quote ""
+    !!! algorithm ""
 
         **For** each $\mathbf{x}_{i}^{\prime}$ in $\mathbf{X}^{\prime}$
 
-        !!! quote ""
+        !!! algorithm ""
 
             **For** each $\mathbf{x}_{j}$ in $\mathbf{X}$
 
-            !!! quote ""
+            !!! algorithm ""
 
                 **Compute** $d\left(\mathbf{x}_{i}^{\prime}, \mathbf{x}_{j}\right)=\mathbf{x}_{j}^{\top} \mathbf{x}_{i}^{\prime}$<span style="float: right;"># or other appropriate distance for the problem in hand</span>
 
@@ -218,5 +218,3 @@ To summarise, in the k-nearest neighbour classification technique, we look at $k
                 $y_{i}=\max _{l} \sum_{\left(\mathrm{x}_{j}, t_{j}\right) \in \boldsymbol{D}_{i}} I\left(t_{j}=l\right)$            
 
         **return** $\left\{y_{i}\right\} \quad i=1, \ldots, S$
-
-        

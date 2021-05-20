@@ -31,16 +31,17 @@ nav:
             - '1f. Mini-batch K means++': content/unit3/03_01f_mini_batch_K.md
             - '1g. Bisecting K-means algorithm': content/unit3/03_01g_bisecting_K_means.md
             - '1h. Lesson summary': content/unit3/03_01h_clustering_summary.md
-        - '2. Basic numerical classification':
+        - '2. Basic numerical distance-based classification':
             - '2a. Introduction': content/unit3/03_02a_intro_basic_numerical_classification.md
             - '2b. Lazy classification': content/unit3/03_02b_lazy_classification.md
             - '2c. K-nearest neighbour algorithm': content/unit3/03_02c_K_nearest.md
             - '2d. Choosing best k': content/unit3/03_02d_choosing_best_k.md
             - '2e. Lesson summary': content/unit3/03_02e_classification_summary.md
         - '3. Ensemble methods': content/unit3/03_03_ensemble_methods.md
+        - '4. References': content/unit3/03_04_unit_references.md
     - Unit 4:
-        - 'Regression and classification': content/unit4/04_00_regression_classification.md
-        - '1. Simple linear regression models':
+        - 'Linear and non linear regression': content/unit4/04_00_regression_classification.md
+        - '1. Simple Linear Regression Models':
             - '1a. Simple linear regression models': content/unit4/04_01a_linear_regression_models.md
             - '1b. Example of linear regression models': content/unit4/04_01b_example_linear_regression.md
             - '1c. Loss, objective, error or cost function for regression': content/unit4/04_01c_loss_error_cos_function.md

@@ -8,24 +8,29 @@
 
 **Please read sections 6.10, 6.10.1, 6.10.2, 6.10.3 and 6.11.4 of Tan et al (2019).**
 
-Watch this video <mark>DS_VID011</mark> to learn more about the concepts of ensemble methods.
+Watch this video to learn more about the concepts of ensemble methods.
 
-You can also download the slides shown in the video <mark>link once finalised</mark>
+<iframe title="Ensemble techniques" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/2bda988d50084f6194b99768793560391d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826426_4" target="_blank">slides shown in the video.</a>
+
+Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
 ##Bagging and RandomForests
 
 **Read sections 6.10.4 and 6.10.6 from Tan et al (2019) before proceeding to the next exercise.**
 
 !!! abstract "Exercise"
-    <mark>See the following Jupyter Notebook exercise for comparison of decision trees and RandomForests classifiers.
+    See the following Jupyter Notebook exercise for comparison of decision trees and RandomForests classifiers.
 
-    - Download exercise (.ipynb): <https://leeds365-my.sharepoint.com/:u:/r/personal/scsaalt_leeds_ac_uk/Documents/Downloads/Resources%20for%20ODL%20MSc/Data%20Science%20Contents/unit5/code/plot_forest_iris_titanic.ipynb?csf=1&web=1&e=kE2TRQ" download>DT and RandomForest</a>
+    - Download exercise (.ipynb): <a href="../files/Exercise5_plot_forest_iris_titanic.ipynb" download>Exercise 5</a>
 
 
 !!! abstract "Exercise"
-    See the following <a href="https://scikit-learn.org/stable/auto_examples/ensemble/plot_voting_decision_regions.html#sphx-glr-download-auto-examples-ensemble-plot-voting-decision-regions-py" target="_blank">Jupyter notebook</a> for decision boundaries of voting classifier. Download the notebook and run the exercises yourself.
+    See the following Jupyter Notebook exercise for decision boundaries of voting classifier.
 
-Watch this video <mark>DS_VID012</mark> see how to do method comparison of multiple models in RapidMiner. This will be useful as you prepare for your final assessment, as it will give you a good overview of the process you will follow in the assessment project.
+    - Download exercise (.ipynb): <a href="../files/Exercise6_EnsembleVoting_kNN_DT.ipynb" download>Exercise 6</a>
+
 
 ##Lesson summary
 
