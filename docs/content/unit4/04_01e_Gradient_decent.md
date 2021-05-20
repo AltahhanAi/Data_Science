@@ -9,26 +9,40 @@ This optimisation algorithm is called the gradient descent or steepest descent. 
 Here we are talking about a minimum, often complex loss functions have several minima so we will come back to this idea later when we move to the non-linear models towards the end of the unit. We are taking small steps towards the minimum because taking large steps lead to overshooting the minimum or oscillating around it. The size of the step (denoted as $η$) is called the learning rate because it represents how fast a model can learn the solution of the problem. Gradient descent is a numerical optimisation technique so it is an iterative technique that keep working though iterations until it reaches a good enough approximate solution. Reaching a minimum is called convergence (a well know concept in calculus).
 Let us start by the basic gradient descent update which takes the following form:
 
-(6) <mark>$\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta_{\tau} \nabla \bar{J}(\mathbf{w})$</mark>
+$$
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta_{\tau} \nabla \bar{J}(\mathbf{w})
+$$
 
-Where $\mathbf{w}^{(\tau)}$ represents the weight vector at iteration τ and this is not exponentiation. $η_τ$ is a learning step that can be varied between iterations to make the algorithms responsive to changes in the loss function terrain. The basic form of the GD is given below.
+Where $\mathbf{w}^{(\tau)}$ represents the weight vector at iteration τ and this is not exponentiation. $η_τ$ is a learning step that can be varied between iterations to make the algorithms responsive to changes in the loss function terrain. The basic form of the GD is given below (scroll to the right within the box to view all information).
 
-!!! example "**Algorithm 2:** Approximation Algorithm: Gradient Descent"
+!!! algorithm-heading "**Algorithm 2:** Approximation Algorithm: Gradient Descent"
+
     **Input:**
 
-    <mark>$\begin{array}{l}\text { Input set: } \mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\} \\ \text { Labels } \underline{\underline{\text { set }}} \mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}\end{array} \mid$ *Training set*</mark>
+    !!! algorithm ""
 
-    **Output:** $w$ an approximation for optimum weights $w^*$
+        Input set: $\mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\}$
+        <span class="algorithm-line-comment"># *Training set*</span>
 
-    **GD**$(X,t)$:
+        Labels set: $\mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}$
+        <span class="algorithm-line-comment"># *Training set*</span>
 
-    Initialise $w$
+    **Output:** $\mathbf{w}$ an approximation for optimum weights $\mathbf{w}^{*}$
 
-    For $\tau=1: \operatorname{tmax}$
+    $\mathbf{G D}(\mathbf{X}, \mathbf{t})$:
 
-    <mark>$\mathbf{w}=\mathbf{w}-\eta_{\tau} \nabla \bar{J}(\mathbf{w}, \mathbf{X}, \mathbf{t})$</mark>  # obtain the gradient of the loss for current $w$ on the entire training set.
+    !!! algorithm ""
 
-    Return the final solution $w$.
+        Initialise $\mathbf{w}$
+
+        For $\tau=1: {\tau}\text { max }$
+
+        !!! algorithm ""
+
+            $\mathbf{w}=\mathbf{w}-\eta_{\tau} \nabla \bar{J}(\mathbf{w}, \mathbf{X}, \mathbf{t})$
+            <span class="algorithm-line-comment"># *obtain the gradient of the loss for current $\mathbf{w}$ on the entire training set*</span>
+
+        Return the final solution $\mathbf{w}$.
 
 There are some optimisation techniques that give us how to vary the learning rate $η_τ$ but we have not shown this her for simplicity. Also note that both $η_τ$ and $τmax$ should be inputs to the algorithm but we omit this to promote simplicity.
 
@@ -38,53 +52,103 @@ In the next section we will see how to apply the gradient descent algorithm on t
 
 We will take the gradient of the cost function directly without using it vectorised form but later we develop a vectorised version. We have saw already in a previous section that the gradient of the linear regression loss function takes the form:
 
-<mark>$\bar{J}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}$</mark>
+$$
+\bar{J}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}
+$$
 
-<mark>$\nabla \bar{J}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} \nabla J_{n}^{2}(\mathbf{w})$</mark>
+$$
+\nabla \bar{\jmath}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} \nabla J_{n}^{2}(\mathbf{w})
+$$
 
-<mark>$\nabla \bar{J}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} 2 \nabla J_{n}(\mathbf{w}) J_{n}(\mathbf{w})$</mark>
+$$
+\nabla \bar{J}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} 2 \nabla J_{n}(\mathbf{w}) J_{n}(\mathbf{w})
+$$
 
-<mark>$J_{n}(\mathbf{w})=\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$ and $\nabla J_{n}(\mathbf{w})=-\mathbf{x}_{n}$ hence</mark>
+$J_{n}(\mathbf{w})=\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$ and $\nabla J_{n}(\mathbf{w})=-\mathbf{x}_{n}$
 
-(5) <mark>$\nabla \bar{J}(\mathbf{w})=-\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$</mark>
+hence
+
+<mark>Is the difference between euler marks just a different format or is this wrong??</mark>
+
+$$
+\nabla \bar{J}(\mathbf{w})=-\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
+$$
 
 This is an important formula that we will get refer back to often. To get a taste of what this gradient entails, we show below what is involved in it:
 
-<mark>$\nabla \bar{J}(\mathbf{w})=-\frac{1}{N}\left(\left[\begin{array}{c}x_{0} \\ x_{1} \\ \vdots \\ x_{D}\end{array}\right]_{1} J_{1}+\left[\begin{array}{c}x_{0} \\ x_{1} \\ \vdots \\ x_{D}\end{array}\right]_{2} J_{2}+\cdots+\left[\begin{array}{c}x_{0} \\ x_{1} \\ \vdots \\ x_{D}\end{array}\right]_{N} J_{N}\right)=0$</mark>
+$$
+\nabla \bar{J}(\mathbf{w})=-\frac{1}{N}\left(\left[\begin{array}{c}
+x_{0} \\
+x_{1} \\
+\vdots \\
+x_{D}
+\end{array}\right]_{1} J_{1}+\left[\begin{array}{c}
+x_{0} \\
+x_{1} \\
+\vdots \\
+x_{D}
+\end{array}\right]_{2} J_{2}+\cdots+\left[\begin{array}{c}
+x_{0} \\
+x_{1} \\
+\vdots \\
+x_{D}
+\end{array}\right]_{N} J_{N}\right)=0
+$$
 
 Therefore, the gradient descent algorithm for linear regression model, which acts on the entire training set, takes the form:
 
-(7) <mark>$\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\frac{1}{N} \sum_{n=1}^{N} \eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$</mark>
+<mark>Same comment re euler</mark>
+
+$$
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\frac{1}{N} \sum_{n=1}^{N} \eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
+$$
 
 The number of iterations that we need to take in order to reach the minimum depends on $η$. The smaller $η$ is the more iterations we need to take, however we need to strike a balance here because if $η$ is too big then the algorithm might either oscillate or completely diverge (go away from the minimum). $η$ is almost always less than 1, a reasonable value of $η=0.01$ for linear regression. For other more complex models $η$ may need to take much smaller values. Each sweep through the entire dataset is called an epoch and this is a hyper parameter that we need to set, often between 10 and 100.
 
-!!! example "**Algorithm 3:** Approximation Algorithm: Batch Gradient Descent (BGD) for Linear Regression Model, without vectorisation."
+Scroll to thr right within the box to see all information.
+
+!!! algorithm-heading "**Algorithm 3:** Approximation Algorithm: Batch Gradient Descent (BGD) for Linear Regression Model, without vectorisation."
+
     **Input:**
 
-    <mark>$\begin{array}{l}\text { Input set: } \mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\} \text { each } \mathbf{x}_{n} \text { is a vector of size } D \\ \text { Labels } \underline{\underline{\text { set }}} \mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\} \text { each } t_{n} \text { is a scalar }\end{array} \mid$ *Training set*</mark>
+    Input set: $\mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\}$ each $\mathbf{x}_{n}$ is a vector of size $D$
+    <span class="algorithm-line-comment"># *Training set*</span>
+
+    Labels set: $\mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}$ each $t_{n}$ is a scalar
+    <span class="algorithm-line-comment"># *Training set*</span>
 
     $η$: The learning rate
+
     $epcs$: Max number of epochs
 
-    **Output**: $w$ an approximation for optimum weights $w^*$; a vector of size $D+1$
+    **Output**: $\mathbf{w}$ an approximation for optimum weights $\mathbf{w}^*$; a vector of size $D+1$
 
     **BGD_LRegress** $(X,t,η,epcs)$:
 
-    Initialise $w$ and set
+    !!! algorithm ""
 
-    For $epoch = 1: epcs$
+        Initialise $\mathbf{w}$ and set
 
-    <mark>$\mathbf{w}^{\prime}=\mathbf{0}_{D+1}$</mark>
+        For $epoch = 1: epcs$
 
-    For $n=1:N$
+        !!! algorithm ""
 
-    $\mathbf{x}_{n}=\left[1, \mathbf{x}_{n}^{\top}\right]^{\top}$   # add a dummy attribute for each $x_n$
+            $\mathbf{w}^{\prime}=\mathbf{0}_{D+1}$
 
-    $\boldsymbol{w}^{\prime}=\boldsymbol{w}^{\prime}+\eta \boldsymbol{x}_{n}\left(t_{n}-\boldsymbol{w}^{\top} \boldsymbol{x}_{n}\right)$   # accumulated the changes without committing them
+            For $n=1:N$
 
-    $\mathbf{w}=\mathbf{w}+\frac{1}{N} \mathbf{w}^{\prime}$   # now commit the changes
+            !!! algorithm ""
 
-    Return the final solution $w$.
+                $\mathbf{x}_{n}=\left[1, \mathbf{x}_{n}^{\top}\right]^{\top}$
+                <span class="algorithm-line-comment"># *add a dummy attribute for each $x_n$*</span>
+
+                $\boldsymbol{w}^{\prime}=\boldsymbol{w}^{\prime}+\eta \boldsymbol{x}_{n}\left(t_{n}-\boldsymbol{w}^{\top} \boldsymbol{x}_{n}\right)$
+                <span class="algorithm-line-comment"># *accumulated the changes without committing them*</span>
+
+            $\mathbf{w}=\mathbf{w}+\frac{1}{N} \mathbf{w}^{\prime}$
+            <span class="algorithm-line-comment"># *now commit the changes*</span>
+
+        Return the final solution $\mathbf{w}$.
 
 Note how we accumulate the changes inside a temporary vector $w'$ (this is just a vector of size $D+1$) in an epoch and we commit at the end of the epoch. This is why it is called a batch gradient descent algorithm; we are waiting till the end of iterating through full batch of the dataset and then we change $w$, *i.e. we do not change $w$ during the epoch.*
 
@@ -98,11 +162,17 @@ Batch learning algorithm such as LS Regression or Batch Stochastic Gradient Desc
 
 Here we need to understand the concept of a learning rate or learning steps denoted as $η$. This hyper parameter specifies how much of the individual step error we want to take into account. In simple linear models this will not make a difference and in fact if assumed that the loss function is concave i.e. it has a global optimum then we can go all the way and adopt the entirety of each step error $\left(\mathbf{w}^{\top} \mathbf{x}_{n}-t_{n}\right)$ offline without changing the weights in each step. However, when the concavity of the loss function (existence of global optimum) is not guaranteed and when the loss function has several local optima some of which are really slight valleys (or when it is infested with local optima) then adopting the full error $t_{n}-\boldsymbol{y}\left(\mathbf{x}_{n}\right)$ is not a good idea. This is because it will force the model to fall into the nearest local minimum and consequent updates are spent on moving out or into local minima. Bearing in mind that the data is noisy anyway, we would want to utilise the learning step for our benefit to reduce the effect of the noise and help avoid the problem of overfitting. Essentially, we replace the loss function $J$ by $J_n^2$, so after a data point becomes available, we update according to:
 
-<mark>$\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta \frac{1}{2} \nabla J_{n}^{2}$</mark>
+$$
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta \frac{1}{2} \nabla J_{n}^{2}
+$$
 
-<mark>$\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta\left(-\mathbf{x}_{n}\right)\left(t_{n}-\mathbf{w}^{(\tau)^{\top}} \mathbf{x}_{n}\right)$</mark>
+$$
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta\left(-\mathbf{x}_{n}\right)\left(t_{n}-\mathbf{w}^{(\tau)^{\top}} \mathbf{x}_{n}\right)
+$$
 
-(8) <mark>$\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{(\tau)^{\top}} \mathbf{x}_{n}\right)$</mark>
+$$
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{(\tau)^{\top}} \mathbf{x}_{n}\right)
+$$
 
 Where $τ$ represents the iteration (or the time step) and η is the learning rate parameter which should be carefully chosen so that it does not lead to divergence or oscillation of the algorithms. This is because effectively we are accounting for only a very small part of the gradient and we need to leave room for gradients of other data points to take effect in later iterations. Note that we added a (-) to go against the gradient direction which will make the changes go in the direction that will minimise the error. A reasonable choice of $η$ is to make it proportional to the number of expected data points.
 
@@ -132,30 +202,43 @@ Another important reason to use SG Regression is that it is often faster to conv
 
 We can also apply SGD regression on a static dataset, we get a similar result to the LS regression. However, you should be bear in mind that there are quite subtle differences between the two algorithms (the LS Regression and SG Regression). Let us see first SGD Regression on a dataset below.
 
-!!! example "**Algorithm 4:** Sequential Learning: Stochastic Gradient Descent for Linear Regression Model."
+!!! algorithm-heading "**Algorithm 4:** Sequential Learning: Stochastic Gradient Descent for Linear Regression Model."
+
     **Input:**
 
-    <mark>$\begin{array}{l}\text { Input set: } \mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\} \operatorname{each} \mathbf{x}_{n} \text { is a vector of size } D \\ \text { Labels } \underline{\underline{\text { set }}} \mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\} \text { each } t_{n} \text { is a scalar }\end{array} \mid$ *Training set*</mark>
+    Input set: $\mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\}$ each $\mathbf{x}_{n}$ is a vector of size $D$
+    <span class="algorithm-line-comment"># *Training set*</span>
+
+    Labels set: $\mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}$ each $t_{n}$ is a scalar
+    <span class="algorithm-line-comment"># *Training set*</span>
 
     $η$: The learning rate
 
     $epcs$: Max number of epochs
 
-    **Output**: $w$ an approximation for optimum weights $w^*$; a vector of size $D+1$
+    **Output**: $\mathbf{w}$ an approximation for optimum weights $\mathbf{w}^*$; a vector of size $D+1$
 
-    **SGD_LRegress**$(X,t,η,epcs)$:
+    **SGD_LRegress** $(X,t,η,epcs)$:
 
-    Initialise $w$
+    !!! algorithm ""
 
-    For epoch = 1: *epcs*
+        Initialise $\mathbf{w}$
 
-    $For n=1:N$
+        For $epoch = 1: epcs$
 
-    $\mathbf{x}_{n}=\left[1, \mathbf{x}_{n}^{\top}\right]^{\top}$   # add a dummy attribute for each $x_n$
+        !!! algorithm ""
 
-    $\mathbf{w}=\mathbf{w}+\eta \boldsymbol{x}_{n}\left(t_{n}-\boldsymbol{w}^{\top} \boldsymbol{x}_{n}\right)$   # commit the changes in every step
+            For $n=1:N$
 
-    Return the final solution $w$
+            !!! algorithm ""
+
+                $\mathbf{x}_{n}=\left[1, \mathbf{x}_{n}^{\top}\right]^{\top}$
+                <span class="algorithm-line-comment"># *add a dummy attribute for each $x_n$*</span>
+
+                $\boldsymbol{w}^{\prime}=\boldsymbol{w}^{\prime}+\eta \boldsymbol{x}_{n}\left(t_{n}-\boldsymbol{w}^{\top} \boldsymbol{x}_{n}\right)$
+                <span class="algorithm-line-comment"># *commit the changes in every step*</span>
+
+        Return the final solution $\mathbf{w}$.
 
 Comparing Algorithm 3 and Algorithm 4. It becomes clear that in Algorithm 4 the weights fixed *during* learning. In contrast Algorithm 3 accumulates all the changes of the weights and apply them all at once.
 
@@ -170,16 +253,20 @@ Mini-batch SGD algorithm can be used to reach something in the middle between se
 
 <mark>Watch a video1 that explains the above concepts</mark>
 
-!!! example "**Algorithm 5:** Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model: Vanilla implementation that can be sped up- see next algorithm."
+!!! algorithm-heading "**Algorithm 5:** Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model: Vanilla implementation that can be sped up- see next algorithm."
     **Input:**
 
-    <mark>$\begin{array}{l}\text { Input set: } \mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\} \text { each } \mathbf{x}_{n} \text { is a vector of size } D \\ \text { Labels } \underline{\underline{\text { set }}} \mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\} \text { each } t_{n} \text { is a scalar }\end{array} \mid$ *Training set*</mark>
+    Input set: $\mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\}$ each $\mathbf{x}_{n}$ is a vector of size $D$
+    <span class="algorithm-line-comment"># *Training set*</span>
 
-    $η$: The learning rate
+    Labels set: $\mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}$ each $t_{n}$ is a scalar
+    <span class="algorithm-line-comment"># *Training set*</span>
 
-    $b$:The mini-batch size (specifies how frequently we want to update the weights $w$).
+    $\eta:$ the learning rate
 
-    $epcs$: Max number of epochs
+    $b$: The mini-batch size (specifies how frequently we want to update the weights $\mathbf{w}$ ).
+
+    $epcs$: Number of epochs
 
     **Output**: $w$ an approximation for optimum weights $w^*$; a vector of size $D+1$
 
@@ -189,35 +276,49 @@ Mini-batch SGD algorithm can be used to reach something in the middle between se
 
     For $epoch = 1: epcs$
 
-    For $n=1:N$
+    !!! algorithm ""
 
-    $\mathbf{x}_{\boldsymbol{n}}=\left[\mathbf{1}, \mathbf{x}_{\boldsymbol{n}}^{\top}\right]^{\top}$    # add a dummy feature for each $x_n$
+        For $n=1:N$
 
-    $\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$   # per-weight optimisation methods use $\frac{1}{\bar{N}} * \mathbf{X}_{n}$
+        !!! algorithm ""
 
-    If $n \% b==0$   # there is a better condition see the discussion below
+            $\mathbf{x}_{\boldsymbol{n}}=\left[\mathbf{1}, \mathbf{x}_{\boldsymbol{n}}^{\top}\right]^{\top}$
+            <span class="algorithm-line-comment"># *add a dummy feature for each $x_n$*</span>
 
-    $\mathbf{w}=\mathbf{w}+\frac{1}{b} \mathbf{w}^{\prime}$
+            $\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$
+            <span class="algorithm-line-comment"># *per-weight optimisation methods use $\frac{1}{\bar{N}} * \mathbf{X}_{n}$*</span>
 
-    $\mathbf{w}^{\prime}=\mathbf{0}$
+            If $n \% b==0$
+            <span class="algorithm-line-comment"># *there is a better condition see the discussion below*</span>
+
+            !!! algorithm ""
+
+                $\mathbf{w}=\mathbf{w}+\frac{1}{b} \mathbf{w}^{\prime}$
+
+                $\mathbf{w}^{\prime}=\mathbf{0}$
 
     Return the final solution $w$
 
 The above algorithm utilises the modulus function $n%b$ which will give us the remainder of a division of the data point count $n$ by $b$ the batch size. When this function $n%b== 0$ it means that $b$ number of steps has elapsed. For example if $N=90$ and we set b=10 then the weights $w$ (not $w'$) will be updated every 10 steps and the updates will be executed 9 times. Note that we accumulate all the changes inside each 10 steps in $w'$ and we commit them at the 10th step.
 
-If we have $N=94$ and we set $b=10$ then the last 4 data points will be left if we just use the condition $n%b==0$. Therefore, we can adjust as follows:
+If we have $N=94$ and we set $b=10$ then the last 4 data points will be left if we just use the condition $n \% b==0$. Therefore, we can adjust as follows:
 
-If $n \% b==0$ or $n==N:$
+!!! algorithm-heading ""
 
-If $n \% b \neq 0$ then $b^{\prime}=n \% b$   # accommodate the last few points that do not fit a batch
+    If $n \% b==0$ or $n==N:$
 
-Else $b^{\prime}=b$
+    !!! algorithm ""
 
-$\mathbf{w}=\mathbf{w}+\frac{1}{b} \mathbf{w}^{\prime}$
+        If $n \% b \neq 0$ then $b^{\prime}=n \% b$
+        <span class="algorithm-line-comment"># *accommodate the last few points that do not fit a batch*</span>
 
-$\mathbf{w}^{\prime}=\mathbf{0}$
+        Else $b^{\prime}=b$
 
-The condition $n%b==0$  or  $n==N$ is used to accommodate the last few points that cannot form a full batch. For the same reason we use $b^{\prime}=n \% b$ instead of $b$, which will yield $b$ when $n \% b==0$ and the remainder of the batch (4 in our example) otherwise when $n==N$. we have not include this snippet to keep the algorithm simple.
+        $\mathbf{w}=\mathbf{w}+\frac{1}{b} \mathbf{w}^{\prime}$
+
+        $\mathbf{w}^{\prime}=\mathbf{0}$
+
+The condition $n \% b==0$ or $n==N:$  or  $n==N$ is used to accommodate the last few points that cannot form a full batch. For the same reason we use $b^{\prime}=n \% b$ instead of $b$, which will yield $b$ when $n \% b==0$ and the remainder of the batch (4 in our example) otherwise when $n==N$. we have not include this snippet to keep the algorithm simple.
 
 Also, we use the weights $w$ in our output estimation $\mathbf{w}^{\top} \mathbf{x}_{n}$ in the update rule $\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\frac{1}{N} \eta\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right) \mathbf{x}_{n}$ this is deliberate to guarantee stability. Mini-batch stochastic gradient descent reduce the variance caused by stochastic gradient descent and hence help stabilise the learning process.
 
@@ -225,15 +326,17 @@ Also, we use the weights $w$ in our output estimation $\mathbf{w}^{\top} \mathbf
 
 The above algorithm is a vanilla algorithm of an SGD mini-batch that can be sped up. The algorithm slows down the process by processing the data points individually in each batch. There is a better approach, can you guess it, take a minute or two to think about it…Ok, it is vectorisation. The idea is as follows. We assume that the size of the batch is $b$ and for simplicity that $N$ is divisible by $b$ the number of mini-batches as $q=N / b$ then. Now we can adopt one of two strategies:
 
-1 - Define a partition of the training set ${X,t}$ into a set of q mini-batches as follows:
+<span>1.</span> Define a partition of the training set $\{\mathbf{X}, \mathbf{t}\}$ into a set of q mini-batches as follows:
 
-<mark>$X=[█(⏞([■(x_1,1&x_1,2&…&x_(1,D)@x_2,1&x_2,2&…&x_(2,D)@⋮&⋮&⋮&⋮@x_(b,1  )&x_(b,2  )&…&x_(b,D  ) )] )┴(X_1 )@ @ @⏞([■(…&…&…&…@…&…&…&…@⋮&⋮&⋮&⋮@x_(2b,1)&x_(2b,2)&…&x_(2b,D) )] )┴(X_2 )@ @⋮@ @⏞([■(…&…&…&…@…&…&…&…@⋮&⋮&⋮&⋮@x_(qb,1)&x_(qb,2)&…&x_(qb,D) )] )┴(X_q ) )]=[█(X_1@X_2@⋮@X_q )]=[X_1^⊤,X_2^⊤,…,X_q^⊤ ]^⊤ ,	t=[█(⏞([█(t_(1 )@t_2  @⋮@t_(b )  )] )┴(t_1 )@ @⏞([█(…@…@…@t_2b )] )┴(t_2 )@ @⋮@⏞([█(…@…@…@t_qb )] )┴(t_q ) )]=[█(t_1@t_2@⋮@t_q )]"=" [t_1^⊤,t_2^⊤,…,t_q^⊤ ]^⊤$<mark>
+
+<mark>This equation is too complex for mathpix, we need latex directly from AA</mark>
+
 
 Where $X_τ τ=1:q$ is a matrix of size $b×D$ and $t_τ τ=1:q$ is a vector of size $b×1$. We refer to both as a mini-batch of size $b$.
 
 So, now we sweep through all the mini-batches one after the other in each iteration to cover the whole training set, we call this an epoch. After each epoch we need to shuffle the dataset (or equivalently shuffle the membership assignment in the mini-batches which is what we always do in the implementation). Note that our weights estimation are expected to improve from one batch to another. Moreover, the weights error (cost function) is expected to improve from one epoch to another since we employ normally a learning rate<1. This strategy guarantees stability and efficiency at the same time. We will refer to this strategy as shuffling and partitioning strategy. Note that in this strategy each data point must appear once in one of the min-batches in each epoch.
 
-2 - The second strategy is just to draw a random mini-batch $X_τ$ and $t_τ$ of size b without partitioning which is even more efficient than the first strategy. This is drawing with replacement so the same data point can appear in multiple mini-batches inside the same epoch or may not appear at all in any mini-batch (but the same data point does not appear more than once in the same mini-batch). In this strategy we can decouple the number of mini-batches from the size of the training set, so $q \geq N / b$ but it can still provide a general guide on the number of iterations (or mini-batches) the algorithm will go through. This strategy is faster in implementation, but it may lead to less stability than the first strategy, so it is more preferred in large scale learning. It all depends on selecting the trade-off that suits the application.
+<span>2.</span> The second strategy is just to draw a random mini-batch $X_τ$ and $t_τ$ of size b without partitioning which is even more efficient than the first strategy. This is drawing with replacement so the same data point can appear in multiple mini-batches inside the same epoch or may not appear at all in any mini-batch (but the same data point does not appear more than once in the same mini-batch). In this strategy we can decouple the number of mini-batches from the size of the training set, so $q \geq N / b$ but it can still provide a general guide on the number of iterations (or mini-batches) the algorithm will go through. This strategy is faster in implementation, but it may lead to less stability than the first strategy, so it is more preferred in large scale learning. It all depends on selecting the trade-off that suits the application.
 
 Both strategies are amenable for parallelisation, where we feed parts of the process to a different processor. Clearly, we can feed parts of a batch to different core processor but we cannot give different batches to different processor because the idea of the mini-batch is to update the weights directly after each batch and then use the new weights in the next batch. If we give away on this idea then we can distribute different batches on different processors and collect and aggregate the changes afterwards. Such a process will take us back to batch gradient descent. So, the implementation is similar to a min-batch but the effect is a batch gradient descent.
 
@@ -243,36 +346,50 @@ Below we show the final mini-batch algorithm. We have left which strategy to ado
 
 We normally decay the learning rate in order to prevent zigzagging around the minimum of the cost function when we start by a high learning rate or to fine tune our final weights.
 
-!!! example "**Algorithm 4:** Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model: with vectorisation."
+!!! algorithm-heading "**Algorithm 4:** Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model: with vectorisation."
+
     **Input:**
 
-    <mark>$\begin{array}{l}\text { Input set: design matrix } \mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top} \text { each } \mathbf{x}_{n} \text { is a vector of size } D \\ \text { Labels } \underline{\underline{\text { set: }}} \mathbf{t}=\left[t_{1}, \ldots, t_{N}\right]^{\top} \text { each } t_{n} \text { is a scalar } \end{array} \mid$ *Data set*</mark>
+    Input set: design matrix $\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top}$ each $\mathbf{x}_{n}$ is a vector of size $D \quad$
+    <span class="algorithm-line-comment"># *Training set*</span>
 
-    $b$: The mini-batch size (specifies how frequently we want to update the weights $w$).
+    Labels set: vector $\mathbf{t}=\left[t_{1}, \ldots, t_{N}\right]^{\top}$ each $t_{n}$ is a scalar
+    <span class="algorithm-line-comment"># *Training set*</span>
+
+    $b$: The mini-batch size (specifies how frequently we want to update the weights $\mathbf{w}$).
 
     $η_0$: Initial learning rate
 
     $epcs$: Number of epochs
 
-    **Output**: $w$ an approximation for optimum weights $w^*$; a vector of size $D+1$
+    **Output**: $\mathbf{w}$ an approximation for optimum weights $\mathbf{w}^*$; a vector of size $D+1$
 
     **SGD_VMiniB_LRegress**$(X,t,b,η_0,epcs)$:
 
-    Initialise $w$ and $η=η_0$
+    Initialise $\mathbf{w}$ and $η=η_0$
 
     For $epoch = 1:epcs$
 
-    For iteration $τ=1:q$    # $q≥N/ b$
+    !!! algorithm ""
 
-    Select a mini-batch $X_τ,t_τ$ of size $b$ from $X,t$  	# by sampling or by shuffling & partitioning
+        For iteration $τ=1:q$
+        <span class="algorithm-line-comment"># *$q≥N/ b$*</span>
 
-    $\mathbf{X}_{\tau}=\left[\mathbf{1}_{b}, \mathbf{X}_{\tau}\right]$   # add dummy feature to the mini-batch
+        !!! algorithm ""
 
-    $\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{X}_{\tau}^{\top}\left(\mathbf{t}_{\tau}-\mathbf{X}_{\tau} \mathbf{w}\right)$   # per-weight optimisation methods use $\frac{1}{\bar{N}} * \mathbf{X}_{\tau}$
+            Select a mini-batch $X_τ,t_τ$ of size $b$ from $X,t$
+            <span class="algorithm-line-comment"># *by sampling or by shuffling & partitioning*</span>
 
-    Decay $η$   # if necessary: ex. ‎$η=0.9×η$
+            $\mathbf{X}_{\tau}=\left[\mathbf{1}_{b}, \mathbf{X}_{\tau}\right]$
+            <span class="algorithm-line-comment"># *add dummy feature to the mini-batch*</span>
 
-    Return the final solution $w$
+            $\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{X}_{\tau}^{\top}\left(\mathbf{t}_{\tau}-\mathbf{X}_{\tau} \mathbf{w}\right)$
+            <span class="algorithm-line-comment"># *per-weight optimisation methods use $\frac{1}{\bar{N}} * \mathbf{X}_{\tau}$*</span>
+
+        Decay $η$
+        <span class="algorithm-line-comment"># *if necessary: ex. ‎$η=0.9×η$*</span>
+
+    Return the final solution $\mathbf{w}$
 
 Stochastic gradient descent, especially the minim-batch version is an excellent tool to tackle large-scale learning and has received recently a considerable attention. Large scale learning is learning from a large dataset with a huge amount of instances available. In such a case, we cannot expect to train on the whole dataset because it way beyond a single machine capabilities or even the capabilities a medium cluster of machines. Stochastic gradient descent is an excellent tool because it allows us to simply tackle as much as we can digest in our available hardware. Of course there are many augmentation to the simple (vanilla) SGD in terms of cleverer selection of the data to be processed which goes beyond the basic form presented here. At the same time, parallelisation techniques can be employed to promote efficient parallelised implementation of amortised complexity of $\mathcal{O}\left(\log _{r} N\right)$ where $N$ is the dataset size or the size of the processed data that can be pulled from a data lake or a data centre and $r$ is the number of parallel processors available to the algorithm.
 

@@ -6,41 +6,59 @@ In this section we will develop the concept of a loss function. The discussion a
 
 The first thing that comes to mind when we try to measure the accuracy of our model’s prediction is to take the difference between (also called the residual or the error) the prediction $y(x_n )$ and $t_n$. Let us denote $y_n=y(x_n,w)$ where we will use either of $y_n$ or $y(x_n,w)$ interchangeably depending on what we are trying to emphasise. So, we can define our loss function $J(x_n )$ which we denote for brevity $J_n$ as:
 
-(2) <mark>$J_n=t_n-y_n$</mark>
+$J_{n}=t_{n}-y_{n}$
 
 ###Loss function for a Set of Points (Dataset)
 
 So, given that we have plenty of data points in our dataset, it is natural that we would want our model to perform well on all of them. One problem with the above type of individual point loss function $J_n$ is that it can be either negative or positive and for our prediction both of them are errors. However, the danger is that if we sum negative and positive values for multiple pointspoints, they can cancel each other at least partially.
 
-One way to make sure that negative and positive residuals do not cancel is to take the absolute of these residuals $|J(x_n )|≥0$ and then to sum over all data points to get the sum of absolute errors (SAE): <mark>$J=\sum_{n=1}^{N}\left|J_{n}\right|$. The $\sum_{n=1}^{N}$</mark> means to sum over all $n=1,…,N$. So if we have $N=3$ data points in our dataset, then:
+One way to make sure that negative and positive residuals do not cancel is to take the absolute of these residuals $|J(x_n )|≥0$ and then to sum over all data points to get the sum of absolute errors (SAE): $J=\sum_{n=1}^{N}\left|J_{n}\right|$. The $\sum_{n=1}^{N}$ means to sum over all $n=1,…,N$. So if we have $N=3$ data points in our dataset, then:
 
-<mark>$J=\left|t_{1}-y_{1}\right|+\left|t_{2}-y_{2}\right|+\left|t_{3}-y_{3}\right|$</mark>
+$$
+J=\left|t_{1}-y_{1}\right|+\left|t_{2}-y_{2}\right|+\left|t_{3}-y_{3}\right|
+$$
 
 One important issue that we will face with such loss function is that it is not differentiable at 0, making dealing with the derivatives for optimisation not straightforward. A better candidate in that sense is the squared error, giving rise to the sum of squared errors (SSE) loss function that takes the form:
 
-<mark>$J=\sum_{n=1}^{N} J_{n}^{2}$</mark>
+$$
+J=\sum_{n=1}^{N} J_{n}^{2}
+$$
 
-<mark>$J=\sum_{n=1}^{N}\left(t_{n}-y_{n}\right)^{2}$</mark>
+$$
+J=\sum_{n=1}^{N}\left(t_{n}-y_{n}\right)^{2}
+$$
 
-<mark>$J(w)=\sum_{n=1}^{N}\left(t_{n}-y\left(\boldsymbol{x}_{n}, \boldsymbol{w}\right)\right)^{2}$</mark>
+$$
+J(w)=\sum_{n=1}^{N}\left(t_{n}-y\left(x_{n}, w\right)\right)^{2}
+$$
 
 SSE has pros and cons. Its pros are its ease of derivation and positivity. One of its cons is that it exaggerates the residuals, so if a residual is $-3$, then its squared $(-3)^2$ becomes 9. Nevertheless, SSE is widely used, and its advantages overweigh its disadvantages for many problems. Before we settle on it, we need to make two tweaks to make later developments easy to express.
 
-As we know finding the minimum for $y^2$ is the same as finding the minimum for <mark>$\frac{1}{2} y^{2}$</mark> but the latter leads to a simpler derivative: <mark>$\frac{d}{d y}\left(\frac{1}{2} y^{2}\right)=y$</mark>, while <mark>$\frac{d}{d y}\left(y^{2}\right)=2 y$</mark>. Hence, we can use the following loss function (SSE) that simplifies taking derivatives:
+As we know finding the minimum for $y^2$ is the same as finding the minimum for $\frac{1}{2} y^{2}$ but the latter leads to a simpler derivative: $\frac{d}{d y}\left(\frac{1}{2} y^{2}\right)=y$, while $\frac{d}{d y}\left(y^{2}\right)=2 y$. Hence, we can use the following loss function (SSE) that simplifies taking derivatives:
 
-<mark>$J=\frac{1}{2} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}$</mark>
+$$
+J=\frac{1}{2} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}
+$$
 
 Furthermore, we can take the average of the sum of squares to obtain the mean squared error (MSE as a loss function:
 
-(3) <mark>$\bar{J}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}$</mark>
+$$
+\bar{J}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}
+$$
 
-(4) <mark>$\bar{J}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}$</mark>
+$$
+\bar{J}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n} \mathbf{w}\right)\right)^{2}
+$$
 
 This loss function has the desired properties of keeping the range of the loss function fixed regardless of the size of the dataset. When we want to differentiate between the loss for training set and for validation set, we write the loss as:
 
-<mark>$\bar{J}(\mathbf{w}, \mathbf{X}, \mathbf{t})=\frac{1}{2 N} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}$</mark>
+$$
+\bar{J}(\mathbf{w}, \mathbf{X}, \mathbf{t})=\frac{1}{2 N} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}
+$$
 
-<mark>$\bar{J}\left(\mathbf{w}, \mathbf{X}^{\prime}, \mathbf{t}^{\prime}\right)=\frac{1}{2 N^{\prime}} \sum_{n=1}^{N^{\prime}}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}$</mark>
+$$
+\bar{J}\left(\mathbf{w}, \mathbf{X}^{\prime}, \mathbf{t}^{\prime}\right)=\frac{1}{2 N^{\prime}} \sum_{n=1}^{N^{\prime}}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}
+$$
 
 Where $N'$ is the size of the validation set. For the majority of the coverage here we will refer to the loss either as $\bar{J}$ or as $\bar{J}(\mathbf{w})$. In theory, we can use either $J$ or $\bar{J}$ in the techniques that we will cover. This is because scaling any function by a fixed constant such as $\frac{1}{2}$ or $\frac{1}{2 N}$  will not change the shape of the function and so its stationary (optimal and saddle) points stay the same. For example, if we take the derivatives and we set them to 0 both will yield the same solution. However, $\bar{J}$ offers more numerical stability than $J$ and there are few cases (particularly when we add a regularisation term to facilitate a stochastic gradient decent algorithm) where starting from $\bar{J}$ will make the update term slightly more consistent with other updates.
 
@@ -48,45 +66,54 @@ Below we show an example of a linear model with its loss function, the learning 
 
 <figure role="group">
   <img src="../images/DS_IMG102.png" alt="Left: graph showing an example of a linear model y = 2 + 3x. Right: surface chart, showing the loss function of different settings for W0 and W1 and also the loss function contours plot." />
-  <figcaption><strong>Figure 4.5.</strong> (left) Example of a linear model (right) the loss function of a different settings for w0 and w1 (shown in purple) and the loss function contours plot shown in orange. The task of learning is to reach the bottom of the loss function where are the optimal settings of the weights values. Contour plots project the surface above it and signifies the J by the darkness of the colour so the more orange the higher J is and more error we have. </figcaption>
+  <figcaption><strong>Figure 4.5.</strong> (left) Example of a linear model (right) the loss function of a different settings for w0 and w1 (shown in purple) and the loss function contours plot shown in orange. The task of learning is to reach the bottom of the loss function where are the optimal settings of the weights values. Contour plots project the surface above it and signifies the J by the darkness of the colour so the more orange the higher J is and more error we have. <a href="../files/xxx.ipynb" target="_blank" download>Download the code to generate the figure (.ipynb)</a></figcaption>
 </figure>
 
-  <a href="https://leeds365-my.sharepoint.com/personal/scsaalt_leeds_ac_uk/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fscsaalt%5Fleeds%5Fac%5Fuk%2FDocuments%2FDownloads%2FResources%20for%20ODL%20MSc%2FData%20Science%20Contents%2Funit3%2Fcode%2Fcost%5Ffunction%5Fplot%2Eipynb&parent=%2Fpersonal%2Fscsaalt%5Fleeds%5Fac%5Fuk%2FDocuments%2FDownloads%2FResources%20for%20ODL%20MSc%2FData%20Science%20Contents%2Funit3%2Fcode&originalPath=aHR0cHM6Ly9sZWVkczM2NS1teS5zaGFyZXBvaW50LmNvbS86dTovZy9wZXJzb25hbC9zY3NhYWx0X2xlZWRzX2FjX3VrL0ViLThfZE9hZ045RmdqQjhHYVRBOVlFQk9JSy1rNzNlazE0enZZZHlLQWNyeFE%5FcnRpbWU9c0QwOXhpY0QyVWc" target="_blank" class="md-button">Code to generate figure .ipynb</a>
+<mark>FILE ABOVE MISSING</mark>
+
 
 ###Vectorised version of the Loss Function
 
 The loss function can be vectorised and written as follows:
 
-(5) <mark>$\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\boldsymbol{y}(\mathbf{X}, \mathbf{w})\|^{2}$</mark>
+$$
+\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\boldsymbol{y}(\mathbf{X}, \mathbf{w})\|^{2}
+$$
 
-(6) <mark>$\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\mathbf{X} \mathbf{w}\|^{2}$</mark>
+$$
+\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\mathbf{X} \mathbf{w}\|^{2}
+$$
 
 Where $‖.‖^2$ is the norm of a vector = sum of the squared of all of its components and $X$ and $t$ are the design matrix and target vector that were defined in the previous section.
 
 !!! example "Generalising SSE to Minkowski Loss"
-    You might wonder why we do not use a smaller exponent $1<a<2$ for $y^a$ instead of $y^2$? Although this might seem reasonable, since for example $3^1.01≈3$ and taking the derivative for $y^a$ is straightforward. However, this has two issues. The first is related to positive residuals, which the derivation underestimates. For example, <mark>$\frac{d}{d y}\left(y^{1.1}\right)=1.1 y^{0.1}=1.1 y^{\frac{1}{10}}=1.1 \sqrt[10]{y}$</mark>, and if y=30 then its derivative is $≈1.546$. The second and more serious issue is that real powers for negative residuals are not defined Real value exponents for a negative base are not defined, try $(-3)^1.01$ on the calculator. In fact, even for fractional exponent it might still not be defined if the denominator is even: try to calculate $(-3)^(2/3)$ and $(-3)^(2/4)$.
+    You might wonder why we do not use a smaller exponent $1<a<2$ for $y^a$ instead of $y^2$? Although this might seem reasonable, since for example $3^1.01≈3$ and taking the derivative for $y^a$ is straightforward. However, this has two issues. The first is related to positive residuals, which the derivation underestimates. For example, $\frac{d}{d y}\left(y^{1.1}\right)=1.1 y^{0.1}=1.1 y^{\frac{1}{10}}=1.1 \sqrt[10]{y}$, and if y=30 then its derivative is $≈1.546$. The second and more serious issue is that real powers for negative residuals are not defined Real value exponents for a negative base are not defined, try $(-3)^1.01$ on the calculator. In fact, even for fractional exponent it might still not be defined if the denominator is even: try to calculate $(-3)^(2/3)$ and $(-3)^(2/4)$.
 
-    Note that <mark>$(-3)^{\frac{2}{4}}=\sqrt[2]{-3}$</mark> is not defined in the real number set $R$. Also, note that although we can write <mark>$(-3)^{\frac{2}{4}}=\sqrt[4]{(-3)^{2}} \approx 1.732$</mark>, for such operation to be well defined we should have $∜((-3)^2 )$  to be equal to $(∜(-3))^2$ unfortunately, the latter is not defined (in $R$).
+    Note that $(-3)^{\frac{2}{4}}=\sqrt[2]{-3}$ is not defined in the real number set $R$. Also, note that although we can write $(-3)^{\frac{2}{4}}=\sqrt[4]{(-3)^{2}} \approx 1.732$, for such operation to be well defined we should have $∜((-3)^2 )$  to be equal to $(∜(-3))^2$ unfortunately, the latter is not defined (in $R$).
 
-    **Exercise:** try the same procedure for $(-3)^(2/3)$, i.e. calculate $(-3)^{\frac{2}{3}}$ and $(∛(-3))^2$ and see if they are equal. A credible solution then is to simply do the following <mark>$J=\sum_{n=1}^{N}\left|t_{n}-y\left(\mathbf{x}_{n}\right)\right|^{1.1}$</mark>  which would avoid the issues that arises when the residuals are negative.
+    !!! abstract "Exercise"
 
-    A generalisation of the above function would be in the form of Minkowski loss defined as:
+        Try the same procedure for $(-3)^(2/3)$, i.e. calculate $(-3)^{\frac{2}{3}}$ and $(∛(-3))^2$ and see if they are equal. A credible solution then is to simply do the following $J=\sum_{n=1}^{N}\left|t_{n}-y\left(\mathbf{x}_{n}\right)\right|^{1.1}$  which would avoid the issues that arises when the residuals are negative.
 
-    <mark>$J=\sum_{n=1}^{N}\left|t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right|^{q}$</mark>						
+        A generalisation of the above function would be in the form of **Minkowski** loss defined as:
 
-    Where $q$ can take any value. When $q=2$ we go back to the SSE loss.
+        $$
+        J=\sum_{n=1}^{N}\left|t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right|^{q}
+        $$						
+
+        Where $q$ can take any value. When $q=2$ we go back to the SSE loss.
 
 
 !!! example "More on SSE Format"
-    SSE is written as			 <mark>$J(w)=∑_(n=1)^N▒(t_n-y_n )^2$
+    SSE is written as $J(\mathbf{w})=\sum_{n=1}^{N}\left(t_{n}-y_{n}\right)^{2}$
 
-    Which also can be written as		<mark>$J(\mathbf{w})=\frac{1}{2} \sum_{n=1}^{N}\left(y_{n}-t_{n}\right)^{2}$,/mark>
+    Which also can be written as $J(\mathbf{w})=\frac{1}{2} \sum_{n=1}^{N}\left(y_{n}-t_{n}\right)^{2}$
 
-    Both will produce the same results due to the square, ex. <mark>$(10-x)^2=(x-10)^2$</mark>, and both have the same derivatives with respect to $y_n$.
+    Both will produce the same results due to the square, ex. $(10-x)^2=(x-10)^2$, and both have the same derivatives with respect to $y_n$.
 
-    The first form has a derivative		<mark>$\frac{d J}{d y_{n}}=-\frac{2}{2}\left(t_{n}-y_{n}\right)=-\left(t_{n}-y_{n}\right)$</mark>				
+    The first form has a derivative $\frac{d J}{d y_{n}}=-\frac{2}{2}\left(t_{n}-y_{n}\right)=-\left(t_{n}-y_{n}\right)$			
 
-    The second form has a derivative	<mark>$\frac{d J}{d y_{n}}=\frac{2}{2}\left(y_{n}-t_{n}\right)=-\left(t_{n}-y_{n}\right)$</mark>				
+    The second form has a derivative $\frac{d J}{d y_{n}}=\frac{2}{2}\left(y_{n}-t_{n}\right)=-\left(t_{n}-y_{n}\right)$				
 
     The first form is more desirable because when we move to a stochastic gradient descent settings the term $(t_n-y_n )$ in the bracket will appear in the update rule without the squares. And so using this from will help our memory to remember that in our treatments an update the target $t_n$ always comes before the estimation $y_n$.
 
@@ -94,11 +121,15 @@ Where $‖.‖^2$ is the norm of a vector = sum of the squared of all of its com
 
 To recap, in order to come up with a best settings for our model eq.(1)
 
-<mark>$y(\mathbf{x}, \mathbf{w})=\mathbf{w}^{\top} \mathbf{x}$</mark>
+$$
+y(\mathbf{x}, \mathbf{w})=\mathbf{w}^{\top} \mathbf{x}
+$$
 
 We need to minimise the loss function eq.(4)
 
-<mark>$\bar{J}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}$</mark>
+$$
+\bar{J}=\frac{1}{2 N} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}
+$$
 
 That involves the $N$ points in our training set. To do so, we 1) take the derivative of the loss function $\bar{J}$ and 2) set it to 0 to obtain the best weights setting that makes our loss minimal (the point that lies on the bottom of the loss function). In other words we need to minimise $\bar{J}(\mathbf{w})$ with respect to $w$. This is called optimising the loss function $\bar{J}$, so learning in this context is a form of optimisation (there are plenty of perspective for learning that differs or complement this point of view, one of them is the probabilistic approach. We touch upon the probabilistic perspective in later sections).
 
@@ -129,23 +160,35 @@ In this section we will minimise the mean sum of squares by solve the gradient e
 
 Earlier we saw that the loss function can be written as norm as follows:
 
-<mark>$\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\boldsymbol{y}(\mathbf{X}, \mathbf{w})\|^{2}$</mark>
+$$
+\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\boldsymbol{y}(\mathbf{X}, \mathbf{w})\|^{2}
+$$
 
-<mark>$\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\mathbf{X} \mathbf{w}\|^{2}$</mark>
+$$
+\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\mathbf{X} \mathbf{w}\|^{2}
+$$
 
 By taking the gradient and setting it to 0 we get:
 
-<mark>$\nabla \bar{J}=\frac{2}{2 N} \mathbf{X}^{\top}(\mathbf{t}-\mathbf{X} \mathbf{w})=0$</mark>
+$$
+\nabla \bar{J}=\frac{2}{2 N} \mathbf{X}^{\top}(\mathbf{t}-\mathbf{X} \mathbf{w})=0
+$$
 
-<mark>$\mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{*}=\mathbf{X}^{\top} \mathbf{t}$</mark>
+$$
+\mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{*}=\mathbf{X}^{\top} \mathbf{t}
+$$
 
 The above is called the normal equation of the least squares. By solving this equation, we obtain the final solution that optimise the loss function in other words, the best weights that fit the data. The solution is given as:
 
-(4) <mark>$\mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top} \mathbf{t}$</mark>
+$$
+\mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top} \mathbf{t}
+$$
 
 The matrix $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ is called the Moore-Penrose pseudo-inverse of the matrix $X$. The name reflect the fact that this form is a generalisation of the concept of matrix inverse from square matrices (the common one) to a non-squared matrices. Nevertheless, the above closed form solution is better to be performed in different precedence than that of the Moore-Penrose pseudo-inverse, to impose a slightly better efficiency of calculations as follows:
 
-(5) <mark>$\mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}\left(\mathbf{X}^{\top} \mathbf{t}\right)$</mark>
+$$
+\mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}\left(\mathbf{X}^{\top} \mathbf{t}\right)
+$$
 
 We have surrounded the operation $(X^⊤ t)$ with brackets to impose its precedence. This is because calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ and then multiplying the result by $X^⊤$ $t$ is computationally cheaper than calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ and then multiplying is by vector $t$.
 
@@ -153,24 +196,28 @@ The above gives us a closed form solution for $w^*$. Closed form solutions are n
 
 Below we show the Least Squares algorithm for regression, which returns the optimal solution for a linear model.
 
-!!! example "**Algorithms 1:** Least squares for linear regression model"
+!!! algorithm-heading "**Algorithms 1:** Least squares for linear regression model"
+
     **Input:**
 
-      Input set: design matrix <mark>$\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top}$</mark> each $x_n$ is of size $D$
+    !!! algorithm ""
 
-      Labels set: vector $t=[t_1,…,t_N ]^⊤$ each $t_n$ is a scalar
+        Input set: design matrix $\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top}$ each $x_n$ is of size $D$
 
-    **Output:**
+        Labels set: vector $\mathbf{t}=\left[t_{1}, \ldots, t_{N}\right]^{\top}$ each $t_n$ is a scalar
 
-      $w^*$  optimum weights; a vector of size $D+1$
+    **Output:** $\mathbf{w}*$  optimum weights; a vector of size $D+1$
 
-    **LSRegress** $( X,t)$:
+    **LSRegress** $(X,t)$:
 
-      $X=[1_N,X]$ # add dummy feature to the design matrix
+    !!! algorithm ""
 
-      <mark>$\mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}\left(\mathbf{X}^{\top} \mathbf{t}\right)$</mark>
+        $\mathbf{X}=\left[\mathbf{1}_{N}, \mathbf{X}\right]$
+        <span class="algorithm-line-comment"># *add dummy feature to the design matrix*</span>
 
-      Return $w^*$
+        $\mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}\left(\mathbf{X}^{\top} \mathbf{t}\right)$
+
+        Return $\mathbf{w}*$
 
 ###Complexity of the Least Squares
 

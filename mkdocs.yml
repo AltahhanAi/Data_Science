@@ -48,8 +48,8 @@ nav:
             - '1d. Simple linear model exercise': content/unit4/04_01d_simple_linear_model_exercise.md
             - '1e. Approximate solutions - gradient descent': content/unit4/04_01e_Gradient_decent.md
             - '1f. Stochastic gradient decent and sequential learning linear models exercises': content/unit4/04_01f_sgd_exercises.md
-        - '2. Linear Regression with Linear and Non-Linear Basis Functions':
-            - '2a. Linear Regression with Linear and Non-Linear Basis Functions': content/unit4/04_02a_linear_regression_basis_functions.md
+        - '2. Linear regression with linear and non-linear basis functions':
+            - '2a. Linear regression with linear and non-linear basis functions': content/unit4/04_02a_linear_regression_basis_functions.md
             - '2b. Basis functions': content/unit4/04_02b_basis_functions.md
             - '2c. Linear basis model exercise': content/unit4/04_02c_linear_basis_model_exercise.md
             - '2d. Batch learning': content/unit4/04_02d_Batch_learning.md
@@ -57,10 +57,11 @@ nav:
             - '2f. Regression models': content/unit4/04_02f_regression_models.md
             - '2g. Regularisation exercise': content/unit4/04_02g_least_squares_with_basis.md
             - '2h. Linear regression models': content/unit4/04_02h_linear_regression_models.md
-            - '2i. Preventing Overfitting the Data and Overshooting the Loss Minimum': content/unit4/04_02i_preventing_overfitting.md
-        - '3. Non-linear Regression via Neural Networks': content/unit4/04_03a_multi_layer_multi_output.md
-        - '4. Learning from A Probabilistic Perspective': content/unit4/04_4_learning_from_probabilistic_perspective.md
-        - '5. References': content/unit4/04_05_unit_references.md
+            - '2i. Preventing overfitting the data and overshooting the loss minimum': content/unit4/04_02i_preventing_overfitting.md
+        - '3. Non-linear regression via neural networks': content/unit4/04_03a_multi_layer_multi_output.md
+        - '4. Learning from a probabilistic perspective': content/unit4/04_4_learning_from_probabilistic_perspective.md
+        - '5. Unit summary': content/unit4/04_05_unit_summary.md
+        - '6. References': content/unit4/04_06_unit_references.md
     - Unit 5:
         - '1. Linear and non-Linear classification': content/unit5/05_01_linear-non-linear-classification.md
         - '2. Linear model for classification': content/unit5/05_02_linear-model-for-classification.md

@@ -1,4 +1,4 @@
-#Linear and non-linear regression
+# Linear and non-linear regression
 
 **In Unit 2, you saw how we can apply decision trees to classify data with tree induction algorithms such as CART. When the data is purely numerical (all features are numerical not categorical or nominal) then DT might not be the best technique to choose. Similarly, although we have not showed it yet, DT can be used for regression, but by nature DT in its simplest form need to utilise some form of discretisation for regression and will normally perform inferior to other techniques that are originated form numerical optimisation.**
 
