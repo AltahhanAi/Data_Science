@@ -70,9 +70,9 @@ This invites discussion on whether several splits need to be performed and the a
 
 ####Video
 
-<iframe title="Data Part" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/3db1a6348efd446696e14a3a53f5ec241d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<iframe title="Data Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/3db1a6348efd446696e14a3a53f5ec241d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
-You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738960_4" target="_blank">slides shown in the video</a>
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738960_4" target="_blank">slides shown in the video</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826017_4" target="_blank">transcript here</a>.
 
 Slides are reproduced from Tan et al (2019), <a href="[https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
@@ -212,6 +212,6 @@ See the following slides and video for a summary.
 
 <iframe title="Data Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/016cea25684048e6aa0e29b7ad3e982d1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
-You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video</a>
+You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826018_4" target="_blank">transcript here</a>.
 
 Slides are reproduced from Tan et al (2019), <a href="[https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
