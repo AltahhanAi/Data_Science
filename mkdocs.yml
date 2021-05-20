@@ -38,6 +38,7 @@ nav:
             - '2d. Choosing best k': content/unit3/03_02d_choosing_best_k.md
             - '2e. Lesson summary': content/unit3/03_02e_classification_summary.md
         - '3. Ensemble methods': content/unit3/03_03_ensemble_methods.md
+        - '4. References': content/unit3/03_04_unit_references.md
     - Unit 4:
         - 'Linear and non linear regression': content/unit4/04_00_regression_classification.md
         - '1. Simple Linear Regression Models':

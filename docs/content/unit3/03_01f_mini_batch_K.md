@@ -16,7 +16,7 @@ Below, we show the K-means mini-batch algorithm which saves computation and make
 
 In contrast to the vanilla K-means, mini-batch K-means updates the centroids by taking the streaming average of previous centroids with the centroid of the mini-batch. This infuses stability in the centroids and allows the algorithm to capitalise on previous centroids calculations and throws them away after each batch update. For the streaming average, we calculate the sum of the points according to the current batch (as we did in the vanilla K-means) $\sum_{\mathbf{x} \in \boldsymbol{C}_{i, \tau}} \mathbf{x}$ but then we need to multiply the previous number of points sampled so far $\bar{m}_{i}$ times the previous centroid estimate $\boldsymbol{c}_{i}$ to obtain a sum of previous points sampled so far. Then we add both sums $\bar{m}_{i} \boldsymbol{c}_{i}+\sum_{\mathbf{x} \in \boldsymbol{C}_{i, \tau}} \mathbf{x}$ and we divide them by the sum of previous and current number of points from the cluster $\bar{m}_{i}+m_{i}$. Finally, we update the number of points that have been sampled from the cluster $\bar{m}_{i}=\bar{m}_{i}+m_{i}$. This is nothing but a usual moving average.
 
-!!! info "Algorithms 2: Mini-batch K-means++"
+!!! algorithm-heading "Algorithms 2: Mini-batch K-means++"
 
     **Input:**
 
@@ -30,23 +30,23 @@ In contrast to the vanilla K-means, mini-batch K-means updates the centroids by 
 
     **K-meansMB** (**X**, *K*):
 
-    !!! quote ""
+    !!! algorithm ""
         Choose $\boldsymbol{c}_{1}$ randomly
 
         **Repeat**
 
-        !!! quote ""
+        !!! algorithm ""
             Calculate the probabilities $p\left(\mathbf{x}_{n}\right)=\frac{d\left(\mathbf{x}_{n}, \boldsymbol{c}^{\prime}\right)^{2}}{\sum_{\mathbf{x} \in \mathbf{x}} d\left(\mathbf{x}, \boldsymbol{c}^{\prime}\right)^{2}} n=1, \ldots, N$, where $\boldsymbol{c}^{\prime}$ is the nearest centroid to $\mathbf{x}_{n}$
 
             Sample *one* data point to be the new centroid based on probability distribution $p\left(\mathbf{x}_{n}\right)$ **until** we have chosen $K$ centroids.
 
             **Repeat**
 
-            !!! quote ""
+            !!! algorithm ""
 
                 **For** $\tau=1, \ldots, N / b$ <span style="float: right;"># training iterations </span>
 
-                !!! quote ""
+                !!! algorithm ""
 
                     $\bar{m}_{i}=0 \quad i=1, \ldots, K$ <span style="float: right;"># initialise all moving sums </span>
 
@@ -54,13 +54,13 @@ In contrast to the vanilla K-means, mini-batch K-means updates the centroids by 
 
                     **For** each $\mathbf{x}_{n}$ in $\mathbf{X}_{\tau}$ <span style="float: right;"># Assigning each data point in the batch to its closest centroid (creates local cluster) </span>
 
-                    !!! quote ""
+                    !!! algorithm ""
 
                         $l_{n}=\arg \min _{i} d\left(\mathbf{c}_{i}, \mathbf{x}_{n}\right) \quad i=1, \ldots, K$
 
                     **For** each local cluster $\boldsymbol{C}_{i, \tau}$ of size $m_{i}$ in batch $\mathbf{X}_{\tau}$
 
-                    !!! quote ""    
+                    !!! algorithm ""    
 
                         $c_{i}=\frac{\bar{m}_{i} c_{i}+\sum_{\mathbf{x} \in C_{i, \tau}} \mathbf{x}}{\bar{m}_{i}+m_{i}}$
 

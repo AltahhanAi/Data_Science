@@ -8,7 +8,7 @@ The idea is as follows: In order to specify the K centroids, we can employ the i
 
 The set of bisected K-clusters, however, may not need refinement because the splitting procedure (by using 2-means algorithm) is done by looking locally at a sub cluster and not at the level of the whole dataset. To refine further the chosen K-clusters, we choose the centroids of the bisected K-clusters as the initial centroids of a final new run of K-means algorithms, which in turn finds us the best K-clusters and their centroids. The algorithm is shown below.
 
-!!! info "Algorithms 3: Bisecting K-means"
+!!! algorithm-heading "Algorithms 3: Bisecting K-means"
 
     **Input:**
 
@@ -22,17 +22,17 @@ The set of bisected K-clusters, however, may not need refinement because the spl
 
     **Bisect K-means** (**X**, *K*, trials):
 
-    !!! quote ""
+    !!! algorithm ""
         Initiate a list of clusters $C L=\left\{C_{1}\right\}$, initially cluster $C_{1}=\mathbf{X}$ <span style="float: right;"># by assigning $\boldsymbol{C}=[1,1, \ldots, 1]$ </span>
 
         **Repeat**
 
-        !!! quote ""
+        !!! algorithm ""
             Remove a cluster from the list $C L$
 
             **For** $i=1$ to trials
 
-            !!! quote ""
+            !!! algorithm ""
 
                 Bisect the selected cluster using basic 2-means
 
