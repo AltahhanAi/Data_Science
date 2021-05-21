@@ -7,15 +7,15 @@ This is where we need to employ some of the concepts of loss function. A loss fu
 OK, in fact, we can use the distances themselves as indication of the errors. We will calculate the sum of the squared distances between each data point in a cluster and the cluster’s centroid
 
 $$
-J_{i}=\sum_{\mathbf{x} \in C_{i}} d\left(\boldsymbol{c}_{i}, \mathbf{x}\right)^{2}
+J_{i}=\sum_{\mathbf{x} \in \boldsymbol{C}_{i}} d\left(\boldsymbol{c}_{i}, \mathbf{x}\right)^{2}
 $$
 
-where $J_{i}$ is the loss of cluster $C_{i}$.
+where $J_{i}$ is the loss of cluster $\boldsymbol{C}_{i}$.
 
 Further, because we have multiple clusters, we sum these quantities for all the clusters which result in the following SSE (sum of squared errors) loss function:
 
 $$
-J=\sum_{i=1}^{K} \sum_{\mathbf{x} \in C_{i}} d\left(\boldsymbol{c}_{i}, \mathbf{x}\right)^{2} \mid
+J=\sum_{i=1}^{K} \sum_{\mathbf{x} \in \boldsymbol{C}_{i}} d\left(\boldsymbol{c}_{i}, \mathbf{x}\right)^{2}
 $$
 
 This is a function of the centroids. So if we change the centroids the loss will change. How many values can these centroids take? Yes, they can take any real value, so it is infinite because of the continuity of real numbers. We need a way to search through all of these infinite values to find the ones that minimise this error or loss function. Luckily, there is a straightforward way to do this. You may recognise it from calculus.
@@ -56,27 +56,27 @@ This was for one variable function, but for functions with multiple variables (a
 **OK, let us direct our attention back into minimising our loss function. The loss function can be written as:**
 
 $$
-J=\sum_{i=1}^{K} \sum_{\mathbf{x} \in C_{i}}\left\|\boldsymbol{c}_{i}-\mathbf{x}\right\|^{2}
+J=\sum_{i=1}^{K} \sum_{\mathbf{x} \in \boldsymbol{C}_{i}}\left\|\boldsymbol{c}_{i}-\mathbf{x}\right\|^{2}
 $$
 
 We need to minimise the loss with respect to the different centroids. Our function has several variables (the centroids) each has several components (the attributes). But do not worry that is not a problem. We will take the gradient for each centroid separately. Given centroid $\boldsymbol{C}_{k}$ (small $k$ not the total number of clusters $K$) we take the derivative of the cost function with respect to the centroid $\boldsymbol{C}_{k}$ and we set it to 0 to get:
 
 $$
-\nabla J\left(\boldsymbol{c}_{k}\right)=\sum_{\mathbf{x} \in C_{k}} 2\left(\boldsymbol{c}_{k}-\mathbf{x}\right)=0
+\nabla J\left(\boldsymbol{c}_{k}\right)=\sum_{\mathbf{x} \in \boldsymbol{C}_{k}} 2\left(\boldsymbol{c}_{k}-\mathbf{x}\right)=0
 $$
 
 $$
-\sum_{\mathbf{x} \in C_{k}} c_{k}=\sum_{\mathbf{x} \in C_{k}} \mathbf{x}
+\sum_{\mathbf{x} \in C_{k}} c_{k}=\sum_{\mathbf{x} \in \boldsymbol{C}_{k}} \mathbf{x}
 $$
 
 $$
-c_{k} m_{k}=\sum_{\mathbf{x} \in C_{k}} \mathbf{x}
+c_{k}\left|C_{k}\right|=\sum_{\mathbf{x} \in \boldsymbol{C}_{k}} \mathbf{x}
 $$
 
-where $m_{k}$ is the number of data points in cluster $k$. Therefore we have:
+where $\left|\boldsymbol{C}_{k}\right|$ is the number of data points in cluster $\boldsymbol{C}_{k}$. Therefore we have:
 
 $$
-c_{k}=\frac{1}{m_{k}} \sum_{\mathbf{x} \in C_{k}} \mathbf{x}
+c_{k}=\frac{1}{\left|C_{k}\right|} \sum_{\mathbf{x} \in C_{k}} \mathbf{x}
 $$
 
 This is the formula for calculating the centroids (the means) that we have used already. This shows that the K-means algorithm is indeed minimising the loss function SSE by assigning each centroid to the mean of the cluster. Note that we denoted the derivative with $\nabla J$ because it is the gradient of a function with respect of a vector $\boldsymbol{c}_{k}$ (each point in multi-dimensional space is actually a vector since we have multiple attributes for each centroid).

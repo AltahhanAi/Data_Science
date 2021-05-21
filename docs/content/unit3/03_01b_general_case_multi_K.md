@@ -14,12 +14,12 @@ What we have talked about so far was actually the **K-means** algorithm. The nam
 
     $K$: The number of clusters
 
-    **Output**: Cluster labels $\boldsymbol{C}=\left[l_{1}, l_{2}, \ldots, l_{N}\right] \quad l_{n} \in\{1, \ldots, K\}$
+    **Output**: Cluster labels $\boldsymbol{l}=\left[l_{1}, l_{2}, \ldots, l_{N}\right] \quad l_{n} \in\{1, \ldots, K\}$
 
     **K-means** (**X**, *K*):
 
     !!! algorithm ""
-        *Cent=*$\left\{\mathbf{c}_{i}\right\}$ Select $K$ points form $\mathbf{X}$ as initial centroids or at random
+        $\boldsymbol{C} \boldsymbol{t}=\left\{\mathbf{c}_{i}\right\}$ Select $K$ points form $\mathbf{X}$ as initial centroids, randomly
 
         **Repeat**
 
@@ -28,16 +28,16 @@ What we have talked about so far was actually the **K-means** algorithm. The nam
 
             !!! algorithm ""
 
-                $l_{n}=\arg \min _{i} d\left(\mathbf{c}_{i}, \mathbf{x}_{n}\right) \quad i=1, \ldots, \mathrm{K}$ <span style="float: right;"># Form K Clusters by assigning each point to its closest centroid</span>
+                $l_{n}=\arg \min _{i} d\left(\mathbf{c}_{i}, \mathbf{x}_{n}\right) \quad i=1, \ldots, K$ <span style="float: right;"># Form K Clusters by assigning each point to its closest centroid</span>
 
 
-            **For** each Cluster $C_{i}$ of size $m_{i}$   
+            **For** each Cluster $C_{i}$ of size $\left|\boldsymbol{C}_{i}\right|$  
 
             !!! algorithm ""    
 
-                $\boldsymbol{c}_{\boldsymbol{i}}=\frac{1}{m_{i}} \sum_{\mathrm{x} \in C_{i}} \mathbf{x}$ <span style="float: right;"># Recalculate the centroids for each cluster </span>
+                $\boldsymbol{c}_{\boldsymbol{i}}=\frac{1}{\left|\boldsymbol{C}_{i}\right|} \sum_{\mathbf{x} \in \boldsymbol{C}_{i}} \mathbf{x}$ <span style="float: right;"># Recalculate the centroids for each cluster </span>
 
 
             **until** the centroids do not change
 
-        **Return** the labels $\boldsymbol{C}=\left[l_{1}, l_{2}, \ldots, l_{N}\right]$
+        **Return** the labels $\boldsymbol{l}=\left[l_{1}, l_{2}, \ldots, l_{N}\right]$

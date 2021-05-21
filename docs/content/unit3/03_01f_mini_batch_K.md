@@ -14,21 +14,23 @@ The size of the mini-batch is a hyper parameter than should make a good compromi
 
 Below, we show the K-means mini-batch algorithm which saves computation and makes more efficient use of the available data. Note that there will be a slight degradation of the quality of the centroids/clusters but in practice it is normally unnoticeable.
 
-In contrast to the vanilla K-means, mini-batch K-means updates the centroids by taking the streaming average of previous centroids with the centroid of the mini-batch. This infuses stability in the centroids and allows the algorithm to capitalise on previous centroids calculations and throws them away after each batch update. For the streaming average, we calculate the sum of the points according to the current batch (as we did in the vanilla K-means) $\sum_{\mathbf{x} \in \boldsymbol{C}_{i, \tau}} \mathbf{x}$ but then we need to multiply the previous number of points sampled so far $\bar{m}_{i}$ times the previous centroid estimate $\boldsymbol{c}_{i}$ to obtain a sum of previous points sampled so far. Then we add both sums $\bar{m}_{i} \boldsymbol{c}_{i}+\sum_{\mathbf{x} \in \boldsymbol{C}_{i, \tau}} \mathbf{x}$ and we divide them by the sum of previous and current number of points from the cluster $\bar{m}_{i}+m_{i}$. Finally, we update the number of points that have been sampled from the cluster $\bar{m}_{i}=\bar{m}_{i}+m_{i}$. This is nothing but a usual moving average.
+In contrast to the vanilla K-means, mini-batch K-means updates the centroids by taking the streaming average of previous centroids with the centroid of the mini-batch. This infuses stability in the centroids and allows the algorithm to capitalise on previous centroids calculations and throws them away after each batch update.
+
+For the **streaming average**, we calculate the sum of the points according to the current batch (as we did in the vanilla K-means) $\sum_{\mathbf{x} \in \boldsymbol{C}_{i, \tau}} \mathbf{x}$ but then we need to multiply the previous number of points sampled so far $\bar{N}_{i}$ times the previous centroid estimate $\boldsymbol{c}_{i}$ to obtain a sum of previous points sampled so far. Then we add both sums $\bar{N}_{i} \boldsymbol{c}_{i}+\sum_{\mathbf{x} \in \boldsymbol{C}_{i, \tau}} \mathbf{x}$ and we divide them by the sum of previous and current number of points from the cluster $\bar{N}_{i}+N_{i}$. Finally, we update the number of points that have been sampled from the cluster $\bar{N}_{i}=\bar{N}_{i}+N_{i}$. This is nothing but a usual moving average.
 
 !!! algorithm-heading "Algorithms 2: Mini-batch K-means++"
 
     **Input:**
 
-    Dataset $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$
+    Dataset $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$ <span style="float: right;">N is the entire dataset count</span>
 
     $K$: The number of clusters
 
     $b$: Mini-batch size
 
-    **Output**: Cluster Labels $\boldsymbol{C}=\left[l_{1}, l_{2}, \ldots, l_{N}\right] \quad l_{n} \in\{1, \ldots, K\}$
+    **Output**: Cluster Labels $\boldsymbol{l}=\left[l_{1}, l_{2}, \ldots, l_{N}\right] \quad l_{n} \in\{1, \ldots, K\}$
 
-    **K-meansMB** (**X**, *K*):
+    **K-meansMB++** (**X**, *K*):
 
     !!! algorithm ""
         Choose $\boldsymbol{c}_{1}$ randomly
@@ -48,7 +50,7 @@ In contrast to the vanilla K-means, mini-batch K-means updates the centroids by 
 
                 !!! algorithm ""
 
-                    $\bar{m}_{i}=0 \quad i=1, \ldots, K$ <span style="float: right;"># initialise all moving sums </span>
+                    $\bar{N}_{i}=0 \quad i=1, \ldots, K$ <span style="float: right;"># initialise all moving sums </span>
 
                     **Sample** a mini-batch $\mathbf{X}_{\tau}$ of size $b$ from $\mathbf{x}$
 
@@ -58,18 +60,18 @@ In contrast to the vanilla K-means, mini-batch K-means updates the centroids by 
 
                         $l_{n}=\arg \min _{i} d\left(\mathbf{c}_{i}, \mathbf{x}_{n}\right) \quad i=1, \ldots, K$
 
-                    **For** each local cluster $\boldsymbol{C}_{i, \tau}$ of size $m_{i}$ in batch $\mathbf{X}_{\tau}$
+                    **For** each local cluster $\boldsymbol{C}_{i, \tau}$ of size $N_{i}$ in batch $\mathbf{X}_{\tau}$
 
                     !!! algorithm ""    
 
-                        $c_{i}=\frac{\bar{m}_{i} c_{i}+\sum_{\mathbf{x} \in C_{i, \tau}} \mathbf{x}}{\bar{m}_{i}+m_{i}}$
+                        $c_{i}=\frac{\bar{N}_{i} c_{i}+\sum_{\mathbf{x} \in C_{i, \tau}} \mathbf{x}}{\bar{N}_{i}+N_{i}}$
 
-                        $\bar{m}_{i}=\bar{m}_{i}+m_{i}$ <span style="float: right;"># Recalculate the centroids for each global cluster by taking the streaming average to guarantee stability </span>
+                        $\bar{N}_{i}=\bar{N}_{i}+N_{i}$ <span style="float: right;"># Recalculate the centroids for each global cluster by taking the streaming average to guarantee stability </span>
 
 
             **until** the centroids do not change
 
-        **Return** the labels $\boldsymbol{C}=\left[l_{1}, l_{2}, \ldots, l_{N}\right]$
+        **Return** the labels $\boldsymbol{l}=\left[l_{1}, l_{2}, \ldots, l_{N}\right]$
 
 A very similar idea can be adopted to tackle clustering a stream of data, therefore we omit its details for brevity. See the apache spark example in the resources section for an idea, but bear in mind that you are not required to perform this activity, this is just for future reference.
 
