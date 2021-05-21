@@ -31,19 +31,25 @@ Start by assuming that we have two centres that have been given to us and we wan
 
 **The key is to average out the attributes for each cluster of data points. This will be done as follows:**
 
-**Cluster 1 –** take all the data points in the cluster and average their first attributes $f1$ to produce $\bar{x}_{1}$ and their second attributes to produce $\bar{x}_{2}$. Now these two constitutes the new centroid of cluster 1: $\boldsymbol{c}_{1}=\left(\bar{x}_{1}, \bar{x}_{2}\right)$.
+**Cluster 1 –** take all the data points in the cluster and average their first attributes $f1$ to produce $\bar{x}_{1}$ and their second attributes to produce $\bar{x}_{2}$. Now these two constitutes the new centroid of cluster 1, $\boldsymbol{c}_{1}=\left(\bar{x}_{1}, \bar{x}_{2}\right)$.
 
 **Cluster 2 –** same as in cluster 1, produces $\boldsymbol{c}_{2}=\left(\overline{\bar{x}}_{1}, \overline{\bar{x}}_{2}\right)$.
 
 In general, calculating the centroid is a straightforward averaging of the data points inside the cluster.
 
 $$
-c_{i}=\frac{1}{m_{i}} \sum_{\mathbf{x} \in C_{i}} \mathbf{x}
+c_{i}=\frac{1}{\left|C_{i}\right|} \sum_{\mathbf{x} \in C_{i}} \mathbf{x}
 $$
 
-We are using our usual convention of bold face small letter to mean vectors and capital bold letter to mean matrices. $C_{i}$ is a name of the cluster and not a matrix.
+!!! Note
 
-Where $m_{i}$ is the number of data points in cluster $C_{i}$ and $\boldsymbol{c}_{i}$  is the centroid for cluster $C_{i}$.
+    Throughout this lesson we refer to :
+
+	  1. The centroids with a bold small letter such as $\boldsymbol{c}_{i}$ or $\boldsymbol{c}^{\prime}$. It is bold to recognise that, like any point from the input space, each centroid might consist of several components. Each component represents an attribute in the dataset. It is a small letter because it is a point not a set.
+	  2. The clusters are denoted as bold capital letter such as $\boldsymbol{C}_{i}$.  It is capital to recognise that it is a set, and it is bold to recognise that it constitutes several attributes.
+	  3. The number of data points inside the cluster set $\boldsymbol{C}_{i}$ is denoted as $\left|\boldsymbol{C}_{i}\right|$ or as $N_{i}$ (capital not bold). The two bars are used to denote the count of a set as we saw earlier in unit 1.
+	  4. The set of centroids are denoted as $\boldsymbol{C} \boldsymbol{t}=\left\{\boldsymbol{c}_{i}\right\}, i=1, \ldots, K$.
+
 
 So for example, if we have the following clusters as in figure 1.3 below:
 
