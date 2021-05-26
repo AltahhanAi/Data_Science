@@ -1,7 +1,7 @@
 #Example of linear regression model
 
 
-In its simplest form, linear models attempts to draw a straight line that fits a set of data point. Given the following dataset (scroll to the right within the table to see all data):
+**In its simplest form, linear models attempts to draw a straight line that fits a set of data point. Given the following dataset (scroll to the right within the table to see all data):**
 
 | x | -10  | -7.8 | -5.6	| -3.3 | -1.1 | 1.1  | 3.3  | 5.6  | 7.8  | 10   |
 |---|------|------|-------|------|------|------|------|------|------|------|
@@ -47,17 +47,17 @@ We assume that we have a training dataset that consists of:
 
 2. A set of corresponding target values $\left\{\mathbf{t}_{n}\right\}$
 
-We call $x_{n}$ a data point, an observation, a record or a case, interchangeably. Similarly, we call $t_{n}$ the label, the target value or the answer, interchangeably.  
+We call $\mathbf{x}_{n}$ a data point, an observation, a record or a case, interchangeably. Similarly, we call $t_{n}$ the label, the target value or the answer, interchangeably.  
 
 !!! note
-		That $x_{n}$ is a vector of D real values. We assume that $t_{n}$ is a real value scalar. Also, note that in the general case $t_{n}$ can be a vector of size $K$, we will come to that later.
+		That $\mathbf{x}_{n}$ is a vector of D real values. We assume that $t_{n}$ is a real value scalar. Also, note that in the general case $t_{n}$ can be a vector of size $K$, we will come to that later.
 
 !!! info "Important note"
     All the techniques of partitioning the dataset into training, validation and testing sets, with cross validation sets if necessary, that we have discussed in Unit 2 apply to all the techniques that we discuss in this unit. From now on any reference to a dataset in a training context assumes that we are talking about a training set.
 
 ##The Aim of Constructing a Model
 
-Given a new unseen observation $x$, the goal is to train a model to predict the target value $y(x)$ for the given observation $x$ so that $y(x)$ resemble or come as close as possible to the ‘would be’ real target value $t$. During training, both $y\left(\mathrm{x}_{n}\right)$ and $t_{n}$ are available and their difference drives the learning journey of the model. After training, when the model is used in real settings, we do not know the target value $t$. The whole point of constructing the model is to predict such a value. So the generalisation and prediction capabilities of our model has to be specified from the available answers $t_{n}$.
+Given a new unseen observation $X$, the goal is to train a model to predict the target value $y(X)$ for the given observation $X$ so that $y(X)$ resemble or come as close as possible to the ‘would be’ real target value $t$. During training, both $y\left(\mathrm{X}_{n}\right)$ and $t_{n}$ are available and their difference drives the learning journey of the model. After training, when the model is used in real settings, we do not know the target value $t$. The whole point of constructing the model is to predict such a value. So the generalisation and prediction capabilities of our model has to be specified from the available answers $t_{n}$.
 
 ##Linear Regression as a Parametric Model
 
@@ -65,7 +65,7 @@ One of the simple types of parametric models is the linear regression model whic
 
 ##Why we call it linear
 
-Before we start discussing the different forms of linear regression models. We need to be clear about the word linear. When we say linear we mean in terms of the weights and not necessarily in terms of features. This will be clear when we go through the different types of linear models for regression.
+Before we start discussing the different forms of linear regression models. We need to be clear about the word linear. When we say **linear** we mean in terms of the weights and not necessarily in terms of features. This will be clear when we go through the different types of linear models for regression.
 
 Ok, let us start with the simplest linear regression model.  
 
@@ -83,11 +83,11 @@ This is the simplest type of linear models. It defines a relationship between $y
 
 ##Linear Regression for Multi-dimensional Input Space
 
-We can generalise the idea of a linear model from $D=1$ dimensional  space into $D≥1$ space input. We only need to take into account that we have more than 2 coefficients and these coefficients are called the weights in general, $w_0$ is still called the bias. Let us assume that we have a $D$ input space like a set of numerical features of some entity like a house or a car etc.  Each input $x$ will be a vector and will take the form:
+We can generalise the idea of a linear model from $D=1$ dimensional  space into $D≥1$ space input. We only need to take into account that we have more than 2 coefficients and these coefficients are called the weights in general, $w_0$ is still called the bias. Let us assume that we have a $D$ input space like a set of numerical features of some entity like a house or a car etc.  Each input $\mathbf{x}$ will be a vector and will take the form:
 
 $\mathbf{x}=\left[\begin{array}{c}x_{1} \\ x_{2} \\ \vdots \\ x_{D}\end{array}\right]$
 
-Which also can be written as $x=[x_1,x_2,…,x_D ]^⊤$, where ⊤ denotes the transpose of a matrix or a vector. Linear regression models perform the prediction of the input vector $x$ by multiplying each component of the observation $x_i$ by a weight $w_i$ as follows:
+Which also can be written as $\mathbf{x}=\left[x_{1}, x_{2}, \ldots, x_{D}\right]^{\top}$, where ⊤ denotes the transpose of a matrix or a vector. Linear regression models perform the prediction of the input vector $\mathbf{x}$ by multiplying each component of the observation $x_i$ by a weight $w_i$ as follows:
 
 $$
 y(\mathbf{x}, \mathbf{w})=w_{0}+w_{1} x_{1}+w_{2} x_{2}+\cdots+w_{D} x_{D}
@@ -97,7 +97,7 @@ $$
 y(\mathbf{x}, \mathbf{w})=w_{0}+\sum_{i=1}^{D} w_{i} x_{i}
 $$
 
-$\sum_{i=1}^{D} w_{i} x_i$ is a simple multiplication of each $x_i$ with $w_i$ and summing all the multiplications. Learning takes place by adjusting these parameters to make the model produce the desired answers. In simple terms, linear means first order sum.
+where $\sum_{i=1}^{D} w_{i} x_i$ is a simple multiplication of each $x_i$ with $w_i$ and summing all the multiplications. Learning takes place by adjusting these parameters to make the model produce the desired answers. In simple terms, linear means first order sum.
 
 
 ##Vector Matrix Representation with Dummy Component
@@ -114,7 +114,7 @@ $$
 y(\mathbf{x}, \mathbf{w})=w_{0}+\mathbf{w}^{\top} \mathbf{x}
 $$
 
-However, it is also more useful if we express the whole model using vectors. To do so, we can define a dummy feature $x_0=1$ for all vectors of the input space. In this case we can define our linear model as:
+However, it is also more useful if we express the whole model using vectors. To do so, we can define a **dummy** feature $x_0=1$ for all vectors of the input space. In this case we can define our linear model as:
 
 $$
 y(\mathbf{x}, \mathbf{w})=\mathbf{w}^{\top} \mathbf{x}
@@ -134,9 +134,7 @@ x_{D}
 \end{array}\right] \text { and } \mathbf{w}^{\top} \mathbf{x}=\sum_{i=1}^{D} w_{i} x_{i}
 $$
 
-So, we added the dummy feature $x_0$ to the input space. The operation $w^⊤ x$ gives us one value because w is a vector, later we will adjust this to get multi-output via $W^⊤ x$ where $W$ is a matrix not a vector. Below we show a schematic representation of a linear regression model.
-
-<mark>IMAGE MISSING</mark>
+So, we added the dummy feature $x_0$ to the input space. The operation $\mathbf{w}^{\top} \mathbf{x}$ gives us one value because $\mathbf{w}$ is a vector, later we will adjust this to get multi-output via $\mathbf{W}^{\top} \mathbf{x}$ where $\mathbf{W}$ is a matrix not a vector. Below we show a schematic representation of a linear regression model.
 
 <figure role="group">
   <img src="../images/DS_IMG101.png" alt="Schematic representation of a linear regression model." />
@@ -182,13 +180,13 @@ w_{D}
 \end{array}\right]
 $$
 
-Where we call $X$ the design matrix, it has dimension of $N \times D$ and its nth row is  $x_n^⊤$, while we call t the targets matrix. The design matrix resembles how a data in a table looks like and so it makes the implementation of the formula more convenient. Let us now re-formalise the problem using $X$ and $t$. The prediction of the linear model on the entirety of the dataset can be written as:
+Where we call $\mathbf{X}$ the design matrix, it has dimension of $N \times D$ and its $\mathrm{n}^{\text {th }}$ row is $\mathbf{x}_{n}^{\top}$, while we call $\mathbf{t}$ the targets matrix. The design matrix visually resembles data in a table, and so it makes the implementation of the formula more convenient. Let us now re-formalise the problem using $\mathbf{X}$ and $\mathbf{t}$. The prediction of the linear model on the entirety of the dataset can be written as:
 
 $$
 \boldsymbol{y}(\mathbf{X}, \mathbf{w})=\mathbf{X} \mathbf{w}
 $$
 
-Where $y$ is a vector that comprises all the predications for all data points $x_n$.
+Where $y$ is a vector that comprises all the predications for all data points $\mathbf{x}_{n}$.
 
 If we want to take the difference between each target and model prediction for the target, then we can simply do:
 

@@ -194,6 +194,25 @@ For further reading, see Sebastian Ruder's paper on <a href="https://arxiv.org/p
 
 We will refer to all of these strategies by using a normalisation vector $\overline{\boldsymbol{N}}$ that can represent any of the above strategies. To cover the per-weight learning rate adaptation methods, such as the Adagrad and Adam, we need component-wise multiplication (denoted as *).  We write $\frac{1}{\bar{N}} * \mathbf{x}_{n}$ to express that we are adjusting the weights components differently, this is a crude way of describing these optimisations but promote simplicity.
 
+!!! algorithm-heading "**Algorithms 2:** Stochastic gradient descent update for linear regression model  ."
+
+    **Input:**
+
+    Data point $\mathbf{x}_{\mathrm{n}}=\left(1, x_{1}, x_{1}, \ldots, x_{D}\right)$  (including dummy component 1 to correspond to bias $w_{0}$)
+
+    Corresponding labels vector $t_{\mathrm{n}}$
+
+    The set of weights $\mathbf{W}$ that we wish to optimise  
+
+    **Output**: $\mathbf{W}$
+
+    **SGD** $\left(\mathbf{w}, \mathbf{x}_{n}, t_{n}, \eta\right)$:
+
+    !!! algorithm ""
+
+        **Return** $\mathbf{w}=\mathbf{w}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$
+
+      
 For linear regression we can set $η$ to relatively high value such as 0.3 to take into account a good chunk of the errors since we know that the loss function is concave. The loss function is concave since we are taking the squares of weights with no activation function (we will talk more about activation function later in numerical classification). Still, we might want to use a reduced learning rate to cancel some of the noise of the data. Recall that any data will always have some noise in it and reducing the learning rate helps in reducing the risk of model overfitting and helps in reducing the effect of the noise. This is especially relevant when we talk about data streaming where we do not want to take into account all the error of the current input so as not undo completely some previous learning. Also, this brings us to the idea of input normalisation which should be used if possible, for input coming from data streams.
 
 The idea of a learning step is pervasive in machine learning and can be powerful in tackling some of the overfitting issues that arise when dealing with regression. For example, we can anneal (gradually reduce) the learning step in each step or every b steps in order to hinge towards a global optimum when the loss function is not concave.

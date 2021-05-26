@@ -46,7 +46,7 @@ These 4 cases can be better summarised in figure 4.1 below. This is called the c
 Note that the total number of instances is the sum of all of the numbers in the boxes of the confusion matrix:
 
 $$
-𝒏 = TP+ TN+ FP+ FN
+N = TP+ TN+ FP+ FN
 $$
 
 This is regardless of the distribution of the correctly and incorrectly classified instances.
@@ -54,13 +54,13 @@ This is regardless of the distribution of the correctly and incorrectly classifi
 We define the Accuracy of a classifier as the rate of correctly classified instances out of the total number of instances:
 
 $$
-Accuracy=(TP+TN)/n
+Accuracy=(TP+TN)/N
 $$
 
 On the other hand, we define the Error rate as the rate of the incorrectly classified instances out of the total number of instances:
 
 $$
-\text { Error rate }=(F P+F N) / n
+\text { Error rate }=(F P+F N) / N
 $$
 
 All classifiers try to increase its accuracy or equivalently reduce its error rate. However, in some special cases these metrics do not reflect how good the model is. For example, if the classes are not balanced, the accuracy can be misleading. We will study these cases and more suitable measures for them in unit 4.
@@ -138,10 +138,10 @@ Note that predictive metrics are concerned with the model ability to predict or 
 
 Therefore, for two numbers it is defined as $\left(\frac{1 / x_{1}+1 / x_{2}}{2}\right)^{-1}=\frac{2 x_{1} x_{2}}{x_{1}+x_{2}}$
 
-Therefore, F1 score is given as $F 1$ score $=\frac{2 \text { PPV.TPR }}{P P V+T P R}=\frac{\text { 2TP }}{2TP \text { (1) }+\text { FP }+\text { FN }}$
+Therefore, F1 score is given as $F 1$ score $=\frac{2 p\left(\text { predict }_{+}\right) p\left(\text { detect }_{+}\right)}{p\left(\text { predict }_{+}\right)+p\left(\text { detect }_{+}\right)}=\frac{\text { 2TP }}{2TP \text { (1) }+\text { FP }+\text { FN }}$
 
 !!! Note
-    Note that $𝑨𝒄𝒄𝒖𝒓𝒂𝒄𝒚=(𝐓𝐏+𝐓𝐍)/𝒏 =(𝐓𝐏+𝐓𝐍)/(𝐓𝐏+ 𝐓𝐍+ 𝐅𝐏+ 𝐅𝐍)$. If we compare this with the F1 score formula, we realise that we can obtain F1 score directly from the accuracy formula, by replacing the term $TN$ with $TP$. In other words, we can view the F1 score from another perspective as being a measure of overall accuracy for the true positive predicted cases only (no true negative).
+    Note that $𝑨𝒄𝒄𝒖𝒓𝒂𝒄𝒚=(𝐓𝐏+𝐓𝐍)/N =(𝐓𝐏+𝐓𝐍)/(𝐓𝐏+ 𝐓𝐍+ 𝐅𝐏+ 𝐅𝐍)$. If we compare this with the F1 score formula, we realise that we can obtain F1 score directly from the accuracy formula, by replacing the term $TN$ with $TP$. In other words, we can view the F1 score from another perspective as being a measure of overall accuracy for the true positive predicted cases only (no true negative).
 
 <figure role="group">
   <img src="../images/DS_IMG068.png" alt="Two confusion matrices with holistic metrics that comprehensively involve both predicted and actual classes. Left: F1 score. Right: Matthew Correlation Coefficient (MCC)." />
