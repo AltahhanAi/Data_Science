@@ -1,7 +1,7 @@
 #Example of linear regression model
 
 
-In its simplest form, linear models attempts to draw a straight line that fits a set of data point. Given the following dataset (scroll to the right within the table to see all data):
+**In its simplest form, linear models attempts to draw a straight line that fits a set of data point. Given the following dataset (scroll to the right within the table to see all data):**
 
 | x | -10  | -7.8 | -5.6	| -3.3 | -1.1 | 1.1  | 3.3  | 5.6  | 7.8  | 10   |
 |---|------|------|-------|------|------|------|------|------|------|------|
@@ -57,7 +57,7 @@ We call $x_{n}$ a data point, an observation, a record or a case, interchangeabl
 
 ##The Aim of Constructing a Model
 
-Given a new unseen observation $x$, the goal is to train a model to predict the target value $y(x)$ for the given observation $x$ so that $y(x)$ resemble or come as close as possible to the ‘would be’ real target value $t$. During training, both $y\left(\mathrm{x}_{n}\right)$ and $t_{n}$ are available and their difference drives the learning journey of the model. After training, when the model is used in real settings, we do not know the target value $t$. The whole point of constructing the model is to predict such a value. So the generalisation and prediction capabilities of our model has to be specified from the available answers $t_{n}$.
+Given a new unseen observation $X$, the goal is to train a model to predict the target value $y(X)$ for the given observation $X$ so that $y(X)$ resemble or come as close as possible to the ‘would be’ real target value $t$. During training, both $y\left(\mathrm{X}_{n}\right)$ and $t_{n}$ are available and their difference drives the learning journey of the model. After training, when the model is used in real settings, we do not know the target value $t$. The whole point of constructing the model is to predict such a value. So the generalisation and prediction capabilities of our model has to be specified from the available answers $t_{n}$.
 
 ##Linear Regression as a Parametric Model
 
@@ -135,8 +135,6 @@ x_{D}
 $$
 
 So, we added the dummy feature $x_0$ to the input space. The operation $w^⊤ x$ gives us one value because w is a vector, later we will adjust this to get multi-output via $W^⊤ x$ where $W$ is a matrix not a vector. Below we show a schematic representation of a linear regression model.
-
-<mark>IMAGE MISSING</mark>
 
 <figure role="group">
   <img src="../images/DS_IMG101.png" alt="Schematic representation of a linear regression model." />

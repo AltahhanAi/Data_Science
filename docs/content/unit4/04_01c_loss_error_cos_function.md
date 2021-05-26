@@ -1,6 +1,8 @@
 #Loss, Objective, Error or Cost Function for Regression
 
-In this section we will develop the concept of a loss function. The discussion applies for any learning method that attempt to minimise a loss function and not only linear regression. Since we have numerical data, we want to come up with a function (called the loss function, it will apparent later why we call as such) that is closely linked to the distance between the desired and the actual answers of our regression model. The idea here is that we want to lead the learning process via a minimisation of the loss function so that we minimise the difference between the desired and actual answers. So really, we are talking about an aggregate metric that looks into each data point instead of looking at counting the correctly classified and incorrectly classified cases as we did in the confusion matrix. Later on when we will develop other better classifiers to deal with numerical classification we will actually also use the loss function to lead the learning process (by optimising it) and we are still going to use the confusion matrix to measure the performance of the model after learning has finished. So, the loss function is going to be used in this unit for both the regression and classification to lead the optimisation process (learning) in order to learn a best model fit. When we are talking about a multi-component labels (a set of numerical answers instead of one). The loss will be defined on the basis of vector distances, this will become apparent later in this section.
+**In this section we will develop the concept of a loss function. The discussion applies for any learning method that attempt to minimise a loss function and not only linear regression.**
+
+Since we have numerical data, we want to come up with a function (called the loss function, it will apparent later why we call as such) that is closely linked to the distance between the desired and the actual answers of our regression model. The idea here is that we want to lead the learning process via a minimisation of the loss function so that we minimise the difference between the desired and actual answers. So really, we are talking about an aggregate metric that looks into each data point instead of looking at counting the correctly classified and incorrectly classified cases as we did in the confusion matrix. Later on when we will develop other better classifiers to deal with numerical classification we will actually also use the loss function to lead the learning process (by optimising it) and we are still going to use the confusion matrix to measure the performance of the model after learning has finished. So, the loss function is going to be used in this unit for both the regression and classification to lead the optimisation process (learning) in order to learn a best model fit. When we are talking about a multi-component labels (a set of numerical answers instead of one). The loss will be defined on the basis of vector distances, this will become apparent later in this section.
 
 ###Loss function for an individual point
 
@@ -29,7 +31,7 @@ J=\sum_{n=1}^{N}\left(t_{n}-y_{n}\right)^{2}
 $$
 
 $$
-J(w)=\sum_{n=1}^{N}\left(t_{n}-y\left(x_{n}, w\right)\right)^{2}
+J(\boldsymbol{w})=\sum_{n=1}^{N}\left(t_{n}-y\left(\boldsymbol{x}_{n}, \boldsymbol{w}\right)\right)^{2}
 $$
 
 SSE has pros and cons. Its pros are its ease of derivation and positivity. One of its cons is that it exaggerates the residuals, so if a residual is $-3$, then its squared $(-3)^2$ becomes 9. Nevertheless, SSE is widely used, and its advantages overweigh its disadvantages for many problems. Before we settle on it, we need to make two tweaks to make later developments easy to express.
@@ -66,11 +68,8 @@ Below we show an example of a linear model with its loss function, the learning 
 
 <figure role="group">
   <img src="../images/DS_IMG102.png" alt="Left: graph showing an example of a linear model y = 2 + 3x. Right: surface chart, showing the loss function of different settings for W0 and W1 and also the loss function contours plot." />
-  <figcaption><strong>Figure 4.5.</strong> (left) Example of a linear model (right) the loss function of a different settings for w0 and w1 (shown in purple) and the loss function contours plot shown in orange. The task of learning is to reach the bottom of the loss function where are the optimal settings of the weights values. Contour plots project the surface above it and signifies the J by the darkness of the colour so the more orange the higher J is and more error we have. <a href="../files/xxx.ipynb" target="_blank" download>Download the code to generate the figure (.ipynb)</a></figcaption>
+  <figcaption><strong>Figure 4.5.</strong> (left) Example of a linear model (right) the loss function of a different settings for w0 and w1 (shown in purple) and the loss function contours plot shown in orange. The task of learning is to reach the bottom of the loss function where are the optimal settings of the weights values. Contour plots project the surface above it and signifies the J by the darkness of the colour so the more orange the higher J is and more error we have. <a href="../files/cost_function_plot.ipynb" target="_blank" download>Download the code to generate the figure (.ipynb)</a></figcaption>
 </figure>
-
-<mark>FILE ABOVE MISSING</mark>
-
 
 ###Vectorised version of the Loss Function
 
@@ -156,7 +155,7 @@ The above approaches can be applied on any numerical machine learning technique 
 
 ##Batch Learning: The Least Squares for Linear Regression Models
 
-In this section we will minimise the mean sum of squares by solve the gradient equation directly. This is called the least squares and is well-known basic method for regression. Understanding it will pave the way to understand the basic ideas of learning in machine learning. We take the derivative of our loss function and set it to 0 to obtain the best setting that makes our loss minimal. We can either start from the non-vectorised or the vectorised from of the cost function. It is easier to use the latter for the least squares while it is easier to use the former for gradient methods.
+In this section we will **minimise** the mean sum of **squares** by solve the gradient equation directly. This is called the least squares and is well-known basic method for regression. Understanding it will pave the way to understand the basic ideas of learning in machine learning. We take the derivative of our loss function and set it to 0 to obtain the best setting that makes our loss minimal. We can either start from the non-vectorised or the vectorised from of the cost function. It is easier to use the latter for the least squares while it is easier to use the former for gradient methods.
 
 Earlier we saw that the loss function can be written as norm as follows:
 
@@ -218,6 +217,8 @@ Below we show the Least Squares algorithm for regression, which returns the opti
         $\mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}\left(\mathbf{X}^{\top} \mathbf{t}\right)$
 
         Return $\mathbf{w}*$
+
+<mark>Expressing the Sum ∑_(n=1)^N▒〖x_n x_n^T 〗 Concisely Using the Design Matrix video and content</mark>
 
 ###Complexity of the Least Squares
 
