@@ -152,7 +152,7 @@ The formula can be deduced by realising that $g(\mathbf{X} \dot{\mathbf{W}})=\ma
 
 From here it can be seen that we are unable to do least squares on the cost function and we only can reside to an approximation of the optimal weights $\mathbf{W}^{*}$ and $\mathbf{W}^{*}$.
 
-!!! algorithm-heading "Algorithm 4: Regularised Mini-Batch Stochastic Gradient Descent learning for two layers Neural Network Model with sigmoid and identity activation functions for the hidden and output layers respectively‎"
+!!! algorithm-heading "Algorithm 6: Regularised Mini-Batch Stochastic Gradient Descent learning for two layers Neural Network Model with sigmoid and identity activation functions for the hidden and output layers respectively‎"
 
   	**Input:**
 
@@ -191,48 +191,59 @@ From here it can be seen that we are unable to do least squares on the cost func
 
             !!! algorithm ""
 
-                Select a mini-batch $\mathbf{X}_{\tau}, \mathbf{T}_{\tau}$ of size $b$ from $\mathbf{X}, \mathbf{T}$
+                Select a mini-batch $\mathbf{X}_{\tau}, \mathbf{t}_{\tau}$ of size $b$ from $\mathbf{X}, \mathbf{t}$
                 <span class="algorithm-line-comment"># *randomly or by shuffling & partitioning*</span>
 
 				$\mathbf{X}_{\tau}=\left[\mathbf{1}_{\mathbf{b}}, \mathbf{X}_{\tau}\right]$
-                <span class="algorithm-line-comment"># *add dummy feature to the design matrix*</span>
+                <span class="algorithm-line-comment"># *add dummy attribute to the mini-batch input*</span>
 
-                $\mathbf{\Phi}_{\tau}=g\left(\mathbf{x}_{\tau} \mathbf{w}\right)$
+                $\mathbf{\Phi}_{\tau}=g\left(\mathbf{X}_{\tau} \dot{\mathbf{W}}\right)$
                 <span class="algorithm-line-comment"># *element-wise sigmoid $g(\alpha)=\frac{1}{1+e^{-\alpha}}$*</span>
 
-				$\mathbf{W}^{\prime}=\left(1-\frac{1}{b} \eta \lambda\right) \mathbf{W}^{\prime}+\frac{1}{b} \eta \mathbf{\Phi}_{\tau}^{\top}\left(\mathbf{T}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{W}^{\prime}\right)$
-                <span class="algorithm-line-comment"># *update with regularisation*</span>
+                $\mathbf{\Phi}_{\tau}=\left[\mathbf{1}_{\mathbf{b}}, \mathbf{\Phi}_{\tau}\right]$ <span class="algorithm-line-comment"># *add dummy feature to the mini-batch features*</span>
 
-				$\dot{\mathbf{W}}^{\prime}=\left(1-\frac{1}{b} \eta \lambda\right) \dot{\mathbf{W}}^{\prime}+\frac{1}{b} \eta \mathbf{X}_{\tau}^{\top}\left(\mathbf{T}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{W}^{\prime}\right) \mathbf{W}^{\prime \top} \mathbf{\Phi}_{\tau}\left(\mathbf{1}-\mathbf{\Phi}_{\tau}\right)$
+                $\boldsymbol{e}_{\tau}=\left(\mathbf{t}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{w}\right)$ <span class="algorithm-line-comment"># *calculate the error ($\mathbf{\Phi}_{\tau} \mathbf{w}$ is the NN output)*</span>
+
+                $\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{\Phi}_{\tau}^{\top} \boldsymbol{e}_{\tau}$ <span class="algorithm-line-comment"># *update the output weights vector $\mathbf{w}$ as per linear models*</span>
+
+                $\dot{\mathbf{\Phi}}_{\tau}=\mathbf{\Phi}_{\tau} \circ\left(\mathbf{1}-\mathbf{\Phi}_{\tau}\right)$ <span class="algorithm-line-comment"># *element-wise product $\circ$*</span>
+
+				$\mathbf{Z}_{\tau}=\dot{\mathbf{\Phi}}_{\tau} \times \boldsymbol{e}_{\tau}$
+                <span class="algorithm-line-comment"># *propagate the error $\boldsymbol{e}_{\tau}$ via broadcasting $\times$*</span>
+
+				$\dot{\mathbf{W}}=\left(1-\frac{1}{b} \eta \lambda\right) \dot{\mathbf{W}}+\frac{1}{b} \eta\left(\mathbf{X}_{\tau}^{\top} \mathbf{Z}_{\tau}\right) \times \mathbf{w}^{\top}$ <span class="algorithm-line-comment"># *update the hidden weights matrix $\dot{\mathbf{W}}$ as per non-linear models*</span>
 
 			Decay $η$
             <span class="algorithm-line-comment"># *if necessary*</span>
 
-			$\mathbf{\Phi}^{\prime}=g\left(\mathbf{X}^{\prime} \mathbf{W}\right)$
+			$\mathbf{X}^{\prime}=\left[\mathbf{1}_{v}, \mathbf{X}^{\prime}\right]$<span class="algorithm-line-comment"># *add dummy attribute to validation input set*</span>
 
-			$\bar{J}_{e p}=\frac{1}{2 N}\left\|\mathbf{T}^{\prime}-\mathbf{\Phi}^{\prime} \mathbf{W}^{\prime}\right\|^{2}$
-            <span class="algorithm-line-comment"># *calculate the loss or other metric on the validation set*</span>
+            $\mathbf{\Phi}^{\prime}=g\left(\mathbf{X}^{\prime}\dot{\mathbf{W}}\right)$<span class="algorithm-line-comment"># *get the features of the validation features set*</span>
 
-			If $\bar{J}_{e p}>\bar{J}_{e p-1}+\varepsilon:$ break
+            $\mathbf{\Phi}^{\prime}=\left[\mathbf{1}_{v}, \mathbf{\Phi}^{\prime}\right]$<span class="algorithm-line-comment"># *add dummy feature to validation features set*</span>    
+
+			$\overline{J_{e p}^{2}}=\frac{1}{2 v}\left\|\mathbf{t}^{\prime}-\boldsymbol{\Phi}^{\prime} \mathbf{w}\right\|^{2}$
+            <span class="algorithm-line-comment"># *calculate the loss or other metric for the validation set*</span>
+
+			If $\bar{J}_{e p}^{2}>\overline{J_{e p-1}^{2}}+\varepsilon:$ break
             <span class="algorithm-line-comment"># *simple early stopping or other more sophisticate cond.*</span>
 
-			Else $\mathbf{W}=\mathbf{W}^{\prime}$ and $\mathbf{W}=\mathbf{W}^{\prime}$
+			Else $\mathbf{W}^{\prime}=\mathbf{W}$ and $\dot{\mathbf{W}}^{\prime}=\dot{\mathbf{W}}$<span class="algorithm-line-comment"># *update the backups for early stopping to be effective*</span>
 
-        Return the final solution $W$ and $\dot{\mathbf{W}}$
+        Return the final solution $\mathbf{w}^{\prime}$ and $\dot{\mathbf{W}}$
 
-Note that we did not have an algorithm for the least squares because we cannot do it for multi-layer non-linear neural network. In all of the algorithms for mini-batch we have given them number 4 (4, 4’, 4’’, 4’’’) the ‘ signifies the stage of the algorithm, where they cover: linear, linear with basis, linear with basis and multi-outputs and non-linear multi-layer neural network, respectively.
-
-!!!info "Preventing overfitting for neural networks"
-	To understand how to prevent overfitting in neural networks look at the section **Preventing overfitting the data and overshooting the loss minimum** and at Algorithm 5''.
-
+Note that we did not have an algorithm for the least squares because we cannot do it for multi-layer non-linear neural network. In all of the algorithms for mini-batch we have given them number 6 (6, 6’, 6’’, 6’’’) the ‘ signifies the stage of the algorithm, where they cover: linear, linear with basis, linear with basis and multi-outputs and non-linear multi-layer neural network, respectively.
 
 !!! abstract "Exercise"
 
     See the following Jupyter notebook for an example of non-linear regression.
 
-    <mark>FILE MISSING</mark>
+    - Download exercise (.ipynb): <a href="../exercises/non_linear_regression_neural_network.ipynb" download>Non-linear regression</a>    
 
-    <a href="../exercises/xxx.ipynb" target="_blank" download>Non-linear regression neural network Jupyter Notebook (.ipynb)</a>
+!!!info "Preventing overfitting for neural networks"
+
+  To understand how to prevent overfitting in neural networks look at the section **Preventing overfitting the data and overshooting the loss minimum** and at Algorithm 5''.
+
 
 ##Summary
 

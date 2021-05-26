@@ -9,7 +9,7 @@
     *	build a nearest neighbour distance based classifier
     *	understand the issues of overfitting and underfitting related to distance-based clustering and classification algorithms
     *	optimise the two different hyper parameters k and K in k-NN classification and K-means clustering respectively.
-    *	build an ensemble of classification models and to take advantage of their consorted prediction outcome
+    *	build an ensemble of classification models and to take advantage of their consorted prediction outcome.
 
 **In this unit, we explore a set of unsupervised learning techniques and focus on clustering. These techniques allow us to investigate the inner properties of a dataset without any labels.**
 

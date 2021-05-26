@@ -1,5 +1,17 @@
 # Simple Linear Regression Models
 
+!!! success "Learning outcomes:"
+	After completing this lesson you should be able to:
+
+    * use the straight line formula in order to predict the value of a continuous variable
+    *	understand that the weights map into the coefficient of a straight line formula
+    *	generalise linear regression models from a 1 dimensional input space into multiple dimensional input space
+    *	devise a loss function for a linear regression model with multi input space
+    *	exactly optimise a loss function via the least squares algorithm
+    *	approximately optimise a loss function via the gradient descent algorithm
+    *	understand how to perform batch learning and sequential learning, and the differences between them.
+
+
 **In this unit we talk about a simple yet effective group of data mining models, namely linear models.**
 
 These are called **supervised learning techniques** since we train our models via a training set that has the required answers that we are after. Those answers are called labels. The idea is that later on after we train our model, if we present a fresh new case to it, the model will be able to guess what its answers. This brings us to two issues that we will deal with.
