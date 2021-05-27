@@ -69,8 +69,6 @@ $J_{n}(\mathbf{w})=\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$ and $\na
 
 hence
 
-<mark>Is the difference between euler marks just a different format or is this wrong??</mark>
-
 $$
 \nabla \bar{J}^{2}(\mathbf{w})=-\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
 $$
@@ -97,8 +95,6 @@ x_{D}
 $$
 
 Therefore, the gradient descent algorithm for linear regression model, which acts on the entire training set, takes the form:
-
-<mark>Same comment re euler</mark>
 
 $$
 \mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\frac{1}{N} \sum_{n=1}^{N} \eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
