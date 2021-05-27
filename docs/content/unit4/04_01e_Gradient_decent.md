@@ -1,19 +1,20 @@
 #Approximate Solutions: Gradient Descent
 
-For linear models we saw that we can find analytically a solution via the normal formula by setting the gradient to 0 and solve with respect to $w$, such solutions are either not available when we deal with non-linear optimisation or is not desirable due to efficiency requirements. Even if analytical close form solution is available, the complexity of finding the least squares is $\mathcal{O}\left(N^{3}\right)$ which is quite expensive when $N$ is reasonably large.
+**For linear models we saw that we can analytically find a solution via the normal formula by setting the gradient to 0 and solving with respect to $\mathbf{W}$. Such solutions are either not available when we deal with non-linear optimisation or is not desirable due to efficiency requirements. Even if analytical close form solution is available, the complexity of finding the least squares is $\mathcal{O}\left(N^{3}\right)$ which is quite expensive when $N$ is reasonably large.**
 
-In such cases, it is desirable to find an approximate solution for the problem (i.e. an approximation for $w^*$) to come as close as possible to the minimum without necessarily finding the exact solution. Algorithms that tries to achieve this are called approximation algorithms, you will study several of these in the Algorithms Modules including greedy, local search and dynamic programming algorithm. In our case, we will utilise an important and pervasive approximation algorithm that is utilised throughout machine learning. It is not necessary the best approximation algorithm but it is the simplest to understand and to implement.
+In such cases, it is desirable to find an **approximate solution** for the problem (i.e. an approximation for $\mathbf{w}^{*}$) to come as close as possible to the minimum **without** necessarily finding the **exact solution**. Algorithms that tries to achieve this are called approximation algorithms, you will study several of these in the Algorithms Modules including greedy, local search and dynamic programming algorithm. In our case, we will utilise an important and pervasive approximation algorithm that is utilised throughout machine learning. It is not necessary the best approximation algorithm but it is the simplest to understand and to implement.
 
-This optimisation algorithm is called the gradient descent or steepest descent. This techniques aims at iteratively finding the minimum of a function (the loss function $\bar{J}$ in our case). The algorithm starts from any point on the surface of the loss function (i.e. by taking a random initial value for $w$) and then it takes small steps in the direction of the minimum of the function by changing the weights gradually in each step. The direction of the point $w^*$ that minimise $\bar{J}$ from any point $\mathbf{w}^{(\tau)}$ is always opposite to the gradient of the function at this point $-\nabla \bar{J}\left(\mathbf{w}^{(\tau)}\right)$. This is because the gradient of a function always points in a direction opposite to the minimum.
+This optimisation algorithm is called the gradient descent or steepest descent. This techniques aims at iteratively finding the minimum of a function (the loss function $\overline{J^{2}}$ in our case). The algorithm starts from any point on the surface of the loss function (i.e. by taking a random initial value for $w$) and then it takes small steps in the direction of the minimum of the function by changing the weights gradually in each step. The direction of the point $w^*$ that minimise $\overline{J^{2}}$ from any point $\mathbf{w}^{(\tau)}$ is always opposite to the gradient of the function at this point $-\nabla J^{2}\left(\mathbf{w}^{(\tau)}\right)$. This is because the gradient of a function always points in a direction opposite to the minimum.
 
-Here we are talking about a minimum, often complex loss functions have several minima so we will come back to this idea later when we move to the non-linear models towards the end of the unit. We are taking small steps towards the minimum because taking large steps lead to overshooting the minimum or oscillating around it. The size of the step (denoted as $η$) is called the learning rate because it represents how fast a model can learn the solution of the problem. Gradient descent is a numerical optimisation technique so it is an iterative technique that keep working though iterations until it reaches a good enough approximate solution. Reaching a minimum is called convergence (a well know concept in calculus).
+Here we are talking about a minimum, often complex loss functions have several minima so we will come back to this idea later when we move to the non-linear models towards the end of the unit. We are taking small steps towards the minimum because taking large steps lead to overshooting the minimum or oscillating around it. The size of the step (denoted as $η$) is called the learning rate because it represents how fast a model can learn the solution of the problem. Gradient descent is a numerical optimisation technique so it is an iterative technique that keep working though iterations until it reaches a good enough approximate solution. Reaching a minimum is called **convergence** (a well known concept in calculus).
+
 Let us start by the basic gradient descent update which takes the following form:
 
 $$
-\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta_{\tau} \nabla \bar{J}(\mathbf{w})
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta_{\tau} \nabla \overline{J^{2}}(\mathbf{w})
 $$
 
-Where $\mathbf{w}^{(\tau)}$ represents the weight vector at iteration τ and this is not exponentiation. $η_τ$ is a learning step that can be varied between iterations to make the algorithms responsive to changes in the loss function terrain. The basic form of the GD is given below (scroll to the right within the box to view all information).
+Where $\mathbf{w}^{(\tau)}$ represents the weight vector at iteration τ and **this is not exponentiation**. $η_τ$ is a learning step that can be varied between iterations to make the algorithms responsive to changes in the loss function terrain. The basic form of the GD is given below (scroll to the right within the box to view all information).
 
 !!! algorithm-heading "**Algorithm 2:** Approximation Algorithm: Gradient Descent"
 
@@ -39,12 +40,12 @@ Where $\mathbf{w}^{(\tau)}$ represents the weight vector at iteration τ and thi
 
         !!! algorithm ""
 
-            $\mathbf{w}=\mathbf{w}-\eta_{\tau} \nabla \bar{J}(\mathbf{w}, \mathbf{X}, \mathbf{t})$
+            $\mathbf{w}=\mathbf{w}-\eta_{\tau} \nabla \overline{J^{2}}(\mathbf{w}, \mathbf{X}, \mathbf{t})$
             <span class="algorithm-line-comment"># *obtain the gradient of the loss for current $\mathbf{w}$ on the entire training set*</span>
 
         Return the final solution $\mathbf{w}$.
 
-There are some optimisation techniques that give us how to vary the learning rate $η_τ$ but we have not shown this her for simplicity. Also note that both $η_τ$ and $τmax$ should be inputs to the algorithm but we omit this to promote simplicity.
+There are some optimisation techniques that give us how to vary the learning rate $η_τ$ but we have not shown this here for simplicity. Also note that both $η_τ$ and $τmax$ should be inputs to the algorithm but we omit this to promote simplicity.
 
 In the next section we will see how to apply the gradient descent algorithm on the linear regression model.
 
@@ -53,15 +54,15 @@ In the next section we will see how to apply the gradient descent algorithm on t
 We will take the gradient of the cost function directly without using it vectorised form but later we develop a vectorised version. We have saw already in a previous section that the gradient of the linear regression loss function takes the form:
 
 $$
-\bar{J}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}
+\overline{J^{2}}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}
 $$
 
 $$
-\nabla \bar{\jmath}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} \nabla J_{n}^{2}(\mathbf{w})
+\nabla \bar{J}^{2}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} \nabla J_{n}^{2}(\mathbf{w})
 $$
 
 $$
-\nabla \bar{J}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} 2 \nabla J_{n}(\mathbf{w}) J_{n}(\mathbf{w})
+\nabla \overline{J^{2}}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} 2 \nabla J_{n}(\mathbf{w}) J_{n}(\mathbf{w})
 $$
 
 $J_{n}(\mathbf{w})=\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$ and $\nabla J_{n}(\mathbf{w})=-\mathbf{x}_{n}$
@@ -71,13 +72,13 @@ hence
 <mark>Is the difference between euler marks just a different format or is this wrong??</mark>
 
 $$
-\nabla \bar{J}(\mathbf{w})=-\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
+\nabla \bar{J}^{2}(\mathbf{w})=-\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
 $$
 
 This is an important formula that we will get refer back to often. To get a taste of what this gradient entails, we show below what is involved in it:
 
 $$
-\nabla \bar{J}(\mathbf{w})=-\frac{1}{N}\left(\left[\begin{array}{c}
+\nabla \overline{J^{2}}(\mathbf{w})=-\frac{1}{N}\left(\left[\begin{array}{c}
 x_{0} \\
 x_{1} \\
 \vdots \\
@@ -107,7 +108,7 @@ The number of iterations that we need to take in order to reach the minimum depe
 
 Scroll to thr right within the box to see all information.
 
-!!! algorithm-heading "**Algorithm 3:** Approximation Algorithm: Batch Gradient Descent (BGD) for Linear Regression Model, without vectorisation."
+!!! algorithm-heading "**Algorithm 3:** Approximation Algorithm: Batch Gradient Descent (GD) for Linear Regression Model, without vectorisation."
 
     **Input:**
 
@@ -123,7 +124,7 @@ Scroll to thr right within the box to see all information.
 
     **Output**: $\mathbf{w}$ an approximation for optimum weights $\mathbf{w}^*$; a vector of size $D+1$
 
-    **BGD_LRegress** $(X,t,η,epcs)$:
+    **GD_LRegress** $(X,t,η,epcs)$:
 
     !!! algorithm ""
 
@@ -150,7 +151,7 @@ Scroll to thr right within the box to see all information.
 
         Return the final solution $\mathbf{w}$.
 
-Note how we accumulate the changes inside a temporary vector $w'$ (this is just a vector of size $D+1$) in an epoch and we commit at the end of the epoch. This is why it is called a batch gradient descent algorithm; we are waiting till the end of iterating through full batch of the dataset and then we change $w$, *i.e. we do not change $w$ during the epoch.*
+Note how we accumulate the changes inside a temporary vector $\mathbf{w}^{\prime}$ (this is just a vector of size $D+1$) in an epoch and we commit at the end of the epoch. This is why it is called a batch gradient descent algorithm; we are waiting till the end of iterating through full batch of the dataset and then we change $\mathbf{w}$, *i.e. we do not change $\mathbf{w}$ during the epoch.*
 
 This form of batch gradient descent does not take advantage of vectorisation and is slow. For large dataset vectorising the implementation is impractical. However, later on when we talk about mini-batch stochastic gradient descent we will see a way to make a good compromise that will allow us to utilise vectorisation.
 
@@ -160,7 +161,7 @@ For further reading, see Yoshua Bengio's paper on <a href="https://arxiv.org/pdf
 
 Batch learning algorithm such as LS Regression or Batch Stochastic Gradient Descent take into account the entirety (the whole batch) of the dataset at once. No intermediate learning occurs. Another way to minimise the loss function is to gradually change the weights towards minimising the loss function instead of going all the way according to the sum of the errors. This is called sequential learning. There are several advantages for this approach. The most obvious advantage is that it allows for a stream of data to be fed into a system and the system can learn live as the data arrives from the stream. The main advantage is that learning can occur immediately for any fed sample and we do not need to wait to see the entirety of the dataset to learn a model.
 
-Here we need to understand the concept of a learning rate or learning steps denoted as $η$. This hyper parameter specifies how much of the individual step error we want to take into account. In simple linear models this will not make a difference and in fact if assumed that the loss function is concave i.e. it has a global optimum then we can go all the way and adopt the entirety of each step error $\left(\mathbf{w}^{\top} \mathbf{x}_{n}-t_{n}\right)$ offline without changing the weights in each step. However, when the concavity of the loss function (existence of global optimum) is not guaranteed and when the loss function has several local optima some of which are really slight valleys (or when it is infested with local optima) then adopting the full error $t_{n}-\boldsymbol{y}\left(\mathbf{x}_{n}\right)$ is not a good idea. This is because it will force the model to fall into the nearest local minimum and consequent updates are spent on moving out or into local minima. Bearing in mind that the data is noisy anyway, we would want to utilise the learning step for our benefit to reduce the effect of the noise and help avoid the problem of overfitting. Essentially, we replace the loss function $J$ by $J_n^2$, so after a data point becomes available, we update according to:
+Here we need to understand the concept of a learning rate or learning steps denoted as $η$. This hyper parameter specifies how much of the individual step error we want to take into account. In simple linear models this will not make a difference and in fact if assumed that the loss function is concave i.e. it has a global optimum then we can go all the way and adopt the entirety of each step error $\left(\mathbf{w}^{\top} \mathbf{x}_{n}-t_{n}\right)$ offline without changing the weights in each step. However, when the concavity of the loss function (existence of global optimum) is not guaranteed and when the loss function has several local optima some of which are really slight valleys (or when it is infested with local optima) then adopting the full error $t_{n}-\boldsymbol{y}\left(\mathbf{x}_{n}\right)$ is not a good idea. This is because it will force the model to fall into the nearest local minimum and consequent updates are spent on moving out or into local minima. Bearing in mind that the data is noisy anyway, we would want to utilise the learning step for our benefit to reduce the effect of the noise and help avoid the problem of overfitting. Essentially, we replace the loss function $J^{2}$ by $J_n^2$, so after a data point becomes available, we update according to:
 
 $$
 \mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta \frac{1}{2} \nabla J_{n}^{2}
@@ -176,7 +177,7 @@ $$
 
 Where $τ$ represents the iteration (or the time step) and η is the learning rate parameter which should be carefully chosen so that it does not lead to divergence or oscillation of the algorithms. This is because effectively we are accounting for only a very small part of the gradient and we need to leave room for gradients of other data points to take effect in later iterations. Note that we added a (-) to go against the gradient direction which will make the changes go in the direction that will minimise the error. A reasonable choice of $η$ is to make it proportional to the number of expected data points.
 
-Stochastic Gradient Descent (SGD) suffers from several issues, mainly its high variance and its short-sighted look into the loss function terrain by considering just one or few data points. The gradient as a vector, has two essential properties that will direct our search for the minimum of the loss. The first is its direction and the second its magnitude. In general, variants of SGD optimisation use the gradient to specify the direction of changes in the weight vector, they vary in the way they estimate how much of the magnitude of the gradient to be considered (the amount of change). Other optimisation techniques use different direction than that of the gradient altogether, ex. the conjugate gradient of the loss, these however lie outside the scope of our coverage. Vanilla SGD just uses the learning rate $η$ to uniformly take a proportion of the gradient magnitude not all of it. But this makes it difficult to calibrate the learning rate because it has to fit all the different terrains of the loss function, so we normally end up reducing $η$ and taking lots of steps to converge to the minimum (of course there local and global minimum, but let us not differentiate for a moment).
+Stochastic Gradient Descent (SGD) suffers from several issues, mainly its high variance and its short-sighted look into the loss function terrain by considering just one or few data points. The gradient as a vector, has two essential properties that will direct our search for the minimum of the loss. The first is its direction and the second its magnitude. In general, variants of SGD optimisation use the gradient to specify the **direction of changes** in the weight vector, they vary in the way they estimate how much of the magnitude of the gradient to be considered (the **amount of change**). Other optimisation techniques use different direction than that of the gradient altogether, ex. the conjugate gradient of the loss, these however lie outside the scope of our coverage. Vanilla SGD just uses the learning rate $η$ to uniformly take a proportion of the gradient magnitude not all of it. But this makes it difficult to calibrate the learning rate because it has to fit all the different terrains of the loss function, so we normally end up reducing $η$ and taking lots of steps to converge to the minimum (of course there local and global minimum, but let us not differentiate for a moment).
 
 There are a lot variations for the stochastic gradient descent. Mainly they are concerned with tailored learning rate that is responsive to the geometrical aspects of the loss function.
 
@@ -192,27 +193,8 @@ There are a lot variations for the stochastic gradient descent. Mainly they are 
 
 For further reading, see Sebastian Ruder's paper on <a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank">An overview of gradient descent optimization algorithms</a>.
 
-We will refer to all of these strategies by using a normalisation vector $\overline{\boldsymbol{N}}$ that can represent any of the above strategies. To cover the per-weight learning rate adaptation methods, such as the Adagrad and Adam, we need component-wise multiplication (denoted as *).  We write $\frac{1}{\bar{N}} * \mathbf{x}_{n}$ to express that we are adjusting the weights components differently, this is a crude way of describing these optimisations but promote simplicity.
+We will refer to all of these strategies by using a normalisation vector $\overline{\boldsymbol{N}}$ that can represent any of the above strategies. To cover the per-weight learning rate adaptation methods, such as the Adagrad and Adam, we need component-wise multiplication $($ denoted as $\circ)$.  We can write $\frac{1}{\overline{\boldsymbol{N}}} \circ \mathbf{X}_{n}$ to express that we are adjusting the weights components differently, this is a crude way of describing these optimisations but promote simplicity.
 
-!!! algorithm-heading "**Algorithms 2:** Stochastic gradient descent update for linear regression model  ."
-
-    **Input:**
-
-    Data point $\mathbf{x}_{\mathrm{n}}=\left(1, x_{1}, x_{1}, \ldots, x_{D}\right)$  (including dummy component 1 to correspond to bias $w_{0}$)
-
-    Corresponding labels vector $t_{\mathrm{n}}$
-
-    The set of weights $\mathbf{W}$ that we wish to optimise  
-
-    **Output**: $\mathbf{W}$
-
-    **SGD** $\left(\mathbf{w}, \mathbf{x}_{n}, t_{n}, \eta\right)$:
-
-    !!! algorithm ""
-
-        **Return** $\mathbf{w}=\mathbf{w}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$
-
-      
 For linear regression we can set $η$ to relatively high value such as 0.3 to take into account a good chunk of the errors since we know that the loss function is concave. The loss function is concave since we are taking the squares of weights with no activation function (we will talk more about activation function later in numerical classification). Still, we might want to use a reduced learning rate to cancel some of the noise of the data. Recall that any data will always have some noise in it and reducing the learning rate helps in reducing the risk of model overfitting and helps in reducing the effect of the noise. This is especially relevant when we talk about data streaming where we do not want to take into account all the error of the current input so as not undo completely some previous learning. Also, this brings us to the idea of input normalisation which should be used if possible, for input coming from data streams.
 
 The idea of a learning step is pervasive in machine learning and can be powerful in tackling some of the overfitting issues that arise when dealing with regression. For example, we can anneal (gradually reduce) the learning step in each step or every b steps in order to hinge towards a global optimum when the loss function is not concave.
@@ -237,7 +219,7 @@ We can also apply SGD regression on a static dataset, we get a similar result to
 
     **Output**: $\mathbf{w}$ an approximation for optimum weights $\mathbf{w}^*$; a vector of size $D+1$
 
-    **SGD_LRegress** $(X,t,η,epcs)$:
+    **SGD_LRegress1** $(X,t,η,epcs)$:
 
     !!! algorithm ""
 
@@ -252,23 +234,23 @@ We can also apply SGD regression on a static dataset, we get a similar result to
             !!! algorithm ""
 
                 $\mathbf{x}_{n}=\left[1, \mathbf{x}_{n}^{\top}\right]^{\top}$
-                <span class="algorithm-line-comment"># *add a dummy attribute for each $x_n$*</span>
+                <span class="algorithm-line-comment"># *add a dummy attribute for each $\mathbf{x}_{n}$*</span>
 
-                $\boldsymbol{w}^{\prime}=\boldsymbol{w}^{\prime}+\eta \boldsymbol{x}_{n}\left(t_{n}-\boldsymbol{w}^{\top} \boldsymbol{x}_{n}\right)$
+                $\mathbf{w}=\mathbf{w}+\eta \boldsymbol{x}_{n}\left(t_{n}-\boldsymbol{w}^{\top} \boldsymbol{x}_{n}\right)$
                 <span class="algorithm-line-comment"># *commit the changes in every step*</span>
 
         Return the final solution $\mathbf{w}$.
 
-Comparing Algorithm 3 and Algorithm 4. It becomes clear that in Algorithm 4 the weights fixed *during* learning. In contrast Algorithm 3 accumulates all the changes of the weights and apply them all at once.
+Comparing Algorithm 3 and Algorithm 4, it becomes clear that in Algorithm 4 the weights fixed **during** learning. In contrast Algorithm 3 accumulates all the changes of the weights and applies them all at once.
+
+##Mini-Batch Learning: Mini-Batch Stochastic Gradient Descent for Linear Regression Models
+
+Mini-batch SGD algorithm can be used to reach a compromise between sequential and batch gradient methods. To achieve this: the weights changes can be accumulated on-the-sides not for the entire training set but for a limited number of steps b and be committed every b steps. On the extremes when we set $b=N$ (wait until all the data finishes) we get an algorithm that is equivalent to the batch gradient descent, while when we set $b=1$ we get the stochastic gradient descent. So $b$ parametrise a middle ground approach for both cases. Below we show the algorithm.
 
 <figure role="group">
   <img src="../images/DS_IMG103.png" alt="Surface chart showing stochastic gradient descent (SGD) algorithm behaviour. The SGD takes gradual steps towards the mimimum of the loss function by following the gradient of the loss." />
   <figcaption><strong>Figure 4.6.</strong> SGD algorithm behaviour: SGD takes gradual steps towards the minimum of the loss function by  following the gradient of the loss. The line shows an example of the paths of a batch gradient descent (blue on the loss surface function and its projection is orange on the loss contour) and stochastic gradient descent algorithms(green on the loss surface function and brown on the loss contours). </figcaption>
 </figure>
-
-##Minim-Batch Learning: Mini-Batch Stochastic Gradient Descent for Linear Regression Models
-
-Mini-batch SGD algorithm can be used to reach something in the middle between sequential and batch gradient methods. To achieve this: the weights changes can be accumulated on-the-sides not for the entire training set but for a limited number of steps b and be committed every b steps. On the extremes when we set $b=N$ (wait until all the data finishes) we get an algorithm that is equivalent to the batch gradient descent, while when we set $b=1$ we get the stochastic gradient descent. So $b$ parametrise a middle ground approach for both cases. Below we show the algorithm.
 
 <mark>Watch a video1 that explains the above concepts</mark>
 
@@ -287,11 +269,11 @@ Mini-batch SGD algorithm can be used to reach something in the middle between se
 
     $epcs$: Number of epochs
 
-    **Output**: $w$ an approximation for optimum weights $w^*$; a vector of size $D+1$
+    **Output**: $\mathbf{w}$ an approximation for optimum weights $\mathbf{w}^{*}$; a vector of size $D+1$
 
-    **SGD_MiniB_LRegress**$(X,t,b,η)$:
+    **SGD_LRegress2**$(X,t,b,η)$:
 
-    Initialise $w$ and set $\mathbf{w}^{\prime}=0$
+    Initialise $\mathbf{w}$ and set $\mathbf{w}^{\prime}=0$
 
     For $epoch = 1: epcs$
 
@@ -302,10 +284,9 @@ Mini-batch SGD algorithm can be used to reach something in the middle between se
         !!! algorithm ""
 
             $\mathbf{x}_{\boldsymbol{n}}=\left[\mathbf{1}, \mathbf{x}_{\boldsymbol{n}}^{\top}\right]^{\top}$
-            <span class="algorithm-line-comment"># *add a dummy feature for each $x_n$*</span>
+            <span class="algorithm-line-comment"># *add a dummy feature for each $\mathbf{x}_{n}$*</span>
 
-            $\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$
-            <span class="algorithm-line-comment"># *per-weight optimisation methods use $\frac{1}{\bar{N}} * \mathbf{X}_{n}$*</span>
+            $\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$            
 
             If $n \% b==0$
             <span class="algorithm-line-comment"># *there is a better condition see the discussion below*</span>
@@ -318,7 +299,7 @@ Mini-batch SGD algorithm can be used to reach something in the middle between se
 
     Return the final solution $w$
 
-The above algorithm utilises the modulus function $n%b$ which will give us the remainder of a division of the data point count $n$ by $b$ the batch size. When this function $n%b== 0$ it means that $b$ number of steps has elapsed. For example if $N=90$ and we set b=10 then the weights $w$ (not $w'$) will be updated every 10 steps and the updates will be executed 9 times. Note that we accumulate all the changes inside each 10 steps in $w'$ and we commit them at the 10th step.
+The above algorithm utilises the modulus function $n \% b$ which will give us the remainder of a division of the data point count $n$ by $b$ the batch size. When this function $n \% b==0$ it means that $b$ number of steps has elapsed. For example if $N=90$ and we set b=10 then the weights $\mathbf{w}\left(\operatorname{not} \mathbf{w}^{\prime}\right)$ will be updated every 10 steps and the updates will be executed 9 times. Note that we accumulate all the changes inside each 10 steps in $\mathbf{w}^{\prime}$ and we commit them at the 10th step.
 
 If we have $N=94$ and we set $b=10$ then the last 4 data points will be left if we just use the condition $n \% b==0$. Therefore, we can adjust as follows:
 
@@ -339,7 +320,7 @@ If we have $N=94$ and we set $b=10$ then the last 4 data points will be left if 
 
 The condition $n \% b==0$ or $n==N:$  or  $n==N$ is used to accommodate the last few points that cannot form a full batch. For the same reason we use $b^{\prime}=n \% b$ instead of $b$, which will yield $b$ when $n \% b==0$ and the remainder of the batch (4 in our example) otherwise when $n==N$. we have not include this snippet to keep the algorithm simple.
 
-Also, we use the weights $w$ in our output estimation $\mathbf{w}^{\top} \mathbf{x}_{n}$ in the update rule $\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\frac{1}{N} \eta\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right) \mathbf{x}_{n}$ this is deliberate to guarantee stability. Mini-batch stochastic gradient descent reduce the variance caused by stochastic gradient descent and hence help stabilise the learning process.
+Also, we use the weights $\mathbf{w}$ in our output estimation $\mathbf{w}^{\top} \mathbf{x}_{n}$ in the update rule $\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\frac{1}{N} \eta\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right) \mathbf{x}_{n}$ this is deliberate to guarantee stability. Mini-batch stochastic gradient descent reduce the variance caused by stochastic gradient descent and hence help stabilise the learning process.
 
 ###Faster Mini-Batch SGD
 
@@ -365,7 +346,7 @@ Below we show the final mini-batch algorithm. We have left which strategy to ado
 
 We normally decay the learning rate in order to prevent zigzagging around the minimum of the cost function when we start by a high learning rate or to fine tune our final weights.
 
-!!! algorithm-heading "**Algorithm 4:** Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model: with vectorisation."
+!!! algorithm-heading "**Algorithm 6:** Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model: with vectorisation."
 
     **Input:**
 
@@ -383,7 +364,7 @@ We normally decay the learning rate in order to prevent zigzagging around the mi
 
     **Output**: $\mathbf{w}$ an approximation for optimum weights $\mathbf{w}^*$; a vector of size $D+1$
 
-    **SGD_VMiniB_LRegress**$(X,t,b,η_0,epcs)$:
+    **SGD_LRegress**$\left(\mathbf{X}, \mathbf{t}, b, \eta_{0}, e p c s\right)$:
 
     Initialise $\mathbf{w}$ and $η=η_0$
 
@@ -396,14 +377,13 @@ We normally decay the learning rate in order to prevent zigzagging around the mi
 
         !!! algorithm ""
 
-            Select a mini-batch $X_τ,t_τ$ of size $b$ from $X,t$
+            Select a mini-batch $\mathbf{X}_{\tau}, \mathbf{t}_{\tau}$ of size $b$ from $\mathbf{X}, \mathbf{t}$
             <span class="algorithm-line-comment"># *by sampling or by shuffling & partitioning*</span>
 
             $\mathbf{X}_{\tau}=\left[\mathbf{1}_{b}, \mathbf{X}_{\tau}\right]$
             <span class="algorithm-line-comment"># *add dummy feature to the mini-batch*</span>
 
-            $\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{X}_{\tau}^{\top}\left(\mathbf{t}_{\tau}-\mathbf{X}_{\tau} \mathbf{w}\right)$
-            <span class="algorithm-line-comment"># *per-weight optimisation methods use $\frac{1}{\bar{N}} * \mathbf{X}_{\tau}$*</span>
+            $\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{X}_{\tau}^{\top}\left(\mathbf{t}_{\tau}-\mathbf{X}_{\tau} \mathbf{w}\right)$            
 
         Decay $η$
         <span class="algorithm-line-comment"># *if necessary: ex. ‎$η=0.9×η$*</span>
@@ -416,6 +396,6 @@ It should be stressed here also that SGD is sensitive to feature scaling and it 
 
 For further reading, see Prateek et al's paper on <a href="https://www.jmlr.org/papers/volume18/16-595/16-595.pdf" target="_blank">Parallelizing Stochastic Gradient Descent for Least Squares Regression: Mini-batching, Averaging, and Model Misspecification</a>.
 
-The above algorithm can be easily adapted when we are dealing with a data stream, all what we need to do is to accumulate $X_τ$ as the data arrives until it is of the required size $b$, and we can even vary the size $b$ itself between different iterations, these have not been shown to keep the algorithm simple and to concentrate on a basics of the vectorised minim-batch is left to you as an exercise. Not that when $b=N$ the algorithm goes back to a vectorised batch stochastic gradient descent which can be applied when the dataset size permits. The resultant weights are still an approximation even if it might be very close to the optimum solution w^*.
+The above algorithm can be easily adapted when we are dealing with a data stream, all what we need to do is to accumulate $\mathbf{X}_{\tau}$ as the data arrives until it is of the required size $b$, and we can even vary the size $b$ itself between different iterations, these have not been shown to keep the algorithm simple and to concentrate on a basics of the vectorised minim-batch is left to you as an exercise. Not that when $b=N$ the algorithm goes back to a vectorised batch stochastic gradient descent which can be applied when the dataset size permits. The resultant weights are still an approximation even if it might be very close to the optimum solution $\mathbf{w}^{*}$.
 
 To summarise, we emphasise here, contrary to what one might expect, stochastic and mini-batch stochastic gradient descent converge faster that batch gradient descent in practice. This is due to several reasons. One reason is that both stochastic gradient algorithms infuse noise in the update which is quite useful to escape local minima. Another reason is that by nature stochastic algorithms are faster to execute and they execute several updates per clock time in comparison with batch gradient which keeps accumulating the gradients on the side until it sweeps through the whole training set. Assuming that the training set is finite but large, then the roughness of stochastic updates outperforms the more exactness of batch gradient. A third reason is that all gradient descents, even the batch one, do not point exactly to the global minimum instead they roughly point to a direction that will lead us to the minimum. Therefore, it does not make sense to spend a lot of computational power (as in the batch GD) to try to improve the gradient by considering more and more points until we consume the whole training set. Because even then the gradient is not quite right opposite to the direction of the minimum for complex loss function. Although linear regression loss function is quadratic and has a global minimum, nevertheless these issues can still be seen and you can examine them in the next exercise.

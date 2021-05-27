@@ -3,13 +3,9 @@
 !!! abstract "Exercise"
 
     See the following Jupyter notebook to compare the performance of vanilla and vectorised SGD, the code is written in pure python code using numpy.
-    <mark>This notebook is the same download as in lesson 1d</mark>
 
-    <a href="../exercises/Exercise-1d_simple-linear-model.ipynb" target="_blank" download>Download SDG Algorithms notebook (.ipynb)</a>
+    - Download exercise (.ipynb):   <a href="../exercises/Exercise2_SGD_Algorithm_Linear_Regression.ipynb" target="_blank" download>SGD Algorithm </a>
 
-!!! abstract "Exercise"
+##Simple linear regression models: lesson summary
 
-    See the following Jupyter notebook on how to build a sequential learning linear models in sklearn.
-    <mark>Download file required</mark>
-
-    <a href="../exercises/xxx.ipynb" target="_blank" download>Download sequential learning linear regression models notebook (.ipynb)</a>
+In this lesson you have learnt about simple linear regression models, and their coefficient that maps into weights. You have understood the generalisation from one dimension of input into multi-dimensional input space. You have seen how to utilise loss function effectively in order to solve the linear regression problem exactly via least squares, and approximately via the gradient descent. In addition you have learnt how to address sequential learning problems by utilising the ideas of mini-batch learning.
