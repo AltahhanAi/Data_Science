@@ -151,7 +151,7 @@ From this point we can adopt any of the following approaches to train our model,
         2. In each iteration we collect the updates of all the data pairs $\left(\mathbf{x}_{n}, t_{n}\right)$ inside the mini-batch $b_i$  and we commit all of them at once.
         3. In order to mitigate for the bias and variance that might occur due to a particular lucky (or unlucky) batch, we often shuffle the training set.
 
-This approach has the disadvantage that the algorithm might get trapped in local minim. Therefore, to avoid dropping into local minima, we take part of the gradient not all of it, into change the weights. The percentage of the error is called the learning rate.
+This approach has the disadvantage that the algorithm might get trapped in local minima. Therefore, to avoid dropping into local minima, we take part of the gradient not all of it, into change the weights. The percentage of the error is called the learning rate.
 
 Further, we decay the learning rate between one epoch and the other because after each epoch our weights becomes closer and closer to the weights that is optimal for the entire training set and not only one batch and to avoid overshooting the amount of changes required to end up in the local minimum we reduce the learning step in later epochs. Decaying the weights can be done in several ways. You will discuss further these in the machine learning modules.
 
@@ -164,17 +164,17 @@ In this section we will **minimise** the mean sum of **squares** by solve the gr
 Earlier we saw that the loss function can be written as norm as follows:
 
 $$
-\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\boldsymbol{y}(\mathbf{X}, \mathbf{w})\|^{2}
+\overline{J^{2}}=\frac{1}{2 N}\|\mathbf{t}-\boldsymbol{y}(\mathbf{X}, \mathbf{w})\|^{2}
 $$
 
 $$
-\bar{J}=\frac{1}{2 N}\|\mathbf{t}-\mathbf{X} \mathbf{w}\|^{2}
+\overline{J^{2}}=\frac{1}{2 N}\|\mathbf{t}-\mathbf{X} \mathbf{w}\|^{2}
 $$
 
 By taking the gradient and setting it to 0 we get:
 
 $$
-\nabla \bar{J}=\frac{2}{2 N} \mathbf{X}^{\top}(\mathbf{t}-\mathbf{X} \mathbf{w})=0
+\nabla \overline{J^{2}}=\frac{2}{2 N} \mathbf{X}^{\top}(\mathbf{t}-\mathbf{X} \mathbf{w})=0
 $$
 
 $$
@@ -187,15 +187,15 @@ $$
 \mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top} \mathbf{t}
 $$
 
-The matrix $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ is called the Moore-Penrose pseudo-inverse of the matrix $X$. The name reflect the fact that this form is a generalisation of the concept of matrix inverse from square matrices (the common one) to a non-squared matrices. Nevertheless, the above closed form solution is better to be performed in different precedence than that of the Moore-Penrose pseudo-inverse, to impose a slightly better efficiency of calculations as follows:
+The matrix $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ is called the Moore-Penrose pseudo-inverse of the matrix $\mathbf{X}$. The name reflects the fact that this form is a generalisation of the concept of matrix inverse from square matrices (the common one) to a non-squared matrices. Nevertheless, the above closed form solution is better to be performed in different precedence than that of the Moore-Penrose pseudo-inverse, to impose a slightly better efficiency of calculations as follows:
 
 $$
 \mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}\left(\mathbf{X}^{\top} \mathbf{t}\right)
 $$
 
-We have surrounded the operation $(X^⊤ t)$ with brackets to impose its precedence. This is because calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ and then multiplying the result by $X^⊤$ $t$ is computationally cheaper than calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ and then multiplying is by vector $t$.
+We have surrounded the operation $\left(\mathbf{X}^{\top} \mathbf{t}\right)$ with brackets to impose its precedence. This is because calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ and then multiplying the result by $\mathbf{X}^{\top} \mathbf{t}$ is computationally cheaper than calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ and then multiplying is by vector $\mathbf{t}$. We talk more about this in the next section.
 
-The above gives us a closed form solution for $w^*$. Closed form solutions are not always available for a machine learning or data mining task. Their existence facilitates more analysis and insights into the problem. Some problems might not have a closed form solution formula; however we can still estimate the solutions numerically. Sometimes also closed form solutions can be impractical for big datasets due to their high computational demands. An example is $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ the inverse of the matrix $(X^⊤ X)$. As we already know finding the inverse of a matrix is an expensive operation and its complexity is $\mathcal{O}\left(D^{3}\right)$ and can be reduced to $\mathcal{O}\left(D^{2.376}\right)$ which can be expensive for a very large $D$ (to be prices it is $\mathcal{O}\left(\bar{D}^{3}\right)$) where $\bar{D}=D+1$.
+The above gives us a closed form solution for $\mathbf{W}^{*}$. Closed form solutions are not always available for a machine learning or data mining task. Their existence facilitates more analysis and insights into the problem. Some problems might not have a closed form solution formula; however we can still estimate the solutions numerically. Sometimes also closed form solutions can be impractical for big datasets due to their high computational demands. An example is $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ the inverse of the matrix $\left(\mathbf{X}^{\top} \mathbf{X}\right)$. As we already know finding the inverse of a matrix is an expensive operation and its complexity is $\mathcal{O}\left(D^{3}\right)$ and can be reduced to $\mathcal{O}\left(D^{2.376}\right)$ which can be expensive for a very large $D$ (to be prices it is $\mathcal{O}\left(\bar{D}^{3}\right)$) where $\bar{D}=D+1$.
 
 Below we show the Least Squares algorithm for regression, which returns the optimal solution for a linear model.
 
@@ -211,7 +211,7 @@ Below we show the Least Squares algorithm for regression, which returns the opti
 
     **Output:** $\mathbf{w}*$  optimum weights; a vector of size $D+1$
 
-    **LSRegress** $(X,t)$:
+    **LS LRegress** $(X,t)$:
 
     !!! algorithm ""
 
@@ -222,15 +222,13 @@ Below we show the Least Squares algorithm for regression, which returns the opti
 
         Return $\mathbf{w}*$
 
-<mark>Expressing the Sum ∑_(n=1)^N▒〖x_n x_n^T 〗 Concisely Using the Design Matrix video and content</mark>
-
 ###Complexity of the Least Squares
 
 We refer to the computational costs (of how many primitive operations a process costs) time complexity. Space complexity focuses on how much memory (computational space) a process needs. Here we are mainly talking about time complexity. For example, the complexity of multiplying a vector of size $N$ with a row of size $D$ costs $N×D$ since a processor has to perform $N×D$ multiplication operations. Estimating the time using number of operations provides a better reference in terms of time than actual time in seconds or milliseconds since machines varies greatly in processing power. We largely study operations in terms of main operations and we refer to this using the big O notation which ignores the small pieces of the calculations and concentrate on the dominant operations that takes the longest. We refer to the vector to vector complexity as $\mathcal{O}(N \times D)$. For a matrix of size $D×D$ and a vector of size N the multiplication operation costs $\mathcal{O}(D \times N)$.
 
 We refer to the size of the extended input space, that comprise the original input space along the side with the dummy input $x_0=1$ as $\bar{D}=D+1$. The matrix $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ is the inverse of the matrix $\mathbf{X}^{\top} \mathbf{X}$ both of which is of size $\bar{D} \times \bar{D}$. Nevertheless, we will suffice by studying the complexity using $D$ since the difference is minor and to promote simplicity.
 
-$X$ is a matrix of size $N×D$, so the matrix $\left(\mathbf{X}^{\top} \mathbf{X}\right)$, and its inverse, eliminate the dimension $N$ related to the number of data points. Of course the dimension $N$ stays in the solution due to $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ which is an $N \times \bar{D}$ matrix and is called the Moore-Penrose pseudo –inverse of the matrix $X$. However, in general more efficient to do the calculation $\mathbf{X}^{\top} \mathbf{t}$ which results in a vector and multiply the results by the inverse $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ instead of calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ and then multiply it by t since this avoids a matrix to matrix multiplication.
+$\mathbf{X}$ is a matrix of size $N×D$, so the matrix $\left(\mathbf{X}^{\top} \mathbf{X}\right)$, and its inverse, eliminate the dimension $N$ related to the number of data points. Of course the dimension $N$ stays in the solution due to $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ which is an $N \times \bar{D}$ matrix and is called the Moore-Penrose pseudo –inverse of the matrix $X$. However, in general more efficient to do the calculation $\mathbf{X}^{\top} \mathbf{t}$ which results in a vector and multiply the results by the inverse $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ instead of calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ and then multiply it by t since this avoids a matrix to matrix multiplication.
 
 The full calculation $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top} \mathbf{t}$ result in a vector of size $\bar{D}$.  It can be performed in two ways:
 
@@ -261,7 +259,7 @@ However, the effect can be minor in comparison to the more costly calculation of
 
   * calculating $\mathbf{X}^{\top} \mathbf{X}$ costs $\mathcal{O}\left(N^{3}\right)$ and results in a matrix of size $D×D$
 
-  * calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ costs $O\left(D^{3}\right)$ and results in a matrix $F$ of size $D×D$
+  * calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ costs $O\left(D^{3}\right)$ and results in a matrix $\mathbf{F}$ of size $D×D$
 
   * total cost is $\mathcal{O}\left(N^{3}\right)+\mathcal{O}\left(D^{3}\right)$
 
