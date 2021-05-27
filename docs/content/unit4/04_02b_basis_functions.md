@@ -123,21 +123,21 @@ Below we show some examples of the behaviour of the sigmoid for 1d input space.
 
 	If we take the derivative of the sigmoid we get that:
 
-	<mark>$\frac{d g}{d \alpha}=\frac{e^{\alpha}\left(1+e^{\alpha}\right)-e^{\alpha} e^{\alpha}}{\left(1+e^{\alpha}\right)^{2}}=\frac{e^{\alpha}\left(1+e^{\alpha}-e^{\alpha}\right)}{\left(1+e^{\alpha}\right)^{2}}=\frac{e^{\alpha}}{\left(1+e^{\alpha}\right)^{2}}$ </mark>
+	$\frac{d g}{d \alpha}=\frac{e^{\alpha}\left(1+e^{\alpha}\right)-e^{\alpha} e^{\alpha}}{\left(1+e^{\alpha}\right)^{2}}=\frac{e^{\alpha}\left(1+e^{\alpha}-e^{\alpha}\right)}{\left(1+e^{\alpha}\right)^{2}}=\frac{e^{\alpha}}{\left(1+e^{\alpha}\right)^{2}}$
 
 	However:
 
-	<mark>$g(\alpha)(1-g(\alpha))=\frac{e^{\alpha}}{1+e^{\alpha}} \cdot \frac{1}{1+e^{\alpha}}=\frac{e^{\alpha}}{\left(1+e^{\alpha}\right)^{2}}$</mark>
+	$g(\alpha)(1-g(\alpha))=\frac{e^{\alpha}}{1+e^{\alpha}} \cdot \frac{1}{1+e^{\alpha}}=\frac{e^{\alpha}}{\left(1+e^{\alpha}\right)^{2}}$
 
 	And so we have:			 
 
-	<mark>$\frac{d g}{d \alpha}=g(\alpha)(1-g(\alpha))$</mark>
+	$\frac{d g}{d \alpha}=g(\alpha)(1-g(\alpha))$
 
-For a multidimensional input space where we have $x_n$ as a vector of dimension $D$, we can utilise the square root of  the exponent of a multivariate Gaussian to calculate $α_j$ as follows (known as Mahalanobis distance):
+For a multidimensional input space where we have $\mathbf{x}_{n}$ as a vector of dimension $D$, we can utilise the square root of  the exponent of a multivariate Gaussian to calculate $α_j$ as follows (known as Mahalanobis distance):
 
-(22) <mark>$\alpha_{j}=\left(\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{j}\right)^{\top} \boldsymbol{\Sigma}^{-1}\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{j}\right)\right)^{\frac{1}{2}}$</mark>
+$\alpha_{j}=\left(\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{j}\right)^{\top} \boldsymbol{\Sigma}^{-1}\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{j}\right)\right)^{\frac{1}{2}}$</mark>
 
-(23) <mark>$\phi_{j}\left(\mathbf{x}_{n}\right)=g\left(\alpha_{j}\right)=\frac{1}{1+e^{-a_{j}}}$</mark>
+$\phi_{j}\left(\mathbf{x}_{n}\right)=g\left(\alpha_{j}\right)=\frac{1}{1+e^{-a_{j}}}$</mark>
 
 To generate a set of different basis $j=1,…,M,$ where $\boldsymbol{\mu}_{j}$ are vectors of $M$ means each of size $D$. All the basis may share the same covariance $\boldsymbol{\Sigma}$ or have a different covariance matrices $\mathbf{\Sigma}_{j}$. We showed the former above because it is more common to have one covariance although this normally requires that the input data is normalised first.
 
@@ -145,15 +145,15 @@ To generate a set of different basis $j=1,…,M,$ where $\boldsymbol{\mu}_{j}$ a
 
 A basis that is closely related to the sigmoid (both belongs to the family of exponential distributions) is the tanh. The tanh basis function takes the form:
 
-(24) <mark>$h(\alpha)=\frac{e^{2 \alpha}-1}{e^{2 \alpha}+1}$</mark>
+$h(\alpha)=\frac{e^{2 \alpha}-1}{e^{2 \alpha}+1}$
 
 The derivative of the tanh is given as:
 
-(25) <mark>$\frac{d h}{d \alpha}=1-h^{2}$</mark>
+$\frac{d h}{d \alpha}=1-h^{2}$
 
 It is important to note that both the tanh and the sigmoid have the following relationship:
 
-(26) <mark>$\mathrm{h}(\alpha)=2 g(2 \alpha)-1$</mark>
+$\mathrm{h}(\alpha)=2 g(2 \alpha)-1$
 
 This relationship suggests that using either in a linear model is equivalent. However, we need to be mindful that the derivatives of these functions behave differently and so when they are used in other contexts (as activation functions that acts on the weights, ex. in a non-linear model) they result in different behaviours and the non-linear models that use them also differ.
 Both the tanh and sigmoid are members of the family of sigmoidal functions.
