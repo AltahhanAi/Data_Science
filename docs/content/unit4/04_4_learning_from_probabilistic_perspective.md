@@ -1,6 +1,15 @@
 # Learning from a probabilistic perspective
 
-In this section we will discuss link between minimising a loss functions with probability theory, to see how learning can take a probabilistic perspective. We will also establish links with a particular probabilistic framework namely the Bayesian framework for learning. This lesson and its subsections can be safely skipped, without consequences on other sections or future sections in the module. Similar material will be also covered in some form in the Machine Learning module.
+!!! success "Learning outcomes:"
+	After completing this lesson you should be able to:
+
+    * understand the optimisation process from a Bayesian framework
+    *	use maximum likelihood method to optimise the loss function
+    *	motivate the regularised least squares using posterior maximisation
+
+**In this section we will discuss link between minimising a loss functions with probability theory, to see how learning can take a probabilistic perspective.**
+
+We will also establish links with a particular probabilistic framework namely the Bayesian framework for learning. This lesson and its subsections can be safely skipped, without consequences on other sections or future sections in the module. Similar material will be also covered in some form in the Machine Learning module.
 
 ## Minimising least squares loss via maximising the likelihood
 
@@ -23,8 +32,6 @@ Nevertheless, we calculate the likelihood via probability.
 ## Maximising the likelihood with identical mean and variance
 
 For example, given a univariate Gaussian distribution $\mathcal{N}\left(x \mid \mu, \sigma^{2}\right)$ and a set of data points $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$ of size $N$, the likelihood of this Gaussian model generating all the data is the probability that the all the given data has come from this distribution (distributed according to the Gaussian). Since the probability of a set of independent events taking place together equals to the multiplication of their individual probabilities and given that the dataset $X$ is independent and identically distributed (i.i.d) - identically distributed means all of the data is drawn from the same distribution whether we know the distribution or we try to estimate it. Then, the likelihood of the model given the data is given as the probability $p\left(\mathbf{X} \mid \mu, \sigma^{2}\right)$ and is calculated as:
-
-<mark>This isn't an exact match of orig equation but is that just formatting? Same throughout equations in lesson, there are instances where something like this $\Pi_{n=1}^{N}$ is represented with elements above or below instead of sub or sup - to the side.</mark>
 
 $$
 p\left(\mathbf{X} \mid \mu, \sigma^{2}\right)=\prod_{n=1}^{N} \mathcal{N}\left(x_{n} \mid \mu, \sigma^{2}\right)
@@ -50,10 +57,8 @@ $$
 
 Which states that the mean for $t$ is $y(x,w)$ and the variance is $\beta^{-1}$. This assumption is illustrated in the following figure:
 
-<mark>IMAGE DOESN'T MATCH</mark>
-
 <figure role="group">
-  <img src="../images/DS_IMG009.png" alt="Test image." />
+  <img src="../images/DS_IMG193.png" alt="Test image." />
   <figcaption><strong>Figure 4.29</strong> Linear model fitting with Gaussian Noise.</figcaption>
 </figure>
 
@@ -174,11 +179,3 @@ $$
 $$
 
 If the matrix $\left(\mathbf{\Phi}^{\top} \mathbf{\Phi}+\lambda \mathbf{I}\right)$ is invertible then the solution exists.
-
-!!! abstract "Exercise"
-
-    <mark>FILE MISSING</mark>
-
-    See the following Jupyter notebook that compares between different regression models and their latency.
-
-    <a href="..exercises/xxx.ipynb" target="_blank" download>Comparison of linear models (.ipynb)</a>
