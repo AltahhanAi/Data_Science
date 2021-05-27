@@ -61,7 +61,10 @@ Contrary to partitional clustering, hierarchical clustering assumes that the clu
 
 There are two types of hierarchical clustering approaches that we can adopt; agglomerative and divisive. Agglomerative techniques start from smaller clusters and build other larger clusters on top of them in a bottom-up approach. Divisive clustering on the other hand, starts with a large cluster that encompasses the entire dataset and works its way towards finer and more refined clusters in a top-down approach. Both agglomerative and divisive clustering have similar if not identical results. Therefore, we will concentrate on agglomerative hierarchical clustering. It should be noted that hierarchical clustering is different than the bisecting clustering. In bisecting clustering we keep partitioning each cluster into two clusters but these are not assumed to be nested.  Figure 1.11 below shows an example of agglomerative clustering and its associated dendrogram.
 
-<mark>DS_IMG206</mark> Figure 1.11 An example of simple agglomerative clusters and their corresponding dendrogram.
+<figure role="group">
+  <img src="../images/DS_IMG206.png" alt="Diagram showing an example of simple agglomerative clusters and their corresponding dendrogram." />
+  <figcaption><strong>Figure 1.11</strong> An example of simple agglomerative clusters and their corresponding dendrogram.</figcaption>
+</figure>
 
 A dendrogram is a tree-like structure that reflects the membership of different data points to the different clusters structure that where discovered in the dataset. Below we show the basic vanilla agglomerative clustering algorithm.
 
@@ -103,10 +106,59 @@ The algorithm makes use of the notion of proximity matrix which has rows and col
 
 Please note that with agglomerative clustering, each data point has a set of ordinal labels that states the clusters that the data point belongs to. This is because, in contrast to partitional clustering, hierarchical clustering allows each data point to belong to several nested clusters, and hence it has several memberships recognised by a set of labels.
 
+<figure role="group">
+<img src="../images/DS_IMG207.png" alt="Diagram showing an example of merging clusters." />
+  <figcaption><strong>Figure 1.12</strong></figcaption>
+</figure>
 
+<figure role="group">
+  <img src="../images/DS_IMG208.png" alt="An example of merging clusters and their effect on the proximity matrix." />
+  <figcaption><strong>Figure 1.13</strong> An example of merging clusters and their effect on the proximity matrix. Note that the proximity matrix is symmetrical and it diagonal values are always 0. </figcaption>
+</figure>
 
+We can measure the distances between the clusters via the distances between their centroids or by taking the min or max distances between each two data points from the two clusters. These different ways of calculating the distances between the clusters gives us different results and constitutes a variation of the basic agglomerative clustering algorithm.
 
 Please refer to section 5.3 of Tan et al 2019.
+
+##Evaluating clusters via cohesion and separation
+
+Evaluating clusters is an important step towards improving and comparing different clustering algorithms as well as to improve the obtained clusters. Mainly, we can adopt two approaches for cluster evaluation; supervised approach or unsupervised approach.
+
+###Supervised measures
+
+We can evaluate clusters by utilising class labels if we have them. Please note that we only use those labels for evaluation and not to come up with the clusters. In other words we do not feed the labels to the clustering algorithms, clustering algorithms are all unsupervised learning algorithms so they do not need categorical labels. We can, however, use categorical labels if they are available in order to evaluate the clusters to see whether they correspond well with the labels.
+
+The cross entropy of both the classification and clustering can be used to express the discrepancy between the classification and clustering. We will cover cross entropy in unit 5, it is similar to entropy but goes across different sets.  
+
+It should be noted however that even if we have the labels, the formed clusters might have used intrinsic data properties that have not been used when the classes of the data were obtained, hence the lack of correspondence does not necessarily mean that the clusters are not good.  
+
+###Unsupervised measures
+
+Another approach is to evaluate the cluster via their intrinsic properties. In particular we can simply use the SSE in order to evaluate the cluster cohesion.  
+
+$$
+S S E=\sum_{i} \sum_{\mathbf{x} \in \boldsymbol{C}_{i}}\left(\mathbf{c}_{i}-\mathbf{x}\right)^{2}
+$$
+
+Cohesion expresses the idea that the more the data points are closer to each other the more cohesive the clusters is.  
+
+Another criterion that we can use the how well the clusters are separated from each other. The inter-clusters separation can be measured via the following formula:
+
+$$
+S S B=\sum_{i}\left|\boldsymbol{C}_{i}\right|\left(\mathbf{c}_{i}-\mathbf{c}\right)^{2}
+$$
+
+where C corresponds to the centroid of the entire dataset. $\mathbf{C}_{i}$ is the centroid for clusters $i$ and $\left|\boldsymbol{C}_{i}\right|$ is the number of data points in clusters E$i$.
+
+Finally clusters validity can be measured via the correlation, by comparing between ideal similarity matrix and the proximity matrix. Please refer to section 5.3 of Tan et al 2019 and see video3 for a summary of the above concepts.
+
+See this video for a summary of the above concepts.
+
+<iframe title="Data Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/8415430c57494b4486f3a30c71c775ac1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826428_4" target="_blank">slides shown in the video (PPT)here</a>.
+
+Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
 !!! abstract "Exercise"
     See the following Jupyter Notebook exercise for two types of clustering: partitional and hierarchical.
