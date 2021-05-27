@@ -103,34 +103,50 @@ $$
 
 We simply can obtain the gradient as:
 
-<mark>$\nabla \bar{J}(\mathbf{W})=\frac{1}{2 N} \mathbf{\Phi}^{\top}(\mathbf{T}-\mathbf{\Phi} \mathbf{W})$</mark>
+$$
+\nabla \overline{J^{2}}(\mathbf{W})=\frac{1}{2 N} \mathbf{\Phi}^{\top}(\mathbf{T}-\mathbf{\Phi} \mathbf{W})
+$$
 
-We set the gradient as usual to 0 and solve in order to obtain optimal solution $W^*$:
+We set the gradient as usual to 0 and solve in order to obtain optimal solution $\mathbf{W}^{*}$:
 
-<mark>$\mathbf{\Phi}^{\top} \mathbf{\Phi} \mathbf{W}^{*}=\mathbf{\Phi}^{\top} \mathbf{T}$</mark>
+$$
+\mathbf{\Phi}^{\top} \mathbf{\Phi} \mathbf{W}^{*}=\mathbf{\Phi}^{\top} \mathbf{T}
+$$
 
 Which is the same normal equation as above.
 
 To see how the matrices are interacting with each other in terms of the dimensions we can add the dimension of each matrix so see how the intermediate dimensions are cancelled out during multiplication to end up with matrix of size ($M,K$) on both sides of the equation.
 
-<mark>$\mathbf{\Phi}_{(\mathrm{M}, \mathrm{N})}^{\top} \mathbf{\Phi}_{(\mathrm{N}, \mathrm{M})} \mathbf{W}_{(\mathrm{M}, \mathrm{K})}^{*}=\mathbf{\Phi}_{(\mathrm{M}, \mathrm{N})}^{\top} \mathbf{T}_{(\mathrm{N}, \mathrm{K})}$</mark>
+$$
+\mathbf{\Phi}_{(\mathrm{M}, \mathrm{N})}^{\top} \mathbf{\Phi}_{(\mathrm{N}, \mathrm{M})} \mathbf{W}_{(\mathrm{M}, \mathrm{K})}^{*}=\mathbf{\Phi}_{(\mathrm{M}, \mathrm{N})}^{\top} \mathbf{T}_{(\mathrm{N}, \mathrm{K})}
+$$
 
 Ok, now we multiply by the inverse of $Φ^T Φ$ to get:
 
-<mark>$\mathbf{\Phi}^{\top} \mathbf{\Phi} \mathbf{W}^{*}=\mathbf{\Phi}^{\top} \mathbf{T}$</mark>
+$$
+\mathbf{\Phi}^{\top} \mathbf{\Phi} \mathbf{W}^{*}=\mathbf{\Phi}^{\top} \mathbf{T}
+$$
 
-(43) <mark>$\mathbf{W}^{*}=\left(\mathbf{\Phi}^{\top} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\top} \mathbf{T}$</mark>
+$$
+\mathbf{W}^{*}=\left(\mathbf{\Phi}^{\top} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\top} \mathbf{T}
+$$
 
-Again, the algorithm is similar to the least squares shown in Algorithm 1, but we are dealing with a matrix of weights $W$ instead of a vector of weights $w$. we will show you a one later once we develop the concept of regularisation for this general multi-output case.
+Again, the algorithm is similar to the least squares shown in Algorithm 1, but we are dealing with a matrix of weights $\boldsymbol{W}$ instead of a vector of weights $\boldsymbol{w}$. we will show you a one later once we develop the concept of regularisation for this general multi-output case.
 
 ##Sequential Learning: Multi-Output Stochastic Gradient Descent for Linear Regression Models with Basis
 
 The stochastic gradient descent algorithm for multi-output regression can be written similar to one-output by adjusting the algorithm to deal with weights matrix instead of a weight vector. Essentially, we replace the loss function $\overline{\boldsymbol{J}}$ by $\boldsymbol{J}_{n}^{2}$, so after a data point becomes available, we update according to:
 
-<mark>$\mathbf{W}^{(\tau+1)}=\mathbf{W}^{(\tau)}-\eta \frac{1}{2 N} \nabla J_{n}^{2}$</mark>
+$$
+\mathbf{W}^{(\tau+1)}=\mathbf{W}^{(\tau)}-\eta \frac{1}{2 N} \nabla J_{n}^{2}
+$$
 
-<mark>$\mathbf{W}^{(\tau+1)}=\mathbf{W}^{(\tau)}-\eta \frac{1}{N}\left(-\boldsymbol{\phi}_{n}\right)\left(\boldsymbol{t}_{n}-\mathbf{W}^{(\tau)^{\top}} \boldsymbol{\phi}_{n}\right)^{\top}$</mark>
+$$
+\mathbf{W}^{(\tau+1)}=\mathbf{W}^{(\tau)}-\eta \frac{1}{N}\left(-\boldsymbol{\phi}_{n}\right)\left(\boldsymbol{t}_{n}-\mathbf{W}^{(\tau)^{\top}} \boldsymbol{\phi}_{n}\right)^{\top}
+$$
 
-(44) <mark>$\mathbf{W}^{(\tau+1)}=\mathbf{W}^{(\tau)}+\eta \frac{1}{N} \boldsymbol{\phi}_{n}\left(\boldsymbol{t}_{n}^{\top}-\boldsymbol{\phi}_{n}^{\top} \mathbf{W}^{(\tau)}\right)$</mark>
+$$
+\mathbf{W}^{(\tau+1)}=\mathbf{W}^{(\tau)}+\eta \frac{1}{N} \boldsymbol{\phi}_{n}\left(\boldsymbol{t}_{n}^{\top}-\boldsymbol{\phi}_{n}^{\top} \mathbf{W}^{(\tau)}\right)
+$$
 
-Where $τ$ represents the iteration (or the time step) and $η$ is the learning rate parameter which should be carefully chosen so that it does not lead to divergence or oscillation of the algorithms. The resultant algorithm is similar to Algorithm 2 but we are dealing with a matrix of weights $W$ instead of a vector of weights $w$.
+Where $τ$ represents the iteration (or the time step) and $η$ is the learning rate parameter which should be carefully chosen so that it does not lead to divergence or oscillation of the algorithms. The resultant algorithm is similar to Algorithm 2 but we are dealing with a matrix of weights $\boldsymbol{W}$ instead of a vector of weights $\boldsymbol{w}$.

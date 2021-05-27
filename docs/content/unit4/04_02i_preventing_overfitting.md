@@ -1,22 +1,32 @@
 #Preventing Overfitting the Data and Overshooting the Loss Minimum
 
-In this section we tackle overfitting for stochastic gradient decent algorithms. We provide several mechanisms to prevent overfitting. The first goes to the level of the loss function itself via regularisation similar to what we have covered earlier. The second is via a combination of sweeps through the dataset (epochs) as well as weight decay and early stopping. At the same time these techniques are suitable to prevent overshooting the global minimum of the loss function (if there is a one). Remember in SGD we are going in steps towards the minimum of the loss function. On the way, our algorithm might overshoot the minimum and keep fluctuating around it. This is often due to a high learning rate. Overshooting the global minimum and ending up in a local minimum is another problem that we often face with more complex models such as neural networks. In fact, overcoming local minima and the fact that a neural network loss function is infested with these local minima are among the main motivation for the next subsection.
+**In this section we tackle overfitting for stochastic gradient decent algorithms. We provide several mechanisms to prevent overfitting. The first goes to the level of the loss function itself via regularisation similar to what we have covered earlier. The second is via a combination of sweeps through the dataset (epochs) as well as weight decay and early stopping.**
+
+At the same time these techniques are suitable to prevent overshooting the global minimum of the loss function (if there is a one). Remember in SGD we are going in steps towards the minimum of the loss function. On the way, our algorithm might overshoot the minimum and keep fluctuating around it. This is often due to a high learning rate. Overshooting the global minimum and ending up in a local minimum is another problem that we often face with more complex models such as neural networks. In fact, overcoming local minima and the fact that a neural network loss function is infested with these local minima are among the main motivation for the next subsection.
 
 ###Regularised Multi-output Least Squares for Linear Regression Model ‎with Basis
 
 For the least squares we can regularise it by using the vectorised form of the loss function on the whole training set as follows:
 
-<mark>$\bar{J}(\mathbf{W})=\frac{1}{2 N}\left(\|\mathbf{T}-\mathbf{Y}(\mathbf{X}, \mathbf{W})\|^{2}+\lambda\|\mathbf{W}\|^{2}\right)$</mark>
+$$
+\overline{J^{2}}(\mathbf{W})=\frac{1}{2 N}\left(\|\mathbf{T}-\mathbf{Y}(\mathbf{X}, \mathbf{W})\|^{2}+\lambda\|\mathbf{W}\|^{2}\right)
+$$
 
-(45) <mark>$\bar{J}(\mathbf{W})=\frac{1}{2 N}\left(\|\mathbf{T}-\mathbf{\Phi} \mathbf{W}\|^{2}+\lambda\|\mathbf{W}\|^{2}\right)$</mark>
+$$
+\overline{J^{2}}(\mathbf{W})=\frac{1}{2 N}\left(\|\mathbf{T}-\mathbf{\Phi} \mathbf{W}\|^{2}+\lambda\|\mathbf{W}\|^{2}\right)
+$$
 
 We simply can obtain the gradient as:
 
-<mark>$\nabla \bar{J}(\mathbf{W})=\frac{1}{N}\left(\mathbf{\Phi}^{\top}(\mathbf{T}-\mathbf{\Phi W})+\lambda \mathbf{W}\right)$</mark>
+$$
+\nabla \overline{J^{2}}(\mathbf{W})=\frac{1}{N}\left(\mathbf{\Phi}^{\top}(\mathbf{T}-\mathbf{\Phi W})+\lambda \mathbf{W}\right)
+$$
 
-We set the gradient as usual to 0 and solve in order to obtain optimal solution $W^*$:
+We set the gradient as usual to 0 and solve in order to obtain optimal solution $\mathbf{W}^{*}$:
 
-<mark>$\left(\boldsymbol{\Phi}^{\top} \boldsymbol{\Phi}+\lambda \mathbf{I}\right) \mathbf{W}^{*}=\mathbf{\Phi}^{\top} \mathbf{T}$</mark>
+$$
+\left(\boldsymbol{\Phi}^{\top} \boldsymbol{\Phi}+\lambda \mathbf{I}\right) \mathbf{W}^{*}=\mathbf{\Phi}^{\top} \mathbf{T}
+$$
 
 Which is the regularised normal equation as above for multi-output linear regression.
 
@@ -33,7 +43,7 @@ Which is the regularised normal equation as above for multi-output linear regres
 
     **Output**: $W^*$ optimum weights; a matrix of size $(M+1)×K$
 
-    **RegLS_LRegressBK** $(X,T,μ,Σ)$:  <span style="float: right;"># $B$ for basis, $K$ Outputs</span>
+    **RLS_LRegressBasis** $(X,T,μ,Σ)$:  <span style="float: right;"># $B$ for basis, $K$ Outputs</span>
 
     !!! quote ""
         Map the data $X$ into design matrix $Φ$ via the Gaussian basis $\phi_{j}\left(\mathbf{x}_{n}\right)=e^{-\frac{1}{2}\left(\mathbf{x}_{n}-\mu_{j}\right)^{\top} \Sigma^{-1}\left(\mathbf{x}_{n}-\mu_{j}\right)}$
@@ -51,24 +61,34 @@ Which is the regularised normal equation as above for multi-output linear regres
 
 Similarly, the above can be done on a multi-output regression.
 
-<mark>$\bar{J}(\mathbf{W})=\frac{1}{2 N} \sum_{n=1}^{N}\left[\left\|\boldsymbol{t}_{n}-\mathbf{W}^{\top} \boldsymbol{\phi}_{n}\right\|^{2}+\lambda\|\mathbf{W}\|_{F}^{2}\right]$</mark>
+$$
+\overline{J^{2}}(\mathbf{W})=\frac{1}{2 N} \sum_{n=1}^{N}\left[\left\|\boldsymbol{t}_{n}-\mathbf{W}^{\top} \boldsymbol{\phi}_{n}\right\|^{2}+\lambda\|\mathbf{W}\|_{F}^{2}\right]
+$$
 
 Where $‖W‖^2$ is the Euclidean norm of the weights matrix, which is just the sum of the squares of all of the elements of $W$. More formally, this is called Frobenius norm and is defined as  $\|\mathbf{W}\|_{F}^{2}=\sum_{i=1}^{K} \sum_{j=1}^{K} w_{i, j}^{2}$.
 
-<mark>$\bar{J}(\mathbf{W})=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2} \text { where } J_{n}^{2}=\left\|\boldsymbol{t}_{n}-\mathbf{W}^{\top} \boldsymbol{\phi}_{n}\right\|^{2}+\lambda\|\mathbf{W}\|^{2}$</mark>
+$$
+\overline{J^{2}}(\mathbf{W})=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2} \text { where } J_{n}^{2}=\left\|\boldsymbol{t}_{n}-\mathbf{W}^{\top} \boldsymbol{\phi}_{n}\right\|^{2}+\lambda\|\mathbf{W}\|^{2}
+$$
 
 This in turn allows us to take the derivative with respect to one data point:
 
-<mark>$\begin{array}{c}
+$$
+\begin{array}{c}
 \mathbf{W}^{(\tau+1)}=\mathbf{W}^{(\tau)}-\eta \frac{1}{2 N} \nabla J_{n}^{2} \\
 \nabla J_{n}^{2}=-\boldsymbol{\phi}_{n}\left(\boldsymbol{t}_{n}-\mathbf{W}^{\top} \boldsymbol{\phi}_{n}\right)^{\top}+\lambda \mathbf{W}
-\end{array}$</mark>
+\end{array}
+$$
 
 When we do not know $N$ in advance we just can suffice by a smaller learning rate $η$:
 
-<mark>$\mathbf{W}^{(\tau+1)}=\mathbf{W}^{(\tau)}-\eta \frac{1}{N}\left[-\boldsymbol{\phi}_{n}\left(\boldsymbol{t}_{n}^{\top}-\boldsymbol{\phi}_{n}^{\top} \mathbf{W}^{(\tau)}\right)+\lambda \mathbf{W}^{(\tau)}\right]$</mark>
+$$
+\mathbf{W}^{(\tau+1)}=\mathbf{W}^{(\tau)}-\eta \frac{1}{N}\left[-\boldsymbol{\phi}_{n}\left(\boldsymbol{t}_{n}^{\top}-\boldsymbol{\phi}_{n}^{\top} \mathbf{W}^{(\tau)}\right)+\lambda \mathbf{W}^{(\tau)}\right]
+$$
 
-(46) <mark>$\mathbf{W}^{(\tau+1)}=\left(1-\frac{1}{N} \eta \lambda\right) \mathbf{W}^{(\tau)}+\eta \frac{1}{N} \boldsymbol{\phi}_{n}\left(\boldsymbol{t}_{n}^{\top}-\boldsymbol{\phi}_{n}^{\top} \mathbf{W}^{(\tau)}\right)$</mark>
+$$
+\mathbf{W}^{(\tau+1)}=\left(1-\frac{1}{N} \eta \lambda\right) \mathbf{W}^{(\tau)}+\eta \frac{1}{N} \boldsymbol{\phi}_{n}\left(\boldsymbol{t}_{n}^{\top}-\boldsymbol{\phi}_{n}^{\top} \mathbf{W}^{(\tau)}\right)
+$$
 
 Before we state the regularised mini-batch SGD we would like to add few more techniques to our arsenal against overfitting.
 
@@ -90,7 +110,7 @@ One thing we would like to point out is that early stopping has been shown to be
 
 The final regularised mini-batch SGD algorithm that is fortified against overfitting is shown below.
 
-!!! info "Algorithm 4'': Regularised Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model with Vectorisation"
+!!! info "Algorithm 6'': Regularised Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model with Vectorisation"
 
     **Input:**
     Input set as a design matrix $\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top}$ each $\mathbf{x}_{n}$ is of size $D$
@@ -115,7 +135,7 @@ The final regularised mini-batch SGD algorithm that is fortified against overfit
 
     **Output**: $W$ an approximation for optimum weights $W^*$; a matrix of size $(M+1)×K$
 
-    **RegSGD_VMiniBLRegressBK**$(X,T,X^',T^',η_0,b,λ,ep,ε )$:
+    **SGD_RegressBasisK**$(X,T,X^'',T^',η_0,b,λ,ep,ε )$:
 
     !!! quote ""
         Initialise $\mathbf{W}, \mathbf{W}^{\prime}=\mathbf{W}, \eta=\eta_{0}$ and $\bar{J}_{0}=\infty$
@@ -143,9 +163,9 @@ The final regularised mini-batch SGD algorithm that is fortified against overfit
 
         Return the final solution $W$
 
-See the following presentation for a summary of what we covered in this unit.
+See the following slides for a summary of what we covered in this unit.
 
-  <a href="https://leeds365-my.sharepoint.com/personal/scsaalt_leeds_ac_uk/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fscsaalt%5Fleeds%5Fac%5Fuk%2FDocuments%2FDownloads%2FResources%20for%20ODL%20MSc%2FData%20Science%20Contents%2Funit3%2Fcode%2Fcost%5Ffunction%5Fplot%2Eipynb&parent=%2Fpersonal%2Fscsaalt%5Fleeds%5Fac%5Fuk%2FDocuments%2FDownloads%2FResources%20for%20ODL%20MSc%2FData%20Science%20Contents%2Funit3%2Fcode&originalPath=aHR0cHM6Ly9sZWVkczM2NS1teS5zaGFyZXBvaW50LmNvbS86dTovZy9wZXJzb25hbC9zY3NhYWx0X2xlZWRzX2FjX3VrL0ViLThfZE9hZ045RmdqQjhHYVRBOVlFQk9JSy1rNzNlazE0enZZZHlLQWNyeFE%5FcnRpbWU9c0QwOXhpY0QyVWc" target="_blank" class="md-button">Linear models for regression and classification .ppt</a>
+  <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18870118_4" target="_blank" class="md-button">Linear models for regression and classification .ppt</a>
 
 ##Multi-layer multi-output linear regression models
 
@@ -214,3 +234,7 @@ In this case it makes sense to use multi-layer model as the model becomes a non-
 Specifically, when we are trying to infuse multiple layer of abstraction for an application, adding non-linear hidden layers forms an excellent tool for us to do so. In fact, deep neural network uses many non-linear hidden layers and they are very successful in a wide range of applications that is ever increasing. What we are trying to do here is to develop your intuition into when adding layers make sense. This explains why we only have few fully connected linear output layers in deep learning architectures, but we have plenty of non-linear hidden layers. We normally have one (or two) fully connected output layers, but normally not more (the reason we have two is to reduce processing at the last couple of layers if we ended up with high number of features produced by the hidden layers).
 
 <mark>Watch a video2 that explains the above concepts.</mark>
+
+##Linear regression with linear and non-linear basis functions: lesson summary
+
+In this lesson we have covered different bases for the generalised linear models with regularisation. We have seen how a multi output regression model maps effectively into a model weights matrix, and we have seen how to move from a batch learning approach to a sequential learning approach. We have also covered ways to overcome the overfitting problem by utilising early stopping and learning rate decay. We have covered the basics of regularised multi output linear and non-linear regression models.
