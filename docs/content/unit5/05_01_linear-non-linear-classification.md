@@ -5,7 +5,7 @@ In a classification scenario, we have a supervised learning problem with labels.
 There are numerous techniques for classification, but in this unit we will focus on important and widely used techniques in succession of complexity and capabilities. Earlier in the previous unit we saw how we utilised the ideas of linear models and we developed it until we reached neural networks for regression. In this unit we will build on these ideas and techniques in order to tame them for classification. We start with the linear models for classification: the Perceptron and Logistic Regression, and then we move to non-linear multi-layer perceptron, i.e. Neural Networks. In later modules such Machine Learning, Deep Learning and Text Analytics, you will come across several other techniques, building on the ideas that we develop here. Ok let us get started…
 
 <figure role="group">
-  <img src="../images/DS_IMG031.png" alt="Brief description." />
+  <img src="../images/DS_IMG031.png" alt="Diagram showing a schematic representation of a classification model." />
   <figcaption>
     <p><strong>Figure 1: A Schematic Illustration of classification.</strong> Figure (1) shows a schematic representation of a classification model. As it can be seen, the classification model maps an input x with an output y. the input is a set of attributes for one record and the output is the predicted class of the record. The record can be any object or entity represented in our dataset as one record.</p>
   </figcaption>

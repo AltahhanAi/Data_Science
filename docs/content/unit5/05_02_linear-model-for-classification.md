@@ -10,11 +10,10 @@ However, unlike linear regression we need not only devise a linear separation bu
 the negative side belongs to class -1.
 
 <figure role="group">
-  <img src="../images/DS_IMG127.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.1: xxx.</strong></p>
-  </figcaption>
+  <img src="../images/DS_IMG127.png" alt="Simple decision boundary graph for x = 0. It has one attribute, x, where, if x ≥ 0, then its class is 1, and, if x < 0, then its class is 0." />
 </figure>
+
+<strong>Figure 2.1: Decision boundary $x = 0$</strong>
 
 The choice of  labels  is a matter of naming conventions and will not affect the results; we can choose labels like $C_{1}$ and $C_{2}$ or 1,0 etc.  Effectively, the decision boundary $x=0$ tells as that:
 
@@ -28,12 +27,9 @@ Or
 
 We can expand this to an arbitrary decision boundary on the $x$ axis. The example in figure (2.2) below shows a decision boundary for $x-5=0$ which is basically telling us that:
 
-<figure role="group">
   <img src="../images/DS_IMG128.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.2: xxx.</strong></p>
-  </figcaption>
-</figure>
+
+<strong>Figure 2.2: Decision boundary $x - 5 = 0$</strong>
 
 If $x-5 \geq 0$ then its class is +1
 
@@ -43,33 +39,22 @@ Now let us expand this idea to the 2D space. Let us assume that we have two attr
 
 Note that in this case $x_{2}$ does not play any role in the decision and our green line linear classification model is telling us that:
 
-<figure role="group">
-  <img src="../images/DS_IMG129.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.3: xxx.</strong></p>
-  </figcaption>
-</figure>
+  <img src="../images/DS_IMG129.png" alt="Decision boundary graph for x1 - 5 = 0 where there are two attributes x1 and x2" />
 
-<figure role="group">
-  <img src="../images/DS_IMG130.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.4: xxx.</strong></p>
-  </figcaption>
-</figure>
+  <strong>Figure 2.3: Decision boundary $x_{1}$ - 5 = 0</strong>
 
-<figure role="group">
-  <img src="../images/DS_IMG131.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.5: xxx.</strong></p>
-  </figcaption>
-</figure>
+  <img src="../images/DS_IMG130.png" alt="Decision boundary graph for x1 - 5 = 0 where there are two attributes x1 and x2." />
 
-<figure role="group">
-  <img src="../images/DS_IMG132.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.6: xxx.</strong></p>
-  </figcaption>
-</figure>
+  <strong>Figure 2.4: Decision boundary $x_{1}$ - 5 = 0</strong>
+
+  <img src="../images/DS_IMG131.png" alt="Decision boundary graph for x1 - 5 = 0 where there are two attributes x1 and x2." />
+
+  <strong>Figure 2.5: Decision boundary $x_{1}$ - 5 = 0</strong>
+
+  <img src="../images/DS_IMG132.png" alt="Decision boundary graph for x1 - 5 = 0 where there are two attributes x1 and x2." />
+
+  <strong>Figure 2.6: Decision boundary $x_{1}$ - 5 = 0</strong>
+
 
 * If $x_{1}-5 \geq 0$ then its class is +1
 * If $x_{1}-5<0$ then its class is -1
@@ -96,12 +81,10 @@ $$
 
 When our dataset is as shown in figure 2.7 below:
 
-<figure role="group">
-  <img src="../images/DS_IMG133.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.7: xxx.</strong></p>
-  </figcaption>
-</figure>
+
+<img src="../images/DS_IMG133.png" alt="Decision boundary graph for x1 - x2 = 0." />
+
+<strong>Figure 2.7: Decision boundary $x_{1}$ - $x_{2}$ = 0</strong>
 
 Then the model decision boundaries can be expressed as follows:
 
@@ -140,9 +123,9 @@ Where f is called the activation function that helps map the linear model into a
 It is important to note that we need to use a function $f$ to map the values $\mathbf{w}^{\top} \mathbf{x}$ into some sort of decision that is related to the label. In our previous examples we used the sign of the product to decide. This is called the steps activation function and it is shown in figure 2.8 below.
 
 <figure role="group">
-  <img src="../images/DS_IMG134.png" alt="Brief description." />
+  <img src="../images/DS_IMG134.png" alt="Graph showing step activation function." />
   <figcaption>
-    <p><strong>Figure 2.8: xxx.</strong></p>
+    <p><strong>Figure 2.8: Step activation function</strong></p>
   </figcaption>
 </figure>
 
@@ -153,9 +136,9 @@ Note that for the activation function, we have $\mathbf{w}^{\top} \mathbf{x}$ on
 Function $f$ is called an activation function because it activates, or issues a signal, whether the data point $\left(x_{1}, x_{2}\right)$ belongs to class $+1$ or $-1$. Other activation functions are possible. For example, if we prefer to use $\{0,1\}$ labels we can use a different step activation function as follows in fig 2.9:
 
 <figure role="group">
-  <img src="../images/DS_IMG135.png" alt="Brief description." />
+  <img src="../images/DS_IMG135.png" alt="Graph showing step activation function with {0, 1] labels." />
   <figcaption>
-    <p><strong>Figure 2.9: xxx.</strong></p>
+    <p><strong>Figure 2.9: Step activation function</strong></p>
   </figcaption>
 </figure>
 

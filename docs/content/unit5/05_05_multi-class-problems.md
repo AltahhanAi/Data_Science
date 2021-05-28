@@ -2,7 +2,7 @@
 
 In this lesson we will extend the binary classifiers that we have covered previously, the perceptron and the logistic regression, into multi-class problems. We can do that in several ways. By combining multiple of these binary classifiers or by adjusting the basic structure of the techniques, it can deal with multiple classes. Both have similarities and advantages and disadvantages that we will discuss.
 
-## 1-OF-K BINARY CODING FOR NUMERICAL TECHNIQUES
+## 1-OF-K binary coding for numerical techniques
 
 In the former, since we are dealing with a progression of performance categories, then we can encode the labels as $\{3,2,1\} .$ In this case the label will take one and only one of the $\{3,2,1\}$ labels and the output of the prediction have one component $t_{n}=(C) .$ The estimated classes might take something in between and either we interpret the predicted class values that lies in-between as a degree of closeness to the class. So for example if we get 2.2 we interpret it as a value between ‘Medium’ and ‘High’ and being closer to Medium. Or we apply a threshold to round the result to its nearest integer. So for example if we get 2.2 we interpret it as 2 i.e. medium and so on.
 

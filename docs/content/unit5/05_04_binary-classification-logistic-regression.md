@@ -191,9 +191,7 @@ Now we need to pause a second here. As we pointed out this update is identical t
 
 Hence we can extend **any of the previously covered algorithms** for linear regression to work equally on logistics regression and this is the beauty of it. For example, we can build a regularised stochastic gradient algorithm that uses the above update. We can also come up with a regularised batch update for logistic regression which is shown below. We show the vectorised version of the mini-batch similar to Algorithm 6 " however of course there is a vanilla mini-batch similar to the one for the perceptron and visa-versa (scroll to the right in the box to view all of the algorithm).
 
-<mark>Both this algorithm and the one in lesson 3 are numbered 4. This doesn't correspond to script?</mark>
-
-!!! algorithm-heading "Algorithm 4: Regularised Mini-Batch Stochastic Gradient Descent Updates for Logistic Regression Model with Radial Basis (see previous unit for other possible basis). "
+!!! algorithm-heading "Algorithm 2: Regularised Mini-Batch Stochastic Gradient Descent Updates for Logistic Regression Model with Radial Basis (see previous unit for other possible basis). "
 
     **Input:**
 
