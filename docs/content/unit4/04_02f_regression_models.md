@@ -4,7 +4,7 @@
 
 **Similar to classification models, regression models can suffer from overfitting. Linear regression models are relatively less exposed to this phenomenon because it is a simple regression model.**
 
-The more complex the model is the more exposed to overfitting. So a more complex regression model tends to be more exposed to overfitting. There is a famous principle called Occam's razor which roughly speaking states that we should prefer less complex model if they give us the capability that we want for our model and only use more complex models if necessary. Let us see an example of what overfitting for a regression model looks like in figures 4.17-4.19.
+The more complex the model is the more exposed to overfitting. So a more complex regression model tends to be more exposed to overfitting. There is a famous principle called Occam's razor which roughly speaking states that we should prefer less complex model if they give us the capability that we want for our model and only use more complex models if necessary. Let us see an example of how overfitting and underfitting behaves in the context of a regression model, in figures 4.17-4.19.
 
 <figure role="group">
   <img src="../images/DS_IMG114.png" alt="Graph showing polynomial basis degree 1, where the model is underfitting." />
@@ -58,7 +58,7 @@ This technique is also called Ridge regression. See figure 4.20 below for how li
   <figcaption><strong>Figure 4.20</strong> The effect of the regularisation constant λ on overfitting and underfitting.</figcaption>
 </figure>
 
-Note in figure 4.21 how both the problems of underfitting of a regularised linear regression models and the overfitting of a linear regression model were greatly reduced when we increased the data from 70 to 500. Both figures shows 40% only of the actual data. This illustrate an important aspect of modelling which is that the models are going to be much more resilient with more data and less resilient and more sensitive to overfitting and underfitting and outliers with less data. We will talk about outliers in later units.
+Note in figure 4.21 how both the problems of underfitting of a regularised linear regression models and the overfitting of a linear regression model were greatly reduced when we increased the data from 70 to 500. Both figures show 40% only of the actual data. This illustrate an important aspect of modelling which is that the models are going to be much more resilient with more data and less resilient and more sensitive to overfitting and underfitting and outliers with less data. We will talk about outliers in later units.
 
 <figure role="group">
   <img src="../images/DS_IMG118.png" alt="Graph showing regularised least squares on a linear regression with polynomial basis of dgree 15 and 500 data points." />

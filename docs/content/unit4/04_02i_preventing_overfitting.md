@@ -43,10 +43,10 @@ Which is the regularised normal equation as above for multi-output linear regres
 
     **Output**: $W^*$ optimum weights; a matrix of size $(M+1)×K$
 
-    **RLS_LRegressBasis** $(X,T,μ,Σ)$:  <span style="float: right;"># $B$ for basis, $K$ Outputs</span>
+    **RLS_LRegressBasis** $(\mathbf{X}, \mathbf{T}, \boldsymbol{\mu}, \mathbf{\Sigma})$:  <span style="float: right;"># $B$ for basis, $K$ Outputs</span>
 
     !!! quote ""
-        Map the data $X$ into design matrix $Φ$ via the Gaussian basis $\phi_{j}\left(\mathbf{x}_{n}\right)=e^{-\frac{1}{2}\left(\mathbf{x}_{n}-\mu_{j}\right)^{\top} \Sigma^{-1}\left(\mathbf{x}_{n}-\mu_{j}\right)}$
+        Map the data $\mathbf{X}$ into design matrix $Φ$ via the Gaussian basis $\phi_{j}\left(\mathbf{x}_{n}\right)=e^{-\frac{1}{2}\left(\mathbf{x}_{n}-\mu_{j}\right)^{\top} \Sigma^{-1}\left(\mathbf{x}_{n}-\mu_{j}\right)}$
 
         !!! quote ""
             $Φ=[1_N,Φ]$  <span style="float: right;"># add dummy feature to the design matrix</span>
@@ -54,7 +54,7 @@ Which is the regularised normal equation as above for multi-output linear regres
 
             $\mathbf{W}^{*}=\left(\mathbf{\Phi}^{\top} \mathbf{\Phi}+\lambda \mathbf{I}\right)^{-1}\left(\mathbf{\Phi}^{\top} \mathbf{T}\right)$
 
-        Return solution $W*$
+        **Return** $\mathbf{W}^{*}$
 
 
 ###Regularised Multi-output Stochastic Gradient Descent for Linear Regression Model ‎with Basis
@@ -135,7 +135,7 @@ The final regularised mini-batch SGD algorithm that is fortified against overfit
 
     **Output**: $W$ an approximation for optimum weights $W^*$; a matrix of size $(M+1)×K$
 
-    **SGD_RegressBasisK**$(X,T,X^'',T^',η_0,b,λ,ep,ε )$:
+    **SGD_RegressBasisK** $\left(\mathbf{X}, \mathbf{T}, \mathbf{X}^{\prime}, \mathbf{T}^{\prime}, \eta_{0}, b, \lambda, e p, \varepsilon\right)$:
 
     !!! quote ""
         Initialise $\mathbf{W}, \mathbf{W}^{\prime}=\mathbf{W}, \eta=\eta_{0}$ and $\bar{J}_{0}=\infty$
@@ -163,9 +163,20 @@ The final regularised mini-batch SGD algorithm that is fortified against overfit
 
         Return the final solution $W$
 
+Note that we did not have an algorithm for the least squares because we cannot do it for multi-layer non-linear neural network. In all of the algorithms for mini-batch we have given them number 6 (6, 6', 6'') the ‘ signifies the stage of the algorithm, where they cover: linear, linear with basis, linear with basis and multi-outputs, respectively.
+
+See Angela Meyer's paper for an idea why we might want to use multi-output models even if our target is a single value:  <a href="https://arxiv.org/ftp/arxiv/papers/2012/2012.03074.pdf" target="_blank">Multi-target normal behaviour models for wind farm condition monitoring</a>.
+
 See the following slides for a summary of what we covered in this unit.
 
   <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18870118_4" target="_blank" class="md-button">Linear models for regression and classification .ppt</a>
+
+!!! abstract "Exercise"
+
+    See the following notebook to see how we can implement a multi-output linear regression mode using numpy.
+
+    - Download exercise (.ipynb):   <a href="../exercises/Exercise7_Multi_Output_Linear_Regression.ipynb" target="_blank" download>Exercise 7</a>
+
 
 ##Multi-layer multi-output linear regression models
 
@@ -232,8 +243,6 @@ $\boldsymbol{y}=\ddot{\mathbf{W}}^{\top}\left[\begin{array}{l}1 \\ \dot{y}\end{a
 In this case it makes sense to use multi-layer model as the model becomes a non-linear regression model, or a neural network which has more expressiveness power to represent more complex and non-linear relationship than a linear model. In particular, please do not take this section from an impression that multiple hidden layers are always redundant, it is not always the case at all; it may be the case when those hidden layers are linear hidden layers that do not serve a purpose of increasing the efficiency of the training.
 
 Specifically, when we are trying to infuse multiple layer of abstraction for an application, adding non-linear hidden layers forms an excellent tool for us to do so. In fact, deep neural network uses many non-linear hidden layers and they are very successful in a wide range of applications that is ever increasing. What we are trying to do here is to develop your intuition into when adding layers make sense. This explains why we only have few fully connected linear output layers in deep learning architectures, but we have plenty of non-linear hidden layers. We normally have one (or two) fully connected output layers, but normally not more (the reason we have two is to reduce processing at the last couple of layers if we ended up with high number of features produced by the hidden layers).
-
-<mark>Watch a video2 that explains the above concepts.</mark>
 
 ##Linear regression with linear and non-linear basis functions: lesson summary
 

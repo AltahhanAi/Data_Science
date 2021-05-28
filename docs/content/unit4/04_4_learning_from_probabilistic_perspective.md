@@ -7,7 +7,7 @@
     *	use maximum likelihood method to optimise the loss function
     *	motivate the regularised least squares using posterior maximisation
 
-**In this section we will discuss link between minimising a loss functions with probability theory, to see how learning can take a probabilistic perspective.**
+**In this section we will discuss the link between minimising a loss function and probability theory, to see how learning can take a probabilistic perspective.**
 
 We will also establish links with a particular probabilistic framework namely the Bayesian framework for learning. This lesson and its subsections can be safely skipped, without consequences on other sections or future sections in the module. Similar material will be also covered in some form in the Machine Learning module.
 
@@ -31,7 +31,7 @@ Nevertheless, we calculate the likelihood via probability.
 
 ## Maximising the likelihood with identical mean and variance
 
-For example, given a univariate Gaussian distribution $\mathcal{N}\left(x \mid \mu, \sigma^{2}\right)$ and a set of data points $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$ of size $N$, the likelihood of this Gaussian model generating all the data is the probability that the all the given data has come from this distribution (distributed according to the Gaussian). Since the probability of a set of independent events taking place together equals to the multiplication of their individual probabilities and given that the dataset $X$ is independent and identically distributed (i.i.d) - identically distributed means all of the data is drawn from the same distribution whether we know the distribution or we try to estimate it. Then, the likelihood of the model given the data is given as the probability $p\left(\mathbf{X} \mid \mu, \sigma^{2}\right)$ and is calculated as:
+For example, given a univariate Gaussian distribution $\mathcal{N}\left(x \mid \mu, \sigma^{2}\right)$ and a set of data points $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$ of size $N$, the likelihood of this Gaussian model generating all the data is the probability that the all the given data has come from this distribution (distributed according to the Gaussian). Since the probability of a set of independent events taking place together equals to the multiplication of their individual probabilities and given that the dataset $\mathbf{X}$ is independent and identically distributed (i.i.d) - identically distributed means all of the data is drawn from the same distribution whether we know the distribution or we try to estimate it. Then, the likelihood of the model given the data is given as the probability $p\left(\mathbf{X} \mid \mu, \sigma^{2}\right)$ and is calculated as:
 
 $$
 p\left(\mathbf{X} \mid \mu, \sigma^{2}\right)=\prod_{n=1}^{N} \mathcal{N}\left(x_{n} \mid \mu, \sigma^{2}\right)
@@ -55,7 +55,7 @@ $$
 p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid y(\mathbf{x}, \mathbf{w}), \beta^{-1}\right)
 $$
 
-Which states that the mean for $t$ is $y(x,w)$ and the variance is $\beta^{-1}$. This assumption is illustrated in the following figure:
+Which states that the mean for $t$ is $y(\mathbf{x}, \mathbf{w})$ and the variance is $\beta^{-1}$. This assumption is illustrated in the following figure:
 
 <figure role="group">
   <img src="../images/DS_IMG193.png" alt="Test image." />
@@ -126,7 +126,7 @@ $$
 p(t \mid x, \mathbf{X}, \mathbf{t}, \beta)=\int p(t \mid x, \mathbf{w}, \beta) p(\mathbf{w} \mid \mathbf{X}, \mathbf{t}, \beta) \mathrm{d} \boldsymbol{w}
 $$
 
-Previously, we show how come up with $w$ that maximise the likelihood. Now, we want to calculate the probability $p(t \mid x, \mathbf{X}, \mathbf{t})$ to account for a full Bayesian treatment for a linear model. Note that from previous treatment we already assume that $p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid \widehat{\mathbf{w}}^{\top} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right), \beta^{-1}\right)$ (note that this is different than but related to the likelihood $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ that we maximised in the previous section) therefore, according to Bayes theorem:
+Previously, we showed how come up with $w$ that maximise the likelihood. Now, we want to calculate the probability $p(t \mid x, \mathbf{X}, \mathbf{t})$ to account for a full Bayesian treatment for a linear model. Note that from previous treatment we already assume that $p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid \mathbf{w}^{* \top} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right), \beta^{-1}\right)$ (note that this is different than but related to the likelihood $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ that we maximised in the previous section) therefore, according to Bayes theorem:
 
 $$
 p(\boldsymbol{w} \mid \mathbf{X}, \mathbf{t}, \beta) \propto p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta) p(\mathbf{w} \mid \alpha)
@@ -134,7 +134,7 @@ $$
 
 Where $∝$ means proportional to, ∝ will turn into equality once we normalise $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta) p(\mathbf{w} \mid \alpha)$.
 
-The first term in (33) is $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ is the likelihood function for our model and has been already showed to be Gaussian where we have shown how to come up with $\widehat{\mathbf{W}}$ that minimises this likelihood and we showed that it is a Gaussian.
+The first term in (33) is $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ is the likelihood function for our model and has been already showed to be Gaussian where we have shown how to come up with $\mathbf{w}^{*}$ that minimises this likelihood and we showed that it is a Gaussian.
 
 The second term in (33) is $p(\mathbf{w} \mid \alpha)$ and is called the prior of the weights. It represents the prior assumptions about the weights that we can incorporate in our Bayesian treatment. We will assume that $p(\mathbf{w} \mid \alpha)$ is an isotropic Gaussian (which is the simplest form of a multivariate Gaussian). Therefore the posterior distribution $p(\boldsymbol{w} \mid \mathbf{X}, \mathbf{t}, \beta)$ is also Gaussian. In particular we will assume that the prior of the weights has a 0 means vector and has $\alpha^{-1}$ variance i.e.
 
@@ -167,15 +167,14 @@ $$
 $$
 
 $$
-\left(\sum_{n=1}^{N} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right) \boldsymbol{\phi}^{\top}\left(\mathbf{x}_{n}\right)\right) \widehat{\mathbf{w}}=\sum_{n=1}^{N} t_{n} \boldsymbol{\phi}^{\top}\left(\mathbf{x}_{n}\right)-\lambda \widehat{\boldsymbol{w}}
+\begin{array}{c}
+\left(\sum_{n=1}^{N} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right) \boldsymbol{\phi}^{\top}\left(\mathbf{x}_{n}\right)\right) \mathbf{w}^{*}=\sum_{n=1}^{N} t_{n} \boldsymbol{\phi}^{\top}\left(\mathbf{x}_{n}\right)-\lambda \mathbf{w}^{*} \\
+\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi} \mathbf{w}^{*}+\lambda \mathbf{w}^{*}=\mathbf{\Phi}^{\top} \mathbf{t}
+\end{array}
 $$
 
 $$
-\mathbf{\Phi}^{\mathrm{T}} \boldsymbol{\Phi} \boldsymbol{w}+\lambda \boldsymbol{w}=\boldsymbol{\Phi}^{\top} \mathbf{t}
-$$
-
-$$
-\widehat{\mathbf{w}}=\left(\boldsymbol{\Phi}^{\top} \boldsymbol{\Phi}+\lambda \boldsymbol{I}\right)^{-1} \mathbf{\Phi}^{\top} \mathbf{t}
+\mathbf{w}^{*}=\left(\mathbf{\Phi}^{\top} \mathbf{\Phi}+\lambda \boldsymbol{I}\right)^{-\mathbf{1}} \mathbf{\Phi}^{\top} \mathbf{t}
 $$
 
 If the matrix $\left(\mathbf{\Phi}^{\top} \mathbf{\Phi}+\lambda \mathbf{I}\right)$ is invertible then the solution exists.

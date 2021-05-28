@@ -51,7 +51,7 @@ In the next section we will see how to apply the gradient descent algorithm on t
 
 ##Batch Gradient Descent for Linear Regression Models
 
-We will take the gradient of the cost function directly without using it vectorised form but later we develop a vectorised version. We have saw already in a previous section that the gradient of the linear regression loss function takes the form:
+We will take the gradient of the cost function directly without using it vectorised form but later we develop a vectorised version. We have seen already in a previous section that the gradient of the linear regression loss function takes the form:
 
 $$
 \overline{J^{2}}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}
@@ -248,7 +248,6 @@ Mini-batch SGD algorithm can be used to reach a compromise between sequential an
   <figcaption><strong>Figure 4.6.</strong> SGD algorithm behaviour: SGD takes gradual steps towards the minimum of the loss function by  following the gradient of the loss. The line shows an example of the paths of a batch gradient descent (blue on the loss surface function and its projection is orange on the loss contour) and stochastic gradient descent algorithms(green on the loss surface function and brown on the loss contours). </figcaption>
 </figure>
 
-<mark>Watch a video1 that explains the above concepts</mark>
 
 !!! algorithm-heading "**Algorithm 5:** Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model: Vanilla implementation that can be sped up- see next algorithm."
     **Input:**

@@ -1,7 +1,7 @@
 #Example of linear regression model
 
 
-**In its simplest form, linear models attempts to draw a straight line that fits a set of data point. Given the following dataset (scroll to the right within the table to see all data):**
+**In its simplest form, linear models attempt to draw a straight line that fits a set of data point. Given the following dataset (scroll to the right within the table to see all data):**
 
 | x | -10  | -7.8 | -5.6	| -3.3 | -1.1 | 1.1  | 3.3  | 5.6  | 7.8  | 10   |
 |---|------|------|-------|------|------|------|------|------|------|------|
@@ -57,11 +57,11 @@ We call $\mathbf{x}_{n}$ a data point, an observation, a record or a case, inter
 
 ##The Aim of Constructing a Model
 
-Given a new unseen observation $X$, the goal is to train a model to predict the target value $y(X)$ for the given observation $X$ so that $y(X)$ resemble or come as close as possible to the ‘would be’ real target value $t$. During training, both $y\left(\mathrm{X}_{n}\right)$ and $t_{n}$ are available and their difference drives the learning journey of the model. After training, when the model is used in real settings, we do not know the target value $t$. The whole point of constructing the model is to predict such a value. So the generalisation and prediction capabilities of our model has to be specified from the available answers $t_{n}$.
+Given a new unseen observation $X$, the goal is to train a model to predict the target value $y(X)$ for the given observation $X$ so that $y(X)$ resemble or come as close as possible to the ‘would be’ real target value $t$. During training, both $y\left(\mathrm{X}_{n}\right)$ and $t_{n}$ are available and their difference drives the learning journey of the model. After training, when the model is used in real settings, we do not know the target value $t$. The whole point of constructing the model is to predict such a value. So the generalisation and prediction capabilities of our model have to be specified from the available answers $t_{n}$.
 
 ##Linear Regression as a Parametric Model
 
-One of the simple types of parametric models is the linear regression model which is the topic of this lesson. It belongs to a wider group of models called parametric models. Parametric models have one important thing in common, which is that they all use a set of adjustable parameters (aka weights) which the model learning algorithm tweak in order to reduce the loss function and make the model prediction as close to the desired target values as possible. Throughout this unit we denote the adjustable parameters or weights as w. in the next section we will see how the linear regression model can be expressed in terms of its weights.  
+One of the simple types of parametric models is the linear regression model which is the topic of this lesson. It belongs to a wider group of models called parametric models. Parametric models have one important thing in common, which is that they all use a set of adjustable parameters (aka weights) which the model learning algorithm tweaks in order to reduce the loss function and make the model prediction as close to the desired target values as possible. Throughout this unit we denote the adjustable parameters or weights as w. In the next section we will see how the linear regression model can be expressed in terms of its weights.  
 
 ##Why we call it linear
 
@@ -74,7 +74,7 @@ y(\mathbf{x}, \mathbf{w})=w_{0}+w_{1} x_{1}
 $$
 
 
-This is the simplest type of linear models. It defines a relationship between $y$ and $x_1$ as a straight line. If you remember from high school that we define a straight line as $y=c+mx$ you can immediately realise that $w_0$ is the intercept of the straight line on the $y$ axis (corresponding to $c$) and $w_1$ are just the slope of the straight line (corresponding to $m$).
+This is the simplest type of linear model. It defines a relationship between $y$ and $x_1$ as a straight line. If you remember from high school that we define a straight line as $y=c+mx$ you can immediately realise that $w_0$ is the intercept of the straight line on the $y$ axis (corresponding to $c$) and $w_1$ are just the slope of the straight line (corresponding to $m$).
 
 <figure role="group">
   <img src="../images/DS_IMG100.png" alt="Line graph showing three different linear models, in the form y = W0 + W1x. Each linear model has one variable, x, a bias W0, and a slope W1. " />
@@ -102,7 +102,7 @@ where $\sum_{i=1}^{D} w_{i} x_i$ is a simple multiplication of each $x_i$ with $
 
 ##Vector Matrix Representation with Dummy Component
 
-It is often convenient to express machine learning tasks such as linear regression in terms of vectors and matrices. This is due to two main reasons. The first, we can apply linear algebra concepts and methods which is widely studies and available in all branches of science. Second, vectorised forms are often far more efficient to implement on a computer using scientific computing languages and packages (including Python numpy, MATLAB and FORTRAN) instead of using loops. So, in any implementation task that you do in machine learning you should strive to make your solution depends on vectors and matrices instead of loops whenever possible. The process of changing from loops to vectors and matrices operations is called vectorisation.
+It is often convenient to express machine learning tasks such as linear regression in terms of vectors and matrices. This is due to two main reasons. The first, we can apply linear algebra concepts and methods which is widely studied and available in all branches of science. Second, vectorised forms are often far more efficient to implement on a computer using scientific computing languages and packages (including Python numpy, MATLAB and FORTRAN) instead of using loops. So, in any implementation task that you do in machine learning you should strive to make your solution depend on vectors and matrices instead of loops whenever possible. The process of changing from loops to vectors and matrices operations is called vectorisation.
 
 Looking at the above linear model expressions, we can easily identify that they can be changed into:
 

@@ -77,7 +77,7 @@ Where $\mathbf{w}=\left(w_{0}, w_{1}, w_{2}, \ldots, w_{M}\right)$ and $\boldsym
 
 <figure role="group">
   <img src="../images/DS_IMG104.png" alt="Schematic representation of a linear regression model with basis." />
-  <figcaption><strong>Figure 4.7</strong> Chematic representation of a linear regression model with basis.</figcaption>
+  <figcaption><strong>Figure 4.7</strong> Schematic representation of a linear regression model with basis.</figcaption>
 </figure>
 
 By fixed basis we mean that the basis function does not change. However, this does not mean that it is constant, it means the basis function itself does not change from one function to another-in terms of type and parameters. So we can use a fixed basis to map the input space into a new features space and then use the features to learn a linear model. The resultant model is still linear in the feature space.
