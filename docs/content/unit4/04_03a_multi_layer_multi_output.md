@@ -69,7 +69,7 @@ This activation function is used to be the most common activation function for h
 
 In the following two sections, we show how to create a multi-layer neural network with one output. This will be a useful step towards generalising into multi-output architecture in the next unit.
 
-##Loss functions
+##Loss function
 
 Earlier we saw that for regression the mean squared errors is a useful loss function. With multi-outputs one-layer model we did not need to change the cost function because each output acts independently and has its own loss function. In that case we did not need to tie up these loss functions together because each weight vector lives by its own and do not affect other weight vectors. So for example, one of the weights vectors that corresponds to an output can be frozen while we train the other outputs weights and we still get the same results for the rest of weights when we allow the frozen weights to participate in the training process with the rest of the weights team. The idea that we are trying to convey here is that the different outputs weights vectors are independent.
 
@@ -107,99 +107,16 @@ $$
 $$
 
 This time however, we are taking the derivative of the **output errors** (the loss) with respect to a **hidden layer** weights (we deal with the output weights **as if** they are fixed). This creates some extra complexity that we have to deal with it. In particular, if we look at the loss function we can realise that the hidden weights are tucked inside an activation function that produces the set of features that the model is learning. To be able to reach it we need to use the chain rule of derivations. As a reminder, the chain rule is used when we have a function of a function. In this case the loss function is a function of the features who are in turn functions of the hidden weights.
-The operation ×  indicates broadcasting operation. Broadcasting allows us to repeatedly multiply elements from one vector by all vectors of a matrix if the matrix and the vector have the same number of elements on one of the dimensions. We have covered broadcasting in Unit 1 tutorials.
 
-The update rule for the hidden layer can be deduced by realising that $g(\mathbf{X} \dot{\mathbf{W}})=\mathbf{\Phi}$ and its gradient is $\nabla \boldsymbol{g}=\mathbf{\Phi} \circ(\mathbf{1}-\mathbf{\Phi})$, where $\circ$ is element-wise matrix multiplication. The gradients $\nabla \mathbf{X} \dot{\mathbf{W}}=\mathbf{X}^{\top}$ and $\nabla_{\mathbf{\Phi}} \mathbf{\Phi} \mathbf{w}=\mathbf{w}^{\top}$ are at the two edges of the formula. Finally, $\times$ indicates broadcasting operation. Broadcasting allows us to repeatedly multiply elements from one vector by all vectors of a matrix if the matrix and the vector have the same number of elements on one of the dimensions. In this case we have that $(\boldsymbol{t}-\boldsymbol{y})$. We will give you a full code of a project that shows each operation individually. Your search for broadcasting in numpy will be helpful to understand more about this topic. Note that we need to iterate through the outputs components in order to update all columns of $\dot{\mathbf{W}}$.
+The update rule for the hidden layer can be deduced by realising that $g(\mathbf{X} \dot{\mathbf{W}})=\mathbf{\Phi}$ and its gradient is $\nabla \boldsymbol{​g}​=\boldsymbol{​\Phi}​=\boldsymbol{​\Phi}​ \circ(\mathbf{​1}​-\boldsymbol{​\Phi}​)$, where $\circ$ is element-wise matrix multiplication. The gradients $\nabla_\dot{\mathbf{W}}​(\mathbf{​X W}​)=\mathbf{​X}​^{​\top}​$ and $\nabla_{\mathbf{\Phi}} \mathbf{\Phi} \mathbf{w}=\mathbf{w}^{\top}$ are at the two edges of the formula. All of these elements are stitched together to form a backpropagated update for the hidden layer (via the chain rule of derivation).
 
-From here it can be seen that we are unable to do least squares on the cost function and we only can reside to an approximation of the optimal weights $\mathbf{W}^{*}$ and $\mathbf{W}^{*}$.
-
-!!! algorithm-heading "Algorithm 6: Regularised Mini-Batch Stochastic Gradient Descent learning for two layers Neural Network Model with sigmoid and identity activation functions for the hidden and output layers respectively‎"
-
-  	**Input:**
-
-    !!! algorithm ""
-
-    	Input set: design matrix $\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top} \operatorname{each} \mathbf{x}_{n}$ is of size $D$ <span class="algorithm-line-comment"> *Training set*</span>
-
-    	Labels set: vector $\mathbf{t}=\left[t_{1}, \ldots, t_{N}\right]^{\top}$ each $\boldsymbol{t}_{n}$ is a scalar.
-
-    	$\mathbf{X}^{\prime}, \mathbf{t}^{\prime}$ holdout validation set that have similar structure to the above with size $v$
-
-    	$\eta_{0}$: initial learning rate
-
-        $b$: mini-batch size (specifies how frequent we want to update the weights $\mathbf{w}$ and $\dot{\mathbf{W}}$ )
-
-    	$\lambda:$ regularisation parameter
-
-    	ep: max number of epochs
-
-    	$\varepsilon:$ early stopping threshold
-
-
-  	**Output**: $\mathbf{w}$ and $\dot{\mathbf{W}}$ approximations for optimum weights $\mathbf{w}^{*}$ and $\mathbf{W}^{*}$; of size $M+1$ and $(D+1) \times M$ respectively.
-
-  	**NN regression** $\left(\mathbf{X}, \mathbf{t}, \mathbf{X}^{\prime}, \mathbf{t}^{\prime}, \eta_{0}, b, \lambda, e p, \varepsilon\right)$:
-
-    !!! algorithm ""
-        Initialise $\mathbf{w}, \dot{\mathbf{W}}$ arbitrarily and assign weights backups $\mathbf{w}^{\prime}=\mathbf{w}$ and $\dot{\mathbf{W}}^{\prime}=\dot{\mathbf{W}}$ as well as $\eta=\eta_{0}$ and $\bar{J}_{0}=\infty$
-
-        For epoch $= 1:ep$
-        <span class="algorithm-line-comment"># *hyper parameter: max number of epochs*</span>
-
-        !!! algorithm ""
-            For iteration $\tau=1: q$
-            <span class="algorithm-line-comment"># *$q≥N/ b$*</span>
-
-            !!! algorithm ""
-
-                Select a mini-batch $\mathbf{X}_{\tau}, \mathbf{t}_{\tau}$ of size $b$ from $\mathbf{X}, \mathbf{t}$
-                <span class="algorithm-line-comment"># *randomly or by shuffling & partitioning*</span>
-
-				$\mathbf{X}_{\tau}=\left[\mathbf{1}_{\mathbf{b}}, \mathbf{X}_{\tau}\right]$
-                <span class="algorithm-line-comment"># *add dummy attribute to the mini-batch input*</span>
-
-                $\mathbf{\Phi}_{\tau}=g\left(\mathbf{X}_{\tau} \dot{\mathbf{W}}\right)$
-                <span class="algorithm-line-comment"># *element-wise sigmoid $g(\alpha)=\frac{1}{1+e^{-\alpha}}$*</span>
-
-                $\mathbf{\Phi}_{\tau}=\left[\mathbf{1}_{\mathbf{b}}, \mathbf{\Phi}_{\tau}\right]$ <span class="algorithm-line-comment"># *add dummy feature to the mini-batch features*</span>
-
-                $\boldsymbol{e}_{\tau}=\left(\mathbf{t}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{w}\right)$ <span class="algorithm-line-comment"># *calculate the error ($\mathbf{\Phi}_{\tau} \mathbf{w}$ is the NN output)*</span>
-
-                $\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{\Phi}_{\tau}^{\top} \boldsymbol{e}_{\tau}$ <span class="algorithm-line-comment"># *update the output weights vector $\mathbf{w}$ as per linear models*</span>
-
-                $\dot{\mathbf{\Phi}}_{\tau}=\mathbf{\Phi}_{\tau} \circ\left(\mathbf{1}-\mathbf{\Phi}_{\tau}\right)$ <span class="algorithm-line-comment"># *element-wise product $\circ$*</span>
-
-				$\mathbf{Z}_{\tau}=\dot{\mathbf{\Phi}}_{\tau} \times \boldsymbol{e}_{\tau}$
-                <span class="algorithm-line-comment"># *propagate the error $\boldsymbol{e}_{\tau}$ via broadcasting $\times$*</span>
-
-				$\dot{\mathbf{W}}=\left(1-\frac{1}{b} \eta \lambda\right) \dot{\mathbf{W}}+\frac{1}{b} \eta\left(\mathbf{X}_{\tau}^{\top} \mathbf{Z}_{\tau}\right) \times \mathbf{w}^{\top}$ <span class="algorithm-line-comment"># *update the hidden weights matrix $\dot{\mathbf{W}}$ as per non-linear models*</span>
-
-			Decay $η$
-            <span class="algorithm-line-comment"># *if necessary*</span>
-
-			$\mathbf{X}^{\prime}=\left[\mathbf{1}_{v}, \mathbf{X}^{\prime}\right]$<span class="algorithm-line-comment"># *add dummy attribute to validation input set*</span>
-
-            $\mathbf{\Phi}^{\prime}=g\left(\mathbf{X}^{\prime}\dot{\mathbf{W}}\right)$<span class="algorithm-line-comment"># *get the features of the validation features set*</span>
-
-            $\mathbf{\Phi}^{\prime}=\left[\mathbf{1}_{v}, \mathbf{\Phi}^{\prime}\right]$<span class="algorithm-line-comment"># *add dummy feature to validation features set*</span>    
-
-			$\overline{J_{e p}^{2}}=\frac{1}{2 v}\left\|\mathbf{t}^{\prime}-\boldsymbol{\Phi}^{\prime} \mathbf{w}\right\|^{2}$
-            <span class="algorithm-line-comment"># *calculate the loss or other metric for the validation set*</span>
-
-			If $\bar{J}_{e p}^{2}>\overline{J_{e p-1}^{2}}+\varepsilon:$ break
-            <span class="algorithm-line-comment"># *simple early stopping or other more sophisticate cond.*</span>
-
-			Else $\mathbf{W}^{\prime}=\mathbf{W}$ and $\dot{\mathbf{W}}^{\prime}=\dot{\mathbf{W}}$<span class="algorithm-line-comment"># *update the backups for early stopping to be effective*</span>
-
-        Return the final solution $\mathbf{w}^{\prime}$ and $\dot{\mathbf{W}}$
-
-Note that we did not have an algorithm for the least squares because we cannot do it for multi-layer non-linear neural network. In all of the algorithms for mini-batch we have given them number 6 (6, 6’, 6’’, 6’’’) the ‘ signifies the stage of the algorithm, where they cover: linear, linear with basis, linear with basis and multi-outputs and non-linear multi-layer neural network, respectively.
+There is an extra complexity associated with propagating the error back into previous layers. The deeper the error goes back, the more analytical overhead we have. Deep Learning (DL) have overcome these issues via few techniques and tricks. One of the important techniques employed by DL is automatic differentiation (AD). In AD the gradients of the loss with respect to early layers weights are calculated via built-in packages (algorithms) instead of inferring them analytically. It exploits the fact that we use a sequence of elementary operations in the forward pass of the output function. It then applies the chain rule hopping from one operation to the other in a backward manner. This is quite powerful and important tool to be able to update deeper networks. In addition, in order to overcome some of the difficulties of backpropagating the error, DL trains each layer separately and freezes the rest of the layers to be updated one layer at a time. There is also the issue of vanishing gradients for those deeper layers (the ones that are near the input and furthest from the output) that we overcome via adopting simpler non-linear activation functions, such as the ReLUs, and other methods such as batch normalisation.  You will cover backpropagation on neural networks in depth in machine learning and deep learning modules.
 
 !!! abstract "Exercise"
 
-    See the following Jupyter notebook for an example of non-linear regression.
+    See the following Jupyter notebook for an example of non-linear regression and neural networks using sklearn.
 
-    - Download exercise (.ipynb): <a href="../exercises/non_linear_regression_neural_network.ipynb" download>Non-linear regression</a>    
+    - Download exercise (.ipynb): <a href="../exercises/Exercise8_NonLinear_Regression_using_Neural_Network_sklearn.ipynb" download>Exercise 8</a>    
 
 !!!info "Preventing overfitting for neural networks"
 
@@ -208,6 +125,4 @@ Note that we did not have an algorithm for the least squares because we cannot d
 
 ##Summary
 
-In this section we have covered the basics of neural networks and we took the liberty to simplify it coverage. You will study this topic extensively in machine learning and deep learning. An important aspect of neural networks is that they allow us to represents arbitrary relationship between input and output linear and non-linear. Therefore, they are called universal approximator. In the next unit we will take advantage of the knowledge that you gained in dealing with regression to extend it to numerical classification.
-
-<mark>Watch a video3 that explains the above concepts.</mark>
+In this section we have covered the basics of neural networks and we took the liberty to simplify its coverage. You will study this topic extensively in machine learning and deep learning. An important aspect of neural networks is that they allow us to represent the arbitrary relationship between input and output, linear and non-linear. Therefore, they are called universal approximator. In the next unit we will take advantage of the knowledge that you gained in dealing with regression to extend it to numerical classification.

@@ -1,8 +1,8 @@
 #Loss, Objective, Error or Cost Function for Regression
 
-**In this section we will develop the concept of a loss function. The discussion applies for any learning method that attempt to minimise a loss function and not only linear regression.**
+**In this section we will develop the concept of a loss function. The discussion applies for any learning method that attempts to minimise a loss function and not only linear regression.**
 
-Since we have numerical data, we want to come up with a function (called the loss function, it will apparent later why we call as such) that is closely linked to the distance between the desired and the actual answers of our regression model. The idea here is that we want to lead the learning process via a minimisation of the loss function so that we minimise the difference between the desired and actual answers. So really, we are talking about an aggregate metric that looks into each data point instead of looking at counting the correctly classified and incorrectly classified cases as we did in the confusion matrix. Later on when we will develop other better classifiers to deal with numerical classification we will actually also use the loss function to lead the learning process (by optimising it) and we are still going to use the confusion matrix to measure the performance of the model **after** learning has finished. So, the loss function is going to be used in this unit for both the regression and classification to lead the optimisation process (learning) in order to learn a best model fit. When we are talking about a multi-component labels (a set of numerical answers instead of one). The loss will be defined on the basis of vector distances, this will become apparent later in this section.
+Since we have numerical data, we want to come up with a function (called the loss function, it will become apparent later why we call as such) that is closely linked to the distance between the desired and the actual answers of our regression model. The idea here is that we want to lead the learning process via a minimisation of the loss function so that we minimise the difference between the desired and actual answers. So really, we are talking about an aggregate metric that looks into each data point instead of looking at counting the correctly classified and incorrectly classified cases as we did in the confusion matrix. Later on when we will develop other better classifiers to deal with numerical classification we will actually also use the loss function to lead the learning process (by optimising it) and we are still going to use the confusion matrix to measure the performance of the model **after** learning has finished. So, the loss function is going to be used in this unit for both the regression and classification to lead the optimisation process (learning) in order to learn a best model fit. When we are talking about multi-component labels (a set of numerical answers instead of one). The loss will be defined on the basis of vector distances, this will become apparent later in this section.
 
 ###Loss function for an individual point
 
@@ -16,10 +16,10 @@ $$
 
 So, given that we have plenty of data points in our dataset, it is natural that we would want our model to perform well on all of them. One problem with the above type of individual point loss function $J_n$ is that it can be either negative or positive and for our prediction both of them are errors. However, the danger is that if we sum negative and positive values for multiple pointspoints, they can cancel each other at least partially.
 
-One way to make sure that negative and positive residuals do not cancel is to take the absolute of these residuals $|J(x_n )|≥0$ and then to sum over all data points to get the sum of absolute errors (SAE): $J=\sum_{n=1}^{N}\left|J_{n}\right|$. The $\sum_{n=1}^{N}$ means to sum over all $n=1,…,N$. So if we have $N=3$ data points in our dataset, then:
+One way to make sure that negative and positive residuals do not cancel is to take the absolute of these residuals $|J(x_n )|≥0$ and then to sum over all data points to get the sum of absolute errors (SAE): $|J|=\sum_{n=1}^{N}\left|J_{n}\right|$. The $\sum_{n=1}^{N}$ means to sum over all $n=1,…,N$. So if we have $N=3$ data points in our dataset, then:
 
 $$
-J=\left|t_{1}-y_{1}\right|+\left|t_{2}-y_{2}\right|+\left|t_{3}-y_{3}\right|
+|J|=\left|t_{1}-y_{1}\right|+\left|t_{2}-y_{2}\right|+\left|t_{3}-y_{3}\right|
 $$
 
 One important issue that we will face with such loss function is that it is not differentiable at 0, making dealing with the derivatives for optimisation not straightforward. A better candidate in that sense is the squared error, giving rise to the sum of squared errors (SSE) loss function that takes the form:
@@ -38,7 +38,7 @@ $$
 
 Note that the 2 on top of $J$ is to indicate that we are summing over the squares and not to indicate a direct squaring operation.
 
-SSE has pros and cons. Its pros are its ease of derivation and positivity. One of its cons is that it exaggerates the residuals, so if a residual is $-3$, then its squared $(-3)^2$ becomes 9. Nevertheless, SSE is widely used, and its advantages overweigh its disadvantages for many problems. Before we settle on it, we need to make two tweaks to make later developments easy to express.
+SSE has pros and cons. Its pros are its ease of derivation and positivity. One of its cons is that it exaggerates the residuals, so if a residual is $-3$, then its squared $(-3)^2$ becomes 9. Nevertheless, SSE is widely used, and its advantages outweigh its disadvantages for many problems. Before we settle on it, we need to make two tweaks to make later developments easy to express.
 
 As we know finding the minimum for $y^2$ is the same as finding the minimum for $\frac{1}{2} y^{2}$ but the latter leads to a simpler derivative: $\frac{d}{d y}\left(\frac{1}{2} y^{2}\right)=y$, while $\frac{d}{d y}\left(y^{2}\right)=2 y$. Hence, we can use the following loss function (SSE) that simplifies taking derivatives:
 
@@ -46,7 +46,7 @@ $$
 J^{2}=\frac{1}{2} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}
 $$
 
-Furthermore, we can take the average of the sum of squares to obtain the mean squared error (MSE as a loss function:
+Furthermore, we can take the average of the sum of squares to obtain the mean squared error (MSE) as a loss function:
 
 $$
 \overline{J^{2}}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}
@@ -72,7 +72,7 @@ Below we show an example of a linear model with its loss function, the learning 
 
 <figure role="group">
   <img src="../images/DS_IMG102.png" alt="Left: graph showing an example of a linear model y = 2 + 3x. Right: surface chart, showing the loss function of different settings for W0 and W1 and also the loss function contours plot." />
-  <figcaption><strong>Figure 4.5.</strong> (top) Example of a linear model (bottom) the loss function of a different settings for w0 and w1 (shown in purple) and the loss function contours plot shown in orange. The task of learning is to reach the bottom of the loss function where are the optimal settings of the weights values. Contour plots project the surface above it and signifies the J by the darkness of the colour so the more orange the higher J is and more error we have. <a href="../files/cost_function_plot.ipynb" target="_blank" download>Download the code to generate the figure (.ipynb)</a></figcaption>
+  <figcaption><strong>Figure 4.5.</strong> (top) Example of a linear model (bottom) the loss function of a different settings for w0 and w1 (shown in purple) and the loss function contours plot shown in orange. The task of learning is to reach the bottom of the loss function where the optimal settings of the weights values are. Contour plots project the surface above it and signifies the J by the darkness of the colour so the more orange the higher J is and more error we have. <a href="../files/Extra_Loss_Surface_Contour_Plots.ipynb" target="_blank" download>Download the code to generate the figure (.ipynb)</a></figcaption>
 </figure>
 
 ###Vectorised version of the Loss Function
@@ -118,7 +118,7 @@ Where $‖.‖^2$ is the norm of a vector = sum of the squared of all of its com
 
     The second form has a derivative $\frac{\partial J^{2}}{\partial y_{n}}=\frac{2}{2}\left(y_{n}-t_{n}\right)=-\left(t_{n}-y_{n}\right)$				
 
-    The first form is **more desirable** because when we move to a stochastic gradient descent settings the term $(t_n-y_n )$ in the bracket will appear in the update rule without the squares. And so using this from will help our memory to remember that in our treatments an update the target $t_n$ always comes before the estimation $y_n$.
+    The first form is **more desirable** because when we move to a stochastic gradient descent setting the term $(t_n-y_n )$ in the bracket will appear in the update rule without the squares. And so using this from will help our memory to remember that in our treatments an update the target $t_n$ always comes before the estimation $y_n$.
 
 ##Optimising the Loss: Training Approaches for Parametric Models
 
@@ -134,16 +134,16 @@ $$
 \overline{J^{2}}=\frac{1}{2 N} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}
 $$
 
-That involves the $N$ points in our training set. To do so, we 1) take the derivative of the loss function $\overline{J^{2}}$ and 2) set it to 0 to obtain the best weights setting that makes our loss minimal (the point that lies on the bottom of the loss function). In other words we need to minimise $\bar{J}^{2}(\mathbf{w})$ with respect to $\mathbf{w}$. This is called optimising the loss function $\overline{J^{2}}$, so learning in this context is a form of optimisation (there are plenty of perspective for learning that differs or complement this point of view, one of them is the probabilistic approach. We touch upon the probabilistic perspective in later sections).
+That involves the $N$ points in our training set. To do so, we 1) take the derivative of the loss function $\overline{J^{2}}$ and 2) set it to 0 to obtain the best weights setting that makes our loss minimal (the point that lies on the bottom of the loss function). In other words we need to minimise $\bar{J}^{2}(\mathbf{w})$ with respect to $\mathbf{w}$. This is called optimising the loss function $\overline{J^{2}}$, so learning in this context is a form of optimisation (there are plenty of perspectives for learning that differs or complement this point of view, one of them is the probabilistic approach. We touch upon the probabilistic perspective in later sections).
 
 When we want to take the derivative of a function with respect to a **vector** we take the **gradient of the function**. Using usual rules of derivations, we obtain the gradient of the loss function. Since we are optimising with respect to weights $\mathbf{w}$ we take the gradient with respect to $\mathbf{w}$. The gradient of the loss function $\bar{J}^{2}(\mathbf{w})$ is a vector that takes the partial derivative with respect to each component of $\mathbf{w}$ (the function itself outputs just one positive real-value; a **scalar**):
 
-We then can solve to obtain a solution that minimise the loss which in turn makes our model perform the required calculations to produce the desired output $t$.
+We then can solve to obtain a solution that minimises the loss which in turn makes our model perform the required calculations to produce the desired output $t$.
 
 From this point we can adopt any of the following approaches to train our model, (they will be covered in subsequent sections but we outline them here):
 
 1. Either solve the equation $\nabla \overline{J^{2}}(\mathbf{w})=0$ directly through the least squares method to obtain optimal weights $\mathbf{w}^{*}$.
-2. Or take a numerical approach by starting from any initial weights and moving gradually towards the minimal weights $\mathbf{w}^{*}$ in each iteration. In each iteration the weights are changed proportional and opposite to the gradient $\nabla \overline{J^{2}}(\mathbf{w})$. This approach is called gradient decent and in turn can be performed in any of the following ways:
+2. Or take a numerical approach by starting from any initial weights and moving gradually towards the minimal weights $\mathbf{w}^{*}$ in each iteration. In each iteration the weights are changed proportional and opposite to the gradient $\nabla \overline{J^{2}}(\mathbf{w})$. This approach is called gradient descent and in turn can be performed in any of the following ways:
     1. Batch Gradient Descent: where accumulate the gradients of all the training set before taking one update that commit them all at once. This approach can be looked at as taking approach 1) update and dividing it into several iterations. Each iteration sweep through the whole training set and is called an epoch. This approach is impractical for large datasets due to its high demand on memory (i.e. its space complexity is high) even when we use vectorisation.
     2. Sequential (also called online) approach that involves **one** data point gradient update at a time.  This suits sequential data or data coming from a stream. If the training data is not a stream this approach digests the whole training set but one point at a time. Going through all the data points in the training set is called an epoch.
     3. Mini-batch: a compromise between the above two extremes (a and b).
@@ -151,7 +151,7 @@ From this point we can adopt any of the following approaches to train our model,
         2. In each iteration we collect the updates of all the data pairs $\left(\mathbf{x}_{n}, t_{n}\right)$ inside the mini-batch $b_i$  and we commit all of them at once.
         3. In order to mitigate for the bias and variance that might occur due to a particular lucky (or unlucky) batch, we often shuffle the training set.
 
-This approach has the disadvantage that the algorithm might get trapped in local minima. Therefore, to avoid dropping into local minima, we take part of the gradient not all of it, into change the weights. The percentage of the error is called the learning rate.
+This approach has the disadvantage that the algorithm might get trapped in local minima. Therefore, to avoid dropping into local minima, we change the weights according to proportion of the gradient, not all of it. The percentage of error is called the learning rate. 
 
 Further, we decay the learning rate between one epoch and the other because after each epoch our weights becomes closer and closer to the weights that is optimal for the entire training set and not only one batch and to avoid overshooting the amount of changes required to end up in the local minimum we reduce the learning step in later epochs. Decaying the weights can be done in several ways. You will discuss further these in the machine learning modules.
 
