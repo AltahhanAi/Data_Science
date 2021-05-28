@@ -324,7 +324,7 @@ The above algorithm is a vanilla algorithm of an SGD mini-batch that can be sped
 <span>1.</span> Define a partition of the training set $\{\mathbf{X}, \mathbf{t}\}$ into a set of q mini-batches as follows:
 
 <figure role="group">
-  <img src="../images/DS_IMG213.png" alt="A formula showing a set of q mini-batches (part 1 of 2)." />
+  <img src="../images/DS_IMG213.png" alt="A formula showing a set of q mini-batches." />
 </figure>
 
 Where $X_τ τ=1:q$ is a matrix of size $b×D$ and $t_τ τ=1:q$ is a vector of size $b×1$. We refer to both as a mini-batch of size $b$.
