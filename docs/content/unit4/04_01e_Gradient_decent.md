@@ -1,8 +1,8 @@
 #Approximate Solutions: Gradient Descent
 
-**For linear models we saw that we can analytically find a solution via the normal formula by setting the gradient to 0 and solving with respect to $\mathbf{W}$. Such solutions are either not available when we deal with non-linear optimisation or is not desirable due to efficiency requirements. Even if analytical close form solution is available, the complexity of finding the least squares is $\mathcal{O}\left(N^{3}\right)$ which is quite expensive when $N$ is reasonably large.**
+**For linear models we saw that we can analytically find a solution via the normal formula by setting the gradient to 0 and solving with respect to $\mathbf{W}$. Such solutions are either not available when we deal with non-linear optimisation or is not desirable due to efficiency requirements. Even if an analytical close form solution is available, the complexity of finding the least squares is $\mathcal{O}\left(N^{3}\right)$ which is quite expensive when $N$ is reasonably large.**
 
-In such cases, it is desirable to find an **approximate solution** for the problem (i.e. an approximation for $\mathbf{w}^{*}$) to come as close as possible to the minimum **without** necessarily finding the **exact solution**. Algorithms that tries to achieve this are called approximation algorithms, you will study several of these in the Algorithms Modules including greedy, local search and dynamic programming algorithm. In our case, we will utilise an important and pervasive approximation algorithm that is utilised throughout machine learning. It is not necessary the best approximation algorithm but it is the simplest to understand and to implement.
+In such cases, it is desirable to find an **approximate solution** for the problem (i.e. an approximation for $\mathbf{w}^{*}$) to come as close as possible to the minimum **without** necessarily finding the **exact solution**. Algorithms that try to achieve this are called approximation algorithms, you will study several of these in the Algorithms Module, including greedy, local search and dynamic programming algorithms. In our case, we will utilise an important and pervasive approximation algorithm that is utilised throughout machine learning. It is not necessary the best approximation algorithm but it is the simplest to understand and to implement.
 
 This optimisation algorithm is called the gradient descent or steepest descent. This techniques aims at iteratively finding the minimum of a function (the loss function $\overline{J^{2}}$ in our case). The algorithm starts from any point on the surface of the loss function (i.e. by taking a random initial value for $w$) and then it takes small steps in the direction of the minimum of the function by changing the weights gradually in each step. The direction of the point $w^*$ that minimise $\overline{J^{2}}$ from any point $\mathbf{w}^{(\tau)}$ is always opposite to the gradient of the function at this point $-\nabla J^{2}\left(\mathbf{w}^{(\tau)}\right)$. This is because the gradient of a function always points in a direction opposite to the minimum.
 
@@ -73,7 +73,7 @@ $$
 \nabla \bar{J}^{2}(\mathbf{w})=-\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
 $$
 
-This is an important formula that we will get refer back to often. To get a taste of what this gradient entails, we show below what is involved in it:
+This is an important formula that we will refer back to often. To get a taste of what this gradient entails, we show below what is involved in it:
 
 $$
 \nabla \overline{J^{2}}(\mathbf{w})=-\frac{1}{N}\left(\left[\begin{array}{c}
@@ -139,7 +139,7 @@ Scroll to thr right within the box to see all information.
                 $\mathbf{x}_{n}=\left[1, \mathbf{x}_{n}^{\top}\right]^{\top}$
                 <span class="algorithm-line-comment"># *add a dummy attribute for each $x_n$*</span>
 
-                $\boldsymbol{w}^{\prime}=\boldsymbol{w}^{\prime}+\eta \boldsymbol{x}_{n}\left(t_{n}-\boldsymbol{w}^{\top} \boldsymbol{x}_{n}\right)$
+                $\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$
                 <span class="algorithm-line-comment"># *accumulated the changes without committing them*</span>
 
             $\mathbf{w}=\mathbf{w}+\frac{1}{N} \mathbf{w}^{\prime}$
@@ -323,9 +323,9 @@ The above algorithm is a vanilla algorithm of an SGD mini-batch that can be sped
 
 <span>1.</span> Define a partition of the training set $\{\mathbf{X}, \mathbf{t}\}$ into a set of q mini-batches as follows:
 
-
-<mark>This equation is too complex for mathpix, we need latex directly from AA</mark>
-
+<figure role="group">
+  <img src="../images/DS_IMG213.png" alt="A formula showing a set of q mini-batches (part 1 of 2)." />
+</figure>
 
 Where $X_τ τ=1:q$ is a matrix of size $b×D$ and $t_τ τ=1:q$ is a vector of size $b×1$. We refer to both as a mini-batch of size $b$.
 
@@ -385,12 +385,12 @@ We normally decay the learning rate in order to prevent zigzagging around the mi
 
     Return the final solution $\mathbf{w}$
 
-Stochastic gradient descent, especially the minim-batch version is an excellent tool to tackle large-scale learning and has received recently a considerable attention. Large scale learning is learning from a large dataset with a huge amount of instances available. In such a case, we cannot expect to train on the whole dataset because it way beyond a single machine capabilities or even the capabilities a medium cluster of machines. Stochastic gradient descent is an excellent tool because it allows us to simply tackle as much as we can digest in our available hardware. Of course there are many augmentation to the simple (vanilla) SGD in terms of cleverer selection of the data to be processed which goes beyond the basic form presented here. At the same time, parallelisation techniques can be employed to promote efficient parallelised implementation of amortised complexity of $\mathcal{O}\left(\log _{r} N\right)$ where $N$ is the dataset size or the size of the processed data that can be pulled from a data lake or a data centre and $r$ is the number of parallel processors available to the algorithm.
+Stochastic gradient descent, especially the minim-batch version is an excellent tool to tackle large-scale learning and has received recently a considerable attention. Large scale learning is learning from a large dataset with a huge amount of instances available. In such a case, we cannot expect to train on the whole dataset because it way beyond a single machine capabilities or even the capabilities a medium cluster of machines. Stochastic gradient descent is an excellent tool because it allows us to simply tackle as much as we can digest in our available hardware. Of course there are many augmentations to the simple (vanilla) SGD in terms of cleverer selection of the data to be processed which goes beyond the basic form presented here. At the same time, parallelisation techniques can be employed to promote efficient parallelised implementation of amortised complexity of $\mathcal{O}\left(\log _{r} N\right)$ where $N$ is the dataset size or the size of the processed data that can be pulled from a data lake or a data centre and $r$ is the number of parallel processors available to the algorithm.
 
 It should be stressed here also that SGD is sensitive to feature scaling and it is recommend to scale or normalise all features of the our data to avoid one feature overwhelming other features by its high values that do not vary that much as we have discussed in unit1. The simplest way is to scale by dividing over the max value of the feature, or to subtract the minimum and divide by the difference between the minimum and the maximum of the feature. We get the min and max either by looking into the dataset or by understanding the domain of the feature what are those would. Consulting domain experts who works with the data is also useful to understand the nature of the dataset that we are tackling.
 
 For further reading, see Prateek et al's paper on <a href="https://www.jmlr.org/papers/volume18/16-595/16-595.pdf" target="_blank">Parallelizing Stochastic Gradient Descent for Least Squares Regression: Mini-batching, Averaging, and Model Misspecification</a>.
 
-The above algorithm can be easily adapted when we are dealing with a data stream, all what we need to do is to accumulate $\mathbf{X}_{\tau}$ as the data arrives until it is of the required size $b$, and we can even vary the size $b$ itself between different iterations, these have not been shown to keep the algorithm simple and to concentrate on a basics of the vectorised minim-batch is left to you as an exercise. Not that when $b=N$ the algorithm goes back to a vectorised batch stochastic gradient descent which can be applied when the dataset size permits. The resultant weights are still an approximation even if it might be very close to the optimum solution $\mathbf{w}^{*}$.
+The above algorithm can be easily adapted when we are dealing with a data stream, all what we need to do is to accumulate $\mathbf{X}_{\tau}$ as the data arrives until it is of the required size $b$, and we can even vary the size $b$ itself between different iterations, these have not been shown to keep the algorithm simple and to concentrate on a basics of the vectorised minim-batch is left to you as an exercise. Note that, when $b=N$ the algorithm goes back to a vectorised batch stochastic gradient descent which can be applied when the dataset size permits, the resultant weights are still an approximation even if it might be very close to the optimum solution $\mathbf{w}^{*}$.
 
 To summarise, we emphasise here, contrary to what one might expect, stochastic and mini-batch stochastic gradient descent converge faster that batch gradient descent in practice. This is due to several reasons. One reason is that both stochastic gradient algorithms infuse noise in the update which is quite useful to escape local minima. Another reason is that by nature stochastic algorithms are faster to execute and they execute several updates per clock time in comparison with batch gradient which keeps accumulating the gradients on the side until it sweeps through the whole training set. Assuming that the training set is finite but large, then the roughness of stochastic updates outperforms the more exactness of batch gradient. A third reason is that all gradient descents, even the batch one, do not point exactly to the global minimum instead they roughly point to a direction that will lead us to the minimum. Therefore, it does not make sense to spend a lot of computational power (as in the batch GD) to try to improve the gradient by considering more and more points until we consume the whole training set. Because even then the gradient is not quite right opposite to the direction of the minimum for complex loss function. Although linear regression loss function is quadratic and has a global minimum, nevertheless these issues can still be seen and you can examine them in the next exercise.

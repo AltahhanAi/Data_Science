@@ -4,7 +4,7 @@
 
     Let us see how to implement and apply a simple least squares solution on synthetic 2d data, on the following Jupyter notebook.
 
-    - Download exercise (.ipynb):   <a href="../exercises/Exercise-1_LeastSquares_Regression2D_Data.ipynb" target="_blank" download>Exercise 1 (.ipynb)</a>
+    - Download exercise (.ipynb):   <a href="../exercises/Exercise1_LeastSquares_Regression_2D_Data.ipynb" target="_blank" download>Exercise 1 (.ipynb)</a>
 
 
 !!! abstract "Exercise"

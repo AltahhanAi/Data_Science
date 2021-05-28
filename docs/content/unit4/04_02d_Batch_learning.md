@@ -145,7 +145,7 @@ The least square solution is called batch solution since they dictate processing
 
                 $\mathbf{\Phi}_{\tau}=\left[\mathbf{1}_{b}, \mathbf{\Phi}_{\tau}\right]$ <span style="float: right;"># add dummy feature to the mini-batch</span>
 
-                $\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{\Phi}_{\tau}^{\top}\left(\mathbf{t}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{w}\right)$ 
+                $\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{\Phi}_{\tau}^{\top}\left(\mathbf{t}_{\tau}-\mathbf{\Phi}_{\tau} \mathbf{w}\right)$
 
             Decay $\eta$ <span style="float: right;"># if necessary: ex. $‎η=0.9×η$</span>
 

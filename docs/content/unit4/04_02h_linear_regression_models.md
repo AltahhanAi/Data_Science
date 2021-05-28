@@ -38,7 +38,7 @@ The resultant algorithm is similar to Algorithm 4’ and is not shown for brevit
 
 ##General Case: Linear Models with Multiple Outputs and Fixed Basis
 
-In this section we will extends the ideas of a one output linear regression model that we have dealt with so far into a multi-output linear regression model. When we have multiple output for each input, i.e. each output is a vector of $K$ values: $\boldsymbol{t}_{n}=\left[t_{n, 1}, t_{n, 2}, \ldots, t_{n, K}\right]$. The linear model with multiple output can be expressed as:
+In this section we will extend the ideas of a one output linear regression model that we have dealt with so far into a multi-output linear regression model. When we have multiple output for each input, i.e. each output is a vector of $K$ values: $\boldsymbol{t}_{n}=\left[t_{n, 1}, t_{n, 2}, \ldots, t_{n, K}\right]$. The linear model with multiple output can be expressed as:
 
 $$
 \boldsymbol{y}(\mathbf{x}, \mathbf{W})=\mathbf{W}^{\top} \boldsymbol{\phi}(\mathbf{x})
@@ -51,7 +51,7 @@ $$
 
 By fixed basis we mean that the set of basis functions do not change. So if we use a Gaussian basis for example the mean and the variance are fixed, similarly if we use any other basis their parameters do not change. This means that we can use a **separate** model that first learns a basis representations (in a separate pre-processing stage) that suits our problem and then we stop the basis learning to make the basis model fixed and then use this fixed basis model to map the input space into our features space and then use the features to learn a multi-output linear model. The resultant model is still linear in the feature space.
 
-Note that we use now a bold face letter $\boldsymbol{t}_{n}$ to express the fact that we have a vector of multi-output target values. Similarly, we use a bold face $\boldsymbol{y}$ to denote that the model outputs a vector of multi-output values. In addition, we have used a bold capital $\boldsymbol{W}$ to signify that we are dealing with a $(M+1)×K$ matrix (including the biases) instead of a vector of weights. We need in this case a matrix of weights (instead of a vector of weights) since each output component $y_i$ will require its own weights vector. We can combine all the weight vectors in a matrix of weights and we use the same matrix multiplication mechanism that we used before.
+Note that we now use a bold face letter $\boldsymbol{t}_{n}$ to express the fact that we have a vector of multi-output target values. Similarly, we use a bold face $\boldsymbol{y}$ to denote that the model outputs a vector of multi-output values. In addition, we have used a bold capital $\boldsymbol{W}$ to signify that we are dealing with a $(M+1)×K$ matrix (including the biases) instead of a vector of weights. We need in this case a matrix of weights (instead of a vector of weights) since each output component $y_i$ will require its own weights vector. We can combine all the weight vectors in a matrix of weights and we use the same matrix multiplication mechanism that we used before.
 
 We can easily adjust our least square algorithm to accommodate for such a scenario. Here is how:
 
