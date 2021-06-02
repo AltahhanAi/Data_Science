@@ -163,7 +163,7 @@ $$
 \bar{y}=\frac{1}{\sum_{l=1}^{K} y_{i}} y
 $$
 
-## Loss Function
+## Loss function
 Recall that we have used the cross entropy for logistic regression where we have
 
 $$
@@ -173,21 +173,19 @@ $$
 This form implicitly chooses the one of the two terms $\log \left(y_{n}\right)$ or  $\log \left(1-y_{n}\right)$ depending on the actual class. If the class is $t_n=0$ then the first term cancels and we are left with the second term $\log \left(1-y_{n}\right)$, while if the class is $t_n=1$ the second term cancels and we are left with the first term $\log \left(y_{n}\right)$.
 We can apply a more general form of cross entropy to multi-class by adopting a 1-of-k binary coding for the label. The resultant mean over the whole dataset will be used as the loss function for a softmax regression for a problem with multi-class.
 
-
-Remember that if we use 1-of-k binary coding for the label, then each label takes the form ${t}_n=[0,\ 0,\ldots,1,0,\ldots,0]$. So for example if the data point ${x}_n$ actual class $C_3$ and we have a total of 4 classes in the problem, then ${t}_n=\left[0,\ \ 0,\ 1,\ 0\right]$ while if point $\mathbf{x}_n$ actual class is $C_1$ then ${t}_n=\left[1,\ 0,\ 0,\ 0\right]$ and so on. So if we assume that we uses 1-of-k binary coding then the cross entropy of a multi-class problem can be defined as:
+Remember that if we use 1-of-k binary coding for the label, then each label takes the form $\boldsymbol{t}_{n}=[0,\ 0,\ldots,1,0,\ldots,0]$. So for example if the data point $\mathbf{x}_n$ actual class $C_3$ and we have a total of 4 classes in the problem, then $\boldsymbol{t}_{n}=\left[0,\ \ 0,\ 1,\ 0\right]$ while if point $\mathbf{x}_n$ actual class is $C_1$ then $\boldsymbol{t}_{n}=\left[1,\ 0,\ 0,\ 0\right]$ and so on. So if we assume that we uses 1-of-k binary coding then the cross entropy of a multi-class problem can be defined as:
 
 $$
-\tilde{H}_{n}\left(\mathbf{w}_{k}\right)=\left\{\begin{array}{cl}
--\log \left(\bar{y}_{k}\left(x_{n}\right)\right) & \text { when } t_{k, n}=1 \\
+\widetilde{H}_{n}\left(\mathbf{w}_{k}\right)=\left\{\begin{array}{cl}
+-\log \left(\bar{y}_{k}\left(\boldsymbol{x}_{n}\right)\right) & \text { when } t_{k, n}=1 \\
 0 & \text { when } t_{k, n}=0
 \end{array}\right.
 $$
 
 Which can be written succinctly as:
-<mark>Equations below not coming out right still don't fully match script</mark>
 
 $$
-\tilde{H}_{n}\left(\mathbf{w}_{k}\right)=-\sum_{k=1}^{K} t_{k, n} \log \left(\bar{y}_{k}\left(x_{n}\right)\right)
+\widetilde{H}_{n}\left(\mathbf{w}_{k}\right)=-\sum_{k=1}^{K} t_{k, n} \log \left(\bar{y}_{k}\left(\boldsymbol{x}_{n}\right)\right)
 $$
 
 The derivatives also satisfy the nice property that we described in the logistic regression section. You can choose to see how to derive the gradient in the box at the end of this section, but you can carry on with the rest of the unit without doing so, this is not assessed.
@@ -200,12 +198,12 @@ $$
 \nabla_{k} \widetilde{H}_{n}\left(\mathbf{w}_{k}\right)=-\boldsymbol{\phi}_{n}\left(t_{k, n}-\bar{y}_{k, n}\right)
 $$
 
-where we denoted $\nabla_k≔∇wk$. The gradient is again taking the same form of a linear regression data point error. This is great as the algorithms will take a very similar shape as we saw earlier for the logistic regression.
+where we denoted $\nabla_{k}:=\nabla_{\mathbf{w}_{k}}$. The gradient is again taking the same form of a linear regression data point error. This is great as the algorithms will take a very similar shape as we saw earlier for the logistic regression.
 
 And so the stochastic gradient decent update takes the usual form of the logistic regression but for each normalised output ${\bar{y}}_{k,n}={\bar{y}}_k(\mathbf{x}_n)$ as follows:
 
 $$
-\mathbf{w}_{k}^{(\tau+1)}=\mathbf{w}_{k}^{(\tau)}+\eta \phi_{n}\left(t_{k, n}-\bar{y}_{k, n}\right)
+\mathbf{w}_{k}^{(\tau+1)}=\mathbf{w}_{k}^{(\tau)}+\eta \boldsymbol{\phi}_{n}\left(t_{k, n}-\bar{y}_{k, n}\right)
 $$
 
 $$
@@ -232,24 +230,25 @@ $$
 \nabla_{k} \bar{J}=-\frac{1}{N} \sum_{n=1}^{N} \boldsymbol{\phi}_{n}\left(t_{k, n}-\bar{y}_{k, n}\right)
 $$
 
-### The Gradient of the Cross Entropy Terms from Multi Class Problem
-	We define  \sum_{i=1}^{K}y_i≔y  and hence {\bar{y}}_k=\frac{y_k}{\sum_{i=1}^{K}y_i}=\frac{y_k}{\bar{\bar{y}}}
-	Also we note that \sum_{k=1}^{K}t_k=1
-	We will denote \nabla_{\mathbf{w}_j}≔∇j 	  where we have	  y_j=e^{\mathbf{w}_j^\top\mathbit{\phi}}\ \
-	\nabla_{\mathbf{w}_j}y_j=\ \nabla_jy_j=\mathbit{\phi}e^{\mathbf{w}_j^\top\mathbit{\phi}}=\mathbit{\phi}y_j
-	\nabla_jy_k=0 when j\neq k
-	\nabla_j\sum_{i=1}^{K}y_i=\mathbit{\phi}y_j\ \ and\ \ \ \nabla_j\bar{\bar{y}}=\mathbit{\phi}y_j
-	\nabla_j\log{y_j}=\frac{\nabla_jy_j}{y_j}=\frac{\mathbit{\phi}y_j}{y_j}=\mathbit{\phi}
+### The gradient of the cross entropy terms from multi class problem
+
+1. We define $\sum_{i=1}^{K} y_{i}:=\overline{\bar{y}}$ and hence ${\bar{y}}_k=\frac{y_k}{\sum_{i=1}^{K}y_i}=\frac{y_k}{\bar{\bar{y}}}$
+2. Also we note that $\sum_{k=1}^{K}t_k=1$
+3. We will denote $\nabla_{\mathbf{w}_j}≔∇j$ where we have $y_{j}=e^{\mathbf{w}_{j}^{\top} \boldsymbol{\phi}}$
+    1. $\nabla_{\mathbf{w}_{j}} y_{j}=\nabla_{j} y_{j}=\boldsymbol{\phi} e^{\mathbf{w}_{j}^{\top} \boldsymbol{\phi}}=\boldsymbol{\phi} y_{j}$
+    2. $\nabla_jy_k=0$ when $j\neq k$
+    3. $\nabla_{j} \sum_{i=1}^{K} y_{i}=\boldsymbol{\phi} y_{j}$ and $\nabla_{j} \overline{\bar{y}}=\boldsymbol{\phi} y_{j}$
+    4. $\nabla_{j} \log y_{j}=\frac{\nabla_{j} y_{j}}{y_{j}}=\frac{\phi y_{j}}{y_{j}}=\boldsymbol{\phi}$
+
 Now we are ready to get the derivative
-\nabla_j{\widetilde{H}}_n\left(\mathbf{w}_j\right)=-\nabla_j\sum_{k=1}^{K}{t_k\log{\left({\bar{y}}_k\right)}} 				
-\nabla_j{\widetilde{H}}_n\left(\mathbf{w}_j\right)=-\nabla_j\sum_{k=1}^{K}{t_k\log{\left(\frac{y_k}{\bar{\bar{y}}}\right)}}  			as per 1
-\nabla_j{\widetilde{H}}_n\left(\mathbf{w}_j\right)=-\nabla_j\left(\sum_{k=1}^{K}{t_k\log{y_k}}-\sum_{k=1}^{K}{t_k\log{\bar{\bar{y}}}}\right) 		
-\nabla_j{\widetilde{H}}_n\left(\mathbf{w}_j\right)=-\nabla_j\left(\sum_{k=1}^{K}{t_k\log{y_k}}-\log{\bar{\bar{y}}}\sum_{k=1}^{K}t_k\right)		 
-\nabla_j{\widetilde{H}}_n\left(\mathbf{w}_j\right)=-\nabla_j\left(\sum_{k=1}^{K}{t_k\log{y_k}}-\log{\bar{\bar{y}}}\right) 		as per 2
-\nabla_j{\widetilde{H}}_n\left(\mathbf{w}_j\right)=-\left(\sum_{k=1}^{K}{t_k\nabla_j\log{y_k}}-\nabla_j\log{\bar{\bar{y}}}\right)			
-\nabla_j{\widetilde{H}}_n\left(\mathbf{w}_j\right)=-\left(t_j\mathbit{\phi}_n-\frac{\mathbit{\phi}y_j}{y}\right)			as per 3.c and 3.d
-\nabla_j{\widetilde{H}}_n\left(\mathbf{w}_j\right)=-\left(t_j\mathbit{\phi}_n-{\bar{y}}_j\right)
-\nabla_j{\widetilde{H}}_n\left(\mathbf{w}_j\right)=-\mathbit{\phi}_n\left(t_j-{\bar{y}}_j\right)
+
+$$
+\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\nabla_{j} \sum_{k=1}^{K} t_{k} \log \left(\bar{y}_{k}\right)
+$$
+
+$$
+\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\nabla_{j} \sum_{k=1}^{K} t_{k} \log \left(\frac{y_{k}}{\overline{\bar{y}}}\right)
+$$
 
 ## 5.6	REGULARISED MINI-BATCH STOCHASTIC GRADIENT DESCENT UPDATES FOR MULTI-CLASS LOGISTIC REGRESSION MODEL
 
