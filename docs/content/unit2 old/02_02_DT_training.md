@@ -452,16 +452,16 @@ Annual income ranges £K | Annual income Bands
 [18, 48[                | Basic
 [48, 78[                | Intermediary
 [78, 108[               | Advanced
-[100, 130[              | High
-[130, 160[              | Top
-[160, [                 | Exec
+[108, 138[              | High
+[138, 168[              | Top
+[168, [                 | Exec
 
 <figure role="group">
   <img src="../images/DS_IMG024.png" alt="Bar graph showing salary bands uniformly distributed." />
   <figcaption><strong>Figure 2.9.</strong> Annual Income bands uniformly distributed, note that the width of all the ranges are £30k.</figcaption>
 </figure>
 
-However, if we think that we might have values in the middle more than on the sides, then maybe we want to have more fine ranges in the middle and more coarse ranges on the side. We can partition the values into a set of ranges according with the a variable interval width range that is inversely normally distributed:
+However, if we think that we might have values in the middle more than on the sides, then maybe we want to have more fine ranges in the middle and more coarse ranges on the side. We can partition the values into a set of ranges according to an interval width that is inversely normally distributed:
 
 
 Annual Income Ranges £K | Annual income category
@@ -473,7 +473,7 @@ Annual Income Ranges £K | Annual income category
 [86, 93[                | Advanced M
 [93, 100[               | Advanced H
 [100, 108[              | Advanced T
-[100, 112[              | High L
+[108, 112[              | High L
 [112, 130[              | High H
 [130, 160[              | Top
 [160, [                 | Exec

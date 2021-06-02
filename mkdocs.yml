@@ -65,7 +65,7 @@ nav:
     - Unit 5:
         - '1. Linear and non-Linear classification': content/unit5/05_01_linear-non-linear-classification.md
         - '2. Linear model for classification': content/unit5/05_02_linear-model-for-classification.md
-        - '3. Binary classification: The perception': content/unit5/05_03_binary-classification-perception.md
+        - '3. Binary classification: The perceptron': content/unit5/05_03_binary-classification-perceptron.md
         - '4. Binary classification: Logistic regression':  content/unit5/05_04_binary-classification-logistic-regression.md
         - '5. Multi-class problems':  content/unit5/05_05_multi-class-problems.md
         - '8. Unit references':  content/unit5/05_08_unit_references.md

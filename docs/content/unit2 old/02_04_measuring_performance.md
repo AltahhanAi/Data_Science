@@ -138,7 +138,7 @@ Note that predictive metrics are concerned with the model ability to predict or 
 
 Therefore, for two numbers it is defined as $\left(\frac{1 / x_{1}+1 / x_{2}}{2}\right)^{-1}=\frac{2 x_{1} x_{2}}{x_{1}+x_{2}}$
 
-Therefore, F1 score is given as $F 1$ score $=\frac{2 p\left(p r e d i c t_{+}\right) p\left(d e t e c t_{+}\right)}{p\left(p r e d i c t_{+}\right)+p\left(d e t e c t_{+}\right)}=\frac{\text { 2TP }}{2TP \text {  }+\text { FP }+\text { FN }}$
+Therefore, F1 score is given as $F 1$ score $=\frac{2 p\left(\text { predict }_{+}\right) p\left(\text { detect }_{+}\right)}{p\left(\text { predict }_{+}\right)+p\left(\text { detect }_{+}\right)}=\frac{\text { 2TP }}{2TP \text { (1) }+\text { FP }+\text { FN }}$
 
 !!! Note
     Note that $𝑨𝒄𝒄𝒖𝒓𝒂𝒄𝒚=(𝐓𝐏+𝐓𝐍)/N =(𝐓𝐏+𝐓𝐍)/(𝐓𝐏+ 𝐓𝐍+ 𝐅𝐏+ 𝐅𝐍)$. If we compare this with the F1 score formula, we realise that we can obtain F1 score directly from the accuracy formula, by replacing the term $TN$ with $TP$. In other words, we can view the F1 score from another perspective as being a measure of overall accuracy for the true positive predicted cases only (no true negative).
@@ -280,7 +280,7 @@ M C C=\frac{99 \times 99-1 \times 1}{\sqrt{(99+1)(99+1)(99+1)(99+1)}}=0.98
 \end{array}
 $$
 
-Accordingly we prefer classifier 3 since we are comparing on the same dataset. Please refer to section 3.9 of Introduction to Data Mining (Tan et al, 2019) for a more detailed discussion of model comparison. In particular, the reader needs to be careful on what constitutes a statistically significant difference of two different models.
+Accordingly we prefer classifier 3 since we are comparing on the same dataset. In particular, the reader needs to be careful on what constitutes a statistically significant difference of two different models.
 
 ###Classes imbalance and metrics
 
@@ -345,10 +345,6 @@ M C C=\frac{90 \times 9900-10 \times 100}{\sqrt{(90+100)(9900+10)(90+10)(9900+10
 \end{array}
 $$
 
-See the following video for a comprehensive example of a DT with different metrics:
-
-<mark>iframe link metrics in perspective</mark>
-
 ##Measuring the performance of a multi-class models
 
 Note that F1 score only applies to binary class problems. If the problem is multi-class we can use other metrics, including accuracy, recall (positive detection rate) and precision (positive prediction value). We can also treat the classes as one vs. the rest fashion (yielding the problem into a binary class problem) and obtain the F1 score for each class separately. Below we show the confusion matrix for the IRIS dataset.  For more information about the IRIS dataset read the following passage extracted from SKLearn description for the dataset.
@@ -411,33 +407,13 @@ Different sources uses these two formatting as well. On the right also you can s
   <figcaption><strong>Figure 4.24</strong> Confusion matrix normalised. </figcaption>
 </figure>
 
-The accuracy for a binary classification problem is given as:
+For multi-class problems, the recall or pr(detect $\left._{\text {class }}\right)$ can be defined in terms of averaged sum of true instances of each class. To demonstrate how, let us look into the above confusion matrix. The recall for each class separately give us the following:  
 
 $$
-A c c u r a c y=\frac{1}{N}(\mathbf{T P}+\mathbf{T N})
+\operatorname{pr}\left(\text { detect }_{\text {setosa }}\right)=\frac{13}{13}, \operatorname{pr}\left(\text { detect }_{\text {versicolor }}\right)=\frac{15}{18}, \text { pr }\left(\text { detect }_{\text {virginica }}\right)=\frac{6}{7}
 $$
 
-The accuracy for a multi-class problem is given as:
-
-$$
-\text { Accuracy }=\frac{1}{N} \sum_{i=1}^{C} \mathrm{TC}_{i}
-$$
-
-Where $\mathrm{TC}_{i}$ represents the count of the correctly classified instances of class $\mathrm{C}_{i}$.
-
-So for example the accuracy of a classification model that have the above confusion matrix when applied on the iris dataset is given as:
-
-$$
-\text { Accuracy }=\frac{1}{38}\left(\mathrm{TC}_{\text {setosa }}+\mathrm{TC}_{\text {versicolor }}+\mathrm{TC}_{\text {virginica }}\right)=\frac{1}{38}(13+15+6)=0.894
-$$
-
-###Accuracy limitation
-
-One issue that we face with the accuracy of multi-class and binary-class is that it favours the dominant class with more instances. For example, in the iris confusion matrix the count for the virginica is only 9, while for the versicolor it is 16. This means that the performance of the model on the versicolor class will overshadow and dominate its performance on the virginica. Sometimes this is desirable if we want the performance measure to be consistent with the dataset class distribution. Other times, when we are more interested in a balanced score of all classes regardless of their distributions, or when we want to emphasise the importance of a rare class due to a difficulty in detecting it, then the accuracy is not suitable. In these cases, balanced scores are preferred. In the next two subsections we will talk about the detect and predict scores for multi-class problems (aka recall and precision scores, respectively). These are balanced scores that are more suitable to imbalanced class datasets. In fact the detect score is also known as the balanced accuracy score.
-
-###Holistic metric for multi-class: $pr(detect)$ (aka recall score or balanced accuracy score)
-
-
+###Holistic metric for multi-class: $pr(detect)$ aka recall score
 
 Which yields 1.0,0.83 and 0.86 for the classes 'setosa' 'versicolor' 'virginica', respectively. Now, the recall for the above model can be calculated in several ways, some of them are:
 
