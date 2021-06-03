@@ -1,10 +1,12 @@
 # Linear model for classification
 
-Recall that the problem of classification is concerned with finding a class of a data point based on its attributes. Often we have a dataset of data points representing some objects or cases. These objects have a set of attributes with corresponding **categorical** labels. The task is to build a model to predict the label from the attributes. Unlike the problem of regression, in classification the labels are discrete not continuous and each category represents a class. This might seem an easier thing to do than regression. However, the problem of classification is more fundamental and often more difficult to do in some respects. In regression, the main difficulty is that we want to come as close as possible to the real value of the label and we need to come up with estimated values that are accurate. The difficulty in classification, on the hand, is that we need to build an accurate decision boundary that correctly separates the areas of the classes. If we are going to do that numerically then the concern is not to accurately come close to a real value, but rather to come up with an accurate decision boundary that is resilient to misclassification and maps a set of sometimes very different data points to the same class. At the same time, it must be sensitive when we switch from one class to the other.
+**Recall that the problem of classification is concerned with finding a class of a data point based on its attributes.**
 
-Indeed, in this lesson we will extend the ideas of linear regressions from previous lessons to form decision boundaries similar to the ones that we have covered in Unit 2. Recall that a decision tree has a set of decision boundaries that stem from its conditional nodes. The question is: can we start fundamentally from the idea of a decision boundary and create a model that distinguish between two classes?
+Often we have a dataset of data points representing some objects or cases. These objects have a set of attributes with corresponding **categorical** labels. The task is to build a model to predict the label from the attributes. Unlike the problem of regression, in classification the labels are discrete not continuous and each category represents a class. This might seem an easier thing to do than regression. However, the problem of classification is more fundamental and often more difficult to do in some respects. In regression, the main difficulty is that we want to come as close as possible to the real value of the label and we need to come up with estimated values that are accurate. The difficulty in classification, on the other hand, is that we need to build an accurate decision boundary that correctly separates the areas of the classes. If we are going to do that numerically then the concern is not to accurately come close to a real value, but rather to come up with an accurate decision boundary that is resilient to misclassification and maps a set of sometimes very different data points to the same class. At the same time, it must be sensitive when we switch from one class to the other.
 
-For simplicity of presentation, let us start by assuming that the **data is numerical** and it has **one attribute** and **one label** and each label can take either of **two classes**. This is called binary class problem. So, the data exists in a two-dimensional space but the ideas that we will develop should be expandable to m dimensional space. The easiest case to start off with is when the two classes are **linearly separable**. These five assumptions allow us to solve this case by just a simple line. in other words, it is sufficient to draw a line between two classes to separate them in a 1d space (remember we have one attribute and one label). So can we devise a model that learns the best line position for separating between two classes? The answer is yes and it is called a linear model for classification.
+Indeed, in this lesson we will extend the ideas of linear regressions from previous lessons to form decision boundaries similar to the ones that we have covered in Unit 2. Recall that a decision tree has a set of decision boundaries that stem from its conditional nodes. The question is: can we start fundamentally from the idea of a decision boundary and create a model that distinguishes between two classes?
+
+For simplicity of presentation, let us start by assuming that the **data is numerical** and it has **one attribute** and **one label** and each label can take either of **two classes**. This is called a binary class problem. So, the data exists in a two-dimensional space but the ideas that we will develop should be expandable to m dimensional space. The easiest case to start off with is when the two classes are **linearly separable**. These five assumptions allow us to solve this case by just a simple line. In other words, it is sufficient to draw a line between two classes to separate them in a 1d space (remember we have one attribute and one label). So can we devise a model that learns the best line position for separating between two classes? The answer is yes and it is called a linear model for classification.
 
 However, unlike linear regression we need not only devise a linear separation but we need to make sure to map the result of any point x with respect to this line to tell us at which side of the line the point lies within. So in this case, this can be represented on just one axis of real values. In figure (2.1) below we see the simplest decision boundary with one attribute x. any point that lies within the positive side is of class +1 and any point in the left in
 the negative side belongs to class -1.
@@ -15,7 +17,7 @@ the negative side belongs to class -1.
 
 <strong>Figure 2.1: Decision boundary $x = 0$</strong>
 
-The choice of  labels  is a matter of naming conventions and will not affect the results; we can choose labels like $C_{1}$ and $C_{2}$ or 1,0 etc.  Effectively, the decision boundary $x=0$ tells as that:
+The choice of  labels  is a matter of naming conventions and will not affect the results; we can choose labels like $C_{1}$ and $C_{2}$ or 1,0 etc.  Effectively, the decision boundary $x=0$ tells us that:
 
 * If $x \geq 0$ then its class is 1
 * If $x<0$ then its class is 0
@@ -25,7 +27,7 @@ Or
 * If $x \geq 0$ then its class is +1
 * If $x<0$ then its class is -1
 
-We can expand this to an arbitrary decision boundary on the $x$ axis. The example in figure (2.2) below shows a decision boundary for $x-5=0$ which is basically telling us that:
+We can expand this to an arbitrary decision boundary on the $x$ axis. The example in figure 2.2 below shows a decision boundary for $x-5=0$ which is basically telling us that:
 
   <img src="../images/DS_IMG128.png" alt="Brief description." />
 
@@ -116,7 +118,7 @@ $$
 y(\mathbf{x})=f\left(\mathbf{w}^{\top} \mathbf{x}\right)
 $$
 
-Where f is called the activation function that helps map the linear model into a label.
+Where $f$ is called the activation function that helps map the linear model into a label.
 
 ## The activation function
 
@@ -124,9 +126,7 @@ It is important to note that we need to use a function $f$ to map the values $\m
 
 <figure role="group">
   <img src="../images/DS_IMG134.png" alt="Graph showing step activation function." />
-  <figcaption>
-    <p><strong>Figure 2.8: Step activation function</strong></p>
-  </figcaption>
+  <figcaption><strong>Figure 2.8.</strong> Step activation function with {1,-1} signals.</figcaption>
 </figure>
 
 There are some important and often overlooked subtleties to notice here. First $y$ is not the boundaries $\mathbf{w}^{\top} \mathbf{x}$ although it is inferred from it via $f$. Secondly, $y$ is fundamentally not a continuous value unlike the attribute $\mathrm{x} 2$ for example. Nevertheless, it can be mapped into a continuous space to follow the continuum of values $\mathbf{w}^{\top} \mathbf{x}$ can take as we saw earlier in the step activation function where essentially we have all positive $\mathbf{w}^{\top} \mathbf{x}$ values are mapped into $\mathrm{y}=1$ and all negative values of $\mathbf{w}^{\top} \mathbf{x}$ are mapped into the value $-1$. So, any time the value of $\mathbf{w}^{\top} \mathbf{x}_{n}$ is positive for some data point $\mathbf{x}_{n}$ then we classify $\mathbf{x}_{n}$ as belonging to class $+1$ and conversely any time we have that $\mathbf{w}^{\top} \mathbf{x}_{n}$ is negative then we classify $\mathbf{x}_{n}$ to be of class $-1$.
@@ -136,19 +136,15 @@ Note that for the activation function, we have $\mathbf{w}^{\top} \mathbf{x}$ on
 Function $f$ is called an activation function because it activates, or issues a signal, whether the data point $\left(x_{1}, x_{2}\right)$ belongs to class $+1$ or $-1$. Other activation functions are possible. For example, if we prefer to use $\{0,1\}$ labels we can use a different step activation function as follows in fig 2.9:
 
 <figure role="group">
-  <img src="../images/DS_IMG135.png" alt="Graph showing step activation function with {0, 1] labels." />
-  <figcaption>
-    <p><strong>Figure 2.9: Step activation function</strong></p>
-  </figcaption>
+  <img src="../images/DS_IMG135.png" alt="Graph showing step activation function with {0, 1} signals." />
+  <figcaption><strong>Figure 2.9.</strong> Step activation function with {0,1} signals.</figcaption>
 </figure>
 
 Also for example if we want to confine the values to a $] 0,1[$ interval while allowing the activation function to take values in between to reflect the strength of the belief, or the probability, that a data point $\mathbf{x}_{\mathrm{n}}$ belongs (or not) to the positive class then we can use the logistic function (aka sigmoid) shown below in fig 2.10.
 
 <figure role="group">
-  <img src="../images/DS_IMG136.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.10: xxx.</strong></p>
-  </figcaption>
+  <img src="../images/DS_IMG136.png" alt="Sigmoid activation function with [0,1] signal range." />
+  <figcaption><strong>Figure 2.10</strong> Sigmoid activation function with [0,1] signal range.</figcaption>
 </figure>
 
 A final activation function that is quite important in modern neural network is the rectifier linear unit or ReLU for short. This simple function takes the form:
@@ -160,10 +156,8 @@ $$
 In other words, it takes the same value of $x$ if $x$ is positive and 0 otherwise, which means that it is always nonnegative. We show this function in fig 2.11 below.
 
 <figure role="group">
-  <img src="../images/DS_IMG137.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.11: xxx.</strong></p>
-  </figcaption>
+  <img src="../images/DS_IMG137.png" alt="Graph showing rectified linear unit (ReLU) activation function." />
+  <figcaption><strong>Figure 2.11</strong> Rectified linear unit (ReLU) activation function.</figcaption>
 </figure>
 
 The ReLU is a piecewise linear function. It outperforms other activation functions such as the sigmoid and the tanh which used to be popular in neural networks,  and it is now the default activation function for seep learning. It should be noted that while other activation functions such as the cos or sin have been found to work as well as the sigmoid, all of the more complex functions suffer from saturation where they become insensitive to change beyond some threshold. ReLU overcomes this and other issues. It also has a better gradient propagation. The other advantage of ReLU is its speed in comparison with sigmoidal functions. There are several variants of this function, such as the Leaky ReLU, but in general they perform comparable to ReLU. Leaky ReLU allows a small positive gradient when the unit is not active. In other words, it does not reach 0 which guarantees that the unit activation will not completely cancel when it receives a negative signal.
@@ -179,19 +173,17 @@ $$
 Some examples of different straight line decision boundaries are shown below in fig 2.12. Again, note that the linear relationship is between $x_{1}$ and $x_{2}$ and this is why we say that we are dealing with a linear classification model.
 
 <figure role="group">
-  <img src="../images/DS_IMG138.png" alt="Brief description." />
+  <img src="../images/DS_IMG138.png" alt="Graph showing examples of linear models for classification, no data is shown." />
   <figcaption>
-    <p><strong>Figure 2.12: Examples of linear models for classification.</strong> No data is shown.</p>
+    <p><strong>Figure 2.12</strong> Examples of linear models for classification, no data is shown.</p>
   </figcaption>
 </figure>
 
 You might ask, but how should we tune the model? And can we optimise its parameters choice to draw a line that maximise the distance and reparability of the classes in the data? As you already know, a line can be drawn in many ways. Mainly there are two parameters of a line that completely specify the line with no ambiguity. This formula defines adjustable weights parameters $w_{i}$ that we need to learn the best value of, in order to classify our data. In fig 2.13 below, we show a schematic illustration of a linear classification model. The dashed line box denotes scaling of each component in the input set (this is done on the level of the dataset and on the level of individual record, see Unit 1 for more details).
 
 <figure role="group">
-  <img src="../images/DS_IMG139.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.13: Schematic representation of a linear models for classification.</strong></p>
-  </figcaption>
+  <img src="../images/DS_IMG139.png" alt="Schematic representation of a linear model for classification." />
+  <figcaption><strong>Figure 2.13</strong> Schematic representation of a linear model for classification.</figcaption>
 </figure>
 
 For now, let us see how we can construct different linear models (perceptrons):
@@ -211,7 +203,7 @@ For now, let us see how we can construct different linear models (perceptrons):
   <img src="../images/DS_IMG145.png" alt="Brief description." />
   <img src="../images/DS_IMG146.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figures 2.18-2.20: Examples of binary non-linearly separable classes that a perceptron is incapable of generating enough boundaries to separate them, but a Multi-Layer Perceptron is capable of separating.</strong></p>
+    <p><strong>Figures 2.18-2.20: Examples of binary non-linearly separable classes that a perceptron is incapable of generating enough boundaries to separate, but a Multi-Layer Perceptron can separate.</strong></p>
   </figcaption>
 </figure>
 

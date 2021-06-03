@@ -1,26 +1,40 @@
 # Binary classification: Logistic regression
 
-You might be thinking, regression for classification, this sounds weird! But actually the name is a misnomer. This is **not regression** at all **it is classification**. The name is used for reasons that will become apparent later, please bear in mind that we are talking about a classification technique not a regression technique.
+You might be thinking, regression for classification, this sounds weird! But actually the name is a misnomer. This is **not regression** at all, **it is classification**. The name is used for reasons that will become apparent later, please bear in mind that we are talking about a classification technique not a regression technique.
 
-We saw earlier that the perceptron is capable of classifying a linearly separable dataset but it cannot classify a non-linearly separable dataset such as the XOR dataset. In this section we will extend the treatment of classification with linear boundaries into a non-linear activation functions. In particular, we will use the logistic function (due to which the classifier owes its name, more on the regression part later). So the model is expressed as:
+We saw earlier that the perceptron is capable of classifying a linearly separable dataset and we saw that it has a simple step activation function. To move towards more general techniques that can handle non-linearly separable classes, we introduce the logistic regression model.
+
+Logistic regression uses the logistic sigmoid as the activation function (due to which the technique owes the first term of its name), the model is expressed as:
+
 
 $$
 y\left(\mathbf{x}_{n}, \mathbf{w}\right)=g\left(\mathbf{w}^{\top} \boldsymbol{\phi}_{n}\right)
 $$
 
-where $g$ is the sigmoid function that we discussed in the previous unit. Here it is used as an activation function, while there it was discussed in the context of basis functions to map input space into feature space. Nevertheless the sigmoid is the sigmoid and it is defined as
+where $g$ is the sigmoid function that we discussed in Unit 4. Here it is used as an activation function, while in Unit 4 it was discussed in the context of basis functions to map input space into feature space. Nevertheless, the sigmoid is the sigmoid and it is defined as:
 
 $$
 g(z)=\frac{1}{1+e^{-z}}=\frac{e^{z}}{1+e^{z}}
 $$
 
-where $\mathrm{z}$ is the linear decision boundaries given as $\boldsymbol{z}=\mathbf{w}^{\top} \boldsymbol{\phi}_{n} .$ Below we show schematic representation of logistic regression.
+here in the context of an activation function $\mathrm{z}$ is the linear decision boundaries given as $\boldsymbol{z}=\mathbf{w}^{\top} \boldsymbol{\phi}_{n} .$
 
+Logistic regression is a widely used classification technique that like the perceptron has linear decision boundaries, but unlike the perceptron goes one step further and employ a non-linear activation functions. The benefit is that we can now bound the range of the output naturally and we can deal with probabilistic decisions instead of crisp decisions. The other benefit is that the activation function employed by the presented technique is differentiable and does not have cusps as in the step activation function. In fact, as shown in the figure below the activation function of the presented technique, namely the logistic function, has somehow a similar but more lenient shape as the step function of the perceptron.
 
 <figure role="group">
-  <img src="../images/DS_IMG152.png" alt="Brief description." />
+  <img src="../images/DS_IMG220.png" alt="Graph showing sigmoid activation function with [0, 1] signal range compared to step activation function with {0, 1} signals." />
   <figcaption>
-    <p><strong>Figure 4.1: Schematic representation of the Logistic Regression as a linear models for classification with basis.</strong></p>
+    <p><strong>Figure 4.1: Sigmoid activation function with [0, 1] signal range compared to step activation function with {0, 1} signals.</strong></p>
+  </figcaption>
+</figure>
+
+We should also emphasise here that although both the perceptron and logistic regression have linear decision boundaries, they can become capable of dealing with non-linearly separable classes via feature mapping, i.e. by employing a non-linear basis function as we saw in the previous section. However, there are some non-linear problems where feature mapping do not solve it non-linearity where we need a built-in non-linearity in the model. In addition, as we saw in unit 4 that fixed basis functions are restrictive in terms of adaptability that we might want to infuse in our models in order to automatically discover the best basis for the problem in hand instead of the analyst choosing the type of the basis needed.
+Below we show schematic representation of logistic regression.
+
+<figure role="group">
+  <img src="../images/DS_IMG152.png" alt="Schematic representation of the Logistic Regression as a linear models for classification with basis." />
+  <figcaption>
+    <p><strong>Figure 4.2: Schematic representation of the Logistic Regression as a linear models for classification with basis.</strong></p>
   </figcaption>
 </figure>
 
