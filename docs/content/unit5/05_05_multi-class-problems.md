@@ -242,18 +242,97 @@ $$
 
 Now we are ready to get the derivative
 
-$$
-\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\nabla_{j} \sum_{k=1}^{K} t_{k} \log \left(\bar{y}_{k}\right)
-$$
+$\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\nabla_{j} \sum_{k=1}^{K} t_{k} \log \left(\bar{y}_{k}\right)$
+
+$\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\nabla_{j} \sum_{k=1}^{K} t_{k} \log \left(\frac{y_{k}}{\overline{\bar{y}}}\right)\quad$ as per 1
+
+$\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\nabla_{j}\left(\sum_{k=1}^{K} t_{k} \log y_{k}-\sum_{k=1}^{K} t_{k} \log \overline{\bar{y}}\right)$
+
+$\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\nabla_{j}\left(\sum_{k=1}^{K} t_{k} \log y_{k}-\log \overline{\bar{y}} \sum_{k=1}^{K} t_{k}\right)$
+
+$\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\nabla_{j}\left(\sum_{k=1}^{K} t_{k} \log y_{k}-\log \overline{\bar{y}}\right) \quad$ as per 2
+
+$\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\left(\sum_{k=1}^{K} t_{k} \nabla_{j} \log y_{k}-\nabla_{j} \log \overline{\bar{y}}\right)$
+
+$\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\left(t_{j} \boldsymbol{\phi}_{n}-\frac{\phi y_{j}}{y}\right) \quad$ as per 3.c and 3.d
 
 $$
-\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\nabla_{j} \sum_{k=1}^{K} t_{k} \log \left(\frac{y_{k}}{\overline{\bar{y}}}\right)
+\begin{array}{l}
+\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\left(t_{j} \boldsymbol{\phi}_{n}-\bar{y}_{j}\right) \\
+\nabla_{j} \widetilde{H}_{n}\left(\mathbf{w}_{j}\right)=-\boldsymbol{\phi}_{n}\left(t_{j}-\bar{y}_{j}\right)
+\end{array}
 $$
 
-## 5.6	REGULARISED MINI-BATCH STOCHASTIC GRADIENT DESCENT UPDATES FOR MULTI-CLASS LOGISTIC REGRESSION MODEL
+##Regularised mini-batch stochastic gradient descent updates for multi-class logistic regression model.
 
 A regularised mini-batch stochastic gradient decent can be devised for this technique as we did earlier and is shown below.
 
 Note that for the logistic regression there is no least squares solution, as this does not suit the loss function which was based on the entropy. It can be proven that the cross entropy is equivalent to a maximum likelihood approach.
 
-!!! algorithm "xxx"
+!!! algorithm-heading "Algorithm 4: Regularised mini-batch stochastic gradient descent updates for multinomial logistic regression model"
+
+  	**Input:**
+
+    !!! algorithm ""
+
+    	Input set as a design matrix $\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top} \operatorname{each} \mathbf{x}_{n}$ is of size $D$
+
+    	Labels set as a matrix $\mathbf{T}=\left[\boldsymbol{t}_{1}^{\top}, \ldots, \boldsymbol{t}_{N}^{\top}\right]^{\top}$ each $\boldsymbol{t}_{n}$ is of size $K$.
+
+    	$\mathbf{X}^{\prime}, \mathbf{T}^{\prime}$ holdout validation set that have similar structure to the above
+
+        $\boldsymbol{\mu}_{j}: M$ Basis centres, each is a vector of size $D$
+
+        $\boldsymbol{\Sigma}$ : Covariance matrix of size $\mathrm{D} \times \mathrm{D}$
+
+    	$\eta_{0}$: initial learning rate
+
+        $b$: mini-batch size (specifies how frequent we want to update the weights $\mathbf{W}$)
+
+    	$\lambda:$ regularisation parameter
+
+    	$ep$: max number of epochs
+
+    	$\varepsilon:$ early stopping threshold
+
+
+  	**Output**: $\mathbf{W}$ an approximation for optimum weights $\mathbf{W}^{*}$; a matrix of size $(M+1) \times K$.
+
+  	**MLogReg** $\left(\mathbf{X}, \mathbf{T}, \mathbf{X}^{\prime}, \mathbf{T}^{\prime}, \eta_{0}, b, \lambda, e p, \varepsilon\right)$:
+
+    !!! algorithm ""
+        Initialise $\mathbf{W}, \mathbf{W}^{\prime}=\mathbf{W}, \eta=\eta_{0}$ and $\bar{J}_{0}=\infty$
+
+        For epoch $= 1:ep$
+        <span class="algorithm-line-comment"># *hyper parameter: max number of epochs*</span>
+
+        !!! algorithm ""
+            For iteration $\tau=1: q$
+            <span class="algorithm-line-comment"># *$q≥N/ b$*</span>
+
+            !!! algorithm ""
+
+                Select a mini-batch $\mathbf{X}_{\tau}, \mathbf{T}_{\tau}$ of size $b$ from $\mathbf{X}, \mathbf{T}$
+                <span class="algorithm-line-comment"># *randomly or by shuffling & partitioning*</span>
+
+				Map $\mathbf{X}_{\tau}$ to $\mathbf{\Phi}_{\boldsymbol{\tau}}: \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)=\left(1, \boldsymbol{\phi}_{1}, \ldots, \boldsymbol{\phi}_{M-1}\right)$
+                <span class="algorithm-line-comment"># *$\phi_{j}\left(\mathbf{x}_{n}\right)=\mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{j}, \mathbf{\Sigma}\right)$ or other basis*</span>
+
+                $\boldsymbol{Z}_{\tau}=\mathbf{\Phi}_{\boldsymbol{\tau}} \mathbf{W}^{\prime}$
+
+                $\boldsymbol{Y}_{\tau}=e^{\boldsymbol{Z}_{\tau}}$ <span class="algorithm-line-comment"># *exponentiation of $\boldsymbol{Z}_{\tau}$ element-wise*</span>
+
+                Normalise matrix $\boldsymbol{Y}_{\tau}$ row wise <span class="algorithm-line-comment"># *(divide each element of a row by the row sum)*</span>
+
+                $\mathbf{W}^{\prime}=\left(1-\frac{1}{b} \eta \lambda\right) \mathbf{W}^{\prime}+\frac{1}{b} \eta \mathbf{\Phi}_{\tau}^{\top}\left(\mathbf{T}_{\boldsymbol{\tau}}-\mathbf{\Phi}_{\boldsymbol{\tau}} \mathbf{W}^{\prime}\right)$ <span class="algorithm-line-comment"># *update with regularisation*</span>
+
+			Decay $η$
+            <span class="algorithm-line-comment"># *if necessary*</span>
+
+			$\bar{J}_{e p}=\frac{1}{2 N}\left\|\mathbf{T}^{\prime}-\mathbf{\Phi}^{\prime} \mathbf{W}^{\prime}\right\|^{2}$<span class="algorithm-line-comment"># *calculate the loss or other metric on the validation set*</span>
+
+            If $\bar{J}_{e p}>\bar{J}_{e p-1}+\varepsilon:$ break <span class="algorithm-line-comment"># *simple early stopping or other more sophisticate cond.*</span>         
+
+			Else $\mathbf{W}=\mathbf{W}^{\prime}$
+
+        Return the final solution $\mathbf{W}$ 

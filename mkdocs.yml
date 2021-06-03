@@ -68,6 +68,8 @@ nav:
         - '3. Binary classification: The perceptron': content/unit5/05_03_binary-classification-perceptron.md
         - '4. Binary classification: Logistic regression':  content/unit5/05_04_binary-classification-logistic-regression.md
         - '5. Multi-class problems':  content/unit5/05_05_multi-class-problems.md
+        - '6. Non-linear models: multi-layer perceptron': content/unit5/05_06_non-linear-models_multi-perceptron.md
+        - '7. Probabilistic view of loss function for classification': content\unit5\05_07_probabilistic_view_of_loss_function_for_classification.md
         - '8. Unit references':  content/unit5/05_08_unit_references.md
 
 theme:
