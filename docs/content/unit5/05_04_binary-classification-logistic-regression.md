@@ -1,5 +1,14 @@
 # Binary classification: Logistic regression
 
+!!! success "Learning outcomes:"
+	After completing this lesson you should be able to:
+
+    * understand the basic architecture of logistic regression to tackle binary classification problems
+    *	understand the basic and mini-batch learning algorithm of logistic regression
+    *	understand why we need to use the cross-entropy as a loss function for logistic regression
+    *	appreciate that cross entropy loss creates a synergy with logistic regression to yield and update that is identical to the regression
+    *	appreciate the strength and weakness of logistic regression.
+
 You might be thinking, regression for classification, this sounds weird! But actually the name is a misnomer. This is **not regression** at all, **it is classification**. The name is used for reasons that will become apparent later, please bear in mind that we are talking about a classification technique not a regression technique.
 
 We saw earlier that the perceptron is capable of classifying a linearly separable dataset and we saw that it has a simple step activation function. To move towards more general techniques that can handle non-linearly separable classes, we introduce the logistic regression model.
@@ -409,7 +418,7 @@ $$
 \widetilde{H}\left(\mathbf{w}_{2}\right)=21
 $$
 
-The plots in figure 4.4 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. 
+The plots in figure 4.4 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly.
 
 <figure role="group">
   <img src="../images/DS_IMG155.png" alt="Brief description." />

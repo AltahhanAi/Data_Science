@@ -1,5 +1,12 @@
 #Non-linear models: Multi-layer perceptron
 
+!!! success "Learning outcomes:"
+	After completing this lesson you should be able to:
+
+    * understand the difference between logistic regression and a two layer neural network for classification
+    *	appreciate the adaptively of the features in neural networks as opposed to fixed basis architecture
+    *	appreciate some of the strength and limitations of neural networks.
+
 By now you might be thinking: Ok that was all about a straight line-easy! But how about when the classes are non-linearly separable? In this case, we may need more than one line to separate the data or we might need curvy shaped boundaries to separate the classes.  This is where multilayer perceptron comes in handy. But before we rush into this subject, bear in mind that similar to what we have said on linear regression with feature basis, all linear classification models such as perceptron and the logistic regression and the softmax regression can be combined with a feature space (as shown in the algorithms) and hence non-linearly separable classes can become linearly separable classes in a higher dimensional space. However, there are cases where this will not work and we need to move into more flexible features space, where best features are learned, instead of being fixed by the model designer. This will give us a lot of power in expressing an arbitrary decisions boundary, and this is the subject of this lesson.
 
 When rectilinear or multiple lines boundaries are needed to separate the classes. then we can employ multiple independent perceptrons but we will run into the issues that we mentioned earlier in previous section. It will be more convenient, however if we can actually combine these perceptrons in one model that learns the overall best settings of these perceptron together as one comprehensive model and to harmonise and learn the set of parameters needed to identify these set of lines. Furthermore, the possibility of generating more elastic and curvy shaped boundaries is desirable.

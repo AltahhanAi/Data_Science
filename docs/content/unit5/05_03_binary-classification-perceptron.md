@@ -1,5 +1,12 @@
 # Binary classification: The perceptron  
 
+!!! success "Learning outcomes:"
+	After completing this lesson you should be able to:
+
+    * understand the basic architecture of the perceptron
+    *	understand the basic and mini-batch learning algorithm of the perceptron
+    *	appreciate the strengths and weaknesses of the perceptron.
+
 **For the dataset that consists of $\mathbf{x}_{n}$ and its targets label $t_{n}$ where $n=1, \ldots, N$, we want to compare between the predicted labels and the targets labels.**
 
 The issue with the step function is that it is not differentiable so we would want to combine the prediction with the target and only look at cases when there is misclassification. But we can dispense with the activation function and replace it with a different term that implicitly incorporates the activation function without explicitly using it. The trick is that since the target values themselves are -1 and +1:
@@ -67,7 +74,7 @@ In fact, we can omit the learning rate because multiplying by it (or not) will n
 
 ##Moving into feature space: generalised linear models for classification
 
-As we have seen earlier in regression, all algorithms and techniques can be directly applied when we move from the input space $\mathbf{x}$ into a feature space $\boldsymbol{\phi}$ often that have higher dimension than $\mathbf{x}$. The benefit of mapping into a new higher dimension feature space is that it will potentially render the non-linearity of the class's boundaries in $\mathbf{x}$ into linear boundaries in $\boldsymbol{\phi}$ as we can see in figure 3.2 below.
+As we have seen earlier in Unit 4, all algorithms and techniques can be directly applied when we move from the input space $\mathbf{X}$ into a feature space $\boldsymbol{\Phi}$ that may have higher dimension than $\mathbf{X}$. The benefit of mapping into a new higher dimension feature space is that it will potentially render the non-linearity of the class's boundaries in $\mathbf{X}$ into linear boundaries in $\boldsymbol{\Phi}$ as we can see in figure 3.2 below.
 
 ![Diagram showing the relationship of data mining to statistics, AI, machine learning and pattern recognition.](images/DS_IMG216.png)
 

@@ -1,5 +1,15 @@
 #Multi-class problems
 
+!!! success "Learning outcomes:"
+	After completing this lesson you should be able to:
+
+    * understand the need for 1-of-K binary coding
+    *	understand the basic architecture of multinomial logistic regression to tackle multi-class problems
+    *	appreciate the properties and limitations of the one-versus-all approach to extend the capabilities of binary classifiers to multi-class classifiers
+    *	appreciate the strength and weakness of multinomial logistic regression
+    *	appreciate the role of normalisation of the softmax and understand the logistic activation as a special case of the softmax
+    *	appreciate that multinomial cross entropy loss maps into a multi-output regression.
+
 In this lesson we will extend the binary classifiers that we have covered previously, the perceptron and the logistic regression, into multi-class problems. We can do that in several ways. By combining multiple of these binary classifiers or by adjusting the basic structure of the techniques, it can deal with multiple classes. Both have similarities and advantages and disadvantages that we will discuss.
 
 ## 1-OF-K binary coding for numerical techniques
