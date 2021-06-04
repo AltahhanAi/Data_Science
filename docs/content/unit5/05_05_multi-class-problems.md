@@ -43,7 +43,7 @@ $$
 $$
 
 Figure 5.2 above shows logistic regression with $K$ multiple outputs. The number of outputs can be associated with multiple classes $K$ where in general $\hat{K} \geq K-1$ with $\hat{K}=K-1$ when the classes are linearly separable and their boundaries are parallel. For example we may need only 2 lines to separate 3 classes. When the classes are non-linearly separable, $K$ corresponds to the number of decision boundaries needed to separate the classes. The issue with this structure is that it does not harmonise the outputs and may run into the issues mentioned in the previous section (particularly the issues associated with one-versus-all) because of the independence of the outputs. In such cases, further processing will be needed in order to decide which class the data point is from.
-Each classifier $i$ is specialised in one class $i$ and produces an independent probability estimate $p_{i}\left(C_{i} \mid \mathbf{x}\right) .$ One of the simplest approaches is to normalise the scores $p_{i}\left(C_{i} \mid \mathbf{x}\right)$ that were produced by the independent classifier to properly obtain a unified probability distribution $p\left(C_{i} \mid \mathbf{x}\right)=\frac{p_{i}\left(C_{i} \mid \mathbf{x}\right)}{\sum_{i=1}^{K} p_{i}\left(C_{i} \mid \mathbf{x}\right)}$ over the different classes $i$. The final decision on which class the data point is from can be performed by picking the class with the max probability; see section 5.2 of <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.13.7457&rep=rep1&type=pdf" target="_blank">this paper by Zadrozny and Elkan (2002)</a> for more details. See the following <mark>Jupyter notebook</mark> for more on classifying iris dataset 3 classes, and on how a one-versus-all approach creates an ambiguous triangular decision region. See also <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html" target="_blank">here</a> and <a href="https://scikit-learn.org/stable/modules/sgd.html#sgd" target="_blank">here</a> to know more about linear classifiers in sklearn.
+Each classifier $i$ is specialised in one class $i$ and produces an independent probability estimate $p_{i}\left(C_{i} \mid \mathbf{x}\right) .$ One of the simplest approaches is to normalise the scores $p_{i}\left(C_{i} \mid \mathbf{x}\right)$ that were produced by the independent classifier to properly obtain a unified probability distribution $p\left(C_{i} \mid \mathbf{x}\right)=\frac{p_{i}\left(C_{i} \mid \mathbf{x}\right)}{\sum_{i=1}^{K} p_{i}\left(C_{i} \mid \mathbf{x}\right)}$ over the different classes $i$. The final decision on which class the data point is from can be performed by picking the class with the max probability; see section 5.2 of <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.13.7457&rep=rep1&type=pdf" target="_blank">this paper by Zadrozny and Elkan (2002)</a> for more details. See also <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html" target="_blank">here</a> and <a href="https://scikit-learn.org/stable/modules/sgd.html#sgd" target="_blank">here</a> to know more about linear classifiers in sklearn.
 
 The same structure can be produced to the perceptron we only need to change the activation function.
 
@@ -53,8 +53,6 @@ The same structure can be produced to the perceptron we only need to change the 
     <p><strong>Figure 5.3: Schematic representation of a multi-output independent perceptron linear classifiers with basis.</strong></p>
   </figcaption>
 </figure>
-
-<mark>Have tried to interpret figure number correctly below. Typos in 5.4-5.7</mark>
 
 <figure role="group">
   <img src="../images/DS_IMG159.png" alt="Brief description." />
@@ -72,12 +70,6 @@ The same structure can be produced to the perceptron we only need to change the 
     <p><strong>Figure 5.8: Decision boundaries for multi-output (multi-class) both for logistic regression on the iris dataset.</strong> Left shows a multinomial logistic regression while the right shows normalised multi-output logistic regression. The difference is that in the left we normalise an exponential activation functions for multi-output, on the right we normalise a multiple logistic functions instead of exponential functions. As you can see, multinomial logistic regression deals better with ambiguity but it is still there because essentially we are still dealing with linear models. We need a more complex model to deal with issue such as a neural network that is capable of generating a curved shape boundaries.</p>
   </figcaption>
 </figure>
-
-Watch a video2 that explains the above concepts.
-
-DS-VID-17
-
-<mark>Video needed</mark>
 
 ##Multinomial logistic regression: Softmax regression
 
@@ -335,4 +327,4 @@ Note that for the logistic regression there is no least squares solution, as thi
 
 			Else $\mathbf{W}=\mathbf{W}^{\prime}$
 
-        Return the final solution $\mathbf{W}$ 
+        Return the final solution $\mathbf{W}$

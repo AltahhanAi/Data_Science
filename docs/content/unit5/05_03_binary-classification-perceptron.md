@@ -231,8 +231,6 @@ Due the perfect alignment of point (1,0) and (0,1) as well as (0,0) and (1,1) th
 
 The perceptron is guaranteed (via the **perceptron convergence theorem**) to find a solution if the data is linearly separable. But if the data is not linearly separable it will never converge, i.e. it can keep running infinitely if the implementation allows for that. Even when the data in linearly separable the algorithm might take a considerable number of steps to converge. If we do not know a priori whether the data is linearly separable or not, we cannot tell if the perceptron is taking long to converge or it is unable to converge.
 
-<mark>Video 1</mark>
-
 !!! abstract "Exercise"
     See the following Jupyter notebook for more details on the perceptron.
 
