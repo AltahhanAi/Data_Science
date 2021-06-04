@@ -1,5 +1,17 @@
 # Linear and non-linear classification
 
+!!! success "Learning outcomes:"
+	After completing this unit you should be able to:
+
+    * extend the linear regression architecture that we covered in unit 4 to perform linear  classification tasks
+    *	understand the role of the activation function in order to move to more general models that are capable of classifying an input
+    *	appreciate the strengths and limitations of the perceptron to tackle binary classification problems
+    *	appreciate the strengths and weaknesses of logistic regression to tackle binary classification problems
+    *	extend the abilities of binary classifies by performing one-versus-all classification and understand the limitation of this approach
+    *	extend the simple logistic regression architecture into multinomial logistic regression
+    *	take advantage of the multi-output classification models  to tackle multi-class problems
+    *	extend the capabilities of multi-output classification models to a multi-layer perceptron and appreciate their strengths and limitations from a practical perspective.
+
 **In a classification scenario, we have a supervised learning problem with labels. The labels themselves are a categorical data, i.e. they have a set of confined values, be it numerical or categorical that we can enumerate through. We call these values the classes, and our task is to take an input data point and place it in the area or under one of the classes.**
 
 This type of task is pervasive in all aspects of data mining, and we will find ourselves facing it in one form or the other in several settings. One distinction we need to make here is between classification and clustering. While classification uses predefined classes with names, clustering is unsupervised learning, in which data points are placed in clusters based on their intrinsic properties and the similarities between them.  

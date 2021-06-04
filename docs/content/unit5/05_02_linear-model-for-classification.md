@@ -1,5 +1,12 @@
 # Linear model for classification
 
+!!! success "Learning outcomes:"
+	After completing this lesson you should be able to:
+
+    * understand linearly separable classification problems
+    *	extend the concepts of linear models covered in unit 4 to perform to tackle linearly separable classification problem
+    *	understand the role of activation function and its vital role in tackling in the context of classification.
+
 **Recall that the problem of classification is concerned with finding a class of a data point based on its attributes.**
 
 Often we have a dataset of data points representing some objects or cases. These objects have a set of attributes with corresponding **categorical** labels. The task is to build a model to predict the label from the attributes. Unlike the problem of regression, in classification the labels are discrete not continuous and each category represents a class. This might seem an easier thing to do than regression. However, the problem of classification is more fundamental and often more difficult to do in some respects. In regression, the main difficulty is that we want to come as close as possible to the real value of the label and we need to come up with estimated values that are accurate. The difficulty in classification, on the other hand, is that we need to build an accurate decision boundary that correctly separates the areas of the classes. If we are going to do that numerically then the concern is not to accurately come close to a real value, but rather to come up with an accurate decision boundary that is resilient to misclassification and maps a set of sometimes very different data points to the same class. At the same time, it must be sensitive when we switch from one class to the other.
