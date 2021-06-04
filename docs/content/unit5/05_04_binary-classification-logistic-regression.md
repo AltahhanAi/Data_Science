@@ -152,9 +152,7 @@ $$
 
 This is read as the cross-entropy (uncertainty) of our model prediction $y_{n}$ relative to the actual class $t_{n} .$ Note how cross entropy replaces the probabilities of the model prediction in the entropy formula by the probabilities of the actual class.
 
-The cross entropy for the whole training set is given as
-
-<mark>Can't quite get mathpix to get right equation for this:</mark>
+The cross entropy for the whole training set is given as:
 
 $$
 \widetilde{H}(\mathbf{w})=\sum_{n=1}^{N} \widetilde{H}_{n}(\mathbf{w})
@@ -194,8 +192,6 @@ $$
 $$
 
 and the gradient for the loss function is given as
-
-<mark>Can't quite get mathpix to get right equation for this:</mark>
 
 $$
 \nabla \bar{J}=-\frac{1}{N} \sum_{n=1}^{N}\left(t_{n}-y_{n}\right) \boldsymbol{\phi}_{n}
@@ -323,7 +319,7 @@ $$
 !!! abstract "Exercise"
     See the following Jupyter notebook for more insight into logistic regression.
 
-      - Download exercise (.ipynb): <a href="../exercises/Exercise_05_04_LogisticRegressionDecisionBoundaries.ipynb" download>Logistic Regression</a>
+      - Download exercise (.ipynb): <a href="../exercises/LogisticRegressionDecisionBoundaries.ipynb" download>Logistic Regression</a>
 
     You can do the same thing in RapidMiner, it is straightforward, try it, you can see my video on how to build a RapidMiner model here.
 
@@ -413,7 +409,7 @@ $$
 \widetilde{H}\left(\mathbf{w}_{2}\right)=21
 $$
 
-The plots in figure 4.4 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. See the following <a href="../exercises/Exercise_05_04_LogisticRegressionDecisionBoundaries.ipynb" download>Jupyter notebook</a>.
+The plots in figure 4.4 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. 
 
 <figure role="group">
   <img src="../images/DS_IMG155.png" alt="Brief description." />

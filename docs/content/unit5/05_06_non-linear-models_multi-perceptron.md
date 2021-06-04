@@ -10,22 +10,14 @@ Earlier in the regression unit we saw how to build a multi-layer model with acti
 
 Below we show a generalisation of the concept of moving from one multinomial logistic regression into multi-layer neural networks classifier.
 
-DS_IMG167 Fig 6.1
-
 <figure role="group">
-  <img src="../images/DS_IMG167.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figure 2.1: xxx.</strong></p>
-  </figcaption>
+  <img src="../images/DS_IMG167.png" alt="(Top) Schematic representation of a multiple class one-layer logistic regression model (which is considered linear) with fixed basis. (Bottom) Non-linear Multi-layer Multi-class Neural Network model with adaptive basis. We have a softmax activation function for the output and a sigmoid activation function for the hidden layer. The fine dotted box signifies that we normalise the output. The dashed box signifies scaling of the input set." />
+  <figcaption><strong>Figure 6.1.</strong> (Top) Schematic representation of a multiple class one-layer logistic regression model (which is considered linear) with fixed basis. (Bottom) Non-linear Multi-layer Multi-class Neural Network model with adaptive basis. We have a softmax activation function for the output and a sigmoid activation function for the hidden layer. The fine dotted box signifies that we normalise the output. The dashed box signifies scaling of the input set. </figcaption>
 </figure>
-
-Figure (6.1): (Top) Schematic representation of a multiple class one-layer logistic regression model (which is considered linear) with fixed basis. (Bottom) Non-linear Multi-layer Multi-class Neural Network model with adaptive basis. We have a softmax activation function for the output and a sigmoid activation function for the hidden layer. The fine dotted box signifies that we normalise the output. The dashed box signifies scaling of the input set.
 
 Backpropagation propagates the error back through the network layers to adjust their weights in a backward manner. We saw how this worked for Algorithm 6''' in the regression unit. So, we need to know first how to adjust the final output to be favourable to our data and classes layout, and then we need to slowly adjust the lines so that this overall performance or ability to distinguish between the classes is increased slowly until it is optimised. This is the idea of stochastic gradient descent with backpropagation.
 
 If we decide to run through all of our data first and formulate a total sum of adjustments that we will execute in one step, then we are talking about batch backpropagation algorithm. Regardless of how we train, the idea is simple: we generalise the concept of one perceptron into multiple ones that act together in harmony. The multi-layer perceptron is also called feedforward neural networks. In fact it is the most common neural networks architecture, but there are plenty of other architectures that are possible. Some are recurrent neural networks: when we allow the network’s past output to participate also as a current input. You will study more about this fascinating topic in the Machine Learning and Deep Learning modules where you will employ automatic differentiation procedure instead of analytically reaching the gradient of the deeply hidden layers. Nevertheless, the complexity of obtaining the gradients for the hidden layers acts as a bridge to appreciate why we need automatic differentiation. It is sufficient to understand that fundamentally we need to take the derivatives and apply the chain rule to propagate the error back in the network.
-
-Watch a video3 that explains the above concepts
 
 ##Binary classification using neural network
 
@@ -44,14 +36,11 @@ $$
 where we used logits function on both units, the hidden and the output. Its architecture is shown in the figure below and its algorithm is given in the box below. The main difference between this and the regression one is that the classification network uses a non-linear function on the output while for the regression we used a linear activation function on the output. These are not hard rules, but are general enough to be used widely.
 
 <figure role="group">
-  <img src="../images/DS_IMG168.png" alt="Brief description." />
+  <img src="../images/DS_IMG168.png" alt="Schematic representation of the multi-layer perceptron as a non-linear models with one outputs." />
   <figcaption>
-    <p><strong>Figure 2.1: xxx.</strong></p>
+    <p><strong>Figure 6.2:</strong>Schematic representation of the multi-layer perceptron as a non-linear models with one outputs. Essentially the above architecture is an extension of the logistic regression model. We now have a hidden layer that learns the best features representation instead of it being decided by the model designer.</p>
   </figcaption>
-</figure> Fig 6.2
-
-Figure (6.254): schematic representation of the multi-layer perceptron as a non-linear models with one outputs.
-Essentially the above architecture is an extension of the logistic regression model. We now have a hidden layer that learns the best features representation instead of it being decided by the model designer.
+</figure>
 
 Our loss function is as in the logistic regression case is the cross entropy and is given as:
 
@@ -105,24 +94,90 @@ $$
 
 and now we are ready to show the algorithm:
 
-<mark>Algorithm 5</mark>
+!!! algorithm-heading "Algorithm 5: Binary Classification: Regularised Mini-Batch Stochastic Gradient Descent learning for two layers Neural Network Model with two sigmoid activation functions for the hidden and output layers respectively‎. ‎ ‎"
+
+  	**Input:**
+
+    !!! algorithm ""
+
+    	Input set: design matrix $\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top} \operatorname{each} \mathbf{x}_{n}$ is of size $D$ <span class="algorithm-line-comment"> *Training set*</span>
+
+    	Labels set: vector $\mathbf{t}=\left[t_{1}, \ldots, t_{N}\right]^{\top}$ each $\boldsymbol{t}_{n}$ is a scalar.
+
+    	$b$: mini-batch size (specifies how frequent we want to update the weights $\mathbf{w}$)
+
+    	$\eta_{0}$: initial learning rate
+
+        $epcs$: number of epochs
+
+
+
+    	$\boldsymbol{\mu}_{j}: M$ Basis centres, each is a vector of size $D$
+
+
+
+    	$\boldsymbol{\Sigma}$ : Covariance matrix of size $\mathrm{D} \times \mathrm{D}$
+
+
+  	**Output**: $\mathbf{w}$, $\dot{\mathbf{W}}$ approximations for optimum weights $\mathbf{w}^{*}$, $\mathbf{W}^{*}$; of size $M+1$ and $(D+1) \times M$.
+
+  	**ClassifyNN** $\left(\mathbf{X}, \mathbf{t}, b, \eta_{0}, e p c s\right)$:
+
+    !!! algorithm ""
+        Initialise $\mathbf{w}$ and $\eta=\eta_{0}$
+
+        For epoch $= 1:epcs$
+
+
+        !!! algorithm ""
+            For iteration $\tau=1: q$
+            <span class="algorithm-line-comment"># *$q≥N/ b$*</span>
+
+            !!! algorithm ""
+
+                Select a mini-batch $\mathbf{X}_{\tau}, \mathbf{t}_{\tau}$ of size $b$ from $\mathbf{X}, \mathbf{t}$
+                <span class="algorithm-line-comment"># *by sampling or by shuffling & partitioning*</span>
+
+				$\mathbf{X}_{\tau}=\left[\mathbf{1}_{\mathbf{b}}, \mathbf{X}_{\tau}\right]$
+                <span class="algorithm-line-comment"># *add dummy feature to the design matrix*</span>
+
+                $\mathbf{\Phi}_{\tau}=g\left(\mathbf{X}_{\tau} \dot{\mathbf{W}}\right)$
+                <span class="algorithm-line-comment"># *element-wise sigmoid $g(\alpha)=\frac{1}{1+e^{-\alpha}}$*</span>
+
+                $\boldsymbol{y}_{\tau}=g\left(\mathbf{\Phi}_{\tau} \mathbf{w}\right)$ <span class="algorithm-line-comment"># *element-wise sigmoid*</span>
+
+                $\boldsymbol{e}_{\tau}=\left(\mathbf{t}_{\tau}-\boldsymbol{y}_{\tau}\right)$ <span class="algorithm-line-comment"># *calculate the error*</span>
+
+                $\dot{\mathbf{\Phi}}_{\tau}=\mathbf{\Phi}_{\tau} \circ\left(\mathbf{1}-\mathbf{\Phi}_{\tau}\right)$ <span class="algorithm-line-comment"># *element-wise product $\circ$*</span>
+
+                $\mathbf{Z}_{\tau}=\dot{\mathbf{\Phi}}_{\tau} \times \boldsymbol{e}_{\tau}$ <span class="algorithm-line-comment"># *propagate the error $\boldsymbol{e}_{\tau}$ via broadcasting $\times$*</span>
+
+				$\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{\Phi}_{\tau}^{\top} \boldsymbol{e}_{\tau}$
+                <span class="algorithm-line-comment"># *update the output weights vector $\mathbf{w}$*</span>
+
+				$\dot{\mathbf{W}}=\left(1-\frac{1}{b} \eta \lambda\right) \dot{\mathbf{W}}+\frac{1}{b} \eta\left(\mathbf{X}_{\tau}^{\top} \mathbf{Z}_{\tau}\right) \times \mathbf{w}^{\top}$ <span class="algorithm-line-comment"># *update the hidden weights matrix $\dot{\mathbf{W}}$*</span>
+
+			Decay $η$
+            <span class="algorithm-line-comment"># *if necessary*</span>
+
+
+        Return the final solution $\mathbf{w}$, $\dot{\mathbf{W}}$
+
 
 !!! abstract "Exercise"
     Please the following Jupyter notebook for detail implementation of the 2 layers logistic regression neural networks (same network as above).
 
-      - Download exercise (.ipynb): <a href="" download>xxx</a>
+      - Download exercise (.ipynb): <a href="../exercises/2LayersLogisticRegression_neural_network.ipynb" target="_blank" download>Exercise </a>
 
 !!! abstract "Exercise"
      See the following Jupyter notebook for a comparison of the regularisation on neural networks.
 
-      - Download exercise (.ipynb): <a href="" download>xxx</a>
+      - Download exercise (.ipynb): <a href="../exercises/plot_mlp_alpha.ipynb" target="_blank" download>Exercise </a>
 
 !!! abstract "Activity"
-    Please the following Jupyter notebook for comparison between different techniques for classification which raps up most of material covered for classification in both unit 2 and unit 3.
+    Please the following Jupyter notebook for comparison between different techniques for classification which wraps up most of material covered for classification in both unit 2 and unit 3.
 
-     - Download exercise (.ipynb): <a href="" download>xxx</a>
+     - Download exercise (.ipynb): <a href="../exercises/plot_classifier_comparison.ipynb" target="_blank" download>Activity </a>
 
 !!! abstract "Activity"
-    See the following Jupyter notebook for an out-of-core classification of text documents.
-
-    - Download exercise (.ipynb): <a href="" download>xxx</a>
+    See the following <a href="https://scikit-learn.org/stable/auto_examples/applications/plot_out_of_core_classification.html#sphx-glr-auto-examples-applications-plot-out-of-core-classification-py" target="_blank">Jupyter notebook</a> in scikitlearn for an out-of-core classification of text documents.
