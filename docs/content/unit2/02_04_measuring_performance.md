@@ -347,11 +347,15 @@ $$
 
 See the following video for a comprehensive example of a DT with different metrics:
 
-<mark>iframe link metrics in perspective</mark>
+<iframe title="Data Science U2: Metrics in perspective" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/5675daf44d55453b8fe9300a8c7060b51d
+" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
 
-##Measuring the performance of a multi-class model <mark>FROM HERE</mark>
+##Measuring the performance of a multi-class model
 
-Note that F1 score only applies to binary class problems. If the problem is multi-class we can use other metrics, including accuracy, recall (positive detection rate) and precision (positive prediction value). We can also treat the classes as one vs. the rest fashion (yielding the problem into a binary class problem) and obtain the F1 score for each class separately. Below we show the confusion matrix for the IRIS dataset.  For more information about the IRIS dataset read the following passage extracted from SKLearn description for the dataset.
+Generalising the accuracy from binary-class to multi-class problems is straightforward. We just have to take all the diagonal counts of the confusion matrix and then we divide by the total. Let us take a look at an example.
+
+ Below we show the confusion matrix for the IRIS dataset.  For more information about the IRIS dataset read the following passage extracted from SKLearn description for the dataset.
 
 !!! abstract "Iris plants dataset"
     **Data Set Characteristics:**
@@ -437,48 +441,122 @@ One issue that we face with the accuracy of multi-class and binary-class is that
 
 ###Holistic metric for multi-class: $pr(detect)$ (aka recall score or balanced accuracy score)
 
+Balancing out the detection scores (recall scores) of different classes can be performed in few ways. Essentially we calculate the detection rate (recall) of the model for individual classes and then we can either:
 
+1. Take the arithmetic mean of these rates (and, in this case, each class has equal weight, even if the class has low probability)
 
-Which yields 1.0,0.83 and 0.86 for the classes 'setosa' 'versicolor' 'virginica', respectively. Now, the recall for the above model can be calculated in several ways, some of them are:
+2. Take a weighted average of the detections rates. This will allow us to assign different weights for the different classes, the weights must sum up to 1 and reflect the relative importance that we want to assign to each class.
 
-1. Macro $p r($ detect $)=\frac{p r\left(\text { detect }_{\text {setosa }}\right)+p r\left(\text { detect }_{\text {versicolor }}\right)+p r\left(\text { detect }_{\text {virginica }}\right)}{3}=0.8968$
+    1. If we assign the class distributions to the weights for the detection rates then we go back to the usual accuracy score.
 
-2. Weighted $n=13+18+7=38$. This is not 150 because the above confusion matrix is for a testing set not the total dataset. The weights for the classes are: $w_{\text {setosa }}=13 / 38 \quad w_{\text {versicolor }}=18 / 38, w_{\text {virginica }}=7 / 38$. Hence, the balanced accuracy is: $p r($ detect $)=\frac{13 p r\left(\text { detect }_{\text {setosa }}\right)+18 p r\left(\text { detect }_{\text {versicolor }}\right)+7 p r\left(\text { detect }_{\text {virginica }}\right)}{38}=0.8947$. Note that we can calculate the weighted balanced accuracy by just taking the counts of $p r($ detect $)=\frac{\# \text { True }(\text { setosa })+\# \text { True }(\text { versicolor })+\# \text { True }(\text { virginica })}{38}=\frac{13+18+6}{38}=0.8947$ which means we simply sum the diagonal of the confusion matrix and divide by the total number.
+For multi-class problems, the recall or $\text { pr(detect } \left._{\text {class }}\right)$ can be defined in terms of averaged sum of true instances of each class. To demonstrate how, let us look into the above confusion matrix. The recall for each class separately give us the following:
 
-Here we would like to point out that sometimes the above score is called the balanced accuracy metric. It is defined for binary class problem as:
+$$
+\left.\operatorname{pr}\left(\text { detect }_{\text {setosa }}\right)=\frac{13}{13}, \text { pr(detect }_{\text {versicolor }}\right)=\frac{15}{16}, \operatorname{pr}\left(\text { detect }_{\text {virginica }}\right)=\frac{6}{9}
+$$
+
+Which yields 1.0,0.9375 and 0.666 for the classes 'setosa' 'versicolor' 'virginica', respectively and these are the scores that we can see on the normalised confusion matrix after rounding to 2 decimals. Now, the recall for the above model can be calculated in several ways, some of them are:
+
+1. Macro detect score (aka recall score or balanced accuracy) $p(\text { detect })=\frac{1}{3}\left(p\left(\text { detect }_{\text {setosa }}\right)+p\left(\text { detect }_{\text {versicolor }}\right)+p\left(\text { detect }_{\text {virginica }}\right)\right)=0.868$ This is just arithmetic average which will assume that all classes the same importance.
+
+2. Weighted detect score (aka weighted recall score or weighted balanced accuracy). For example if we decided that the relative importance of the classes are as follows: $w_{\text {setosa }}=1 / 4, w_{\text {versicolor }}=1 / 4, w_{\text {virginica }}=1 / 2$
+
+Then the weighted detection score (or balanced accuracy score) is given as:
+
+$p($ detect $)=\frac{1}{4} p\left(\right.$ detect $\left._{\text {setosa }}\right)+\frac{1}{4} p\left(\right.$ detect $\left._{\text {versicolor }}\right)+\frac{1}{2} p\left(\right.$ detect $\left._{\text {virginica }}\right)$
+
+$p($ detect $)=\frac{1}{4} \times 1+\frac{1}{4} \times 0.9375+\frac{1}{2} \times 0.666=0.8177$
+
+This metric shows that the classifier that we trained has less weighted accuracy than the balanced accuracy since we emphasised the detection of the virginica more than other classes and the model did not performed that well on this particular class $\left(\boldsymbol{p}\left(\text { detect }_{\text {virginica }}\right)=0.666\right)$.
+
+Now, let us try to use the classes’ distribution as the weights for the classes’ detection scores to see where this can lead us. The count that we have is $n=13+16+9=38$ for 'setosa' 'versicolor' 'virginica' classes, respectively. This is not the count of the entire dataset $N=150$ because the above confusion matrix is for a testing set, not the total dataset.
+
+The weights for the classes are:
+
+$$
+w_{\text {setosa }}=13 / 38, w_{\text {versicolor }}=16 / 38, w_{\text {virginica }}=9 / 38
+$$
+
+Hence, the balanced accuracy is:
+
+$$
+p(\text { detect })=\frac{1}{38}\left(13 p\left(\text { detect }_{\text {setosa }}\right)+16 p\left(\text { detect }_{\text {versicolor }}\right)+9 p\left(\text { detect }_{\text {virginica }}\right)\right)=0.8947
+$$
+
+The detection probabilities are as follows:
+
+$p\left(\right.$ detect $\left._{\text {setosa }}\right)=\frac{13}{13}, \quad p\left(\right.$ detect $\left._{\text {versicolor }}\right)=\frac{15}{16}, \quad p\left(\right.$ detect $\left._{\text {virginica }}\right)=\frac{6}{9}$
+
+$p($ detect $)=\frac{1}{38}\left(13 \frac{13}{13}+16 \frac{15}{16}+9 \frac{6}{9}\right)=\frac{1}{39}(13+15+6)=0.8947$
+
+Which means that choosing the classes’ distribution as the weights for a weighted balanced accuracy brings us back to the usual accuracy measure.
+
+Here we would like to point out that the macro balanced accuracy for a binary class's problem is defined as:
+
+$$
+Balanced Accuracy =\frac{1}{2} (\frac{TP}{TP+FN}+\frac{TN}{TN+FP}) =\frac{1}{2} \boldsymbol{p} \boldsymbol{r}\left(\boldsymbol{d e t e c} \boldsymbol{t}_{+}\right)+\frac{1}{2} \boldsymbol{p} \boldsymbol{r}\left(\boldsymbol{d e t e c} \boldsymbol{t}_{-}\right)
+$$
+
+A weighted average version can be defined as we showed earlier.
+
+!!! abstract "Exercise"
+
+		Try to calculate the balanced accuracy for the above problems and compare it with the accuracy and see if makes any difference.
+
+###Holistic metric for multi-class: $p(predict)$ (aka precision score)
+
+All calculations for $pr(predict)$ (aka precision) extends naturally similar to what we did for the $pr(detect)$ (aka recall). As before we can calculate the precision for each class as follows:
+
+$$
+\operatorname{p}\left(\text { predict }_{\text {setosa }}\right)=13 / 13, \text { p }\left(\text { predict }_{\text {versicolor }}\right)=15 / 18, \text { pr }\left(\text { predict }_{\text {virginica }}\right)=6 / 7
+$$
 
 <figure role="group">
   <img src="../images/DS_IMG085.png" alt="Confusion matrix showing application and workings of the balanced accuracy metric." />
   <figcaption><strong>Figure 4.25</strong> Confusion matrix showing application and workings of the balanced accuracy metric. </figcaption>
 </figure>
 
+Which yields 1,   0.8333,    0.857 for the classes 'setosa' 'versicolor' 'virginica', respectively.
+
+1. Macro prediction score (aka macro precision score) is given as $p($ predict $)=\frac{1}{3}\left(p\left(\right.\right.$ predict $\left._{\text {setosa }}\right)+p\left(\right.$ predict $\left._{\text {versicolor }}\right)+p\left(\right.$ predict $\left.\left._{\text {virginica }}\right)\right)=0.8968$
+
+2. Weighted
+
+The count for the respective classes are $n=13+16+9=38$, the weights for the classes are: $w_{\text {setosa }}=13 / 38 w_{\text {versicolor }}=16 / 38, w_{\text {virginica }}=9 / 38$. Hence, the prediction score (aka the precision score is given as:
+
+$p($ predict $)=\frac{1}{38}\left(13 p\left(\right.\right.$ predict $\left._{\text {setosa }}\right)+16 p\left(\right.$ predict $\left._{\text {versicolor }}\right)+9 p\left(\right.$ predict $\left.\left._{\text {virginica }}\right)\right)$
+$\quad=\frac{1}{38}\left(13 \times \frac{13}{13}+16 \times \frac{15}{18}+9 \times \frac{6}{7}\right)=0.8959$
+
+Note here that we cannot use the counts on the diagonal of the confusion matrix as in $pr(detect)$ and we are not back to some other basic measures as in the detect case.
+
+###	Holistic metric for multi-class: F1 Score
+
+To generalise the F1 score into multi-class problem we can:
+
+1.	Either use overall predict and detect scores (recall and precision) and then we apply the harmonic mean on them as in the binary class problem. Here we can use either the macro detect and predict scores or the weighted detect and predict scores.
+
+2.	Or we can also treat the classes as one vs. the rest fashion (yielding the problem into a binary class problem) and obtain the F1 score for each class separately. And then we take the average of the F1 scores for all the classes. Again we can use either the macro or the weighted method consistently (do not mix macro with weighted for different classes).
+
+We will show the first method here (however note that 2 is preferred over 1, see next exercise). In the last couple of sections we saw that the overall macro detection and precision for the given examples are:
+
+$p($ predict $)=0.8968, p($ detect $)=0.868$
+
+So, the harmonic average:
+
 $$
-Balanced Accuracy =\frac{1}{2} (\frac{TP}{TP+FN}+\frac{TN}{TN+FP}) =\frac{1}{2} \boldsymbol{p} \boldsymbol{r}\left(\boldsymbol{d e t e c} \boldsymbol{t}_{+}\right)+\frac{1}{2} \boldsymbol{p} \boldsymbol{r}\left(\boldsymbol{d e t e c} \boldsymbol{t}_{-}\right)
+\text { F1 score }=\frac{2 p(\text { predict }) p(\text { detect })}{p(\text { predict })+p(\text { detect })}=0.8821
 $$
 
-This metric is the macro average of the $pr(detect)$ so there is nothing new here really except that we are taking the average of both detection rates. A weighted average version can be defined as we showed earlier.
+So we can see that the value for the F1 score lies between the $p$( predict ) and $p($ detect $)$.
 
-###Holistic metric for multi-class: $pr(predict)$ aka precision score
+Note, there is a yet another approach that we have not shown which is the micro detect and micro predict and F score all of which yield the accuracy and hence are omitted.
+Note that for binary class problems, we only take the harmonic mean of the $p\left(\right.$ detect $\left._{+}\right)$ and $p\left(\right.$ predict $\left._{+}\right)$ for all the classes.‎
 
-All calculations for $pr(predict)$ (aka precision) extends naturally similar to what we did for the $pr(detect)$ (aka recall). As before we can calculate the precision for each class as follows:
-
-$$
-\operatorname{pr}\left(\text { predict }_{\text {setosa }}\right)=13 / 13, \text { pr }\left(\text { predict }_{\text {versicolor }}\right)=15 / 16, \text { pr }\left(\text { predict }_{\text {virginica }}\right)=6 / 9
-$$
-
-1. Macro $\operatorname{pr}($ predict $)=\frac{ \text { pr(predict } \left._{\text {setosa }}\right)+\text { pr }\left(\text { predict }_{\text {versicolor }}\right)+\text { pr }\left(\text { predict }_{\text {virginica }}\right)}{3}=0.868$
-
-2. Weighted $n=13+18+7=38$. The weights for the classes are: $w_{\text {setosa }}=13 / 38 w_{\text {versicolor }}=18 / 38, w_{\text {virginica }}=7 / 38$.
-
-Hence, the balanced accuracy is: $\operatorname{pr}($ predict $)=\frac{13 \text { pr }\left(\text { predict }_{\text {setosa }}\right)+18 \text { pr }\left(\text { predict }_{\text {versicolor }}\right)+\text { 7pr }\left(\text { predict }_{\text {virginica }}\right)}{38}=0.9089$
-
-Note here that we cannot use the counts on the diagonal of the confusion matrix as in $pr(detect)$
+Please note also that method macro are special cases of weighted measures (macro and weighted F1 score and macro and ‎weighted predict and detect scores) where the weights are all $=1 / C$ (the number of classes). On the other hand, 1 and 2 ‎are two different forms for F1 score and are not necessarily equivalent.‎‎
 
 !!! abstract "Exercise"
-    Try to calculate the balanced accuracy for the above problems and compare it with the accuracy. See if makes any difference.
 
-!!! abstract "Exercise"    
-    Research into extending the F score into a multi-class case and calculate it for the above example.
+    Extend the F1 score, as per the second method, into a multi-class case and calculate it for the above example. See the following paper that compares the two different methods and see the following paper to see how to calculate F1 according to the second preferred method.  In practice you might want to consider both (1 ‎and 2) and compare or at least use 2.
 
 ##Lesson summary
 

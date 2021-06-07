@@ -1,4 +1,4 @@
-# Classification
+# Classification with decision trees
 
 **In this unit we will learn about the general classification framework. In particular, we will cover an important and pervasive technique in classification, namely decision trees. We will also look at methods of evaluating a classification technique.**
 

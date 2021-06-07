@@ -188,6 +188,10 @@ On the other hand, overfitting can occur when we excessively add data horizontal
   <figcaption><strong>Figure 5.13</strong> Decision trees training and testing with phenomenon of overfitting. Note how when we increase the max depth of the tree the testing error forked from the training error which continued to deceivingly decrease, while in reality the testing error were increased for depth . </figcaption>
 </figure>
 
+###Underfitting
+
+Underfitting occurs when we build a decision tree that is incapable of addressing the problem sufficiently. An example of underfitting for decision trees is when we prematurely stop growing the tree on level 2 while the optimal number of levels is 5. Another example is when the tree is severely pre-pruned to have few branches and its performance becomes inadequate.
+
 !!! abstract "Exercise"
      Please perform the following Jupyter notebook exercise on the Iris dataset that wraps up the unit:
 
