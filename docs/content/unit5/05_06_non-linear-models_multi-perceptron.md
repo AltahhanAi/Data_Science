@@ -4,12 +4,12 @@
 	After completing this lesson you should be able to:
 
     * understand the difference between logistic regression and a two layer neural network for classification
-    *	appreciate the adaptively of the features in neural networks as opposed to fixed basis architecture
+    *	appreciate the adaptivity of the features in neural networks as opposed to fixed basis architecture
     *	appreciate some of the strength and limitations of neural networks.
 
 By now you might be thinking: Ok that was all about a straight line-easy! But how about when the classes are non-linearly separable? In this case, we may need more than one line to separate the data or we might need curvy shaped boundaries to separate the classes.  This is where multilayer perceptron comes in handy. But before we rush into this subject, bear in mind that similar to what we have said on linear regression with feature basis, all linear classification models such as perceptron and the logistic regression and the softmax regression can be combined with a feature space (as shown in the algorithms) and hence non-linearly separable classes can become linearly separable classes in a higher dimensional space. However, there are cases where this will not work and we need to move into more flexible features space, where best features are learned, instead of being fixed by the model designer. This will give us a lot of power in expressing an arbitrary decisions boundary, and this is the subject of this lesson.
 
-When rectilinear or multiple lines boundaries are needed to separate the classes. then we can employ multiple independent perceptrons but we will run into the issues that we mentioned earlier in previous section. It will be more convenient, however if we can actually combine these perceptrons in one model that learns the overall best settings of these perceptron together as one comprehensive model and to harmonise and learn the set of parameters needed to identify these set of lines. Furthermore, the possibility of generating more elastic and curvy shaped boundaries is desirable.
+When rectilinear or multiple lines boundaries are needed to separate the classes, we can employ multiple independent perceptrons but we will run into the issues that we mentioned earlier in previous section. It will be more convenient, however, if we can actually combine these perceptrons in one model that learns the overall best settings of these perceptron together as one comprehensive model and to harmonise and learn the set of parameters needed to identify these set of lines. Furthermore, the possibility of generating more elastic and curvy shaped boundaries is desirable.
 
 The multilayer perceptron does exactly this. It allows us to connect multiple layers of linear and non-linear models together (these can be viewed as computational units that we call neurons–the circles- that we have seen for the perceptron and for the logistic regression). It should be noted however, that the name multilayer perceptron is a misnomer since what we are using in each layer is a logistic regression rather than a perceptron since we will use an activation function for each neuron. Nevertheless, the name is common and we will continue to use it. The key differences between the perceptron and logistics regression is in the activation function treatment, and as long as we are aware of that it should be fine.
 
@@ -24,13 +24,13 @@ Below we show a generalisation of the concept of moving from one multinomial log
 
 Backpropagation propagates the error back through the network layers to adjust their weights in a backward manner. We saw how this worked for Algorithm 6''' in the regression unit. So, we need to know first how to adjust the final output to be favourable to our data and classes layout, and then we need to slowly adjust the lines so that this overall performance or ability to distinguish between the classes is increased slowly until it is optimised. This is the idea of stochastic gradient descent with backpropagation.
 
-If we decide to run through all of our data first and formulate a total sum of adjustments that we will execute in one step, then we are talking about batch backpropagation algorithm. Regardless of how we train, the idea is simple: we generalise the concept of one perceptron into multiple ones that act together in harmony. The multi-layer perceptron is also called feedforward neural networks. In fact it is the most common neural networks architecture, but there are plenty of other architectures that are possible. Some are recurrent neural networks: when we allow the network’s past output to participate also as a current input. You will study more about this fascinating topic in the Machine Learning and Deep Learning modules where you will employ automatic differentiation procedure instead of analytically reaching the gradient of the deeply hidden layers. Nevertheless, the complexity of obtaining the gradients for the hidden layers acts as a bridge to appreciate why we need automatic differentiation. It is sufficient to understand that fundamentally we need to take the derivatives and apply the chain rule to propagate the error back in the network.
+If we decide to run through all of our data first and formulate a total sum of adjustments that we will execute in one step, then we are talking about batch backpropagation algorithm. Regardless of how we train, the idea is simple: we generalise the concept of one perceptron into multiple ones that act together in harmony. The multi-layer perceptron is also called feedforward neural networks. In fact, it is the most common neural networks architecture, but there are plenty of other architectures that are possible. Some are recurrent neural networks: when we allow the network’s past output to participate also as a current input. You will study more about this fascinating topic in the Machine Learning and Deep Learning modules where you will employ automatic differentiation procedure instead of analytically reaching the gradient of the deeply hidden layers. Nevertheless, the complexity of obtaining the gradients for the hidden layers acts as a bridge to appreciate why we need automatic differentiation. It is sufficient to understand that fundamentally we need to take the derivatives and apply the chain rule to propagate the error back in the network.
 
 ##Binary classification using neural network
 
-Let us start with a simpler neural network where we have only one output, i.e. a binary class problem.
+We discuss a simple neural network architecture where we have only one output, i.e. a binary class problem.
+The network that is under consideration is expressed as follows:
 
-The network that we will utilise is expressed as follows.
 
 $$
 \begin{array}{l}
@@ -40,16 +40,18 @@ y=g\left(\mathbf{w}^{\mathrm{T}} g\left(\dot{\mathbf{W}}^{\top} \mathbf{x}\right
 \end{array}
 $$
 
-where we used logits function on both units, the hidden and the output. Its architecture is shown in the figure below and its algorithm is given in the box below. The main difference between this and the regression one is that the classification network uses a non-linear function on the output while for the regression we used a linear activation function on the output. These are not hard rules, but are general enough to be used widely.
+where we used logistic function on both units, the hidden and the output. The architecture is shown in the figure below. The main difference between this and the regression that we discussed in unit 4 is that the classification network uses a non-linear function on the output while for regression we used a linear activation function on the output.
 
 <figure role="group">
   <img src="../images/DS_IMG168.png" alt="Schematic representation of the multi-layer perceptron as a non-linear models with one outputs." />
   <figcaption>
-    <p><strong>Figure 6.2:</strong>Schematic representation of the multi-layer perceptron as a non-linear models with one outputs. Essentially the above architecture is an extension of the logistic regression model. We now have a hidden layer that learns the best features representation instead of it being decided by the model designer.</p>
+    <p><strong>Figure 6.2:</strong>Schematic representation of the multi-layer perceptron as a non-linear model with one output. </p>
   </figcaption>
 </figure>
 
-Our loss function is as in the logistic regression case is the cross entropy and is given as:
+Essentially the above architecture is an extension of the logistic regression model. We now have a hidden layer that learns the best features representation instead of using non-adaptive, fixed set of basis functions that are decided by the model designer.
+
+Our loss function is, as in the logistic regression case, the cross entropy and is given as:
 
 $$
 \begin{array}{c}
@@ -64,127 +66,38 @@ $$
 z_{n}=\mathbf{w}^{\mathrm{T}} g\left(\mathbf{\mathbf { W }}^{\top} \mathbf{x}_{n}\right)
 $$
 
-We have two derivatives $\nabla_{\mathbf{w}}$ and $\nabla_{\dot{\mathbf{W}}}$ one with respect to each layer weights, for simplicity we will omit the subscript and suffice by showing the loss as a function of the weights that we are differentiating with respect to. The derivative with respect to the output layer is identical to what we saw earlier for the logistic regression model and given as follows:
+We have two derivatives $\nabla_{\mathbf{w}}$ and $\nabla_{\dot{\mathbf{W}}}$ one with respect to each layer weights, for simplicity we will omit the subscript and suffice by showing the loss as a function of the weights that we are differentiating with respect to. The derivative with respect to the output layer is identical to what we saw earlier for the logistic regression model and is given as follows:
 
 $$
 \nabla \widetilde{H}_{n}(\mathbf{w})=-\boldsymbol{\phi}_{n}\left(y_{n}-t_{n}\right)
 $$
 
-The main difference between the algorithms is in the derivation of the hidden units as we saw earlier. It can be proven that when we use logistic function as the activation function, the derivative of the loss is:
+The main difference between this neural network architecture and the logistic regression architecture is the additional derivation of the hidden units updates. Similar to what we saw earlier in the logistic regression, the derivative of the loss with respect to the hidden units is given as:
 
 $$
 \nabla \widetilde{H}_{n}(\dot{\mathbf{W}})=-\nabla z_{n}\left(t_{n}-y_{n}\right)
 $$
 
-$$
-\begin{array}{l}
-\text { And it can be proven }\\
-\text { that } \nabla z_{n}=-\mathbf{x}_{n}\left(\mathbf{w} \circ \boldsymbol{\phi}_{n} \circ\left(\mathbf{1}-\boldsymbol{\phi}_{n}\right)\right)^{\top} \text { where } \circ \text { denotes element wise multiplication. }
-\end{array}
-$$
+Therefore, the  update rule for the hidden layer can be deduced similar to what we had in regression by realising that $g(\mathbf{X} \dot{\mathbf{W}})=\mathbf{\Phi}$ and its gradient is $\nabla \boldsymbol{g}=\dot{\boldsymbol{\Phi}}=\mathbf{\Phi} \circ(\mathbf{1}-\mathbf{\Phi})$, where ∘ is element-wise matrix multiplication. In addition, the gradients for $\mathbf{X} \dot{\mathbf{W}}$ are $\nabla_{\dot{\mathbf{w}}}(\mathbf{X} \dot{\mathbf{W}})=\mathbf{X}^{\top}$ and $\nabla_{\mathbf{\Phi}} \mathbf{\Phi} \mathbf{w}=\mathbf{w}^{\top}$. All of these elements are stitched together to form a backpropagated update for the hidden layer (via the chain rule of derivation).
 
-So we plug now
-
-$$
-\nabla \widetilde{H}_{n}(\dot{\mathbf{w}})=-\mathbf{x}_{n}\left(\mathbf{w} \circ \boldsymbol{\phi}_{n} \circ\left(\mathbf{1}-\boldsymbol{\phi}_{n}\right)\right)^{\top}\left(t_{n}-y_{n}\right)
-$$
-
-Therefore the final vectorised update takes the form:
-
-$$
-\mathbf{w}=\mathbf{w}+\eta\left[\mathbf{X}^{\top}[(\mathbf{\Phi} \circ(\mathbf{1}-\mathbf{\Phi})) \times(\boldsymbol{t}-\boldsymbol{y})]\right] \times \mathbf{w}^{\top}
-$$
-
-$$
-\text { where } \times \text { denotes broadcasting (a special case of Hadamard product), }
-$$
-
-and now we are ready to show the algorithm:
-
-!!! algorithm-heading "Algorithm 5: Binary Classification: Regularised Mini-Batch Stochastic Gradient Descent learning for two layers Neural Network Model with two sigmoid activation functions for the hidden and output layers respectively‎. ‎ ‎"
-
-  	**Input:**
-
-    !!! algorithm ""
-
-    	Input set: design matrix $\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top} \operatorname{each} \mathbf{x}_{n}$ is of size $D$ <span class="algorithm-line-comment"> *Training set*</span>
-
-    	Labels set: vector $\mathbf{t}=\left[t_{1}, \ldots, t_{N}\right]^{\top}$ each $\boldsymbol{t}_{n}$ is a scalar.
-
-    	$b$: mini-batch size (specifies how frequent we want to update the weights $\mathbf{w}$)
-
-    	$\eta_{0}$: initial learning rate
-
-        $epcs$: number of epochs
-
-
-
-    	$\boldsymbol{\mu}_{j}: M$ Basis centres, each is a vector of size $D$
-
-
-
-    	$\boldsymbol{\Sigma}$ : Covariance matrix of size $\mathrm{D} \times \mathrm{D}$
-
-
-  	**Output**: $\mathbf{w}$, $\dot{\mathbf{W}}$ approximations for optimum weights $\mathbf{w}^{*}$, $\mathbf{W}^{*}$; of size $M+1$ and $(D+1) \times M$.
-
-  	**ClassifyNN** $\left(\mathbf{X}, \mathbf{t}, b, \eta_{0}, e p c s\right)$:
-
-    !!! algorithm ""
-        Initialise $\mathbf{w}$ and $\eta=\eta_{0}$
-
-        For epoch $= 1:epcs$
-
-
-        !!! algorithm ""
-            For iteration $\tau=1: q$
-            <span class="algorithm-line-comment"># *$q≥N/ b$*</span>
-
-            !!! algorithm ""
-
-                Select a mini-batch $\mathbf{X}_{\tau}, \mathbf{t}_{\tau}$ of size $b$ from $\mathbf{X}, \mathbf{t}$
-                <span class="algorithm-line-comment"># *by sampling or by shuffling & partitioning*</span>
-
-				$\mathbf{X}_{\tau}=\left[\mathbf{1}_{\mathbf{b}}, \mathbf{X}_{\tau}\right]$
-                <span class="algorithm-line-comment"># *add dummy feature to the design matrix*</span>
-
-                $\mathbf{\Phi}_{\tau}=g\left(\mathbf{X}_{\tau} \dot{\mathbf{W}}\right)$
-                <span class="algorithm-line-comment"># *element-wise sigmoid $g(\alpha)=\frac{1}{1+e^{-\alpha}}$*</span>
-
-                $\boldsymbol{y}_{\tau}=g\left(\mathbf{\Phi}_{\tau} \mathbf{w}\right)$ <span class="algorithm-line-comment"># *element-wise sigmoid*</span>
-
-                $\boldsymbol{e}_{\tau}=\left(\mathbf{t}_{\tau}-\boldsymbol{y}_{\tau}\right)$ <span class="algorithm-line-comment"># *calculate the error*</span>
-
-                $\dot{\mathbf{\Phi}}_{\tau}=\mathbf{\Phi}_{\tau} \circ\left(\mathbf{1}-\mathbf{\Phi}_{\tau}\right)$ <span class="algorithm-line-comment"># *element-wise product $\circ$*</span>
-
-                $\mathbf{Z}_{\tau}=\dot{\mathbf{\Phi}}_{\tau} \times \boldsymbol{e}_{\tau}$ <span class="algorithm-line-comment"># *propagate the error $\boldsymbol{e}_{\tau}$ via broadcasting $\times$*</span>
-
-				$\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{\Phi}_{\tau}^{\top} \boldsymbol{e}_{\tau}$
-                <span class="algorithm-line-comment"># *update the output weights vector $\mathbf{w}$*</span>
-
-				$\dot{\mathbf{W}}=\left(1-\frac{1}{b} \eta \lambda\right) \dot{\mathbf{W}}+\frac{1}{b} \eta\left(\mathbf{X}_{\tau}^{\top} \mathbf{Z}_{\tau}\right) \times \mathbf{w}^{\top}$ <span class="algorithm-line-comment"># *update the hidden weights matrix $\dot{\mathbf{W}}$*</span>
-
-			Decay $η$
-            <span class="algorithm-line-comment"># *if necessary*</span>
-
-
-        Return the final solution $\mathbf{w}$, $\dot{\mathbf{W}}$
-
-
-!!! abstract "Exercise"
-    Please the following Jupyter notebook for detail implementation of the 2 layers logistic regression neural networks (same network as above).
-
-      - Download exercise (.ipynb): <a href="../exercises/2LayersLogisticRegression_neural_network.ipynb" target="_blank" download>Exercise </a>
+There is an extra complexity associated with propagating the error back into previous layers. The deeper the error goes back, the more analytical overhead we have. Deep Learning (DL) has overcome these issues via few techniques and tricks. One of the important techniques employed by DL is automatic differentiation (AD). In AD the gradients of the loss with respect to early layers weights are calculated via built-in packages (algorithms) instead of inferring them analytically as we have briefly discussed in unit4. In addition, in order to overcome some of the difficulties of backpropagating the error, DL trains each layer separately and freezes the rest of the layers to be updated one layer at a time. Below you will experiment with a neural network architecture in scikit learn in order to appreciate their strength and limitation from a practical perspective.
 
 !!! abstract "Exercise"
      See the following Jupyter notebook for a comparison of the regularisation on neural networks.
 
-      - Download exercise (.ipynb): <a href="../exercises/plot_mlp_alpha.ipynb" target="_blank" download>Exercise </a>
+      - Download exercise (.ipynb): <a href="../exercises/Exercise5_plot_mlp_alpha.ipynb" target="_blank" download>Exercise 5</a>
 
 !!! abstract "Activity"
-    Please the following Jupyter notebook for comparison between different techniques for classification which wraps up most of material covered for classification in both unit 2 and unit 3.
+    Please see the following Jupyter notebook for comparison between different techniques for classification which wraps up most of material covered for classification in both unit 2 and unit 3.
 
-     - Download exercise (.ipynb): <a href="../exercises/plot_classifier_comparison.ipynb" target="_blank" download>Activity </a>
+     - Download exercise (.ipynb): <a href="../exercises/Exercise6_Several_Classifier_Comparison.ipynb" target="_blank" download>Exercise 6 </a>
 
 !!! abstract "Activity"
-    See the following <a href="https://scikit-learn.org/stable/auto_examples/applications/plot_out_of_core_classification.html#sphx-glr-auto-examples-applications-plot-out-of-core-classification-py" target="_blank">Jupyter notebook</a> in scikitlearn for an out-of-core classification of text documents.
+
+    See the following Jupyter notebook for a comprehensive example on comparing different classifiers performance.
+
+    - Download exercise (.ipynb): <a href="../exercises/Exercise7_Classification_Comprehensive_Example.ipynb" target="_blank" download>Exercise 7 </a>
+
+##Lesson summary
+
+In this lesson we discussed the multi-layer perceptron, and we saw a simple example of an architecture that is suitable for binary classification. The architecture allows the network to adapt the features to the needs of the problem in hand. This solved the need to use a predefined set of fixed basis to map a non-linear classification model into a linear classification model. 

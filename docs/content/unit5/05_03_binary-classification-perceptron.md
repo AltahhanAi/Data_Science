@@ -74,7 +74,7 @@ In fact, we can omit the learning rate because multiplying by it (or not) will n
 
 ##Moving into feature space: generalised linear models for classification
 
-As we have seen earlier in Unit 4, all algorithms and techniques can be directly applied when we move from the input space $\mathbf{X}$ into a feature space $\boldsymbol{\Phi}$ that may have higher dimension than $\mathbf{X}$. The benefit of mapping into a new higher dimension feature space is that it will potentially render the non-linearity of the class's boundaries in $\mathbf{X}$ into linear boundaries in $\boldsymbol{\Phi}$ as we can see in figure 3.2 below.
+As we have seen earlier in Unit 4, all algorithms and techniques can be directly applied when we move from the input space into a feature space that may have higher dimension. The benefit of mapping into a new higher dimension feature space is that it will potentially render the non-linearity of the class’s boundaries in the input space into linear boundaries in  the feature space as we can see in figure 3.2 below.
 
 ![Diagram showing the relationship of data mining to statistics, AI, machine learning and pattern recognition.](images/DS_IMG216.png)
 
@@ -117,7 +117,7 @@ Therefore, the circle boundary becomes a linear equation $x_{1}^{\prime}+x_{2}^{
 
     Run the following Jupyter Notebook to see how moving to a different feature spaces can turn non-linearly separable classes into linearly separable classes.
 
-    - Download exercise (.ipynb):  <a href="../exercises/MovingToFeatureSpaceBenfit.ipynb" target="_blank" download>Exercise (.ipynb)</a>
+    - Download exercise (.ipynb):  <a href="../exercises/Exercise1_MovingToFeatureSpaceBenfit.ipynb" target="_blank" download>Exercise (.ipynb)</a>
 
 So from now on we will work on the feature space instead of the input space as we did for regression.
 
@@ -241,6 +241,10 @@ The perceptron is guaranteed (via the **perceptron convergence theorem**) to fin
 !!! abstract "Exercise"
     See the following Jupyter notebook for more details on the perceptron.
 
-      - Download exercise (.ipynb): <a href="../exercises/Perceptron.ipynb" download>Exercise</a>
+      - Download exercise (.ipynb): <a href="../exercises/Exercise2_Perceptron_LogR.ipynb" download>Exercise</a>
 
-    Now, try to do the same thing in RapidMiner. You may want to refer to the earlier  RapidMiner video in unit 2. .
+    Now, try to do the same thing in RapidMiner. You may want to refer to the earlier  RapidMiner video in unit 2.
+
+##Lesson summary
+
+In this lesson we have covered a basic model for classification, namely the perceptron. We showed that the perceptron is only capable of tackling linearly separable classification problems, and we discussed ways to make its implementation efficient. The perceptron is one of the earliest models for classification, and its architecture constitutes the basic building units for a more powerful model. In the next section, we will take the ideas of the perceptron and extend them further into a useful classification model, namely the logistic regression models, with the aid of a different activation function. 

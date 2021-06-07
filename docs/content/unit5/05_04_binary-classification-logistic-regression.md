@@ -7,7 +7,7 @@
     *	understand the basic and mini-batch learning algorithm of logistic regression
     *	understand why we need to use the cross-entropy as a loss function for logistic regression
     *	appreciate that cross entropy loss creates a synergy with logistic regression to yield and update that is identical to the regression
-    *	appreciate the strength and weakness of logistic regression.
+    *	appreciate the strengths and weaknesses of logistic regression.
 
 You might be thinking, regression for classification, this sounds weird! But actually the name is a misnomer. This is **not regression** at all, **it is classification**. The name is used for reasons that will become apparent later, please bear in mind that we are talking about a classification technique not a regression technique.
 
@@ -58,7 +58,7 @@ if $y_{n} \geq 0.5 \quad$ then $\quad$ predicted class $=1$
 
 if $y_{n}<0.5 \quad$ then $\quad$ predicted class $=0$
 
-The main characteristics of a logistic function is in two folds:
+The main characteristics of a logistic function are twofold:
 
 1. it is naturally normalised because its value is confined to ]0, 1[
 2. it is differentiable and has an appealing rule for differentiation that is related to z: $\frac{d g(z)}{d z}=$ $g(z)(1-g(z))$ which can be written for brevity as:
@@ -151,7 +151,7 @@ to express that we are interested in how the entropy varies with $\mathbf{w}$ fo
 
 ## Cross entropy
 
-Although the model entropy quantifies the uncertainty in the model's own predictions, it does not tell us anything about how the model is doing in comparison to the actual class. More formally, the entropy gives us no information about how **uncertain** our **class prediction** relative to the actual class of the data point. Instead, to measure the expected difference between our model predicted class and the **actual class** of a pattern $\mathbf{x}_{n}$, we can use the cross entropy. We will denote the probabilities of the target classes as $t_{n}$ and we note that these will
+Although the model entropy quantifies the uncertainty in the model's own predictions, it does not tell us anything about how the model is doing in comparison to the actual class. More formally, the entropy gives us no information about how **uncertain** our **class prediction** is relative to the actual class of the data point. Instead, to measure the expected difference between our model predicted class and the **actual class** of a pattern $\mathbf{x}_{n}$, we can use the cross entropy. We will denote the probabilities of the target classes as $t_{n}$ and we note that these will
 take the values of 1 when the data point belongs to the positive class and 0 when it does not. We denote the distribution of the actual class as $\mathrm{T}$ and the prediction distribution as $\mathrm{P}$. Therefore, now we can define the cross
 entropy prediction $\mathrm{y}_{n}$ as:
 
@@ -206,9 +206,9 @@ $$
 \nabla \bar{J}=-\frac{1}{N} \sum_{n=1}^{N}\left(t_{n}-y_{n}\right) \boldsymbol{\phi}_{n}
 $$
 
-Now we need to pause a second here. As we pointed out this update is identical to a linear regression update without the activation function! The main difference is in how we interpret the results and in how we require our model to work. In linear regression we are trying to come up with a prediction of a **value** $y_{n} .$ In logistic regression we are trying to come up with a **class** $y_{n} .$ The prediction is calculated using the logistic function while in linear regression there is no activation function at all.
+Now we need to pause a second here. As we pointed out, this update is identical to a linear regression update without the activation function! The main difference is in how we interpret the results and in how we require our model to work. In linear regression we are trying to come up with a prediction of a **value** $y_{n} .$ In logistic regression we are trying to come up with a **class** $y_{n} .$ The prediction is calculated using the logistic function while in linear regression there is no activation function at all.
 
-Hence we can extend **any of the previously covered algorithms** for linear regression to work equally on logistics regression and this is the beauty of it. For example, we can build a regularised stochastic gradient algorithm that uses the above update. We can also come up with a regularised batch update for logistic regression which is shown below. We show the vectorised version of the mini-batch similar to Algorithm 6 " however of course there is a vanilla mini-batch similar to the one for the perceptron and visa-versa (scroll to the right in the box to view all of the algorithm).
+Hence we can extend **any of the previously covered algorithms** for linear regression to work equally on logistics regression and this is the beauty of it. For example, we can build a regularised stochastic gradient algorithm that uses the above update. We can also come up with a regularised batch update for logistic regression which is shown below. We show the vectorised version of the mini-batch similar to Algorithm 6 " however of course there is a vanilla mini-batch similar to the one for the perceptron and vice-versa (scroll to the right in the box to view all of the algorithm).
 
 !!! algorithm-heading "Algorithm 2: Regularised Mini-Batch Stochastic Gradient Descent Updates for Logistic Regression Model with Radial Basis (see previous unit for other possible basis). "
 
@@ -272,7 +272,7 @@ Hence we can extend **any of the previously covered algorithms** for linear regr
 
         Return the final solution $\mathbf{w}$
 
-  Please note that since we have used a non-linear activation function (the sigmoid), there is no direct least squares solution for the logistic regression model. However, since its loss function is concave (can be proven to be quadratic), we can still come up with closed form solution based on Newton-Raphson technique to yield the iterative reweighted least square solution. This is however, outside the scope of our coverage and will not be necessary for the rest of our presentation.
+  Please note that since we have used a non-linear activation function (the sigmoid), there is no direct least squares solution for the logistic regression model. However, since its loss function is concave (can be proven to be quadratic), we can still come up with closed form solution based on Newton-Raphson technique to yield the iterative reweighted least square solution. This is however, outside the scope of our coverage and will not be necessary for the rest of this unit.
 
 ### More about cross entropy
 
@@ -326,9 +326,9 @@ $$
 $$
 
 !!! abstract "Exercise"
-    See the following Jupyter notebook for more insight into logistic regression.
+    Please see the previous exercise to compare logistic with the perceptron. Also see the following Jupyter notebook for more insight into logistic regression.
 
-      - Download exercise (.ipynb): <a href="../exercises/LogisticRegressionDecisionBoundaries.ipynb" download>Logistic Regression</a>
+      - Download exercise (.ipynb): <a href="../exercises/Exercise_4LogisticRegressionSKLearn.ipynb" download>Exercise 4</a>
 
     You can do the same thing in RapidMiner, it is straightforward, try it, you can see my video on how to build a RapidMiner model here.
 
@@ -352,7 +352,7 @@ The data has been generated to be separated by the following linear classifier $
   </figcaption>
 </figure>
 
-Data points under the line satisfy $-x_{2}+2 x_{1}-4 \geq 0$ and are classified as positive and data points that are above the line satisfy $-x_{2}+2 x_{1}-4<0$ are classified as negative (positive represented as + and negative represented as a circle $\mathrm{O}$ in the figures). Let us build a logistic regression classifier based on provided linear model.
+Data points under the line satisfy $-x_{2}+2 x_{1}-4 \geq 0$ and are classified as positive and data points that are above the line satisfy $-x_{2}+2 x_{1}-4<0$ are classified as negative (positive represented as + and negative represented as a circle $\mathrm{O}$ in the figures). Let us build a logistic regression classifier based the linear model provided.
 
 $$
 \mathrm{g}\left(\mathbf{w}_{1}^{\top} \mathbf{x}\right)=\frac{1}{1+\boldsymbol{e}^{-\mathbf{w}_{1}^{\top} \mathbf{x}}}
@@ -418,15 +418,23 @@ $$
 \widetilde{H}\left(\mathbf{w}_{2}\right)=21
 $$
 
-The plots in figure 4.4 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly.
+!!! abstract "Exercise"
+
+    The plots in figure 4.4 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. See the following Jupyter Notebook:
+
+    - Download notebook (.ipynb): <a href="../exercises/Exercise_3LogisticRegressionDecsions.ipynb" download>Exercise 3</a>
 
 <figure role="group">
   <img src="../images/DS_IMG155.png" alt="Brief description." />
   <figcaption>
-    <p><strong>Figure 4.4: Example of binary class dataset.</strong> (Top), optimal decision boundary identical with the actual boundary of the dataset, no misclassification occurred. (Bottom): showing the effect of shifting the decision boundaries by changing the bias. The boxes with red circles shows a misclassified cases.</p>
+    <p><strong>Figure 4.4: Example of binary class dataset.</strong> (Top), optimal decision boundary identical with the actual boundary of the dataset, no misclassification occurred. (Bottom): showing the effect of shifting the decision boundaries by changing the bias. The boxes with red circles show misclassified cases.</p>
   </figcaption>
 </figure>
 
 ###Least square for linear model classification
 
 Applying least squares on will get us an estimation of the class label. However, Least Squares is not a good approach to estimate the classes. The issue with this approach is that it is sensitive to outliers. Also the result of the minimisation will be a value that is not guaranteed to be in [0, 1] so we cannot expect a 1-of-K binary coding to be output by the model which we will talk about in the next section.
+
+##Lesson summary
+
+In this lesson, we have covered another simple, but more powerful linear classification model that utilises a non-linear activation function to perform a linear classification task. Logistic regression is a common technique that has desirable characteristics, including its probabilistic interpretability, and the fact that its update rules are identical to the update rules of a linear regression model. Logistic regression forms an important component for more complex non-linear models, such as neural networks for classification.

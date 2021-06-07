@@ -4,8 +4,8 @@
 	After completing this lesson you should be able to:
 
     * understand linearly separable classification problems
-    *	extend the concepts of linear models covered in unit 4 to perform to tackle linearly separable classification problem
-    *	understand the role of activation function and its vital role in tackling in the context of classification.
+    *	extend the concepts of linear models covered in unit 4 to perform to tackle linearly separable classification problems
+    *	understand the role of the activation function and its vital role in tackling in the context of classification.
 
 **Recall that the problem of classification is concerned with finding a class of a data point based on its attributes.**
 
@@ -263,3 +263,7 @@ y\left(\mathbf{x}_{n}, \mathbf{w}\right)=f\left(\mathbf{w}^{\top} \mathbf{x}_{n}
 $$
 
 Where $f$ is an activation function that maps the relevant position of the data point $\mathbf{x}_{n}$ with respect to the decision boundary $\mathbf{w}^{\top} \mathbf{x}=\mathbf{0}$ into a label to predict which class the data point is from.
+
+##Lesson summary
+
+In this introductory lesson, we have built on the ideas that we covered in regression in order to utilise them in classification. You have seen how a simple linear classification model is capable of classifying linearly separable classes in a dataset, and we saw how an activation function plays a role in moving from a linear regression model to a linear classification model.

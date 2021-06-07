@@ -10,13 +10,13 @@ In this section we will discuss the link between minimising a loss function and 
 
 ##Expected loss
 
-For probabilistic interpretation and settings we often want to calculate the **expected loss** instead of simple averages to take into account the fact that some data points are more **probable** than others and we would want to minimise the loss for those even on the loss of incurring a bit of loss for less probable data points. To account for this and if we are not comparing between different dataset with different sizes, we can use the simpler sum of squared error (SSE) as our loss function and the expected loss then is given by
+For probabilistic interpretation and settings, we often want to calculate the **expected loss** instead of simple averages to take into account the fact that some data points are more **probable** than others and we would want to minimise the loss for those even on the loss of incurring a bit of loss for less probable data points. To account for this and if we are not comparing between different dataset with different sizes, we can use the simpler sum of squared error (SSE) as our loss function and the expected loss then is given by
 
 $$
 E(J)=\frac{1}{2} \sum_{n=1}^{N}\left(y\left(\mathbf{x}_{n}\right)-t_{n}\right)^{2} p\left(\mathbf{x}_{n}, t\right)
 $$
 
-This is for the discrete cases where we have N data points that are of concern. However there is a more powerful way of coming up with a general function for the loss: that we calculate its expectation regardless of the data points that we have, and then we minimise it and then take the $\mathrm{N}$ data points that we have as samples for this continuous loss function. In simple terms, sometimes we would want to calculate the loss for a continuous infinite number of data points in the context of a model represented as a continuous function $y(\mathbf{x})$ (of course we still going to take samples $\mathrm{N}$ ). In this case, the loss function will be written as an integral instead of the sum:
+This is for the discrete cases where we have N data points that are of concern. However, there is a more powerful way of coming up with a general function for the loss: that we calculate its expectation regardless of the data points that we have, and then we minimise it and then take the $\mathrm{N}$ data points that we have as samples for this continuous loss function. In simple terms, sometimes we would want to calculate the loss for a continuous infinite number of data points in the context of a model represented as a continuous function $y(\mathbf{x})$ (of course we are still going to take samples $\mathrm{N}$ ). In this case, the loss function will be written as an integral instead of the sum:
 
 $$
 E(J)=\frac{1}{2} \iint p(\mathbf{x}, t)(y(\mathbf{x})-t)^{2} \mathrm{~d} \mathbf{x} \mathrm{d} t
@@ -42,7 +42,7 @@ $$
 J=\sqrt{\frac{1}{N} \sum_{n=1}^{N}\left(y\left(\mathbf{x}_{n}\right)-t_{n}\right)^{2}}
 $$
 
-For the continuous case since the derivation cancel out one of the double integrals so we obtain:
+For the continuous case since the derivation cancels out one of the double integrals, we obtain:
 
 $$
 \frac{\delta E(J)}{\delta y(\mathbf{x})}=\frac{1}{2} \frac{\delta}{\delta y(\mathbf{x})}\left(\iint p(\mathbf{x}, t)(y(\mathbf{x})-t)^{2} \mathrm{~d} \mathbf{x} \mathrm{d} t\right)=\int p(\mathbf{x}, t)(y(\mathbf{x})-t) \mathrm{d} t
@@ -69,7 +69,7 @@ the conditional expectation of $t$ given $\mathbf{X} .$ So from now on we need m
 
 ##Generative, discriminative and non-probabilistic approaches
 
-For classification problem, the above solution: $y(\mathbf{x})=E_{t}(t \mid \mathbf{x})$, suggests that we can approach the learning problem (model training) in either of the following ways (Bishop 2006):
+For classification problems, the above solution: $y(\mathbf{x})=E_{t}(t \mid \mathbf{x})$, suggests that we can approach the learning problem (model training) in either of the following ways (Bishop 2006):
 
 ###Approach 1:
 
@@ -87,12 +87,14 @@ In a classification context we call models that depend on a similar approach gen
 In a classification context we call models that depend on a similar approach discriminative because the
 model that uses it can discriminate whether it is likely that $t$ is the answer to a given an observation $\mathbf{x}$ as per the conditional density $p(t \mid \mathbf{x})$. But the model cannot generate synthetic data since $p(t, \mathbf{x})$ is not available.
 
-###Approach 3: not probabilistic
+###Approach 3: not a probabilistic
 
 1. Find the regression function directly from the data: ex. By utilising $J=\frac{1}{2} \sum_{n=1}^{N}\left(y\left(\mathbf{x}_{n}, \boldsymbol{w}\right)-\right.$ $(y(x_n,w)-t_n )^2$ or by assuming that all the data points have the same probability.
 
 In a classification context, models that depend on a similar approach are loosely referred to as discriminative.
 
 ##Summary
+
+In this lesson, you have seen how to motivate a classification problem from a probabilistic perspective and how to differentiate between generative and discriminative models.
 
 In this unit we have covered linear classification models and developed its ideas gradually to reach a non-linear multi-layer perceptron for classification.
