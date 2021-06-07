@@ -7,7 +7,7 @@
     *	understand the role of the activation function in order to move to more general models that are capable of classifying an input
     *	appreciate the strengths and limitations of the perceptron to tackle binary classification problems
     *	appreciate the strengths and weaknesses of logistic regression to tackle binary classification problems
-    *	extend the abilities of binary classifies by performing one-versus-all classification and understand the limitation of this approach
+    *	extend the abilities of binary classifiers by performing one-versus-all classification and understand the limitation of this approach
     *	extend the simple logistic regression architecture into multinomial logistic regression
     *	take advantage of the multi-output classification models  to tackle multi-class problems
     *	extend the capabilities of multi-output classification models to a multi-layer perceptron and appreciate their strengths and limitations from a practical perspective.
