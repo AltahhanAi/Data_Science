@@ -556,7 +556,7 @@ Please note also that method macro are special cases of weighted measures (macro
 
 !!! abstract "Exercise"
 
-    Extend the F1 score, as per the second method, into a multi-class case and calculate it for the above example. See the following paper that compares the two different methods and see the following paper to see how to calculate F1 according to the second preferred method.  In practice you might want to consider both (1 ‎and 2) and compare or at least use 2.
+    Extend the F1 score, as per the second method, into a multi-class case and calculate it for the above example. See the following <a href="https://arxiv.org/pdf/1911.03347.pdf" target="_blank">paper by Optiz and Burst</a> that compares the two different methods and see the following <a href="https://arxiv.org/pdf/2008.05756.pdf" target="_blank">paper by Grandini et al</a> to see how to calculate F1 according to the second preferred method.  In practice you might want to consider both (1 ‎and 2) and compare or at least use 2.
 
 ##Lesson summary
 
