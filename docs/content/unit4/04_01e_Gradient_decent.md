@@ -1,6 +1,6 @@
 #Approximate Solutions: Gradient Descent
 
-**For linear models we saw that we can analytically find a solution via the normal formula by setting the gradient to 0 and solving with respect to $\mathbf{W}$. Such solutions are either not available when we deal with non-linear optimisation or is not desirable due to efficiency requirements. Even if an analytical close form solution is available, the complexity of finding the least squares is $\mathcal{O}\left(N^{3}\right)$ which is quite expensive when $N$ is reasonably large.**
+**For linear models we saw that we can analytically find a solution via the normal formula by setting the gradient to 0 and solving with respect to $\mathbf{W}$. Such solutions are either not available when we deal with non-linear optimisation or is not desirable due to efficiency requirements. Even if an analytical close form solution is available, the complexity of finding the least squares is $O\left(D^{2} \times N\right)$ which is quite expensive when $N$ is reasonably large.**
 
 In such cases, it is desirable to find an **approximate solution** for the problem (i.e. an approximation for $\mathbf{w}^{*}$) to come as close as possible to the minimum **without** necessarily finding the **exact solution**. Algorithms that try to achieve this are called approximation algorithms, you will study several of these in the Algorithms Module, including greedy, local search and dynamic programming algorithms. In our case, we will utilise an important and pervasive approximation algorithm that is utilised throughout machine learning. It is not necessary the best approximation algorithm but it is the simplest to understand and to implement.
 
@@ -97,7 +97,11 @@ $$
 Therefore, the gradient descent algorithm for linear regression model, which acts on the entire training set, takes the form:
 
 $$
-\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\frac{1}{N} \sum_{n=1}^{N} \eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\nabla \overline{J^{2}}(\mathbf{w})
+$$
+
+$$
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}+\frac{1}{N} \sum_{n=1}^{N} \eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
 $$
 
 The number of iterations that we need to take in order to reach the minimum depends on $η$. The smaller $η$ is the more iterations we need to take, however we need to strike a balance here because if $η$ is too big then the algorithm might either oscillate or completely diverge (go away from the minimum). $η$ is almost always less than 1, a reasonable value of $η=0.01$ for linear regression. For other more complex models $η$ may need to take much smaller values. Each sweep through the entire dataset is called an epoch and this is a hyper parameter that we need to set, often between 10 and 100.
@@ -153,11 +157,15 @@ This form of batch gradient descent does not take advantage of vectorisation and
 
 For further reading, see Yoshua Bengio's paper on <a href="https://arxiv.org/pdf/1206.5533.pdf" target="_blank">Practical Recommendations for Gradient-Based Training of Deep Architectures</a>.
 
+Please watch the following video on gradient descent.
+
+<iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/867051cf400f4f07aba746b5b2e8a35c1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
 ##Sequential Learning: Stochastic Gradient Descent for Linear Regression Models
 
 Batch learning algorithm such as LS Regression or Batch Stochastic Gradient Descent take into account the entirety (the whole batch) of the dataset at once. No intermediate learning occurs. Another way to minimise the loss function is to gradually change the weights towards minimising the loss function instead of going all the way according to the sum of the errors. This is called sequential learning. There are several advantages for this approach. The most obvious advantage is that it allows for a stream of data to be fed into a system and the system can learn live as the data arrives from the stream. The main advantage is that learning can occur immediately for any fed sample and we do not need to wait to see the entirety of the dataset to learn a model.
 
-Here we need to understand the concept of a learning rate or learning steps denoted as $η$. This hyper parameter specifies how much of the individual step error we want to take into account. In simple linear models this will not make a difference and in fact if assumed that the loss function is concave i.e. it has a global optimum then we can go all the way and adopt the entirety of each step error $\left(\mathbf{w}^{\top} \mathbf{x}_{n}-t_{n}\right)$ offline without changing the weights in each step. However, when the concavity of the loss function (existence of global optimum) is not guaranteed and when the loss function has several local optima some of which are really slight valleys (or when it is infested with local optima) then adopting the full error $t_{n}-\boldsymbol{y}\left(\mathbf{x}_{n}\right)$ is not a good idea. This is because it will force the model to fall into the nearest local minimum and consequent updates are spent on moving out or into local minima. Bearing in mind that the data is noisy anyway, we would want to utilise the learning step for our benefit to reduce the effect of the noise and help avoid the problem of overfitting. Essentially, we replace the loss function $J^{2}$ by $J_n^2$, so after a data point becomes available, we update according to:
+Here we need to understand the concept of a learning rate or learning steps denoted as $η$. This hyper parameter specifies how much of the individual step error we want to take into account. In simple linear models this will not make a difference and in fact if assumed that the loss function is convex i.e. it has a global optimum then we can go all the way and adopt the entirety of each step error $\left(\mathbf{w}^{\top} \mathbf{x}_{n}-t_{n}\right)$ offline without changing the weights in each step. However, when the concavity of the loss function (existence of global optimum) is not guaranteed and when the loss function has several local optima some of which are really slight valleys (or when it is infested with local optima) then adopting the full error $t_{n}-\boldsymbol{y}\left(\mathbf{x}_{n}\right)$ is not a good idea. This is because it will force the model to fall into the nearest local minimum and consequent updates are spent on moving out or into local minima. Bearing in mind that the data is noisy anyway, we would want to utilise the learning step for our benefit to reduce the effect of the noise and help avoid the problem of overfitting. Essentially, we replace the loss function $J^{2}$ by $J_n^2$, so after a data point becomes available, we update according to:
 
 $$
 \mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta \frac{1}{2} \nabla J_{n}^{2}
@@ -191,9 +199,9 @@ For further reading, see Sebastian Ruder's paper on <a href="https://arxiv.org/p
 
 We will refer to all of these strategies by using a normalisation vector $\overline{\boldsymbol{N}}$ that can represent any of the above strategies. To cover the per-weight learning rate adaptation methods, such as the Adagrad and Adam, we need component-wise multiplication $($ denoted as $\circ)$.  We can write $\frac{1}{\overline{\boldsymbol{N}}} \circ \mathbf{X}_{n}$ to express that we are adjusting the weights components differently, this is a crude way of describing these optimisations but promote simplicity.
 
-For linear regression we can set $η$ to relatively high value such as 0.3 to take into account a good chunk of the errors since we know that the loss function is concave. The loss function is concave since we are taking the squares of weights with no activation function (we will talk more about activation function later in numerical classification). Still, we might want to use a reduced learning rate to cancel some of the noise of the data. Recall that any data will always have some noise in it and reducing the learning rate helps in reducing the risk of model overfitting and helps in reducing the effect of the noise. This is especially relevant when we talk about data streaming where we do not want to take into account all the error of the current input so as not undo completely some previous learning. Also, this brings us to the idea of input normalisation which should be used if possible, for input coming from data streams.
+For linear regression we can set $η$ to relatively high value such as 0.3 to take into account a good chunk of the errors since we know that the loss function is convex. The loss function is convex since we are taking the squares of weights with no activation function (we will talk more about activation function later in numerical classification). Still, we might want to use a reduced learning rate to cancel some of the noise of the data. Recall that any data will always have some noise in it and reducing the learning rate helps in reducing the risk of model overfitting and helps in reducing the effect of the noise. This is especially relevant when we talk about data streaming where we do not want to take into account all the error of the current input so as not undo completely some previous learning. Also, this brings us to the idea of input normalisation which should be used if possible, for input coming from data streams.
 
-The idea of a learning step is pervasive in machine learning and can be powerful in tackling some of the overfitting issues that arise when dealing with regression. For example, we can anneal (gradually reduce) the learning step in each step or every b steps in order to hinge towards a global optimum when the loss function is not concave.
+The idea of a learning step is pervasive in machine learning and can be powerful in tackling some of the overfitting issues that arise when dealing with regression. For example, we can anneal (gradually reduce) the learning step in each step or every b steps in order to hinge towards a global optimum when the loss function is not convex.
 
 Another important reason to use SG Regression is that it is often faster to converge in practice than LS when we deal with more complex techniques and is more efficient to implement when the size of the dataset or its dimensionality is intractable. This is only for extremely large dataset but something worth putting in mind for future reference.
 
@@ -232,7 +240,7 @@ We can also apply SGD regression on a static dataset, we get a similar result to
                 $\mathbf{x}_{n}=\left[1, \mathbf{x}_{n}^{\top}\right]^{\top}$
                 <span class="algorithm-line-comment"># *add a dummy attribute for each $\mathbf{x}_{n}$*</span>
 
-                $\mathbf{w}=\mathbf{w}+\eta \boldsymbol{x}_{n}\left(t_{n}-\boldsymbol{w}^{\top} \boldsymbol{x}_{n}\right)$
+                $\mathbf{w}=\mathbf{w}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)$
                 <span class="algorithm-line-comment"># *commit the changes in every step*</span>
 
         Return the final solution $\mathbf{w}$.
@@ -258,9 +266,9 @@ Mini-batch SGD algorithm can be used to reach a compromise between sequential an
     Labels set: $\mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}$ each $t_{n}$ is a scalar
     <span class="algorithm-line-comment"># *Training set*</span>
 
-    $\eta:$ the learning rate
+    $\eta:$ learning rate
 
-    $b$: The mini-batch size (specifies how frequently we want to update the weights $\mathbf{w}$ ).
+    $b$: mini-batch size (specifies how frequently we want to update the weights $\mathbf{w}$ ).
 
     $epcs$: Number of epochs
 
@@ -327,7 +335,7 @@ The above algorithm is a vanilla algorithm of an SGD mini-batch that can be sped
   <img src="../images/DS_IMG213.png" alt="A formula showing a set of q mini-batches." />
 </figure>
 
-Where $X_τ τ=1:q$ is a matrix of size $b×D$ and $t_τ τ=1:q$ is a vector of size $b×1$. We refer to both as a mini-batch of size $b$.
+Where $\mathbf{X}_{\tau}$ is a matrix of size $b \times D$ and $\mathbf{t}_{\tau}$ is a vector of size $b \times 1$. The subscript $\tau$ represents the iteration where we have $\tau=1: q (q$ is how many batches we want to deal with in our dataset $)$. We refer to both as a mini-batch of size $b$.
 
 So, now we sweep through all the mini-batches one after the other in each iteration to cover the whole training set, we call this an epoch. After each epoch we need to shuffle the dataset (or equivalently shuffle the membership assignment in the mini-batches which is what we always do in the implementation). Note that our weights estimation are expected to improve from one batch to another. Moreover, the weights error (cost function) is expected to improve from one epoch to another since we employ normally a learning rate<1. This strategy guarantees stability and efficiency at the same time. We will refer to this strategy as shuffling and partitioning strategy. Note that in this strategy each data point must appear once in one of the min-batches in each epoch.
 
@@ -394,3 +402,8 @@ For further reading, see Prateek et al's paper on <a href="https://www.jmlr.org/
 The above algorithm can be easily adapted when we are dealing with a data stream, all what we need to do is to accumulate $\mathbf{X}_{\tau}$ as the data arrives until it is of the required size $b$, and we can even vary the size $b$ itself between different iterations, these have not been shown to keep the algorithm simple and to concentrate on a basics of the vectorised minim-batch is left to you as an exercise. Note that, when $b=N$ the algorithm goes back to a vectorised batch stochastic gradient descent which can be applied when the dataset size permits, the resultant weights are still an approximation even if it might be very close to the optimum solution $\mathbf{w}^{*}$.
 
 To summarise, we emphasise here, contrary to what one might expect, stochastic and mini-batch stochastic gradient descent converge faster that batch gradient descent in practice. This is due to several reasons. One reason is that both stochastic gradient algorithms infuse noise in the update which is quite useful to escape local minima. Another reason is that by nature stochastic algorithms are faster to execute and they execute several updates per clock time in comparison with batch gradient which keeps accumulating the gradients on the side until it sweeps through the whole training set. Assuming that the training set is finite but large, then the roughness of stochastic updates outperforms the more exactness of batch gradient. A third reason is that all gradient descents, even the batch one, do not point exactly to the global minimum instead they roughly point to a direction that will lead us to the minimum. Therefore, it does not make sense to spend a lot of computational power (as in the batch GD) to try to improve the gradient by considering more and more points until we consume the whole training set. Because even then the gradient is not quite right opposite to the direction of the minimum for complex loss function. Although linear regression loss function is quadratic and has a global minimum, nevertheless these issues can still be seen and you can examine them in the next exercise.
+
+Please watch the following video on stochastic and mini-batch gradient descent for linear regression.
+
+<iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/d177170e4a6749ada566b45031a94e601d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>

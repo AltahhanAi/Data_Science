@@ -132,7 +132,7 @@ Where $f$ is called the activation function that helps map the linear model into
 It is important to note that we need to use a function $f$ to map the values $\mathbf{w}^{\top} \mathbf{x}$ into some sort of decision that is related to the label. In our previous examples we used the sign of the product to decide. This is called the steps activation function and it is shown in figure 2.8 below.
 
 <figure role="group">
-  <img src="../images/DS_IMG134.png" alt="Graph showing step activation function." />
+  <img src="../images/DS_IMG135.png" alt="Graph showing step activation function." />
   <figcaption><strong>Figure 2.8.</strong> Step activation function with {1,-1} signals.</figcaption>
 </figure>
 
@@ -143,7 +143,7 @@ Note that for the activation function, we have $\mathbf{w}^{\top} \mathbf{x}$ on
 Function $f$ is called an activation function because it activates, or issues a signal, whether the data point $\left(x_{1}, x_{2}\right)$ belongs to class $+1$ or $-1$. Other activation functions are possible. For example, if we prefer to use $\{0,1\}$ labels we can use a different step activation function as follows in fig 2.9:
 
 <figure role="group">
-  <img src="../images/DS_IMG135.png" alt="Graph showing step activation function with {0, 1} signals." />
+  <img src="../images/DS_IMG221.png" alt="Graph showing step activation function with {0, 1} signals." />
   <figcaption><strong>Figure 2.9.</strong> Step activation function with {0,1} signals.</figcaption>
 </figure>
 

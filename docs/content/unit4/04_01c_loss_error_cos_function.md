@@ -22,7 +22,7 @@ $$
 |J|=\left|t_{1}-y_{1}\right|+\left|t_{2}-y_{2}\right|+\left|t_{3}-y_{3}\right|
 $$
 
-One important issue that we will face with such loss function is that it is not differentiable at 0, making dealing with the derivatives for optimisation not straightforward. A better candidate in that sense is the squared error, giving rise to the sum of squared errors (SSE) loss function that takes the form:
+One important issue that we will face with such loss function is that it is not differentiable at 0, making dealing with the derivatives for optimisation not straightforward. A better candidate in that sense is the squared error, giving rise to the sum of squared errors $\left(S S E=\sum_{n=1}^{N} J_{n}^{2}\right)$ loss function that takes the form:
 
 $$
 J^{2}=\sum_{n=1}^{N} J_{n}^{2} \mid
@@ -40,13 +40,13 @@ Note that the 2 on top of $J$ is to indicate that we are summing over the square
 
 SSE has pros and cons. Its pros are its ease of derivation and positivity. One of its cons is that it exaggerates the residuals, so if a residual is $-3$, then its squared $(-3)^2$ becomes 9. Nevertheless, SSE is widely used, and its advantages outweigh its disadvantages for many problems. Before we settle on it, we need to make two tweaks to make later developments easy to express.
 
-As we know finding the minimum for $y^2$ is the same as finding the minimum for $\frac{1}{2} y^{2}$ but the latter leads to a simpler derivative: $\frac{d}{d y}\left(\frac{1}{2} y^{2}\right)=y$, while $\frac{d}{d y}\left(y^{2}\right)=2 y$. Hence, we can use the following loss function (SSE) that simplifies taking derivatives:
+As we know finding the minimum for $y^2$ is the same as finding the minimum for $\frac{1}{2} y^{2}$ but the latter leads to a simpler derivative: $\frac{d}{d y}\left(\frac{1}{2} y^{2}\right)=y$, while $\frac{d}{d y}\left(y^{2}\right)=2 y$. Hence, we can use the following loss function (based on SSE) that simplifies taking derivatives:
 
 $$
 J^{2}=\frac{1}{2} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}
 $$
 
-Furthermore, we can take the average of the sum of squares to obtain the mean squared error (MSE) as a loss function:
+Furthermore, we can take the mean of squares to obtain the mean squared error (based on MSE$=\frac{1}{N} \sum_{n=1}^{N} J_{n}^{2}$) as a loss function:
 
 $$
 \overline{J^{2}}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}
@@ -90,7 +90,7 @@ $$
 Where $‖.‖^2$ is the norm of a vector = sum of the squared of all of its components and $\mathbf{X}$ and $\mathbf{t}$ are the design matrix and target vector that were defined in the previous section.
 
 !!! example "Generalising SSE to Minkowski Loss"
-    You might wonder why we do not use a smaller exponent $1<a<2$ for $y^a$ instead of $y^2$? Although this might seem reasonable, since for example $3^1.01≈3$ and taking the derivative for $y^a$ is straightforward. However, this has two issues. The first is related to positive residuals, which the derivation underestimates. For example, $\frac{d}{d y}\left(y^{1.1}\right)=1.1 y^{0.1}=1.1 y^{\frac{1}{10}}=1.1 \sqrt[10]{y}$, and if y=30 then its derivative is $≈1.546$. The second and more serious issue is that real powers for negative residuals are not defined Real value exponents for a negative base are not defined, try $(-3)^1.01$ on the calculator. In fact, even for fractional exponent it might still not be defined if the denominator is even: try to calculate $(-3)^(2/3)$ and $(-3)^(2/4)$.
+    You might wonder why we do not use a smaller exponent $1<a<2$ for $y^a$ instead of $y^2$? Although this might seem reasonable, since for example $3^{1.01} \approx 3$ and taking the derivative for $y^a$ is straightforward. However, this has two issues. The first is related to positive residuals, which the derivation underestimates. For example, $\frac{d}{d y}\left(y^{1.1}\right)=1.1 y^{0.1}=1.1 y^{\frac{1}{10}}=1.1 \sqrt[10]{y}$, and if y=30 then its derivative is $≈1.546$. The second and more serious issue is that real powers for negative residuals are not defined Real value exponents for a negative base are not defined, try $(-3)^{1.01}$ on the calculator. In fact, even for fractional exponent it might still not be defined if the denominator is even: try to calculate $(-3)^(2/3)$ and $(-3)^(2/4)$.
 
     Note that $(-3)^{\frac{2}{4}}=\sqrt[2]{-3}$ is not defined in the real number set $R$. Also, note that although we can write $(-3)^{\frac{2}{4}}=\sqrt[4]{(-3)^{2}} \approx 1.732$, for such operation to be well defined we should have $∜((-3)^2 )$  to be equal to $(∜(-3))^2$ unfortunately, the latter is not defined (in $R$).
 
@@ -157,6 +157,12 @@ Further, we decay the learning rate between one epoch and the other because afte
 
 The above approaches can be applied on any numerical machine learning technique that is based on optimising a loss function and not only for linear regression. In fact, unless the dataset is really large, it is excessive to utilise a mini-batch approach for linear regression since the model is too simple and the parameters are linear in the dimensionality of the dataset under consideration.
 
+Watch the following video on loss function optimisation.
+
+<iframe title="Loss function for regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/c7276df61b9747e68686cb645a9e9ad41d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
+
 ##Batch Learning: The Least Squares for Linear Regression Models
 
 In this section we will **minimise** the mean sum of **squares** by solving the gradient equation directly. This is called the least squares and is a well-known basic method for regression. Understanding it will pave the way to understanding the basic ideas of learning in machine learning. We take the derivative of our loss function and set it to 0 to obtain the best setting that makes our loss minimal. We can either start from the non-vectorised or the vectorised from of the cost function. It is easier to use the latter for the least squares while it is easier to use the former for gradient methods.
@@ -222,9 +228,13 @@ Below we show the Least Squares algorithm for regression, which returns the opti
 
         Return $\mathbf{w}*$
 
+Please watch the following video on the least squares.
+
+<iframe title="Linear regression models" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/f8cdb572ba67421d986e2b8ab9f2e07f1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
 ###Complexity of the Least Squares
 
-We refer to the computational costs (of how many primitive operations a process costs) time complexity. Space complexity focuses on how much memory (computational space) a process needs. Here we are mainly talking about time complexity. For example, the complexity of multiplying a vector of size $N$ with a row of size $D$ costs $N×D$ since a processor has to perform $N×D$ multiplication operations. Estimating the time using number of operations provides a better reference in terms of time than actual time in seconds or milliseconds since machines varies greatly in processing power. We largely study operations in terms of main operations and we refer to this using the big O notation which ignores the small pieces of the calculations and concentrate on the dominant operations that takes the longest. We refer to the vector to vector complexity as $\mathcal{O}(N \times D)$. For a matrix of size $D×D$ and a vector of size N the multiplication operation costs $\mathcal{O}(D \times N)$.
+We refer to the computational costs (of how many primitive operations a process costs) time complexity. Space complexity focuses on how much memory (computational space) a process needs. Here we are mainly talking about time complexity. For example, the complexity of multiplying a vector of size $N$ with a row of size $N$ costs $N×N$ since a processor has to perform $N×N$ multiplication operations. Estimating the time using number of operations provides a better reference in terms of time than actual time in seconds or milliseconds since machines varies greatly in processing power. We largely study a set of operations costs in terms of the more costly operations and we refer to this using the big $\mathcal{O}$ notation which ignores the small pieces of the calculations and concentrate on the dominant operations that takes the longest. For example if an operation costs $2 N^{2}+N$ then its big $\mathcal{O}$ is $\mathcal{O}\left(N^{2}\right)$. We refer to the vector to vector complexity as $\mathcal{O}\left(D^{2}\right)$. For a matrix of size $N×D$ and a vector of size N the multiplication operation costs $\mathcal{O}\left(D^{2} \times N\right)$.
 
 We refer to the size of the extended input space, that comprise the original input space along the side with the dummy input $x_0=1$ as $\bar{D}=D+1$. The matrix $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ is the inverse of the matrix $\mathbf{X}^{\top} \mathbf{X}$ both of which is of size $\bar{D} \times \bar{D}$. Nevertheless, we will suffice by studying the complexity using $D$ since the difference is minor and to promote simplicity.
 
@@ -239,28 +249,32 @@ Both of them gives the same results but the first is more efficient than the sec
 
 **The distinguished cost of the first method is:**
 
-  * calculating $\mathbf{X}^{\top} \mathbf{t}$  costs $\mathcal{O}(D \times N)$ and results in a vector $z$ of size $D$
+  * calculating $\mathbf{X}^{\top} \mathbf{t}$  costs $\mathcal{O}(D \times N)$ and results in a vector $\boldsymbol{Z}$ of size $D$
 
   * multiplying $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ by $\mathbf{X}^{\top} \mathbf{t}$ costs $\mathcal{O}\left(D^{2}\right)$ and results in a vector of size $D$
 
   * total complexity is  $\mathcal{O}\left(D^{2}\right)+\mathcal{O}(D \times N)$
 
+  * **If $N>D$ then the results $\mathcal{O}(D \times N)$**
+
 **The distinguished cost of the second method is:**
 
-  * calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ costs $\mathcal{O}\left(D^{3}\right)$ results in D×N matrix
+  * calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ costs $O\left(D^{2} \times N\right)$ results in $D×N$ matrix
 
-  * multiplying the results by vector $t$ costs $\mathcal{O}(D \times N)$ and results in a vector of size $D$
+  * multiplying the results by vector $\mathbf{t}$ costs $\mathcal{O}(D \times N)$ and results in a vector of size $D$
 
-  * total complexity is $\mathcal{O}\left(D^{3}\right)+\mathcal{O}(D \times N)$
+  * total complexity is $\mathcal{O}\left(D^{2} \times N\right)+\mathcal{O}(D \times N)$
+
+  * **If $N>D$ then the results $\mathcal{O}\left(D^{2} \times N\right)$**
 
 Hence, the first method is preferred over the second method.
 
-However, the effect can be minor in comparison to the more costly calculation of $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$.
+In comparison to the cost of calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ is as follows:
 
-  * calculating $\mathbf{X}^{\top} \mathbf{X}$ costs $\mathcal{O}\left(N^{3}\right)$ and results in a matrix of size $D×D$
+  * $\mathbf{X}^{\top} \mathbf{X}$ costs $\mathcal{O}\left(D^{2} \times N\right)$ and results in a matrix of size $D×D$
 
-  * calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ costs $O\left(D^{3}\right)$ and results in a matrix $\mathbf{F}$ of size $D×D$
+  * $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ costs $O\left(D^{3}\right)$ and results in a matrix $\mathbf{F}$ of size $D×D$
 
-  * total cost is $\mathcal{O}\left(N^{3}\right)+\mathcal{O}\left(D^{3}\right)$
+  * total cost is $\mathcal{O}\left(D^{2} \times N\right)+\mathcal{O}\left(D^{3}\right)$ and if we have that $N>D$ then the final complexity is $\mathcal{O}\left(D^{2} \times N\right)$
 
-This is more costly because often we have that $N>D$ (the number of attributes less than the number of data points). So assuming that $N>D$ then the total cost of both methods is $\mathcal{O}\left(N^{3}\right)$ and if $D≪N$ ($D$ is far less than $D$) then in this case the differences between both methods would be negligible. Nevertheless, it is a better practice to add the brackets to enforce some time saving whenever possible. In practice, you will normally use a solver to perform the lease squares. It is even available in Excel.
+So if we put all the operations together then the least squares costs $\mathcal{O}\left(D^{2} \times N\right)$ which appears to cancel out the gain due to first method.  Nevertheless, it is a better practice to add the brackets to enforce some time saving whenever possible. In practice, you will normally use a solver to perform the lease squares. It is even available in Excel.
