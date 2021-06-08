@@ -126,7 +126,7 @@ $$
 p(t \mid x, \mathbf{X}, \mathbf{t}, \beta)=\int p(t \mid x, \mathbf{w}, \beta) p(\mathbf{w} \mid \mathbf{X}, \mathbf{t}, \beta) \mathrm{d} \boldsymbol{w}
 $$
 
-Previously, we showed how come up with $w$ that maximise the likelihood. Now, we want to calculate the probability $p(t \mid x, \mathbf{X}, \mathbf{t})$ to account for a full Bayesian treatment for a linear model. Note that from previous treatment we already assume that $p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid \mathbf{w}^{* \top} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right), \beta^{-1}\right)$ (note that this is different than but related to the likelihood $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ that we maximised in the previous section) therefore, according to Bayes theorem:
+Previously, we showed how come up with $\mathbf{w}$ that maximise the likelihood. Now, we want to calculate the probability $p(t \mid x, \mathbf{X}, \mathbf{t})$ to account for a full Bayesian treatment for a linear model. Note that from previous treatment we already assume that $p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid \mathbf{w}^{* \top} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right), \beta^{-1}\right)$ (note that this is different than but related to the likelihood $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ that we maximised in the previous section) therefore, according to Bayes theorem:
 
 $$
 p(\boldsymbol{w} \mid \mathbf{X}, \mathbf{t}, \beta) \propto p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta) p(\mathbf{w} \mid \alpha)

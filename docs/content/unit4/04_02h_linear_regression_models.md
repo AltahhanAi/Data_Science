@@ -4,7 +4,7 @@
 
 **Similar to what we have done before, there is a regularised version of the minim-batch stochastic gradient descent that we show below.**
 
-The regularised loss function (33) for one-output regression problem can be written as:
+The regularised loss function for one-output regression problem can be written as:
 
 $\overline{J^{2}}(\mathbf{w})=\frac{1}{2 N}\left(\|\mathbf{t}-\mathbf{\Phi} \mathbf{w}\|^{2}+\lambda\|\mathbf{w}\|^{2}\right)$
 
@@ -34,7 +34,7 @@ $$
 \mathbf{w}^{(\tau+1)}=\left(1-\frac{1}{N} \eta \lambda\right) \mathbf{w}^{(\tau)}+\eta \frac{1}{N} \boldsymbol{\phi}_{n}\left(t_{n}-\mathbf{w}^{(\tau)^{\top}} \boldsymbol{\phi}_{n}\right)
 $$
 
-The resultant algorithm is similar to Algorithm 4’ and is not shown for brevity. New results on the regularisation can be found in both this paper by Smith et al <a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank">On the origin of implicit regularization in stochastic gradient descent</a> and this paper by Wei Xu <a href="https://arxiv.org/pdf/2101.12176.pdf" target="_blank">Towards optimal one pass large scale learning with averaged stochastic gradient descent</a>.
+The resultant algorithm is similar to Algorithm 4’ and is not shown for brevity. New results on the regularisation can be found in both this paper by Smith et al <a href="https://iclr.cc/virtual/2021/poster/3157" target="_blank">On the origin of implicit regularization in stochastic gradient descent</a> and this paper by Bottou <a href="https://link.springer.com/chapter/10.1007/978-3-7908-2604-3_16 " target="_blank">Large scale machine learning with stochastic gradient descent</a>.
 
 ##General Case: Linear Models with Multiple Outputs and Fixed Basis
 
@@ -75,7 +75,7 @@ $$
 \overline{J^{2}}(\mathbf{W})=\frac{1}{2 N} \sum_{n=1}^{N}\left\|\boldsymbol{t}_{n}-\mathbf{W}^{\top} \boldsymbol{\phi}_{n}\right\|^{2}
 $$
 
-Note here that we are using the norm $‖.‖^2$ since we have a vector of target values. Each operation $\boldsymbol{t}_{n}-\mathbf{W}^{\top} \boldsymbol{\phi}_{n}$ produce a vector of errors of size $K$ that corresponds to $K$ different outputs. We take the gradient as usual and set it to 0:
+Note here that we are using the norm $‖.‖^2$ since we have a vector of target values. Each operation $\boldsymbol{t}_{n}-\mathbf{W}^{\top} \boldsymbol{\phi}_{n}$ produces a vector of errors of size $K$ that corresponds to $K$ different outputs. We take the gradient as usual and set it to 0:
 
 $$
 \nabla \overline{J^{2}}(\mathbf{W})=-\frac{2}{2 N} \sum_{n=1}^{N} \boldsymbol{\phi}_{n}\left(\boldsymbol{t}_{n}-\mathbf{W}^{\top} \boldsymbol{\phi}_{n}\right)^{\top}=0

@@ -195,3 +195,10 @@ $$
 $$
 
 This operation will produce a vector of size $N$ each component of it is $t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}$.
+
+Watch the following video on the concepts of regression.
+
+<iframe title="Linear and non-Linear Models for Regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6ee2751f70b34d45a999cda703bb41fe1d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
+Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18870118_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.

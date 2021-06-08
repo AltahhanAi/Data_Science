@@ -126,3 +126,5 @@ There is an extra complexity associated with propagating the error back into pre
 ##Summary
 
 In this section we have covered the basics of neural networks and we took the liberty to simplify its coverage. You will study this topic extensively in machine learning and deep learning. An important aspect of neural networks is that they allow us to represent the arbitrary relationship between input and output, linear and non-linear. Therefore, they are called universal approximator. In the next unit we will take advantage of the knowledge that you gained in dealing with regression to extend it to numerical classification.
+
+Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18870118_4" target="_blank"> slides (ppt)</a> for a summary of what we covered in this unit.
