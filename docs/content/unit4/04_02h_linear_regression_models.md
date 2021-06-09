@@ -34,11 +34,11 @@ $$
 \mathbf{w}^{(\tau+1)}=\left(1-\frac{1}{N} \eta \lambda\right) \mathbf{w}^{(\tau)}+\eta \frac{1}{N} \boldsymbol{\phi}_{n}\left(t_{n}-\mathbf{w}^{(\tau)^{\top}} \boldsymbol{\phi}_{n}\right)
 $$
 
-The resultant algorithm is similar to Algorithm 4’ and is not shown for brevity. New results on the regularisation can be found in both this paper by Smith et al <a href="https://iclr.cc/virtual/2021/poster/3157" target="_blank">On the origin of implicit regularization in stochastic gradient descent</a> and this paper by Bottou <a href="https://link.springer.com/chapter/10.1007/978-3-7908-2604-3_16 " target="_blank">Large scale machine learning with stochastic gradient descent</a>.
+The resultant algorithm is similar to Algorithm 4’ and is not shown for brevity. New results on the regularisation can be found in this paper by Smith et al <a href="https://iclr.cc/virtual/2021/poster/3157" target="_blank">On the origin of implicit regularization in stochastic gradient descent</a>.
 
 ##General Case: Linear Models with Multiple Outputs and Fixed Basis
 
-In this section we will extend the ideas of a one output linear regression model that we have dealt with so far into a multi-output linear regression model. When we have multiple output for each input, i.e. each output is a vector of $K$ values: $\boldsymbol{t}_{n}=\left[t_{n, 1}, t_{n, 2}, \ldots, t_{n, K}\right]$. The linear model with multiple output can be expressed as:
+In this section we extend the ideas of a one output linear regression model that we have dealt with so far into a multi-output linear regression model. When we have multiple output for each input, i.e. each output is a vector of $K$ values: $\boldsymbol{t}_{n}=\left[t_{n, 1}, t_{n, 2}, \ldots, t_{n, K}\right]$. The linear model with multiple output can be expressed as:
 
 $$
 \boldsymbol{y}(\mathbf{x}, \mathbf{W})=\mathbf{W}^{\top} \boldsymbol{\phi}(\mathbf{x})

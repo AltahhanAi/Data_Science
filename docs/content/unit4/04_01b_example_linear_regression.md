@@ -102,7 +102,7 @@ where $\sum_{i=1}^{D} w_{i} x_i$ is a simple multiplication of each $x_i$ with $
 
 ##Vector Matrix Representation with Dummy Component
 
-It is often convenient to express machine learning tasks such as linear regression in terms of vectors and matrices. This is due to two main reasons. The first, we can apply linear algebra concepts and methods which is widely studied and available in all branches of science. Second, vectorised forms are often far more efficient to implement on a computer using scientific computing languages and packages (including Python numpy, MATLAB and FORTRAN) instead of using loops. So, in any implementation task that you do in machine learning you should strive to make your solution depend on vectors and matrices instead of loops whenever possible. The process of changing from loops to vectors and matrices operations is called vectorisation.
+It is often convenient to express machine learning tasks such as linear regression in terms of vectors and matrices. This is due to two main reasons. The first, we can apply linear algebra concepts and methods which is widely studied and available in all branches of science. Second, vectorised forms are often far more efficient to implement on a computer using scientific computing languages and packages (including Python numpy, MATLAB and FORTRAN) instead of using loops. So, in any implementation task that you do in machine learning you should strive to make your solution depends on vectors and matrices instead of loops whenever possible. The process of changing from loops to vectors and matrices operations is called vectorisation.
 
 Looking at the above linear model expressions, we can easily identify that they can be changed into:
 
@@ -201,4 +201,4 @@ Watch the following video on the concepts of regression.
 <iframe title="Linear and non-Linear Models for Regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6ee2751f70b34d45a999cda703bb41fe1d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
-Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18870118_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
+Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
