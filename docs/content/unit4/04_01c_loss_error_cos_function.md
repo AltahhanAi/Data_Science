@@ -46,7 +46,7 @@ $$
 J^{2}=\frac{1}{2} \sum_{n=1}^{N}\left(t_{n}-y\left(\mathbf{x}_{n}, \mathbf{w}\right)\right)^{2}
 $$
 
-Furthermore, we can take the mean of squares to obtain the mean squared error (based on MSE$=\frac{1}{N} \sum_{n=1}^{N} J_{n}^{2}$) as a loss function:
+Furthermore, we can take the Mean of Squared Errors ($MSE=\frac{1}{N} \sum_{n=1}^{N} J_{n}^{2}$) to obtain the following loss function:
 
 $$
 \overline{J^{2}}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}
@@ -90,7 +90,7 @@ $$
 Where $‖.‖^2$ is the norm of a vector = sum of the squared of all of its components and $\mathbf{X}$ and $\mathbf{t}$ are the design matrix and target vector that were defined in the previous section.
 
 !!! example "Generalising SSE to Minkowski Loss"
-    You might wonder why we do not use a smaller exponent $1<a<2$ for $y^a$ instead of $y^2$? Although this might seem reasonable, since for example $3^{1.01} \approx 3$ and taking the derivative for $y^a$ is straightforward. However, this has two issues. The first is related to positive residuals, which the derivation underestimates. For example, $\frac{d}{d y}\left(y^{1.1}\right)=1.1 y^{0.1}=1.1 y^{\frac{1}{10}}=1.1 \sqrt[10]{y}$, and if y=30 then its derivative is $≈1.546$. The second and more serious issue is that real powers for negative residuals are not defined Real value exponents for a negative base are not defined, try $(-3)^{1.01}$ on the calculator. In fact, even for fractional exponent it might still not be defined if the denominator is even: try to calculate $(-3)^(2/3)$ and $(-3)^(2/4)$.
+    You might wonder why we do not use a smaller exponent $1<a<2$ for $y^a$ instead of $y^2$? Although this might seem reasonable, since for example $3^{1.01} \approx 3$ and taking the derivative for $y^a$ is straightforward. However, this has two issues. The first is related to positive residuals, which the derivation underestimates. For example, $\frac{d}{d y}\left(y^{1.1}\right)=1.1 y^{0.1}=1.1 y^{\frac{1}{10}}=1.1 \sqrt[10]{y}$, and if y=30 then its derivative is $≈1.546$. The second and more serious issue is that real powers for negative residuals are not defined, try $(-3)^{1.01}$ on the calculator. In fact, even for fractional exponent it might still not be defined if the denominator is even: try to calculate $(-3)^(2/3)$ and $(-3)^(2/4)$.
 
     Note that $(-3)^{\frac{2}{4}}=\sqrt[2]{-3}$ is not defined in the real number set $R$. Also, note that although we can write $(-3)^{\frac{2}{4}}=\sqrt[4]{(-3)^{2}} \approx 1.732$, for such operation to be well defined we should have $∜((-3)^2 )$  to be equal to $(∜(-3))^2$ unfortunately, the latter is not defined (in $R$).
 
@@ -162,6 +162,8 @@ Watch the following video on loss function optimisation.
 <iframe title="Loss function for regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/c7276df61b9747e68686cb645a9e9ad41d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
+Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
+
 
 ##Batch Learning: The Least Squares for Linear Regression Models
 
@@ -199,7 +201,7 @@ $$
 \mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}\left(\mathbf{X}^{\top} \mathbf{t}\right)
 $$
 
-We have surrounded the operation $\left(\mathbf{X}^{\top} \mathbf{t}\right)$ with brackets to impose its precedence. This is because calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ and then multiplying the result by $\mathbf{X}^{\top} \mathbf{t}$ is computationally cheaper than calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ and then multiplying is by vector $\mathbf{t}$. We talk more about this in the next section.
+We have surrounded the operation $\left(\mathbf{X}^{\top} \mathbf{t}\right)$ with brackets to impose its precedence. This is because calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ and then multiplying the result by $\mathbf{X}^{\top} \mathbf{t}$ is computationally cheaper than calculating $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top}$ and then multiplying it by vector $\mathbf{t}$. We talk more about this in the next section.
 
 The above gives us a closed form solution for $\mathbf{W}^{*}$. Closed form solutions are not always available for a machine learning or data mining task. Their existence facilitates more analysis and insights into the problem. Some problems might not have a closed form solution formula; however we can still estimate the solutions numerically. Sometimes also closed form solutions can be impractical for big datasets due to their high computational demands. An example is $\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}$ the inverse of the matrix $\left(\mathbf{X}^{\top} \mathbf{X}\right)$. As we already know finding the inverse of a matrix is an expensive operation and its complexity is $\mathcal{O}\left(D^{3}\right)$ and can be reduced to $\mathcal{O}\left(D^{2.376}\right)$ which can be expensive for a very large $D$ (to be prices it is $\mathcal{O}\left(\bar{D}^{3}\right)$) where $\bar{D}=D+1$.
 
@@ -231,6 +233,8 @@ Below we show the Least Squares algorithm for regression, which returns the opti
 Please watch the following video on the least squares.
 
 <iframe title="Linear regression models" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/f8cdb572ba67421d986e2b8ab9f2e07f1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
 
 ###Complexity of the Least Squares
 

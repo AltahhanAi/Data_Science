@@ -167,7 +167,7 @@ Note that we did not have an algorithm for the least squares because we cannot d
 
 See Angela Meyer's paper for an idea why we might want to use multi-output models even if our target is a single value:  <a href="https://arxiv.org/ftp/arxiv/papers/2012/2012.03074.pdf" target="_blank">Multi-target normal behaviour models for wind farm condition monitoring</a>.
 
-Note that arXiv papers might not be peer-reviewed, so we need to be mindful not to take the finding for granted (even with peer-reviewed papers we might occasionally find some flaws). Researchers often publish in arXiv as a first step because it is a faster means to get feedback on their research, and often they would submit to a reputable journal later. The journal peer-review publications process takes long time, sometimes more than a couple of years. Since AI is moving extra fast, this warrants the use of arXiv but with caution.
+Note that arXiv papers are not necessarily peer-reviewed, so we need to be mindful not to take the findings for granted (even with peer-reviewed papers we might occasionally find some flaws). Researchers often publish in arXiv as a first step because it is a faster means to get feedback on their research, and often they would submit to a reputable journal later. The journal peer-review publications process takes long time, sometimes more than a couple of years. Since the AI field moves very quickly, this warrants the use of arXiv but with caution.
 
 !!! abstract "Exercise"
 
