@@ -10,91 +10,72 @@ In this section we will discuss the link between minimising a loss function and 
 
 ##Expected loss
 
-For probabilistic interpretation and settings, we often want to calculate the **expected loss** instead of simple averages to take into account the fact that some data points are more **probable** than others and we would want to minimise the loss for those even on the loss of incurring a bit of loss for less probable data points. To account for this and if we are not comparing between different dataset with different sizes, we can use the simpler sum of squared error (SSE) as our loss function and the expected loss then is given by
+From a probabilistic perspective, we often want to calculate the **expected loss** instead of simple averages to take into account the fact that some data points are more **probable** than others and we would want to minimise the loss for them accordingly. To account for this, we start, as we did in regression, by the likelihood function.
+
+We will discuss a case where we have a binary classification. Since we are dealing with binary classes the target $t_{n}$ can take either of two cases, 0 or 1 $t_{n} \in\{0,1\}$ in our dataset $\left\{\mathbf{x}_{n}, t_{n}\right\}$. And since we are using $y_{n}=p\left(C_{1} \mid \mathbf{x}_{n}\right)$ to calculate the probability that data point $\mathbf{x}_{n}$ is from the positive class $C_{1}$ i.e. $t_{n}=1$ (and inversely using $1-y_{n}$ to calculate the probability of $t_{n}$ being 0) we can express the probabilities of obtaining the same targets $t_{n}$ using our model parameters $\mathbf{w}$ as:
 
 $$
-E(J)=\frac{1}{2} \sum_{n=1}^{N}\left(y\left(\mathbf{x}_{n}\right)-t_{n}\right)^{2} p\left(\mathbf{x}_{n}, t\right)
+p\left(t_{n} \mid \mathbf{w}\right)=\left\{\begin{aligned}
+y_{n} & \text { if } t_{n}=1 \\
+1-y_{n} & \text { if } t_{n}=0
+\end{aligned}\right.
 $$
 
-This is for the discrete cases where we have N data points that are of concern. However, there is a more powerful way of coming up with a general function for the loss: that we calculate its expectation regardless of the data points that we have, and then we minimise it and then take the $\mathrm{N}$ data points that we have as samples for this continuous loss function. In simple terms, sometimes we would want to calculate the loss for a continuous infinite number of data points in the context of a model represented as a continuous function $y(\mathbf{x})$ (of course we are still going to take samples $\mathrm{N}$ ). In this case, the loss function will be written as an integral instead of the sum:
+This is a Bernoulli distribution and we can combine the expression of both cases in one function (similar to what we did for the perceptron) as follows:
 
 $$
-E(J)=\frac{1}{2} \iint p(\mathbf{x}, t)(y(\mathbf{x})-t)^{2} \mathrm{~d} \mathbf{x} \mathrm{d} t
+p\left(t_{n} \mid \mathbf{w}\right)=\left(y_{n}\right)^{t_{n}}\left(1-y_{n}\right)^{1-t_{n}}
 $$
 
-All of the above are widely used and can be used in our treatment of training a model in general (including regression and classification).
-
-**Note:** If we assume that all the data points have the same probability, we obtain the following expected loss called mean squared error (MAE).
+The likelihood represents the probability of all the data points being classified together and is given as:
 
 $$
-E(J)=\frac{1}{N} \sum_{n=1}^{N} J_{n}
+p(\mathbf{t} \mid \mathbf{w})=\prod_{n=1}^{N} p\left(t_{n} \mid \mathbf{w}\right) \mid
 $$
 
-For the case of SSE we have
+Therefore, we have:
 
 $$
-E(J)=\frac{1}{N} \sum_{n=1}^{N}\left(y\left(\mathbf{x}_{n}\right)-t_{n}\right)^{2}
+p(\mathbf{t} \mid \mathbf{w})=\prod_{n=1}^{N}\left(y_{n}\right)^{t_{n}}\left(1-y_{n}\right)^{1-t_{n}}
 $$
 
-We can also use the root mean squared error function (RMSE) which is in fact the standard deviation of the residuals. MAE and RMSE are counterparts and among the common metrics to measure the accuracy of the prediction.
+We would need to maximise the likelihood of our model's estimation $y_{n}$ coinciding with the actual targets $t_{n}$ of the dataset. Equivalently, we can maximise logarithm of the likelihood. And in turn we can minimise the negative of the logarithm of the likelihood which will be our loss function. In other words, our loss can be written as:
 
 $$
-J=\sqrt{\frac{1}{N} \sum_{n=1}^{N}\left(y\left(\mathbf{x}_{n}\right)-t_{n}\right)^{2}}
-$$
-
-For the continuous case since the derivation cancels out one of the double integrals, we obtain:
-
-$$
-\frac{\delta E(J)}{\delta y(\mathbf{x})}=\frac{1}{2} \frac{\delta}{\delta y(\mathbf{x})}\left(\iint p(\mathbf{x}, t)(y(\mathbf{x})-t)^{2} \mathrm{~d} \mathbf{x} \mathrm{d} t\right)=\int p(\mathbf{x}, t)(y(\mathbf{x})-t) \mathrm{d} t
+J(\boldsymbol{w})=-\ln p(\boldsymbol{t} \mid \boldsymbol{w})=-\ln \prod_{n=1}^{N}\left(y_{n}\right)^{t_{n}}\left(1-y_{n}\right)^{1-t_{n}}
 $$
 
 $$
-\text { Now we set } \int p(\mathbf{x}, t)(y(\mathbf{x})-t) \mathrm{d} t=0 \text { and we solve }
+J(\boldsymbol{w})=-\sum_{n=1}^{N} t_{n} \ln y_{n}+\left(1-t_{n}\right) \ln \left(1-y_{n}\right)
 $$
 
 $$
-y(\mathbf{x}) \int p(\mathbf{x}, t) \mathrm{d} t-\int t p(\mathbf{x}, t) \mathrm{d} t=0
+J(\boldsymbol{w})=-\sum_{n=1}^{N} t_{n} \ln p\left(t_{n} \mid \mathbf{w}\right)+\left(1-t_{n}\right) \ln \left(1-p\left(t_{n} \mid \mathbf{w}\right)\right)
 $$
 
-$$
-y(\mathbf{x})=\frac{\int t p(\mathbf{x}, t) \mathrm{d} t}{p(\mathbf{x})}=\frac{p(\mathbf{x}) \int t p(t \mid \mathbf{x}) \mathrm{d} t}{p(\mathbf{x})}
-$$
-
-$$
-y(\mathbf{x})=E_{t}(t \mid \mathbf{x})
-$$
-
-This above result: $y(\mathbf{x})=E_{t}(t \mid \mathbf{x})$ is fundamental and is telling us that the best estimation $y(\mathbf{x})$ for $t$ is given as
-the conditional expectation of $t$ given $\mathbf{X} .$ So from now on we need mainly to concern ourselves with this probability $p(t \mid \mathbf{x})$ as it holds the key for training our model.
+As we can see this is the cross entropy that we used as our loss function in the logistic regression setting. Similarly, for the case of multi-class the loss function for the multinomial logistic regression can be motivated via the negative log of the likelihood.
 
 ##Generative, discriminative and non-probabilistic approaches
 
-For classification problems, the above solution: $y(\mathbf{x})=E_{t}(t \mid \mathbf{x})$, suggests that we can approach the learning problem (model training) in either of the following ways (Bishop 2006):
+The above solution suggests that we can approach the learning problem (model training) in either of the following ways:
 
 ###Approach 1:
 
-1. Solve the inference problem of determining the joint density $p(\mathbf{x}, t)$
-2. Normalise it to obtain $p(t \mid \mathbf{x})$
-3. Marginalise (i.e. calculate $\left.\int t p(t \mid \mathbf{x}) \mathrm{d} t\right)$ to obtain $E_{t}(t \mid \mathbf{x})$ that is the solution for the optimisation problem
+1. Solve the inference problem by first estimating the joint density $p(\mathbf{x}, t)$, then normalise it to obtain $p(t \mid \mathbf{x})$
+3. Marginalise (i.e. calculate $\sum_{n=1}^{N} t_{n} p\left(t_{n} \mid \mathbf{x}_{n}\right)$ for regression or $\sum_{n=1}^{N} t_{n} \ln p\left(t_{n} \mid \mathbf{x}_{n}\right)$ for classification) to obtain the solution for the optimisation problem.
 
-In a classification context we call models that depend on a similar approach generative models because the model that uses it can generate pairs $(\mathbf{x}, t)$ of synthetics data as per the joint density $p(\mathbf{x}, t)$.
+In a classification context we call models that depend on a similar approach **generative** models because the model that uses it can **generate** pairs $(\mathbf{x}, t)$ of synthetics data as per the joint density $p(\mathbf{x}, t)$.
 
 ###Approach 2:
 
-1. Solve the inference problem of determining the joint density $p(t \mid \mathbf{x})$
-2. Marginalise (i.e. calculate $\left.\int t p(t \mid \mathbf{x}) \mathrm{d} t\right)$ to obtain $E_{t}(t \mid \mathbf{x})$ that is the solution for the optimisation problem
+1. Solve the inference problem by estimating the density $p(t \mid \mathbf{x})$ directly.
+2. Marginalise (i.e. calculate $\sum_{n=1}^{N} t_{n} p\left(t_{n} \mid \mathbf{x}_{n}\right)$ for regression or $\sum_{n=1}^{N} t_{n} \ln p\left(t_{n} \mid \mathbf{x}_{n}\right)$ for classification) to obtain the solution for the optimisation problem
 
-In a classification context we call models that depend on a similar approach discriminative because the
-model that uses it can discriminate whether it is likely that $t$ is the answer to a given an observation $\mathbf{x}$ as per the conditional density $p(t \mid \mathbf{x})$. But the model cannot generate synthetic data since $p(t, \mathbf{x})$ is not available.
-
-###Approach 3: not a probabilistic
-
-1. Find the regression function directly from the data: ex. By utilising $J=\frac{1}{2} \sum_{n=1}^{N}\left(y\left(\mathbf{x}_{n}, \boldsymbol{w}\right)-\right.$ $(y(x_n,w)-t_n )^2$ or by assuming that all the data points have the same probability.
-
-In a classification context, models that depend on a similar approach are loosely referred to as discriminative.
+In a classification context we call models that depend on a similar approach **discriminative** because the
+model that uses it can **discriminate** whether it is likely that $t$ is the answer to a given an observation $\mathbf{x}$ as per the conditional density $p(t \mid \mathbf{x})$. But the model cannot generate synthetic data since $p(t, \mathbf{x})$ is not available.
 
 ##Summary
 
 In this lesson, you have seen how to motivate a classification problem from a probabilistic perspective and how to differentiate between generative and discriminative models.
 
-In this unit we have covered linear classification models and developed its ideas gradually to reach a non-linear multi-layer perceptron for classification.
+In this unit we have covered linear and non-linear classification models and developed its ideas gradually to reach a non-linear multi-layer perceptron for classification.
