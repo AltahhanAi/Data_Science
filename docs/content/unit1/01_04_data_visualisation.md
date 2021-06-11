@@ -14,14 +14,19 @@ Business intelligence relies heavily on data visualisation and understanding the
 In AI a fully automated process can be provided that takes decisions and acts per second, such as financial market bots that make a purchase decision within a second to be able to compete against other bots. The topic here is visualisation which is often employed by Business Intelligence, but it is a valuable tool for data mining and both BI and DM can work together and be part of the same overall system as different components.
 
 !!! abstract "Exercise"
-    Please see the following Jupyter notebook <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18737874_4" target="_blank">numpy tutorial</a>.
+    Please see the following Jupyter notebook numpy tutorial.
+
+     - Download exercise (.ipynb): <a href="../exercises/Exercise3_numpyTutorial.ipynb" download>Exercise 3</a>
 
 !!! abstract "Exercise"
-		Please see the following Jupyter notebook <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18737873_4" target="_blank">data sampling and generation tutorial</a>.
+    Please see the following Jupyter notebook data sampling and generation tutorial.
+
+     - Download exercise (.ipynb): <a href="../exercises/Exercise4_Data_Sampling.ipynb" download>Exercise 4</a>
 
 !!! abstract "Exercise"
-		Please see the following Jupyter notebook <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18737875_4" target="_blank">sklearn tutorial</a>. 		
+    Please see the following Jupyter notebook sklearn tutorial.
 
+     - Download exercise (.ipynb): <a href="../exercises/Exercise5_ScikitLearnTutorial.ipynb" download>Exercise 2</a>
 
 Here are some examples of how insights into data can be gained by visualisation.
 

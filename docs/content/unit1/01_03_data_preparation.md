@@ -202,11 +202,11 @@ These are standard techniques used to convert a continuous attribute which poten
 Melting and pivoting are often overlooked operations. When they are applicable, it is important that they are performed to make the shape of the data suitable for further processing. These are often part of a more elaborate operation involving data preparation along other operations such as sorting etc. Please refer to the next exercise for a full working example in Python.
 
 !!! abstract "Exercise"
-		In this exercise you will be given a dataset to prepare for further analysis.
+    In this exercise you will be given a dataset to prepare for further analysis.
 
-		The exercise covers several of the techniques mentioned in this lesson for data preparation and data wrangling. Follow the steps and execute them in order and experience the effect of the data preparation procedure on the data.
+    The exercise covers several of the techniques mentioned in this lesson for data preparation and data wrangling. Follow the steps and execute them in order and experience the effect of the data preparation procedure on the data. you can access the code in the data preparation Jupyter Notebook below.
 
-		You can access the code in the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18737871_4" target="_blank">Data preparation</a> Jupyter notebook.
+     - Download exercise (.ipynb): <a href="../exercises/Exercise2_Data Preparation in Pandas.ipynb" download>Exercise 2</a>
 
 See the following slides and video for a summary.
 
