@@ -27,7 +27,7 @@ $$
 
 So all data points that are misclassified will have a negative value,
 
-<span>3.</span> Hence the loss-like function (called the perceptron criterion) can be written be make positive by multiplying all the misclassified data points by -1 to get:
+<span>3.</span> Hence the loss-like function (called the perceptron criterion) can be made positive by multiplying all the misclassified data points by -1 to get:
 
 $$
 J(\mathbf{w})=\sum_{n \in \mathcal{M}} J_{n}=\sum_{n \in \mathcal{M}}-\mathbf{w}^{\top} \mathbf{x}_{n} t_{n}
