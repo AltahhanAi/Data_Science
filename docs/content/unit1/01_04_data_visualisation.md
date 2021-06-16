@@ -26,7 +26,7 @@ In AI a fully automated process can be provided that takes decisions and acts pe
 !!! abstract "Exercise"
     Please see the following Jupyter notebook sklearn tutorial.
 
-     - Download exercise (.ipynb): <a href="../exercises/Exercise5_ScikitLearnTutorial.ipynb" download>Exercise 2</a>
+     - Download exercise (.ipynb): <a href="../exercises/Exercise5_ScikitLearnTutorial.ipynb" download>Exercise 5</a>
 
 Here are some examples of how insights into data can be gained by visualisation.
 
