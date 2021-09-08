@@ -39,7 +39,7 @@ An example of semi-structured data is a JavaScript Object Notation (JSON) files,
 
 ###CSV files
 
-A less structured alternative to JSON is a comma-separated value (CSV) file. CSV files are comma delimited text files – a text file that has commas added between its entries to separate them. There are some tools that allows data fields to be added to a CSV file but in its original form there are no field types. These are intended to provide the least imposed structure but are intended to be dealt with like a text file; there is some structure giving the field names that are being dealt with without specifying the types of the fields. The type needs to be defined, at least whether they are numerical or non-numerical fields, when the data is processed.  
+A less structured alternative to JSON is a comma-separated value (CSV) file. CSV files are comma delimited text files – a text file that has commas added between its entries to separate them. There are some tools that allow data fields to be added to a CSV file but in its original form there are no field types. These are intended to provide the least imposed structure but are intended to be dealt with like a text file; there is some structure giving the field names that are being dealt with without specifying the types of the fields. The type needs to be defined, at least whether they are numerical or non-numerical fields, when the data is processed.  
 
 To summarise, a database:
 
@@ -73,7 +73,7 @@ A txt file:
 
 Inconsistencies and other issues arise when data is read into a specific algorithm for processing. Microsoft Excel files provide a built-in structure and ways to migrate to different formats. The result depends on the file content.  
 
-It worth mentioning here that the data can be structured either in a loose way similar to a JSON or CSV file, or strongly structured when tables are used within Excel as there are plenty of inner links to give the data a stronger structure. However, a database is still more structured and provides more capabilities if the goal is to add more integrity and structure to the data.  
+It is worth mentioning here that the data can be structured either in a loose way similar to a JSON or CSV file, or strongly structured when tables are used within Excel as there are plenty of inner links to give the data a stronger structure. However, a database is still more structured and provides more capabilities if the goal is to add more integrity and structure to the data.  
 
 One positive aspect of Excel which contributed to its popularity is that it provides simple ways to see the data along with its visualisation (via charts, graphs, etc.). Having said that, you must differentiate between providing a storage capability for your data and acting on it in terms of processing and visualisation. If visualisation is important in the application, then Tableau provides such capabilities in an excellent way. You will see some examples of data visualisation at the end of this unit.
 
@@ -126,7 +126,7 @@ In this case, the mean is 1.001 and so the bias is 1.001-1=0.001. While the prec
 
 Remember that the standard deviation is the squared root of the variance. Also, since there is a limited set of samples – not the entire population – then it is divided by N-1.
 
-Variance = [(1.015-1.001)2 + (0.990-1.001) 2 + (1.013-1.001) 2 + (1.001-1.001) 2+ (0.986-1.001) 2]/(5-1) = [0.000196 + 0.000121 + 0.000144 + 0 + 0.000225]/4 = 0.0001715 hence SD ≈ 0.13
+Variance = [(1.015-1.001)^^2^ + (0.990-1.001)^^2^ + (1.013-1.001)^^2^ + (1.001-1.001)^^2^ + (0.986-1.001)^^2^]/(5-1) = [0.000196 + 0.000121 + 0.000144 + 0 + 0.000225]/4 = 0.0001715 hence SD ≈ 0.13
 
 ##Summary
 

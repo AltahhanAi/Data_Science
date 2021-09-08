@@ -80,7 +80,7 @@ Read through the following examples of questions a data scientist might attempt 
 
 * **Environmental Science:** How is land temperature affecting ocean temperatures?
 
-      - Oceans play a crucial role in the planet's weather, in both cooling and rising temperatures and violent hurricanes. Both land and ocean temperatures affect each other in obvious and subtle ways. It is important want to know how this is happening, what factors are playing the major role and hopefully predict when one would have a drastic effect on the other. This is a very complex model that involves immense number of features and factors, so data scientists are not expected to model it all; only parts of these natural phenomena are normally addressed in a specific project (although there are some serious attempts to have a comprehensive model).
+      - Oceans play a crucial role in the planet's weather, in both cooling and rising temperatures and violent hurricanes. Both land and ocean temperatures affect each other in obvious and subtle ways. It is important to know how this is happening, what factors are playing the major role and hopefully predict when one would have a drastic effect on the other. This is a very complex model that involves an immense number of features and factors, so data scientists are not expected to model it all; only parts of these natural phenomena are normally addressed in a specific project (although there are some serious attempts to have a comprehensive model).
 
 * **Farming:** How are the monsoon rainfall ratios likely to affect this year's crops?
 
@@ -221,7 +221,7 @@ Classification is the most important and prevalent type of task a data scientist
 
 In short, the dataset or data stream has a nominal value already available and the data scientist needs to discover how to produce the correct class of a record based on the features of the object. For example:
 
-* Given a of a set of car features such as body type, top speed and engine specs, it would be possible to define the car model.  
+* Given a set of car features such as body type, top speed and engine specs, it would be possible to define the car model.  
 * From millions of images of a set of ten types of vehicles, such as trucks, sedans, SUVs, coupes and hatchbacks, it would be possible to create a data mining model that is capable of identifying the type of the vehicle in an image. The set of features in this case would come from processing the pixels of the images.  
 * From a dataset containing thousands of images of ten digits (0-9) that are handwritten by hundreds of people with different writing style, a model could be created that is capable of classifying the digits automatically. Such a system is immensely helpful in automatically distinguishing the address of a letter automatically to disperse it to the correct pile in a post office.
 
@@ -294,7 +294,7 @@ However, this simply expresses the type of task that the model is dealing with. 
 
 **Discriminative models:** Discriminative models can be categorised by addressing their intrinsic capabilities. This can distinguish between models that are capable of only discriminating between the different classes.
 
-**Generative models:** These are another type of model, capable of generating synthetic data that is likely to come with the tasks being dealt with. These are more powerful than discriminative models, but they are more difficult to build and often need more computational power. The quality of the data they generate depends on the task and the technique employed to build such models. Often, they are built by employing statistical distribution and statistical techniques, in particular Bayesian models, which depend on Bayesian Inference and Bayesian Statistics as opposite to Frequentist Statistics. Bayes Theorem will be explored further later in the unit.
+**Generative models:** These are another type of models, capable of generating synthetic data that is likely to come with the tasks being dealt with. These are more powerful than discriminative models, but they are more difficult to build and often need more computational power. The quality of the data they generate depends on the task and the technique employed to build such models. Often, they are built by employing statistical distribution and statistical techniques, in particular Bayesian models, which depend on Bayesian Inference and Bayesian Statistics as opposite to Frequentist Statistics. Bayes Theorem will be explored further later in the unit.
 
 Whether you build generative or discriminative models will depend on the context that the model will be used in. Sometimes it is completely unnecessary for the model to be able to generate the data and in this case discriminative models are sufficient to the task in hand. Sometimes you might want to combine a discriminative and generative model to train each other to get better at the task. An example of such models is the generative Adversarial Neural Networks. You will be studying such models in later modules (Machine Learning, Deep Learning and Reinforcement Learning).
 
@@ -321,7 +321,7 @@ In a set of 100 patients:
 
 * 25 have disease D1
 * 15 have D2
-* 50 has D3.
+* 60 has D3.
 
 Within this set of patients, the following number have the symptom (E1):
 

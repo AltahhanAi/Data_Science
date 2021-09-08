@@ -24,7 +24,7 @@ Figure 1 shows a schematic representation of a classification model. As it can b
 
 <figure role="group">
   <img src="../images/DS_IMG031.png" alt="Diagram showing a schematic representation of a classification model. The classification model maps an input x and an output y." />
-  <figcaption><strong>Figure 0.1</strong> A schematic illustration of classification.</figcaption>
+  <figcaption><strong>Figure 1</strong> A schematic illustration of classification.</figcaption>
 </figure>
 
 In the next few lessons we cover common classification techniques, namely we will cover decision trees. We will demonstrate important concepts alongside the techniques such as applying data preparation and performance measure.
