@@ -346,7 +346,7 @@ Figures 2.5 and 2.6 above illustrate step 2 of CART algorithm for tablet vs phon
 Based on the above step, the algorithm will reach the following form:
 
 <figure role="group">
-  <img src="../images/DS_IMG022.png" alt="Diagram of the final Step of CART algorithm tree induction (training)." />
+  <img src="../images/DS_IMG022.png" alt="Diagram of the final Step of CART algorithm tree induction (training)." />
   <figcaption><strong>Figure 2.7.</strong> Final Step of CART algorithm tree induction (training).</figcaption>
 </figure>
 
@@ -501,7 +501,7 @@ Annual income ranges £K | Annual income increment £K | Annual income category
 
 <figure role="group">
   <img src="../images/DS_IMG026.png" alt="Bar graph showing Top 10 UK actual annual income in 2018. The increments have reversed Pareto distribution." />
-  <figcaption><strong>Figure 2.11.</strong>  Top 10 UK actual annual income in 2018, the increments have reversed Pareto distribution..</figcaption>
+  <figcaption><strong>Figure 2.11.</strong>  Top 10 UK actual annual income in 2018, the increments have reversed Pareto distribution.</figcaption>
 </figure>
 
 As can be seen, the increments take a long tailed (skewed) distribution that is not a Gaussian, but more of a reversed Pareto distribution. This is not surprising as the Pareto distribution has historically been used to describe wealth in society. The 80-29 Pareto principle is related to this distribution but is precisely realised when the alpha value is 1.16. It takes the form:
@@ -566,7 +566,7 @@ Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.e
 We only show one probability on the x axis because the other is just the complement of p, i.e. 1-p. As you can see, when both probabilities of the two classes are close to 0.5 the impurity is maximal. When either is close to the 1 (the other 1-p would be close to 0) the impurity is minimised. The figure shows that the max of the Gini and misclassification error is 0.5 while the max for the entropy is 1.
 
 <figure role="group">
-  <img src="../images/DS_IMG033.png" alt="Chart comparing three different impurity measures: entropy, Gini and missclassification error." />
+  <img src="../images/DS_IMG033.png" alt="Chart comparing three different impurity measures: entropy, Gini and misclassification error." />
   <figcaption><strong>Figure 2.13.</strong>  Comparison of different impurity measures.</figcaption>
 </figure>
 
