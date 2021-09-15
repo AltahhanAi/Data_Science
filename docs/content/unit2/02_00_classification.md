@@ -20,11 +20,11 @@ In a classification scenario, we have a supervised learning problem with labels.
 
 There are numerous techniques for classification, but in this unit we will focus on a simple and widely used technique called decision trees. In later units of this module, and in later modules such Machine Learning, Deep Learning and Text Analytics, you will come across several other techniques, building on the ideas that we develop here and in later units.
 
-Figure 1 shows a schematic representation of a classification model. As it can be seen, the classification model maps an input $x$ with an output $y$. The input is a set of attributes for one record and the output is the predicted class of the record. The record can be any object or entity represented in our dataset as one record.  
+Figure 2.1 shows a schematic representation of a classification model. As it can be seen, the classification model maps an input $x$ with an output $y$. The input is a set of attributes for one record and the output is the predicted class of the record. The record can be any object or entity represented in our dataset as one record.  
 
 <figure role="group">
   <img src="../images/DS_IMG031.png" alt="Diagram showing a schematic representation of a classification model. The classification model maps an input x and an output y." />
-  <figcaption><strong>Figure 1</strong> A schematic illustration of classification.</figcaption>
+  <figcaption><strong>Figure 2.1.</strong> A schematic illustration of classification.</figcaption>
 </figure>
 
 In the next few lessons we cover common classification techniques, namely we will cover decision trees. We will demonstrate important concepts alongside the techniques such as applying data preparation and performance measure.

@@ -84,11 +84,12 @@ For example, from a set of artefacts, two features are the mass and volume. The 
 
 An example of a more involved process is a Fourier Transformation (FT). FT is used to extract or map the data into a new space. It is well known that if two time series with different frequencies and some noise are combined, a surprisingly chaotic signal would be received (which would be what is normally looked at when a real time series is dealt with). However, if FT is applied it will show exactly two time series with two different frequencies. This can be used to filter noise and to extract specific information from regarding one of the two time series.
 
-Please see Figure 2.12 of Tan et al (2019). To learn more about intuition of FT, watch this YouTube video: <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">What is the Fourier Transform? A visual introduction.</a>
+Please see Figure 1.4 below. To learn more about intuition of FT, watch this YouTube video: <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">What is the Fourier Transform? A visual introduction.</a>
 
 ![Diagram showing the application of the Fourier transform to identify the underlying frequencies in time series data.](images/DS_IMG004.png)
+**Figure 1.4.** Application of the Fourier transform to identify the underlying frequencies in time series data. Source: Tan et al, 2019, p.83, Figure 2.12.
 
-The example in this diagram shows the application of the Fourier transform to identify the underlying frequencies in time series data. For a detailed explanation of the diagrams, read example 2.11 on page 83 of <a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">‘Introduction to Data Mining’.</a>
+The example in this diagram shows the application of the Fourier transform to identify the underlying frequencies in time series data. For a detailed explanation of the diagrams, read example 2.11 on page 82 of <a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">‘Introduction to Data Mining’.</a>
 
 ###Dimensionality reduction
 
@@ -118,10 +119,10 @@ So, for example, if there is a set S={a, b, c} then its power set is P(s) = {{a}
 
 The number of items in a set is called the cardinality of the set – which seems a fancy name for such a simple concept. However this concept gets more complicated when there is an infinite set, such as the set of integer numbers or the set of rational numbers. Each of these sets has a different density and both are infinite, but both have the same cardinality. If you take the set of real numbers, it has a higher cardinality. In fact, if you take any real interval, all the real numbers inside it can be mapped! For more information on the cardinality of the continuum, read this entry from Britannica: <a href="https://www.britannica.com/science/continuum-hypothesis" target="_blank">Britannica.com: Continuum hypothesis.</a>  
 
-The diagram summarises a feature subset selection process, which is a search over all possible feature subsets.
+Figure 1.5 summarises a feature subset selection process, which is a search over all possible feature subsets.
 
 ![Flowchart of a feature subset selection process.](images/DS_IMG005.png)
-Tan, P., et.al. (2019), Introduction to Data Mining by Second Edition, Pearson
+**Figure 1.5.** Tan, P., et.al. (2019), Introduction to Data Mining by Second Edition, Pearson.
 
 As another example, Principal Component Analysis (PCA) applies the ideas of Eigen vectors of a matrix to obtain a new set of features that are more concise and better represent the problem being dealt with. Normally it is not necessarily known what physical measurements the new features represent. Rather, by using PCA it is certain that transforming to the new set of dimensions guarantees a better performance for the model.
 

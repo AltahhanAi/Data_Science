@@ -403,7 +403,7 @@ Note that the true labels are placed horizontally while the prediction is vertic
   <figcaption><strong>Figure 4.22</strong> Confusion matrix normalised. </figcaption>
 </figure>
 
-Different sources uses these two formatting as well. On the right also you can see the same confusion matrix after normalisation. We normalise by dividing each entry by the sum along the **true label axis**. Below you will see an example that clarifies this.
+Different sources use these two formats as well. In Figure 4.22 you can see the same confusion matrix after normalisation. We normalise by dividing each entry by the sum along the **true label axis**. Below you will see an example that clarifies this.
 
 <figure role="group">
   <img src="../images/DS_IMG083.png" alt="Confusion matrix, without normalisation." />

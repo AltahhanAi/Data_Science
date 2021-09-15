@@ -15,21 +15,21 @@ Data may be:
 
 * static – unchanging
 *	dynamic – changing in forms or format
-* from a data stream – a source that keeps generating or churning data, for example a sensor reading or a stream of tweets.
+* from a data stream – a source that keeps generating or churning data; for example, a sensor reading or a stream of tweets.
 
-The term data science is designed to resemble other disciplines such as computer science and earth science and reflect that it is a specific, individual field. In the figure, you can see the interdisciplinarity of data science, where a number of topics and techniques are borrowed from artificial intelligence and machine learning.
+The term data science is designed to resemble other disciplines such as computer science and earth science and reflect that it is a specific, individual field. In Figure 1.1, you can see the interdisciplinarity of data science, where a number of topics and techniques are borrowed from artificial intelligence and machine learning.
 
 ![Diagram showing the interdisciplinary links between artificial intelligence, machine learning and data science.](images/DS_IMG001.png)
-Kotu, V., and Deshpande B., (2018), Data Science Concepts and Practices, Morgan Kaufman
+**Figure 1.1.** Kotu, V., and Deshpande B., (2018), Data Science Concepts and Practices, Morgan Kaufman.
 
 ## What is data mining?
 
 **Data mining is the process of gaining insights into a data set to recognise hidden patterns, known as pattern recognition. This is done through analysis and model fitting – trying to find a model that represents the data, or the process that generates the data.**
 
-The term ‘data mining’ implies excavating a mine (the data archive) to find precious assets (patterns). These patterns are precious because they allow you to make decisions or predictions that are not directly known either from the available data or the process behind it. For example, predicting the best house price from an available set of house prices and their different descriptions. These descriptions when formulated in terms of numerical measures or categories are called the features. The diagram shows the relationship of data mining to other areas.
+The term ‘data mining’ implies excavating a mine (the data archive) to find precious assets (patterns). These patterns are precious because they allow you to make decisions or predictions that are not directly known either from the available data or the process behind it. For example, predicting the best house price from an available set of house prices and their different descriptions. These descriptions when formulated in terms of numerical measures or categories are called the features. Figure 1.2 shows the relationship of data mining to other areas.
 
 ![Diagram showing the relationship of data mining to statistics, AI, machine learning and pattern recognition.](images/DS_IMG002.png)
-Tan, P., et.al. (2019), Introduction to Data Mining Second Edition, Pearson
+**Figure 1.2.** Tan, P., et.al. (2019), Introduction to Data Mining Second Edition, Pearson.
 
 ### Data science vs data mining
 
@@ -39,17 +39,17 @@ The terms data science and data mining are sometimes used interchangeably. Howev
 
 **Below is the typical schedule of a data scientist, showing some of the tasks that might be assigned on an average day. Please do not take it too literally, as it is meant for reflection and as an example.**
 
-1. Wake up, early, and have coffee/tea.
+1. Wake up early, and have coffee/tea.
 2. Check latest market updates, skim through your alerts/email to see what is ahead of you today and arrive at work, physically or virtually.
-3. Visualise the latest market trends, form an idea of what type of questions you need to answer and if you should augment the tasks set up for you today.
+3. Visualise the latest market trends, form an idea of what types of questions you need to answer and if you should augment the tasks set up for you today.
 4. Integrate the business intelligence results into the market data collected by colleagues to come up with a better market analysis model.
 5. Find out that the data collected are not clean enough and lacking some important information that can be retrieved by looking into other datasets. So, delegate the task of cleaning up the data and pre-process or DIY.
 6. It is 11:00 now so it is safe to answer your emails without risking your productivity.
-7. OK enough of office politics and time for more serious work; integrate the customer web profile and behaviour in order to better target them with relevant products.
+7. OK, enough of office politics and time for more serious work; integrate the customer web profile and behaviour in order to better target them with relevant products.
 8. Have lunch and talk/rant to other colleagues about issues you all are facing in your daily analysis and how fast things are moving.
-9. Come back to your senses and start think what to do for your afternoon (apart from your tea-time).
+9. Come back to your senses and start to think about what to do in the afternoon (apart from your tea-time).
 10. Read about the latest technology updates and analysis tools available for data scientists to help you overcome some of the difficulties that you are facing.
-11. Finish your light-hearted self-education time and check who is at risk to be lost for a competitor. Analyse the latest customer feedback and send a list of customers that need attention and to be contacted and offered discounts (by the customer services team).
+11. Finish your light-hearted self-education time and check who is at risk of being lost to a competitor. Analyse the latest customer feedback and send a list of customers that need attention and to be contacted and offered discounts (by the customer services team).
 12.	Use your latest developed model to predict the market trend and recommend a set of appropriate pre-empting actions that are expected to mitigate risks and ensure profitability in the long run. Put everything in a nice technical report with lots of visualisation (make sure it is clear and simple even if you spend a lot of time on it) and send to your manager.
 13.	Conduct a hypothesis testing to see if a product/service is profitable in the mid and short term for this year and send the results to the project lead for further actions.
 14.	Answer some emails, promising the earth regarding those tasks that you could not finish and wrap up for the day.
@@ -63,7 +63,7 @@ It is crucial to be aware of the applications and scenarios that are likely to a
 
 The domains that require data analysis are really diverse. Most domains, including science, entertainment and sport, are making use of the data available to them; for example the time users spend playing a video game, so data scientists may be asked to analyse data from any field to help in the decision-making process.
 
-The diversity of the application domains warrant specialisation into different data science areas; some data scientists specialise in one specific domain, such as medical science. In other cases experts from the domain try to gain experience or qualifications to analyse their own data or include a data scientist in their project. In all cases, insight and understanding of the domain application is needed in the data mining project, either by a data scientist's interaction with domain experts from the company they are helping or by contracting an external expert into the team.
+The diversity of the application domains warrant specialisation into different data science areas; some data scientists specialise in one specific domain, such as medical science. In other cases, experts from the domain try to gain experience or qualifications to analyse their own data or include a data scientist in their project. In all cases, insight and understanding of the domain application is needed in the data mining project, either by a data scientist's interaction with domain experts from the company they are helping or by contracting an external expert into the team.
 
 ###What questions might a data scientist attempt to answer?
 
@@ -71,16 +71,16 @@ Read through the following examples of questions a data scientist might attempt 
 
 * **Nutrition:** Is this a suitable and realistic diet for me?
 
-      - Society is sharing more of its daily eating habits through social media feeds, likes and interactions as well as through active engagement in specific diet apps. All of this data can be utilised en mass to create recommendations for the best and most realistic diets that individuals will respond to, given past habits, determination and the target that people set for themselves. Although this is not easy, it is doable and more successful apps are being developed that are capable of giving such recommendations.
+      - Society is sharing more of its daily eating habits through social media feeds, likes and interactions as well as through active engagement in specific diet apps. All of this data can be utilised en masse to create recommendations for the best and most realistic diets that individuals will respond to, given past habits, determination and the target that people set for themselves. Although this is not easy, it is doable and more successful apps are being developed that are capable of giving such recommendations.
 
 
 * **Medicine:** As per the sensor readings, how well is the ICU patient responding to the current treatment?
 
       - Electronic Health Record data is becoming crucial for collective patients' analyses for diseases and behaviour to aid health specialists in their daily tasks of diagnosis etc.
 
-* **Environmental Science:** How is land temperature affecting ocean temperatures?
+* **Environmental Science:** How are land temperatures affecting ocean temperatures?
 
-      - Oceans play a crucial role in the planet's weather, in both cooling and rising temperatures and violent hurricanes. Both land and ocean temperatures affect each other in obvious and subtle ways. It is important to know how this is happening, what factors are playing the major role and hopefully predict when one would have a drastic effect on the other. This is a very complex model that involves an immense number of features and factors, so data scientists are not expected to model it all; only parts of these natural phenomena are normally addressed in a specific project (although there are some serious attempts to have a comprehensive model).
+      - Oceans play a crucial role in the planet's weather, in both cooling and rising temperatures and violent hurricanes. Both land and ocean temperatures affect each other in obvious and subtle ways. It is important to know how this is happening and which factors are playing a major role, in order to hopefully predict when one would have a drastic effect on the other. This is a very complex model that involves an immense number of features and factors, so data scientists are not expected to model it all; only parts of these natural phenomena are normally addressed in a specific project (although there are some serious attempts to have a comprehensive model).
 
 * **Farming:** How are the monsoon rainfall ratios likely to affect this year's crops?
 
@@ -195,10 +195,10 @@ To learn more about Hortonworks Sandbox, watch this video from Hadoop on YouTube
 
 ##Data pipeline and mining process (CRISP, ETL)
 
-**This module will focus on the cross industry standard process (CRISP) model of the data mining process, which is outlined in the diagram below.**
+**This module will focus on the cross industry standard process (CRISP) model of the data mining process, which is outlined in Figure 1.3 below.**
 
  ![Diagram showing the CRISP model of the data mining process; surrounding data are business understanding, data understanding, data preparation, modelling, evaluation and deployment.](images/DS_IMG003.png)
-Tan, P., et.al. (2019), Introduction to Data Mining Second Edition, Pearson.
+**Figure 1.3.** Tan, P., et.al. (2019), Introduction to Data Mining Second Edition, Pearson.
 
 CRISP is a widely used analytical model. It is an open standard process model that describes common approaches used in data mining, involving the following phases:
 
@@ -254,7 +254,7 @@ From this example, you can see that learning is more generic and will achieve re
 
 ###Video: Introduction to data science
 
-Please watch the following video, in which Abdulrahman Altahan introduces data science in more detail:
+Please watch the following video, in which Abdulrahman Altahhan introduces data science in more detail:
 
 <p align="center"><iframe title="Data Science Introduction" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/89c81b0df9f8407786d7b8eea7fa93c01d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></p>
 
