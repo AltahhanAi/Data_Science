@@ -2,7 +2,7 @@
 
 **You might have realised that changing the initial centroids has a drastic effect on how long the K-means algorithm takes to converge. Let us study this phenomena.**
 
-In figure 1.7 below we see an example where the clusters are either being merged or correctly kept separated depending on the initial selection of centroids.
+In figure 3.8 below we see an example where the clusters are either being merged or correctly kept separated depending on the initial selection of centroids.
 
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG179.png)
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG180.png)
@@ -10,7 +10,7 @@ In figure 1.7 below we see an example where the clusters are either being merged
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG192.png)
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG191.png)
 
-**<p style="text-align: center;">Figure 1.7:** *K-means not working well due an unlucky choice of the initial centroids. Images are reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.*</p>
+**<p style="text-align: center;">Figure 3.8.** *K-means not working well due an unlucky choice of the initial centroids. Images are reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.*</p>
 
 Let us see another example where we have 10 clusters (10 centroids). As we can see below, the data is actually divided into two pairs of clusters. If we placed two centroids in one of the paired clusters then the K-means will be able to correctly adjust the centroids and reach a satisfactory result.
 
@@ -19,16 +19,16 @@ Let us see another example where we have 10 clusters (10 centroids). As we can s
 ![Graph illustrating k-means working well due to good, informative choice of initial centroids.](images/DS_IMG183.png)
 ![Graph illustrating k-means working well due to good, informative choice of initial centroids.](images/DS_IMG184.png)
 
-**<p style="text-align: center;">Figure 1.8:** *K-means working well due to a good informative choice of the initial centroids. Images are reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.*</p>
+**<p style="text-align: center;">Figure 3.9.** *K-means working well due to a good informative choice of the initial centroids. Images are reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.*</p>
 
-However, if we shift one of the initial centroids (second pair from the left) to another pair (last pair on the right), then the centroids end up mingled for these two pairs of clusters (as we can see in on the right), then the centroids end up mingled for these two pairs of clusters (as we can see in iteration 4 below).
+However, if we shift one of the initial centroids (second pair from the left) to another pair (last pair on the right), then the centroids end up mingled for these two pairs of clusters (as we can see on the right), then the centroids end up mingled for these two pairs of clusters (as we can see in Iteration 4 below).
 
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG185.png)
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG186.png)
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG187.png)
 ![Graph illustrating k-means not working well due to an unlucky choice of initial centroids.](images/DS_IMG188.png)
 
-**<p style="text-align: center;">Figure 1.9:** *K-means not working well due an unlucky choice of the initial centroids. Images are reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.*</p>
+**<p style="text-align: center;">Figure 3.10.** *K-means not working well due an unlucky choice of the initial centroids. Images are reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.*</p>
 
 Hence it is paramount to come up with a viable strategy to initialise the centroids.
 

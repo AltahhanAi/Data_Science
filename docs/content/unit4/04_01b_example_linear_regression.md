@@ -13,7 +13,7 @@ We can fit a linear model that we show below on the left. On the right we show a
 
 <figure role="group">
   <img src="../images/DS_IMG099.png" alt="Two line graphs showing a linear regression model fitting to data points. Left: 10 data points. Right: 50 data points." />
-  <figcaption><strong>Figure 4.2.</strong> A linear regression model (red line) that fits the blue data points. Left: 10 data points, right: 50 data points.</figcaption>
+  <figcaption><strong>Figure 4.2.</strong> A linear regression model (red line) that fits the blue data points. Left: 10 data points. Right: 50 data points.</figcaption>
 </figure>
 
 !!! info "Important note"

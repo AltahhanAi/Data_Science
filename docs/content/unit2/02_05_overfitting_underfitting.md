@@ -30,7 +30,7 @@ Unless there is abundance in the data that captures a simple classification mode
 
 <figure role="group">
   <img src="../images/DS_IMG028.png" alt="Bar graph showing common choice for training and testing proportions of the original dataset. Training is 70%. Testing is 30%." />
-  <figcaption><strong>Figure 5.1</strong> Common choice for Training and Testing proportions of the original dataset. </figcaption>
+  <figcaption><strong>Figure 2.71.</strong> Common choice for Training and Testing proportions of the original dataset. </figcaption>
 </figure>
 
 ##Splitting with stratification
@@ -41,7 +41,7 @@ One way to guarantee this property is by **stratified sampling**. Stratification
 
 <figure role="group">
   <img src="../images/DS_IMG027.png" alt="Stacked columns figure shows stratification for training 70% and testing 30% sets for two classes." />
-  <figcaption><strong>Figure 5.2</strong> Class1 and Class2 are distributed into 60%, 40% in the original dataset and the same percentage kept (through stratification) for the partitioned training and testing sets resulting in the percentages shown in the figure. </figcaption>
+  <figcaption><strong>Figure 2.72.</strong> Class1 and Class2 are distributed into 60%, 40% in the original dataset and the same percentage kept (through stratification) for the partitioned training and testing sets resulting in the percentages shown in the figure. </figcaption>
 </figure>
 
 ##Cross validation, model testing, model selection and model comparison
@@ -56,11 +56,11 @@ Cross validation is an elaborate testing technique that is useful to balance out
 
 For example, let us assume that we have a dataset S. To perform a 3 folds cross validation on it we partition our data into 3 almost equal subsets of $S_{1}, S_{2}, S_{3}$ where we have $S=\left\{S_{1} \cup S_{2} \cup S_{3}\right\}$. Now we train the model on subset $\left\{S_{1} \cup S_{2}\right\}$ while we test the trained model on subset $S_{3}$ which will give a generalisation error $Err(S3)$.
 
-We repeat the process by training on subsets $\left\{S_{1} \cup S_{3}\right\}$ and test on subset $S_{2}$ to obtain the generalisation error $\operatorname{Err}\left(S_{2}\right)$, then we train on subsets $\left\{S_{2} \cup S_{3}\right\}$ and test on subset $S_{1}$ to obtain the generalisation error $\operatorname{Err}\left(S_{1}\right)$. We then average all the tests to obtain $\operatorname{Err}(S)$. We can also look into the standard deviation to see how much variation is there in our dataset with respect to our model’s ability to generalise.  Figure 5.3 below shows this process. For more details, please have a look at Algorithm 3.2 and 3.3 of Tan et al (2020).
+We repeat the process by training on subsets $\left\{S_{1} \cup S_{3}\right\}$ and test on subset $S_{2}$ to obtain the generalisation error $\operatorname{Err}\left(S_{2}\right)$, then we train on subsets $\left\{S_{2} \cup S_{3}\right\}$ and test on subset $S_{1}$ to obtain the generalisation error $\operatorname{Err}\left(S_{1}\right)$. We then average all the tests to obtain $\operatorname{Err}(S)$. We can also look into the standard deviation to see how much variation is there in our dataset with respect to our model’s ability to generalise. Figure 2.73 below shows this process. For more details, please have a look at Algorithm 3.2 and 3.3 of Tan et al (2020).
 
 <figure role="group">
   <img src="../images/DS_IMG086.png" alt="Diagram of a three-folds cross-validation (CV) test. The dataset is partitioned into three almost equal subsets (folds). A fold is tested, the other folds are trained. The process is repeated for all folds, before an average is taken." />
-  <figcaption><strong>Figure 5.3</strong> 3 folds cross-validation example. </figcaption>
+  <figcaption><strong>Figure 2.73.</strong> 3 folds cross-validation example. </figcaption>
 </figure>
 
 
@@ -77,28 +77,30 @@ Another approach is to sample from a set of potential models and come up with an
 In model selection especially when we do not have enough data, we can use cross validation to aid in the process of selecting the best hyper parameter. We first start by splitting the data into folds (ex. 3 folds). Let us assume that we have hyper parameter $h$ (ex. tree depth) with values $v_{1}$ and $v_{2}$ (ex. Depth = 5 and Depth = 10) and we would like to know what value we should pick for our model. In this case, we can set $h=v_{1}$ and training the model on subsets $\left\{S_{1} \cup S_{2}\right\}$ while we test the trained model on subset $S_{3}$ which will give a generalisation error $\operatorname{Err}_{v 1}\left(S_{3}\right)$.
 
 We repeat the process by training on subsets $\left\{S_{1} \cup S_{3}\right\}$ and test on subset $S_{2}$ to obtain the generalisation error $\operatorname{Err}_{v 1}\left(S_{2}\right)$, then we train on subsets
-$\left\{S_{2} \cup S_{3}\right\}$ and test on subset $S_{1}$ to obtain the generalisation error $\operatorname{Err}_{v 1}\left(S_{1}\right)$. We then average all the tests with hyper parameter $h$ value of $v_{1}$ to obtain $\operatorname{Err}_{v 1}$ of our model. We repeat the same process for hyper parameter value $v_{2}$ to obtain $\operatorname{Err}_{v 2}(S)$ we then compare $\operatorname{Err}_{v 1}(S)$ and $\operatorname{Err}_{v 2}$ and we pick the value that minimises the error, i.e. we pick the value with the least error. Figure 5.4 below summarises the model selection for hyper parameter $h$.  
+$\left\{S_{2} \cup S_{3}\right\}$ and test on subset $S_{1}$ to obtain the generalisation error $\operatorname{Err}_{v 1}\left(S_{1}\right)$. We then average all the tests with hyper parameter $h$ value of $v_{1}$ to obtain $\operatorname{Err}_{v 1}$ of our model. We repeat the same process for hyper parameter value $v_{2}$ to obtain $\operatorname{Err}_{v 2}(S)$ we then compare $\operatorname{Err}_{v 1}(S)$ and $\operatorname{Err}_{v 2}$ and we pick the value that minimises the error, i.e. we pick the value with the least error. Figure 2.74 below summarises the model selection for hyper parameter $h$.  
 
 <figure role="group">
   <img src="../images/DS_IMG087.png" alt="Diagram of cross-validation (CV) for hyper parameters h = v1, v2." />
-  <figcaption><strong>Figure 5.4</strong>  Model Selection with 3 folds cross-validation example. </figcaption>
+  <figcaption><strong>Figure 2.74.</strong>  Model Selection with 3 folds cross-validation example. </figcaption>
 </figure>
 
 ###Model evaluation of cross-validated selected model with hyper parameters
 
-After we have selected the best parameters for our model, we want to evaluate the performance of the model. A pitfall would be to use the averaged cross validation error as an indication for the performance of the model. This a biased estimation of the generalisation ability of our model because we have already used the validation data to select the best hyper parameters. Therefore, we need to reserve a portion of the dataset for this final evaluation of the resultant selected model. Figure 5.5 below shows this complete process.
+After we have selected the best parameters for our model, we want to evaluate the performance of the model. A pitfall would be to use the averaged cross validation error as an indication for the performance of the model. This a biased estimation of the generalisation ability of our model because we have already used the validation data to select the best hyper parameters. Therefore, we need to reserve a portion of the dataset for this final evaluation of the resultant selected model. Figure 2.75 below shows this complete process.
 
 ![Diagram of cross-validation (CV) for hyper parameter h with independent evaluation (test) set S3.](images/DS_IMG088.png)
 
-**<p style="text-align: center;">Figure 5.5:** *Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as model $_{\dot{v}}$. Note that $\dot{v}$ takes the best value of $\left\{v_{1}, v_{2}\right\}$ that minimises the average errors $\operatorname{\dot{Err}}_{v_{1}}, \operatorname{\dot{Err}}_{v_{2}}$. So for example if we assume that $\operatorname{\dot{Err}}_{v_{1}}>\operatorname{\dot{Err}}_{v_{2}}$ then $\dot{v}=v_{2}$.*</p>
+**<p style="text-align: center;">Figure 2.75.** *Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as model $_{\dot{v}}$. Note that $\dot{v}$ takes the best value of $\left\{v_{1}, v_{2}\right\}$ that minimises the average errors $\operatorname{\dot{Err}}_{v_{1}}, \operatorname{\dot{Err}}_{v_{2}}$. So for example, if we assume that $\operatorname{\dot{Err}}_{v_{1}}>\operatorname{\dot{Err}}_{v_{2}}$ then $\dot{v}=v_{2}$.*</p>
 
 ###Evaluation of cross validation selected model with grid search for hyper parameters
 
-When we have multiple hyper parameters and we want to select the best combination of values for them, we can employ several search techniques. Here we can take two approaches. One simple approach is to perform an exhaustive search of all the possible combinations of the hyper parameters. We evaluate the models that stem from them and we select the model with the least generalisation error or highest overall accuracy. This is called grid search because each hyper parameter adds a dimension to a grid of possible values. For example if we have three hyper parameters the first with 5 values, the second with 5 values and the third with 2 values, then the number of combinations of these values is $5×5×2=100$ different combinations. So in this approach we need to evaluate all of these values to select the best model among them. There are less computationally expensive but inexact methods that we can employ to search for close to optimal values. These include hill climbing, simulated annealing some of these search methods will be covered in the Algorithms module.
+When we have multiple hyper parameters and we want to select the best combination of values for them, we can employ several search techniques. Here we can take two approaches. One simple approach is to perform an exhaustive search of all the possible combinations of the hyper parameters. We evaluate the models that stem from them and we select the model with the least generalisation error or highest overall accuracy. This is called grid search because each hyper parameter adds a dimension to a grid of possible values.
+
+For example, if we have three hyper parameters the first with 5 values, the second with 5 values and the third with 2 values, then the number of combinations of these values is $5×5×2=100$ different combinations. So in this approach we need to evaluate all of these values to select the best model among them. There are less computationally expensive but inexact methods that we can employ to search for close to optimal values. These include hill climbing, simulated annealing some of these search methods will be covered in the Algorithms module.
 
 ![Diagram of cross-validation (CV) for hyper parameters  (h, h') with test set s3.](images/DS_IMG089.png)
 
-**<p style="text-align: center;">Figure 5.6:** *Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as model $_{\dot{v}}$. Note that $\dot{v}$ takes the best value of $\left\{v_{1}, v_{2}\right\}$ that minimises the average errors $\operatorname{\dot{Err}}_{v_{1}}, \operatorname{\dot{Err}}_{v_{2}}$. So for example if we assume that $\operatorname{\dot{Err}}_{v_{1}}>\operatorname{\dot{Err}}_{v_{2}}$ then $\dot{v}=v_{2}$.*</p>
+**<p style="text-align: center;">Figure 2.76.** *Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as model $_{\dot{v}}$. Note that $\dot{v}$ takes the best value of $\left\{v_{1}, v_{2}\right\}$ that minimises the average errors $\operatorname{\dot{Err}}_{v_{1}}, \operatorname{\dot{Err}}_{v_{2}}$. So for example if we assume that $\operatorname{\dot{Err}}_{v_{1}}>\operatorname{\dot{Err}}_{v_{2}}$ then $\dot{v}=v_{2}$.*</p>
 
 ###Model evaluation with nested cross validation and hyper parameters
 
@@ -108,13 +110,13 @@ This is where  nested cross validation comes to the rescue. The idea now is that
 
 ![Diagram of nested cross-validation (CV) for hyper parameter h with independent evaluations S1, S2, S3.](images/DS_IMG090.png)
 
-**<p style="text-align: center;">Figure 5.7:** *Nested Cross Validation Evaluation selected models, both inner and outer cross-validation have 3 folds. Note that we have $3×3×2$ models to be trained and this can be consuming and computational expensive depending on the size of the dataset.*</p>
+**<p style="text-align: center;">Figure 2.77.** *Nested Cross Validation Evaluation selected models, both inner and outer cross-validation have 3 folds. Note that we have $3×3×2$ models to be trained and this can be consuming and computational expensive depending on the size of the dataset.*</p>
 
 For simplicity of presentation, the hyper parameter $h$ is assumed to have two different values that it can take $\left\{v_{1}, v_{2}\right\}$. Each fold of the outer CV has an inner CV process that will be executed inside it to suggest a best value for the hyper parameter $h$. As we saw earlier an inner CV gives its own best value for $h$ that stems from its error comparisons.  Since we have 3 –fold outer CV we get 3 values which might all be $v_{1}$ or $v_{2}$ or a mix of both (ex. $v_{1}$, $v_{1}$ and $v_{2}$). We have represented the best values of the three outer folds as $\dot{v}, \ddot{v}$ and $\dddot{v}$ (ex. $\dot{v}=v_{1}, \ddot{v}=v_{1}, \dddot v=v_{2}$). These values in turn give us 3 (possibly different) models $\operatorname{model}_{\dot{v}},$ model $_{\ddot{v}}$ and model $_{\dddot{v}}$, therefore, the final results is an average of the errors or accuracy of the 3 different models. We can take a vote on the best value of h to produce a final model (ex. $v_{1}$) but the final averaged errors is not guaranteed to be unbiased unless we do yet another third CV process.
 
 ![Diagram of nested cross-validation (CV) on grid search hyper parameters (h, h') with test set S1, S2, S3.](images/DS_IMG091.png)
 
-**<p style="text-align: center;">Figure 5.8:** *Nested cross-validation evaluation for grid-search model selection, both inner and outer cross-validation have 3 folds. Note that we have $3×3×4$ models to be trained and this can be consuming and computational expensive depending on the size of the dataset.*</p>
+**<p style="text-align: center;">Figure 2.78.** *Nested cross-validation evaluation for grid-search model selection, both inner and outer cross-validation have 3 folds. Note that we have $3×3×4$ models to be trained and this can be consuming and computational expensive depending on the size of the dataset.*</p>
 
 For simplicity of presentation, the two hyper parameters $h$ and $h'$ are assumed to have two different values $\left\{v_{1}, v_{2}\right\}$ and $\left\{v_{1}^{\prime}, v_{2}^{\prime}\right\}$ that they can take respectively. Each fold of the outer CV has an inner CV process that will be executed inside it to suggest a best value for the hyper parameter $\left(h, h^{\prime}\right)$. In the grid search process we take all the possible combinations of the hyper parameters values. So in our simple case we have $2×2$ possible combinations. Note that this has an exponential growth rate. So, if we have 5 hyper parameters, each with 3 values then to perform the grid search we need to consider $3^{5}=243$ combinations, i.e. we have 243 models to train. So grid search for this case can quickly becomes intractable.  If we take into account also an outer and an inner CV operations that we would like to perform to obtain unbiased results then the results would be $3×3×243=2187$
 models to train. The bottom line is that we have to be careful on how many models we are training when we use exhaustive search methods such as the grid search. There are cheaper but inexact methods that we can employ to search for close to optimal values. This include hill climbing, simulated annealing some of these search methods will be covered in the Algorithms module.
@@ -154,38 +156,38 @@ Below we see an example of overfitting. The data can be classified by rectilinea
 
 <figure role="group">
   <img src="../images/DS_IMG092.png" alt="Graph showing overfitting of decision trees (DT) on noisy Gaussian data." />
-  <figcaption><strong>Figure 5.9</strong>  DT with lots of branching to accommodate the noise that we added to the Gaussian data. </figcaption>
+  <figcaption><strong>Figure 2.79.</strong>  DT with lots of branching to accommodate the noise that we added to the Gaussian data. </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG094.png" alt="Decision tree (DT) with no overfitting for the same noisy Gaussian data." />
-  <figcaption><strong>Figure 5.10</strong> The decision boundaries of the DT shows how the tree is trying to isolate pockets of data to decrease the training error. </figcaption>
+  <figcaption><strong>Figure 2.80.</strong> The decision boundaries of the DT shows how the tree is trying to isolate pockets of data to decrease the training error. </figcaption>
 </figure>
 
 ####Decision trees with no overfitting for the same noisy Gaussian data
 
 <figure role="group">
   <img src="../images/DS_IMG093.png" alt="Decision tree (DT) with lots of branching to accomodate noise added to Gaussian data." />
-  <figcaption><strong>Figure 5.11</strong>  Overfitting is solved by reducing the maximum depth and confining the splitting of leafs to a minimum of around 240 points for 10% (pro rata) of the 5400x2 data points. Note that this is problem specific and it shows that it is hard to overcome overfitting specifically with DT. </figcaption>
+  <figcaption><strong>Figure 2.81.</strong>  Overfitting is solved by reducing the maximum depth and confining the splitting of leafs to a minimum of around 240 points for 10% (pro rata) of the 5400x2 data points. Note that this is problem specific and it shows that it is hard to overcome overfitting specifically with DT. </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG095.png" alt="Graph showing decision tree (DT) ignoring the noise of Gaussian data and isolating a smaller rectangle of Gaussian data." />
-  <figcaption><strong>Figure 5.12</strong> DT ignores the noise in the Gaussian data and just isolate the Gaussian data in a rectangle . </figcaption>
+  <figcaption><strong>Figure 2.82.</strong> DT ignores the noise in the Gaussian data and just isolate the Gaussian data in a rectangle. </figcaption>
 </figure>
 
-Figures 5.9-5.12 above are important to show the signs or symptoms of overfitting. As it can be seen the training error is successfully decreased when we overly grow the tree, however the testing error (the more precise indicator of the generalisation ability of the model) has actually remained more or less the same. The elbow shape of the testing error is a clear indicator of overfitting and the reasonable size of the tree lies exactly around the elbow (angle) itself. So for this example the angle lies on around 4 (the number of conditions/nodes required to classify the data).
+Figures 2.79 - 2.82 above are important to show the signs or symptoms of overfitting. As it can be seen, the training error is successfully decreased when we overly grow the tree, however the testing error (the more precise indicator of the generalisation ability of the model) has actually remained more or less the same. The elbow shape of the testing error is a clear indicator of overfitting and the reasonable size of the tree lies exactly around the elbow (angle) itself. So for this example the angle lies on around 4 (the number of conditions/nodes required to classify the data).
 
 !!! abstract "Exercise"
      See the following Jupyter notebook exercise on DT overfitting:
 
      - Download exercise (.ipynb): <a href="../exercises/Exercise4_DecisionTrees_Boundaries_Strengths_Limitations_Overfitting.ipynb" download>DT overfitting</a>
 
-On the other hand, overfitting can occur when we excessively add data horizontally. In other words if we increase the number of attributes that are not really needed to make a decision then potentially the tree will over grow and the training error will be reduced without reducing the testing error. So the symptoms of overfitting are the same but the underlying cause is different. In the first the data is noisy in the second the attributes are unnecessary. Figure 5.13 below shows this phenomena.
+On the other hand, overfitting can occur when we excessively add data horizontally. In other words if we increase the number of attributes that are not really needed to make a decision then potentially the tree will over grow and the training error will be reduced without reducing the testing error. So the symptoms of overfitting are the same but the underlying cause is different. In the first the data is noisy in the second the attributes are unnecessary. Figure 2.83 below shows this phenomena.
 
 <figure role="group">
   <img src="../images/DS_IMG096.png" alt="Line graph showing the phenomenon of overfitting with decision tree (DT) training and testing." />
-  <figcaption><strong>Figure 5.13</strong> Decision trees training and testing with phenomenon of overfitting. Note how when we increase the max depth of the tree the testing error forked from the training error which continued to deceivingly decrease, while in reality the testing error were increased for depth . </figcaption>
+  <figcaption><strong>Figure 2.83.</strong> Decision trees training and testing with phenomenon of overfitting. Note how when we increase the max depth of the tree the testing error forked from the training error which continued to deceivingly decrease, while in reality the testing error were increased for depth . </figcaption>
 </figure>
 
 ###Underfitting

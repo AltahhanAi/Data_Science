@@ -17,7 +17,7 @@ We are interested in the relationships of the attributes with each other, not wi
 
 <figure role="group">
   <img src="../images/DS_IMG169.png" alt="Schematic representation of clustering." />
-  <figcaption><strong>Figure 1.</strong> A schematic illustration of clustering.</figcaption>
+  <figcaption><strong>Figure 3.1.</strong> A schematic illustration of clustering.</figcaption>
 </figure>
 
 In classification, someone is telling us what the labels are supposed to be for each data point, while in clustering the model needs to figure this out by itself. In that sense unsupervised learning is more difficult than supervised learning. However, clustering is the easiest unsupervised learning technique that we will cover in this module. It is widely used in data mining in order to find intrinsic relationships between data points.

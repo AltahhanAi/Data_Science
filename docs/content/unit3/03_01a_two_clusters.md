@@ -2,11 +2,11 @@
 
 **Let us assume that we pre-specified a number of clusters. The simplest case is two clusters, i.e. a binary clustering problem.**
 
-We start with a feature space that has two attributes $f1$ and $f2$. Visualising the dataset looks like figure 1.1 below. It is obvious to our eyes that there are two distinctive groups in this dataset. Note that we have given them all the same colours because our dataset will not tell us the labels: there are no labels. We want to build a technique that can automatically tell us what could be reasonable clusters for the dataset. Bear in mind that we need the technique to be generalisable to higher dimensional space. The 2d space is always convenient because we can easily discern the groups (clusters), but when we move to higher dimensional space, like a 10d input space, then it is not that easy for the human eye to recognise the clusters.
+We start with a feature space that has two attributes $f1$ and $f2$. Visualising the dataset looks like figure 3.2 below. It is obvious to our eyes that there are two distinctive groups in this dataset. Note that we have given them all the same colours because our dataset will not tell us the labels: there are no labels. We want to build a technique that can automatically tell us what could be reasonable clusters for the dataset. Bear in mind that we need the technique to be generalisable to higher dimensional space. The 2d space is always convenient because we can easily discern the groups (clusters), but when we move to higher dimensional space, like a 10d input space, then it is not that easy for the human eye to recognise the clusters.
 
 <figure role="group">
   <img src="../images/DS_IMG170.png" alt="Graph showing a simple binary clusters dataset." />
-  <figcaption><strong>Figure 1.1</strong> A simple binary clusters dataset.</figcaption>
+  <figcaption><strong>Figure 3.2.</strong> A simple binary clusters dataset.</figcaption>
 </figure>
 
 ###Distance metrics
@@ -24,10 +24,10 @@ OK, now once we have compared all pairs of our dataset (as we said earlier there
 
 <figure role="group">
   <img src="../images/DS_IMG171.png" alt="Graph showing a simple binary clusters dataset with the centroids initialised to a random point." />
-  <figcaption><strong>Figure 1.2</strong> The same dataset as fig 1.1, with the centroids initialised to a random point.</figcaption>
+  <figcaption><strong>Figure 3.3.</strong> The same dataset as figure 3.2, with the centroids initialised to a random point.</figcaption>
 </figure>
 
-Start by assuming that we have two centres that have been given to us and we want to see how accurate those centres are (it might come to our mind that we should start by looking at the clusters and calculate their centres, but we will come to that in a moment). Figure 1.2 above shows an example of two centres – the red x for the two clusters. Visually, it is clear that both are not in the centres of their respective clusters, but how should we calculate the centres? Please be aware that in clustering terminology we call the groups clusters, we call the centres centroids and we call the sum of squared errors of each cluster the inertia (from mechanics).
+Start by assuming that we have two centres that have been given to us and we want to see how accurate those centres are (it might come to our mind that we should start by looking at the clusters and calculate their centres, but we will come to that in a moment). Figure 3.3 above shows an example of two centres – the red x for the two clusters. Visually, it is clear that both are not in the centres of their respective clusters, but how should we calculate the centres? Please be aware that in clustering terminology we call the groups clusters, we call the centres centroids and we call the sum of squared errors of each cluster the inertia (from mechanics).
 
 **The key is to average out the attributes for each cluster of data points. This will be done as follows:**
 
@@ -51,11 +51,11 @@ $$
 	  4. The set of centroids are denoted as $\boldsymbol{C} \boldsymbol{t}=\left\{\boldsymbol{c}_{i}\right\}, i=1, \ldots, K$.
 
 
-So for example, if we have the following clusters as in figure 1.3 below:
+So for example, if we have the following clusters as in figure 3.4 below:
 
 <figure role="group">
   <img src="../images/DS_IMG172.png" alt="Left: a simple clusters dataset. Right: Graph showing a clusters visualisation. Cluster 1 datapoints are represented by circles, cluster 2 by triangles. Each centroid is represented as a +." />
-  <figcaption><strong>Figure 1.3</strong> (left) Simple clusters dataset, (right) clusters visualisation, Cluster 1 data points are blue circles, Cluster 2 data points are red triangles. Each centroid is represented as +. Note that the cluster labels are not known a priori, instead they are inferred through a clustering algorithm. The centroid of Cluster 1 is given as (4.,3.) and the centroid for Cluster 2 is given as (6.6,2.3).</figcaption>
+  <figcaption><strong>Figure 3.4.</strong> (Left) Simple clusters dataset. (Right) clusters visualisation, Cluster 1 data points are blue circles, Cluster 2 data points are red triangles. Each centroid is represented as +. Note that the cluster labels are not known a priori, instead they are inferred through a clustering algorithm. The centroid of Cluster 1 is given as (4.,3.) and the centroid for Cluster 2 is given as (6.6,2.3).</figcaption>
 </figure>
 
 Note that the centroids do not necessary belong to the dataset, although they live in the same space. In fact, they will start as one of the data points in the dataset and then they move around with repetitive updates in the input space. You can think of the centroids as virtual data points or Omni-data points that are floating on the input space of the dataset.
@@ -66,14 +66,14 @@ OK, so now we know how to calculate the centres. What is next?
 
 We need now to know how to assign the data points to a cluster. To do so, we simply need to compare the distances of each data point in the dataset with each centroid that we have selected, and we assign the data point to the cluster with the shortest distance to its centroid.
 
-Below in figure 1.4, we show how we start with a dataset without any clusters (or you can think of it as all data points belonging to the same cluster) with the blue circles on the top left figure. Then we initialise two random centroids represented as +. We calculate the distance of each data point to these two centroids and compare to find out the minimum which specifies the membership to the cluster corresponding to the centroids (the centroid represents the cluster in that sense). On the top right-hand side, we see how one data point was assigned to the centroid on the top and the rest were assigned to the centroid on the bottom.
+Below in figure 3.5, we show how we start with a dataset without any clusters (or you can think of it as all data points belonging to the same cluster) with the blue circles on the top left image. Then we initialise two random centroids represented as +. We calculate the distance of each data point to these two centroids and compare to find out the minimum which specifies the membership to the cluster corresponding to the centroids (the centroid represents the cluster in that sense). On the top right-hand side, we see how one data point was assigned to the centroid on the top and the rest were assigned to the centroid on the bottom.
 
 <figure role="group">
   <img src="../images/DS_IMG173-176.png" alt="Graph showing a step of K-means clustering algorithms on a simple 2D dataset." />
-  <figcaption><strong>Figure 1.4</strong> Steps of K-means clustering algorithms on a simple 2-d dataset. Each axis represents an attribute. The + represents the means or centroids.</figcaption>
+  <figcaption><strong>Figure 3.5.</strong> Steps of K-means clustering algorithms on a simple 2-d dataset. Each axis represents an attribute. The + represents the means or centroids.</figcaption>
 </figure>
 
-Based on this, we recalculate the centroid and on the bottom left you can see how both centroids were shifted one towards the right (top orange +) and one towards the left (bottom blue +), both gravitating toward the mass of the data. We then reassign the data point to the clusters and we can see that all points to the left become blue triangles and on the right becomes red circles. Finally, the right bottom figure shows the final shift of the centroids to become exactly in the middle of both clusters. That’s great, this is what we wanted.
+Based on this, we recalculate the centroid and on the bottom left you can see how both centroids were shifted one towards the right (top orange +) and one towards the left (bottom blue +), both gravitating toward the mass of the data. We then reassign the data point to the clusters and we can see that all points to the left become blue triangles and on the right become red circles. Finally, the bottom right image shows the final shift of the centroids to become exactly in the middle of both clusters. That’s great, this is what we wanted.
 
 ###Distance measures
 
