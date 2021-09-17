@@ -16,16 +16,20 @@
 
 This type of task is pervasive in all aspects of data mining, and we will find ourselves facing it in one form or the other in several settings. One distinction we need to make here is between classification and clustering. While classification uses predefined classes with names, clustering is unsupervised learning, in which data points are placed in clusters based on their intrinsic properties and the similarities between them.  
 
-There are numerous techniques for classification, but in this unit we will focus on important and widely used techniques in succession of complexity and capabilities. Earlier in the previous unit we saw how we utilised the ideas of linear models and we developed it until we reached neural networks for regression. In this unit we will build on these ideas and techniques in order to tame them for classification. We start with the linear models for classification: the Perceptron and Logistic Regression, and then we move to non-linear multi-layer perceptron, i.e. Neural Networks. In later modules such Machine Learning, Deep Learning and Text Analytics, you will come across several other techniques, building on the ideas that we develop here. Ok let us get started…
+There are numerous techniques for classification, but in this unit we will focus on important and widely used techniques in succession of complexity and capabilities. Earlier in the previous unit we saw how we utilised the ideas of linear models and we developed it until we reached neural networks for regression. In this unit we will build on these ideas and techniques in order to tame them for classification.
+
+We start with the linear models for classification: the Perceptron and Logistic Regression, and then we move to non-linear multi-layer perceptron, i.e. Neural Networks. In later modules such Machine Learning, Deep Learning and Text Analytics, you will come across several other techniques, building on the ideas that we develop here.
 
 <figure role="group">
   <img src="../images/DS_IMG031.png" alt="Diagram showing a schematic representation of a classification model." />
   <figcaption>
-    <p><strong>Figure 1: A Schematic Illustration of classification.</strong> Figure (1) shows a schematic representation of a classification model. As it can be seen, the classification model maps an input x with an output y. the input is a set of attributes for one record and the output is the predicted class of the record. The record can be any object or entity represented in our dataset as one record.</p>
+    <p><strong>Figure 5.1.</strong> A schematic illustration of classification. </p>
   </figcaption>
 </figure>
 
-In the next few lessons we cover common classification techniques. Namely we will cover, linear, non-linear and neural networks models for classification (similar to what we have done in regression). These are among the widely used and effective techniques but there are of course several other techniques that go beyond the scope of this unit and that will be covered in other modules. Through the practical exercises we will see also the strengths and limitations of these techniques and when they are most suitable for which type of problems. Many problems are actually classification problems in disguise and our mission as data scientists is to spot them and be able to engineer the associated data if necessary to make it suitable for the types of techniques that we want to apply.
+As shown in figure 5.1, the classification model maps an input x with an output y. The input is a set of attributes for one record and the output is the predicted class of the record. The record can be any object or entity represented in our dataset as one record.
+
+In the next few lessons we cover common classification techniques. Namely we will cover linear, non-linear and neural networks models for classification (similar to what we have done in regression). These are among the most widely used and effective techniques but there are, of course, several other techniques that go beyond the scope of this unit and that will be covered in other modules. Through the practical exercises we will see also the strengths and limitations of these techniques and when they are most suitable for which type of problems. Many problems are actually classification problems in disguise and our mission as data scientists is to spot them and be able to engineer the associated data if necessary, to make it suitable for the types of techniques that we want to apply.
 
 ## 1-of-K Binary coding for numerical techniques
 

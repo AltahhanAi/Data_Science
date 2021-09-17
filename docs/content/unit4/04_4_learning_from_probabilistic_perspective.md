@@ -55,11 +55,11 @@ $$
 p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid y(\mathbf{x}, \mathbf{w}), \beta^{-1}\right)
 $$
 
-Which states that the mean for $t$ is $y(\mathbf{x}, \mathbf{w})$ and the variance is $\beta^{-1}$. This assumption is illustrated in the following figure:
+Which states that the mean for $t$ is $y(\mathbf{x}, \mathbf{w})$ and the variance is $\beta^{-1}$. This assumption is illustrated in figure 4.28:
 
 <figure role="group">
-  <img src="../images/DS_IMG193.png" alt="Test image." />
-  <figcaption><strong>Figure 4.29</strong> Linear model fitting with Gaussian Noise.</figcaption>
+  <img src="../images/DS_IMG193.png" alt="A graph showing linear model fitting with Gaussian Noise." />
+  <figcaption><strong>Figure 4.28.</strong> Linear model fitting with Gaussian Noise.</figcaption>
 </figure>
 
 Given that we have a dataset $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$ and corresponding $\boldsymbol{t}=\left\{t_{1}, t_{1}, \ldots, t_{N}\right\}$ of size $\mathrm{N}$, the likelihood of the above Gaussian model $\mathcal{N}\left(t \mid y(\mathbf{x}, \boldsymbol{w}), \beta^{-1}\right)$ generating all the $t_n$ is the probability that the all the given data has come from this distribution $\mathcal{N}\left(t \mid y(\mathbf{x}, \boldsymbol{w}), \beta^{-1}\right)$. We make the assumption that $t_n$ is independent and identically distributed (i.i.d). Then, the likelihood of the model given the data is given as the probability $p\left(\mathbf{t} \mid \mu, \sigma^{2}\right)$ and is calculated as:

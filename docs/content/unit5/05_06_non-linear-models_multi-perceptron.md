@@ -18,8 +18,8 @@ Earlier in the regression unit we saw how to build a multi-layer model with acti
 Below we show a generalisation of the concept of moving from one multinomial logistic regression into multi-layer neural networks classifier.
 
 <figure role="group">
-  <img src="../images/DS_IMG167.png" alt="(Top) Schematic representation of a multiple class one-layer logistic regression model (which is considered linear) with fixed basis. (Bottom) Non-linear Multi-layer Multi-class Neural Network model with adaptive basis. We have a softmax activation function for the output and a sigmoid activation function for the hidden layer. The fine dotted box signifies that we normalise the output. The dashed box signifies scaling of the input set." />
-  <figcaption><strong>Figure 6.1.</strong> (Top) Schematic representation of a multiple class one-layer logistic regression model (which is considered linear) with fixed basis. (Bottom) Non-linear Multi-layer Multi-class Neural Network model with adaptive basis. We have a softmax activation function for the output and a sigmoid activation function for the hidden layer. The fine dotted box signifies that we normalise the output. The dashed box signifies scaling of the input set. </figcaption>
+  <img src="../images/DS_IMG167.png" alt="(Top) Schematic representation of a multiple class one-layer logistic regression model (which is considered linear) with fixed basis. (Bottom) Non-linear multi-layer multi-class neural network model with adaptive basis. We have a softmax activation function for the output and a sigmoid activation function for the hidden layer. The fine dotted box signifies that we normalise the output. The dashed box signifies scaling of the input set." />
+  <figcaption><strong>Figure 5.43.</strong> Top: Schematic representation of a multiple class one-layer logistic regression model (which is considered linear) with fixed basis. Bottom: Non-linear multi-layer multi-class neural network model with adaptive basis. We have a softmax activation function for the output and a sigmoid activation function for the hidden layer. The fine dotted box signifies that we normalise the output. The dashed box signifies scaling of the input set. </figcaption>
 </figure>
 
 Backpropagation propagates the error back through the network layers to adjust their weights in a backward manner. We saw how this worked for Algorithm 6''' in the regression unit. So, we need to know first how to adjust the final output to be favourable to our data and classes layout, and then we need to slowly adjust the lines so that this overall performance or ability to distinguish between the classes is increased slowly until it is optimised. This is the idea of stochastic gradient descent with backpropagation.
@@ -28,8 +28,7 @@ If we decide to run through all of our data first and formulate a total sum of a
 
 ##Binary classification using neural network
 
-We discuss a simple neural network architecture where we have only one output, i.e. a binary class problem.
-The network that is under consideration is expressed as follows:
+We discuss a simple neural network architecture where we have only one output, i.e. a binary class problem. The network that is under consideration is expressed as follows:
 
 
 $$
@@ -40,12 +39,12 @@ y=g\left(\mathbf{w}^{\mathrm{T}} g\left(\dot{\mathbf{W}}^{\top} \mathbf{x}\right
 \end{array}
 $$
 
-where we used logistic function on both units, the hidden and the output. The architecture is shown in the figure below. The main difference between this and the regression that we discussed in unit 4 is that the classification network uses a non-linear function on the output while for regression we used a linear activation function on the output.
+where we used logistic function on both units, the hidden and the output. The architecture is shown in the figure below. The main difference between this and the regression that we discussed in Unit 4 is that the classification network uses a non-linear function on the output while for regression we used a linear activation function on the output.
 
 <figure role="group">
-  <img src="../images/DS_IMG168.png" alt="Schematic representation of the multi-layer perceptron as a non-linear models with one outputs." />
+  <img src="../images/DS_IMG168.png" alt="Schematic representation of the multi-layer perceptron as a non-linear models with one output." />
   <figcaption>
-    <p><strong>Figure 6.2:</strong>Schematic representation of the multi-layer perceptron as a non-linear model with one output. </p>
+    <p><strong>Figure 5.44.</strong> Schematic representation of the multi-layer perceptron as a non-linear model with one output. </p>
   </figcaption>
 </figure>
 
@@ -60,7 +59,7 @@ y_{n}=g\left(\mathbf{w}^{\mathrm{T}} g\left(\mathbf{\mathbf { W }}^{\top} \mathb
 \end{array}
 $$
 
-We define
+We define:
 
 $$
 z_{n}=\mathbf{w}^{\mathrm{T}} g\left(\mathbf{\mathbf { W }}^{\top} \mathbf{x}_{n}\right)

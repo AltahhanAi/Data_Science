@@ -28,22 +28,22 @@ $$
 
 here in the context of an activation function $\mathrm{z}$ is the linear decision boundaries given as $\boldsymbol{z}=\mathbf{w}^{\top} \boldsymbol{\phi}_{n} .$
 
-Logistic regression is a widely used classification technique that like the perceptron has linear decision boundaries, but unlike the perceptron goes one step further and employ a non-linear activation functions. The benefit is that we can now bound the range of the output naturally and we can deal with probabilistic decisions instead of crisp decisions. The other benefit is that the activation function employed by the presented technique is differentiable and does not have cusps as in the step activation function. In fact, as shown in the figure below the activation function of the presented technique, namely the logistic function, has somehow a similar but more lenient shape as the step function of the perceptron.
+Logistic regression is a widely used classification technique that like the perceptron has linear decision boundaries, but unlike the perceptron goes one step further and employ a non-linear activation functions. The benefit is that we can now bound the range of the output naturally and we can deal with probabilistic decisions instead of crisp decisions. The other benefit is that the activation function employed by the presented technique is differentiable and does not have cusps as in the step activation function. In fact, as shown in figure 5.29, the activation function of the presented technique, namely the logistic function, has somehow a similar but more lenient shape as the step function of the perceptron.
 
 <figure role="group">
   <img src="../images/DS_IMG220.png" alt="Graph showing sigmoid activation function with [0, 1] signal range compared to step activation function with {0, 1} signals." />
   <figcaption>
-    <p><strong>Figure 4.1: Sigmoid activation function with [0, 1] signal range compared to step activation function with {0, 1} signals.</strong></p>
+    <p><strong>Figure 5.29.</strong> Sigmoid activation function with [0, 1] signal range compared to step activation function with {0, 1} signals.</p>
   </figcaption>
 </figure>
 
-We should also emphasise here that although both the perceptron and logistic regression have linear decision boundaries, they can become capable of dealing with non-linearly separable classes via feature mapping, i.e. by employing a non-linear basis function as we saw in the previous section. However, there are some non-linear problems where feature mapping do not solve it non-linearity where we need a built-in non-linearity in the model. In addition, as we saw in unit 4 that fixed basis functions are restrictive in terms of adaptability that we might want to infuse in our models in order to automatically discover the best basis for the problem in hand instead of the analyst choosing the type of the basis needed.
+We should also emphasise here that although both the perceptron and logistic regression have linear decision boundaries, they can become capable of dealing with non-linearly separable classes via feature mapping, i.e. by employing a non-linear basis function as we saw in the previous section. However, there are some non-linear problems where feature mapping do not solve it non-linearity where we need a built-in non-linearity in the model. In addition, as we saw in Unit 4 that fixed basis functions are restrictive in terms of adaptability that we might want to infuse in our models in order to automatically discover the best basis for the problem in hand instead of the analyst choosing the type of the basis needed.
 Below we show schematic representation of logistic regression.
 
 <figure role="group">
   <img src="../images/DS_IMG152.png" alt="Schematic representation of the Logistic Regression as a linear models for classification with basis." />
   <figcaption>
-    <p><strong>Figure 4.2: Schematic representation of the Logistic Regression as a linear models for classification with basis.</strong></p>
+    <p><strong>Figure 5.30.</strong> Schematic representation of the Logistic Regression as a linear models for classification with basis.</p>
   </figcaption>
 </figure>
 
@@ -334,21 +334,21 @@ $$
 
 ## Logistic regression example with cross entropy
 
-Let us look at the following dataset
+Let us look at the following dataset:
 
 <figure role="group">
-  <img src="../images/DS_IMG153.png" alt="Brief description." />
+  <img src="../images/DS_IMG153.png" alt="Graph showing example of a binary class dataset." />
   <figcaption>
-    <p><strong>Figure 4.2: Example of binary class dataset.</strong></p>
+    <p><strong>Figure 5.31.</strong> Example of binary class dataset.</p>
   </figcaption>
 </figure>
 
-The data has been generated to be separated by the following linear classifier $x_{2}=2 x_{1}-4$ that splits the dataset into two classes. The classifier is shown below in figure 4.2.
+The data has been generated to be separated by the following linear classifier $x_{2}=2 x_{1}-4$ that splits the dataset into two classes. The classifier is shown below in figure 5.32.
 
 <figure role="group">
-  <img src="../images/DS_IMG154.png" alt="Brief description." />
+  <img src="../images/DS_IMG154.png" alt="Graph showing an example of a binary class dataset with decision boundary." />
   <figcaption>
-    <p><strong>Figure 4.3: Example of binary class dataset with decision boundary.</strong></p>
+    <p><strong>Figure 5.32.</strong> Example of binary class dataset with decision boundary.</p>
   </figcaption>
 </figure>
 
@@ -384,7 +384,7 @@ $$
 \tilde{H}\left(\mathbf{w}_{1}\right)=0
 $$
 
-On the other hand, if we come up with a different linear discriminant such as $x_{2}=2 x_{1}+10$ which has the same slope as before but with a different intercept we get
+On the other hand, if we come up with a different linear discriminant such as $x_{2}=2 x_{1}+10$ which has the same slope as before but with a different intercept we get:
 
 $$
 \begin{array}{l}
@@ -420,14 +420,14 @@ $$
 
 !!! abstract "Exercise"
 
-    The plots in figure 4.4 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. See the following Jupyter Notebook:
+    The plots in figure 5.33 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. See the following Jupyter Notebook:
 
     - Download notebook (.ipynb): <a href="../exercises/Exercise_3LogisticRegressionDecsions.ipynb" download>Exercise 3</a>
 
 <figure role="group">
-  <img src="../images/DS_IMG155.png" alt="Brief description." />
+  <img src="../images/DS_IMG155.png" alt="Two graphs showing an example of a binary dataset. Top: an optimal decision boundary identical with the actual boundary of the dataset, where no misclassification has occurred. Bottom: an example showing the effect of shifting the decision boundaries by changing the bias." />
   <figcaption>
-    <p><strong>Figure 4.4: Example of binary class dataset.</strong> (Top), optimal decision boundary identical with the actual boundary of the dataset, no misclassification occurred. (Bottom): showing the effect of shifting the decision boundaries by changing the bias. The boxes with red circles show misclassified cases.</p>
+    <p><strong>Figure 5.33.</strong> Two graphs showing an example of a binary dataset. Top: an optimal decision boundary identical with the actual boundary of the dataset, no misclassification occurred. Bottom: showing the effect of shifting the decision boundaries by changing the bias. The boxes with red circles show misclassified cases.</p>
   </figcaption>
 </figure>
 

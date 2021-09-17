@@ -95,7 +95,7 @@ So for the output layer, the update takes the form of the usual linear model sin
 
 <figure role="group">
   <img src="../images/DS_IMG212.png" alt="Schematic representation of the multi-layer perceptron as a non-linear models with one output." />
-  <figcaption><strong>Figure 4.28</strong> Schematic representation of the multi-layer perceptron as a non-linear models with one output.</figcaption>
+  <figcaption><strong>Figure 4.27.</strong> Schematic representation of the multi-layer perceptron as a non-linear models with one output.</figcaption>
 </figure>
 
 ##Hidden layer update for one output neural network (backpropagation)
