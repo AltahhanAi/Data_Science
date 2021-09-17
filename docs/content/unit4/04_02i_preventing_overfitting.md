@@ -182,12 +182,12 @@ We will prove that the above model is actually equivalent to a multi-output line
 
 <figure role="group">
   <img src="../images/DS_IMG120.png" alt="Schematic representation of a multiple outputs multi-layers linear regression model with fixed basis." />
-  <figcaption><strong>Figure 4.23</strong> Schematic representation of a multiple outputs multi-layers **linear regression model** with fixed basis. We prove that this model is actually equivalent to multiple outputs one-layers linear regression model with fixed basis, shown below.</figcaption>
+  <figcaption><strong>Figure 4.23.</strong> Schematic representation of a multiple outputs multi-layers <strong>linear regression model</strong> with fixed basis. We prove that this model is actually equivalent to multiple outputs one-layers linear regression model with fixed basis, shown below.</figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG121.png" alt="Schematic representation of a multiple outputs linear regression model with fixed basis that is equivalent to the multi-outputs, multi-layers linear regression model with fixed basis." />
-  <figcaption><strong>Figure 4.24</strong> Schematic representation of a multiple outputs linear regression model with fixed basis that is equivalent to the multi-outputs multi-layers linear regression model with fixed basis, shown above.</figcaption>
+  <figcaption><strong>Figure 4.24.</strong> Schematic representation of a multiple outputs linear regression model with fixed basis that is equivalent to the multi-outputs multi-layers linear regression model with fixed basis, shown above.</figcaption>
 </figure>
 
 Both layers can be seen as multi-output linear regression model. So let us see how they interact with each other: the hidden layer output is given as:

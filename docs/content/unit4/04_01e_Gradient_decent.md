@@ -255,7 +255,7 @@ Mini-batch SGD algorithm can be used to reach a compromise between sequential an
 
 <figure role="group">
   <img src="../images/DS_IMG103.png" alt="Surface chart showing stochastic gradient descent (SGD) algorithm behaviour. The SGD takes gradual steps towards the mimimum of the loss function by following the gradient of the loss." />
-  <figcaption><strong>Figure 4.6.</strong> SGD algorithm behaviour: SGD takes gradual steps towards the minimum of the loss function by  following the gradient of the loss. The line shows an example of the paths of a batch gradient descent (blue on the loss surface function and its projection is orange on the loss contour) and stochastic gradient descent algorithms(green on the loss surface function and brown on the loss contours). </figcaption>
+  <figcaption><strong>Figure 4.6.</strong> SGD algorithm behaviour: SGD takes gradual steps towards the minimum of the loss function by  following the gradient of the loss. The line shows an example of the paths of a batch gradient descent (blue on the loss surface function and its projection is orange on the loss contour) and stochastic gradient descent algorithms (green on the loss surface function and brown on the loss contours). </figcaption>
 </figure>
 
 

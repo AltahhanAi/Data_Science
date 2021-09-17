@@ -46,7 +46,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG119.png" alt="Schematic representation of a linear regression model with multiple outputs and fixed basis functions." />
-  <figcaption><strong>Figure 4.22</strong> Schematic representation of a linear regression model with multiple outputs and fixed basis functions. </figcaption>
+  <figcaption><strong>Figure 4.22.</strong> Schematic representation of a linear regression model with multiple outputs and fixed basis functions. </figcaption>
 </figure>
 
 By fixed basis we mean that the set of basis functions do not change. So if we use a Gaussian basis for example the mean and the variance are fixed, similarly if we use any other basis their parameters do not change. This means that we can use a **separate** model that first learns a basis representations (in a separate pre-processing stage) that suits our problem and then we stop the basis learning to make the basis model fixed and then use this fixed basis model to map the input space into our features space and then use the features to learn a multi-output linear model. The resultant model is still linear in the feature space.

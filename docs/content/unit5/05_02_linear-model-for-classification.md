@@ -15,14 +15,14 @@ Indeed, in this lesson we will extend the ideas of linear regressions from previ
 
 For simplicity of presentation, let us start by assuming that the **data is numerical** and it has **one attribute** and **one label** and each label can take either of **two classes**. This is called a binary class problem. So, the data exists in a two-dimensional space but the ideas that we will develop should be expandable to m dimensional space. The easiest case to start off with is when the two classes are **linearly separable**. These five assumptions allow us to solve this case by just a simple line. In other words, it is sufficient to draw a line between two classes to separate them in a 1d space (remember we have one attribute and one label). So can we devise a model that learns the best line position for separating between two classes? The answer is yes and it is called a linear model for classification.
 
-However, unlike linear regression we need not only devise a linear separation but we need to make sure to map the result of any point x with respect to this line to tell us at which side of the line the point lies within. So in this case, this can be represented on just one axis of real values. In figure (2.1) below we see the simplest decision boundary with one attribute x. any point that lies within the positive side is of class +1 and any point in the left in
+However, unlike linear regression we need not only devise a linear separation but we need to make sure to map the result of any point x with respect to this line to tell us at which side of the line the point lies within. So in this case, this can be represented on just one axis of real values. In figure 5.2 below we see the simplest decision boundary with one attribute x. any point that lies within the positive side is of class +1 and any point in the left in
 the negative side belongs to class -1.
 
 <figure role="group">
-  <img src="../images/DS_IMG127.png" alt="Simple decision boundary graph for x = 0. It has one attribute, x, where, if x ≥ 0, then its class is 1, and, if x < 0, then its class is 0." />
+  <img src="../images/DS_IMG127.png" alt="Simple decision boundary graph for x = 0. It has one attribute, x, where, if x ≥ 0, then its class is 1. If x < 0 then its class is 0." />
 </figure>
 
-<strong>Figure 2.1: Decision boundary $x = 0$</strong>
+<strong>Figure 5.2.</strong> Decision boundary $x = 0$
 
 The choice of  labels  is a matter of naming conventions and will not affect the results; we can choose labels like $C_{1}$ and $C_{2}$ or 1,0 etc.  Effectively, the decision boundary $x=0$ tells us that:
 
@@ -34,35 +34,37 @@ Or
 * If $x \geq 0$ then its class is +1
 * If $x<0$ then its class is -1
 
-We can expand this to an arbitrary decision boundary on the $x$ axis. The example in figure 2.2 below shows a decision boundary for $x-5=0$ which is basically telling us that:
+We can expand this to an arbitrary decision boundary on the $x$ axis. The example in figure 5.3 below shows a decision boundary for $x-5=0$ which is basically telling us that:
 
-  <img src="../images/DS_IMG128.png" alt="Brief description." />
+<figure role="group">
+  <img src="../images/DS_IMG128.png" alt="Decision boundary graph for x - 5 = 0. If x - 5 ≥ 0, then its class is +1, and if x - 5 < 0, then its class is -1." />
+</figure>
 
-<strong>Figure 2.2: Decision boundary $x - 5 = 0$</strong>
+<strong>Figure 5.3.</strong> Decision boundary $x - 5 = 0$
 
 If $x-5 \geq 0$ then its class is +1
 
 If $x-5<0$ then its class is -1
 
-Now let us expand this idea to the 2D space. Let us assume that we have two attributes $x_{1}$  and $x_{2}$ and our dataset looks like the following, as shown in figures 2.3 to 2.6.
+Now let us expand this idea to the 2D space. Let us assume that we have two attributes $x_{1}$  and $x_{2}$ and our dataset looks like the following, as shown in figures 5.4 to 5.7.
 
 Note that in this case $x_{2}$ does not play any role in the decision and our green line linear classification model is telling us that:
 
-  <img src="../images/DS_IMG129.png" alt="Decision boundary graph for x1 - 5 = 0 where there are two attributes x1 and x2" />
+  <img src="../images/DS_IMG129.png" alt="Decision boundary graph for x1 - 5 = 0 where there are two attributes x1 and x2." />
 
-  <strong>Figure 2.3: Decision boundary $x_{1}$ - 5 = 0</strong>
+  <strong>Figure 5.4.</strong> Decision boundary $x_{1}$ - 5 = 0
 
   <img src="../images/DS_IMG130.png" alt="Decision boundary graph for x1 - 5 = 0 where there are two attributes x1 and x2." />
 
-  <strong>Figure 2.4: Decision boundary $x_{1}$ - 5 = 0</strong>
+  <strong>Figure 5.5.</strong> Decision boundary $x_{1}$ - 5 = 0
 
   <img src="../images/DS_IMG131.png" alt="Decision boundary graph for x1 - 5 = 0 where there are two attributes x1 and x2." />
 
-  <strong>Figure 2.5: Decision boundary $x_{1}$ - 5 = 0</strong>
+  <strong>Figure 5.6.</strong> Decision boundary $x_{1}$ - 5 = 0
 
   <img src="../images/DS_IMG132.png" alt="Decision boundary graph for x1 - 5 = 0 where there are two attributes x1 and x2." />
 
-  <strong>Figure 2.6: Decision boundary $x_{1}$ - 5 = 0</strong>
+  <strong>Figure 5.7.</strong> Decision boundary $x_{1}$ - 5 = 0
 
 
 * If $x_{1}-5 \geq 0$ then its class is +1
@@ -88,12 +90,12 @@ $$
 y\left(x_{1}\right)=\operatorname{sign}\left(x_{1}-5\right) \times 1
 $$
 
-When our dataset is as shown in figure 2.7 below:
+When our dataset is as shown in figure 5.8 below:
 
 
 <img src="../images/DS_IMG133.png" alt="Decision boundary graph for x1 - x2 = 0." />
 
-<strong>Figure 2.7: Decision boundary $x_{1}$ - $x_{2}$ = 0</strong>
+<strong>Figure 5.8.</strong> Decision boundary $x_{1}$ - $x_{2}$ = 0
 
 Then the model decision boundaries can be expressed as follows:
 
@@ -129,29 +131,29 @@ Where $f$ is called the activation function that helps map the linear model into
 
 ## The activation function
 
-It is important to note that we need to use a function $f$ to map the values $\mathbf{w}^{\top} \mathbf{x}$ into some sort of decision that is related to the label. In our previous examples we used the sign of the product to decide. This is called the steps activation function and it is shown in figure 2.8 below.
+It is important to note that we need to use a function $f$ to map the values $\mathbf{w}^{\top} \mathbf{x}$ into some sort of decision that is related to the label. In our previous examples we used the sign of the product to decide. This is called the steps activation function and it is shown in figure 5.9 below.
 
 <figure role="group">
   <img src="../images/DS_IMG135.png" alt="Graph showing step activation function." />
-  <figcaption><strong>Figure 2.8.</strong> Step activation function with {1,-1} signals.</figcaption>
+  <figcaption><strong>Figure 5.9.</strong> Step activation function with {1,-1} signals.</figcaption>
 </figure>
 
 There are some important and often overlooked subtleties to notice here. First $y$ is not the boundaries $\mathbf{w}^{\top} \mathbf{x}$ although it is inferred from it via $f$. Secondly, $y$ is fundamentally not a continuous value unlike the attribute $\mathrm{x} 2$ for example. Nevertheless, it can be mapped into a continuous space to follow the continuum of values $\mathbf{w}^{\top} \mathbf{x}$ can take as we saw earlier in the step activation function where essentially we have all positive $\mathbf{w}^{\top} \mathbf{x}$ values are mapped into $\mathrm{y}=1$ and all negative values of $\mathbf{w}^{\top} \mathbf{x}$ are mapped into the value $-1$. So, any time the value of $\mathbf{w}^{\top} \mathbf{x}_{n}$ is positive for some data point $\mathbf{x}_{n}$ then we classify $\mathbf{x}_{n}$ as belonging to class $+1$ and conversely any time we have that $\mathbf{w}^{\top} \mathbf{x}_{n}$ is negative then we classify $\mathbf{x}_{n}$ to be of class $-1$.
 
 Note that for the activation function, we have $\mathbf{w}^{\top} \mathbf{x}$ on the horizontal axis and $y$ on the vertical axis, so please do not mix between $x_{2}$ and $y$ they are two different things; $x_{2}$ is an attribute and it participates in forming the depicted decision boundaries, while $y$ is a label. More explicitly, in regression the straight line equations in 2D represented the relationship between a one attribute $x$ and the label $y$. On the other hand, the straight line here represents the relationship between attributes $x_{1}$ and $x_{2}$ and is used to separate the classes using a step activation function.
 
-Function $f$ is called an activation function because it activates, or issues a signal, whether the data point $\left(x_{1}, x_{2}\right)$ belongs to class $+1$ or $-1$. Other activation functions are possible. For example, if we prefer to use $\{0,1\}$ labels we can use a different step activation function as follows in fig 2.9:
+Function $f$ is called an activation function because it activates, or issues a signal, whether the data point $\left(x_{1}, x_{2}\right)$ belongs to class $+1$ or $-1$. Other activation functions are possible. For example, if we prefer to use $\{0,1\}$ labels we can use a different step activation function as follows in figure 5.10.
 
 <figure role="group">
   <img src="../images/DS_IMG221.png" alt="Graph showing step activation function with {0, 1} signals." />
-  <figcaption><strong>Figure 2.9.</strong> Step activation function with {0,1} signals.</figcaption>
+  <figcaption><strong>Figure 5.10.</strong> Step activation function with {0,1} signals.</figcaption>
 </figure>
 
-Also for example if we want to confine the values to a $] 0,1[$ interval while allowing the activation function to take values in between to reflect the strength of the belief, or the probability, that a data point $\mathbf{x}_{\mathrm{n}}$ belongs (or not) to the positive class then we can use the logistic function (aka sigmoid) shown below in fig 2.10.
+Also for example if we want to confine the values to a $] 0,1[$ interval while allowing the activation function to take values in between to reflect the strength of the belief, or the probability, that a data point $\mathbf{x}_{\mathrm{n}}$ belongs (or not) to the positive class then we can use the logistic function (aka sigmoid) shown below in figure 5.11.
 
 <figure role="group">
   <img src="../images/DS_IMG136.png" alt="Sigmoid activation function with [0,1] signal range." />
-  <figcaption><strong>Figure 2.10</strong> Sigmoid activation function with [0,1] signal range.</figcaption>
+  <figcaption><strong>Figure 5.11.</strong> Sigmoid activation function with [0,1] signal range.</figcaption>
 </figure>
 
 A final activation function that is quite important in modern neural network is the rectifier linear unit or ReLU for short. This simple function takes the form:
@@ -160,11 +162,11 @@ $$
 f(z)=z^{+}=\max (0, z)
 $$
 
-In other words, it takes the same value of $x$ if $x$ is positive and 0 otherwise, which means that it is always nonnegative. We show this function in fig 2.11 below.
+In other words, it takes the same value of $x$ if $x$ is positive and 0 otherwise, which means that it is always nonnegative. We show this function in figure 5.12 below.
 
 <figure role="group">
   <img src="../images/DS_IMG137.png" alt="Graph showing rectified linear unit (ReLU) activation function." />
-  <figcaption><strong>Figure 2.11</strong> Rectified linear unit (ReLU) activation function.</figcaption>
+  <figcaption><strong>Figure 5.12.</strong> Rectified linear unit (ReLU) activation function.</figcaption>
 </figure>
 
 The ReLU is a piecewise linear function. It outperforms other activation functions such as the sigmoid and the tanh which used to be popular in neural networks,  and it is now the default activation function for seep learning. It should be noted that while other activation functions such as the cos or sin have been found to work as well as the sigmoid, all of the more complex functions suffer from saturation where they become insensitive to change beyond some threshold. ReLU overcomes this and other issues. It also has a better gradient propagation. The other advantage of ReLU is its speed in comparison with sigmoidal functions. There are several variants of this function, such as the Leaky ReLU, but in general they perform comparable to ReLU. Leaky ReLU allows a small positive gradient when the unit is not active. In other words, it does not reach 0 which guarantees that the unit activation will not completely cancel when it receives a negative signal.
@@ -177,60 +179,76 @@ $$
 \mathbf{w}^{\top} \mathbf{x}=\mathbf{0}
 $$
 
-Some examples of different straight line decision boundaries are shown below in fig 2.12. Again, note that the linear relationship is between $x_{1}$ and $x_{2}$ and this is why we say that we are dealing with a linear classification model.
+Some examples of different straight line decision boundaries are shown below in figure 5.13. Again, note that the linear relationship is between $x_{1}$ and $x_{2}$ and this is why we say that we are dealing with a linear classification model.
 
 <figure role="group">
   <img src="../images/DS_IMG138.png" alt="Graph showing examples of linear models for classification, no data is shown." />
   <figcaption>
-    <p><strong>Figure 2.12</strong> Examples of linear models for classification, no data is shown.</p>
+    <p><strong>Figure 5.13.</strong> Examples of linear models for classification, no data is shown.</p>
   </figcaption>
 </figure>
 
-You might ask, but how should we tune the model? And can we optimise its parameters choice to draw a line that maximise the distance and reparability of the classes in the data? As you already know, a line can be drawn in many ways. Mainly there are two parameters of a line that completely specify the line with no ambiguity. This formula defines adjustable weights parameters $w_{i}$ that we need to learn the best value of, in order to classify our data. In fig 2.13 below, we show a schematic illustration of a linear classification model. The dashed line box denotes scaling of each component in the input set (this is done on the level of the dataset and on the level of individual record, see Unit 1 for more details).
+You might ask, but how should we tune the model? And can we optimise its parameters choice to draw a line that maximise the distance and reparability of the classes in the data? As you already know, a line can be drawn in many ways. Mainly there are two parameters of a line that completely specify the line with no ambiguity. This formula defines adjustable weights parameters $w_{i}$ that we need to learn the best value of, in order to classify our data. In figure 5.14 below, we show a schematic illustration of a linear classification model. The dashed line box denotes scaling of each component in the input set (this is done on the level of the dataset and on the level of individual record, see Unit 1 for more details).
 
 <figure role="group">
   <img src="../images/DS_IMG139.png" alt="Schematic representation of a linear model for classification." />
-  <figcaption><strong>Figure 2.13</strong> Schematic representation of a linear model for classification.</figcaption>
+  <figcaption><strong>Figure 5.14.</strong> Schematic representation of a linear model for classification.</figcaption>
 </figure>
 
 For now, let us see how we can construct different linear models (perceptrons):
 
 <figure role="group">
-  <img src="../images/DS_IMG140.png" alt="Brief description." />
-  <img src="../images/DS_IMG141.png" alt="Brief description." />
-  <img src="../images/DS_IMG142.png" alt="Brief description." />
-  <img src="../images/DS_IMG143.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figures 2.14-2.17: Examples of binary linearly separable classes that a perceptron can separate.</strong></p>
-  </figcaption>
+  <img src="../images/DS_IMG140.png" alt="Graph showing an example of binary linearly separable classes that a perceptron can separate." />
+	<figcaption><strong>Figure 5.15.</strong> An example of binary linearly separable classes that a perceptron can separate.</figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG144.png" alt="Brief description." />
-  <img src="../images/DS_IMG145.png" alt="Brief description." />
-  <img src="../images/DS_IMG146.png" alt="Brief description." />
-  <figcaption>
-    <p><strong>Figures 2.18-2.20: Examples of binary non-linearly separable classes that a perceptron is incapable of generating enough boundaries to separate, but a Multi-Layer Perceptron can separate.</strong></p>
-  </figcaption>
+  <img src="../images/DS_IMG141.png" alt="Graph showing an example of binary linearly separable classes that a perceptron can separate." />
+	<figcaption><strong>Figure 5.16.</strong> An example of binary linearly separable classes that a perceptron can separate.</figcaption>
+</figure>
+
+<figure role="group">
+  <img src="../images/DS_IMG142.png" alt="Graph showing an example of binary linearly separable classes that a perceptron can separate." />
+	<figcaption><strong>Figure 5.17.</strong> An example of binary linearly separable classes that a perceptron can separate.</figcaption>
+</figure>
+
+<figure role="group">
+  <img src="../images/DS_IMG143.png" alt="Graph showing an example of binary linearly separable classes that a perceptron can separate." />
+	<figcaption><strong>Figure 5.18.</strong> An example of binary linearly separable classes that a perceptron can separate.</figcaption>
+</figure>
+
+<figure role="group">
+  <img src="../images/DS_IMG144.png" alt="Graph showing an example of non-linearly separable classes that a perceptron is incapable of separating. A multi-layer perceptron can be used to separate this data." />
+	<figcaption><strong>Figure 5.19.</strong> An example of binary non-linearly separable classes that a perceptron is incapable of generating enough boundaries to separate, but a multi-layer perceptron can separate.</figcaption>
+</figure>
+
+<figure role="group">
+  <img src="../images/DS_IMG145.png" alt="Graph showing an example of non-linearly separable classes that a perceptron is incapable of separating. A multi-layer perceptron can be used to separate this data." />
+	<figcaption><strong>Figure 5.20.</strong> An example of binary non-linearly separable classes that a perceptron is incapable of generating enough boundaries to separate, but a multi-layer perceptron can separate.</figcaption>
+</figure>
+
+<figure role="group">
+  <img src="../images/DS_IMG146.png" alt="Graph showing an example of non-linearly separable classes that a perceptron is incapable of separating. A multi-layer perceptron can be used to separate this data." />
+	<figcaption><strong>Figure 5.21.</strong> An example of binary non-linearly separable classes that a perceptron is incapable of generating enough boundaries to separate, but a multi-layer perceptron can separate.</figcaption>
 </figure>
 
 ### Learning algorithm for the linear model classifier
 
-Similar to linear regression, learning a linear classifier takes place by adjusting the weights parameters. In order to adjust the weights meaningfully we need to define a loss function for classification. Let us look into a tangible example, to see how we can define the loss function and how learning can take place naturally. Figure 2.21 below shows a simple almost linearly separable dataset with two classes and two attributes $x_{1}$ and $x_{2}$ plotted in 2D.
+Similar to linear regression, learning a linear classifier takes place by adjusting the weights parameters. In order to adjust the weights meaningfully we need to define a loss function for classification. Let us look into a tangible example, to see how we can define the loss function and how learning can take place naturally. Figure 5.22 below shows a simple almost linearly separable dataset with two classes and two attributes $x_{1}$ and $x_{2}$ plotted in 2D.
 
 <figure role="group">
-  <img src="../images/DS_IMG147.png" alt="Brief description." />
+  <img src="../images/DS_IMG147.png" alt="Graph showing a simple, almost linearly separable dataset with two classes and two attributes x1 and x2 plotted in 2D." />
   <figcaption>
-    <p><strong>Figure 2.21: Example of binary class dataset.</strong></p>
+    <p><strong>Figure 5.22.</strong> Example of binary class dataset.</p>
   </figcaption>
 </figure>
 
-To learn the best classifier, we need to position the line optimally so that it clearly differentiates between the two classes. Note that there is no perfect linear solution here as the data is non-linearly separable, but this may be due to noise rather than the nature of the data. Below in figure 2.22 we see an example of a linear decision boundary $x_{2}=2 x_{1}-4$ that attempts to separate the two classes. The linear classification model that predicts the labels is given as:
+To learn the best classifier, we need to position the line optimally so that it clearly differentiates between the two classes. Note that there is no perfect linear solution here as the data is non-linearly separable, but this may be due to noise rather than the nature of the data. Below in figure 5.23 we see an example of a linear decision boundary $x_{2}=2 x_{1}-4$ that attempts to separate the two classes. The linear classification model that predicts the labels is given as:
 
 <figure role="group">
-  <img src="../images/DS_IMG148.png" alt="Brief description." />
+  <img src="../images/DS_IMG148.png" alt="Graph showing an example of a binary class dataset with linear decision boundary x2 = 2x1 − 4." />
   <figcaption>
-    <p><strong>Figure 2.22: Example of binary class dataset with decision boundaries.</strong></p>
+    <p><strong>Figure 5.23.</strong> Example of binary class dataset with decision boundaries.</p>
   </figcaption>
 </figure>
 

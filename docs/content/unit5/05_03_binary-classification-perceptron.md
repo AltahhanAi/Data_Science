@@ -33,12 +33,12 @@ $$
 J(\mathbf{w})=\sum_{n \in \mathcal{M}} J_{n}=\sum_{n \in \mathcal{M}}-\mathbf{w}^{\top} \mathbf{x}_{n} t_{n}
 $$
 
-Where $\mathcal{M}$ represents the set of **misclassified** data points in the dataset. Note that if a case lies exactly on the boundary then we assume it is of class +1. We call the model that uses this trick the perceptron. In figure 3.1 below we show a schematic representation of the perceptron.
+Where $\mathcal{M}$ represents the set of **misclassified** data points in the dataset. Note that if a case lies exactly on the boundary then we assume it is of class +1. We call the model that uses this trick the perceptron. In figure 5.24 below we show a schematic representation of the perceptron.
 
 <figure role="group">
   <img src="../images/DS_IMG149.png" alt="Schematic representation of the perceptron as a linear model for classification." />
   <figcaption>
-    <p><strong>Figure 3.1: Schematic representation of the perceptron as a linear model for classification.</strong></p>
+    <p><strong>Figure 5.24.</strong> A schematic representation of the perceptron as a linear model for classification.</p>
   </figcaption>
 </figure>
 
@@ -74,18 +74,21 @@ In fact, we can omit the learning rate because multiplying by it (or not) will n
 
 ##Moving into feature space: generalised linear models for classification
 
-As we have seen earlier in Unit 4, all algorithms and techniques can be directly applied when we move from the input space into a feature space that may have higher dimension. The benefit of mapping into a new higher dimension feature space is that it will potentially render the non-linearity of the class’s boundaries in the input space into linear boundaries in  the feature space as we can see in figure 3.2 below.
-
-![Diagram showing the relationship of data mining to statistics, AI, machine learning and pattern recognition.](images/DS_IMG216.png)
-
-![Diagram showing the relationship of data mining to statistics, AI, machine learning and pattern recognition.](images/DS_IMG217.png)
-
-![Diagram showing the relationship of data mining to statistics, AI, machine learning and pattern recognition.](images/DS_IMG218.png)
+As we have seen earlier in Unit 4, all algorithms and techniques can be directly applied when we move from the input space into a feature space that may have higher dimension. The benefit of mapping into a new higher dimension feature space is that it will potentially render the non-linearity of the class’s boundaries in the input space into linear boundaries in the feature space. We can see this demonstrated in figures 5.25 and 5.26 below.
 
 <figure role="group">
-  <img src="../images/DS_IMG219.png" alt="Four graphs showing two examples of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
+  <img src="../images/DS_IMG217.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
+	<img src="../images/DS_IMG216.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
   <figcaption>
-    <p><strong>Figure 3.2: Two examples of the benefit of mapping input space to a feature space, where the data becomes linearly separable. .</strong></p>
+    <p><strong>Figure 5.25.</strong> An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable.</p>
+  </figcaption>
+</figure>
+
+<figure role="group">
+  <img src="../images/DS_IMG219.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
+	<img src="../images/DS_IMG218.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
+  <figcaption>
+    <p><strong>Figure 5.26.</strong> An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable.</p>
   </figcaption>
 </figure>
 
@@ -201,13 +204,13 @@ Based on what we have covered in Algorithm 5 in Unit 4, we can directly apply a 
 From now on it will be sufficient for us to just refer to an algorithm from the regression sections and show the update rules that is specific to classification, but for completeness of coverage we state the algorithm without re-explaining its skeleton as this was done already in the regression unit.
 
 <figure role="group">
-  <img src="../images/DS_IMG150.png" alt="Brief description." />
+  <img src="../images/DS_IMG150.png" alt="Schematic representation of the perceptron as a linear model for classification with basis." />
   <figcaption>
-    <p><strong>Figure 3.3: Schematic representation of the perceptron as a linear model for classification with basis.</strong></p>
+    <p><strong>Figure 5.27.</strong> Schematic representation of the perceptron as a linear model for classification with basis.</p>
   </figcaption>
 </figure>
 
-It should be noted that if the classes are non-linearly separable the perceptron will not be able to classify them, but a multi-layer perceptron will be able to do so. A classical example is the XOR dataset shown below in figure 3.4. The dataset is called as such because it is generated from an XOR gate as follows:
+It should be noted that if the classes are non-linearly separable the perceptron will not be able to classify them, but a multi-layer perceptron will be able to do so. A classical example is the XOR dataset shown below in figure 5.28. The dataset is called as such because it is generated from an XOR gate as follows:
 
 | Input components $x$ | Input components $x$ | Output $y$          |
 | -------------------- | -------------------- | ------------------- |
@@ -232,7 +235,7 @@ Due the perfect alignment of point (1,0) and (0,1) as well as (0,0) and (1,1) th
 <figure role="group">
   <img src="../images/DS_IMG151.png" alt="Graph showing XOR dataset." />
   <figcaption>
-    <p><strong>Figure 3.4: XOR dataset.</strong></p>
+    <p><strong>Figure 5.28.</strong> XOR dataset.</p>
   </figcaption>
 </figure>
 

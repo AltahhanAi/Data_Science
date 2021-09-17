@@ -32,7 +32,7 @@ This function has the following shape, shown in figure 1.5:
 
 ![Graph showing the plot of minimum y=(x−5)2+8, with its minimum at x=5.](images/DS_IMG177.png)
 
-**<p style="text-align: center;">Figure 1.5:** *plot of minimum $y=(x-5)^{2}+8$, showing its minimum at $x=5$.*</p>
+**<p style="text-align: center;">Figure 3.6.** *plot of minimum $y=(x-5)^{2}+8$, showing its minimum at $x=5$.*</p>
 
 To obtain the minimum of this function we differentiate it:
 

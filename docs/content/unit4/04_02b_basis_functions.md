@@ -10,7 +10,7 @@ The main advantage of using such basis is its ability to represent the more comp
 
 <figure role="group">
   <img src="../images/DS_IMG105.png" alt="Graph showing a set of different polynomial basis for 4 linear models with the single input variable x." />
-  <figcaption><strong>Figure 4.8</strong> Shows a set of different polynomial basis for 4 linear models with single input variable x.</figcaption>
+  <figcaption><strong>Figure 4.8.</strong> Shows a set of different polynomial basis for 4 linear models with single input variable x.</figcaption>
 </figure>
 
 Although these are more capable of capturing more nonlinear function shape (remember our model is still linear in the weights) nevertheless such basis have limitations. The most important limitation of polynomial basis is that they are global functions. Meaning that changes in one part infiltrate to affect other parts. Note that even polynomial has similar shapes that span the first and second quarters of the real plane (y is positive) and odd polynomial have similar shapes that span the first and third quarter of the real plane (y is can be positive and negative).
@@ -33,22 +33,22 @@ Note however, that the max value that the RBF basis can take is 1, contrary to t
 
 <figure role="group">
   <img src="../images/DS_IMG106.png" alt="Graph showing three examples of RBF basis, with means of 0, 0 ,2 and variances of 1, 0.4, 4, respectively. " />
-  <figcaption><strong>Figure 4.9</strong> Shows three examples of RBF basis with means of 0,0,2 and variances of 1, 0.4, 4 respectively.</figcaption>
+  <figcaption><strong>Figure 4.9.</strong> Shows three examples of RBF basis with means of 0,0,2 and variances of 1, 0.4, 4 respectively.</figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG107.png" alt="Graph showing the same RBF when used in linear models with the same weights of 0 and 4, respectively." />
-  <figcaption><strong>Figure 4.10</strong> Same RBF when used in linear models with same weights of 0 and 4 respectively. </figcaption>
+  <figcaption><strong>Figure 4.10.</strong> Same RBF when used in linear models with same weights of 0 and 4 respectively. </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG108.png" alt="Graph showing the same RBF when used in linear models with the same weights of 10 and 4, respectively." />
-  <figcaption><strong>Figure 4.11</strong> Same RBF when used in linear models with same weights of 10 and 4 respectively.</figcaption>
+  <figcaption><strong>Figure 4.11.</strong> Same RBF when used in linear models with same weights of 10 and 4 respectively.</figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG109.png" alt="Graph showing the same RBF when used in linear models with different weights of (0,2), (5,2) and (5,2), respectively." />
-  <figcaption><strong>Figure 4.12</strong> Same RBF when used in linear models with different weights of (0,2), (5,2) and (5,2) respectively.</figcaption>
+  <figcaption><strong>Figure 4.12.</strong> Same RBF when used in linear models with different weights of (0,2), (5,2) and (5,2) respectively.</figcaption>
 </figure>
 
 We can see from Figures 4.9-4.12 that the effect of weights is as follows: the bias $w_0$ shifts the entire model up or down while the $w_1$ scale the entire model to a range of $[0,w_1]$. The effect of the mean and the variance is as usual; the mean specifies where the model peaks and the variance specifies how narrow or wide the model.
@@ -100,22 +100,22 @@ Below we show some examples of the behaviour of the sigmoid for 1d input space.
 
 <figure role="group">
   <img src="../images/DS_IMG110.png" alt="Graph showing three examples of sigmoidal basis with means of 0, 0, 2 and variances of 0.4, 4, 4, respectively." />
-  <figcaption><strong>Figure 4.13</strong> Shows three examples of sigmoidal basis with means of 0,0,2 and variances of 1, 0.4, 4 respectively. </figcaption>
+  <figcaption><strong>Figure 4.13.</strong> Shows three examples of sigmoidal basis with means of 0,0,2 and variances of 1, 0.4, 4 respectively. </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG111.png" alt="Graph showing the same sigmoidal basis when used in linear models with the same weights of 0 and 4, respectively." />
-  <figcaption><strong>Figure 4.14</strong> Same sigmoidal basis when used in linear models with same weights of 0 and 4 respectively.  </figcaption>
+  <figcaption><strong>Figure 4.14.</strong> Same sigmoidal basis when used in linear models with same weights of 0 and 4 respectively.  </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG112.png" alt="Graph showing the same sigmoidal basis when used in linear models with the same weights of 10 and 4, respectively." />
-  <figcaption><strong>Figure 4.15</strong> Same sigmoidal basis when used in linear models with same weights of 10 and 4 respectively.</figcaption>
+  <figcaption><strong>Figure 4.15.</strong> Same sigmoidal basis when used in linear models with same weights of 10 and 4 respectively.</figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG113.png" alt="Graph showing the same sigmoidal basis with different weights of (0,2), (5,2) and (5,2), respectively." />
-  <figcaption><strong>Figure 4.16</strong> Same sigmoidal basis when used in linear models with different weights of (0,2), (5,2) and (5,2) respectively.</figcaption>
+  <figcaption><strong>Figure 4.16.</strong> Same sigmoidal basis when used in linear models with different weights of (0,2), (5,2) and (5,2) respectively.</figcaption>
 </figure>
 
 !!!example "Sigmoid Derivative"

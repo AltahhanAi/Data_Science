@@ -28,19 +28,19 @@ The classification would be effectively stating yes or 1 or + if the instant bel
 3.	**The actual class is + while the predicted class is –	(False Negative-FN)**
 4.	**The actual class is – and    the predicted class is –	(True Negative-TN)**
 
-These 4 cases can be better summarised in figure 4.1 below. This is called the confusion matrix because the red boxes represent the cases confused by the prediction model, while the blue boxes represent the cases where the predictions of the model are aligned with the reality. The aim of any model is to reduce the cases in the white boxes and make them as close to 0 as possible. We can actually do a lot with these counts, and below we show several metrics that can be defined based on them.
+These 4 cases can be better summarised in figure 2.46 below. This is called the confusion matrix because the white boxes represent the cases confused by the prediction model, while the blue boxes represent the cases where the predictions of the model are aligned with the reality. The aim of any model is to reduce the cases in the white boxes and make them as close to 0 as possible. We can actually do a lot with these counts, and below we show several metrics that can be defined based on them.
 
 <figure role="group">
   <img src="../images/DS_IMG062.png" alt="Confusion matrix for binary classification model. Actual class on the x axis and predicted class on the y axis." />
-  <figcaption><strong>Figure 4.1</strong> Confusion matrix for binary classification model.</figcaption>
+  <figcaption><strong>Figure 2.46.</strong> Confusion matrix for binary classification model.</figcaption>
 </figure>
 
 !!! info
-    Be mindful that some sources present the confusion matrix using the transpose of the above matrix (with actual classes on the left and the predicted classes on top) as in figure 4.2 below. This will not change anything but the presentation. RapidMiner and Weka for example use the first form, while Tan et al (2020) uses the second form. We will adopt the first form as it is more common. Note that **FP** is called **type I error**, while **FN** is called **type II error**, accordingly it makes more sense to present the matrix in the first form.
+    Be mindful that some sources present the confusion matrix using the transpose of the above matrix (with actual classes on the left and the predicted classes on top) as in figure 2.47 below. This will not change anything but the presentation. RapidMiner and Weka for example use the first form, while Tan et al (2020) uses the second form. We will adopt the first form as it is more common. Note that **FP** is called **type I error**, while **FN** is called **type II error**, accordingly it makes more sense to present the matrix in the first form.
 
     <figure role="group">
       <img src="../images/DS_IMG063.png" alt="Confusion matrix for binary classification model. Actual class on the y axis and predicted class on the x axis." />
-      <figcaption><strong>Figure 4.2</strong> Confusion matrix for binary classification model presented differently.</figcaption>
+      <figcaption><strong>Figure 2.47.</strong> Confusion matrix for binary classification model presented differently.</figcaption>
     </figure>
 
 Note that the total number of instances is the sum of all of the numbers in the boxes of the confusion matrix:
@@ -67,12 +67,12 @@ All classifiers try to increase its accuracy or equivalently reduce its error ra
 
 <figure role="group">
   <img src="../images/DS_IMG064.png" alt="Two confusion matrices with metrics related to actual classes (common names used). Left: positive actual classes' related metrics. Right: negative actual classes' related metrics." />
-  <figcaption><strong>Figure 4.3</strong> Metrics that are related to actual classes (common names used). Left: positive actual classes related metrics. Right: negative actual classes related metrics.</figcaption>
+  <figcaption><strong>Figure 2.48.</strong> Metrics that are related to actual classes (common names used). Left: positive actual classes related metrics. Right: negative actual classes related metrics.</figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG065.png" alt="Two confusion matrices with metrics related to predicted classes (common names used). Left: positive predicted classes' related metrics. Right: negative predicted classes' related metrics." />
-  <figcaption><strong>Figure 4.4</strong> Metrics that are related to predicted classes (common names used). Left: positive predicted classes’ related metrics. Right: negative predicted classes’ related metrics.</figcaption>
+  <figcaption><strong>Figure 2.49.</strong> Metrics that are related to predicted classes (common names used). Left: positive predicted classes’ related metrics. Right: negative predicted classes’ related metrics.</figcaption>
 </figure>
 
 As it can be seen, all possible ways of taking the rate of either of the four values in the confusion matrix is covered and has its own properties. Of particular interest is the **precision** and the **recall** (aka positive prediction value and true positive rate, respectively). When we talk about precision, we are referring to the precision of the **prediction** of our classifier with respect to the positive class. The recall, on the other hand, measures how good our classifier in detecting the positive **actual** cases is.
@@ -81,7 +81,7 @@ If we are less concerned with false positives then we can use the hit rate (aka 
 
 <figure role="group">
   <img src="../images/DS_IMG066.png" alt="Two confusion matrices with detective metrics related to actual classes. Left: performance metrics. Right: error metrics." />
-  <figcaption><strong>Figure 4.5</strong> Detective Metrics related to actual classes (new suggested names used for consistency. Left: performance metrics. Right: error metrics.</figcaption>
+  <figcaption><strong>Figure 2.50.</strong> Detective Metrics related to actual classes (new suggested names used for consistency. Left: performance metrics. Right: error metrics.</figcaption>
 </figure>
 
 The bar on top represents a complement of an event in a probabilistic sense. The true positive detection rate is denoted as $p\left(\right.$ detect $\left._{+}\right)$ and it represents the probability of correctly detecting positive instances by the model. Similarly, the true negative detection rate is denoted as $p\left(\right.$ detect $\left._{-}\right)$. It represents the probability of correctly detecting negative instances by the model.  
@@ -119,7 +119,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG067.png" alt="Two confusion matrices with predictive metrics related to predicted classes. Left: performance metrics. Right: error metrics." />
-  <figcaption><strong>Figure 4.6</strong> Predictive Metrics related to predicted classes (new suggested names used for consistency). Left: performance related predictive metrics. Right: error related predictive metrics. </figcaption>
+  <figcaption><strong>Figure 2.51.</strong> Predictive Metrics related to predicted classes (new suggested names used for consistency). Left: performance related predictive metrics. Right: error related predictive metrics. </figcaption>
 </figure>
 
 Negation on the prediction metrics yields similar but not quite the same relationship as for the detection metrics. This is because if we negate both sides of the positive prediction value equation: $\neg\left(\right.$ Predict $\left._{+}=T P /(T P+F P)\right)$ we get $\neg$ Predict $_{+}=F N /(F N+T N)=\overline{\text { Predict }}_{-}$.
@@ -130,7 +130,9 @@ Note that we used capital initial for the metrics to express them as a rate, whi
 
 ###Which type of metric is more important?
 
-Note that predictive metrics are concerned with the model ability to predict or guess the correct class of the instances, while  detective metrics are concerned with the model ability to detect or recognise the correct class of the instances. In particular, detective metrics are discriminative ones by nature since we can interpret it as if we are giving the model a set of positive only (or negative only) instances without revealing the class to the model and ask the model if it can tell us which one of these are positive (or which ones are negative). The answer should be all positive (or all negative) and the more the model diverges from this answer the less discriminative it is. On the other hand,  predictive metrics are speculative by nature since we can interpret them as if we are giving the model a set of mixed class instances and we ask it to come up with a guess or prediction on the class. So, predictive metrics may appear (due to its name) to pertain more for a prediction problem. However this is not the case; both the detective and predictive metrics give different insights of the quality of the classification model. The question is, can we come up with metrics that encompasses both types of measures, the answer is yes.
+Note that predictive metrics are concerned with the model ability to predict or guess the correct class of the instances, while  detective metrics are concerned with the model ability to detect or recognise the correct class of the instances. In particular, detective metrics are discriminative ones by nature since we can interpret it as if we are giving the model a set of positive only (or negative only) instances without revealing the class to the model and ask the model if it can tell us which one of these are positive (or which ones are negative). The answer should be all positive (or all negative) and the more the model diverges from this answer the less discriminative it is.
+
+On the other hand,  predictive metrics are speculative by nature since we can interpret them as if we are giving the model a set of mixed class instances and we ask it to come up with a guess or prediction on the class. So, predictive metrics may appear (due to its name) to pertain more for a prediction problem. However this is not the case; both the detective and predictive metrics give different insights of the quality of the classification model. The question is, can we come up with metrics that encompass both types of measures? The answer is 'yes'.
 
 ###Holistic metrics
 
@@ -145,7 +147,7 @@ Therefore, F1 score is given as $F 1$ score $=\frac{2 p\left(p r e d i c t_{+}\r
 
 <figure role="group">
   <img src="../images/DS_IMG068.png" alt="Two confusion matrices with holistic metrics that comprehensively involve both predicted and actual classes. Left: F1 score. Right: Matthew Correlation Coefficient (MCC)." />
-  <figcaption><strong>Figure 4.7</strong> Holistic Metrics that are comprehensively involving both predicted and actual classes. Left: F1 score. Right: Matthew Correlation Coefficient. Both are suitable for any binary class problem even when the classes’ counts are imbalanced. (i.e. when the number of instances form one class – normally the positive class – are much smaller than number of instances from the second class – normally the negative class).. </figcaption>
+  <figcaption><strong>Figure 2.52.</strong> Holistic Metrics that are comprehensively involving both predicted and actual classes. Left: F1 score. Right: Matthew Correlation Coefficient. Both are suitable for any binary class problem even when the classes’ counts are imbalanced. (i.e. when the number of instances form one class – normally the positive class – are much smaller than number of instances from the second class – normally the negative class).. </figcaption>
 </figure>
 
 !!! Note
@@ -157,7 +159,7 @@ Therefore, F1 score is given as $F 1$ score $=\frac{2 p\left(p r e d i c t_{+}\r
 
 <figure role="group">
   <img src="../images/DS_IMG069.png" alt="Two confusion matrices with holistic metrics that comprehensively involve both predicted and actual classes. Left: Accuracy. Right: error rate." />
-  <figcaption><strong>Figure 4.8</strong> Holistic Metrics that are comprehensively involving both predicted and actual classes. Left: Accuracy. Right: Error rate. Both perform poorly when the classes count is imbalanced (i.e. when the number of instances form one class – normally the positive – are much smaller than number of instances from the second class – normally the negative class). Nevertheless, these are the basic metrics that several algorithms use. </figcaption>
+  <figcaption><strong>Figure 2.53.</strong> Holistic Metrics that are comprehensively involving both predicted and actual classes. Left: Accuracy. Right: Error rate. Both perform poorly when the classes count is imbalanced (i.e. when the number of instances form one class – normally the positive – are much smaller than number of instances from the second class – normally the negative class). Nevertheless, these are the basic metrics that several algorithms use. </figcaption>
 </figure>
 
 The range of MCC is between -1 and 1. -1 represents total disagreement between the model predictions and the actual classes, 1 represents total agreement between the predicted and actual classes and 0 means no correlation, i.e. the model is not better than a random guess.
@@ -166,7 +168,7 @@ In terms of comparison, we can meaningfully compare as follows:
 
 <figure role="group">
   <img src="../images/DS_IMG194b.png" alt="Table comparing model performance metrics with model error metrics." />
-  <figcaption><strong>Figure 4.9</strong> Comparison of model performance metrics with model error metrics. </figcaption>
+  <figcaption><strong>Figure 2.54.</strong> Comparison of model performance metrics with model error metrics. </figcaption>
 </figure>
 
 As can be seen we either compare using the left-hand side for performance or the right-hand side for errors. We do not need to use both, and we must be aware not to mingle the left with right when we compare different models' performance.
@@ -179,7 +181,7 @@ By comparing the Accuracy (or F1 score or MCC) we accordingly prefer classifier 
 
 <figure role="group">
   <img src="../images/DS_IMG070.png" alt="Confusion matrix, generated by the decision tree (DT) classifier 'Classifier 1'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'." />
-  <figcaption><strong>Figure 4.10</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.55.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -194,7 +196,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG071.png" alt="Confusion matrix, generated by the decision tree (DT) classifier 'Classifier 2'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'." />
-  <figcaption><strong>Figure 4.11</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.56.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -208,7 +210,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG072.png" alt="Confusion matrix, generated by the decision tree (DT) classifier 'Classifier 3'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'." />
-  <figcaption><strong>Figure 4.12</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.57.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -222,7 +224,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG073.png" alt="Confusion matrix, generated by the decision tree (DT) classifier 'Classifier 4'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'." />
-  <figcaption><strong>Figure 4.13</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.58.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -240,7 +242,7 @@ Let us now assume that we trained a further two classifiers that produced the fo
 
 <figure role="group">
   <img src="../images/DS_IMG074.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 1'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are affected by the way the instances are classified." />
-  <figcaption><strong>Figure 4.14</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.59.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -254,7 +256,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG075.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 2'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are affected by the way the instances are classified. " />
-  <figcaption><strong>Figure 4.15</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.60.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -268,7 +270,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG076.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 3'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are affected by the way the instances are classified. " />
-  <figcaption><strong>Figure 4.16</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.61.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -288,7 +290,7 @@ Let us now see how these metrics react to an increase in one of the classes, i.e
 
 <figure role="group">
   <img src="../images/DS_IMG078.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 1'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are affected by a rare class." />
-  <figcaption><strong>Figure 4.17</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.62.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -303,7 +305,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG077.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 2'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are affected by an increase in one of the classes. " />
-  <figcaption><strong>Figure 4.18</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.63.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -319,7 +321,7 @@ Ok now let us see how the metrics react when the problem has a rare class. i.e. 
 
 <figure role="group">
   <img src="../images/DS_IMG079.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 1'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are affected by a rare class." />
-  <figcaption><strong>Figure 4.19</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.64.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -333,7 +335,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG080.png" alt="Confusion matrix, generated by decision tree (DT) classifier 'Classifier 2'. With example calculations and results for the metrics 'detect', 'predict', 'accuracy', 'F1', and 'MCC'. The metrics are affected by a rare class." />
-  <figcaption><strong>Figure 4.20</strong> See calculations below. </figcaption>
+  <figcaption><strong>Figure 2.65.</strong> See calculations below. </figcaption>
 </figure>
 
 $$
@@ -394,25 +396,25 @@ Generalising the accuracy from binary-class to multi-class problems is straightf
 Note that the true labels are placed horizontally while the prediction is vertically. This is opposite to what we have used before, but as we said earlier it should not matter as long as we are vigilant about it.
 
 <figure role="group">
-  <img src="../images/DS_IMG081.png" alt="Confusion matrix, without normalisation." />
-  <figcaption><strong>Figure 4.21</strong> Confusion matrix without normalisation. </figcaption>
+  <img src="../images/DS_IMG081.png" alt="Confusion matrix, without normalization." />
+  <figcaption><strong>Figure 2.66.</strong> Confusion matrix without normalization. </figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG082.png" alt="Normalised confusion matrix." />
-  <figcaption><strong>Figure 4.22</strong> Confusion matrix normalised. </figcaption>
+  <img src="../images/DS_IMG082.png" alt="Normalized confusion matrix." />
+  <figcaption><strong>Figure 2.67.</strong> Confusion matrix normalized. </figcaption>
 </figure>
 
-Different sources uses these two formatting as well. On the right also you can see the same confusion matrix after normalisation. We normalise by dividing each entry by the sum along the **true label axis**. Below you will see an example that clarifies this.
+Different sources use these two formats as well. In figure 2.67 you can see the same confusion matrix after normalization. We normalize by dividing each entry by the sum along the **true label axis**. Below you will see an example that clarifies this.
 
 <figure role="group">
-  <img src="../images/DS_IMG083.png" alt="Confusion matrix, without normalisation." />
-  <figcaption><strong>Figure 4.23</strong> Confusion matrix without normalisation. </figcaption>
+  <img src="../images/DS_IMG083.png" alt="Confusion matrix, without normalization." />
+  <figcaption><strong>Figure 2.68.</strong> Confusion matrix without normalization. </figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG084.png" alt="Normalised confusion matrix." />
-  <figcaption><strong>Figure 4.24</strong> Confusion matrix normalised. </figcaption>
+  <img src="../images/DS_IMG084.png" alt="Normalized confusion matrix." />
+  <figcaption><strong>Figure 2.69.</strong> Confusion matrix normalized. </figcaption>
 </figure>
 
 The accuracy for a binary classification problem is given as:
@@ -437,7 +439,9 @@ $$
 
 ###Accuracy limitation
 
-One issue that we face with the accuracy of multi-class and binary-class is that it favours the dominant class with more instances. For example, in the iris confusion matrix the count for the virginica is only 9, while for the versicolor it is 16. This means that the performance of the model on the versicolor class will overshadow and dominate its performance on the virginica. Sometimes this is desirable if we want the performance measure to be consistent with the dataset class distribution. Other times, when we are more interested in a balanced score of all classes regardless of their distributions, or when we want to emphasise the importance of a rare class due to a difficulty in detecting it, then the accuracy is not suitable. In these cases, balanced scores are preferred. In the next two subsections we will talk about the detect and predict scores for multi-class problems (aka recall and precision scores, respectively). These are balanced scores that are more suitable to imbalanced class datasets. In fact the detect score is also known as the balanced accuracy score.
+One issue that we face with the accuracy of multi-class and binary-class is that it favours the dominant class with more instances. For example, in the iris confusion matrix the count for the virginica is only 9, while for the versicolor it is 16. This means that the performance of the model on the versicolor class will overshadow and dominate its performance on the virginica. Sometimes this is desirable if we want the performance measure to be consistent with the dataset class distribution.
+
+Other times, when we are more interested in a balanced score of all classes regardless of their distributions, or when we want to emphasise the importance of a rare class due to a difficulty in detecting it, then the accuracy is not suitable. In these cases, balanced scores are preferred. In the next two subsections we will talk about the detect and predict scores for multi-class problems (aka recall and precision scores, respectively). These are balanced scores that are more suitable to imbalanced class datasets. In fact the detect score is also known as the balanced accuracy score.
 
 ###Holistic metric for multi-class: $pr(detect)$ (aka recall score or balanced accuracy score)
 
@@ -455,7 +459,7 @@ $$
 \left.\operatorname{pr}\left(\text { detect }_{\text {setosa }}\right)=\frac{13}{13}, \text { pr(detect }_{\text {versicolor }}\right)=\frac{15}{16}, \operatorname{pr}\left(\text { detect }_{\text {virginica }}\right)=\frac{6}{9}
 $$
 
-Which yields 1.0,0.9375 and 0.666 for the classes 'setosa' 'versicolor' 'virginica', respectively and these are the scores that we can see on the normalised confusion matrix after rounding to 2 decimals. Now, the recall for the above model can be calculated in several ways, some of them are:
+Which yields 1.0,0.9375 and 0.666 for the classes 'setosa' 'versicolor' 'virginica', respectively and these are the scores that we can see on the normalized confusion matrix after rounding to 2 decimals. Now, the recall for the above model can be calculated in several ways, some of them are:
 
 1. Macro detect score (aka recall score or balanced accuracy) $p(\text { detect })=\frac{1}{3}\left(p\left(\text { detect }_{\text {setosa }}\right)+p\left(\text { detect }_{\text {versicolor }}\right)+p\left(\text { detect }_{\text {virginica }}\right)\right)=0.868$ This is just arithmetic average which will assume that all classes the same importance.
 
@@ -513,7 +517,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG085.png" alt="Confusion matrix showing application and workings of the balanced accuracy metric." />
-  <figcaption><strong>Figure 4.25</strong> Confusion matrix showing application and workings of the balanced accuracy metric. </figcaption>
+  <figcaption><strong>Figure 2.70.</strong> Confusion matrix showing application and workings of the balanced accuracy metric. </figcaption>
 </figure>
 
 Which yields 1,   0.8333,    0.857 for the classes 'setosa' 'versicolor' 'virginica', respectively.

@@ -8,17 +8,17 @@ The more complex the model is the more exposed to overfitting. So a more complex
 
 <figure role="group">
   <img src="../images/DS_IMG114.png" alt="Graph showing polynomial basis degree 1, where the model is underfitting." />
-  <figcaption><strong>Figure 4.17</strong> Model underfitting.</figcaption>
+  <figcaption><strong>Figure 4.17.</strong> Model underfitting.</figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG115.png" alt="Graph showing polynomial basis degree 4, where there is good model fitting." />
-  <figcaption><strong>Figure 4.1</strong> Good model fitting.</figcaption>
+  <figcaption><strong>Figure 4.18.</strong> Good model fitting.</figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG116.png" alt="Graph showing polynomial basis degree 15, where the model is overfitting." />
-  <figcaption><strong>Figure 4.19</strong> Model overfitting.</figcaption>
+  <figcaption><strong>Figure 4.19.</strong> Model overfitting.</figcaption>
 </figure>
 
 The figures above show the effect behaviour of overfitting and underfitting on a linear model with a polynomial basis. The fitted function that we sampled the data from is a sin wave function.
@@ -55,12 +55,12 @@ This technique is also called Ridge regression. See figure 4.20 below for how li
 
 <figure role="group">
   <img src="../images/DS_IMG117.png" alt="Graph showing regularised least squares on a linear regression with polynomial basis of dgree 15 and 70 data points." />
-  <figcaption><strong>Figure 4.20</strong> The effect of the regularisation constant λ on overfitting and underfitting.</figcaption>
+  <figcaption><strong>Figure 4.20.</strong> The effect of the regularisation constant λ on overfitting and underfitting.</figcaption>
 </figure>
 
 Note in figure 4.21 how both the problems of underfitting of a regularised linear regression models and the overfitting of a linear regression model were greatly reduced when we increased the data from 70 to 500. Both figures show 40% only of the actual data. This illustrate an important aspect of modelling which is that the models are going to be much more resilient with more data and less resilient and more sensitive to overfitting and underfitting and outliers with less data. We will talk about outliers in later units.
 
 <figure role="group">
   <img src="../images/DS_IMG118.png" alt="Graph showing regularised least squares on a linear regression with polynomial basis of dgree 15 and 500 data points." />
-  <figcaption><strong>Figure 4.21</strong> Overfitting is reduced by increasing the number of data points considered from 70 to 500.</figcaption>
+  <figcaption><strong>Figure 4.21.</strong> Overfitting is reduced by increasing the number of data points considered from 70 to 500.</figcaption>
 </figure>

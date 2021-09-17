@@ -85,7 +85,7 @@ Let us start by utilising the attribute ‘Gives Birth’ to split the data. Usi
 
 <figure role="group">
   <img src="../images/DS_IMG029.png" alt="RapidMiner image. A decision tree (DT) for mammalian dataset with the data split according to the ‘gives birth’ feature." />
-  <figcaption><strong>Figure 3.1.</strong> Decision Tree Graph for mammalian dataset with the data is split according to ‘Gives Birth’ features. The graph is exported from RapidMiner.</figcaption>
+  <figcaption><strong>Figure 2.30.</strong> Decision Tree Graph for mammalian dataset with the data is split according to ‘Gives Birth’ features. The graph is exported from RapidMiner.</figcaption>
 </figure>
 
 This figure exported from RapidMiner combines the tree structure into the data that is distributed between the nodes. In RapidMiner the condition is represented as a rectangle without a colour bar while the leaves are with colour bars. The colour represents the class, red is ‘non-mammal’ and blue is ‘mammal’. The thickness of the colour represents the data percentage, in our dataset $10/15≈67%$  of the animals are ‘non-mammals’ and $5/15≈33%$ are ‘mammals’. Here in the above decision tree graph we have 60% of the data in the left and 40% of the data in the right node. The left hand side node is pure red (‘non-mammals’) and the right hand side is mainly blue (‘mammals’) with some red.
@@ -96,7 +96,7 @@ Now let's move to the next feature, and we continue to split our data in our tre
 
 <figure role="group">
   <img src="../images/DS_IMG030.png" alt="RapidMiner image. A decision tree (DT) for mammalian dataset with two feature splits (‘gives birth’ and ‘warm-blooded’)." />
-  <figcaption><strong>Figure 3.2.</strong> Decision tree graph for mammalian dataset with two features splits (‘gives birth’ and ‘warm-blooded’), exported from RapidMiner.</figcaption>
+  <figcaption><strong>Figure 2.31.</strong> Decision tree graph for mammalian dataset with two features splits (‘gives birth’ and ‘warm-blooded’), exported from RapidMiner.</figcaption>
 </figure>
 
 This shows that we can actually decide whether an animal is a mammal using only the two features shown above and all other features are not needed to do so. We can discard all other features and suffice by the ‘Gives Birth’ and ‘Warm-blooded’ features. Later we will see that we cannot do so if we want to know finer classification for the animal such as ‘reptile’ or ‘fish’.
@@ -145,7 +145,7 @@ Watch this video to see how we can easily build a decision tree model in RapidMi
 
 ##Validity of decision trees
 
-Complex structures that are called decision trees may not satisfy the definition of an automatic decision tree due to horizontal and cyclic paths. See the following [example](https://www.pat.nhs.uk/Coronavirus/HR/Decision%20Tree%20for%20COVID-19%20individual%20risk%20assessments.pdf){:target="_blank"} of a DT for risk assessment by one of the NHS groups in the north of England, which it violates the definition in one horizontal connection. For a more complex example of more violation of the automated DT see this example for [Cattle testing](https://www.bcva.org.uk/system/files/whatwedo/BCVA%20TB%20Flowchart%20England%20v7%2011.05.2020.pdf){:target="_blank"}. It should be noted that it is possible to reproduce these structures to be a valid DT or to validate DT based on a raw dataset, see this [article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2572623/){:target="_blank"} for example.
+Complex structures that are called decision trees may not satisfy the definition of an automatic decision tree due to horizontal and cyclic paths. See the following [example](https://www.pat.nhs.uk/Coronavirus/HR/Decision%20Tree%20for%20COVID-19%20individual%20risk%20assessments.pdf){:target="_blank"} of a DT for risk assessment by one of the NHS groups in the north of England, which violates the definition in one horizontal connection. For a more complex example of more violation of the automated DT see this example for [Cattle testing](https://www.bcva.org.uk/system/files/whatwedo/BCVA%20TB%20Flowchart%20England%20v7%2011.05.2020.pdf){:target="_blank"}. It should be noted that it is possible to reproduce these structures to be a valid DT or to validate DT based on a raw dataset, see this [article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2572623/){:target="_blank"} for example.
 
 ##Decision boundaries of decision trees and the limitations of decision trees
 
@@ -156,32 +156,43 @@ So far we have seen how decision trees work and how they are inducted (trained).
 
 ![Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable decision boundary.](images/DS_IMG042.png)
 
+**Figure 2.32.** (Left) Scatter graph showing binary class balanced data with a linearly separable decision boundary. (Right) Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable decision boundary.
+
 ![Scatter graph showing binary class balanced data with large margin linearly separable decision boundaries.](images/DS_IMG043.png)
 
 ![Decision tree (DT) expected to concisely express binary class balanced data with large margin linearly separable decision boundaries. One of several ways to express the DT is shown.](images/DS_IMG044.png)
+
+**Figure 2.33.** (Left) Scatter graph showing binary class balanced data with large margin linearly separable decision boundaries. (Right) Decision tree (DT) expected to concisely express binary class balanced data with large margin linearly separable decision boundaries.
 
 ![Scatter graph showing binary class balanced data with three large margin linearly separable decision boundaries.](images/DS_IMG045.png)
 
 ![Decision tree (DT) expected to concisely express binary class balanced data with three large margin linearly separable decision boundaries. The tree is simplified to reflect a midpoint margin.](images/DS_IMG046.png)
 
+**Figure 2.34.** (Left) Scatter graph showing binary class balanced data with three large margin linearly separable decision boundaries. (Right) Decision tree (DT) expected to concisely express binary class balanced data with three large margin linearly separable decision boundaries.  
+
 ![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries. Class 1 is sandwiched between two parts of class 2.](images/DS_IMG047.png)
 
 ![Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries.](images/DS_IMG048.png)
+
+**Figure 2.35.** (Left) Scatter graph showing binary class balanced data with non-linearly separable decision boundaries. (Right) Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries.
 
 ![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. Class 1 is sandwiched, but class 2 is separated in two different quarters.](images/DS_IMG049.png)
 
 ![Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.](images/DS_IMG050.png)
 
+**Figure 2.36.** (Left) Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. (Right) Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.
+
 ![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. The two classes are distributed into four crossed quarters.](images/DS_IMG051.png)
 
 ![Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.](images/DS_IMG052.png)
+
+**Figure 2.37.** (Left) Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. (Right) Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.
 
 ![Scatter graph showing binary class balanced data with a linearly separable diagonal decision boundary.](images/DS_IMG053.png)
 
 ![Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable diagonal decision boundary.](images/DS_IMG054.png)
 
-
-**Figures (left) Linearly and non-linearly separable classes data with their virtual decision boundaries. (Right) expected corresponding decision trees.**
+**Figure 2.38.** (Left) Scatter graph showing binary class balanced data with a linearly separable diagonal decision boundary. (Right) Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable diagonal decision boundary.
 
 In the above cases, we showed the data and the decision boundary on the left-hand side and on the right-hand side we showed the corresponding expected decision trees that can express the data concisely. In classification such decision boundaries are crucial in two ways: they help us understand the nature of the data, and they help us to assign a suitable technique to the problem in hand. It is not always possible to represent the data in two-dimensional space, in fact it is rarely the case. However, even when we move to higher space dimension, a similar argument can hold.  
 
@@ -191,21 +202,35 @@ So let us see if we hand in the generated data to the CART decision tree inducti
 
 ![Left: Scatter graph showing classes data with a no margin horizontal decision boundary. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG055.png)
 
+**Figure 2.39.** (Left) Scatter graph showing classes data with a no margin horizontal decision boundary. (Right) A corresponding decision tree (DT) built using the CART DT induction algorithm.
+
 ![Left: Scatter graph showing classes data with wide margin horizontal decision boundary. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG056.png)
+
+**Figure 2.40.** (Left) Scatter graph showing classes data with wide margin horizontal decision boundary. (Right) A corresponding decision tree (DT) built using the CART DT induction algorithm.
 
 ![Left: Scatter graph showing classes data with a sandwich class 1 decision boundary. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG057.png)
 
+**Figure 2.41.** (Left) Scatter graph showing classes data with a sandwich class 1 decision boundary. (Right) A corresponding decision tree (DT) built using the CART DT induction algorithm.
+
 ![Left: Scatter graph showing classes data with a sandwich class 1 decision boundary. The classes are imbalanced. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG058.png)
+
+**Figure 2.42.** (Left) Scatter graph showing classes data with a sandwich class 1 decision boundary. The classes are imbalanced. (Right) A corresponding decision tree (DT) built using the CART DT induction algorithm.
 
 ![Left: Scatter graph showing classes data with a sandwich class 1 decision boundary and class 2 quartered decision boundaries. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG059.png)
 
+**Figure 2.43.** (Left) Scatter graph showing classes data with a sandwich class 1 decision boundary and class 2 quartered decision boundaries. (Right) A corresponding decision tree (DT) built using the CART DT induction algorithm.
+
 ![Left: Scatter graph showing classes data with quartered, cross-class decision boundaries. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG060.png)
+
+**Figure 2.44.** (Left) Scatter graph showing classes data with quartered, cross-class decision boundaries. (Right) A corresponding decision tree (DT) built using the CART DT induction algorithm.
 
 ![Left: Scatter graph showing classes data with diagonal classes decision boundaries. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm. The algorithm has struggled as the classes and corresponding decision boundary become non-linearly separable. ](images/DS_IMG061.png)
 
-**Figures (left) Linearly and non-linearly separable classes data with the decision boundaries of the corresponding decision tree which are shown to the right. (Right) actual corresponding decision trees.**
+**Figure 2.45.** (Left) Scatter graph showing classes data with diagonal classes decision boundaries. (Right) A corresponding decision tree (DT) built using the CART DT induction algorithm.
 
-Note how the algorithm struggled with the last case as the classes and its corresponding boundary becomes non-linearly separable. Linearly separable classes are those classes that we separate by just a line. Non-linearly separable classes are those that need more than one line to separate them or those that need another more complex shape to separate them, whether the shape is regular such as a circle or hyperbola or non-regular such as a convoluted curve. Here the boundaries are inferred from the decision tree itself, unlike the previous set of figures where the boundaries were assumed when we constructed the datasets. As we can see, the DT struggles the most when the data is diagonal. This is because the CART deals with one feature at a time in its conditions. Obviously, there are ways to work around this issue. The most obvious is to allow the DT to deal with two features inside its conditions. This would add to the complexity of the algorithms, and the problem becomes extenuated when we consider hundreds of features. If we are to consider all possible combinations of even 20 features this would amount to checking $2^{20}=1,048,576$ combinations. If each one has 10 possible values we are talking about $10^{20}=100,000,000,000,000,000,000$ which is clearly problematic. So the DT might not be the best in dealing with these cases. In fact, it is not great at dealing with numerical data in general. Please note that the decision boundary idea is quite powerful and we will utilise it in other techniques more centrally. These better suited techniques include the perceptron, multi-layer perceptron and nearest neighbours classifiers.
+Note how the algorithm struggled with the last case as the classes and its corresponding boundary becomes non-linearly separable. Linearly separable classes are those classes that we separate by just a line. Non-linearly separable classes are those that need more than one line to separate them or those that need another more complex shape to separate them, whether the shape is regular such as a circle or hyperbola or non-regular such as a convoluted curve. Here the boundaries are inferred from the decision tree itself, unlike the previous set of figures where the boundaries were assumed when we constructed the datasets. As we can see, the DT struggles the most when the data is diagonal. This is because the CART deals with one feature at a time in its conditions.
+
+Obviously, there are ways to work around this issue. The most obvious is to allow the DT to deal with two features inside its conditions. This would add to the complexity of the algorithms, and the problem becomes extenuated when we consider hundreds of features. If we are to consider all possible combinations of even 20 features this would amount to checking $2^{20}=1,048,576$ combinations. If each one has 10 possible values we are talking about $10^{20}=100,000,000,000,000,000,000$ which is clearly problematic. So the DT might not be the best in dealing with these cases. In fact, it is not great at dealing with numerical data in general. Please note that the decision boundary idea is quite powerful and we will utilise it in other techniques more centrally. These better suited techniques include the perceptron, multi-layer perceptron and nearest neighbours classifiers.
 
 !!! abstract "Exercise"
      In the following Jupyter notebook exercise you will be able to visualise the decision boundaries of a decision trees.

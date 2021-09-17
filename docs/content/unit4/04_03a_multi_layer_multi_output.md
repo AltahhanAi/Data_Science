@@ -22,11 +22,11 @@ We start with the latest architecture that we have developed in the previous sec
 We will adopt an approach where we will now develop an architecture that will allow us to adapt the basis function that we have assumed previously as being fixed. The number of the features are usually fixed in neural networks because it corresponds with number of neurons in a layers. Other techniques such as support vector machine allow for the flexibility of the adapting the number of feature basis according to the dataset but on the expense of less efficiency during the prediction. In neural networks the adaptation takes place in changing the expressing powers of the basis function by changing the weights of the hidden layer. Below we show how we move from a fixed basis model architecture into flexible adapted basis model architecture.
 
 <figure role="group">
-  <img src="../images/DS_IMG210.png" alt="(top) Schematic representation of a multiple outputs multi-layers linear regression model with fixed basis. (bottom) non-linear Multi-layer Neural Network model with adaptive basis." />
-  <figcaption><strong>Figure 4.25</strong> (top) Schematic representation of a multiple outputs multi-layers linear regression model with fixed basis. (bottom) non-linear Multi-layer Neural Network model with adaptive basis.</figcaption>
+  <img src="../images/DS_IMG210.png" alt="Top: Schematic representation of a multiple outputs multi-layers linear regression model with fixed basis. Bottom: Schematic representation of a non-linear, multi-layer, neural network model with adaptive basis." />
+  <figcaption><strong>Figure 4.25.</strong> Top: Schematic representation of a multiple outputs multi-layers linear regression model with fixed basis. Bottom: non-linear Multi-layer Neural Network model with adaptive basis.</figcaption>
 </figure>
 
-First, we denote the weight matrix that links the input features with the first set of linear models (called the hidden layer) as $\dot{\mathbf{W}}$ and it is of dimension M×(D+1) where $D$ is the input space dimension and $M$ is the number of features that we would like to obtain from the hidden layer. Next, we denote the weight vector that links the hidden linear models with the output models (called output layer) as $\mathbf{W}$ and it is of dimension $(M+1)$. Note that this architecture cannot be reduced into one-layer output as we did earlier due to the presence of the activation function. Which support what we have mentioned earlier that this the simplest ANN for regression. So, what are the advantages of such an architecture over the one-layer architecture you might ask? The answer is that it allows us to capture more complex relationship between the input and the output automatically without the need to come up with a suitable basis functions.
+First, we denote the weight matrix that links the input features with the first set of linear models (called the hidden layer) as $\dot{\mathbf{W}}$ and it is of dimension M×(D+1) where $D$ is the input space dimension and $M$ is the number of features that we would like to obtain from the hidden layer. Next, we denote the weight vector that links the hidden linear models with the output models (called output layer) as $\mathbf{W}$ and it is of dimension $(M+1)$. Note that this architecture cannot be reduced into one-layer output as we did earlier due to the presence of the activation function. Which support what we have mentioned earlier that this the simplest ANN for regression. So, what are the advantages of such an architecture over the one-layer architecture, you might ask? The answer is that it allows us to capture more complex relationship between the input and the output automatically without the need to come up with a suitable basis functions.
 
 Both layers can be seen as linear regression model that have been cascaded together. The question remains to study how they interact with each other. The hidden layer output is given as:
 
@@ -59,11 +59,11 @@ Note that for the activation function, we have $w^⊤ x$ on the horizontal axis 
 If we want to confine the values to a $]0,1[$ interval while allowing the activation function to take values in between to reflect the strength of the belief, or the probability, that a data point $x_n$ belongs (or not) to the positive class then we can use the logistic function shown below.
 
 <figure role="group">
-  <img src="../images/DS_IMG211.png" alt="Graph showing a logistic activation function." />
+  <img src="../images/DS_IMG211.png" alt="Left: Graph showing logistic function in 2d space. Right: Logistic surface in 3d space." />
   <figcaption><strong></strong> </figcaption>
 </figure>
 
-**<p style="text-align: center;">Figure 4.27:** *Logistic function: (left) logistic function in 2d space with one attribute x. where we can see that the logistic has an inflection point at x=0 where its curvature changes from concave-upward to concave-downward, at this point the logistic value is y=0.5. (right): logistic surface in 3d space with two attributes $x_{1}$ and $x_{2}$, where w=[0.6,0.6]. The surface has an inflection surface at x=0.*</p>
+**<p style="text-align: center;">Figure 4.26.** *Logistic function: (left) logistic function in 2d space with one attribute x. where we can see that the logistic has an inflection point at x=0 where its curvature changes from concave-upward to concave-downward, at this point the logistic value is y=0.5. (right): logistic surface in 3d space with two attributes $x_{1}$ and $x_{2}$, where w=[0.6,0.6]. The surface has an inflection surface at x=0.*</p>
 
 This activation function is used to be the most common activation function for hidden layers in neural networks for treating non-linear models. It is still an important one that create synergy with a different loss function called cross entropy for classification as we shall see later in the next unit. We will use it when we move from one-layer model (including multi-output one) to multi-layer models we need to adjust our cost function.
 
@@ -95,7 +95,7 @@ So for the output layer, the update takes the form of the usual linear model sin
 
 <figure role="group">
   <img src="../images/DS_IMG212.png" alt="Schematic representation of the multi-layer perceptron as a non-linear models with one output." />
-  <figcaption><strong>Figure 4.28</strong> Schematic representation of the multi-layer perceptron as a non-linear models with one output.</figcaption>
+  <figcaption><strong>Figure 4.27.</strong> Schematic representation of the multi-layer perceptron as a non-linear models with one output.</figcaption>
 </figure>
 
 ##Hidden layer update for one output neural network (backpropagation)

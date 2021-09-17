@@ -24,79 +24,93 @@ the two classes.
 
 ##Issues of combing a set of independent binary classifiers to deal with a multi-class problem
 
-When dealing with multi-class problems using a set of binary classifiers we might be tempted to use one for each class independently and then combine them in some way. However this can lead to some serious issues as we show in figure 5.1 below.
+When dealing with multi-class problems using a set of binary classifiers we might be tempted to use one for each class independently and then combine them in some way. However this can lead to some serious issues as we show in figure 5.34 below.
 
 <figure role="group">
-  <img src="../images/DS_IMG156.png" alt="Brief description." />
+  <img src="../images/DS_IMG156.png" alt="Left: diagram showing two binary classifiers used independently in a one-versus-all (OvA) fashion to decide whether an instance belongs or does not belong to a class. Right: diagram showing binary classifiers used independently in one-versus-one fashion to decide if an instance belongs to one of two classes." />
   <figcaption>
-    <p><strong>Figure 5.1:</strong> similar to Bishop 2006. (Left): two binary classifiers used independently in a one-versus-all (OvA) fashion to decide whether an instance belongs or does not belong to a class. (Right): Binary classifiers used independently in one-versus-one fashion to decide if an instance belongs to one of two classes.</p>
+    <p><strong>Figure 5.34.</strong> Similar to Bishop 2006. Left: Two binary classifiers used independently in a one-versus-all (OvA) fashion to decide whether an instance belongs or does not belong to a class. Right: Binary classifiers used independently in one-versus-one fashion to decide if an instance belongs to one of two classes.</p>
   </figcaption>
 </figure>
 
-In figure 5.1 above, the yellow area to the left is an area of ambiguity where the two classifiers can dictate that an
-instance belongs to both class $C_{1}$ and class $C_{2}$. The yellow area to the right is an area of ambiguity where an instance can be decided to belong to two or three classes at the same time. The solution is to use a classifier with
-multi-linear boundaries $y_{k}(x)$ (similar to when we had multi-output regression) and decide on an instance x belongs to class $C_{k}$ only when its activation function $y_{k}(x)$ is higher than all other classes activations $y_{j}(x) .$ One way to do that is by normalising the regularised scores that we obtain from each independent classifier (on the left) and instead of applying one-versus-all approach we choose the highest score. You will see some examples of the effectiveness of this strategy later.
+In figure 5.34 above, the yellow area to the left is an area of ambiguity where the two classifiers can dictate that an
+instance belongs to both class $C_{1}$ and class $C_{2}$. The yellow area to the right is an area of ambiguity where an instance can be decided to belong to two or three classes at the same time. The solution is to use a classifier with multi-linear boundaries $y_{k}(x)$ (similar to when we had multi-output regression) and decide on an instance x belongs to class $C_{k}$ only when its activation function $y_{k}(x)$ is higher than all other classes activations $y_{j}(x) .$ One way to do that is by normalising the regularised scores that we obtain from each independent classifier (on the left) and instead of applying one-versus-all approach we choose the highest score. You will see some examples of the effectiveness of this strategy later.
 
 ##Multi-output (multi-class) linear classification models
 
 The structure would be similar to the structure that we have seen for the multi-output linear regression which is shown below for convenience.
 
 <figure role="group">
-  <img src="../images/DS_IMG157.png" alt="Brief description." />
+  <img src="../images/DS_IMG157.png" alt="Schematic representation of a multi-output independent logistic regression linear classifiers with basis." />
   <figcaption>
-    <p><strong>Figure 5.2: Schematic representation of a multi-output independent logistic regression linear classifiers with basis.</strong></p>
+    <p><strong>Figure 5.35.</strong> Schematic representation of a multi-output independent logistic regression linear classifiers with basis.</p>
   </figcaption>
 </figure>
 
-The linear classification model with multiple output can be expressed as
+The linear classification model with multiple output can be expressed as:
 
 $$
 \boldsymbol{y}(\mathbf{x}, \mathbf{W})=g\left(\mathbf{W}^{\top} \boldsymbol{\phi}(\mathbf{x})\right)
 $$
 
-Figure 5.2 above shows logistic regression with $K$ multiple outputs. The number of outputs can be associated with multiple classes $K$ where in general $\hat{K} \geq K-1$ with $\hat{K}=K-1$ when the classes are linearly separable and their boundaries are parallel. For example we may need only 2 lines to separate 3 classes. When the classes are non-linearly separable, $K$ corresponds to the number of decision boundaries needed to separate the classes. The issue with this structure is that it does not harmonise the outputs and may run into the issues mentioned in the previous section (particularly the issues associated with one-versus-all) because of the independence of the outputs. In such cases, further processing will be needed in order to decide which class the data point is from.
-Each classifier $i$ is specialised in one class $i$ and produces an independent probability estimate $p_{i}\left(C_{i} \mid \mathbf{x}\right) .$ One of the simplest approaches is to normalise the scores $p_{i}\left(C_{i} \mid \mathbf{x}\right)$ that were produced by the independent classifier to properly obtain a unified probability distribution $p\left(C_{i} \mid \mathbf{x}\right)=\frac{p_{i}\left(C_{i} \mid \mathbf{x}\right)}{\sum_{i=1}^{K} p_{i}\left(C_{i} \mid \mathbf{x}\right)}$ over the different classes $i$. The final decision on which class the data point is from can be performed by picking the class with the max probability; see section 5.2 of <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.13.7457&rep=rep1&type=pdf" target="_blank">this paper by Zadrozny and Elkan (2002)</a> for more details. If you have trouble accessing this paper via this link, try copying the hyperlink and opening it in an incognito or private window. See also <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html" target="_blank">here</a> and <a href="https://scikit-learn.org/stable/modules/sgd.html#sgd" target="_blank">here</a> to know more about linear classifiers in sklearn.
+Figure 5.35 above shows logistic regression with $K$ multiple outputs. The number of outputs can be associated with multiple classes $K$ where in general $\hat{K} \geq K-1$ with $\hat{K}=K-1$ when the classes are linearly separable and their boundaries are parallel. For example we may need only 2 lines to separate 3 classes. When the classes are non-linearly separable, $K$ corresponds to the number of decision boundaries needed to separate the classes. The issue with this structure is that it does not harmonise the outputs and may run into the issues mentioned in the previous section (particularly the issues associated with one-versus-all) because of the independence of the outputs.
 
-The same structure can be produced to the perceptron we only need to change the activation function.
+In such cases, further processing will be needed in order to decide which class the data point is from. Each classifier $i$ is specialised in one class $i$ and produces an independent probability estimate $p_{i}\left(C_{i} \mid \mathbf{x}\right) .$ One of the simplest approaches is to normalise the scores $p_{i}\left(C_{i} \mid \mathbf{x}\right)$ that were produced by the independent classifier to properly obtain a unified probability distribution $p\left(C_{i} \mid \mathbf{x}\right)=\frac{p_{i}\left(C_{i} \mid \mathbf{x}\right)}{\sum_{i=1}^{K} p_{i}\left(C_{i} \mid \mathbf{x}\right)}$ over the different classes $i$.
+
+The final decision on which class the data point is from can be performed by picking the class with the max probability; see section 5.2 of <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.13.7457&rep=rep1&type=pdf" target="_blank">this paper by Zadrozny and Elkan (2002)</a> for more details. If you have trouble accessing this paper via this link, try copying the hyperlink and opening it in an incognito or private window. See also <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html" target="_blank">here</a> and <a href="https://scikit-learn.org/stable/modules/sgd.html#sgd" target="_blank">here</a> to know more about linear classifiers in sklearn.
+
+The same structure can be produced to the perceptron; we only need to change the activation function.
 
 <figure role="group">
-  <img src="../images/DS_IMG158.png" alt="Brief description." />
+  <img src="../images/DS_IMG158.png" alt="Schematic representation of a multi-output independent perceptron linear classifiers with basis." />
   <figcaption>
-    <p><strong>Figure 5.3: Schematic representation of a multi-output independent perceptron linear classifiers with basis.</strong></p>
+    <p><strong>Figure 5.36.</strong> Schematic representation of a multi-output independent perceptron linear classifiers with basis.</p>
   </figcaption>
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG159.png" alt="Brief description." />
-  <img src="../images/DS_IMG160.png" alt="Brief description." />
-  <img src="../images/DS_IMG161.png" alt="Brief description." />
-  <img src="../images/DS_IMG162.png" alt="Brief description." />
+  <img src="../images/DS_IMG159.png" alt="Graph showing ambiguous decision regions of a one-versus-all (OvA), multi-output, SGD linear classification using perceptron algorithm." />
+  <img src="../images/DS_IMG160.png" alt="Graph showing ambiguous decision regions of a one-versus-all (OvA), multi-output, SGD linear classification, using logistic regression algorithm." />
+	<figcaption>
+		<p><strong>Figure 5.37.</strong> Graphs showing ambiguous decision regions of a one-versus-all (OvA), multi-output, SGD linear classification, using perceptron algorithm (left) and logistic regression algorithm (right). </p>
+	</figcaption>
+	</figure>
+
+<figure role="group">
+  <img src="../images/DS_IMG161.png" alt="Graph showing decision regions of a normalised, multi-output SGD linear classification using perceptron algorithm." />
+  <img src="../images/DS_IMG162.png" alt="Graph showing decision regions of a normalised, multi-output SGD linear classification using logistic regression algorithm." />
   <figcaption>
-    <p><strong>Figures 5.4-5.7: Decision boundaries for multi-output (multi-class) perceptron (left) and logistic regression (right) for the iris dataset.</strong> The setosa is linearly separable from the rest, while versicolor and virginica are non-linearly separable. (Top) shows one-versus-all (OvA) which creates ambiguous regions (hyperplanes) shown by the dashed lines. For the perceptron it is struggling to come up with close enough boundaries and thrown off by the outliers in both the versicolor and the virginica. The logistic regression one-versus-all did better in that sense because it is much more resilient towards outliers, but it still has an ambiguous region (the triangle in the middle of the figure) where two classifiers are thinking that the data in the middle belongs to their respective positive class. (Bottom) The shaded decision regions are obtained via the normalisation of the scores given by the independent classifiers in order to overcome the ambiguity issue of the OvA approach that we mentioned in the previous section.</p>
+    <p><strong>Figure 5.38.</strong> Graphs showing decision regions of a normalised, multi-output SGD linear classification using perceptron algorithm (left) and logistic regression algorithm (right).</p>
   </figcaption>
 </figure>
 
+The figures above show decision boundaries for multi-output (multi-class) perceptron (left) and logistic regression (right) for the iris dataset. The setosa is linearly separable from the rest, while versicolor and virginica are non-linearly separable.
+
+Figure 5.37 shows one-versus-all (OvA), which creates ambiguous regions (hyperplanes) shown by the dashed lines. For the perceptron it is struggling to come up with close enough boundaries and thrown off by the outliers in both the versicolor and the virginica. The logistic regression one-versus-all did better in that sense because it is much more resilient towards outliers, but it still has an ambiguous region (the triangle in the middle of the figure) where two classifiers are thinking that the data in the middle belongs to their respective positive class.
+
+The shaded decision regions in figure 5.38 are obtained via the normalisation of the scores given by the independent classifiers in order to overcome the ambiguity issue of the OvA approach that we mentioned in the previous section.
+
 <figure role="group">
-  <img src="../images/DS_IMG163.png" alt="Brief description." />
+  <img src="../images/DS_IMG163.png" alt="Two graphs showing decision regions of a normalised, multi-output SGD linear classification, using a logistic regression algorithm." />
   <figcaption>
-    <p><strong>Figure 5.8: Decision boundaries for multi-output (multi-class) both for logistic regression on the iris dataset.</strong> Left shows a multinomial logistic regression while the right shows normalised multi-output logistic regression. The difference is that in the left we normalise an exponential activation functions for multi-output, on the right we normalise a multiple logistic functions instead of exponential functions. As you can see, multinomial logistic regression deals better with ambiguity but it is still there because essentially we are still dealing with linear models. We need a more complex model to deal with issue such as a neural network that is capable of generating a curved shape boundaries.</p>
+    <p><strong>Figure 5.39.</strong> Decision boundaries for multi-output (multi-class) both for logistic regression on the iris dataset.</strong> Left shows a multinomial logistic regression while the right shows normalised multi-output logistic regression. The difference is that in the left we normalise exponential activation functions for multi-output, and on the right we normalise multiple logistic functions instead of exponential functions. As you can see, multinomial logistic regression deals better with ambiguity but it is still there because essentially we are still dealing with linear models. We need a more complex model to deal with issues such as a neural network that is capable of generating curved shape boundaries. </p>
   </figcaption>
 </figure>
 
 ##Multinomial logistic regression: Softmax regression
 
-In the last section we saw how logistic regression has been built originally for binary classification where we expect the output of the activation function to give us one value in the range $[0,1]$. The value represents the probability of the input being from the positive class and we get the probability from the negative class by exploiting that the sum of both must be 1 . In other words, if $p\left(C_{1} \mid \mathbf{x}\right)$ is given by the one output of the logistic regression model then $p\left(C_{0} \mid \mathbf{x}\right)=1-p\left(C_{1} \mid \mathbf{x}\right)$
+In the last section we saw how logistic regression has been built originally for binary classification where we expect the output of the activation function to give us one value in the range $[0,1]$. The value represents the probability of the input being from the positive class and we get the probability from the negative class by exploiting that the sum of both must be 1. In other words, if $p\left(C_{1} \mid \mathbf{x}\right)$ is given by the one output of the logistic regression model then $p\left(C_{0} \mid \mathbf{x}\right)=1-p\left(C_{1} \mid \mathbf{x}\right)$
 
 We also saw how we can adapt multiple of these binary classifiers in order to deal with multi-class problems where we have multiple classes that we need to deal with. Basically, we exploited the multi-output structure that we developed in regression and we extended it to multi binary classification to deal with multi-class cases. We have seen three approaches to harmonise or combine the multi-output into one decision: where we can apply OvA or OvO or combine in other ways. We saw also that OvA and OvO approaches create ambiguous decision regions and we saw that that we can deal OvA ambiguity via normalisation.
 
 In this section we will extend the structure of logistic regression into multi-classes. The technique is called multinomial logistic regression because we are dealing with a multinomial target variable. Binomial and multinomial are names that come from probability theory to deal with variables that takes only two values or multiple values. The dependent variable here is the label which can take one of multiple categorical values. So essentially it is a fancy name for multi-class problems. So we are extending logistic regression from binomial to multinomial. We will start with binary logistic regression that we covered in a previous section.
 
-Let us assume that we build a multi-output model as shown in figure 5.9:
+Let us assume that we build a multi-output model as shown in figure 5.40:
 
 <figure role="group">
-  <img src="../images/DS_IMG164.png" alt="Brief description." />
+  <img src="../images/DS_IMG164.png" alt="Schematic representation of a 2-output linear classifier with exponential activation function." />
   <figcaption>
-    <p><strong>Figure 5.9: 2-output linear classifier with exponential activation function.</strong></p>
+    <p><strong>Figure 5.40.</strong> 2-output linear classifier with exponential activation function.</p>
   </figcaption>
 </figure>
 
@@ -135,25 +149,25 @@ Softmax is a generalisation of the logistic function into multi-dimensional spac
 
 With softmax we need to calculate first the exponential activation for all the outputs and then we normalise them, so there is the added overhead of normalisation. This is not a problem here, given that we are talking about a small number of classes. But when the structure needed to be parallelised, the normalisation creates a bottleneck if it is in the middle of a larger structure or if it is in a hidden layer (although it is rare to use softmax in the hidden layers). So, it is faster to use logistic function directly for the 2-class problems instead of the softmax.
 
-In figure 5.10 below we show the two output linear classification functions with a softmax activation function and its equivalent logistic regression structure. We signify the softmax by adding a dashed box around the outputs and a bar on top of each output like ${\bar{y}}_1$ and ${\bar{y}}_2$. This represents the normalisation operation. Note the difference between scaling and normalisation. **Rescaling** a component of all instances (dashed line box) is a pre-processing operation and is performed on the level of the entire dataset. **Normalising** an instance (fine dotted line box) is performed on the level of individual instance. In simple terms, in scaling we take a max of each a component in a tabular dataset and we divide all instances of the component by this max. In normalisation we go across the components of an individual instance and we divide by the sum of the components of this instance.
+In figure 5.41 below we show the two output linear classification functions with a softmax activation function and its equivalent logistic regression structure. We signify the softmax by adding a dashed box around the outputs and a bar on top of each output like ${\bar{y}}_1$ and ${\bar{y}}_2$. This represents the normalisation operation. Note the difference between scaling and normalisation. **Rescaling** a component of all instances (dashed line box) is a pre-processing operation and is performed on the level of the entire dataset. **Normalising** an instance (fine dotted line box) is performed on the level of individual instance. In simple terms, in scaling we take a max of each a component in a tabular dataset and we divide all instances of the component by this max. In normalisation we go across the components of an individual instance and we divide by the sum of the components of this instance.
 
 <figure role="group">
-  <img src="../images/DS_IMG165.png" alt="Brief description." />
+  <img src="../images/DS_IMG165.png" alt="Left: Schematic representation of a 2-output normalised linear classifier with exponential activation function. Right: Schematic representation of an equivalent logistic regression." />
   <figcaption>
-    <p><strong>Figure 5.10: 2-output normalised linear classifier with exponential activation function (left) and its equivalent logistic regression (right).</strong></p>
+    <p><strong>Figure 5.41.</strong> 2-output normalised linear classifier with exponential activation function (left) and its equivalent logistic regression (right).</p>
   </figcaption>
 </figure>
 
 So, now we are in a position to be able to generalise the logistic regression of a binary class problem into a multi-class problems by just defining a structure with as many outputs as we want with an exponential activation function that we normalise.
 
 <figure role="group">
-  <img src="../images/DS_IMG166.png" alt="Brief description." />
+  <img src="../images/DS_IMG166.png" alt="Schematic representation of a multinomial logistic regression (aka softmax regression). This is a multi-output normalised linear classifier with exponential activation function." />
   <figcaption>
-    <p><strong></strong> </p>
+    <p><strong>Figure 5.42.</strong> Multinomial Logistic Regression (aka softmax regression): a multi-output normalised linear classifier with exponential activation function. </p>
   </figcaption>
 </figure>
 
-**Figure 5.11:** Multinomial Logistic Regression (aka softmax regression): a multi-output normalised linear classifier with exponential activation function. Note that if we have $K$ classes $\acute{K}$ can be made $= K-1$ instead of $K$ if we exploit that one of the normalised outputs is unnecessary as it can be deduced from summation of the outputs to 1 (called pivoting).
+Note that if we have $K$ classes $\acute{K}$ can be made $= K-1$ instead of $K$ if we exploit that one of the normalised outputs is unnecessary as it can be deduced from summation of the outputs to 1 (called pivoting).
 
 $$
 \bar{y}_{k}=\frac{y_{k}}{\sum_{i=1}^{K} y_{i}}=\frac{e^{\mathbf{w}_{k}^{\top} \phi}}{\sum_{i=1}^{K} e^{w_{l}^{\top} \phi}}

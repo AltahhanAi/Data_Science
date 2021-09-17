@@ -46,11 +46,11 @@ The set of bisected K-clusters, however, may not need refinement because the spl
 
         **Return** the labels $\boldsymbol{l}=\left[l_{1}, l_{2}, \ldots, l_{N}\right]$
 
-Below in figure 1.10, we show results of bisecting K-means on the problem that we mentioned previously in Figure 1.9 regarding centroid initialisation. As we can see, the algorithm is less susceptible to this problem.   
+Below in figure 3.11, we show results of bisecting K-means on the problem that we mentioned previously in figure 3.10 regarding centroid initialisation. As we can see, the algorithm is less susceptible to this problem.   
 
 <figure role="group">
   <img src="../images/DS_IMG189.png" alt="Illustration of Bisecting K-means overcoming the issues of unlucky centroid initialisation." />
-  <figcaption><strong>Figure 1.10</strong> Bisecting K-means overcoming the issues of unlucky centroid initialisation. Image reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.</figcaption>
+  <figcaption><strong>Figure 3.11.</strong> Bisecting K-means overcoming the issues of unlucky centroid initialisation. Image reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.</figcaption>
 </figure>
 
 ##Agglomerative clustering
@@ -59,11 +59,11 @@ In partitional clustering techniques, such as the K-means, the clusters are assu
 
 Contrary to partitional clustering, hierarchical clustering assumes that the clusters have a clear hierarchy and they are nested one inside the other. This assumption goes well with several natural phenomena and situations. For example, when we are dealing with clusters of cities inside a country which is inside a continent, or when we are dealing with hierarchy in the animal kingdom etc.
 
-There are two types of hierarchical clustering approaches that we can adopt; agglomerative and divisive. Agglomerative techniques start from smaller clusters and build other larger clusters on top of them in a bottom-up approach. Divisive clustering on the other hand, starts with a large cluster that encompasses the entire dataset and works its way towards finer and more refined clusters in a top-down approach. Both agglomerative and divisive clustering have similar if not identical results. Therefore, we will concentrate on agglomerative hierarchical clustering. It should be noted that hierarchical clustering is different than the bisecting clustering. In bisecting clustering we keep partitioning each cluster into two clusters but these are not assumed to be nested.  Figure 1.11 below shows an example of agglomerative clustering and its associated dendrogram.
+There are two types of hierarchical clustering approaches that we can adopt; agglomerative and divisive. Agglomerative techniques start from smaller clusters and build other larger clusters on top of them in a bottom-up approach. Divisive clustering on the other hand, starts with a large cluster that encompasses the entire dataset and works its way towards finer and more refined clusters in a top-down approach. Both agglomerative and divisive clustering have similar if not identical results. Therefore, we will concentrate on agglomerative hierarchical clustering. It should be noted that hierarchical clustering is different than the bisecting clustering. In bisecting clustering we keep partitioning each cluster into two clusters but these are not assumed to be nested. Figure 3.12 below shows an example of agglomerative clustering and its associated dendrogram.
 
 <figure role="group">
   <img src="../images/DS_IMG206.png" alt="Diagram showing an example of simple agglomerative clusters and their corresponding dendrogram." />
-  <figcaption><strong>Figure 1.11</strong> An example of simple agglomerative clusters and their corresponding dendrogram.</figcaption>
+  <figcaption><strong>Figure 3.12.</strong> An example of simple agglomerative clusters and their corresponding dendrogram.</figcaption>
 </figure>
 
 A dendrogram is a tree-like structure that reflects the membership of different data points to the different clusters structure that where discovered in the dataset. Below we show the basic vanilla agglomerative clustering algorithm.
@@ -108,12 +108,12 @@ Please note that with agglomerative clustering, each data point has a set of ord
 
 <figure role="group">
 <img src="../images/DS_IMG207.png" alt="Diagram showing an example of merging clusters." />
-  <figcaption><strong>Figure 1.12</strong></figcaption>
+  <figcaption><strong>Figure 3.13.</strong> An example of merging clusters. </figcaption>
 </figure>
 
 <figure role="group">
   <img src="../images/DS_IMG208.png" alt="An example of merging clusters and their effect on the proximity matrix." />
-  <figcaption><strong>Figure 1.13</strong> An example of merging clusters and their effect on the proximity matrix. Note that the proximity matrix is symmetrical and it diagonal values are always 0. </figcaption>
+  <figcaption><strong>Figure 3.14.</strong> An example of merging clusters and their effect on the proximity matrix. Note that the proximity matrix is symmetrical and its diagonal values are always 0. </figcaption>
 </figure>
 
 We can measure the distances between the clusters via the distances between their centroids or by taking the min or max distances between each two data points from the two clusters. These different ways of calculating the distances between the clusters gives us different results and constitutes a variation of the basic agglomerative clustering algorithm.
