@@ -435,6 +435,8 @@ The above box shows the pseudocode for a decision tree induction algorithm. The 
 <iframe title="Data Science U2: Decision Tree Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/b41a866336514e04b7de7bb83751ace91d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-21866476_4" target="_blank">View transcript (PDF).</a>
+
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video.</a>
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
