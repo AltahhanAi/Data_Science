@@ -48,18 +48,6 @@ $$
 \end{array}
 $$
 
-$$
-\text { Information Gain }=\text { Impurity of parent-weighted average impurity of children }
-$$
-
-$$
-\text { Info Gain('makes calls') }=0.5-\left(\frac{2}{6} \times 0+\frac{4}{6} \times 0.375\right)=0.25
-$$
-
-$$
-\text { Info Gain('screen size=8') }=0.5-\left(\frac{5}{6} \times 0.48+\frac{1}{6} \times 0\right)=0.1
-$$
-
 This shows that the first split based on the ‘makes calls’ feature is better since we gain more information by using it and we will intuitively move toward more pure leaves.
 
 ###Gini impurity
@@ -334,7 +322,7 @@ T
 $$
 
 <figure role="group">
-  <img src="../images/DS_IMG021.png" alt="Diagram of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=8’ feature." />
+  <img src="../images/DS_IMG021.png" alt="Diagram of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=7’ feature." />
   <figcaption><strong>Figure 2.15.</strong> Illustration of step 2 of CART algorithm for tablet vs phone dataset. Split based on ‘screen size=7’. Calculations are shown below. </figcaption>
 </figure>
 

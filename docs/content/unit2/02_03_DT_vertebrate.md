@@ -194,11 +194,25 @@ So far we have seen how decision trees work and how they are inducted (trained).
 
 **Figure 2.38.** (Left) Scatter graph showing binary class balanced data with a linearly separable diagonal decision boundary. (Right) Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable diagonal decision boundary.
 
-In the above cases, we showed the data and the decision boundary on the left-hand side and on the right-hand side we showed the corresponding expected decision trees that can express the data concisely. In classification such decision boundaries are crucial in two ways: they help us understand the nature of the data, and they help us to assign a suitable technique to the problem in hand. It is not always possible to represent the data in two-dimensional space, in fact it is rarely the case. However, even when we move to higher space dimension, a similar argument can hold.  
+In the above cases, we showed the data and the decision boundary on the left-hand side, and on the right-hand side we showed the corresponding expected decision tree that can express the data concisely. In classification such decision boundaries are crucial in two ways: they help us understand the nature of the data, and they help us to assign a suitable technique to the problem in hand. It is not always possible to represent the data in two-dimensional space, in fact it is rarely the case. However, even when we move to higher space dimension, a similar argument can hold.  
 
-The boundaries are assumed when we constructed the datasets. The boundaries do not exist separately form the dataset, instead they are inferred from the dataset. In the decision trees, the nodes correspond to the condition as usual. These conditions that help us decide the classes of the dataset create their own boundaries. In the first case, any point above the boundary is of class 1 and any point below the boundary is from class 2. In the second case, we have a large margin decision boundaries and we can express the tree in several ways, one of them is shown. In the third case, the tree is simplified to reflect a midpoint margin. In the fourth we sandwiched class 1 between two parts of class 2. The fifth a sandwiched class 1 but class 2 is separated in two different quarters. The sixth, we distribute the two classes into four crossed quarters. In the seventh, the data is distributed above and below a diagonal line.
+The boundaries are assumed when we constructed the datasets. The boundaries do not exist separately form the dataset, instead they are inferred from the dataset. In the decision trees, the nodes correspond to the condition as usual. These conditions that help us decide the classes of the dataset create their own boundaries.
 
-So let us see if we hand in the generated data to the CART decision tree induction algorithm, would it be able to recognise the decision boundaries of the data and would it be able to build  corresponding trees as per our expectations. Below are the results.
+In the first case (Figure 2.32), any point above the boundary is of class 1 and any point below the boundary is from class 2.
+
+In the second case (Figure 2.33), we have a large margin decision boundaries and we can express the tree in several ways; one of them is shown.
+
+In the third case (Figure 2.34), the tree is simplified to reflect a midpoint margin.
+
+In the fourth case (Figure 2.35), we sandwiched class 1 between two parts of class 2.
+
+In the fifth case (Figure 2.36), we sandwiched class 1 but class 2 is separated in two different quarters.
+
+In the sixth case (Figure 2.37), we distribute the two classes into four crossed quarters.
+
+In the seventh case (Figure 2.38), the data is distributed above and below a diagonal line.
+
+So let us see if it would be able to recognise the decision boundaries of the data and build corresponding trees as per our expectations if we hand in the generated data to the CART decision tree induction algorithm. Below are the results.
 
 ![Left: Scatter graph showing classes data with a no margin horizontal decision boundary. Right: A corresponding decision tree (DT) built using the CART DT induction algorithm.](images/DS_IMG055.png)
 
