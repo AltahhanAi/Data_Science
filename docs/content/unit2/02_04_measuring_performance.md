@@ -515,11 +515,6 @@ $$
 \operatorname{p}\left(\text { predict }_{\text {setosa }}\right)=13 / 13, \text { p }\left(\text { predict }_{\text {versicolor }}\right)=15 / 18, \text { pr }\left(\text { predict }_{\text {virginica }}\right)=6 / 7
 $$
 
-<figure role="group">
-  <img src="../images/DS_IMG085.png" alt="Confusion matrix showing application and workings of the balanced accuracy metric." />
-  <figcaption><strong>Figure 2.70.</strong> Confusion matrix showing application and workings of the balanced accuracy metric. </figcaption>
-</figure>
-
 Which yields 1,   0.8333,    0.857 for the classes 'setosa' 'versicolor' 'virginica', respectively.
 
 1. Macro prediction score (aka macro precision score) is given as $p($ predict $)=\frac{1}{3}\left(p\left(\right.\right.$ predict $\left._{\text {setosa }}\right)+p\left(\right.$ predict $\left._{\text {versicolor }}\right)+p\left(\right.$ predict $\left.\left._{\text {virginica }}\right)\right)=0.8968$
