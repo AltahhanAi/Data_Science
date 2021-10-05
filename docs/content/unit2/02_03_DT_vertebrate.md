@@ -152,45 +152,31 @@ Complex structures that are called decision trees may not satisfy the definition
 So far we have seen how decision trees work and how they are inducted (trained). Later we will see how to measure their performance. But first we would like to further study their inner properties. In particular, we would like to see what type of decision boundaries they constitute. The idea of decision boundaries is  central to classification and not unique to decision trees. It will reappear in other types of classification techniques we will study later, such as the perceptron and k-nearest neighbour (k-NN) algorithms. One way to understand the decision boundaries of a classifier is by plotting a dataset in 2D or 3D, note however that the discussion extends to any space dimension not just 2D but it would be harder to visualise it. Let us start with a simple decision tree with its decision boundary.
 
 
-![Scatter graph showing binary class balanced data with a linearly separable decision boundary. Any point above the boundary is of class 1 and any point below the boundary is of class 2.](images/DS_IMG041.png)
-
-![Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable decision boundary.](images/DS_IMG042.png)
+![Left: Scatter graph showing binary class balanced data with a linearly separable decision boundary. Any point above the boundary is of class 1 and any point below the boundary is of class 2. Right: Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable decision boundary. ](images/DS_IMG041+42.png)
 
 **Figure 2.32.** (Left) Scatter graph showing binary class balanced data with a linearly separable decision boundary. (Right) Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable decision boundary.
 
-![Scatter graph showing binary class balanced data with large margin linearly separable decision boundaries.](images/DS_IMG043.png)
-
-![Decision tree (DT) expected to concisely express binary class balanced data with large margin linearly separable decision boundaries. One of several ways to express the DT is shown.](images/DS_IMG044.png)
+![Left: Scatter graph showing binary class balanced data with large margin linearly separable decision boundaries. Right: Decision tree (DT) expected to concisely express binary class balanced data with large margin linearly separable decision boundaries. One of several ways to express the DT is shown.](images/DS_IMG043+44.png)
 
 **Figure 2.33.** (Left) Scatter graph showing binary class balanced data with large margin linearly separable decision boundaries. (Right) Decision tree (DT) expected to concisely express binary class balanced data with large margin linearly separable decision boundaries.
 
-![Scatter graph showing binary class balanced data with three large margin linearly separable decision boundaries.](images/DS_IMG045.png)
-
-![Decision tree (DT) expected to concisely express binary class balanced data with three large margin linearly separable decision boundaries. The tree is simplified to reflect a midpoint margin.](images/DS_IMG046.png)
+![Left: Scatter graph showing binary class balanced data with three large margin linearly separable decision boundaries. Right: Decision tree (DT) expected to concisely express binary class balanced data with three large margin linearly separable decision boundaries. The tree is simplified to reflect a midpoint margin.](images/DS_IMG045+46.png)
 
 **Figure 2.34.** (Left) Scatter graph showing binary class balanced data with three large margin linearly separable decision boundaries. (Right) Decision tree (DT) expected to concisely express binary class balanced data with three large margin linearly separable decision boundaries.  
 
-![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries. Class 1 is sandwiched between two parts of class 2.](images/DS_IMG047.png)
-
-![Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries.](images/DS_IMG048.png)
+![Left: Scatter graph showing binary class balanced data with non-linearly separable decision boundaries. Class 1 is sandwiched between two parts of class 2. Right: Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries. ](images/DS_IMG047+48.png)
 
 **Figure 2.35.** (Left) Scatter graph showing binary class balanced data with non-linearly separable decision boundaries. (Right) Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries.
 
-![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. Class 1 is sandwiched, but class 2 is separated in two different quarters.](images/DS_IMG049.png)
-
-![Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.](images/DS_IMG050.png)
+![Left: Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. Class 1 is sandwiched, but class 2 is separated in two different quarters. Right: Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.](images/DS_IMG049+50.png)
 
 **Figure 2.36.** (Left) Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. (Right) Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.
 
-![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. The two classes are distributed into four crossed quarters.](images/DS_IMG051.png)
-
-![Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.](images/DS_IMG052.png)
+![Left: Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. The two classes are distributed into four crossed quarters. Right: Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.](images/DS_IMG051+52.png)
 
 **Figure 2.37.** (Left) Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. (Right) Decision tree (DT) expected to concisely express binary class balanced data with non-linearly separable decision boundaries quartiles.
 
-![Scatter graph showing binary class balanced data with a linearly separable diagonal decision boundary.](images/DS_IMG053.png)
-
-![Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable diagonal decision boundary.](images/DS_IMG054.png)
+![Left: Scatter graph showing binary class balanced data with a linearly separable diagonal decision boundary. Right: Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable diagonal decision boundary.](images/DS_IMG053+54.png)
 
 **Figure 2.38.** (Left) Scatter graph showing binary class balanced data with a linearly separable diagonal decision boundary. (Right) Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable diagonal decision boundary.
 
