@@ -6,7 +6,7 @@ While in the induction stage we deduce the tree itself, decision trees are calle
 
 ##Rote classification
 
-A rote classifier is an example of lazy classification. The classifier memorises the entire dataset without learning (effectively if the dataset can be queries nothing in this stage is required). Then at the time when prediction of the label is required, rote classifier just searches for an exact match of the instances presented for classification. Then it will return the class for those instance that have matches inside the dataset. The process can be done by an SQL query if the dataset is stored in a relational database. If not, it can be simply done by filtering using any available library that can deal with data frames, such as pandas in Python. No special implementation or model building is required.
+A rote classifier is an example of lazy classification. The classifier memorises the entire dataset without learning (effectively if the dataset can be queries nothing in this stage is required). Then at the time when prediction of the label is required, rote classifier just searches for an exact match of the instances presented for classification. Then it will return the class for those instances that have matches inside the dataset. The process can be done by an SQL query if the dataset is stored in a relational database. If not, it can be simply done by filtering using any available library that can deal with data frames, such as pandas in Python. No special implementation or model building is required.
 
 Let’s have a look at an example. Below we show a snippet of the IRIS flower dataset. The dataset was created by Ronal Fisher in the 1930s and it studies three classes of flowers: setosa, versicolor and virginica. The dataset consists of 50 samples from each of the three classes (here, we show only 3 from each 50). Four features (attributes) were measured in each sample, these are the sepal and petal width and length. Below the attributes are named with abbreviations where P stands for petal and S stands for sepal. We will call this dataset mini-iris dataset and it has a purely educational purpose. Each instance (record) is distinguished by denoting it as $\mathbf{x}_{i}, i=1, \ldots 9$.
 
@@ -28,7 +28,7 @@ Dataset|S length|S width|P length|P width
 -----|---|---|---|---
 $x$= |6.1|2.8|4.7|1.2
 
-In this case, the rote classifier will be able to match it directly with record 6, and the predicted label (class) will be setosa:
+In this case, the rote classifier will be able to match it directly with record 6, and the predicted label (class) will be versicolor:
 
 Dataset|S length|S width|P length|P width|species
 -----|---|---|---|---|---

@@ -41,7 +41,7 @@ We should also emphasise here that although both the perceptron and logistic reg
 Below we show schematic representation of logistic regression.
 
 <figure role="group">
-  <img src="../images/DS_IMG152.png" alt="Schematic representation of the Logistic Regression as a linear models for classification with basis." />
+  <img src="../images/DS_IMG152.jpg" alt="Schematic representation of the Logistic Regression as a linear models for classification with basis." />
   <figcaption>
     <p><strong>Figure 5.30.</strong> Schematic representation of the Logistic Regression as a linear models for classification with basis.</p>
   </figcaption>

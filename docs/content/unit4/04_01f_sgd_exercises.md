@@ -1,6 +1,6 @@
 #Evaluating a regression model via R2 and the RMSE
 
-Besides using the loss mean of squared errors to drive the learning process, we can utilise it to measure the performance of the learned mode. The problem with this approach is that the squares give inflated estimation of the error. To deal with this, we can use the root mean sum of squared errors (RMSE) instead to measure the model performance. Please distinguish between performance measure and the loss function, although they are related we often use easy to differentiate continuous function as the loss, while for regression performance evaluation we can use any whole-measure to give a point evaluation for the model. RMSE is given as:
+Besides using the loss mean of squared errors to drive the learning process, we can utilise it to measure the performance of the learned model. The problem with this approach is that the squares give inflated estimation of the error. To deal with this, we can use the root mean sum of squared errors (RMSE) instead to measure the model performance. Please distinguish between performance measure and the loss function, although they are related we often use easy to differentiate continuous function as the loss, while for regression performance evaluation we can use any whole-measure to give a point evaluation for the model. RMSE is given as:
 
 $$
 R M S E=(M S E)^{0.5}
@@ -9,7 +9,7 @@ $$
 Another possibility, when we want to be able to compare the performance of the model in different datasets, (or between different models and dataset) is to use the coefficient of determination of $R^2$ metric. $R^2$ is defined as:
 
 $$
-R^{2}=1-\frac{\sum_{n=1}^{N}\left(t_{n}-y_{n}\right)^{2}}{\sum_{n=1}^{N}\left(t_{n}-\bar{t}\right)^{2}} \mid
+R^{2}=1-\frac{\sum_{n=1}^{N}\left(t_{n}-y_{n}\right)^{2}}{\sum_{n=1}^{N}\left(t_{n}-\bar{t}\right)^{2}} 
 $$
 
 where $\bar{t}$ is the mean of the target. The numerator is referred to as SSR or SSE and is our usual sum of squared errors, while denominator, denoted as SST (sum of squared total), is the sum of squared deviation from the mean (which is the variance of the target times the size of the data under consideration). It represents the sum of squared errors for a base model, where the base model uses the mean of the targets as the prediction for any data points.

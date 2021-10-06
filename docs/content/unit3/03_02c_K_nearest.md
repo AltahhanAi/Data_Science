@@ -110,7 +110,7 @@ $\mathbf{x}_{\mathbf{8}}=$|6.1|3|4.9|1.8|virginica|2.85
 $\mathbf{x}_{\mathbf{7}}=$|6.1|2.6|5.6|1.4|virginica|3.06
 $\mathbf{x}_{\mathbf{9}}=$|6.5|3|5.5|1.8|virginica|3.61
 
-In this instance we can weigh the votes according to the inverse of their distances, the closer the instance from the dataset to the provide instance, the higher its weight. We multiply the weights with the votes, and we sum the weights to give us a quantification of which label should win to be the best label for the provided instance.
+In this instance we can weigh the votes according to the inverse of their distances, the closer the instance from the dataset to the provided instance, the higher its weight. We multiply the weights with the votes, and we sum the weights to give us a quantification of which label should win to be the best label for the provided instance.
 
 Dataset |S length | S width | P length | P width | species |$d^{2}\left(\mathbf{x}, \mathbf{x}_{i}\right)$ | weight
 --------|---------|---------|----------|---------|--------|---|---
@@ -123,7 +123,7 @@ $\mathbf{x}_{\mathbf{9}}=$|6.5|3|5.5|1.8|virginica|3.61|0.28
 
 **weight sum** for versicolor: 1.82
 
-**weight sum** for virginica: 0.95
+**weight sum** for virginica: 0.96
 
 In this case the algorithm predicts that the class of the presented instance is versicolor.
 

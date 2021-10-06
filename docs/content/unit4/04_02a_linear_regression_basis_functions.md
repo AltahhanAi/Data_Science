@@ -20,7 +20,7 @@ $$
 y(\mathbf{x}, \mathbf{w})=w_{0}+\sum_{d=1}^{D} w_{d} x_{d}
 $$
 
-But what about if wanted to process the data $\mathbf{x}$ before we try to learn a model? This is called input space mapping, i.e. we would like to map the input space $\mathbf{X}$ to some other space $𝚽$.  We do that when we perform some pre-processing on the input space but also when we want to increase or decrease the dimensionality of the input space. There are numerous advantages of moving from once space to the other in data mining; it all amounts to simplifying or reducing the complexity of the data or its processing.
+But what about if we wanted to process the data $\mathbf{x}$ before we try to learn a model? This is called input space mapping, i.e. we would like to map the input space $\mathbf{X}$ to some other space $𝚽$.  We do that when we perform some pre-processing on the input space but also when we want to increase or decrease the dimensionality of the input space. There are numerous advantages of moving from one space to the other in data mining; it all amounts to simplifying or reducing the complexity of the data or its processing.
 
 Learning takes place by adjusting these parameters to make the model produce the desired answers. In simple terms, linear means first order sum. So, the above is linear because the model constitutes a linear function in the weights. For example, the following **is not a linear model**: $y(\mathbf{x}, \mathbf{w})=w_{0}^{2}+w_{1}^{2} x_{1}+w_{2}^{2} x_{2}+\cdots+w_{D}^{2} x_{D}$, because we are multiplying each component of $x_i$ by the square of the weight $\left(w_{n}\right)^{2}$. Similarly, $y(\mathbf{x}, \mathbf{w})=w_{0}+w_{1}^{3} x_{1}+w_{2} x_{2}$ is not a linear model. Polynomials of order higher than 1, quadratic, cubic as well as exponential $e^x$, logarithmic, sin, cos are all nonlinear functions).
 
@@ -51,7 +51,7 @@ $$
 y(\mathbf{x}, \mathbf{w})=w_{0}+\sum_{m=1}^{M} w_{m} \phi_{m}(\mathbf{x})
 $$
 
-Note that the sum has $M$ elements according to the number of basis functions that we use and we have also a set of $M$ weights (including $w_0$) instead of the $D$ weights that we had earlier when we were dealing directly with the components of the input space. Note that the linear models without basis becomes a special case of linear models with basis $\phi_{m}(\mathbf{x})=x_{m}$ here $M=D$. So, we will be dealing with the more general definition of the linear model from now on. Note that in effect, the set of basic functions defines a set of components of a vector $\boldsymbol{\phi}(\mathbf{x})=\left(\phi_{1}(\mathbf{x}), \phi_{2}(\mathbf{x}), \ldots, \phi_{M}(\mathbf{x})\right)^{\top}$, which in turn means that $\phi: \mathbb{R}^{\mathrm{D}} \longrightarrow \mathbb{R}^{\mathrm{M}}$. For brevity, we write $\phi=\left(\phi_{1}, \phi_{2}, \ldots, \phi_{M}\right)^{\top}$ when we are not concerned in explicitly stating $x$.
+Note that the sum has $M$ elements according to the number of basis functions that we use and we have also a set of $M$ weights (including $w_0$) instead of the $D$ weights that we had earlier when we were dealing directly with the components of the input space. Note that the linear models without basis become a special case of linear models with basis $\phi_{m}(\mathbf{x})=x_{m}$ here $M=D$. So, we will be dealing with the more general definition of the linear model from now on. Note that in effect, the set of basis functions defines a set of components of a vector $\boldsymbol{\phi}(\mathbf{x})=\left(\phi_{1}(\mathbf{x}), \phi_{2}(\mathbf{x}), \ldots, \phi_{M}(\mathbf{x})\right)^{\top}$, which in turn means that $\phi: \mathbb{R}^{\mathrm{D}} \longrightarrow \mathbb{R}^{\mathrm{M}}$. For brevity, we write $\phi=\left(\phi_{1}, \phi_{2}, \ldots, \phi_{M}\right)^{\top}$ when we are not concerned in explicitly stating $x$.
 
 Moving from input space to feature space has several desired advantages. The main one is that while moving to a high dimensionality may entail some extra processing, it can simplify the model that is needed in order to fit the data. Specifically, in moving to higher dimensionality feature space we hope to map a non-linear relationship between the input and the label into a linear relationship between the features and the label. This trick allows us to employ simpler models and promote speed and efficiency. Even when the relationship does not become linear, moving to a feature space can make it simpler.
 
@@ -76,7 +76,7 @@ $$
 Where $\mathbf{w}=\left(w_{0}, w_{1}, w_{2}, \ldots, w_{M}\right)$ and $\boldsymbol{\phi}=\left(\phi_{0}, \phi_{1}, \phi_{2}, \ldots, \phi_{M}\right)^{\mathrm{T}}$ and $\phi_{0}=1$.
 
 <figure role="group">
-  <img src="../images/DS_IMG104.png" alt="Schematic representation of a linear regression model with basis." />
+  <img src="../images/DS_IMG104.jpg" alt="Schematic representation of a linear regression model with basis." />
   <figcaption><strong>Figure 4.7.</strong> Schematic representation of a linear regression model with basis.</figcaption>
 </figure>
 

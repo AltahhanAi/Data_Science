@@ -137,7 +137,7 @@ $$
 So, we added the dummy feature $x_0$ to the input space. The operation $\mathbf{w}^{\top} \mathbf{x}$ gives us one value because $\mathbf{w}$ is a vector, later we will adjust this to get multi-output via $\mathbf{W}^{\top} \mathbf{x}$ where $\mathbf{W}$ is a matrix not a vector. Below we show a schematic representation of a linear regression model.
 
 <figure role="group">
-  <img src="../images/DS_IMG101.png" alt="Schematic representation of a linear regression model." />
+  <img src="../images/DS_IMG101.jpg" alt="Schematic representation of a linear regression model." />
   <figcaption><strong>Figure 4.4.</strong> Schematic representation of a linear regression model.</figcaption>
 </figure>
 
