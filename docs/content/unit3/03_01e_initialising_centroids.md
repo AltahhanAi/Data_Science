@@ -26,7 +26,7 @@ Hence it is paramount to come up with a viable strategy to initialise the centro
 
 **One strategy to overcome this issue is by randomising the initial centroids and performing multiple runs of the K-means and then selecting the one that produce the least SSE.**
 
-This called hill-climbing algorithm in AI and you might come across it in the Algorithms module. In all cases, the idea is simple. Just perform the same algorithm multiple times, each time with a randomly selected initial centroid, and then select the clusters from the run that performs the best in terms of SSE. The downside of this strategy is that it can be costly especially when we consider large datasets in which case it becomes infeasible, but it can work well with small to medium datasets. You saw an example of this strategy in the exercise that you performed at the end of section 1d of this lesson.
+This is called hill-climbing algorithm in AI and you might come across it in the Algorithms module. In all cases, the idea is simple. Just perform the same algorithm multiple times, each time with a randomly selected initial centroid, and then select the clusters from the run that performs the best in terms of SSE. The downside of this strategy is that it can be costly especially when we consider large datasets in which case it becomes infeasible, but it can work well with small to medium datasets. You saw an example of this strategy in the exercise that you performed at the end of section 1d of this lesson.
 
 ##Furthest apart centroids: K means++
 

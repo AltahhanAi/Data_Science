@@ -10,7 +10,7 @@ A mini-batch is a compromise that aims at preserving the autonomy of the algorit
 
 3. In order to mitigate for the bias and variance that might occur due to a particular lucky (or unlucky) batch, we often shuffle the dataset, or we partition the dataset and take one mini-batch after the other.
 
-The size of the mini-batch is a hyper parameter than should make a good compromise between iterating through all data points and taking just one data point.
+The size of the mini-batch is a hyper parameter that should make a good compromise between iterating through all data points and taking just one data point.
 
 Below, we show the K-means mini-batch algorithm which saves computation and makes more efficient use of the available data. Note that there will be a slight degradation of the quality of the centroids/clusters but in practice it is normally unnoticeable.
 

@@ -66,7 +66,7 @@ There are two types of hierarchical clustering approaches that we can adopt; agg
   <figcaption><strong>Figure 3.12.</strong> An example of simple agglomerative clusters and their corresponding dendrogram.</figcaption>
 </figure>
 
-A dendrogram is a tree-like structure that reflects the membership of different data points to the different clusters structure that where discovered in the dataset. Below we show the basic vanilla agglomerative clustering algorithm.
+A dendrogram is a tree-like structure that reflects the membership of different data points to the different clusters structure that were discovered in the dataset. Below we show the basic vanilla agglomerative clustering algorithm.
 
 !!! algorithm-heading "Algorithms 4: Basic agglomerative clustering"
 
@@ -142,7 +142,7 @@ $$
 
 Cohesion expresses the idea that the more the data points are closer to each other the more cohesive the clusters is.  
 
-Another criterion that we can use the how well the clusters are separated from each other. The inter-clusters separation can be measured via the following formula:
+Another criterion that we can use is how well the clusters are separated from each other. The inter-clusters separation can be measured via the following formula:
 
 $$
 S S B=\sum_{i}\left|\boldsymbol{C}_{i}\right|\left(\mathbf{c}_{i}-\mathbf{c}\right)^{2}

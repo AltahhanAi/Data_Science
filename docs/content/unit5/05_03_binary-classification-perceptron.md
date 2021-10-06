@@ -36,7 +36,7 @@ $$
 Where $\mathcal{M}$ represents the set of **misclassified** data points in the dataset. Note that if a case lies exactly on the boundary then we assume it is of class +1. We call the model that uses this trick the perceptron. In figure 5.24 below we show a schematic representation of the perceptron.
 
 <figure role="group">
-  <img src="../images/DS_IMG149.png" alt="Schematic representation of the perceptron as a linear model for classification." />
+  <img src="../images/DS_IMG149.jpg" alt="Schematic representation of the perceptron as a linear model for classification." />
   <figcaption>
     <p><strong>Figure 5.24.</strong> A schematic representation of the perceptron as a linear model for classification.</p>
   </figcaption>
@@ -77,9 +77,7 @@ In fact, we can omit the learning rate because multiplying by it (or not) will n
 As we have seen earlier in Unit 4, all algorithms and techniques can be directly applied when we move from the input space into a feature space that may have higher dimension. The benefit of mapping into a new higher dimension feature space is that it will potentially render the non-linearity of the class’s boundaries in the input space into linear boundaries in the feature space. We can see this demonstrated in figures 5.25 and 5.26 below.
 
 <figure role="group">
-  <img src="../images/DS_IMG217.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
-	<img src="../images/DS_IMG216.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
-  <figcaption>
+  <img src="../images/DS_IMG216-217.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
     <p><strong>Figure 5.25.</strong> An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable.</p>
   </figcaption>
 </figure>
@@ -204,7 +202,7 @@ Based on what we have covered in Algorithm 5 in Unit 4, we can directly apply a 
 From now on it will be sufficient for us to just refer to an algorithm from the regression sections and show the update rules that is specific to classification, but for completeness of coverage we state the algorithm without re-explaining its skeleton as this was done already in the regression unit.
 
 <figure role="group">
-  <img src="../images/DS_IMG150.png" alt="Schematic representation of the perceptron as a linear model for classification with basis." />
+  <img src="../images/DS_IMG150.jpg" alt="Schematic representation of the perceptron as a linear model for classification with basis." />
   <figcaption>
     <p><strong>Figure 5.27.</strong> Schematic representation of the perceptron as a linear model for classification with basis.</p>
   </figcaption>

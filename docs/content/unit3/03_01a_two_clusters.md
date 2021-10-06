@@ -58,7 +58,7 @@ So for example, if we have the following clusters as in figure 3.4 below:
   <figcaption><strong>Figure 3.4.</strong> (Left) Simple clusters dataset. (Right) clusters visualisation, Cluster 1 data points are blue circles, Cluster 2 data points are red triangles. Each centroid is represented as +. Note that the cluster labels are not known a priori, instead they are inferred through a clustering algorithm. The centroid of Cluster 1 is given as (4.,3.) and the centroid for Cluster 2 is given as (6.6,2.3).</figcaption>
 </figure>
 
-Note that the centroids do not necessary belong to the dataset, although they live in the same space. In fact, they will start as one of the data points in the dataset and then they move around with repetitive updates in the input space. You can think of the centroids as virtual data points or Omni-data points that are floating on the input space of the dataset.
+Note that the centroids do not necessarily belong to the dataset, although they live in the same space. In fact, they will start as one of the data points in the dataset and then they move around with repetitive updates in the input space. You can think of the centroids as virtual data points or Omni-data points that are floating on the input space of the dataset.
 
 OK, so now we know how to calculate the centres. What is next?
 
@@ -90,7 +90,7 @@ Note that there are a lot of measures other than the usual Euclidian distance th
 We state here a few of interest, but these are by no means an exhaustive list of them.
 
 ####Jaccard coefficient
-This is used when have a binary only dataset (all attributes take either 0 or 1). In this case, we define:  
+This is used when we have a binary only dataset (all attributes take either 0 or 1). In this case, we define:  
 
 $$
 \operatorname{Jacc}(\mathbf{y}, \mathbf{x})=\frac{f_{11}}{f_{11}+f_{10}+f_{01}}
