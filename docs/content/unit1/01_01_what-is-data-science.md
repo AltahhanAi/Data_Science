@@ -170,29 +170,6 @@ This, and similar tools such as Weka, allow you to create a data mining model (p
        bash ~/Downloads/rapidminer-studio/RapidMiner-Studio.sh
        ```
 
-###Radoop
-
-<a href="https://docs.rapidminer.com/latest/radoop/" target="_blank">Radoop</a> is an extension of RapidMiner that allows you to make use of Hadoop ecosystem. RapidMiner is explained below. Radoop allows us to deal with big data and distributed application. You would need to have a Hadoop ready cluster in order to use it. The easiest way is to install a <a href="https://www.cloudera.com/downloads/hortonworks-sandbox.html" target="_blank">Horton sandbox</a> and connect RapidMiner to it for big data and distributed application.  
-
-For more information on using Radoop, watch this video on YouTube: <a href="https://www.youtube.com/watch?v=DkBXB6-mE38" target="_blank">Introducing Radoop: RapidMiner</a>.
-
-###Hadoop ecosystem
-
-To deal with big data later in the module, it will be useful to have the same environment that businesses normally use to process big data.  
-
-This is the Hadoop ecosystem. Although Hadoop requires a commodity hardware, which can be provided via virtual machines, running multiple virtual machines inside your PC and processing a big dataset might be challenging.  
-
-Therefore, in order to mimic the producers and constraints that are normally faced in business scenarios, you will deal with a reasonably sized dataset that is big in the context of capabilities of average machines. You will need an 8 GB RAM and 10GB disk space, if you do not have this then you may need to use a cloud-based or remotely accessed machine. For more information about Hadoop see the tutorial in LinkedIn. You will not be required to be familiar with all the Hadoop ecosystem, you will just make use of its infrastructure to process and analyse some data. This will be easily done by using the Hortonworks Sandbox.  
-
-The basics about MapReduce as a distributed programming paradigm will be explored in Unit5. Some of the most well-known Hadoop tools include HDFS, Yarn, MapReduce, Hive and Spark. More information on these tools is available by selecting this link: <a href="https://databricks.com/glossary/hadoop-ecosystem" target="_blank">Databricks: Hadoop Ecosystem</a>.  
-
-###Hortonworks sandbox
-
-To run Hadoop ecosystem alongside of RapidMiner you need to setup a Hortonworks sandbox. Basically, it is a virtual machine that has the Hadoop ecosystem readily set up and available.  
-
-To learn more about Hortonworks Sandbox, watch this video from Hadoop on YouTube: <a href="https://www.youtube.com/watch?v=H0KXnfE9Z9s" target="_blank">Hadoop Tutorial: Introduction to Hortonworks Sandbox</a>.
-
-
 ##Data pipeline and mining process (CRISP, ETL)
 
 **This module will focus on the cross industry standard process (CRISP) model of the data mining process, which is outlined in Figure 1.3 below.**

@@ -3,7 +3,7 @@
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:
 
-    * build the architecture of a two layer or multilayer neural network
+    * build the architecture of a two layer or multi-layer neural network
     *	address the regression problem in full using feature extraction process that is built into the neural network architecture, negating the need from the designer to select fixed basis functions
     *	understand the role of activation function in the context of a neural network
     *	devise a suitable loss function for a neural network
@@ -11,15 +11,15 @@
 
 **In the previous lesson we have covered a linear regression model with multiple outputs. In this lesson we extend this idea into models that have multiple layers with different activation function.**
 
-The layers should be defined in a way that do not reduce them into one layer in order to justify the added complexity of the new layers. This is not a strict guideline but it undesirable to have redundant layers that can be otherwise replaced by fewer layers. The reducibility of the layers is tightly connected to the form of the activation function.
+The layers should be defined in a way that do not reduce them into one layer in order to justify the added complexity of the new layers. This is not a strict guideline but it is undesirable to have redundant layers that can be otherwise replaced by fewer layers. The reducibility of the layers is tightly connected to the form of the activation function.
 
-An activation function is a function that we pass the output though in order transforms the output into a form that more useful for our model. The activation function can be linear or non-linear. In fact, so far we can say that we have been implicitly using an identity activation function (i.e.) the output stays as is. The non-linearity of the activation function is a powerful tool that can transform an input into an output that has gone through considerable processing. The result of such a model with multiple layers and non-linear and linear activation function for each layer is called a neural network.
+An activation function is a function that we pass the output through in order to transform the output into a form that is more useful for our model. The activation function can be linear or non-linear. In fact, so far we can say that we have been implicitly using an identity activation function (i.e.) the output stays as is. The non-linearity of the activation function is a powerful tool that can transform an input into an output that has gone through considerable processing. The result of such a model with multiple layers and non-linear and linear activation function for each layer is called a neural network.
 
 ##Non-linear one-output regression using multi-layer models
 
 We start with the latest architecture that we have developed in the previous sections and amend it to suit our needs. Please bear in mind that we are building the simplest feedforward neural network here, but there are much more complex networks architecture that you will see later in the machine learning and deep learning modules.  
 
-We will adopt an approach where we will now develop an architecture that will allow us to adapt the basis function that we have assumed previously as being fixed. The number of the features are usually fixed in neural networks because it corresponds with number of neurons in a layers. Other techniques such as support vector machine allow for the flexibility of the adapting the number of feature basis according to the dataset but on the expense of less efficiency during the prediction. In neural networks the adaptation takes place in changing the expressing powers of the basis function by changing the weights of the hidden layer. Below we show how we move from a fixed basis model architecture into flexible adapted basis model architecture.
+We will adopt an approach where we will now develop an architecture that will allow us to adapt the basis function that we have assumed previously as being fixed. The number of the features are usually fixed in neural networks because it corresponds with number of neurons in a layer. Other techniques such as support vector machine allow for the flexibility of the adapting the number of feature basis according to the dataset but on the expense of less efficiency during the prediction. In neural networks the adaptation takes place in changing the expressing powers of the basis function by changing the weights of the hidden layer. Below we show how we move from a fixed basis model architecture into flexible adapted basis model architecture.
 
 <figure role="group">
   <img src="../images/DS_IMG210.png" alt="Top: Schematic representation of a multiple outputs multi-layers linear regression model with fixed basis. Bottom: Schematic representation of a non-linear, multi-layer, neural network model with adaptive basis." />
@@ -56,7 +56,7 @@ Note that if we put the non-linear activation function on the output units and t
 
 Note that for the activation function, we have $w^⊤ x$ on the horizontal axis and y on the vertical axis, so please do not mix between $x_2$ and $y$ they are two different things; $x_2$ is an attribute and it participates in forming the depicted decision boundaries, while $y$ is a label. More explicitly, in regression the straight line equations in $2D$ represented the relationship between a one attribute $x$ and the label $y$. On the other hand, the straight line here represents the relationship between attributes $x_1$ and $x_2$ and is used to separate the classes using a step activation function.
 
-If we want to confine the values to a $]0,1[$ interval while allowing the activation function to take values in between to reflect the strength of the belief, or the probability, that a data point $x_n$ belongs (or not) to the positive class then we can use the logistic function shown below.
+If we want to confine the values to a $[0,1]$ interval while allowing the activation function to take values in between to reflect the strength of the belief, or the probability, that a data point $x_n$ belongs (or not) to the positive class then we can use the logistic function shown below.
 
 <figure role="group">
   <img src="../images/DS_IMG211.png" alt="Left: Graph showing logistic function in 2d space. Right: Logistic surface in 3d space." />
@@ -65,7 +65,7 @@ If we want to confine the values to a $]0,1[$ interval while allowing the activa
 
 **<p style="text-align: center;">Figure 4.26.** *Logistic function: (left) logistic function in 2d space with one attribute x. where we can see that the logistic has an inflection point at x=0 where its curvature changes from concave-upward to concave-downward, at this point the logistic value is y=0.5. (right): logistic surface in 3d space with two attributes $x_{1}$ and $x_{2}$, where w=[0.6,0.6]. The surface has an inflection surface at x=0.*</p>
 
-This activation function is used to be the most common activation function for hidden layers in neural networks for treating non-linear models. It is still an important one that create synergy with a different loss function called cross entropy for classification as we shall see later in the next unit. We will use it when we move from one-layer model (including multi-output one) to multi-layer models we need to adjust our cost function.
+This activation function is used to be the most common activation function for hidden layers in neural networks for treating non-linear models. It is still an important one that creates synergy with a different loss function called cross entropy for classification as we shall see later in the next unit. We will use it when we move from one-layer model (including multi-output one) to multi-layer models we need to adjust our cost function.
 
 In the following two sections, we show how to create a multi-layer neural network with one output. This will be a useful step towards generalising into multi-output architecture in the next unit.
 

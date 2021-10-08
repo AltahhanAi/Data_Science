@@ -9,11 +9,11 @@
 
 **In this section we will discuss the link between minimising a loss function and probability theory, to see how learning can take a probabilistic perspective.**
 
-We will also establish links with a particular probabilistic framework namely the Bayesian framework for learning. This lesson and its subsections can be safely skipped, without consequences on other sections or future sections in the module. Similar material will be also covered in some form in the Machine Learning module.
+We will also establish links with a particular probabilistic framework, namely the Bayesian framework for learning. This lesson and its subsections provide additional information to support future modules, but it is not necessary to understand in detail in order to progress with this module. As such, you may wish to skim read the material now, and return to it in more detail later on.
 
 ## Minimising least squares loss via maximising the likelihood
 
-In conventional probability, that you have studied in high school mostly, we *assume* that the data has a specific distribution like Gaussian or Beta etc. and we use this *assumption* to calculate the probability of an even. But what if we want to do the other way round? What if we want to evaluate our *assumption*? What if we want to evaluate the likelihood that the given data has actually the assumed distribution? We will bootstrap and use the same concepts of probability to come up with a measure that quantify this concept. We call this quantity the *likelihood*.
+In conventional probability, we *assume* that the data has a specific distribution like Gaussian or Beta etc. and we use this *assumption* to calculate the probability of an event. But what if we want to do the other way round? What if we want to evaluate our *assumption*? What if we want to evaluate the likelihood that the given data has actually the assumed distribution? We will bootstrap and use the same concepts of probability to come up with a measure that quantify this concept. We call this quantity the *likelihood*.
 
 ### What is likelihood?
 
@@ -31,7 +31,7 @@ Nevertheless, we calculate the likelihood via probability.
 
 ## Maximising the likelihood with identical mean and variance
 
-For example, given a univariate Gaussian distribution $\mathcal{N}\left(x \mid \mu, \sigma^{2}\right)$ and a set of data points $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$ of size $N$, the likelihood of this Gaussian model generating all the data is the probability that the all the given data has come from this distribution (distributed according to the Gaussian). Since the probability of a set of independent events taking place together equals to the multiplication of their individual probabilities and given that the dataset $\mathbf{X}$ is independent and identically distributed (i.i.d) - identically distributed means all of the data is drawn from the same distribution whether we know the distribution or we try to estimate it. Then, the likelihood of the model given the data is given as the probability $p\left(\mathbf{X} \mid \mu, \sigma^{2}\right)$ and is calculated as:
+For example, given a univariate Gaussian distribution $\mathcal{N}\left(x \mid \mu, \sigma^{2}\right)$ and a set of data points $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$ of size $N$, the likelihood of this Gaussian model generating all the data is the probability that all the given data has come from this distribution (distributed according to the Gaussian). Since the probability of a set of independent events taking place together equals to the multiplication of their individual probabilities and given that the dataset $\mathbf{X}$ is independent and identically distributed (i.i.d) - identically distributed means all of the data is drawn from the same distribution whether we know the distribution or we try to estimate it. Then, the likelihood of the model given the data is given as the probability $p\left(\mathbf{X} \mid \mu, \sigma^{2}\right)$ and is calculated as:
 
 $$
 p\left(\mathbf{X} \mid \mu, \sigma^{2}\right)=\prod_{n=1}^{N} \mathcal{N}\left(x_{n} \mid \mu, \sigma^{2}\right)
@@ -62,7 +62,7 @@ Which states that the mean for $t$ is $y(\mathbf{x}, \mathbf{w})$ and the varian
   <figcaption><strong>Figure 4.28.</strong> Linear model fitting with Gaussian Noise.</figcaption>
 </figure>
 
-Given that we have a dataset $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$ and corresponding $\boldsymbol{t}=\left\{t_{1}, t_{1}, \ldots, t_{N}\right\}$ of size $\mathrm{N}$, the likelihood of the above Gaussian model $\mathcal{N}\left(t \mid y(\mathbf{x}, \boldsymbol{w}), \beta^{-1}\right)$ generating all the $t_n$ is the probability that the all the given data has come from this distribution $\mathcal{N}\left(t \mid y(\mathbf{x}, \boldsymbol{w}), \beta^{-1}\right)$. We make the assumption that $t_n$ is independent and identically distributed (i.i.d). Then, the likelihood of the model given the data is given as the probability $p\left(\mathbf{t} \mid \mu, \sigma^{2}\right)$ and is calculated as:
+Given that we have a dataset $\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}$ and corresponding $\boldsymbol{t}=\left\{t_{1}, t_{1}, \ldots, t_{N}\right\}$ of size $\mathrm{N}$, the likelihood of the above Gaussian model $\mathcal{N}\left(t \mid y(\mathbf{x}, \boldsymbol{w}), \beta^{-1}\right)$ generating all the $t_n$ is the probability that all the given data has come from this distribution $\mathcal{N}\left(t \mid y(\mathbf{x}, \boldsymbol{w}), \beta^{-1}\right)$. We make the assumption that $t_n$ is independent and identically distributed (i.i.d). Then, the likelihood of the model given the data is given as the probability $p\left(\mathbf{t} \mid \mu, \sigma^{2}\right)$ and is calculated as:
 
 $$
 p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)=\prod_{n=1}^{N} \mathcal{N}\left(t_{n} \mid y\left(\mathbf{x}_{\mathrm{n}}, \mathbf{w}\right), \beta^{-1}\right)
@@ -126,7 +126,7 @@ $$
 p(t \mid x, \mathbf{X}, \mathbf{t}, \beta)=\int p(t \mid x, \mathbf{w}, \beta) p(\mathbf{w} \mid \mathbf{X}, \mathbf{t}, \beta) \mathrm{d} \boldsymbol{w}
 $$
 
-Previously, we showed how come up with $\mathbf{w}$ that maximise the likelihood. Now, we want to calculate the probability $p(t \mid x, \mathbf{X}, \mathbf{t})$ to account for a full Bayesian treatment for a linear model. Note that from previous treatment we already assume that $p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid \mathbf{w}^{* \top} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right), \beta^{-1}\right)$ (note that this is different than but related to the likelihood $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ that we maximised in the previous section) therefore, according to Bayes theorem:
+Previously, we showed how to come up with $\mathbf{w}$ that maximise the likelihood. Now, we want to calculate the probability $p(t \mid x, \mathbf{X}, \mathbf{t})$ to account for a full Bayesian treatment for a linear model. Note that from previous treatment we already assume that $p(t \mid \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t \mid \mathbf{w}^{* \top} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right), \beta^{-1}\right)$ (note that this is different than but related to the likelihood $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ that we maximised in the previous section) therefore, according to Bayes theorem:
 
 $$
 p(\boldsymbol{w} \mid \mathbf{X}, \mathbf{t}, \beta) \propto p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta) p(\mathbf{w} \mid \alpha)
@@ -134,9 +134,9 @@ $$
 
 Where $∝$ means proportional to, ∝ will turn into equality once we normalise $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta) p(\mathbf{w} \mid \alpha)$.
 
-The first term in (33) is $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ is the likelihood function for our model and has been already showed to be Gaussian where we have shown how to come up with $\mathbf{w}^{*}$ that minimises this likelihood and we showed that it is a Gaussian.
+The first term is $p(\mathbf{t} \mid \mathbf{X}, \mathbf{w}, \beta)$ is the likelihood function for our model and has been already showed to be Gaussian where we have shown how to come up with $\mathbf{w}^{*}$ that minimises this likelihood and we showed that it is a Gaussian.
 
-The second term in (33) is $p(\mathbf{w} \mid \alpha)$ and is called the prior of the weights. It represents the prior assumptions about the weights that we can incorporate in our Bayesian treatment. We will assume that $p(\mathbf{w} \mid \alpha)$ is an isotropic Gaussian (which is the simplest form of a multivariate Gaussian). Therefore the posterior distribution $p(\boldsymbol{w} \mid \mathbf{X}, \mathbf{t}, \beta)$ is also Gaussian. In particular we will assume that the prior of the weights has a 0 means vector and has $\alpha^{-1}$ variance i.e.
+The second term is $p(\mathbf{w} \mid \alpha)$ and is called the prior of the weights. It represents the prior assumptions about the weights that we can incorporate in our Bayesian treatment. We will assume that $p(\mathbf{w} \mid \alpha)$ is an isotropic Gaussian (which is the simplest form of a multivariate Gaussian). Therefore the posterior distribution $p(\boldsymbol{w} \mid \mathbf{X}, \mathbf{t}, \beta)$ is also Gaussian. In particular we will assume that the prior of the weights has a 0 means vector and has $\alpha^{-1}$ variance i.e.
 
 $$
 p(\mathbf{w} \mid \alpha)=\mathcal{N}\left(\mathbf{w} \mid \mathbf{0}, \alpha^{-1} \boldsymbol{I}\right)=\left(\frac{\alpha}{2 \pi}\right)^{\frac{M+1}{2}} e^{-\frac{\alpha}{2}\|\mathbf{w}\|^{2}}

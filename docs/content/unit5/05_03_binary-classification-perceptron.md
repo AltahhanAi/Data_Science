@@ -83,9 +83,7 @@ As we have seen earlier in Unit 4, all algorithms and techniques can be directly
 </figure>
 
 <figure role="group">
-  <img src="../images/DS_IMG219.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
-	<img src="../images/DS_IMG218.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
-  <figcaption>
+  <img src="../images/DS_IMG218-219.png" alt="An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable." />
     <p><strong>Figure 5.26.</strong> An example of the benefit of mapping input space to a feature space, where the data becomes linearly separable.</p>
   </figcaption>
 </figure>
@@ -237,7 +235,7 @@ Due the perfect alignment of point (1,0) and (0,1) as well as (0,0) and (1,1) th
   </figcaption>
 </figure>
 
-The perceptron is guaranteed (via the **perceptron convergence theorem**) to find a solution if the data is linearly separable. But if the data is not linearly separable it will never converge, i.e. it can keep running infinitely if the implementation allows for that. Even when the data in linearly separable the algorithm might take a considerable number of steps to converge. If we do not know a priori whether the data is linearly separable or not, we cannot tell if the perceptron is taking long to converge or it is unable to converge.
+The perceptron is guaranteed (via the **perceptron convergence theorem**) to find a solution if the data is linearly separable. But if the data is not linearly separable it will never converge, i.e. it can keep running infinitely if the implementation allows for that. Even when the data is linearly separable the algorithm might take a considerable number of steps to converge. If we do not know a priori whether the data is linearly separable or not, we cannot tell if the perceptron is taking long to converge or it is unable to converge.
 
 !!! abstract "Exercise"
     See the following Jupyter notebook for more details on the perceptron.

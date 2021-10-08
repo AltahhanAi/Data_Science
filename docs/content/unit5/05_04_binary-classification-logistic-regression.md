@@ -37,20 +37,20 @@ Logistic regression is a widely used classification technique that like the perc
   </figcaption>
 </figure>
 
-We should also emphasise here that although both the perceptron and logistic regression have linear decision boundaries, they can become capable of dealing with non-linearly separable classes via feature mapping, i.e. by employing a non-linear basis function as we saw in the previous section. However, there are some non-linear problems where feature mapping do not solve it non-linearity where we need a built-in non-linearity in the model. In addition, as we saw in Unit 4 that fixed basis functions are restrictive in terms of adaptability that we might want to infuse in our models in order to automatically discover the best basis for the problem in hand instead of the analyst choosing the type of the basis needed.
+We should also emphasise here that although both the perceptron and logistic regression have linear decision boundaries, they can become capable of dealing with non-linearly separable classes via feature mapping, i.e. by employing a non-linear basis function as we saw in the previous section. However, there are some non-linear problems where feature mapping do not solve its non-linearity where we need a built-in non-linearity in the model. In addition, as we saw in Unit 4 that fixed basis functions are restrictive in terms of adaptability that we might want to infuse in our models in order to automatically discover the best basis for the problem in hand instead of the analyst choosing the type of the basis needed.
 Below we show schematic representation of logistic regression.
 
 <figure role="group">
   <img src="../images/DS_IMG152.jpg" alt="Schematic representation of the Logistic Regression as a linear models for classification with basis." />
   <figcaption>
-    <p><strong>Figure 5.30.</strong> Schematic representation of the Logistic Regression as a linear models for classification with basis.</p>
+    <p><strong>Figure 5.30.</strong> Schematic representation of the Logistic Regression as a linear model for classification with basis.</p>
   </figcaption>
 </figure>
 
 We denote $y\left(\mathbf{x}_{n}, \mathbf{w}\right)$ as  $y_{n}$ to simplify the notation.
 
-Logistic models tackle **binary class problems** so we have two potential target outputs. In this case, it is more useful to represent (cncode) the target outputs $t_{n}$ as a binary target from the set $\{0,1\}$ which goes along with
-the model output $y_{n}$ that is in $] 0,1[$ (as per the sigmoid function range).
+Logistic models tackle **binary class problems** so we have two potential target outputs. In this case, it is more useful to represent (encode) the target outputs $t_{n}$ as a binary target from the set $\{0,1\}$ which goes along with
+the model output $y_{n}$ that is in $[0,1]$ (as per the sigmoid function range).
 
 The **classification decision** can be made based on the value $y_{n}$
 
@@ -60,7 +60,7 @@ if $y_{n}<0.5 \quad$ then $\quad$ predicted class $=0$
 
 The main characteristics of a logistic function are twofold:
 
-1. it is naturally normalised because its value is confined to ]0, 1[
+1. it is naturally normalised because its value is confined to [0, 1]
 2. it is differentiable and has an appealing rule for differentiation that is related to z: $\frac{d g(z)}{d z}=$ $g(z)(1-g(z))$ which can be written for brevity as:
 
 $$
@@ -87,8 +87,7 @@ This means that the logistic regression estimates the odds of $\mathbf{x}$ being
 
 ## Loss function for the logistic regression
 
-First we start by intuition and then we formally define the loss. Here, the trick of the perceptron loss function (multiplying the model output $y_{n}$ by the target class $t_{n}$ ) does not work since the output is a continuum of values in $] 0,1\left[\right.$ instead of $+1$ and $-1$ (as in the perceptron). The multiplication of $t_{n} y_{n}$ is always non-negative, so the **sign** of $t_{n} y_{n}$ **will not work** to detect the class as it did in the perceptron. Instead we need to look at the **value** of $t_{n} y_{n}$ to deduce the dissimilarity between the model output $y_{n}$ and the target output $t_{n} .$ The multiplication
-Therefore, we might think of a loss function as follows:
+First we start by intuition and then we formally define the loss. Here, the trick of the perceptron loss function (multiplying the model output $y_{n}$ by the target class $t_{n}$ ) does not work since the output is a continuum of values in $[ 0,1\left]\right.$ instead of $+1$ and $-1$ (as in the perceptron). The multiplication of $t_{n} y_{n}$ is always non-negative, so the **sign** of $t_{n} y_{n}$ **will not work** to detect the class as it did in the perceptron. Instead we need to look at the **value** of $t_{n} y_{n}$ to deduce the dissimilarity between the model output $y_{n}$ and the target output $t_{n} .$ Therefore, we might think of a loss function as follows:
 
 $$
 \left\{\begin{array}{lll}
@@ -97,7 +96,7 @@ $$
 \end{array}\right.
 $$
 
-However, since $y_{n}$ is a logistic value that has exponentiation, it is easier to take the log of $y_{n}$ which effectively cancels the exponentiation and makes the loss easier to handle. $y_{n}$ and $-\log y_{n}$ are both monotonic and behave similarly in terms of their minima $\left(\log y_{n}\right.$ is always negative because $y_{n}$ is in $] 0,1 [)$ . So we can use the following loss cases instead:
+However, since $y_{n}$ is a logistic value that has exponentiation, it is easier to take the log of $y_{n}$ which effectively cancels the exponentiation and makes the loss easier to handle. $y_{n}$ and $-\log y_{n}$ are both monotonic and behave similarly in terms of their minima $\left(\log y_{n}\right.$ is always negative because $y_{n}$ is in $[ 0,1 ])$ . So we can use the following loss cases instead:
 
 $$
 \left\{\begin{array}{ll}
@@ -113,7 +112,7 @@ $$
 $$
 
 Ok, that was one way to motivate the use of the cross entropy loss. Below we provide the motivation formally via the entropy.
-Recall that the logistic function value is in ]0, 1[ and that it will be interpreted as a probability. Hence our model prediction
+Recall that the logistic function value is in [0, 1] and that it will be interpreted as a probability. Hence our model prediction
 
 $$
 y\left(\mathbf{x}_{n}, \mathbf{w}\right)=g\left(\mathbf{w}^{\top} \boldsymbol{\phi}_{n}\right)
@@ -131,7 +130,7 @@ $$
 p r_{p}\left(\mathbf{x}_{n} \notin C\right)=1-y_{n}
 $$
 
-We can now write the entropy (which is represents the uncertainty) of $y_n$ class prediction as
+We can now write the entropy (which represents the uncertainty) of $y_n$ class prediction as
 
 $$
 H\left(y_{n}\right)=-y_{n} \log \left(y_{n}\right)-\left(1-y_{n}\right) \log \left(1-y_{n}\right)
@@ -294,7 +293,7 @@ H(P)=-p r_{P}(v) \log \left(p r_{P}(v)\right)-\left(1-p r_{P}(v)\right) \log \le
 \end{array}
 $$
 
-Now we might be interested to know the relative entropy of $\mathrm{P}$ with respect to $\mathrm{Q}$ or vice versa. i.e. when we want to know how much the entropy of $V$ in P differs from the entropy of $V$ in $\mathrm{Q}$ then we can look at the cross entropy defined as
+Now we might be interested to know the relative entropy of $\mathrm{P}$ with respect to $\mathrm{Q}$ or vice versa. i.e. when we want to know how much the entropy of $V$ in $\mathrm{P}$ differs from the entropy of $V$ in $\mathrm{Q}$ then we can look at the cross entropy defined as
 
 $$
 \begin{array}{c}
@@ -352,7 +351,7 @@ The data has been generated to be separated by the following linear classifier $
   </figcaption>
 </figure>
 
-Data points under the line satisfy $-x_{2}+2 x_{1}-4 \geq 0$ and are classified as positive and data points that are above the line satisfy $-x_{2}+2 x_{1}-4<0$ are classified as negative (positive represented as + and negative represented as a circle $\mathrm{O}$ in the figures). Let us build a logistic regression classifier based the linear model provided.
+Data points under the line satisfy $-x_{2}+2 x_{1}-4 \geq 0$ and are classified as positive and data points that are above the line satisfy $-x_{2}+2 x_{1}-4<0$ are classified as negative (positive represented as + and negative represented as a circle $\mathrm{O}$ in the figures). Let us build a logistic regression classifier based on the linear model provided.
 
 $$
 \mathrm{g}\left(\mathbf{w}_{1}^{\top} \mathbf{x}\right)=\frac{1}{1+\boldsymbol{e}^{-\mathbf{w}_{1}^{\top} \mathbf{x}}}
@@ -433,7 +432,7 @@ $$
 
 ###Least square for linear model classification
 
-Applying least squares on will get us an estimation of the class label. However, Least Squares is not a good approach to estimate the classes. The issue with this approach is that it is sensitive to outliers. Also the result of the minimisation will be a value that is not guaranteed to be in [0, 1] so we cannot expect a 1-of-K binary coding to be output by the model which we will talk about in the next section.
+Applying least squares will get us an estimation of the class label. However, Least Squares is not a good approach to estimate the classes. The issue with this approach is that it is sensitive to outliers. Also the result of the minimisation will be a value that is not guaranteed to be in [0, 1] so we cannot expect a 1-of-K binary coding to be output by the model which we will talk about in the next section.
 
 ##Lesson summary
 

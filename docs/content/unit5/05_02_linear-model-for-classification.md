@@ -131,7 +131,7 @@ Where $f$ is called the activation function that helps map the linear model into
 
 ## The activation function
 
-It is important to note that we need to use a function $f$ to map the values $\mathbf{w}^{\top} \mathbf{x}$ into some sort of decision that is related to the label. In our previous examples we used the sign of the product to decide. This is called the steps activation function and it is shown in figure 5.9 below.
+It is important to note that we need to use a function $f$ to map the values $\mathbf{w}^{\top} \mathbf{x}$ into some sort of decision that is related to the label. In our previous examples we used the sign of the product to decide. This is called the step activation function and it is shown in figure 5.9 below.
 
 <figure role="group">
   <img src="../images/DS_IMG135.png" alt="Graph showing step activation function." />
@@ -149,7 +149,7 @@ Function $f$ is called an activation function because it activates, or issues a 
   <figcaption><strong>Figure 5.10.</strong> Step activation function with {0,1} signals.</figcaption>
 </figure>
 
-Also for example if we want to confine the values to a $] 0,1[$ interval while allowing the activation function to take values in between to reflect the strength of the belief, or the probability, that a data point $\mathbf{x}_{\mathrm{n}}$ belongs (or not) to the positive class then we can use the logistic function (aka sigmoid) shown below in figure 5.11.
+Also for example if we want to confine the values to a $[0,1]$ interval while allowing the activation function to take values in between to reflect the strength of the belief, or the probability, that a data point $\mathbf{x}_{\mathrm{n}}$ belongs (or not) to the positive class then we can use the logistic function (aka sigmoid) shown below in figure 5.11.
 
 <figure role="group">
   <img src="../images/DS_IMG136.png" alt="Sigmoid activation function with [0,1] signal range." />
@@ -169,7 +169,7 @@ In other words, it takes the same value of $x$ if $x$ is positive and 0 otherwis
   <figcaption><strong>Figure 5.12.</strong> Rectified linear unit (ReLU) activation function.</figcaption>
 </figure>
 
-The ReLU is a piecewise linear function. It outperforms other activation functions such as the sigmoid and the tanh which used to be popular in neural networks,  and it is now the default activation function for seep learning. It should be noted that while other activation functions such as the cos or sin have been found to work as well as the sigmoid, all of the more complex functions suffer from saturation where they become insensitive to change beyond some threshold. ReLU overcomes this and other issues. It also has a better gradient propagation. The other advantage of ReLU is its speed in comparison with sigmoidal functions. There are several variants of this function, such as the Leaky ReLU, but in general they perform comparable to ReLU. Leaky ReLU allows a small positive gradient when the unit is not active. In other words, it does not reach 0 which guarantees that the unit activation will not completely cancel when it receives a negative signal.
+The ReLU is a piecewise linear function. It outperforms other activation functions such as the sigmoid and the tanh which used to be popular in neural networks,  and it is now the default activation function for deep learning. It should be noted that while other activation functions such as the cos or sin have been found to work as well as the sigmoid, all of the more complex functions suffer from saturation where they become insensitive to change beyond some threshold. ReLU overcomes this and other issues. It also has a better gradient propagation. The other advantage of ReLU is its speed in comparison with sigmoidal functions. There are several variants of this function, such as the Leaky ReLU, but in general they perform comparable to ReLU. Leaky ReLU allows a small positive gradient when the unit is not active. In other words, it does not reach 0 which guarantees that the unit activation will not completely cancel when it receives a negative signal.
 
 ##Linear decision boundaries
 
@@ -188,7 +188,7 @@ Some examples of different straight line decision boundaries are shown below in 
   </figcaption>
 </figure>
 
-You might ask, but how should we tune the model? And can we optimise its parameters choice to draw a line that maximise the distance and reparability of the classes in the data? As you already know, a line can be drawn in many ways. Mainly there are two parameters of a line that completely specify the line with no ambiguity. This formula defines adjustable weights parameters $w_{i}$ that we need to learn the best value of, in order to classify our data. In figure 5.14 below, we show a schematic illustration of a linear classification model. The dashed line box denotes scaling of each component in the input set (this is done on the level of the dataset and on the level of individual record, see Unit 1 for more details).
+You might ask, but how should we tune the model? And can we optimise its parameters choice to draw a line that maximises the distance and reparability of the classes in the data? As you already know, a line can be drawn in many ways. Mainly there are two parameters of a line that completely specify the line with no ambiguity. This formula defines adjustable weights parameters $w_{i}$ that we need to learn the best value of, in order to classify our data. In figure 5.14 below, we show a schematic illustration of a linear classification model. The dashed line box denotes scaling of each component in the input set (this is done on the level of the dataset and on the level of individual record, see Unit 1 for more details).
 
 <figure role="group">
   <img src="../images/DS_IMG139.jpg" alt="Schematic representation of a linear model for classification." />
