@@ -49,7 +49,7 @@ $$
 \mathbf{w}^{*}=\left(\mathbf{\Phi}^{\top} \mathbf{\Phi}+\lambda \mathbf{I}\right)^{-\mathbf{1}} \mathbf{\Phi}^{\top} \mathbf{t}
 $$
 
-If the matrix $\left(\mathbf{\Phi}^{\top} \mathbf{\Phi}+\lambda \mathbf{I}\right)$ is invertible then the solution exists. The resultant algorithm is very similar to Algorithm 3, the only difference is that we change the calculation $\mathbf{w}^{*}$ so that the invers involve $\lambda \mathbf{I}$, we will not include it here for brevity.
+If the matrix $\left(\mathbf{\Phi}^{\top} \mathbf{\Phi}+\lambda \mathbf{I}\right)$ is invertible then the solution exists. The resultant algorithm is very similar to Algorithm 3, the only difference is that we change the calculation $\mathbf{w}^{*}$ so that the inverse involve $\lambda \mathbf{I}$, we will not include it here for brevity.
 
 This technique is also called Ridge regression. See figure 4.20 below for how linear regression with polynomial basis of degree 15 overfitting problem can be brought under control using regularisation. The problem is contrived but because in the first place we should not be using that high degree polynomial in the first place, but it demonstrates the effect of regularisation. Note that the value of $λ$ has a major effect of whether the model underfit or makes a good fit, this type of hyper parameters requires tuning which is a trial and error process and a time-consuming exercise. There are some ways to automate the process a bit. For example, one use grid search method to try out different values for $λ$ and choose the optimal one as we saw previously in Unit 2.
 

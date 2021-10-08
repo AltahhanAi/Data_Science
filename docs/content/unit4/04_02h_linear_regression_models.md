@@ -2,7 +2,7 @@
 
 ##Regularised Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model
 
-**Similar to what we have done before, there is a regularised version of the minim-batch stochastic gradient descent that we show below.**
+**Similar to what we have done before, there is a regularised version of the mini-batch stochastic gradient descent that we show below.**
 
 The regularised loss function for one-output regression problem can be written as:
 

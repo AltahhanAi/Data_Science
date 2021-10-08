@@ -59,7 +59,7 @@ $$
 \phi_{j}\left(\mathbf{x}_{n}\right)=e^{-\frac{1}{2}\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{j}\right)^{\top} \mathbf{\Sigma}^{-1}\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{j}\right)}
 $$
 
-Where $\boldsymbol{\mu}_{\boldsymbol{j}}$ has the dimension $D$ of the input space however, note that the number of those basis $M-1$ (it is $M$ if including the dummy features) specifies the size of the feature space which would be the input for the linear model. $\mathbf{z}^{-\mathbf{1}}$ is the inverse of the covariance matrix. The covariance matrix $\boldsymbol{\Sigma}$ is an $(M-1)×(M-1)$ squared, symmetrical, positive and semi-definite matrix.
+Where $\boldsymbol{\mu}_{\boldsymbol{j}}$ has the dimension $D$ of the input space however, note that the number of those basis $M-1$ (it is $M$ if including the dummy features) specifies the size of the feature space which would be the input for the linear model. $\boldsymbol{\Sigma}^{-1}$ is the inverse of the covariance matrix. The covariance matrix $\boldsymbol{\Sigma}$ is an $(M-1)×(M-1)$ squared, symmetrical, positive and semi-definite matrix.
 
 The above define a set of multinomial Gaussians (without a normalisation factor), each is defined by a different means $\boldsymbol{\mu}_{\boldsymbol{j}}$ vectors and all share the same covariance matrix Σ. The means $\boldsymbol{\mu}_{\boldsymbol{j}}$ need to be specified sensibly, however this is not trivial. Sometimes, we can do that by exploiting some domain knowledge and a crude analysis of the data (see the next notebook). We will see more proper and better ways of specifying those centres in the Machine Learning (ML) module. One way is to cluster the data and choose the centroids of the clusters. As we saw earlier in unit 3, clustering provides a good insight into the nature of the dataset and can be utilised here to decide on the radial basis centres. This might still need tuning and sometimes it is not straight forward to know which distance metric to use for the clustering process.  Another way is via Gaussian processes. The topic of how we fit a Gaussian or in a parametric or nonparametric model is an important and significant one in machine learning, and will be left for the abovementioned ML module. Note also that we assumed that the covariance matrix is the same for all the basis but this need not be the case. We can allow each feature to take on a different Gaussian basis with its own different covariance matrix.
 
@@ -76,7 +76,7 @@ The above define a set of multinomial Gaussians (without a normalisation factor)
 
 ##Sigmoidal basis functions
 
-Another exponential basis is the sigmoidal basis. This type of basis functions takes the form:
+Another exponential basis is the sigmoidal basis. This type of basis function takes the form:
 
 $$
 g(\alpha)=\frac{1}{1+e^{-\alpha}}

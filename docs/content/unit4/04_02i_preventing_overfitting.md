@@ -2,7 +2,7 @@
 
 **In this section we tackle overfitting for stochastic gradient decent algorithms. We provide several mechanisms to prevent overfitting. The first goes to the level of the loss function itself via regularisation similar to what we have covered earlier. The second is via a combination of sweeps through the dataset (epochs) as well as weight decay and early stopping.**
 
-At the same time these techniques are suitable to prevent overshooting the global minimum of the loss function (if there is a one). Remember in SGD we are going in steps towards the minimum of the loss function. On the way, our algorithm might overshoot the minimum and keep fluctuating around it. This is often due to a high learning rate. Overshooting the global minimum and ending up in a local minimum is another problem that we often face with more complex models such as neural networks. In fact, overcoming local minima and the fact that a neural network loss function is infested with these local minima are among the main motivation for the next subsection.
+At the same time these techniques are suitable to prevent overshooting the global minimum of the loss function (if there is one). Remember in SGD we are going in steps towards the minimum of the loss function. On the way, our algorithm might overshoot the minimum and keep fluctuating around it. This is often due to a high learning rate. Overshooting the global minimum and ending up in a local minimum is another problem that we often face with more complex models such as neural networks. In fact, overcoming local minima and the fact that a neural network loss function is infested with these local minima are among the main motivation for the next subsection.
 
 ###Regularised Multi-output Least Squares for Linear Regression Model ‎with Basis
 
@@ -94,14 +94,14 @@ Before we state the regularised mini-batch SGD we would like to add few more tec
 
 ###Early Stopping and Learning Rate Decay
 
-One of main tools to prevent overfitting is regularisation as we saw earlier.
+One of the main tools to prevent overfitting is regularisation as we saw earlier.
 
 Going through several epochs can be combined with learning rate decay stabilise and prevent overshooting the minimum of the loss function. Overshooting the global minimum and ending up in a local minimum is a problem that we often face with more complex models such as neural networks. In fact overcoming local minima and the fact that a neural network loss function is infested with these local minima is the main motivation of going through several epochs and to shuffle the data along the way in order to make sure that we head toward the global minima from several directions. Also, SGD with just one point update helps us to overcome some of the local minima on the way of the global minimum due to its high variance. When we move to a mini-batch SGD setting we hope to keep this ability but to further stabilise the process. This randomisation helps the convergence of the solution to a global minimum. In the case of the simple linear model this is not a problem since we have a convex loss function that has just one global minimum.
 
 Actually, having epochs with learning decay and early stopping are all a little excessive for linear models and are only justified for special cases when the dataset is extremely large, nevertheless for the sake of completeness of coverage and to gain familiarity with these central concepts in modern data science and machine learning, we show them here.
 On the other hand, since going through several epochs can lead in some cases to a convergence earlier than we might expect we can add also the concept of early stopping by checking if the loss value has increased beyond a specific threshold.
 
-If you remember in Unit 2 we have spoken about discovering overfitting via comparison of accuracy/error on training set and a validation (or testing) set. Overfitting starts to occur when the performance of the training keeps increasing while the performance on a validation set starts to decrease (i.e. they forked). The same concept applies her on regression, but we use a different metric such as the MSSE. So, to detect overfitting we just have to look at the performance of a hold out set while we are training the model. Once the loss of the model on the validation set starts to increase, we can just stop training. This is called early stopping and it can be done in several ways we cover the basic idea only. We need to realise two things here.
+If you remember in Unit 2 we have spoken about discovering overfitting via comparison of accuracy/error on training set and a validation (or testing) set. Overfitting starts to occur when the performance of the training keeps increasing while the performance on a validation set starts to decrease (i.e. they forked). The same concept applies here on regression, but we use a different metric such as the MSSE. So, to detect overfitting we just have to look at the performance of a hold out set while we are training the model. Once the loss of the model on the validation set starts to increase, we can just stop training. This is called early stopping and it can be done in several ways we cover the basic idea only. We need to realise two things here.
 The first is that the performance of the hold out set tends to fluctuate a bit so we cannot just stop learning immediately once the generalisation error of the validation set starts to increase. We need to be patient and allow for a leeway for the error to fluctuate a bit. We can do that via a hyper parameter ε where we stop training only when the current validation error exceeds the past validation error beyond $ε$.
 
 The second thing is that we need a way to track back our best weights before the latest update that led to the increase of the generalisation error. So, we need a mechanism to store the best weight and only update them if we are sure that the latest update result in no increase in the generalisation error. We will do this on the level of the epochs not on the level of the mini-batches because individual mini-batch may not necessarily reflect the whole picture of the error. So we will often set an enough high number of epochs and we employ early stopping to stop when we reach the critical point of having maximally trained the model and it reached its peak performance and just before it starts to overfit the data and capture the noise along the patterns in the data.
@@ -224,7 +224,7 @@ The last multiplication in turn can be succinctly written as:
 
 $\boldsymbol{y}=\ddot{\mathbf{W}}^{\top}\left[\begin{array}{l}1 \mathbf{0}_{\mathrm{M}} \\ \dot{\mathbf{W}}^{\top}\end{array}\right] \boldsymbol{\phi}$
 
-This setting will allows us not only to match the dimensions, but more importantly to obtain the output of the first layer with a dummy feature of $\dot{y}_{0}=1$ ̇due to the $10_M ϕ=1$ multiplication which yields 1.
+This setting will allow us not only to match the dimensions, but more importantly to obtain the output of the first layer with a dummy feature of $\dot{y}_{0}=1$ ̇due to the $10_M ϕ=1$ multiplication which yields 1.
 
 Now we define $\mathbf{W}^{\top}=\ddot{\mathbf{W}}^{\top}\left[\begin{array}{l}1 \mathbf{0}_{\mathrm{M}} \\ \dot{\mathbf{W}}^{\top}\end{array}\right]$ and substituting we get:
 
@@ -232,7 +232,7 @@ $y=W^⊤ ϕ$
 
 And so, we have written the two-layer model as a one layer linear regression model.  This gives the following insight: we do not need multi-layer linear model as it can be expressed as a one-layer model. However, we might still want to use two or more layers to reduce the number of parameters that we are dealing with. For example if we have an input space of 100 attributes and 10 outputs then we would need to deal with 1000 parameters, while if we introduced a 5 neurons hidden layer in the middle then we would need to deal with $100×50 + 5×10=550$ parameters. So, in this case by using two layers instead of one we reduced the number of parameters of the model which is desirable.
 
-On the other hand, multi-layer model makes more sense when we use a non-liner activation function in the hidden layer as follows.
+On the other hand, multi-layer model makes more sense when we use a non-linear activation function in the hidden layer as follows.
 
 $\boldsymbol{y}=f\left(\mathbf{\mathbf { W }}^{\top} \boldsymbol{\phi}\right)$
 

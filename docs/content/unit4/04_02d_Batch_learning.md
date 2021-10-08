@@ -101,7 +101,7 @@ Note that the basis is fixed and not changed during learning. This a key differe
 
 ###Complexity discussion
 
-The same discussion that we had earlier applies again of course for the case of feature space but this time the complexity is in tern of $M$. The Least Squares on linear regression with basis has the same complexity as in the simple regression without basis. The only difference is that it will be related to $M$ the feature space dimension instead of $D$ the input space dimension.
+The same discussion that we had earlier applies again of course for the case of feature space but this time the complexity is in terms of $M$. The Least Squares on linear regression with basis has the same complexity as in the simple regression without basis. The only difference is that it will be related to $M$ the feature space dimension instead of $D$ the input space dimension.
 
 ##Batch Learning, Sequential or Mini-Batch Stochastic Learning:
 
