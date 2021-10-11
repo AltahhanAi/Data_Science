@@ -4,7 +4,13 @@
 
 In such cases, it is desirable to find an **approximate solution** for the problem (i.e. an approximation for $\mathbf{w}^{*}$) to come as close as possible to the minimum **without** necessarily finding the **exact solution**. Algorithms that try to achieve this are called approximation algorithms, you will study several of these in the Algorithms Module, including greedy, local search and dynamic programming algorithms. In our case, we will utilise an important and pervasive approximation algorithm that is utilised throughout machine learning. It is not necessary the best approximation algorithm but it is the simplest to understand and to implement.
 
-This optimisation algorithm is called the gradient descent or steepest descent. This techniques aims at iteratively finding the minimum of a function (the loss function $\overline{J^{2}}$ in our case). The algorithm starts from any point on the surface of the loss function (i.e. by taking a random initial value for $w$) and then it takes small steps in the direction of the minimum of the function by changing the weights gradually in each step. The direction of the point $w^*$ that minimise $\overline{J^{2}}$ from any point $\mathbf{w}^{(\tau)}$ is always opposite to the gradient of the function at this point $-\nabla J^{2}\left(\mathbf{w}^{(\tau)}\right)$. This is because the gradient of a function always points in a direction opposite to the minimum.
+This optimisation algorithm is called the gradient descent or steepest descent. This technique aims at iteratively finding the minimum of a function (the loss function $\overline{J^{2}}$ in our case). The algorithm starts from any point on the surface of the loss function (i.e. by taking a random initial value for $w$) and then it takes small steps in the direction of the minimum of the function by changing the weights gradually in each step. The direction of the point $w^*$ that minimise $\overline{J^{2}}$ from any point $\mathbf{w}^{(\tau)}$ is always opposite to the gradient of the function at this point $-\nabla J^{2}\left(\mathbf{w}^{(\tau)}\right)$. This is because the gradient of a function always points in a direction opposite to the minimum.
+
+Please watch the following video on gradient descent.
+
+<iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/867051cf400f4f07aba746b5b2e8a35c1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
 
 Here we are talking about a minimum, often complex loss functions have several minima so we will come back to this idea later when we move to the non-linear models towards the end of the unit. We are taking small steps towards the minimum because taking large steps lead to overshooting the minimum or oscillating around it. The size of the step (denoted as $η$) is called the learning rate because it represents how fast a model can learn the solution of the problem. Gradient descent is a numerical optimisation technique so it is an iterative technique that keep working though iterations until it reaches a good enough approximate solution. Reaching a minimum is called **convergence** (a well known concept in calculus).
 
@@ -157,13 +163,14 @@ This form of batch gradient descent does not take advantage of vectorisation and
 
 For further reading, see Yoshua Bengio's paper on <a href="https://arxiv.org/pdf/1206.5533.pdf" target="_blank">Practical Recommendations for Gradient-Based Training of Deep Architectures</a>.
 
-Please watch the following video on gradient descent.
+##Sequential Learning: Stochastic Gradient Descent for Linear Regression Models
 
-<iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/867051cf400f4f07aba746b5b2e8a35c1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+Please watch the following video on stochastic and mini-batch gradient descent for linear regression.
+
+<iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/d177170e4a6749ada566b45031a94e601d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
 
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
-
-##Sequential Learning: Stochastic Gradient Descent for Linear Regression Models
 
 Batch learning algorithm such as LS Regression or Batch Stochastic Gradient Descent take into account the entirety (the whole batch) of the dataset at once. No intermediate learning occurs. Another way to minimise the loss function is to gradually change the weights towards minimising the loss function instead of going all the way according to the sum of the errors. This is called sequential learning. There are several advantages for this approach. The most obvious advantage is that it allows for a stream of data to be fed into a system and the system can learn live as the data arrives from the stream. The main advantage is that learning can occur immediately for any fed sample and we do not need to wait to see the entirety of the dataset to learn a model.
 
@@ -404,10 +411,3 @@ It should be stressed here also that SGD is sensitive to feature scaling and it 
 The above algorithm can be easily adapted when we are dealing with a data stream, all what we need to do is to accumulate $\mathbf{X}_{\tau}$ as the data arrives until it is of the required size $b$, and we can even vary the size $b$ itself between different iterations. Note that, when $b=N$ the algorithm goes back to a vectorised batch stochastic gradient descent which can be applied when the dataset size permits, the resultant weights are still an approximation even if it might be very close to the optimum solution $\mathbf{w}^{*}$.
 
 To summarise, we emphasise here, contrary to what one might expect, stochastic and mini-batch stochastic gradient descent converge faster than batch gradient descent in practice. This is due to several reasons. One reason is that both stochastic gradient algorithms infuse noise in the update which is quite useful to escape local minima. Another reason is that by nature stochastic algorithms are faster to execute and they execute several updates per clock time in comparison with batch gradient which keeps accumulating the gradients on the side until it sweeps through the whole training set. Assuming that the training set is finite but large, then the roughness of stochastic updates outperforms the more exactness of batch gradient. A third reason is that all gradient descents, even the batch one, do not point exactly to the global minimum instead they roughly point to a direction that will lead us to the minimum. Therefore, it does not make sense to spend a lot of computational power (as in the batch GD) to try to improve the gradient by considering more and more points until we consume the whole training set. Because even then the gradient is not necessarily pointing to the exact direction of the minimum, especially for complex loss function. Although linear regression loss function is quadratic and has a global minimum, nevertheless these issues can still be seen and you can examine them in the next exercise.
-
-Please watch the following video on stochastic and mini-batch gradient descent for linear regression.
-
-<iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/d177170e4a6749ada566b45031a94e601d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
-
-Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.

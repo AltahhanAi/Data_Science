@@ -4,6 +4,13 @@
 
 Since we have numerical data, we want to come up with a function (called the loss function, it will become apparent later why we call as such) that is closely linked to the distance between the desired and the actual answers of our regression model. The idea here is that we want to lead the learning process via a minimisation of the loss function so that we minimise the difference between the desired and actual answers. So really, we are talking about an aggregate metric that looks into each data point instead of looking at counting the correctly classified and incorrectly classified cases as we did in the confusion matrix. Later on when we will develop other better classifiers to deal with numerical classification we will actually also use the loss function to lead the learning process (by optimising it) and we are still going to use the confusion matrix to measure the performance of the model **after** learning has finished. So, the loss function is going to be used in this unit for both the regression and classification to lead the optimisation process (learning) in order to learn a best model fit. When we are talking about multi-component labels (a set of numerical answers instead of one), the loss will be defined on the basis of vector distances, this will become apparent later in this section.
 
+Watch the following video on loss function optimisation.
+
+<iframe title="Loss function for regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/c7276df61b9747e68686cb645a9e9ad41d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
+Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
+
 ###Loss function for an individual point
 
 The first thing that comes to mind when we try to measure the accuracy of our model’s prediction is to take the difference between (also called the residual or the error) the prediction $y(x_n )$ and $t_n$. Let us denote $y_{n}=y\left(\mathbf{x}_{n}, \mathbf{w}\right)$ where we will use either of $y_n$ or $y\left(\mathbf{x}_{n}, \mathbf{w}\right)$ interchangeably depending on what we are trying to emphasise. So, we can define our loss function $J(x_n )$ which we denote for brevity $J_n$ as:
@@ -157,13 +164,11 @@ Further, we decay the learning rate between one epoch and the other because afte
 
 The above approaches can be applied on any numerical machine learning technique that is based on optimising a loss function and not only for linear regression. In fact, unless the dataset is really large, it is excessive to utilise a mini-batch approach for linear regression since the model is too simple and the parameters are linear in the dimensionality of the dataset under consideration.
 
-Watch the following video on loss function optimisation.
+Please watch the following video on the least squares.
 
-<iframe title="Loss function for regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/c7276df61b9747e68686cb645a9e9ad41d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
+<iframe title="Linear regression models" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/f8cdb572ba67421d986e2b8ab9f2e07f1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
-
 
 ##Batch Learning: The Least Squares for Linear Regression Models
 
@@ -229,12 +234,6 @@ Below we show the Least Squares algorithm for regression, which returns the opti
         $\mathbf{w}^{*}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1}\left(\mathbf{X}^{\top} \mathbf{t}\right)$
 
         Return $\mathbf{w}*$
-
-Please watch the following video on the least squares.
-
-<iframe title="Linear regression models" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/f8cdb572ba67421d986e2b8ab9f2e07f1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
-
-Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
 
 ###Complexity of the Least Squares
 
