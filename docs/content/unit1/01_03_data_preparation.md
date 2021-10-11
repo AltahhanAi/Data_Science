@@ -93,7 +93,15 @@ The example in this diagram shows the application of the Fourier transform to id
 
 ###Dimensionality reduction
 
-Dimensionality reduction techniques are important, as their aim is to find a reduced number of features that can be used to solve the problem – whether it is regression, classification or clustering etc. Some of these techniques are:
+Dimensionality reduction techniques are important, as their aim is to find a reduced number of features that can be used to solve the problem – whether it is regression, classification or clustering etc.
+
+Watch the following video for a summary of these techniques, and then read about each of them in more detail below.
+
+<iframe title="Data Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/016cea25684048e6aa0e29b7ad3e982d1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826018_4" target="_blank">transcript (PDF) here</a>.
+
+Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
 ####Correlation
 
@@ -208,11 +216,3 @@ Melting and pivoting are often overlooked operations. When they are applicable, 
     The exercise covers several of the techniques mentioned in this lesson for data preparation and data wrangling. Follow the steps and execute them in order and experience the effect of the data preparation procedure on the data. you can access the code in the data preparation Jupyter Notebook below.
 
      - Download exercise (.ipynb): <a href="../exercises/Exercise2_Data Preparation in Pandas.ipynb" download>Exercise 2</a>
-
-See the following slides and video for a summary.
-
-<iframe title="Data Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/016cea25684048e6aa0e29b7ad3e982d1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
-
-You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826018_4" target="_blank">transcript (PDF) here</a>.
-
-Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.

@@ -1,6 +1,22 @@
 # Decision tree induction (training)
 
-In this section, we cover the decision tree building algorithm which is also known as induction. We will look here at the CART algorithm.
+**In this section, we cover the decision tree building algorithm which is also known as induction. We will look here at the CART algorithm.**
+
+The following three videos will provide an overview of the material in this section. You can then go on to read about decision tree training in more detail.
+
+<iframe title="Data Science U2: Decision Tree Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/b41a866336514e04b7de7bb83751ace91d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-21866476_4" target="_blank">View transcript (PDF).</a>
+
+<iframe title="Data Science U2: Decision Tree Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6482d61353304814b630f3684495e8941d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
+<iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/649cc37c4bc446d9bb37fcf436121d471d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video</a>
+
+Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.  
 
 In the simplistic dataset below, you can see a set of records relating to phones and tablets. The dataset allows us to classify a device that is not part of the dataset to find out whether it is a phone or a tablet.
 
@@ -418,18 +434,6 @@ To summarise, the CART algorithm does the following:
 
 The above box shows the pseudocode for a decision tree induction algorithm. The algorithm works by expanding the tree using the best split attribute that yields the best information gain. E is a set of data inside a node and F is the set of attributes that we can use to split the data E.
 
-###Video
-
-<iframe title="Data Science U2: Decision Tree Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/b41a866336514e04b7de7bb83751ace91d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
-
-<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-21866476_4" target="_blank">View transcript (PDF).</a>
-
-You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video.</a>
-
-Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
-
-
 ###Discretising continuous variables
 
 Given the following dataset, we want to build a decision tree that can predict whether or not a borrower is going to default on their debt. This type of decision is important for banks to decide upon the eligibility of customers to be lent money. While our dataset is simple, the ideas can be easily expanded into a fully developed scenario for an actual bank.
@@ -550,16 +554,6 @@ Figure 2.21 shows the advantage of a test condition for a continuous attributes,
   <img src="../images/DS_IMG032.png" alt="Diagram showing comparing two decision trees (DT) with the continuous attribute of 'annual income'. The left-hand DT has a test condition of 'annual income >£100k' allowing a simple and elegant 'yes' or 'no' branching. The right-hand DT with a condition of 'annual income' leads to more complicated branching." />
   <figcaption><strong>Figure 2.21.</strong>  Test condition for a continuous attribute.</figcaption>
 </figure>
-
-###Video
-
-<iframe title="Data Science U2: Decision Tree Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6482d61353304814b630f3684495e8941d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
-
-You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video.</a>
-
-Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
-
 
 ##Other types of impurity measurements
 
@@ -685,11 +679,3 @@ The behaviour of all of the three impurity measures have been already shown in f
     See the following Jupyter notebook that implements and visualises the above impurity metrics.
 
       - Download exercise (.ipynb): <a href="../exercises/Exercise1_Impurity_Measures.ipynb" download>Impurity measures</a>
-
-###Video
-
-<iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/649cc37c4bc446d9bb37fcf436121d471d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
-
-You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video</a>
-
-Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.     

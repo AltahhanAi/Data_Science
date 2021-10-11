@@ -192,6 +192,14 @@ Note that everything revolves around the data, which is central to the whole pro
 
 **There are several types of data mining tasks that dictate which type of techniques can be employed to model the data and develop the required prediction or modelling.**
 
+First watch the following video, in which Abdulrahman Altahhan introduces data science in more detail. Then move on to read about the different types of data mining tasks.
+
+<p align="center"><iframe title="Data Science Introduction" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/89c81b0df9f8407786d7b8eea7fa93c01d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></p>
+
+You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18739454_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826019_4" target="_blank">transcript (PDF) here</a>.
+
+Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
+
 ###Classification
 
 Classification is the most important and prevalent type of task a data scientist normally performs. The idea is to view the problem in terms of a set of known predefined classes. The dataset reveals the class, sometimes called the label, of each individual record which usually represents a physical or virtual entity such as a car, disease or level of success.  
@@ -228,16 +236,6 @@ As an example of learning vs following instructions (programming), consider a ro
 To allow it to learn by itself, it still needs to be provided with suitable learning algorithms, that are eventually programmed, but these are not tied to the current setting. If the plan is changed to move the robot to a third point, point C, these can be employed regardless of when this change happens. In this case, the robot will be left to learn again by itself how to move from A to C and the programme should not be changed.  
 
 From this example, you can see that learning is more generic and will achieve real intelligence with time, while programming precise steps forces the programmer to solve a problem.  When this programming happens, the device will only implement the programmed solution, however when the agent is provided with the capability of learning, it is equipped with more intelligence. This will make it more powerful and useful (at least for the time being, you will see more in-depth discussions of the issues of ethics of AI in a separate module).
-
-###Video: Introduction to data science
-
-Please watch the following video, in which Abdulrahman Altahhan introduces data science in more detail:
-
-<p align="center"><iframe title="Data Science Introduction" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/89c81b0df9f8407786d7b8eea7fa93c01d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></p>
-
-You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18739454_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826019_4" target="_blank">transcript (PDF) here</a>.
-
-Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
 ##Systems and unit testing vs model testing
 

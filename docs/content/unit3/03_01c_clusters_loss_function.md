@@ -1,5 +1,13 @@
 # Clusters loss function: measuring the quality of the cluster
 
+In the following video, Abdulrahman explains the clusters loss function.
+
+<iframe title="Cluster analysis 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/6f4dcc6d61c84d81bc17a1afb29ddca91d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826428_4" target="_blank">slides shown in the video.</a>
+
+Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
+
 **We need a way to tell us how suitable our clusters are for the data. In other words, how well our algorithm did on the clustering problem.**
 
 This is where we need to employ some of the concepts of loss function. A loss function measures how much less than perfect our solution is, or how many errors or discrepancies are in our solution and how big these errors are. One popular way of doing this is by using the sum of the squares of the error for each data point in the dataset. But what could the errors be here? After all, we do not assume that we have labels here (although we might, more on that later). Take a moment to think about this.
@@ -80,14 +88,6 @@ c_{k}=\frac{1}{\left|C_{k}\right|} \sum_{\mathbf{x} \in C_{k}} \mathbf{x}
 $$
 
 This is the formula for calculating the centroids (the means) that we have used already. This shows that the K-means algorithm is indeed minimising the loss function SSE by assigning each centroid to the mean of the cluster. Note that we denoted the derivative with $\nabla J$ because it is the gradient of a function with respect of a vector $\boldsymbol{c}_{k}$ (each point in multi-dimensional space is actually a vector since we have multiple attributes for each centroid).
-
-See this video for explanation of the above concepts.
-
-<iframe title="Cluster analysis 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/6f4dcc6d61c84d81bc17a1afb29ddca91d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
-
-You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826428_4" target="_blank">slides shown in the video.</a>
-
-Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
 !!! abstract "Exercise"
      See this Jupyter Notebook for a hands on, looking at the correspondence between the minimum of SSE and the mean of a cluster.

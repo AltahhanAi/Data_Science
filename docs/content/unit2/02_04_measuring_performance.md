@@ -16,6 +16,12 @@ Measuring the effectiveness of a model is an essential skill, since we will ofte
 
 We will start by classification of a binary class problem, and we will generalise the measures for multi-class problems. However, please bear in mind that some metrics do not directly extend to a multi-class problem, and we will point this out whenever it is the case. But before seeing these metrics, we need to talk about why in the first place we might have imperfect performance.
 
+In the following video, Abdulrahman talks through a comprehensive example of a decision tree with different metrics:
+
+<iframe title="Data Science U2: Metrics in perspective" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/5675daf44d55453b8fe9300a8c7060b51d
+" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
 ##Measuring the performance of a binary class model
 
 **For a binary class problem, we have two classes that an instant can belong to. It can belong to class C1 or to class C2 but cannot belong to both at the same time. In fact, the question can be posed as whether an instant belongs to a one class of concern or not.**
@@ -84,49 +90,51 @@ If we are less concerned with false positives then we can use the hit rate (aka 
   <figcaption><strong>Figure 2.50.</strong> Detective Metrics related to actual classes (new suggested names used for consistency. Left: performance metrics. Right: error metrics.</figcaption>
 </figure>
 
-The bar on top represents a complement of an event in a probabilistic sense. The true positive detection rate is denoted as $p\left(\right.$ detect $\left._{+}\right)$ and it represents the probability of correctly detecting positive instances by the model. Similarly, the true negative detection rate is denoted as $p\left(\right.$ detect $\left._{-}\right)$. It represents the probability of correctly detecting negative instances by the model.  
+!!! note "Additional information"
 
-On the other hand, the false positive detection rate is denoted $p\left(\overline{\text { detect }}_{+}\right)$ and it represents the probability of incorrectly detecting positive instances by the model. While, the false negative detection rate is denoted $p\left(\overline{\text { detect }}_{-}\right)$ and represents the probability of incorrectly detecting negative instances by the model.
+    The bar on top represents a complement of an event in a probabilistic sense. The true positive detection rate is denoted as $p\left(\right.$ detect $\left._{+}\right)$ and it represents the probability of correctly detecting positive instances by the model. Similarly, the true negative detection rate is denoted as $p\left(\right.$ detect $\left._{-}\right)$. It represents the probability of correctly detecting negative instances by the model.  
 
-We can now easily verify that:
+    On the other hand, the false positive detection rate is denoted $p\left(\overline{\text { detect }}_{+}\right)$ and it represents the probability of incorrectly detecting positive instances by the model. While, the false negative detection rate is denoted $p\left(\overline{\text { detect }}_{-}\right)$ and represents the probability of incorrectly detecting negative instances by the model.
 
-$$
-p\left(\text { detect }_{+}\right)+p\left(\overline{\text { detect }}_{+}\right)=1
-$$
+    We can now easily verify that:
 
-$$
-p\left(\text { detect }_{-}\right)+p\left(\overline{\text { detect }}_{-}\right)=1
-$$
+    $$
+    p\left(\text { detect }_{+}\right)+p\left(\overline{\text { detect }}_{+}\right)=1
+    $$
 
-The names are meant to reflect the inner relationship between the different metrics. To see why, we first note that
-$¬ TP = FN, ¬ TN=FP$, where we use $¬$ to denote the logical not. Now, if we negate both sides of the positive detection rate equation: $\neg\left(\right.$ Detect $\left._{+}=T P /(T P+F N)\right)$ we get $\neg$ Detect $_{+}=F N /(F N+T P)=\overline{\text { Detect }}_{+}$.
+    $$
+    p\left(\text { detect }_{-}\right)+p\left(\overline{\text { detect }}_{-}\right)=1
+    $$
 
-Similarly, if we negate both sides of the negative detection rate equation: $\neg\left(\right.$ Detect $\left._{-}=T N /(F P+T N)\right)$ we get $\neg$ Detect $_{-}=F P /(T N+F P)=\overline{\text { Detect }}$.
+    The names are meant to reflect the inner relationship between the different metrics. To see why, we first note that
+    $¬ TP = FN, ¬ TN=FP$, where we use $¬$ to denote the logical not. Now, if we negate both sides of the positive detection rate equation: $\neg\left(\right.$ Detect $\left._{+}=T P /(T P+F N)\right)$ we get $\neg$ Detect $_{+}=F N /(F N+T P)=\overline{\text { Detect }}_{+}$.
 
-In other words, $\overline{\text { Detect }}_{+}$ $\overline{\text { Detect }}_{-}$ represents the model inability to detect the positive and negative instances, respectively.
+    Similarly, if we negate both sides of the negative detection rate equation: $\neg\left(\right.$ Detect $\left._{-}=T N /(F P+T N)\right)$ we get $\neg$ Detect $_{-}=F P /(T N+F P)=\overline{\text { Detect }}$.
 
-Similar argument is used for the prediction related metrics. The true positive prediction value is denoted as
-$p\left(\right.$ predict $\left._{+}\right)$ and represents the probability of correctly predicting positive instances by the model. The true negative prediction value is denoted as $p($ predict_ $)$ and represents the probability of correctly predicting negative instances by the model. On the other hand, the false positive prediction value is denoted $p\left(\overline{\text { predict }}_{+}\right)$, it represents the probability of incorrectly predicting positive instances by the model. While, the false negative prediction value is denoted $p\left(\overline{\text { predict }}_{-}\right)$, it represents the probability of incorrectly predicting negative instances by the model.  
+    In other words, $\overline{\text { Detect }}_{+}$ $\overline{\text { Detect }}_{-}$ represents the model inability to detect the positive and negative instances, respectively.
 
-We can now easily verify that:
+    Similar argument is used for the prediction related metrics. The true positive prediction value is denoted as
+    $p\left(\right.$ predict $\left._{+}\right)$ and represents the probability of correctly predicting positive instances by the model. The true negative prediction value is denoted as $p($ predict_ $)$ and represents the probability of correctly predicting negative instances by the model. On the other hand, the false positive prediction value is denoted $p\left(\overline{\text { predict }}_{+}\right)$, it represents the probability of incorrectly predicting positive instances by the model. While, the false negative prediction value is denoted $p\left(\overline{\text { predict }}_{-}\right)$, it represents the probability of incorrectly predicting negative instances by the model.  
 
-$$
-\begin{array}{l}
-p\left(\text { predict }_{+}\right)+p\left(\overline{\text { predict }}_{+}\right)=1 \\
-p\left(\text { predict }_{-}\right)+p\left(\overline{\text { predict }}_{-}\right)=1
-\end{array}
-$$
+    We can now easily verify that:
 
-<figure role="group">
-  <img src="../images/DS_IMG067.png" alt="Two confusion matrices with predictive metrics related to predicted classes. Left: performance metrics. Right: error metrics." />
-  <figcaption><strong>Figure 2.51.</strong> Predictive Metrics related to predicted classes (new suggested names used for consistency). Left: performance related predictive metrics. Right: error related predictive metrics. </figcaption>
-</figure>
+    $$
+    \begin{array}{l}
+    p\left(\text { predict }_{+}\right)+p\left(\overline{\text { predict }}_{+}\right)=1 \\
+    p\left(\text { predict }_{-}\right)+p\left(\overline{\text { predict }}_{-}\right)=1
+    \end{array}
+    $$
 
-Negation on the prediction metrics yields similar but not quite the same relationship as for the detection metrics. This is because if we negate both sides of the positive prediction value equation: $\neg\left(\right.$ Predict $\left._{+}=T P /(T P+F P)\right)$ we get $\neg$ Predict $_{+}=F N /(F N+T N)=\overline{\text { Predict }}_{-}$.
+    <figure role="group">
+      <img src="../images/DS_IMG067.png" alt="Two confusion matrices with predictive metrics related to predicted classes. Left: performance metrics. Right: error metrics." />
+      <figcaption><strong>Figure 2.51.</strong> Predictive Metrics related to predicted classes (new suggested names used for consistency). Left: performance related predictive metrics. Right: error related predictive metrics. </figcaption>
+    </figure>
 
-Similarly, if we negate both sides of the negative prediction value equation: $\neg\left(\right.$ Predict $\left._{-}=T N /(T N+F N)\right)$ we get $\neg$ Predict $_{-}=F P /(F P+T P)=\overline{\text { Predict }}_{+}$. Note that the negation here changed also the prediction metric form positive to negative.  
+    Negation on the prediction metrics yields similar but not quite the same relationship as for the detection metrics. This is because if we negate both sides of the positive prediction value equation: $\neg\left(\right.$ Predict $\left._{+}=T P /(T P+F P)\right)$ we get $\neg$ Predict $_{+}=F N /(F N+T N)=\overline{\text { Predict }}_{-}$.
 
-Note that we used capital initial for the metrics to express them as a rate, while we uses small letter when we place them in the context of probabilities, so for example $\overline{\text { Predict }}_{-}=p\left(\overline{\text { Predict }}_{-}\right),$ Predict $_{+}=p\left(\right.$ predict $\left._{+}\right)$ and so on.
+    Similarly, if we negate both sides of the negative prediction value equation: $\neg\left(\right.$ Predict $\left._{-}=T N /(T N+F N)\right)$ we get $\neg$ Predict $_{-}=F P /(F P+T P)=\overline{\text { Predict }}_{+}$. Note that the negation here changed also the prediction metric form positive to negative.  
+
+    Note that we used capital initial for the metrics to express them as a rate, while we uses small letter when we place them in the context of probabilities, so for example $\overline{\text { Predict }}_{-}=p\left(\overline{\text { Predict }}_{-}\right),$ Predict $_{+}=p\left(\right.$ predict $\left._{+}\right)$ and so on.
 
 ###Which type of metric is more important?
 
@@ -346,12 +354,6 @@ $$
 M C C=\frac{90 \times 9900-10 \times 100}{\sqrt{(90+100)(9900+10)(90+10)(9900+100)}}=0.648
 \end{array}
 $$
-
-See the following video for a comprehensive example of a DT with different metrics:
-
-<iframe title="Data Science U2: Metrics in perspective" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/5675daf44d55453b8fe9300a8c7060b51d
-" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
 
 ##Measuring the performance of a multi-class model
 

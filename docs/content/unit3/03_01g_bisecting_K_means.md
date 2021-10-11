@@ -55,6 +55,13 @@ Below in figure 3.11, we show results of bisecting K-means on the problem that w
 
 ##Agglomerative clustering
 
+<iframe title="Cluster analysis 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/1bb96ffc6168418d83d6bb6fbe62b9de1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826428_4" target="_blank">slides shown in the video.</a>
+
+Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
+
+
 In partitional clustering techniques, such as the K-means, the clusters are assumed to be partitional, i.e. they are well-separated from each other. If they are not then the algorithm performance will be put under pressure and the results might not be satisfactory. This is one of the intrinsic limitations of such approaches.
 
 Contrary to partitional clustering, hierarchical clustering assumes that the clusters have a clear hierarchy and they are nested one inside the other. This assumption goes well with several natural phenomena and situations. For example, when we are dealing with clusters of cities inside a country which is inside a continent, or when we are dealing with hierarchy in the animal kingdom etc.
@@ -124,6 +131,12 @@ Please refer to section 5.3 of Tan et al 2019.
 
 Evaluating clusters is an important step towards improving and comparing different clustering algorithms as well as to improve the obtained clusters. Mainly, we can adopt two approaches for cluster evaluation; supervised approach or unsupervised approach.
 
+<iframe title="Data Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/8415430c57494b4486f3a30c71c775ac1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826428_4" target="_blank">slides shown in the video (PPT)here</a>.
+
+Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
+
 ###Supervised measures
 
 We can evaluate clusters by utilising class labels if we have them. Please note that we only use those labels for evaluation and not to come up with the clusters. In other words we do not feed the labels to the clustering algorithms, clustering algorithms are all unsupervised learning algorithms so they do not need categorical labels. We can, however, use categorical labels if they are available in order to evaluate the clusters to see whether they correspond well with the labels.
@@ -151,14 +164,6 @@ $$
 where C corresponds to the centroid of the entire dataset. $\mathbf{C}_{i}$ is the centroid for clusters $i$ and $\left|\boldsymbol{C}_{i}\right|$ is the number of data points in clusters E$i$.
 
 Finally clusters validity can be measured via the correlation, by comparing between ideal similarity matrix and the proximity matrix. Please refer to section 5.3 of Tan et al 2019 and see video3 for a summary of the above concepts.
-
-See this video for a summary of the above concepts.
-
-<iframe title="Data Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/8415430c57494b4486f3a30c71c775ac1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
-
-You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826428_4" target="_blank">slides shown in the video (PPT)here</a>.
-
-Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
 !!! abstract "Exercise"
     See the following Jupyter Notebook exercise for two types of clustering: partitional and hierarchical.
