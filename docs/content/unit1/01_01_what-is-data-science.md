@@ -156,9 +156,17 @@ This, and similar tools such as Weka, allow you to create a data mining model (p
         sudo update-alternatives --config java
         ```
 
-        You will see a series of options similar to those in the image below; select whichever option corresponds to your java 8 and hit enter. In this case it would be option 2.
-
-        ![Screenshot of a series of options from Java.](images/DS_IMG007.png)
+        You will see a series of options similar to those below; select whichever option corresponds to your java 8 and hit enter. In this case it would be option 2.
+				```
+				a@aa:~ sudo update-alternatives --config java
+				There are 2 choices for the alternative java (providing /usr/bin/java).
+				Selection |Path                                           |  Priority  | Status
+				----------|-----------------------------------------------|------------|-----------
+				*0        |/usr/lib/jvn/java-11-openjdk-amd64/bin/java    |    1111    | auto mode
+				1         |/usr/lib/jvn/java-11-openjdk-amd64/bin/java    |    1111    | manual mode
+				2         |/usr/lib/jvn/java-8-openjdk-amd64//jre/bin/java|    1086    | manual mode
+				Press <enter> to keep the current choice[*], or type selection number: 2
+				```
 
     3. If RapidMiner is still not starting and you do not use assistive technology in java 8 and do not want to install it, then edit the accessibility.properties file:
         ```
