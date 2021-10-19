@@ -329,8 +329,6 @@ $$
 
       - Download exercise (.ipynb): <a href="../exercises/Exercise_4LogisticRegressionSKLearn.ipynb" download>Exercise 4</a>
 
-    You can do the same thing in RapidMiner, it is straightforward, try it, you can see my video on how to build a RapidMiner model here.
-
 ## Logistic regression example with cross entropy
 
 Let us look at the following dataset:
