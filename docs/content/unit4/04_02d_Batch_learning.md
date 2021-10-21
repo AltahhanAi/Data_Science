@@ -1,6 +1,6 @@
-#Batch Learning
+#Batch learning
 
-##The Least Squares for Linear Regression Models with Fixed Basis
+##The least squares for linear regression models with fixed basis
 
 In this section we will derive how to train a linear regression model that uses some basis. In general, we will use the same formulation that we used earlier for training a regression model without basis. So, we have the same loss function as before but the model is expressed in terms of basis instead of the input features. We would need to adjust our estimations $y(\mathbf{x})$ by adjusting the parameters $\mathbf{w}$ to give us the desired answers $t$. Our model is written as:  
 
@@ -103,7 +103,7 @@ Note that the basis is fixed and not changed during learning. This a key differe
 
 The same discussion that we had earlier applies again of course for the case of feature space but this time the complexity is in terms of $M$. The Least Squares on linear regression with basis has the same complexity as in the simple regression without basis. The only difference is that it will be related to $M$ the feature space dimension instead of $D$ the input space dimension.
 
-##Batch Learning, Sequential or Mini-Batch Stochastic Learning:
+##Batch learning, sequential or mini-batch stochastic learning:
 
 The least square solution is called batch solution since they dictate processing of the entire dataset at once (see Algorithm1) specifically in terms of the Design matrix $Φ$. This restricts the applicability of the algorithms and makes it difficult and computational costly to apply them on a big dataset. This is when the stochastic (or sequential) gradient decent comes to the rescue. Essential all the three algorithms that we have considered for linear models on input X also apply for the feature space. Therefore, for brevity we will only show the vectorised stochastic gradient descent. We consider one (or more mini-batch) data point at a time and we update the weights accordingly without waiting until all the other updates becomes available. This is particularly useful when the data is fed from a stream or when we are tackling large-scale learning.  
 

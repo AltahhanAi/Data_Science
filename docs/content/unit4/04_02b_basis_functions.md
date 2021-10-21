@@ -1,4 +1,4 @@
-#Basis Functions
+#Basis functions
 
 ##Polynomial basis functions
 

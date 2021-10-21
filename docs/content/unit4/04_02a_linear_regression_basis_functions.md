@@ -1,4 +1,4 @@
-#Linear Regression with Linear and Non-Linear Basis Functions
+#Linear regression with linear and non-linear basis functions
 
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:

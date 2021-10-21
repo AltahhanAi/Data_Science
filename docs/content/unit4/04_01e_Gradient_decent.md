@@ -1,4 +1,4 @@
-#Approximate Solutions: Gradient Descent
+#Approximate solutions: gradient descent
 
 **For linear models we saw that we can analytically find a solution via the normal formula by setting the gradient to 0 and solving with respect to $\mathbf{W}$. Such solutions are either not available when we deal with non-linear optimisation or is not desirable due to efficiency requirements. Even if an analytical close form solution is available, the complexity of finding the least squares is $O\left(D^{2} \times N\right)$ which is quite expensive when $N$ is reasonably large.**
 

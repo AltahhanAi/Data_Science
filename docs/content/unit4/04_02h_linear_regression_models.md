@@ -1,6 +1,6 @@
-#Linear regression Models
+#Linear regression models
 
-##Regularised Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model
+##Regularised mini-batch stochastic gradient descent updates for linear regression model
 
 **Similar to what we have done before, there is a regularised version of the mini-batch stochastic gradient descent that we show below.**
 
@@ -36,7 +36,7 @@ $$
 
 The resultant algorithm is similar to Algorithm 4’ and is not shown for brevity. New results on the regularisation can be found in this paper by Smith et al <a href="https://iclr.cc/virtual/2021/poster/3157" target="_blank">On the origin of implicit regularization in stochastic gradient descent</a>.
 
-##General Case: Linear Models with Multiple Outputs and Fixed Basis
+##General case: linear models with multiple outputs and fixed basis
 
 In this section we extend the ideas of a one output linear regression model that we have dealt with so far into a multi-output linear regression model. When we have multiple output for each input, i.e. each output is a vector of $K$ values: $\boldsymbol{t}_{n}=\left[t_{n, 1}, t_{n, 2}, \ldots, t_{n, K}\right]$. The linear model with multiple output can be expressed as:
 
@@ -67,7 +67,7 @@ $$
 \mathbf{Y}(\mathbf{X}, \mathbf{W})=\mathbf{\Phi W}
 $$
 
-##Batch Learning: The Least Squares for Multi-Outputs Linear Regression Models with Basis
+##Batch learning: the least squares for multi-outputs linear regression models with basis
 
 The loss function for multiple output linear models is defined as:
 
@@ -133,7 +133,7 @@ $$
 
 Again, the algorithm is similar to the least squares shown in Algorithm 1, but we are dealing with a matrix of weights $\boldsymbol{W}$ instead of a vector of weights $\boldsymbol{w}$. we will show you a one later once we develop the concept of regularisation for this general multi-output case.
 
-##Sequential Learning: Multi-Output Stochastic Gradient Descent for Linear Regression Models with Basis
+##Sequential learning: multi-output stochastic gradient descent for linear regression models with basis
 
 The stochastic gradient descent algorithm for multi-output regression can be written similar to one-output by adjusting the algorithm to deal with weights matrix instead of a weight vector. Essentially, we replace the loss function $\overline{\boldsymbol{J}}$ by $\boldsymbol{J}_{n}^{2}$, so after a data point becomes available, we update according to:
 

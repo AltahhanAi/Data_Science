@@ -97,7 +97,7 @@ The shaded decision regions in figure 5.38 are obtained via the normalisation of
   </figcaption>
 </figure>
 
-##Multinomial logistic regression: Softmax regression
+##Multinomial logistic regression: softmax regression
 
 In the last section we saw how logistic regression has been built originally for binary classification where we expect the output of the activation function to give us one value in the range $[0,1]$. The value represents the probability of the input being from the positive class and we get the probability from the negative class by exploiting that the sum of both must be 1. In other words, if $p\left(C_{1} \mid \mathbf{x}\right)$ is given by the one output of the logistic regression model then $p\left(C_{0} \mid \mathbf{x}\right)=1-p\left(C_{1} \mid \mathbf{x}\right)$
 
@@ -283,7 +283,7 @@ $$
 \end{array}
 $$
 
-##Regularised mini-batch stochastic gradient descent updates for multi-class logistic regression model.
+##Regularised mini-batch stochastic gradient descent updates for multi-class logistic regression model
 
 A regularised mini-batch stochastic gradient decent can be devised for this technique as we did earlier and is shown below.
 

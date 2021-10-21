@@ -1,4 +1,4 @@
-# Binary classification: Logistic regression
+# Binary classification: logistic regression
 
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:
@@ -166,7 +166,7 @@ $$
 \widetilde{H}(\mathbf{w})=\sum_{n=1}^{N} \widetilde{H}_{n}(\mathbf{w})
 $$
 
-## Learning by minimising the cross Entropy for one data point
+## Learning by minimising the cross entropy for one data point
 
 Cross entropy creates a **synergy** with the logistic function. Together they produce updates that are identical to a linear regression update (hence the name), which is the main stamp of logistic regression as we shall see shortly.
 
@@ -302,7 +302,7 @@ H(P, Q)=-p r_{P}(v) \log \left(p r_{Q}(v)\right)-\left(1-p r_{P}(v)\right) \log 
 \end{array}
 $$
 
-### The Gradient of the Cross Entropy Terms from Binary Class Problem
+### The gradient of the cross entropy terms from binary class problem
 
 All gradients are with respect to $\mathbf{w}$
 

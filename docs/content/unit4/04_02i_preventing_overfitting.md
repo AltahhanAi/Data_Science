@@ -1,10 +1,10 @@
-#Preventing Overfitting the Data and Overshooting the Loss Minimum
+#Preventing overfitting the data and overshooting the loss minimum
 
 **In this section we tackle overfitting for stochastic gradient decent algorithms. We provide several mechanisms to prevent overfitting. The first goes to the level of the loss function itself via regularisation similar to what we have covered earlier. The second is via a combination of sweeps through the dataset (epochs) as well as weight decay and early stopping.**
 
 At the same time these techniques are suitable to prevent overshooting the global minimum of the loss function (if there is one). Remember in SGD we are going in steps towards the minimum of the loss function. On the way, our algorithm might overshoot the minimum and keep fluctuating around it. This is often due to a high learning rate. Overshooting the global minimum and ending up in a local minimum is another problem that we often face with more complex models such as neural networks. In fact, overcoming local minima and the fact that a neural network loss function is infested with these local minima are among the main motivation for the next subsection.
 
-###Regularised Multi-output Least Squares for Linear Regression Model ‎with Basis
+###Regularised multi-output least squares for linear regression model ‎with basis
 
 For the least squares we can regularise it by using the vectorised form of the loss function on the whole training set as follows:
 
@@ -57,7 +57,7 @@ Which is the regularised normal equation as above for multi-output linear regres
         **Return** $\mathbf{W}^{*}$
 
 
-###Regularised Multi-output Stochastic Gradient Descent for Linear Regression Model ‎with Basis
+###Regularised multi-output stochastic gradient descent for linear regression model ‎with basis
 
 Similarly, the above can be done on a multi-output regression.
 
@@ -92,7 +92,7 @@ $$
 
 Before we state the regularised mini-batch SGD we would like to add few more techniques to our arsenal against overfitting.
 
-###Early Stopping and Learning Rate Decay
+###Early stopping and learning rate decay
 
 One of the main tools to prevent overfitting is regularisation as we saw earlier.
 

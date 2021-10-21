@@ -1,6 +1,6 @@
 #Regression models
 
-##Overfitting of Regression Models
+##Overfitting of regression models
 
 **Similar to classification models, regression models can suffer from overfitting. Linear regression models are relatively less exposed to this phenomenon because it is a simple regression model.**
 
@@ -25,7 +25,7 @@ The figures above show the effect behaviour of overfitting and underfitting on a
 
 As we can see the data (blues dots as usual) is non-linear (we cannot represent it with a straight line). We can see in the above figure that when the model is not sufficiently capable (such when we use no basis, which is considered a linear model with degree 1 polynomial basis) we get underfitting because the straight line underfits or is incapable of coming close enough to the actual dataset. When the model is too complex such as when we use a polynomial of degree 15 we get overfitting, because the model is trying to fit every single data point as perfectly as possible, the results is not great and the generalisation of both cases of overfitting and underfitting is poor. On the other hand when the model complexity is just right as in the middle with a polynomial of degree 4 we get an excellent approximation and the model generalisation ability is maximum.
 
-##Least Squares for Regression with Regularisation
+##Least squares for regression with regularisation
 
 Regularising the weights helps suppress the weights from changing or growing too much. This often helps prevent the problem of overfitting. To add regularisation to our linear regression model we start by adjusting the loss function. We simply add a term that discourage the weights from growing. This can be done in few ways one of them is to add a magnitude $\|\mathbf{w}\|$ of the weights inside the loss function to try to minimise it along with the error.
 
