@@ -79,6 +79,12 @@ One positive aspect of Excel which contributed to its popularity is that it prov
 
 In the following exercises, you will see some of the most common data management activities in a structured data (database) and a similar activity in a non-structural data. These types of operations are normally done during the data engineering process. The first activity might be harder to set up and is optional, while the second activity is more important and easier to setup.
 
+!!! success "Important!"
+    Below is your first exercise. Before you get started, make sure you have downloaded the zip file containing all the datasets we will be using in this module. You can find this zip file in the Learning Resources area of the Minerva module, or by selecting the link below.
+
+     - <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22591837_4" target="_blank">Datasets.zip</a>
+
+
 !!! abstract "Exercise"
     Try this data wrangling exercise in Jupyter Notebook.
 

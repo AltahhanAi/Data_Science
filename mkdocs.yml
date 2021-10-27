@@ -20,7 +20,7 @@ nav:
         - '3. Overfitting, underfitting and generalisation': content/unit2/02_05_overfitting_underfitting.md
         - '4. References': content/unit2/02_06_unit_references.md
     - Unit 3:
-        - 'Clustering and classification in algorithms': content/unit3/03_00_clustering_classification.md
+        - 'Clustering and classification algorithms': content/unit3/03_00_clustering_classification.md
         - '1. Clustering':
             - '1. Introduction': content/unit3/03_01_clustering_introduction.md
             - '1a. Two clusters case': content/unit3/03_01a_two_clusters.md

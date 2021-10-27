@@ -4,17 +4,15 @@
 
 The following three videos will provide an overview of the material in this section. You can then go on to read about decision tree training in more detail.
 
-<iframe title="Data Science U2: Decision Tree Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/b41a866336514e04b7de7bb83751ace91d" allowfullscreen msallowfullscreen
+<iframe title="Data Science U2: Decision Tree Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/65dd12803fd342c4bbeb689923d654cf1d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
-<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-21866476_4" target="_blank">View transcript (PDF).</a>
-
-<iframe title="Data Science U2: Decision Tree Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6482d61353304814b630f3684495e8941d" allowfullscreen msallowfullscreen
+<iframe title="Data Science U2: Decision Tree Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6a7dd193cb36414083fda5897a350ef31d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
-<iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/649cc37c4bc446d9bb37fcf436121d471d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/fe863a77c67c4a6c962ba3f93ff6e9131d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
-You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the video</a>
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the videos</a>
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.  
 

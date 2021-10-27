@@ -1,4 +1,4 @@
-#Non-linear models: Multi-layer perceptron
+#Non-linear models: multi-layer perceptron
 
 !!! success "Learning outcomes:"
 	After completing this lesson you should be able to:

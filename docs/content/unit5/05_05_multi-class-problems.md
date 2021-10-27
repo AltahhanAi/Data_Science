@@ -14,7 +14,7 @@ In this lesson we will extend the binary classifiers that we have covered previo
 
 ## 1-OF-K binary coding for numerical techniques
 
-When we are facing a classification problem, and we want to apply a numerical classification technique such as linear models, perceptron, logistic regression or neural networks (among many other techniques), then we need to formulate the class’s labels numerically. There are many ways to do that. Let us consider a tangible example. Let us assume that we have a classification problem that has the following labels for the classes; {‘High’, ‘Medium’ and ‘Low’} or {‘Truck’, ‘Sedan’, ‘SUV’}.
+As mentioned in section 1 of this unit, when we are facing a classification problem and we want to apply a numerical classification technique such as linear models, perceptron, logistic regression or neural networks (among many other techniques), then we need to formulate the class’s labels numerically. There are many ways to do that. Let us consider a tangible example. Let us assume that we have a classification problem that has the following labels for the classes; {‘High’, ‘Medium’ and ‘Low’} or {‘Truck’, ‘Sedan’, ‘SUV’}.
 
 In the former, since we are dealing with a progression of performance categories, then we can encode the labels as $\{3,2,1\} .$ In this case the label will take one and only one of the $\{3,2,1\}$ labels and the output of the prediction has one component $t_{n}=(C) .$ The estimated classes might take something in between and we interpret the predicted class values that lies in-between as a degree of closeness to the class. So for example if we get 2.2 we interpret it as a value between ‘Medium’ and ‘High’ and being closer to Medium. Or we apply a threshold to round the result to its nearest integer. So for example if we get 2.2 we interpret it as 2 i.e. medium and so on.
 
@@ -97,7 +97,7 @@ The shaded decision regions in figure 5.38 are obtained via the normalisation of
   </figcaption>
 </figure>
 
-##Multinomial logistic regression: Softmax regression
+##Multinomial logistic regression: softmax regression
 
 In the last section we saw how logistic regression has been built originally for binary classification where we expect the output of the activation function to give us one value in the range $[0,1]$. The value represents the probability of the input being from the positive class and we get the probability from the negative class by exploiting that the sum of both must be 1. In other words, if $p\left(C_{1} \mid \mathbf{x}\right)$ is given by the one output of the logistic regression model then $p\left(C_{0} \mid \mathbf{x}\right)=1-p\left(C_{1} \mid \mathbf{x}\right)$
 
@@ -283,7 +283,7 @@ $$
 \end{array}
 $$
 
-##Regularised mini-batch stochastic gradient descent updates for multi-class logistic regression model.
+##Regularised mini-batch stochastic gradient descent updates for multi-class logistic regression model
 
 A regularised mini-batch stochastic gradient decent can be devised for this technique as we did earlier and is shown below.
 

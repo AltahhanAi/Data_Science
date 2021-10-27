@@ -9,7 +9,7 @@ $$
 Another possibility, when we want to be able to compare the performance of the model in different datasets, (or between different models and dataset) is to use the coefficient of determination of $R^2$ metric. $R^2$ is defined as:
 
 $$
-R^{2}=1-\frac{\sum_{n=1}^{N}\left(t_{n}-y_{n}\right)^{2}}{\sum_{n=1}^{N}\left(t_{n}-\bar{t}\right)^{2}} 
+R^{2}=1-\frac{\sum_{n=1}^{N}\left(t_{n}-y_{n}\right)^{2}}{\sum_{n=1}^{N}\left(t_{n}-\bar{t}\right)^{2}}
 $$
 
 where $\bar{t}$ is the mean of the target. The numerator is referred to as SSR or SSE and is our usual sum of squared errors, while denominator, denoted as SST (sum of squared total), is the sum of squared deviation from the mean (which is the variance of the target times the size of the data under consideration). It represents the sum of squared errors for a base model, where the base model uses the mean of the targets as the prediction for any data points.
@@ -24,6 +24,12 @@ $R^{2}$ gives an indication of the extent to which our model is better than just
     - Download exercise (.ipynb):   <a href="../exercises/Exercise3_SGD_Algorithm_LinearRegression.ipynb" target="_blank" download>Exercise 3 </a>
 
 Please watch the following three videos for a comprehensive example that covers the different concepts of this lesson.
+
+You can download the spreadsheets Abdulrahman refers to in the videos below:
+
+<a href="../files/Comprehensive_Example_from_Scratch.xlsx" target="_blank" download>Comprehensive example from scratch (.xlsx) </a>
+
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22591869_4" target="_blank">Comprehensive example with feature mapping (.xlsx) </a>
 
 <iframe title="video 6 (Example of a linear regression model, part 1) " width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/031ebb9609ad4e4882c3f0ab85781e3e1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 

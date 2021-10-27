@@ -1,4 +1,4 @@
-# Clustering and classification in algorithms
+# Clustering and classification algorithms
 
 !!! success "Learning outcomes:"
 	After completing this unit you should be able to:

@@ -1,4 +1,4 @@
-#Approximate Solutions: Gradient Descent
+#Approximate solutions: gradient descent
 
 **For linear models we saw that we can analytically find a solution via the normal formula by setting the gradient to 0 and solving with respect to $\mathbf{W}$. Such solutions are either not available when we deal with non-linear optimisation or is not desirable due to efficiency requirements. Even if an analytical close form solution is available, the complexity of finding the least squares is $O\left(D^{2} \times N\right)$ which is quite expensive when $N$ is reasonably large.**
 
@@ -8,7 +8,7 @@ This optimisation algorithm is called the gradient descent or steepest descent. 
 
 Please watch the following video on gradient descent.
 
-<iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/867051cf400f4f07aba746b5b2e8a35c1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/1306e0c0bf4746888652140ccedeac0b1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
 
@@ -167,7 +167,7 @@ For further reading, see Yoshua Bengio's paper on <a href="https://arxiv.org/pdf
 
 Please watch the following video on stochastic and mini-batch gradient descent for linear regression.
 
-<iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/d177170e4a6749ada566b45031a94e601d" allowfullscreen msallowfullscreen
+<iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/77dfcc5072794031abf501bcd980c56c1d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
