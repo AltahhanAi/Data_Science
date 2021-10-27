@@ -8,7 +8,7 @@ This optimisation algorithm is called the gradient descent or steepest descent. 
 
 Please watch the following video on gradient descent.
 
-<iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/867051cf400f4f07aba746b5b2e8a35c1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/1306e0c0bf4746888652140ccedeac0b1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
 
@@ -167,7 +167,7 @@ For further reading, see Yoshua Bengio's paper on <a href="https://arxiv.org/pdf
 
 Please watch the following video on stochastic and mini-batch gradient descent for linear regression.
 
-<iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/d177170e4a6749ada566b45031a94e601d" allowfullscreen msallowfullscreen
+<iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/77dfcc5072794031abf501bcd980c56c1d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
