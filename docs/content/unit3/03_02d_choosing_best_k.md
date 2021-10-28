@@ -7,4 +7,4 @@ You can refer back to optimisation of a hyper parameters via cross validation if
 !!! abstract "Exercise"
     See the following Excel sheet that implements a distance-weighted voting $k$NN algorithm. Try adjusting the values in the dataset (in the sheet) to see the effect on the algorithm’s different steps.
 
-    - Download exercise (.xlsx): <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18754875_4" target="_blank">Iris k-NN prediction</a>
+    - Download exercise (.xlsx): <a href="../files/Iris kNN prediction.xlsx" download>Exercise 4</a>

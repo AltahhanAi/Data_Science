@@ -88,7 +88,7 @@ In the following exercises, you will see some of the most common data management
 !!! abstract "Exercise"
     Try this data wrangling exercise in Jupyter Notebook.
 
-     - Download exercise (.ipynb): <a href="../exercises/Exercise1_Data wrangling in Pandas.ipynb" download>Exercise 1</a>
+     - Download exercise (.ipynb): <a href="../exercises/Exercise1_Data Wrangling in Pandas.ipynb" download>Exercise 1</a>
 
 ##Data quality and issues due to data mining
 

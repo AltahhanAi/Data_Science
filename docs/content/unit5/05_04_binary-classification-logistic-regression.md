@@ -327,7 +327,7 @@ $$
 !!! abstract "Exercise"
     Please see the previous exercise to compare logistic with the perceptron. Also see the following Jupyter notebook for more insight into logistic regression.
 
-      - Download exercise (.ipynb): <a href="../exercises/Exercise_4LogisticRegressionSKLearn.ipynb" download>Exercise 4</a>
+      - Download exercise (.ipynb): <a href="../exercises/Exercise4_LogisticRegressionSKLearn.ipynb" download>Exercise 4</a>
 
 ## Logistic regression example with cross entropy
 
@@ -419,7 +419,7 @@ $$
 
     The plots in figure 5.33 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. See the following Jupyter Notebook:
 
-    - Download notebook (.ipynb): <a href="../exercises/Exercise_3LogisticRegressionDecsions.ipynb" download>Exercise 3</a>
+    - Download notebook (.ipynb): <a href="../exercises/Exercise3_LogisticRegressionDecsions.ipynb" download>Exercise 3</a>
 
 <figure role="group">
   <img src="../images/DS_IMG155.png" alt="Two graphs showing an example of a binary dataset. Top: an optimal decision boundary identical with the actual boundary of the dataset, where no misclassification has occurred. Bottom: an example showing the effect of shifting the decision boundaries by changing the bias." />
