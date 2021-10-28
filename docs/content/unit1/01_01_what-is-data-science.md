@@ -360,17 +360,17 @@ The conditional independency means that knowing that a patient who has D1 (or D2
 
 * P(E1,¬E2|D1) = P(E1|D1).P(¬E2|D1) = (  5/25) x (25-15)/25 = 0.20x0.4=0.08
 * P(E1,¬E2|D2) = P(E1|D2).P(¬E2|D2) = (10/15) x (15-15)/15 = 0.66x0.0=0.00
-* P(E1,¬E2|D3) = P(E1|D3).P(¬E2|D3) = (50/60) x (60-24)/60 = 0.83x0.6=0.50
+* P(E1,¬E2|D3) = P(E1|D3).P(¬E2|D3) = (40/60) x (60-24)/60 = 0.66x0.6=0.396
 
-* P(E1,¬E2|D1).P(D1) =0.08x0.25=0.0625
-* P(E1,¬E2|D2).P(D2) =0.00x0.15=0.000
-* P(E1,¬E2|D3).P(D3) =0.50x0.60=0.9375
+* P(E1,¬E2|D1).P(D1) = (2/25) x (25/100) = 2/100
+* P(E1,¬E2|D2).P(D2) = (0/15) x (15/100) = 0.00
+* P(E1,¬E2|D3).P(D3) = (24/60) x (60/100) = 24/100
 
 Although there are 54 patients who have E2, the count for (E1,¬E2) is not available to be able to infer P(E1,¬E2). However the probability of (E1,¬E2) can be worked out from the following:  
 
 * P(D1|E1,¬E2)+P(D2|E1,¬E2)+P(D3|E1,¬E2) = 1
 * P(E1,¬E2|D1).P(D1)+P(E1,¬E2|D2).P(D2)+P(E1,¬E2|D3).P(D3)]/P(E1,¬E2) = 1
-* P(E1,¬E2)=P(E1,¬E2|D1).P(D1)+P(E1,¬E2|D2).P(D2)+P(E1,¬E2|D3).P(D3)=0.32.
+* P(E1,¬E2)=P(E1,¬E2|D1).P(D1)+P(E1,¬E2|D2).P(D2)+P(E1,¬E2|D3).P(D3)= 26/100
 
 Note that this is the same probability that was calculated in example 2 through a direct given count of (E1,¬E2). This also shows that P(E1,¬E2) acts as a normalisation factor. The rest of the calculations are identical to example 2, which shows that conditional independency can compensate lack of individual counts of an evidence.
 
