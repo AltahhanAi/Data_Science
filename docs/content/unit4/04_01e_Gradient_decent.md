@@ -254,7 +254,7 @@ We can also apply SGD regression on a static dataset, we get a similar result to
 
         Return the final solution $\mathbf{w}$.
 
-Comparing Algorithm 3 and Algorithm 4, it becomes clear that in Algorithm 4 the weights fixed **during** learning. In contrast Algorithm 3 accumulates all the changes of the weights and applies them all at once.
+Comparing Algorithm 3 and Algorithm 4, it becomes clear that in Algorithm 4 the weights **are** fixed **during** learning. In contrast Algorithm 3 accumulates all the changes of the weights and applies them all at once.
 
 ##Mini-Batch Learning: Mini-Batch Stochastic Gradient Descent for Linear Regression Models
 

@@ -70,9 +70,11 @@ This invites discussion on whether several splits need to be performed and the a
 
 ####Video
 
+Now watch this video, in which Abdulrahman explains data attributes and objects, types of data and data quality.
+
 <iframe title="Data Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/3db1a6348efd446696e14a3a53f5ec241d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
-You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738960_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826017_4" target="_blank">transcript (PDF) here</a>.
+You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738960_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22589438_4" target="_blank">transcript (PDF) here</a>.
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
@@ -99,7 +101,7 @@ Watch the following video for a summary of these techniques, and then read about
 
 <iframe title="Data Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/44615004e8254c01aa86e6264e639e2d1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
-You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video (PPT)</a>.
+You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22640813_4" target="_blank">transcript (PDF) here</a>.
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
