@@ -458,7 +458,7 @@ Balancing out the detection scores (recall scores) of different classes can be p
 For multi-class problems, the recall or $\text { pr(detect } \left._{\text {class }}\right)$ can be defined in terms of averaged sum of true instances of each class. To demonstrate how, let us look into the above confusion matrix. The recall for each class separately give us the following:
 
 $$
-\left.\operatorname{pr}\left(\text { detect }_{\text {setosa }}\right)=\frac{13}{13}, \text { pr(detect }_{\text {versicolor }}\right)=\frac{15}{16}, \operatorname{pr}\left(\text { detect }_{\text {virginica }}\right)=\frac{6}{9}
+\operatorname{pr}\left(\text { detect }_{\text {setosa }}\right)=\frac{13}{13}, \operatorname{pr}\left(\text { detect }_{\text {versicolor }}\right)=\frac{15}{16}, \operatorname{pr}\left(\text { detect }_{\text {virginica }}\right)=\frac{6}{9}
 $$
 
 Which yields 1.0,0.9375 and 0.666 for the classes 'setosa' 'versicolor' 'virginica', respectively and these are the scores that we can see on the normalized confusion matrix after rounding to 2 decimals. Now, the recall for the above model can be calculated in several ways, some of them are:
