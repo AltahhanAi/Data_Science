@@ -7,10 +7,16 @@ The following three videos will provide an overview of the material in this sect
 <iframe title="Data Science U2: Decision Tree Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/65dd12803fd342c4bbeb689923d654cf1d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-21866476_4" target="_blank">Download transcript (PDF).</a>
+
 <iframe title="Data Science U2: Decision Tree Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6a7dd193cb36414083fda5897a350ef31d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22772607_4" target="_blank">Download transcript (PDF).</a>
+
 <iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/fe863a77c67c4a6c962ba3f93ff6e9131d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22734600_4" target="_blank">Download transcript (PDF).</a>
 
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the videos</a>
 
@@ -508,7 +514,7 @@ Annual income ranges £K | Annual income increment £K | Annual income category
   <figcaption><strong>Figure 2.20.</strong>  Top 10 UK actual annual income in 2018, the increments have reversed Pareto distribution.</figcaption>
 </figure>
 
-As can be seen, the increments take a long tailed (skewed) distribution that is not a Gaussian, but more of a reversed Pareto distribution. This is not surprising as the Pareto distribution has historically been used to describe wealth in society. The 80-29 Pareto principle is related to this distribution but is precisely realised when the alpha value is 1.16. It takes the form:
+As can be seen, the increments take a long tailed (skewed) distribution that is not a Gaussian, but more of a reversed Pareto distribution. This is not surprising as the Pareto distribution has historically been used to describe wealth in society. The 80-20 Pareto principle is related to this distribution but is precisely realised when the alpha value is 1.16. It takes the form:
 
 $$
 \operatorname{Pr}(X>x)=\left\{\begin{array}{c}
@@ -610,7 +616,7 @@ Its behaviour is shown figure 2.25 below.
 Note that we are talking about two classes (events) not two probability distributions. In the case of two probability distributions we use cross-entropy which is outside the scope of this discussion. In general if we have more than $K$ classes, then:
 
 $$
-\text { Entropy }=\sum_{i=1}^{K} p_{i} \log p_{i}
+\text { Entropy }=-\sum_{i=1}^{K} p_{i} \log p_{i}
 $$
 
 ###Comparison of the entropy with Gini Index
