@@ -22,6 +22,8 @@ In the following video, Abdulrahman talks through a comprehensive example of a d
 " allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-21817781_4" target="_blank">Download transcript (PDF).</a>
+
 ##Measuring the performance of a binary class model
 
 **For a binary class problem, we have two classes that an instant can belong to. It can belong to class C1 or to class C2 but cannot belong to both at the same time. In fact, the question can be posed as whether an instant belongs to a one class of concern or not.**
@@ -473,7 +475,7 @@ $p($ detect $)=\frac{1}{4} p\left(\right.$ detect $\left._{\text {setosa }}\righ
 
 $p($ detect $)=\frac{1}{4} \times 1+\frac{1}{4} \times 0.9375+\frac{1}{2} \times 0.666=0.8177$
 
-This metric shows that the classifier that we trained has less weighted accuracy than the balanced accuracy since we emphasised the detection of the virginica more than other classes and the model did not performed that well on this particular class $\left(\boldsymbol{p}\left(\text { detect }_{\text {virginica }}\right)=0.666\right)$.
+This metric shows that the classifier that we trained has less weighted accuracy than the balanced accuracy since we emphasised the detection of the virginica more than other classes and the model did not perform that well on this particular class $\left(\boldsymbol{p}\left(\text { detect }_{\text {virginica }}\right)=0.666\right)$.
 
 Now, let us try to use the classes’ distribution as the weights for the classes’ detection scores to see where this can lead us. The count that we have is $n=13+16+9=38$ for 'setosa' 'versicolor' 'virginica' classes, respectively. This is not the count of the entire dataset $N=150$ because the above confusion matrix is for a testing set, not the total dataset.
 

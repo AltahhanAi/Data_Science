@@ -77,7 +77,7 @@ It is worth mentioning here that the data can be structured either in a loose wa
 
 One positive aspect of Excel which contributed to its popularity is that it provides simple ways to see the data along with its visualisation (via charts, graphs, etc.). Having said that, you must differentiate between providing a storage capability for your data and acting on it in terms of processing and visualisation. If visualisation is important in the application, then Tableau provides such capabilities in an excellent way. You will see some examples of data visualisation at the end of this unit.
 
-In the following exercises, you will see some of the most common data management activities in a structured data (database) and a similar activity in a non-structural data. These types of operations are normally done during the data engineering process. The first activity might be harder to set up and is optional, while the second activity is more important and easier to setup.
+In the following exercise, you will see some of the most common data management activities. These types of operations are normally done during the data engineering process. 
 
 !!! success "Important!"
     Below is your first exercise. Before you get started, make sure you have downloaded the zip file containing all the datasets we will be using in this module. You can find this zip file in the Learning Resources area of the Minerva module, or by selecting the link below.
@@ -132,7 +132,9 @@ In this case, the mean is 1.001 and so the bias is 1.001-1=0.001. While the prec
 
 Remember that the standard deviation is the squared root of the variance. Also, since there is a limited set of samples – not the entire population – then it is divided by N-1.
 
-Variance = [(1.015-1.001)^^2^ + (0.990-1.001)^^2^ + (1.013-1.001)^^2^ + (1.001-1.001)^^2^ + (0.986-1.001)^^2^]/(5-1) = [0.000196 + 0.000121 + 0.000144 + 0 + 0.000225]/4 = 0.0001715 hence SD ≈ 0.13
+Variance $=\left[(1.015-1.001)^{\wedge 2}+(0.990-1.001)^{\wedge 2}+(1.013-1.001)^{\wedge 2}+(1.001-1.001)^{\wedge 2}+\right.$
+$\left.(0.986-1.001)^{\wedge 2}\right] /(5-1)=[0.000196+0.000121+0.000144+0+0.000225] / 4=$
+$0.0001715$ hence $\mathrm{SD} \approx 0.013$
 
 ##Summary
 

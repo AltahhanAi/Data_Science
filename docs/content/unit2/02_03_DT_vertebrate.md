@@ -128,6 +128,7 @@ Watch this video to see how we can easily build a decision tree model in RapidMi
 <iframe title="DBuilding a decision tree in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/74a17cc9f1914e38b34229bbd4a0c3ac1d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22735112_4" target="_blank">Download transcript (PDF).</a>
 
 !!!abstract "Exercise"
 
@@ -182,7 +183,7 @@ So far we have seen how decision trees work and how they are inducted (trained).
 
 In the above cases, we showed the data and the decision boundary on the left-hand side, and on the right-hand side we showed the corresponding expected decision tree that can express the data concisely. In classification such decision boundaries are crucial in two ways: they help us understand the nature of the data, and they help us to assign a suitable technique to the problem in hand. It is not always possible to represent the data in two-dimensional space, in fact it is rarely the case. However, even when we move to higher space dimension, a similar argument can hold.  
 
-The boundaries are assumed when we constructed the datasets. The boundaries do not exist separately form the dataset, instead they are inferred from the dataset. In the decision trees, the nodes correspond to the condition as usual. These conditions that help us decide the classes of the dataset create their own boundaries.
+The boundaries are assumed when we constructed the datasets. The boundaries do not exist separately from the dataset, instead they are inferred from the dataset. In the decision trees, the nodes correspond to the condition as usual. These conditions that help us decide the classes of the dataset create their own boundaries.
 
 In the first case (Figure 2.32), any point above the boundary is of class 1 and any point below the boundary is from class 2.
 
