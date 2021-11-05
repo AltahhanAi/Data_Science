@@ -66,7 +66,7 @@ We repeat the process by training on subsets $\left\{S_{1} \cup S_{3}\right\}$ a
 
 ###Model selection
 
-Model is selection is the process of selecting the best model for the problem at hand, from among several other possible models of similar prediction powers. For example, we can build several decision trees with different depths for the same problem, and each tree would have its own properties and prediction strength. The depth of the DT is an example of what we call a hyper parameter. It is called so because changing this parameter fundamentally changes the properties of the model. The question would be then which one is the best for the problem in hand. We often first perform **model selection** to pick the best candidate of a set of models and then we do **model comparison** to pick a final model that corresponds to the best technique. We will talk about model comparison in a later section.
+Model selection is the process of selecting the best model for the problem at hand, from among several other possible models of similar prediction powers. For example, we can build several decision trees with different depths for the same problem, and each tree would have its own properties and prediction strength. The depth of the DT is an example of what we call a hyper parameter. It is called so because changing this parameter fundamentally changes the properties of the model. The question would be then which one is the best for the problem in hand. We often first perform **model selection** to pick the best candidate of a set of models and then we do **model comparison** to pick a final model that corresponds to the best technique. We will talk about model comparison in a later section.
 
 Model selection can be performed mainly in two ways. One approach is to evaluate a set of possible models by enumerating through a set of discrete or discretised hyper parameters values. We will have to then evaluate each one separately and compare between them all to arrive to the best value among these pre-defined values. This is the approach that we will take in this module.
 
@@ -141,6 +141,8 @@ On the other hand, in case we are comparing the performance of two techniques on
 See the following video on RapidMiner grid search procedure for selecting multiple hyper parameters for a model. The example shows how to optimise the depth of the tree along with the minimum leaf size.
 
 <iframe title="Decision tree optimisation in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/e7c71cb44ef94e2388465125134182c71d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22787202_4" target="_blank">Download transcript (PDF).</a>
 
 ##Overfitting
 
