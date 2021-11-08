@@ -392,6 +392,8 @@ $$
 
 The dataset is given as follows:
 
+<div class="wide-fit-table-override"></div>
+
 |   n |   	$x_{0}$ |   $x_{1}$ |   $x_{2}$	| Actual Class $t$ |	$\mathbf{w}_1^\top\mathbf{x}$ | Predicted class $y=g(\mathbf{w}_1^\top\mathbf{x})$ |	${\widetilde{H}}_n\left(\mathbf{w}_1\right)$ |	$\mathbf{w}_2^\top\mathbf{x}$ | Predicted class $y=g(\mathbf{w}_2^\top\mathbf{x})$	| ${\widetilde{H}}_n\left(\mathbf{w}_2\right)$ |
 | --- | ----------- | --------- | --------- | ----| ------ | --- | ---- | ------ | ---- | --- |
 |   0 |   	1	    | 30.00	    | 61.67	    | 0	  | -5.67  | 0.0 |	0.0 | 8.33	 | 1.00	| 12.0 |
