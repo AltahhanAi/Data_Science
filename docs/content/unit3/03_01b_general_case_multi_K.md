@@ -6,7 +6,7 @@ This algorithm has a chicken and egg dilemma, and in data mining and machine lea
 
 What we have talked about so far was actually the **K-means** algorithm. The name comes from assuming in priori that we have **K clusters** and from the fact that we take the **means** of the clusters (centroids), and based on them we reassign the data points and then calculate the means again and so on. The algorithm is shown below:
 
-!!! algorithm-heading "Algorithms 1: Basic K-means"
+!!! algorithm-heading "Algorithm 1: Basic K-means"
 
     **Input:**
 
@@ -19,7 +19,7 @@ What we have talked about so far was actually the **K-means** algorithm. The nam
     **K-means** (**X**, *K*):
 
     !!! algorithm ""
-        $\boldsymbol{C} \boldsymbol{t}=\left\{\mathbf{c}_{i}\right\}$ Select $K$ points form $\mathbf{X}$ as initial centroids, randomly
+        $\boldsymbol{C} \boldsymbol{t}=\left\{\mathbf{c}_{i}\right\}$ Select $K$ points from $\mathbf{X}$ as initial centroids, randomly
 
         **Repeat**
 

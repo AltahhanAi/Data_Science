@@ -161,7 +161,7 @@ $$
 S S B=\sum_{i}\left|\boldsymbol{C}_{i}\right|\left(\mathbf{c}_{i}-\mathbf{c}\right)^{2}
 $$
 
-where C corresponds to the centroid of the entire dataset. $\mathbf{C}_{i}$ is the centroid for clusters $i$ and $\left|\boldsymbol{C}_{i}\right|$ is the number of data points in clusters E$i$.
+where C corresponds to the centroid of the entire dataset. $\mathbf{C}_{i}$ is the centroid for clusters $i$ and $\left|\boldsymbol{C}_{i}\right|$ is the number of data points in clusters $i$.
 
 Finally clusters validity can be measured via the correlation, by comparing between ideal similarity matrix and the proximity matrix. Please refer to section 5.3 of Tan et al 2019 and see video3 for a summary of the above concepts.
 

@@ -36,7 +36,7 @@ $$
 y=(x-5)^{2}+8
 $$
 
-This function has the following shape, shown in figure 1.5:
+This function has the following shape, shown in figure 3.6:
 
 ![Graph showing the plot of minimum y=(x−5)2+8, with its minimum at x=5.](images/DS_IMG177.png)
 
