@@ -117,7 +117,7 @@ $$
 
 ####Cosine similarity
 
-This is used mainly to measure the similarity between two documents. Each document is represented as a vector of the frequencies of a specific set of words from a dictionary. So vectors that represent a documents are really long (thousands of attributes) all of which are the same size. Each component represents the number of times a correspondent word is stated in the document, regardless of where it is stated. This way we have a vector of natural numbers. To measure the similarity between two documents, we need to ignore the 0 because they are pervasive. The Jaccard may be a candidate but it does not take counts, instead we use cosine similarity which is defined as follows:
+This is used mainly to measure the similarity between two documents. Each document is represented as a vector of the frequencies of a specific set of words from a dictionary. So vectors that represent documents are really long (thousands of attributes) all of which are the same size. Each component represents the number of times a correspondent word is stated in the document, regardless of where it is stated. This way we have a vector of natural numbers. To measure the similarity between two documents, we need to ignore the 0 because they are pervasive. The Jaccard may be a candidate but it does not take counts, instead we use cosine similarity which is defined as follows:
 
 $$
 \cos (\mathbf{x}, \mathbf{y})=\frac{\mathbf{x}^{\top} \mathbf{y}}{\|\mathbf{x}\|\|\mathbf{y}\|}=\frac{\mathbf{x}^{\top} \mathbf{y}}{\sqrt{\left(\mathbf{x}^{\top} \mathbf{x}\right)\left(\mathbf{y}^{\top} \mathbf{y}\right)}}

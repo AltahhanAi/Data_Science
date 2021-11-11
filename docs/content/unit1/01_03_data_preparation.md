@@ -140,23 +140,23 @@ As another example, Principal Component Analysis (PCA) applies the ideas of Eige
 
 		Given that we have the following attributes {a, b, c, d, e} write the power set for the above set.
 
-####Synonymous features
+###Synonymous features
 
 Synonymous features are two or more features that are effectively equivalent, or one is deduced directly from the other.  
 
 It is better to filter out or remove one of them. This is particularly relevant when there is a feature that is synonymous to the label that you are trying to fit a model to predict its value. If there is a direct effective equivalency or close to equivalency between the two features, one of them is the label and the other is assumed to be unknown (or not available in general) for new data points. Then, the synonymous feature must be omitted when a model is built to predict the label. This is because knowing a synonymous feature means knowing the label, and it is unlikely to be available for data points that we want to predict their labels.
 
-####Normalisation/standardisation and rescaling
+###Normalisation/standardisation and rescaling
 
 Often, one of the most important pre-processing techniques to be performed on the features is normalisation or standardisation and rescaling. This is because the range of one feature can be drastically different than the range of another feature.
 
 Consider the weight and height of a person. If the height is given in meters and the weight in grams then the weight is going to dominate the height during the model fitting exercise, resulting in marginalising the effect of the height on the prediction or clustering. The simple solution is to convert the height into cm or mm. However, this might marginalise other features. The standard way of dealing with such features is to either normalise them or to rescale them.
 
-####Standardisation (aka normalisation)
+###Standardisation
 
 Standardisation involves calculating the mean x̄ and standard deviation sx of a feature x. This is done by looking into the data that resides inside the feature as samples to calculate these statistical measures. The following transformation is then applied to the data that involves the features x′= (x-x̄)/sx. This is called variable transformation in statistics because it transforms the data from one space to the other. The new features x′ that were calculated out of x has a mean 0 and standard deviation of 1, i.e., it is standardised.
 
-####Rescaling
+###Rescaling
 
 Rescaling is similar to standardisation, with some differences. The calculations are x′= (x-xmin)/(xmax - xmin) where xmax and xmin are the maximum and minimum values that x might have, respectively.   
 
@@ -164,7 +164,7 @@ This guarantees that the range or scale of the new feature is [0 , 1] (between 0
 
 Note that if we do not know what {xmin, xmax } values might be (or potentially they can go -+ infinity) then we can take them from the values in the available data itself. However, we have to be careful in how we do this, as it might lead to data leakage when the dataset is rescaled before splitting (into training and testing).
 
-####Specifying the label for supervised learning
+###Specifying the label for supervised learning
 
 The label is the answer to the question or problem being solved. Often in supervised learning settings, the dataset contains the features as well as the label for each record.
 
@@ -178,11 +178,11 @@ Another example is the Titanic dataset, where the set of features are the inform
 
 The label is simply their survival info (binary: survived or did not survive). The task would be to fit a model that estimates if a passenger survived or not based on their information.
 
-####No label: unsupervised learning
+###No label: unsupervised learning
 
 Sometimes it is not clear what the label is for the task or the task itself is not to predict a label. Instead, it is to associate a set of items with each other or to cluster the items based on their resemblance to each other. In these cases, unsupervised learning techniques can be utilised which do not require a label. Sometimes the label is simply ignored to gain more insight of the data.
 
-####Dealing with missing-ness
+###Dealing with missing-ness
 
 This is a common problem for realistic datasets. Most likely, the same information is not obtained for all the objects/people (called data points because they are represented as a data point in a multi-dimensional space). For example, the age or the weight of a person may be missing due to human error or due to the information not being required (especially when the data collection process is not automated).
 
@@ -196,11 +196,11 @@ Another way to deal with the missing fields data is to provide an estimate of th
 
 So, how should you estimate? An unbiased estimate would be the mean of the feature. Take the entire data for a filed – vertically – and calculate the mean for it, replacing all the missing values with this mean.
 
-####Aggregation and summarisation
+###Aggregation and summarisation
 
 When you want to group by a specific field to apply some calculation or summarisation operations, aggregation and summarisation is used. This means the data is gathered and presented in a summarised format, for example, grouping a dataset by gender and apply a sum or mean of wages to see the differences or inequality between the wages per gender.  
 
-####Discretion and binarisation
+###Discretion and binarisation
 
 These are standard techniques used to convert a continuous attribute which potentially has infinitely many possibilities to an attribute which has a confined number of possibilities. Often this is done to allow more efficient processing or to suit a classification or clustering task in hand.  
 
@@ -208,7 +208,7 @@ These are standard techniques used to convert a continuous attribute which poten
 
 **Binarisation** is the process of converting attribute values to binary values i.e. ones that have two values (often these are {0, 1}). Binarisation is a special case of discretisation. One form of discretisation is called histograms, where the number of occurrences of a range of values into a set of bins in counted. The set of bins replace the feature, and in this case, one attribute is replaced with as many bins as we have.
 
-####Melting and pivoting
+###Melting and pivoting
 
 Melting and pivoting are often overlooked operations. When they are applicable, it is important that they are performed to make the shape of the data suitable for further processing. These are often part of a more elaborate operation involving data preparation along other operations such as sorting etc. Please refer to the next exercise for a full working example in Python.
 

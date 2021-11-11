@@ -32,7 +32,7 @@ In this case, the rote classifier will be able to match it directly with record 
 
 Dataset|S length|S width|P length|P width|species
 -----|---|---|---|---|---
-$\mathbf{x}_{\mathbf{6}}=$|6.1|2.8|4.7|1.2|setosa
+$\mathbf{x}_{\mathbf{6}}=$|6.1|2.8|4.7|1.2|versicolor
 
 Obviously, the problem with such a classifier is that if the instance does not exactly match any instance in the dataset, the classifier cannot make any decision on what would be a best match that can be utilised to label the provided instance. For example, if the classifier is presented with the following instance:
 
