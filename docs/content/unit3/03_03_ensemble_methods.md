@@ -12,6 +12,8 @@ Watch this video to learn more about the concepts of ensemble methods.
 
 <iframe title="Ensemble techniques" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/bb7cdadc4c234bd0be580d279c4f80c71d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22912989_4" target="_blank">Download transcript (PDF).</a>
+
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826426_4" target="_blank">slides shown in the video.</a>
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.

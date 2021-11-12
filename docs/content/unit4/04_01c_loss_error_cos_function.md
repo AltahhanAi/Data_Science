@@ -9,6 +9,8 @@ Watch the following video on loss function optimisation.
 <iframe title="Loss function for regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/9a4ab6335e684311b8fbfdd6b42bbc191d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22913894_4" target="_blank">Download transcript (PDF).</a>
+
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
 
 ###Loss function for an individual point
@@ -167,6 +169,8 @@ The above approaches can be applied on any numerical machine learning technique 
 Please watch the following video on the least squares.
 
 <iframe title="Linear regression models" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/4fad0bce36ad461b8f3d0f950f94e4511d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22913897_4" target="_blank">Download transcript (PDF).</a>
 
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
 
