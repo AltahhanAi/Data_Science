@@ -201,4 +201,6 @@ Watch the following video on the concepts of regression.
 <iframe title="Linear and non-Linear Models for Regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/bb75e23264d641bcb3c1902cd95434fc1d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22913188_4" target="_blank">Download transcript (PDF).</a>
+
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.

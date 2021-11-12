@@ -55,12 +55,13 @@ Below in figure 3.11, we show results of bisecting K-means on the problem that w
 
 ##Agglomerative clustering
 
-<iframe title="Cluster analysis 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/1bb96ffc6168418d83d6bb6fbe62b9de1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<iframe title="Cluster analysis 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/2271688c6f5a48a080976624fc23fc921d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22866513_4" target="_blank">Download transcript (PDF).</a>
 
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826428_4" target="_blank">slides shown in the video.</a>
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
-
 
 In partitional clustering techniques, such as the K-means, the clusters are assumed to be partitional, i.e. they are well-separated from each other. If they are not then the algorithm performance will be put under pressure and the results might not be satisfactory. This is one of the intrinsic limitations of such approaches.
 
@@ -132,6 +133,8 @@ Please refer to section 5.3 of Tan et al 2019.
 Evaluating clusters is an important step towards improving and comparing different clustering algorithms as well as to improve the obtained clusters. Mainly, we can adopt two approaches for cluster evaluation; supervised approach or unsupervised approach.
 
 <iframe title="Clusters part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/2271688c6f5a48a080976624fc23fc921d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22866512_4" target="_blank">Download transcript (PDF).</a>
 
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826428_4" target="_blank">slides shown in the video (PPT)here</a>.
 

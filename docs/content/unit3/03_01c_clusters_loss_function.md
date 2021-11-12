@@ -4,6 +4,8 @@ In the following video, Abdulrahman explains the clusters loss function.
 
 <iframe title="Cluster analysis 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/ebef1d39bfeb489f8f3645cd19d9e5411d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22912092_4" target="_blank">Download transcript (PDF).</a>
+
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826428_4" target="_blank">slides shown in the video.</a>
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.

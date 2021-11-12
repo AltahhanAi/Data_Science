@@ -33,9 +33,15 @@ You can download the spreadsheets Abdulrahman refers to in the videos below:
 
 <iframe title="video 6 (Example of a linear regression model, part 1) " width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/031ebb9609ad4e4882c3f0ab85781e3e1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22914403_4" target="_blank">Download transcript (PDF).</a>
+
  <iframe title="video 7 (Example of a linear regression model, part 2) " width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/8d4658ebca5e45619f40502216b597ea1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
-<iframe title="video 8 (Example of a linear regression model, part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/1d7e63fe54454aaaa93a7669c613a7e41d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>   
+ <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22914404_4" target="_blank">Download transcript (PDF).</a>
+
+<iframe title="video 8 (Example of a linear regression model, part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/1d7e63fe54454aaaa93a7669c613a7e41d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22914409_4" target="_blank">Download transcript (PDF).</a>  
 
 ##Simple linear regression models: lesson summary
 

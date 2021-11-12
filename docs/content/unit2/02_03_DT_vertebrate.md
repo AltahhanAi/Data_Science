@@ -125,7 +125,7 @@ Table: Mammals class dataset with necessary and sufficient features.
 
 Watch this video to see how we can easily build a decision tree model in RapidMiner.
 
-<iframe title="DBuilding a decision tree in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/74a17cc9f1914e38b34229bbd4a0c3ac1d" allowfullscreen msallowfullscreen
+<iframe title="DBuilding a decision tree in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/c1f13a30982f4e99a3bcce27fd16e77d1d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22735112_4" target="_blank">Download transcript (PDF).</a>
@@ -175,7 +175,7 @@ So far we have seen how decision trees work and how they are inducted (trained).
 
 ![Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. The two classes are distributed into four crossed quarters.](images/DS_IMG051.png)
 
-**Figure 2.37.** Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles. 
+**Figure 2.37.** Scatter graph showing binary class balanced data with non-linearly separable decision boundaries quartiles.
 
 ![Left: Scatter graph showing binary class balanced data with a linearly separable diagonal decision boundary. Right: Decision tree (DT) expected to concisely express binary class balanced data with a linearly separable diagonal decision boundary.](images/DS_IMG053+54.png)
 
