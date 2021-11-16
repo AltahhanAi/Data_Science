@@ -542,7 +542,7 @@ ID | Home owner| Marital status | Annual income | Defaulted borrower | **Possibl
 2  | No        | Married        | 100           | No                 | **97.5**
 4  | Yes       | Married        | 120           | No                 | **110**
 1  | Yes       | Single         | 125           | No                 | **122.5**
-7  | Yes       | Divorced       | 150           | No                 | **172.5**
+7  | Yes       | Divorced       | 150           | No                 | **137.5**
 
 Table: Borrowers dataset with possible splits for the Annual Income feature.
 

@@ -1,7 +1,7 @@
 # Learning from a probabilistic perspective
 
 !!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
+	After completing this **optional** lesson you should be able to:
 
     * understand the optimisation process from a Bayesian framework
     *	use maximum likelihood method to optimise the loss function
@@ -9,7 +9,7 @@
 
 **In this section we will discuss the link between minimising a loss function and probability theory, to see how learning can take a probabilistic perspective.**
 
-We will also establish links with a particular probabilistic framework, namely the Bayesian framework for learning. This lesson and its subsections provide additional information to support future modules, but it is not necessary to understand in detail in order to progress with this module. As such, you may wish to skim read the material now, and return to it in more detail later on.
+We will also establish links with a particular probabilistic framework, namely the Bayesian framework for learning. This lesson and its subsections provide additional information to support future modules, but it is not necessary to understand in detail in order to progress with this module. As such, **you may wish to skim read the material now, and return to it in more detail later on**.
 
 ## Minimising least squares loss via maximising the likelihood
 
