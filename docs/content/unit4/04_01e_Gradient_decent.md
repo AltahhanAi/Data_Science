@@ -172,6 +172,8 @@ Please watch the following video on stochastic and mini-batch gradient descent f
 <iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/77dfcc5072794031abf501bcd980c56c1d" allowfullscreen msallowfullscreen
  allow="fullscreen"></iframe>
 
+<a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-23082047_4" target="_blank">Download transcript (PDF).</a>
+
 Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.
 
 Batch learning algorithm such as LS Regression or Batch Stochastic Gradient Descent take into account the entirety (the whole batch) of the dataset at once. No intermediate learning occurs. Another way to minimise the loss function is to gradually change the weights towards minimising the loss function instead of going all the way according to the sum of the errors. This is called sequential learning. There are several advantages for this approach. The most obvious advantage is that it allows for a stream of data to be fed into a system and the system can learn live as the data arrives from the stream. The main advantage is that learning can occur immediately for any fed sample and we do not need to wait to see the entirety of the dataset to learn a model.
