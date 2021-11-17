@@ -37,7 +37,7 @@ We can fit a linear model that we show below on the left. On the right we show a
 ##Inference in Linear Regression Models
 
 The idea is that later on when we want to know the y of a given x we can extrapolate or interpolate. So if we assume that the previous linear regression model has the formula
-$y=2x+10$ then given that $x=2$ then we can immediately infer from our model that $y=2x2+10=14$. Similarly, given any regression model we can ask the model to predict for us a value y given an input x. In the next sections we will see how we can actually build or train such linear regression models. We start by formulating the regression problem in a proper mathematical framework and we will see how we can train a linear regression model via a set of algorithms.
+$y=2x+10$ then given that $x=2$ then we can immediately infer from our model that $y=2 \times 2+10=14$. Similarly, given any regression model we can ask the model to predict for us a value y given an input x. In the next sections we will see how we can actually build or train such linear regression models. We start by formulating the regression problem in a proper mathematical framework and we will see how we can train a linear regression model via a set of algorithms.
 
 ##Problem Formulation
 
