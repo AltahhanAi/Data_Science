@@ -115,7 +115,7 @@ $$
 
 Which is the same normal equation as above.
 
-To see how the matrices are interacting with each other in terms of the dimensions we can add the dimension of each matrix so see how the intermediate dimensions are cancelled out during multiplication to end up with matrix of size ($M,K$) on both sides of the equation.
+To see how the matrices are interacting with each other in terms of the dimensions we can add the dimension of each matrix to see how the intermediate dimensions are cancelled out during multiplication to end up with matrix of size ($M,K$) on both sides of the equation.
 
 $$
 \mathbf{\Phi}_{(\mathrm{M}, \mathrm{N})}^{\top} \mathbf{\Phi}_{(\mathrm{N}, \mathrm{M})} \mathbf{W}_{(\mathrm{M}, \mathrm{K})}^{*}=\mathbf{\Phi}_{(\mathrm{M}, \mathrm{N})}^{\top} \mathbf{T}_{(\mathrm{N}, \mathrm{K})}

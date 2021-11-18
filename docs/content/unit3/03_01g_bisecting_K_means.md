@@ -132,7 +132,7 @@ Please refer to section 5.3 of Tan et al 2019.
 
 Evaluating clusters is an important step towards improving and comparing different clustering algorithms as well as to improve the obtained clusters. Mainly, we can adopt two approaches for cluster evaluation; supervised approach or unsupervised approach.
 
-<iframe title="Clusters part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/2271688c6f5a48a080976624fc23fc921d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<iframe title="Clusters part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/a5ca83a89dd543bc9a13b33b046f427b1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22866512_4" target="_blank">Download transcript (PDF).</a>
 
