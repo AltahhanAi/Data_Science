@@ -140,7 +140,7 @@ The entropy measures how uncertain our prediction is with respect to our model p
 belongs to Class 1 and the entropy of the model regarding this classification is minimal in this case $0.08$. On the other hand, when $y_{n}=0.51$ then although the prediction is still that the data point $\mathbf{x}_{n}$ belongs to Class 1, the model is far less confident about its own prediction and the entropy in this case is maximal $0.999$.
 
 
-Since $y_{n}$ is a function of $\mathbf{w}$ and $\mathbf{x}_{n}$ the entropy is also a function of them and can denoted as:
+Since $y_{n}$ is a function of $\mathbf{w}$ and $\mathbf{x}_{n}$ the entropy is also a function of them and can be denoted as:
 
 $$
 H_{n}(\mathbf{w})=-y_{n} \log \left(y_{n}\right)-\left(1-y_{n}\right) \log \left(1-y_{n}\right)
@@ -179,7 +179,7 @@ $$
 \end{array}
 $$
 
-You can see how we get the gradient in the box below. This is surprising since it is exactly the same as the gradient for the sum of squared errors in a linear regression model. It is a pleasant by-product of the synergy between cross validation and logistic model that will allow us to greatly simplify the learning procedure of a logistic model.
+You can see how we get the gradient in the box below. This is surprising since it is exactly the same as the gradient for the sum of squared errors in a linear regression model. It is a pleasant by-product of the synergy between cross entropy and logistic model that will allow us to greatly simplify the learning procedure of a logistic model.
 
 Since we need to go opposite to the gradient direction the stochastic gradient update is given as
 
@@ -207,9 +207,9 @@ $$
 
 Now we need to pause a second here. As we pointed out, this update is identical to a linear regression update without the activation function! The main difference is in how we interpret the results and in how we require our model to work. In linear regression we are trying to come up with a prediction of a **value** $y_{n} .$ In logistic regression we are trying to come up with a **class** $y_{n} .$ The prediction is calculated using the logistic function while in linear regression there is no activation function at all.
 
-Hence we can extend **any of the previously covered algorithms** for linear regression to work equally on logistics regression and this is the beauty of it. For example, we can build a regularised stochastic gradient algorithm that uses the above update. We can also come up with a regularised batch update for logistic regression which is shown below. We show the vectorised version of the mini-batch similar to Algorithm 6 " however of course there is a vanilla mini-batch similar to the one for the perceptron and vice-versa (scroll to the right in the box to view all of the algorithm).
+Hence we can extend **any of the previously covered algorithms** for linear regression to work equally on logistic regression and this is the beauty of it. For example, we can build a regularised stochastic gradient algorithm that uses the above update. We can also come up with a regularised batch update for logistic regression which is shown below. We show the vectorised version of the mini-batch similar to Algorithm 6 " however of course there is a vanilla mini-batch similar to the one for the perceptron and vice-versa (scroll to the right in the box to view all of the algorithm).
 
-!!! algorithm-heading "Algorithm 2: Regularised Mini-Batch Stochastic Gradient Descent Updates for Logistic Regression Model with Radial Basis (see previous unit for other possible basis). "
+!!! algorithm-heading "Algorithm 2: Mini-Batch Stochastic Gradient Descent Updates for Logistic Regression Model with Radial Basis (see previous unit for other possible basis). "
 
     **Input:**
 
@@ -275,7 +275,7 @@ Hence we can extend **any of the previously covered algorithms** for linear regr
 
 ### More about cross entropy
 
-Recall that the entropy (which the clutter or uncertainty) of a random variable $V$ that can take either of two outcomes $v$
+Recall that the entropy (which is the clutter or uncertainty) of a random variable $V$ that can take either of two outcomes $v$
 and $\neg v$ (Bernoulli) as per a distribution $Q$ is defined as
 
 $$

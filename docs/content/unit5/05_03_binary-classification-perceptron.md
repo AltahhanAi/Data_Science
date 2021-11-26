@@ -134,7 +134,7 @@ $$
 
 Based on what we have covered in Algorithm 5 in Unit 4, we can directly apply a mini-batch stochastic gradient approach on the perceptron with regularisation which is shown below (scroll right within the box to see all information).
 
-!!! algorithm-heading "Algorithms 1: Regularised Mini-Batch Stochastic Gradient Descent for Linear Classification ‎(Perceptron) with Radial Basis (see previous unit for other possible basis)"
+!!! algorithm-heading "Algorithms 1: Mini-Batch Stochastic Gradient Descent for Linear Classification ‎(Perceptron) with Radial Basis (see previous unit for other possible basis)"
 
     **Input:**
 
