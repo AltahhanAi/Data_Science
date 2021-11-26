@@ -192,27 +192,28 @@ We will prove that the above model is actually equivalent to a multi-output line
 
 Both layers can be seen as multi-output linear regression model. So let us see how they interact with each other: the hidden layer output is given as:
 
-$\dot{\boldsymbol{y}}=\mathbf{W}^{\top} \boldsymbol{\phi}(\mathbf{x})$
+$$
+\dot{\boldsymbol{y}}=\dot{\mathbf{W}}^{\top} \boldsymbol{\phi}(\mathbf{x})
+$$
 
-We will denote $\boldsymbol{\phi}(\mathbf{x})$ as $\boldsymbol{\phi}$ and $\boldsymbol{\phi}_{n}(\mathbf{x})$ as $\boldsymbol{\phi}_{n}$
+We will denote $\boldsymbol{\phi}(\mathbf{x})$ as $\boldsymbol{\phi}$ and $\boldsymbol{\phi}_{n}(\mathbf{x})$ as $\boldsymbol{\phi}_{n}$ hence
 
-$\dot{\boldsymbol{y}}=\dot{\mathbf{W}}^{\top} \boldsymbol{\phi}$
+$$
+\dot{\boldsymbol{y}}=\dot{\mathbf{W}}^{\top} \boldsymbol{\phi}
+$$
 
-Where $ϕ(x)$ is a feature vector that includes a dummy feature $ϕ_0=1$. The output of the output layer is given as:
+Where $\boldsymbol{\phi}(\mathbf{x})$ is a feature vector that includes a dummy feature $ϕ_0=1$. The output of the output layer is:
 
-$\dot{\boldsymbol{y}}=\dot{\mathbf{W}}^{\top} \boldsymbol{\phi}(\mathbf{x})$
+$$
+y=\ddot{\mathbf{W}}^{\top}\left[\begin{array}{c}
+1 \\
+\dot{y}
+\end{array}\right]
+$$
 
-We will denote $ϕ(x)$ as $ϕ$ and $ϕ_n (x)$ as $ϕ_n$
+It is clear that the weight matrices has incompatible dimension and in particular we need $\dot{\mathbf{W}}^{\top}$ to be of size $(M+1)×(3+1)$ to be able to multiply it by $\ddot{\mathbf{W}}^{\top}$ which is of size $(3+1)×2$ so that the multiplication cancels out the dimension $(3+1)$ to get an overall matrix of size $(M+1)×2$.
 
-$\dot{\boldsymbol{y}}=\dot{\mathbf{W}}^{\top} \boldsymbol{\phi}$
-
-Where $ϕ(x)$ is a feature vector that includes a dummy feature $ϕ_0=1$. The output of the output layer is given as:
-
-$\boldsymbol{y}=\ddot{\mathbf{W}}^{\top}\left[\begin{array}{l}1 \\ \dot{y}\end{array}\right]$
-
-It is clear that the weight matrices has incompatible dimension and in particular we need $W ̇^⊤$ to be of size $(M+1)×(3+1)$ to be able to multiply it by $\dot{\mathbf{W}^T}$ which is of size $(3+1)×2$ so that the multiplication cancels out the dimension $(3+1)$ to get an overall matrix of size $(M+1)×2$.
-
-Let us define a vector of a 1 followed by $M$ 0s as $1 \mathbf{0}_{\mathrm{M}}=[1, \underbrace{0, \ldots, 0}_{M}]$. So now we append this vector into the weight matrix $\dot{\mathbf{W}^T}$ to a get the matrix $\left[\begin{array}{l}1 \mathbf{0}_{\mathrm{M}} \\ \dot{\mathbf{W}}^{\top}\end{array}\right]$ and now we can multiply. By substituting $\dot{\mathbf{y}}$ in the above we get:
+Let us define a vector of a 1 followed by $M$ 0s as $1 \mathbf{0}_{\mathrm{M}}=[1, \underbrace{0, \ldots, 0}_{M}]$. So now we append this vector into the weight matrix $\dot{\mathbf{W}}^{\top}$ to a get the matrix $\left[\begin{array}{l}1 \mathbf{0}_{\mathrm{M}} \\ \dot{\mathbf{W}}^{\top}\end{array}\right]$ and now we can multiply. By substituting $\dot{\mathbf{y}}$ in the above we get:
 
 $\boldsymbol{y}=\ddot{\mathbf{W}}^{\top}\left[\begin{array}{c}1 \\ \mathbf{W}^{\top} \boldsymbol{\phi}\end{array}\right]$
 
@@ -230,7 +231,7 @@ Now we define $\mathbf{W}^{\top}=\ddot{\mathbf{W}}^{\top}\left[\begin{array}{l}1
 
 $y=W^⊤ ϕ$
 
-And so, we have written the two-layer model as a one layer linear regression model.  This gives the following insight: we do not need multi-layer linear model as it can be expressed as a one-layer model. However, we might still want to use two or more layers to reduce the number of parameters that we are dealing with. For example if we have an input space of 100 attributes and 10 outputs then we would need to deal with 1000 parameters, while if we introduced a 5 neurons hidden layer in the middle then we would need to deal with $100×50 + 5×10=550$ parameters. So, in this case by using two layers instead of one we reduced the number of parameters of the model which is desirable.
+And so, we have written the two-layer model as a one layer linear regression model.  This gives the following insight: we do not need multi-layer linear model as it can be expressed as a one-layer model. However, we might still want to use two or more layers to reduce the number of parameters that we are dealing with. For example if we have an input space of 100 attributes and 10 outputs then we would need to deal with 1000 parameters, while if we introduced a 5 neurons hidden layer in the middle then we would need to deal with $100×5 + 5×10=550$ parameters. So, in this case by using two layers instead of one we reduced the number of parameters of the model which is desirable.
 
 On the other hand, multi-layer model makes more sense when we use a non-linear activation function in the hidden layer as follows.
 

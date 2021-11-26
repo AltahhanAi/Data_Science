@@ -84,18 +84,11 @@ The same structure can be produced to the perceptron; we only need to change the
   </figcaption>
 </figure>
 
-The figures above show decision boundaries for multi-output (multi-class) perceptron (left) and logistic regression (right) for the iris dataset. The setosa is linearly separable from the rest, while versicolor and virginica are non-linearly separable.
+The figures above show decision boundaries for multi-output (multi-class) perceptron and logistic regression for the iris dataset. The setosa is linearly separable from the rest, while versicolor and virginica are non-linearly separable.
 
 Figure 5.37 shows one-versus-all (OvA), which creates ambiguous regions (hyperplanes) shown by the dashed lines. For the perceptron it is struggling to come up with close enough boundaries and thrown off by the outliers in both the versicolor and the virginica. The logistic regression one-versus-all did better in that sense because it is much more resilient towards outliers, but it still has an ambiguous region (the triangle in the middle of the figure) where two classifiers are thinking that the data in the middle belongs to their respective positive class.
 
 The shaded decision regions in figure 5.38 are obtained via the normalisation of the scores given by the independent classifiers in order to overcome the ambiguity issue of the OvA approach that we mentioned in the previous section.
-
-<figure role="group">
-  <img src="../images/DS_IMG163.png" alt="Two graphs showing decision regions of a normalised, multi-output SGD linear classification, using a logistic regression algorithm." />
-  <figcaption>
-    <p><strong>Figure 5.39.</strong> Decision boundaries for multi-output (multi-class) both for logistic regression on the iris dataset.</strong> Left shows a multinomial logistic regression while the right shows normalised multi-output logistic regression. The difference is that in the left we normalise exponential activation functions for multi-output, and on the right we normalise multiple logistic functions instead of exponential functions. As you can see, multinomial logistic regression deals better with ambiguity but it is still there because essentially we are still dealing with linear models. We need a more complex model to deal with the issue such as a neural network that is capable of generating curved shape boundaries. </p>
-  </figcaption>
-</figure>
 
 ##Multinomial logistic regression: softmax regression
 
@@ -176,7 +169,7 @@ $$
 Finally the multinomial logistic regression model can be succinctly defined as
 
 $$
-\boldsymbol{y}(\mathbf{x}, \mathbf{W})=e\left(\mathbf{W}^{\top} \boldsymbol{\phi}(\mathbf{x})\right)
+\boldsymbol{y}(\mathbf{x}, \mathbf{W})=e^{\left(\mathbf{W}^{\top} \phi(\mathbf{x})\right)}
 $$
 
 $$
@@ -356,6 +349,10 @@ Note that for the logistic regression there is no least squares solution, as thi
 			Else $\mathbf{W}=\mathbf{W}^{\prime}$
 
         Return the final solution $\mathbf{W}$
+
+!!! Note
+
+    Please note that we used a ridge regularisation (L2 norm for the weights). If we instead use the absolute value (L1 norm) we get the Lasso regularisation. Lasso has the advantage of driving the weights of irrelevant features to 0 which effectively works as an intrinsic feature selection mechanism. This can be helpful in many situations, and you can experiment with	Lasso in sklearn. Ridge however provides a more streamlined presentation and hence it is covered here. This applies on	both logistic regression and multinomial logistic regression. See this sklearn <a href="https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression-and-classification" target="_blank">Ridge</a> link and this <a href="https://scikit-learn.org/stable/modules/linear_model.html#lasso" target="_blank">Lasso</a> link for a description, as well as this link for <a href="https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#sphx-glr-auto-examples-inspection-plot-linear-model-coefficient-interpretation-py" target="_blank">pitfalls</a>  of interpretation of features coefficient in linear models.
 
 ##Lesson summary
 

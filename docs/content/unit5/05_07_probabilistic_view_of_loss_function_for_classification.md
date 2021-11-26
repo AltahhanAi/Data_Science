@@ -1,12 +1,12 @@
 #Probabilistic view of loss function for classification
 
 !!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
+	After completing this **optional** lesson you should be able to:
 
     * appreciate classification from a probabilistic perspective
 	  * understand the difference between generative and discriminative models.
 
-In this section we will discuss the link between minimising a loss function and probability theory for classification, to see how learning can take a probabilistic perspective. We will also establish links with a particular probabilistic framework: the Bayesian framework for learning. This section can be safely skipped, without consequences on other sections or future sections in the module. Similar material will be also covered in some form in the Machine Learning module.
+In this section we will discuss the link between minimising a loss function and probability theory for classification, to see how learning can take a probabilistic perspective. We will also establish links with a particular probabilistic framework: the Bayesian framework for learning. This lesson and its subsections provide additional information to support future modules, but it is not necessary to understand in detail in order to progress with this module. As such, you may wish to **skim read the material now, and return to it in more detail later on**.
 
 ##Expected loss
 
