@@ -241,7 +241,7 @@ $$
 \begin{array}{cc}
 \text { Detect }_{+}=\frac{40}{40+10}=0.8 & \text { Detect }_{-}=\frac{40}{40+10}=0.8 \\
 \text { Predict }_{+}=\frac{40}{40+10}=0.8 & \text { Predict }_{-}=\frac{40}{40+10}=0.8 \\
-\text { Accuracy }=\frac{40+40}{100}=0.8 \quad F 1=\frac{2 \times 40}{2 \times 40+40+10}=0.615 \\
+\text { Accuracy }=\frac{40+40}{100}=0.8 \quad F 1=\frac{2 \times 0.8 \times 0.8}{0.8 + 0.8}=0.8 \\
 M C C=\frac{40 \times 40-10 \times 10}{\sqrt{(40+10)(40+10)(40+10)(40+10)}}=0.6
 \end{array}
 $$
