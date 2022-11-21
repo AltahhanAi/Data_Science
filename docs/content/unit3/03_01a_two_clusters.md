@@ -85,7 +85,7 @@ Note that there are a lot of measures other than the usual Euclidian distance th
 
 2. **Symmetry:** $d(\mathbf{x}, \mathbf{y})=d(\mathbf{y}, \mathbf{x})$ for any $\mathbf{x}$ and $\mathbf{y}$
 
-3. **Triangle inequality:** $d(\mathbf{x}, \mathbf{z}) \leq d(\mathbf{x}, \mathbf{y})+d(\mathbf{y}, \mathbf{x})$ for any $\mathbf{x}, \boldsymbol{y}$ and $\mathbf{z}$
+3. **Triangle inequality:** $d(\mathbf{x}, \mathbf{z}) \leq d(\mathbf{x}, \mathbf{y})+d(\mathbf{y}, \mathbf{z})$ for any $\mathbf{x}, \boldsymbol{y}$ and $\mathbf{z}$
 
 We state here a few of interest, but these are by no means an exhaustive list of them.
 
