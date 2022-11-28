@@ -3,7 +3,7 @@
 
 **In its simplest form, linear models attempt to draw a straight line that fits a set of data point. Given the following dataset (scroll to the right within the table to see all data):**
 
-| x | -10  | -7.8 | -5.6	| -3.3 | -1.1 | 1.1  | 3.3  | 5.6  | 7.8  | 10   |
+| x | -10  | -7.8 | -5.6  | -3.3 | -1.1 | 1.1  | 3.3  | 5.6  | 7.8  | 10   |
 |---|------|------|-------|------|------|------|------|------|------|------|
 | y | -8.9 | -4.2 |  0    |  3.1 |  6.6 | 11.9 | 17.3 | 19.8 | 24.8 | 29.8 |
 
@@ -25,11 +25,11 @@ We can fit a linear model that we show below on the left. On the right we show a
 
     * $t_{n}$ is a real value corresponds to a target $n$ in one dimensional space.
 
-    * $\boldsymbol{t}_{n}$ is a real value vector that corresponds to a multi-output target n in $K$ dimensional space.</mark>
+    * $\boldsymbol{t}_{n}$ is a real value vector that corresponds to a multi-output target n in $K$-dimensional space.</mark>
 
     * $x_{i}\left(\right.$ and $\left.x_{n, i}\right)$ is components $i$ of some vector $\mathbf{x}\left(\right.$ or $\left.\mathbf{x}_{n}\right)$ depending on the context.
 
-    * while $\mathbf{W}$ is a weight vector of $D$ (or $M)$ components; in other words it is a vector of $D$ rows and 1 column.
+    * while $\mathbf{w}$ is a weight vector of $D$ (or $M)$ components; in other words it is a vector of $D$ rows and 1 column.
 
     * $\mathbf{W}$ is a weight matrix of $D \times K($ or $M \times K)$ components. In other words it has $D$ rows and $K$ columns.
 
