@@ -6,7 +6,7 @@ Bisecting K-means algorithm makes use of the 2-means algorithm to bisect the dat
 
 The idea is as follows: In order to specify the K centroids, we can employ the idea of bisecting (splitting into 2) the dataset into two clusters. Then we pick a cluster to bisect it in turn. Each time we do the bisection in several trials (to create a **set of bisection candidates**) with random initial centroids. We then pick the pair of clusters candidates that have the **lowest SSEs** and we add them to the **list of clusters**. We keep bisecting each available cluster from the list of clusters by employing 2-means trails until we reach K-clusters. Each time we pick a cluster from the list of clusters to be bisected based on some criterion. A viable criterion is to select the cluster with the **highest SSE**. The process is repeated until we reach K-cluster.
 
-The set of bisected K-clusters, however, may not need refinement because the splitting procedure (by using 2-means algorithm) is done by looking locally at a sub cluster and not at the level of the whole dataset. To refine further the chosen K-clusters, we choose the centroids of the bisected K-clusters as the initial centroids of a final new run of K-means algorithms, which in turn finds us the best K-clusters and their centroids. The algorithm is shown below.
+The set of bisected K-clusters, however, may need refinement because the splitting procedure (by using 2-means algorithm) is done by looking locally at a sub cluster and not at the level of the whole dataset. To refine further the chosen K-clusters, we choose the centroids of the bisected K-clusters as the initial centroids of a final new run of K-means algorithms, which in turn finds us the best K-clusters and their centroids. The algorithm is shown below.
 
 !!! algorithm-heading "Algorithms 3: Bisecting K-means"
 
@@ -53,7 +53,7 @@ Below in figure 3.11, we show results of bisecting K-means on the problem that w
   <figcaption><strong>Figure 3.11.</strong> Bisecting K-means overcoming the issues of unlucky centroid initialisation. Image reproduced from slides by Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.</figcaption>
 </figure>
 
-##Agglomerative clustering
+# Agglomerative clustering
 
 <iframe title="Cluster analysis 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/2271688c6f5a48a080976624fc23fc921d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
 
