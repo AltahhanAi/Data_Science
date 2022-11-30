@@ -19,7 +19,7 @@ We can fit a linear model that we show below on the left. On the right we show a
 !!! info "Important note"
 	We denote matrices by a bold face capital letter, vectors by a bold face letter and variables by a normal face letter and components of a vector will be italic. So for example:
 
-    * $\mathrm{X}_{n}$ is a real value that corresponds to data point n in one dimension space.
+    * $\mathrm{x}_{n}$ is a real value that corresponds to data point n in one dimension space.
 
     * while $\mathbf{X}_{n}$ is a vector of multiple components that corresponds to data point $n$ in D-dimensional space.
 
@@ -36,8 +36,8 @@ We can fit a linear model that we show below on the left. On the right we show a
 
 ##Inference in Linear Regression Models
 
-The idea is that later on when we want to know the y of a given x we can extrapolate or interpolate. So if we assume that the previous linear regression model has the formula
-$y=2x+10$ then given that $x=2$ then we can immediately infer from our model that $y=2 \times 2+10=14$. Similarly, given any regression model we can ask the model to predict for us a value y given an input x. In the next sections we will see how we can actually build or train such linear regression models. We start by formulating the regression problem in a proper mathematical framework and we will see how we can train a linear regression model via a set of algorithms.
+The idea is that later on when we want to know the $y$ of a given $x$ we can extrapolate or interpolate. So if we assume that the previous linear regression model has the formula
+$y=2x+10$ then given that $x=2$ then we can immediately infer from our model that $y=2 \times 2+10=14$. Similarly, given any regression model we can ask the model to predict for us a value $y$ given an input $x$. In the next sections we will see how we can actually build or train such linear regression models. We start by formulating the regression problem in a proper mathematical framework and we will see how we can train a linear regression model via a set of algorithms.
 
 ##Problem Formulation
 
@@ -47,21 +47,21 @@ We assume that we have a training dataset that consists of:
 
 2. A set of corresponding target values $\left\{\mathbf{t}_{n}\right\}$
 
-We call $\mathbf{x}_{n}$ a data point, an observation, a record or a case, interchangeably. Similarly, we call $t_{n}$ the label, the target value or the answer, interchangeably.  
+We call $\mathbf{x}_{n}$ a data point, a vector of observations, a record or a case, interchangeably. Similarly, we call $t_{n}$ the label, the target value or the answer, interchangeably.  
 
 !!! note
-		That $\mathbf{x}_{n}$ is a vector of D real values. We assume that $t_{n}$ is a real value scalar. Also, note that in the general case $t_{n}$ can be a vector of size $K$, we will come to that later.
+		That $\mathbf{x}_{n}$ is a vector of D real values. We assume that $t_{n}$ is a real value scalar. Also, note that in the general case $\mathbf{t}_{n}$ can be a vector of size $K$, we will come to that later.
 
 !!! info "Important note"
     All the techniques of partitioning the dataset into training, validation and testing sets, with cross validation sets if necessary, that we have discussed in Unit 2 apply to all the techniques that we discuss in this unit. From now on any reference to a dataset in a training context assumes that we are talking about a training set.
 
 ##The Aim of Constructing a Model
 
-Given a new unseen observation $X$, the goal is to train a model to predict the target value $y(X)$ for the given observation $X$ so that $y(X)$ resemble or come as close as possible to the ‘would be’ real target value $t$. During training, both $y\left(\mathrm{X}_{n}\right)$ and $t_{n}$ are available and their difference drives the learning journey of the model. After training, when the model is used in real settings, we do not know the target value $t$. The whole point of constructing the model is to predict such a value. So the generalisation and prediction capabilities of our model have to be specified from the available answers $t_{n}$.
+Given a new unseen observation $x$, the goal is to train a model to predict the target value $y(x)$ for the given observation $x$ so that $y(x)$ resemble or come as close as possible to the ‘would be’ real target value $t$. During training, both $y(x_{n})$ and $t_{n}$ are available and their difference drives the learning journey of the model. After training, when the model is used in real settings, we do not know the target value $t$. The whole point of constructing the model is to predict such a value. So the generalisation and prediction capabilities of our model have to be specified from the available answers $t_{n}$.
 
 ##Linear Regression as a Parametric Model
 
-One of the simple types of parametric models is the linear regression model which is the topic of this lesson. It belongs to a wider group of models called parametric models. Parametric models have one important thing in common, which is that they all use a set of adjustable parameters (aka weights) which the model learning algorithm tweaks in order to reduce the loss function and make the model prediction as close to the desired target values as possible. Throughout this unit we denote the adjustable parameters or weights as w. In the next section we will see how the linear regression model can be expressed in terms of its weights.  
+One of the simple types of parametric models is the linear regression model which is the topic of this lesson. It belongs to a wider group of models called parametric models. Parametric models have one important thing in common, which is that they all use a set of adjustable parameters (aka weights) which the model learning algorithm tweaks in order to reduce the loss function and make the model prediction as close to the desired target values as possible. Throughout this unit we denote the adjustable parameters or weights as $\mathbf{w}$. In the next section we will see how the linear regression model can be expressed in terms of its weights.  
 
 ##Why we call it linear
 
