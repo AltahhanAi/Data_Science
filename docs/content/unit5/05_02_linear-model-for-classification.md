@@ -188,7 +188,7 @@ Some examples of different straight line decision boundaries are shown below in 
   </figcaption>
 </figure>
 
-You might ask, but how should we tune the model? And can we optimise its parameters choice to draw a line that maximises the distance and reparability of the classes in the data? As you already know, a line can be drawn in many ways. Mainly there are two parameters of a line that completely specify the line with no ambiguity. This formula defines adjustable weights parameters $w_{i}$ that we need to learn the best value of, in order to classify our data. In figure 5.14 below, we show a schematic illustration of a linear classification model. The dashed line box denotes scaling of each component in the input set (this is done on the level of the dataset and on the level of individual record, see Unit 1 for more details).
+You might ask, but how should we tune the model? And can we optimise its parameters choice to draw a line that maximises the distance and separability of the classes in the data? As you already know, a line can be drawn in many ways. Mainly there are two parameters of a line that completely specify the line with no ambiguity. This formula defines adjustable weights parameters $w_{i}$ that we need to learn the best value of, in order to classify our data. In figure 5.14 below, we show a schematic illustration of a linear classification model. The dashed line box denotes scaling of each component in the input set (this is done on the level of the dataset and on the level of individual record, see Unit 1 for more details).
 
 <figure role="group">
   <img src="../images/DS_IMG139.jpg" alt="Schematic representation of a linear model for classification." />
