@@ -184,17 +184,17 @@ Sometimes it is not clear what the label is for the task or the task itself is n
 
 ###Dealing with missing-ness
 
-This is a common problem for realistic datasets. Most likely, the same information is not obtained for all the objects/people (called data points because they are represented as a data point in a multi-dimensional space). For example, the age or the weight of a person may be missing due to human error or due to the information not being required (especially when the data collection process is not automated).
+This is a common problem for realistic datasets. Most likely, the same information is not obtained for all the objects/people (called data points because they are represented as data points in a multi-dimensional space). For example, the age or the weight of a person may be missing due to human error or due to the information not being required (especially when the data collection process is not automated).
 
 Sometimes the missing data is completely random and is due to collection issues, but may reveal a tendency related to the underlying object or phenomena that is being analysed. For example, a notion of privacy might prevent people from revealing their information.  
 
-In this case, the missing-ness issue of the dataset needs to be dealt with. One drastic thing to do is to eliminate any record that has a missing field in it – called imputation. This would make the dataset more uniformed and ready for applying whatever data mining technique intended, but at the expense of losing the data points that have missing fields. Such an approach is not usually advised, especially with small or medium datasets. Even if the data is large, if the missing data is not random then removing the related data points can introduce a bias in the model.
+In this case, the missing-ness issue of the dataset needs to be dealt with. One drastic thing to do is to eliminate any record that has a missing field in it – called a deletion. This would make the dataset more uniform and ready for applying whatever data mining technique intended but at the expense of losing the data points that have missing fields. Such an approach is not usually advised, especially with small or medium datasets. Even if the data is large, if the missing data is not random then removing the related data points can introduce a bias in the model.
 
-For example, you have dataset for people’s ages, salaries and marital statuses, which will be used to predict if a person will default on a debt or not. If people with high salaries tend not to reveal their salaries, then removing all data points with a missing salary will introduce a bias in the build model. This will result in much less accuracy in performing the data mining task for people with high salaries.
+For example, you have a dataset for people’s ages, salaries and marital statuses, which will be used to predict if a person will default on a debt or not. If people with high salaries tend not to reveal their salaries, then removing all data points with a missing salary will introduce a bias in the build model. This will result in much less accurate performance of data mining tasks for people with high salaries.
 
-Another way to deal with the missing fields data is to provide an estimate of this data. However, an estimate is not precise, and a loss of accuracy is expected for the model because when with estimates there may be some noise and bias introduced as well.  
+Another way to deal with the missing field data is to provide an estimate of this data- called imputation. Imputation using an average or a maximum across a field is a common method for dealing with data missingness. We should bear in mind, that an estimate is not precise, and a loss of accuracy may be introduced to the model because when with estimates there may be some noise and bias introduced as well.  
 
-So, how should you estimate? An unbiased estimate would be the mean of the feature. Take the entire data for a filed – vertically – and calculate the mean for it, replacing all the missing values with this mean.
+So, how should you estimate? An unbiased estimate would be the mean of the feature. Take the entire data for a field – vertically – and calculate the mean for it, replacing all the missing values with this mean.
 
 ###Aggregation and summarisation
 
