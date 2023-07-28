@@ -78,7 +78,7 @@ You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-1873896
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
-###Filtering
+### Filtering
 
 Sometimes a feature must be obtained or deduced from other features. This can be done via a simple calculation on some features, or by larger processing of a set of features to obtain better representation for the task in hand.  
 
@@ -105,11 +105,12 @@ You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
-####Correlation
+#### Correlation
 
-For example, the correlation between the features can be used to select a subset of the original set that has minimal correlation. This is guaranteed to have maximum independency between the features which convey the most important information, without an overlap that is conveyed inside the features that are correlated.
+For example, the correlation between the features can be used to select a subset of the original set that has minimal correlation. This is guaranteed to have maximum independency between the features which convey the most important information, without an overlap that is conveyed inside the features that are correlated. 
 
-####Subset selection
+
+#### Subset selection
 
 Another example is the subset selection process. This involves removing redundant features, like in the correlation example, and irrelevant features, like the IDs example in the filtering technique.  
 
@@ -124,7 +125,7 @@ There would be 1024 subsets. Can you work out what the rule for calculating the 
 
 See the following for <a href="https://scikit-learn.org/stable/modules/feature_selection.html" target="_blank">a set of feature selection techniques available in sklearn</a>.
 
-####Set of all subsets of a Set
+#### Set of all subsets of a Set
 
 Note that the number of features can be hundreds or more, so it becomes impractical to enumerate all of the possible subsets. All the possible subsets of a set are called the power set.  
 
@@ -137,29 +138,46 @@ Figure 1.5 summarises a feature subset selection process, which is a search over
 ![Flowchart of a feature subset selection process.](images/DS_IMG005.png)
 **Figure 1.5.** Tan, P., et.al. (2019), Introduction to Data Mining by Second Edition, Pearson.
 
-As another example, Principal Component Analysis (PCA) applies the ideas of Eigen vectors of a matrix to obtain a new set of features that are more concise and better represent the problem being dealt with. Normally it is not necessarily known what physical measurements the new features represent. Rather, by using PCA it is certain that transforming to the new set of dimensions guarantees a better performance for the model.
+As another example, Principal Component Analysis (PCA) applies the ideas of Eigenvectors of a matrix to obtain a new set of features that are more concise and better represent the problem being dealt with. Normally it is not necessarily known what physical measurements the new features represent. Rather, by using PCA it is certain that transforming to the new set of dimensions guarantees a better performance for the model.
 
 !!! abstract "Exercise"
 
 		Given that we have the following attributes {a, b, c, d, e} write the power set for the above set.
 
-###Synonymous features
+#### Recursive Feature Elimination
+In this technique, the importance of the features is taken into account to select the features that contribute more to the predictability of the label.
+The idea is to use a model to select the feature recursively and then *examine* how important these features are in predicting the label, then eliminate one or more of them, and again train a model based on the new features subset, then again examine which features contribute less to the predictability of the label to eliminate them. The procedure goes through several iterations depending on the specified number of features that we would like to keep. This method is more efficient than sequential feature selection (discuss next) because the feature importance is already a byproduct of the model-training exercise.
+
+#### Sequential Feature Selection
+In this technique, the metric of the model performance (such as its accuracy) is used to judge whether a feature subset is effective in predicting the label. This means that if we have m features, and we want to reduce them into m-1 features, then we need to build/train m separate models corresponding to each eliminated feature and then compare the final model score (such as accuracy) in order to decide which feature to eliminate. This is a backward method. There is also a forward method of adding features instead of removing features.
+
+#### ANOVA and Hypothesis Testing
+Analysis of the variance (ANOVA) and hypothesis testing are established statistical methods to understand the significance of the relationship between the dataset features (variables) and the label. In statistical terminology, the dependent variable is the label, and the independent variables(aka factors) are the set of features/attributes in our dataset. The groups are the different feature subsets. The null hypothesis is that two or more feature subsets have the same effect on predicting the label, and the alternate hypothesis is that two different groups indeed have different effects, and one of them will be more effective in predicting(measuring) the label and hence should be preferred to be used over another subset. ANOVA assumes that the label is normally distributed, which might not be the case.
+
+See the <a href="https://www.tibco.com/reference-center/what-is-analysis-of-variance-anova" target="_blank">following for more details  </a>.
+
+
+### Preventing Data Leakage via Pipelines
+A common mistake when selecting features via NAOVA, REF or other methods is to do it on the entire dataset, which includes the testing and the training datasets. To avoid this we can use the powerful idea of a pipeline. This technique can also be used to prevent data leakage when we rescale/standardise or impute the missing data.
+See this <a href="https://scikit-learn.org/stable/auto_examples/feature_selection/plot_feature_selection_pipeline.html" target="_blank">pipeline example </a>.
+
+### Synonymous features
 
 Synonymous features are two or more features that are effectively equivalent, or one is deduced directly from the other.  
 
 It is better to filter out or remove one of them. This is particularly relevant when there is a feature that is synonymous to the label that you are trying to fit a model to predict its value. If there is a direct effective equivalency or close to equivalency between the two features, one of them is the label and the other is assumed to be unknown (or not available in general) for new data points. Then, the synonymous feature must be omitted when a model is built to predict the label. This is because knowing a synonymous feature means knowing the label, and it is unlikely to be available for data points that we want to predict their labels.
 
-###Normalisation/standardisation and rescaling
+### Normalisation/standardisation and rescaling
 
 Often, one of the most important pre-processing techniques to be performed on the features is normalisation or standardisation and rescaling. This is because the range of one feature can be drastically different than the range of another feature.
 
 Consider the weight and height of a person. If the height is given in meters and the weight in grams then the weight is going to dominate the height during the model fitting exercise, resulting in marginalising the effect of the height on the prediction or clustering. The simple solution is to convert the height into cm or mm. However, this might marginalise other features. The standard way of dealing with such features is to either normalise them or to rescale them.
 
-###Standardisation
+### Standardisation
 
 Standardisation involves calculating the mean x̄ and standard deviation sx of a feature x. This is done by looking into the data that resides inside the feature as samples to calculate these statistical measures. The following transformation is then applied to the data that involves the features x′= (x-x̄)/sx. This is called variable transformation in statistics because it transforms the data from one space to the other. The new features x′ that were calculated out of x has a mean 0 and standard deviation of 1, i.e., it is standardised.
 
-###Rescaling
+### Rescaling
 
 Rescaling is similar to standardisation, with some differences. The calculations are x′= (x-xmin)/(xmax - xmin) where xmax and xmin are the maximum and minimum values that x might have, respectively.   
 
@@ -167,7 +185,7 @@ This guarantees that the range or scale of the new feature is [0 , 1] (between 0
 
 Note that if we do not know what {xmin, xmax } values might be (or potentially they can go -+ infinity) then we can take them from the values in the available data itself. However, we have to be careful in how we do this, as it might lead to data leakage when the dataset is rescaled before splitting (into training and testing).
 
-###Specifying the label for supervised learning
+### Specifying the label for supervised learning
 
 The label is the answer to the question or problem being solved. Often in supervised learning settings, the dataset contains the features as well as the label for each record.
 
@@ -181,11 +199,11 @@ Another example is the Titanic dataset, where the set of features are the inform
 
 The label is simply their survival info (binary: survived or did not survive). The task would be to fit a model that estimates if a passenger survived or not based on their information.
 
-###No label: unsupervised learning
+### No label: unsupervised learning
 
 Sometimes it is not clear what the label is for the task or the task itself is not to predict a label. Instead, it is to associate a set of items with each other or to cluster the items based on their resemblance to each other. In these cases, unsupervised learning techniques can be utilised which do not require a label. Sometimes the label is simply ignored to gain more insight of the data.
 
-###Dealing with missing-ness
+### Dealing with missing-ness
 
 This is a common problem for realistic datasets. Most likely, the same information is not obtained for all the objects/people (called data points because they are represented as data points in a multi-dimensional space). For example, the age or the weight of a person may be missing due to human error or due to the information not being required (especially when the data collection process is not automated).
 
@@ -195,15 +213,15 @@ In this case, the missing-ness issue of the dataset needs to be dealt with. One 
 
 For example, you have a dataset for people’s ages, salaries and marital statuses, which will be used to predict if a person will default on a debt or not. If people with high salaries tend not to reveal their salaries, then removing all data points with a missing salary will introduce a bias in the build model. This will result in much less accurate performance of data mining tasks for people with high salaries.
 
-Another way to deal with the missing field data is to provide an estimate of this data- called imputation. Imputation using an average or a maximum across a field is a common method for dealing with data missingness. We should bear in mind, that an estimate is not precise, and a loss of accuracy may be introduced to the model because when with estimates there may be some noise and bias introduced as well.  
+Another way to deal with the missing field data is to provide an estimate of this data- called imputation. Imputation using an average or a maximum across a field is a common method for dealing with data missingness. We should bear in mind that an estimate is not precise, and a loss of accuracy may be introduced to the model because when with estimates, there may be some noise and bias introduced as well.  
 
 So, how should you estimate? An unbiased estimate would be the mean of the feature. Take the entire data for a field – vertically – and calculate the mean for it, replacing all the missing values with this mean.
 
-###Aggregation and summarisation
+### Aggregation and summarisation
 
 When you want to group by a specific field to apply some calculation or summarisation operations, aggregation and summarisation is used. This means the data is gathered and presented in a summarised format, for example, grouping a dataset by gender and apply a sum or mean of wages to see the differences or inequality between the wages per gender.  
 
-###Discretion and binarisation
+### Discretion and binarisation
 
 These are standard techniques used to convert a continuous attribute which potentially has infinitely many possibilities to an attribute which has a confined number of possibilities. Often this is done to allow more efficient processing or to suit a classification or clustering task in hand.  
 
@@ -211,7 +229,7 @@ These are standard techniques used to convert a continuous attribute which poten
 
 **Binarisation** is the process of converting attribute values to binary values i.e. ones that have two values (often these are {0, 1}). Binarisation is a special case of discretisation. One form of discretisation is called histograms, where the number of occurrences of a range of values into a set of bins in counted. The set of bins replace the feature, and in this case, one attribute is replaced with as many bins as we have.
 
-###Melting and pivoting
+### Melting and pivoting
 
 Melting and pivoting are often overlooked operations. When they are applicable, it is important that they are performed to make the shape of the data suitable for further processing. These are often part of a more elaborate operation involving data preparation along other operations such as sorting etc. Please refer to the next exercise for a full working example in Python.
 
