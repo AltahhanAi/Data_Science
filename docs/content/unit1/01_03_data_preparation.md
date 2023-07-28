@@ -107,19 +107,22 @@ Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.e
 
 ####Correlation
 
-For example, correlation between the features can be used to select a subset of the original set that have minimal correlation. This is guaranteed to have maximum independency between the features which convey the most important information, without an overlap that is conveyed inside the features that are correlated.
+For example, the correlation between the features can be used to select a subset of the original set that has minimal correlation. This is guaranteed to have maximum independency between the features which convey the most important information, without an overlap that is conveyed inside the features that are correlated.
 
 ####Subset selection
 
 Another example is the subset selection process. This involves removing redundant features, like in the correlation example, and irrelevant features, like the IDs example in the filtering technique.  
 
-Common sense and domain knowledge can be used, although this is not necessarily always accurate. However, the best way to apply a subset selection process is to systematically eliminate features and test how good or bad the data mining task becomes. If it is not affected or improved, then it is a feature that can be removed. If the performance of the model is reduced, this is an indication that the feature plays an important role in the task and it needs to stay.  
+Common sense and domain knowledge can be used, although this is not necessarily always accurate. However, the best way to apply a subset selection process is to systematically eliminate features and test how good or bad the data mining task becomes. If it is not affected or improved, then it is a feature that can be removed. If the performance of the model is reduced, this is an indication that the feature plays an important role in the task, and it needs to stay.  
 
-There is a drawback here; sometimes removing one feature alone reduces the performance of the model by magnifying the noise coming from another feature, but removing a few features (a subset of features) will improve the performance of the model. Please note that both the removed and retained features are subsets of the original set of features. The subset that is kept for the data mining task is referred to as the Feature Subset Selection. Therefore, different subsets should be tried, rather than just individual features.  
 
-However, trying all possible subsets is often impractical. Consider how many possible subsets there would be for a set of 10 features. Take a couple of minutes to think about it.
+There is a drawback here; sometimes, removing one feature alone reduces the performance of the model by magnifying the noise coming from another feature, but removing a few features (a subset of features) will improve the performance of the model. Please note that both the removed and retained features are subsets of the original set of features. The subset that is kept for the data mining task is referred to as the Feature Subset Selection. Therefore, different subsets should be tried rather than just individual features.  
+
+Yet, trying all possible subsets is often impractical. Consider how many possible subsets there would be for a set of 10 features. Take a couple of minutes to think about it.
 
 There would be 1024 subsets. Can you work out what the rule for calculating the number of subsets is?
+
+See the following for <a href="https://scikit-learn.org/stable/modules/feature_selection.html" target="_blank">a set of feature selection techniques available in sklearn</a>.
 
 ####Set of all subsets of a Set
 
