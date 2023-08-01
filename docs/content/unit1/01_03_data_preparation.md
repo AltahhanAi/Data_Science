@@ -181,17 +181,21 @@ Standardisation involves calculating the mean x̄ and standard deviation sx of a
 
 Rescaling is similar to standardisation, with some differences. The calculations are x′= (x-xmin)/(xmax - xmin) where xmax and xmin are the maximum and minimum values that x might have, respectively.   
 
-This guarantees that the range or scale of the new feature is [0 , 1] (between 0 and 1 inclusive, including all the infinitely possible values in between). Another less stable way to rescale is to do x′= x/xmax, which assumes that the minimum value for x is 0, but even if it is not, if the minimum value for x is positive then the range of the data will be [xmin/xmax , 1].
+This guarantees that the range or scale of the new feature is [0 , 1] (between 0 and 1 inclusive, including all the infinitely possible values in between). Another less stable way to rescale is to do x′= x/xmax, which assumes that the minimum value for x is 0, but even if it is not, if the minimum value for x is positive, then the range of the data will be [xmin/xmax , 1].
 
-Note that if we do not know what {xmin, xmax } values might be (or potentially they can go -+ infinity) then we can take them from the values in the available data itself. However, we have to be careful in how we do this, as it might lead to data leakage when the dataset is rescaled before splitting (into training and testing).
+Note that if we do not know what {xmin, xmax } values might be (or potentially they can go -+ infinity), then we can take them from the values in the available data itself. However, we have to be careful in how we do this, as it might lead to data leakage when the dataset is rescaled before splitting (into training and testing).
+
+### Outliers
+Outliers are those data points that are odd in comparison to the rest of the dataset. Usually, we use distances to recognise outliers, where a data point is considered an outlier if it lies at a relatively far distance from the majority of the data points in a dataset. This is a relative concept and is open for interpretation by the data analyst. Outliers are sometimes easy to recognise via visualisation or graphically when the dimensionality is permissible, while they might be subtle and hard to identify for high-dimensional datasets. One method that we can utilise the Tukey's methods, where we look at the difference between the Q1 and Q3, i.e. D=Q3-Q1 percentiles and then categorise any data point that lies < Q1 - D or > Q3 + D as an outlier. See <a href="https://en.wikipedia.org/wiki/Tukey%27s_range_test" target="_blank">Tukey's range </a> for more details. Another method is via Local Outlier Factor; see <a href="https://scikit-learn.org/stable/modules/outlier_detection.html#local-outlier-factor" target="_blank">LOF </a>. Random forest-RF can be used to detect outliers; we will cover RF them in later units.
+
 
 ### Specifying the label for supervised learning
 
 The label is the answer to the question or problem being solved. Often in supervised learning settings, the dataset contains the features as well as the label for each record.
 
-An example of this is a dataset that has a set of purchases of customers. From this dataset, a prediction is needed about whether they or someone in their household is pregnant. The dataset would contain a set of purchases for each customer and whether they are pregnant or not – this field would be the label. Later, once a model is fitted that predicts whether a customer is pregnant or not, the model can be utilised for new customers in order to directly offer items related to pregnancy if they are pregnant.  
+An example of this is a dataset that has a set of purchases of customers. From this dataset, a prediction is needed about whether they or someone in their household is pregnant. The dataset would contain a set of purchases for each customer and whether they are pregnant or not – this field would be the label. Later, once a model is fitted that predicts whether a customer is pregnant or not, the model can be utilised for new customers in order to directly offer items related to pregnancy if the customer is predicted to be pregnant.  
 
-Another example is the Titanic dataset, where the set of features are the information of the passengers such as their:
+Another example is the Titanic dataset, where the set of features is the information of the passengers, such as their:
 
 * ticket fare
 * name
