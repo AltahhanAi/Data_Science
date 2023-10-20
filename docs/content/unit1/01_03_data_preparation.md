@@ -10,17 +10,17 @@ In this lesson you will learn about the different techniques for data preparatio
 	* perform feature selection and simple dimensionality reduction
 	* explain why these techniques are performed and when.
 
-**As you saw earlier, data comes in all sorts of formats and shapes and in order to be able to perform any analysis, you would need to make the data suitable for the task in hand.**
+**As you saw earlier, data comes in all sorts of formats and shapes and in order to be able to perform any analysis, you would need to make the data suitable for the task at hand.**
 
 There are broadly two main reasons to do this:
 
-1. The data is often collected separately and detached from the mining task. Often there are specific data techniques that are known to suit the task in hand, so the nature of the techniques dictates some specific data preparation regime that you would want to carry on the data. For example, for some tasks, new features need to be generated from the original features, for some other tasks the shape of the data need to be changed.
+1. The data is often collected separately and detached from the mining task. Often there are specific data techniques that are known to suit the task at hand, so the nature of the techniques dictates some specific data preparation regime that you would want to carry on the data. For example, for some tasks, new features need to be generated from the original features, for some other tasks the shape of the data needs to be changed.
 
-2. Even without consideration to any specific task or technique, often the data can suffer from issues that need to be addressed before any analysis is carried through. These issues include noise, repetition, missing-ness and scalability.
+2. Even without consideration of any specific task or technique, often the data can suffer from issues that need to be addressed before any analysis is carried through. These issues include noise, repetition, missing-ness and scalability.
 
 ##Data pre-processing in context
 
-Before you do any processing, you need to understand the specific task and in what way the data will be utilised and in what context. The data can come in a form or format that, if not changed, will make the analysis process itself unnecessarily more difficult. This applies to simple queries or more complicated tasks – they all require an appropriate level of preparation to ensure that the analysis or querying process is smooth.
+Before we do any processing, we need to understand the specific task, in what way the data will be utilised and in what context. The data can come in a form or format that, if not changed, will make the analysis process itself unnecessarily more difficult. This applies to simple queries or more complicated tasks – they all require an appropriate level of preparation to ensure that the analysis or querying process is smooth.
 
 ##Data wrangling and ways of data pre-processing
 
@@ -28,7 +28,7 @@ A data scientist must often wrestle with the data to make it suitable for their 
 
 ###Sampling
 
-The concept of sampling is widely used in statistics and data mining. In statistics the default position is that obtaining the entire data population is often infeasible and physically too expensive. In data mining, processing the entire dataset, even if it is available in some storage, might be too computationally expensive to do.
+The concept of sampling is widely used in statistics and data mining. In statistics, the default position is that obtaining the entire data population is often infeasible and physically too expensive. In data mining, processing the entire dataset, even if it is available in some storage, might be too computationally expensive to do.
 
 <a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">Read section 2.3.2 (pp.72-76) of Chapter 2</a> in the text Introduction to Data Mining (Tan et al 2019). This section will give you further information on sampling and the different types of data sampling that can be conducted.
 
@@ -84,9 +84,9 @@ Sometimes a feature must be obtained or deduced from other features. This can be
 
 For example, from a set of artefacts, two features are the mass and volume. The density of these artefacts (density=mass/volume) can be deduced, which would be a good predictor to classify items based on the material that they are made of.  
 
-An example of a more involved process is a Fourier Transformation (FT). FT is used to extract or map the data into a new space. It is well known that if two time series with different frequencies and some noise are combined, a surprisingly chaotic signal would be received (which would be what is normally looked at when a real time series is dealt with). However, if FT is applied it will show exactly two time series with two different frequencies. This can be used to filter noise and to extract specific information from regarding one of the two time series.
+An example of a more involved process is a Fourier Transformation (FT). FT is used to extract or map the data into a new space. It is well known that if two time series with different frequencies and some noise are combined, a surprisingly chaotic signal would be received (which would be what is normally looked at when a real-time series is dealt with). However, if FT is applied it will show exactly two time series with two different frequencies. This can be used to filter noise and to extract specific information from regarding one of the two time series.
 
-Please see Figure 1.4 below. To learn more about intuition of FT, watch this YouTube video: <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">What is the Fourier Transform? A visual introduction.</a>
+Please see Figure 1.4 below. To learn more about the intuition of FT, watch this YouTube video: <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">What is the Fourier Transform? A visual introduction.</a>
 
 ![Diagram showing the application of the Fourier transform to identify the underlying frequencies in time series data.](images/DS_IMG004.png)
 **Figure 1.4.** Application of the Fourier transform to identify the underlying frequencies in time series data. Source: Tan et al, 2019, p.83, Figure 2.12.
@@ -107,7 +107,7 @@ Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.e
 
 #### Correlation
 
-For example, the correlation between the features can be used to select a subset of the original set that has minimal correlation. This is guaranteed to have maximum independency between the features which convey the most important information, without an overlap that is conveyed inside the features that are correlated. 
+For example, the correlation between the features can be used to select a subset of the original set that has minimal correlation. This is guaranteed to have maximum independence between the features which convey the most important information, without an overlap that is conveyed inside the features that are correlated. 
 
 
 #### Subset selection
@@ -186,7 +186,7 @@ This guarantees that the range or scale of the new feature is [0 , 1] (between 0
 Note that if we do not know what {xmin, xmax } values might be (or potentially they can go -+ infinity), then we can take them from the values in the available data itself. However, we have to be careful in how we do this, as it might lead to data leakage when the dataset is rescaled before splitting (into training and testing).
 
 ### Outliers
-Outliers are those data points that are odd in comparison to the rest of the dataset. Usually, we use distances to recognise outliers, where a data point is considered an outlier if it lies at a relatively far distance from the majority of the data points in a dataset. This is a relative concept and is open for interpretation by the data analyst. Outliers are sometimes easy to recognise via visualisation or graphically when the dimensionality is permissible, while they might be subtle and hard to identify for high-dimensional datasets. One method that we can utilise the Tukey's methods, where we look at the difference between the Q1 and Q3, i.e. D=Q3-Q1 percentiles and then categorise any data point that lies < Q1 - D or > Q3 + D as an outlier. See <a href="https://en.wikipedia.org/wiki/Tukey%27s_range_test" target="_blank">Tukey's range </a> for more details. Another method is via Local Outlier Factor; see <a href="https://scikit-learn.org/stable/modules/outlier_detection.html#local-outlier-factor" target="_blank">LOF </a>. Random forest-RF can be used to detect outliers; we will cover RF them in later units.
+Outliers are those data points that are odd in comparison to the rest of the dataset. Usually, we use distances to recognise outliers, where a data point is considered an outlier if it lies at a relatively far distance from the majority of the data points in a dataset. This is a relative concept and is open for interpretation by the data analyst. Outliers are sometimes easy to recognise via visualisation or graphically when the dimensionality is permissible, while they might be subtle and hard to identify for high-dimensional datasets. One method that we can utilise the Tukey's method, where we look at the difference between the Q1 and Q3, i.e. D=Q3-Q1 percentiles and then categorise any data point that lies < Q1 - D or > Q3 + D as an outlier. See <a href="https://en.wikipedia.org/wiki/Tukey%27s_range_test" target="_blank">Tukey's range </a> for more details. Another method is via Local Outlier Factor; see <a href="https://scikit-learn.org/stable/modules/outlier_detection.html#local-outlier-factor" target="_blank">LOF </a>. Random forest-RF can be used to detect outliers; we will cover RF them in later units.
 
 
 ### Specifying the label for supervised learning
@@ -199,7 +199,7 @@ Another example is the Titanic dataset, where the set of features is the informa
 
 * ticket fare
 * name
-* age.
+* age
 
 The label is simply their survival info (binary: survived or did not survive). The task would be to fit a model that estimates if a passenger survived or not based on their information.
 
@@ -213,32 +213,32 @@ This is a common problem for realistic datasets. Most likely, the same informati
 
 Sometimes the missing data is completely random and is due to collection issues, but may reveal a tendency related to the underlying object or phenomena that is being analysed. For example, a notion of privacy might prevent people from revealing their information.  
 
-In this case, the missing-ness issue of the dataset needs to be dealt with. One drastic thing to do is to eliminate any record that has a missing field in it – called a deletion. This would make the dataset more uniform and ready for applying whatever data mining technique intended but at the expense of losing the data points that have missing fields. Such an approach is not usually advised, especially with small or medium datasets. Even if the data is large, if the missing data is not random then removing the related data points can introduce a bias in the model.
+In this case, the missing-ness issue of the dataset needs to be dealt with. One drastic thing to do is to eliminate any record that has a missing field in it – called a *deletion*. This would make the dataset more uniform and ready for applying whatever data mining technique intended but at the expense of losing the data points that have missing fields. Such an approach is not usually advised, especially with small or medium datasets. Even if the data is large, if the missing data is not random then removing the related data points can introduce a bias in the model.
 
 For example, you have a dataset for people’s ages, salaries and marital statuses, which will be used to predict if a person will default on a debt or not. If people with high salaries tend not to reveal their salaries, then removing all data points with a missing salary will introduce a bias in the build model. This will result in much less accurate performance of data mining tasks for people with high salaries.
 
-Another way to deal with the missing field data is to provide an estimate of this data- called imputation. Imputation using an average or a maximum across a field is a common method for dealing with data missingness. We should bear in mind that an estimate is not precise, and a loss of accuracy may be introduced to the model because when with estimates, there may be some noise and bias introduced as well.  
+Another way to deal with the missing field data is to provide an estimate of this data- called *imputation*. Imputation is a common method for dealing with data missingness. We should bear in mind that an estimate is not precise, and a loss of accuracy may or may not be introduced to the model via missingness and its treatment. There may be some noise and bias introduced as well. With missing-ness, there is no perfect solution and we may need to try different approaches to test their effectiveness, but at least we should aim not to introduce a bias via our estimate.
 
-So, how should you estimate? An unbiased estimate would be the mean of the feature. Take the entire data for a field – vertically – and calculate the mean for it, replacing all the missing values with this mean.
+So, how should you estimate? An unbiased estimate would be the mean/average of the feature. Take the entire data for a field – vertically – and calculate the mean for it, replacing all the missing values with this mean. Similarly, for categorical data, we can obtain the most frequent value of the field and then replace missing data with this value. Another approach is to create a new category(value), that we can use as a replacement. One last note about missingness is to mind data leakage via missingness treatment. This can occur due to dealing with missingness before splitting the data into training and testing or via cross-validation (we will talk about CV in later units).
 
 ### Aggregation and summarisation
 
-When you want to group by a specific field to apply some calculation or summarisation operations, aggregation and summarisation is used. This means the data is gathered and presented in a summarised format, for example, grouping a dataset by gender and apply a sum or mean of wages to see the differences or inequality between the wages per gender.  
+When we want to group by a specific field to apply some calculation or summarisation operations, aggregation and summarisation are used. This means the data is gathered and presented in a summarised form. Grouping a dataset by gender and applying a sum or mean of wages to examine inequality between gender wages is an example of these operations.  
 
 ### Discretion and binarisation
 
 These are standard techniques used to convert a continuous attribute which potentially has infinitely many possibilities to an attribute which has a confined number of possibilities. Often this is done to allow more efficient processing or to suit a classification or clustering task in hand.  
 
-**Discretisation** is a process that converts continuous data attribute values into a discrete form, meaning they are converted into a finite set of intervals and associate each of these intervals with a specific data value.
+**Discretisation** is the process of converting continuous data attribute values into a discrete form. This can be achieved by partitioning the range of values an attribute can take into a finite set of intervals, and then associating each interval with a new discrete value. These new discrete values will substitute any old value that falls within the corresponding interval. For example, if we have an attribute that can take any value in the continuous range [0,9], then once way to discritise this attribute is by partitioning the interval [0,9] into [0,1[, [1,2[, ...[8,9]. Then any old values >= 0 and <1 can be substituted by .5 and any old value >=1 and <2 can be substituted by 1.5 and so on.
 
-**Binarisation** is the process of converting attribute values to binary values i.e. ones that have two values (often these are {0, 1}). Binarisation is a special case of discretisation. One form of discretisation is called histograms, where the number of occurrences of a range of values into a set of bins in counted. The set of bins replace the feature, and in this case, one attribute is replaced with as many bins as we have.
+**Binarisation** is the process of converting attribute values to binary values - two values (often these are {0, 1} or {-1, 1}). Binarisation is a special case of discretisation. One form of discretisation is called histograms, where the number of occurrences of a range of values in a set of bins is counted. The set of bins replaces the feature, and in this case, one attribute is replaced with as many bins as we have.
 
 ### Melting and pivoting
 
-Melting and pivoting are often overlooked operations. When they are applicable, it is important that they are performed to make the shape of the data suitable for further processing. These are often part of a more elaborate operation involving data preparation along other operations such as sorting etc. Please refer to the next exercise for a full working example in Python.
+Melting and pivoting are often overlooked operations. When they are applicable, it is important that they are performed to make the shape of the data suitable for further processing. These are often part of a more elaborate operation involving data preparation along with other operations such as sorting etc. Please refer to the next exercise for a full working example in Python.
 
 !!! abstract "Exercise"
-    In this exercise you will be given a dataset to prepare for further analysis.
+    In this exercise, you will be given a dataset to prepare for further analysis.
 
     The exercise covers several of the techniques mentioned in this lesson for data preparation and data wrangling. Follow the steps and execute them in order and experience the effect of the data preparation procedure on the data. you can access the code in the data preparation Jupyter Notebook below.
 
