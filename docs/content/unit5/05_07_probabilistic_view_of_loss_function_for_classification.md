@@ -1,4 +1,4 @@
-#Probabilistic view of loss function for classification
+# Probabilistic view of loss function for classification (optional)
 
 !!! success "Learning outcomes:"
 	After completing this **optional** lesson you should be able to:
