@@ -4,8 +4,8 @@
 	After completing this **optional** lesson you should be able to:
 
     * understand the optimisation process from a Bayesian framework
-    *	use maximum likelihood method to optimise the loss function
-    *	motivate the regularised least squares using posterior maximisation
+    * use the maximum likelihood method to optimise the loss function
+    * motivate the regularised least squares using posterior maximisation
 
 **In this section we will discuss the link between minimising a loss function and probability theory, to see how learning can take a probabilistic perspective.**
 
