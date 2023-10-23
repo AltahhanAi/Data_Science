@@ -1,4 +1,4 @@
-# Learning from a probabilistic perspective
+# Learning from a probabilistic perspective(optional lesson)
 
 !!! success "Learning outcomes:"
 	After completing this **optional** lesson you should be able to:
