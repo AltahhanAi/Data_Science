@@ -18,13 +18,13 @@ As we mentioned in unit 1, datasets are often far from perfect. This can be due 
 
 Using the training set to come up with a **general** relationship between the features and the class that can be utilised to later classify **unseen** examples is called **model generalisation**. This generalisation ability is crucial to the success of the model if it is to become a part of comprehensive software solution. Two main problems that can prevent a model from generalisation are **overfitting** and **underfitting**. In this context then we need to come up with metrics that are capable of capturing misclassification by the model and its generalisation ability by capturing the misclassification errors of unseen data points.
 
-##Training and testing sets
+## Training and testing sets
 
 **Because of the potential problems mentioned above, we often need to do the same performance measurement for the training set and on another separate dataset that we call the test set.**
 
 In order to measure the performance for the test set we need to have the labels available in the same manner that they are in the training set. Remember, classification is a supervised learning problem so we have the answers (labels) available during training and test, but not when we actually use the model to predict unknown labels. If we do not have separate training and test sets, we can simply **partition** our dataset into two sets, with one acting as a **training set** and the other as a **test set**. Note that the term partition indicates that there is no overlap between the training and test set.  
 
-###Proportions of training and testing sets
+### Proportions of training and testing sets
 
 Unless there is abundance in the data that captures a simple classification model, or there is already a dataset set aside for testing, we often want to split the original dataset into training and testing sets. The proportion or percentage of the split can be any as along as the training data captures all the different patterns the classes can have. Often we specify a 70% to 30% split for the training and testing respectively.
 
@@ -33,7 +33,7 @@ Unless there is abundance in the data that captures a simple classification mode
   <figcaption><strong>Figure 2.70.</strong> Common choice for Training and Testing proportions of the original dataset. </figcaption>
 </figure>
 
-##Splitting with stratification
+## Splitting with stratification
 
 **When we split we need to take into account the distribution of the labels in the dataset. We want to reserve the structure of the original dataset in the partitioned training and test sets.**
 
@@ -44,13 +44,13 @@ One way to guarantee this property is by **stratified sampling**. Stratification
   <figcaption><strong>Figure 2.71.</strong> Class1 and Class2 are distributed into 60%, 40% in the original dataset and the same percentage kept (through stratification) for the partitioned training and testing sets resulting in the percentages shown in the figure. </figcaption>
 </figure>
 
-##Cross validation, model testing, model selection and model comparison
+## Cross validation, model testing, model selection and model comparison
 
 **Model testing is the process of testing to see how good the generalisation ability of the model is.**
 
 We use one of the splitting regimes mentioned above, i.e. randomised splitting or with stratification. What we would like to speak about here is how to choose a good hyper parameter for a model. This is called model selection. In model selection we are normally talking about the same classification technique (such as decision trees), but we are interested in which decision tree is best for our problem. In model comparison we are talking about different techniques (such as decision trees vs. k-nearest neighbours) and we would like to come to a conclusion about which technique is the best.
 
-###Cross validation
+### Cross validation
 
 Cross validation is an elaborate testing technique that is useful to balance out the different patterns that might exist in our data. Think about it, when we select a testing set we might be lucky and get a test set that the model is particularly good at predicting its instances, while it may not be as good for other instances. To balance out the ability of the model on different patterns that underline the instances, we can repeatedly select different testing sets and take the average of the testing results to be a more representative value for the performance of the model. Cross validation is one example of this strategy, where we partition our dataset into a number of subsets with equal instances. We hold out a subset for testing, we train on the rest of the subsets, we repeat for all subsets then we take the average. We call those subsets folds.  
 
@@ -64,7 +64,7 @@ We repeat the process by training on subsets $\left\{S_{1} \cup S_{3}\right\}$ a
 </figure>
 
 
-###Model selection
+### Model selection
 
 Model selection is the process of selecting the best model for the problem at hand, from among several other possible models of similar prediction powers. For example, we can build several decision trees with different depths for the same problem, and each tree would have its own properties and prediction strength. The depth of the DT is an example of what we call a hyper parameter. It is called so because changing this parameter fundamentally changes the properties of the model. The question would be then which one is the best for the problem in hand. We often first perform **model selection** to pick the best candidate of a set of models and then we do **model comparison** to pick a final model that corresponds to the best technique. We will talk about model comparison in a later section.
 
@@ -72,7 +72,7 @@ Model selection can be performed mainly in two ways. One approach is to evaluate
 
 Another approach is to sample from a set of potential models and come up with an algorithm that will help us to find a good estimation of the hyper parameters. This approach will be covered in the Machine Learning module. A third and best approach is to analytically find the best hyper parameter value by analysing the problem and coming up with automated process to give us the best model among many others (and potentially infinite number of models). This is sometimes possible with the Bayesian approach where the hyper parameters (the mean and variance) can be found by performing an expectation maximisation process to find the best hyper parameter. Then we can integrate out (marginalising) the possible hyper parameters values to come up with an estimation of the performance of the model. A method called Bayesian processes is an example of such analytical approach. However, this approach is not always possible due to the difficulties that arises with the mathematical integrals. Again, we will study this type of problem in the Machine Learning module.
 
-###Model selection with cross validation
+### Model selection with cross validation
 
 In model selection especially when we do not have enough data, we can use cross validation to aid in the process of selecting the best hyper parameter. We first start by splitting the data into folds (ex. 3 folds). Let us assume that we have hyper parameter $h$ (ex. tree depth) with values $v_{1}$ and $v_{2}$ (ex. Depth = 5 and Depth = 10) and we would like to know what value we should pick for our model. In this case, we can set $h=v_{1}$ and training the model on subsets $\left\{S_{1} \cup S_{2}\right\}$ while we test the trained model on subset $S_{3}$ which will give a generalisation error $\operatorname{Err}_{v 1}\left(S_{3}\right)$.
 
@@ -84,7 +84,7 @@ $\left\{S_{2} \cup S_{3}\right\}$ and test on subset $S_{1}$ to obtain the gener
   <figcaption><strong>Figure 2.73.</strong>  Model Selection with 3 folds cross-validation example. </figcaption>
 </figure>
 
-###Model evaluation of cross-validated selected model with hyper parameters
+### Model evaluation of cross-validated selected model with hyper parameters
 
 After we have selected the best parameters for our model, we want to evaluate the performance of the model. A pitfall would be to use the averaged cross validation error as an indication for the performance of the model. This a biased estimation of the generalisation ability of our model because we have already used the validation data to select the best hyper parameters. Therefore, we need to reserve a portion of the dataset for this final evaluation of the resultant selected model. Figure 2.74 below shows this complete process.
 
@@ -92,7 +92,7 @@ After we have selected the best parameters for our model, we want to evaluate th
 
 **<p style="text-align: center;">Figure 2.74.** *Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as model $_{\dot{v}}$. Note that $\dot{v}$ takes the best value of $\left\{v_{1}, v_{2}\right\}$ that minimises the average errors $\operatorname{\dot{Err}}_{v_{1}}, \operatorname{\dot{Err}}_{v_{2}}$. So for example, if we assume that $\operatorname{\dot{Err}}_{v_{1}}>\operatorname{\dot{Err}}_{v_{2}}$ then $\dot{v}=v_{2}$.*</p>
 
-###Evaluation of cross validation selected model with grid search for hyper parameters
+### Evaluation of cross validation selected model with grid search for hyper parameters
 
 When we have multiple hyper parameters and we want to select the best combination of values for them, we can employ several search techniques. Here we can take two approaches. One simple approach is to perform an exhaustive search of all the possible combinations of the hyper parameters. We evaluate the models that stem from them and we select the model with the least generalisation error or highest overall accuracy. This is called grid search because each hyper parameter adds a dimension to a grid of possible values.
 
@@ -102,7 +102,7 @@ For example, if we have three hyper parameters the first with 5 values, the seco
 
 **<p style="text-align: center;">Figure 2.75.** *Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as model $_{\dot{v}}$. Note that $\dot{v}$ takes the best value of $\left\{v_{1}, v_{2}\right\}$ that minimises the average errors $\operatorname{\dot{Err}}_{v_{1}}, \operatorname{\dot{Err}}_{v_{2}}$. So for example if we assume that $\operatorname{\dot{Err}}_{v_{1}}>\operatorname{\dot{Err}}_{v_{2}}$ then $\dot{v}=v_{2}$.*</p>
 
-###Model evaluation with nested cross validation and hyper parameters
+### Model evaluation with nested cross validation and hyper parameters
 
 We have shown how to evaluate a selected model on an unseen data in the previous section. However, we should note that this estimation is still a reflection of the model performance only one part of the dataset. But what if we wanted to estimate the performance on all the dataset without seeing the data? Before we show how, it should be clear in your mind that we will not be able to show an overall unbiased performance on all the available data for a particular model. We can however get an estimation by averaging the performances of all possible models that stem from the different parts of the dataset. So this section is not for model selection, it is just for model evaluation.
 
@@ -128,7 +128,7 @@ As we saw earlier an inner CV gives its own best value for $h$ that stems from i
 
      - Download exercise (.ipynb): <a href="../exercises/Exercise3_plot_nested_cross_validation_iris.ipynb" download>Nested CV</a>
 
-###Model comparison with cross validation
+### Model comparison with cross validation
 
 When we want to compare the performance of different techniques (like a decision tree and k-nn), we differentiate between two different cases. The first is when we are comparing on the same dataset. In this case, we can use the results of an evaluation process directly as we did in earlier sections. The difference is that we have different techniques instead of the same technique with different hyper parameters.
 
@@ -144,17 +144,17 @@ See the following video on RapidMiner grid search procedure for selecting multip
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22787202_4" target="_blank">Download transcript (PDF).</a>
 
-##Overfitting
+## Overfitting
 
 **Overfitting occurs when we keep trying to improve the performance of the model to the extent that the model starts to capture the noise in addition to the actual relationship between the features and the class.**
 
 It is expected that the performance for the test set would be slightly lower (roughly < 5%) than the training set (in other words the error in the test set is higher than that of the training set) even when the model does not suffer from overfitting. However, if we realise that there is a relatively large difference between the two then it is a sign that overfitting has occurred during training.
 
-###Examples of overfitting
+### Examples of overfitting
 
 Below we see an example of overfitting. The data can be classified by rectilinear decision boundaries that are specified by four conditions, however due to the noise that we added by spreading out some of the class C1 points and overly trying to isolate and classify those pockets, the tree in turn is overly grown and has become unnecessarily complex. Bear in mind that there is no perfect solution here. Due to noise there will be always inaccuracy that occurs in the classification decision of the tree and we just need to live with them.  
 
-####Overfitting of decision trees on the noisy Gaussian data (yellow points)
+#### Overfitting of decision trees on the noisy Gaussian data (yellow points)
 
 <figure role="group">
   <img src="../images/DS_IMG092.png" alt="Graph showing overfitting of decision trees (DT) on noisy Gaussian data." />
@@ -166,7 +166,7 @@ Below we see an example of overfitting. The data can be classified by rectilinea
   <figcaption><strong>Figure 2.79.</strong> The decision boundaries of the DT shows how the tree is trying to isolate pockets of data to decrease the training error. </figcaption>
 </figure>
 
-####Decision trees with no overfitting for the same noisy Gaussian data
+#### Decision trees with no overfitting for the same noisy Gaussian data
 
 <figure role="group">
   <img src="../images/DS_IMG093.png" alt="Decision tree (DT) with lots of branching to accomodate noise added to Gaussian data." />
@@ -192,7 +192,7 @@ On the other hand, overfitting can occur when we excessively add data horizontal
   <figcaption><strong>Figure 2.82.</strong> Decision trees training and testing with phenomenon of overfitting. Note how when we increase the max depth of the tree the testing error forked from the training error which continued to deceivingly decrease, while in reality the testing error were increased for depth . </figcaption>
 </figure>
 
-###Underfitting
+### Underfitting
 
 Underfitting occurs when we build a decision tree that is incapable of addressing the problem sufficiently. An example of underfitting for decision trees is when we prematurely stop growing the tree on level 2 while the optimal number of levels is 5. Another example is when the tree is severely pre-pruned to have few branches and its performance becomes inadequate.
 
@@ -206,7 +206,7 @@ Underfitting occurs when we build a decision tree that is incapable of addressin
 		 Now try to do the same thing in RapidMiner. It is fun and easier.
 
 
-##Lesson summary
+## Lesson summary
 
 **In this lesson we have covered the common problems of overfitting and underfitting, and seen how we can detect these problems and address them.**
 
