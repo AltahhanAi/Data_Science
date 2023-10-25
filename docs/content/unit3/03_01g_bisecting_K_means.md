@@ -1,4 +1,4 @@
-# Bisecting K-means algorithm
+# Bisecting K-means algorithm (optional)
 
 **Bisecting K-means algorithm takes advantage of the fact that basic 2-means clustering (as per Algorithm 1) is computationally efficient.**
 
