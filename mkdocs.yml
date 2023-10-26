@@ -7,8 +7,8 @@ nav:
     - Unit 1:
         - '1. What is data science?': content/unit1/01_01_what-is-data-science.md
         - '2. The data, its quality and its structure': content/unit1/01_02_the_data_its_quality_and_its_structure.md
-        - '3. Data preparation': content/unit1/01_03_data_preparation.md
-        - '4. Data visualisation': content/unit1/01_04_data_visualisation.md
+        - '3. Data preparation and visualisation': content/unit1/01_03_data_preparation.md
+        - '4. Data generation and visualisation': content/unit1/01_04_data_visualisation.md
         - '5. Unit references': content/unit1/01_06_unit_references.md
     - Unit 2:
         - 'Introduction': content/unit2/02_00_classification.md
