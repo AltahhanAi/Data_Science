@@ -1,6 +1,6 @@
 # Decision tree induction (training)
 
-**In this section, we cover the decision tree building algorithm which is also known as induction. We will look here at the CART algorithm.**
+**In this section, we cover the decision tree building algorithm, which is also known as induction. We will look here at the CART algorithm.**
 
 The following three videos will provide an overview of the material in this section. You can then go on to read about decision tree training in more detail.
 
@@ -38,11 +38,11 @@ G2     |    7 inches  | No          |Tablet
 S2     |   7 inches   | No          |Tablet
 A2     |   8 inches   | Yes         |Tablet
 
-Intuitively, the ‘screen size’ feature does not have an easy binary decision since in this dataset we have phones that are 6 and 7 inches and we have tablets that are also 7 or 8 inches. On the other hand, ‘makes calls’ feature is more regular, **all** phones ‘make calls’ while **most** tablets do not ‘make calls’. This suggests that if we were to make decisions about a device class being a phone or a tablet, we should first look at the ‘makes calls’ attribute and if it is ‘no’ then it is a ‘tablet’ if it is ‘yes’ then it is most likely a ‘phone’. In this second instance we would then need to check its ‘screen size’ if it is = 8 then it is a tablet, if it is not then it is a phone.
+Intuitively, the ‘screen size’ feature does not have an easy binary decision since, in this dataset, we have phones that are 6 and 7 inches and tablets that are also 7 or 8 inches. On the other hand, the ‘makes calls’ feature is more regular, **all** phones ‘make calls’ while **most** tablets do not ‘make calls’. This suggests that if we were to make decisions about a device class being a phone or a tablet, we should first look at the ‘makes calls’ attribute, and if it is ‘no’, then it is a ‘tablet’ if it is ‘yes’ then it is most likely a ‘phone’. In this second instance, we would then need to check its ‘screen size’. If it is = 8, then it is a tablet; if it is not, then it is a phone.
 
-So how can we create an algorithm that makes these types of decisions for us? We need an algorithm that can strategically pick the more promising features first and then develop the tree based on that. The algorithm that we will talk about is called CART (Classification and Regression Tree) and we will show it in action in the following steps.
+So how can we create an algorithm that makes these types of decisions for us? We need an algorithm that can strategically pick the more promising features first and then develop the tree based on that. The algorithm we will talk about is called CART (Classification and Regression Tree), and we will show it in action in the following steps.
 
-##Step 1 of CART algorithm
+## Step 1 of CART algorithm
 
 **To be able to develop this algorithm we need to measure how promising a feature (with a specific value) is as a partition for our dataset. Think about the above dataset. The ‘makes calls’ feature allowed us to split the data two ways with a low impurity.**
 
@@ -53,7 +53,7 @@ So how can we create an algorithm that makes these types of decisions for us? We
 
 To quantify the quality of each split, we use the **Gini Impurity** of each **node data**. The Gini impurity describes how pure or mixed the data labels in a node are. The purer the data the closer Gini is to 0, while the more mixed the data in the node the closer Gini is to 0.5. We will look at how to calculate the Gini Impurity a bit later. For now I want you to assume that you know how to calculate it.
 
-###Information gain
+### Information gain
 The **Information gain of a split** refers to how much information we gain by choosing one of the possible splits. If the decision tree is binary, then each feature is a possible split. If it is not binary, then each pair of a feature with a value is represented as (feature, value), and will constitute a possible split.  
 
 If we would like to decide which of the above two splits is better, then we just calculate the information gain and we choose the one that has the highest information gain.
@@ -70,7 +70,7 @@ $$
 
 This shows that the first split based on the ‘makes calls’ feature is better since we gain more information by using it and we will intuitively move toward more pure leaves.
 
-###Gini impurity
+### Gini impurity
 
 **It is time now to see how we calculate the Gini impurity. We take the probability of one label in the node and we multiply it with the probability of the other label (or sum of other labels probabilities if we have multi-class dataset). And we do that again for the second label and so on.**
 
@@ -92,7 +92,7 @@ $$
 
 Below we will see the calculations of the Gini Impurity for the subsets of the nodes (the items that belong to each node). We start always from the whole dataset and then the data will be distributed based on the type of question that we ask in the node.
 
-####Before split:
+#### Before split:
 
 $$
 \text { Impurity }\left(\begin{array}{c}
@@ -101,11 +101,11 @@ P P P T T T
 \end{array}\right)=1-\left[\left(\frac{3}{6}\right)^{2}+\left(\frac{3}{6}\right)^{2}\right]=0.5
 $$
 
-####After spilt:
+#### After spilt:
 
-#####Impurity for children of 'makes calls':
+##### Impurity for children of 'makes calls':
 
-######Left (No)
+###### Left (No)
 
 $$
 \text { Gini Impurity }\left(\begin{array}{c}
@@ -114,7 +114,7 @@ T T
 \end{array}\right)=1-\left[\left(\frac{2}{2}\right)^{2}+(0)^{2}\right]=0
 $$
 
-######Right (Yes):
+###### Right (Yes):
 
 $$
 \text { Gini Impurity } \begin{array}{r}
@@ -126,7 +126,7 @@ P P P T
 \end{array}
 $$
 
-######Info gain
+###### Info gain
 
 <p style="text-align: center;">Info Gain('makes calls')</p>
 
@@ -137,9 +137,9 @@ $$
 \end{array}
 $$
 
-#####Impurity for children of 'screen size =8':
+##### Impurity for children of 'screen size =8':
 
-######Left (No)
+###### Left (No)
 
 $$
 \begin{array}{c}
@@ -151,7 +151,7 @@ P P P T T
 \end{array}
 $$
 
-######Right (Yes):
+###### Right (Yes):
 
 $$
 \text { Gini Impurity }\left(\begin{array}{c}
@@ -160,7 +160,7 @@ T
 \end{array}\right)=1-\left[\left(\frac{1}{1}\right)^{2}+(0)^{2}\right]=0
 $$
 
-######Info gain
+###### Info gain
 
 $$
 \begin{array}{l}
@@ -172,7 +172,7 @@ $$
 
 <figure role="group">
   <img src="../images/DS_IMG017.png" alt="Diagram of step 1 of CART algorithm for tablet vs phone dataset, showing information gain calculations. Split based on ‘makes calls’ feature." />
-  <figcaption><strong>Figure 2.11.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset. Split based on ‘makes calls’ feature. Information gains calculations shown below. </figcaption>
+  <figcaption><strong>Figure 2.11.</strong> Illustration of step 1 of CART algorithm for tablet vs phone dataset. Split based on the ‘makes calls’ feature. Information gains calculations are shown below. </figcaption>
 </figure>
 
 $$
@@ -208,11 +208,11 @@ T
 \end{array}
 $$
 
-Figures 2.11 and 2.12 above illustrate step 1 of CART algorithm for tablet vs phone dataset, showing information gain calculations. In figure 2.11 the split is based on ‘makes calls’, and in figure 2.12 the split is based on ‘screen size=8’. Both are shown here with the full information gain calculations needed to decide which split to choose, and in this case we can see that 'makes calls' wins.
+Figures 2.11 and 2.12 above illustrate step 1 of the CART algorithm for the tablet vs phone dataset, showing information gain calculations. In Figure 2.11 the split is based on ‘makes calls’, and in Figure 2.12 the split is based on ‘screen size=8’. Both are shown here with the full information gain calculations needed to decide which split to choose and in this case, we can see that 'makes calls' wins.
 
-The algorithm will go ahead and calculate the information gain for another two splits possibilities, these are ‘screen size=6’ and ‘screen size=7’. We have not shown these, so if you’d like to give it a try yourself you can do the calculations now. The results should be in favour of ‘makes calls’ split.
+The algorithm will go ahead and calculate the information gain for another two split possibilities, these are ‘screen size=6’ and ‘screen size=7’. We have not shown these, so if you’d like to give it a try yourself you can do the calculations now. The results should be in favour of the ‘makes calls’ split.
 
-The Gini impurity deals with classes in a binary manner (one versus the rest). So, if we have multi-class dataset then we would simply enumerate through the different classes and deal with each label in the node as the target class and the rest as misclassification. For example, if we have say 3 classes, {‘tablet’, ‘phone’, ‘portable PC’} the Gini impurity will be:
+The Gini impurity deals with classes in a binary manner (one versus the rest). So, if we have a multi-class dataset then we would simply enumerate through the different classes and deal with each label in the node as the target class and the rest as misclassification. For example, if we have say 3 classes, {‘tablet’, ‘phone’, ‘portable PC’} the Gini impurity will be:
 
 $$
 \text { Gini Impurity(node set) }=p(T a b)[1-p(T a b)]+p(P h o)[1-p(P h o)]+p(P C)[1-p(P C)] .
@@ -232,9 +232,9 @@ $$
 
 Tan et al (2020) use Entropy and a slightly different algorithm for building the tree called Hunt’s Algorithm, here we use the CART algorithm which is widely used for DT.  
 
-##Step 2 of CART algorithm
+## Step 2 of CART algorithm
 
-**Next, the CART algorithm will convert the branch on the left of the ‘makes calls’ into a leaf since it’s a pure node (all of its data points are of class ‘tablet’). The right hand side node is a mixture of 3 ‘phones’ and a ‘tablet’.**
+**Next, the CART algorithm will convert the branch on the left of the ‘makes calls’ into a leaf since it’s a pure node (all of its data points are of class ‘tablet’). The right-hand side node is a mixture of 3 ‘phones’ and a ‘tablet’.**
 
 <figure role="group">
   <img src="../images/DS_IMG019.png" alt="Diagram of step 2 of CART algorithm for tablet vs phone dataset, showing information gain calculations. Left split based on ‘screen size=8’ feature, right split based on ‘screen size=7’." />
@@ -243,7 +243,7 @@ Tan et al (2020) use Entropy and a slightly different algorithm for building the
 
 After we have chosen the ‘makes calls’ split where we have exhausted its different possibilities (the yes and no values), we move to the next feature ‘screen size’ (which happens to be the last feature that we have in our simple dataset). Since we said that there are only three values that this feature can take {6, 7, 8} we have three splits that can be done based on this feature. The algorithm will evaluate each split and we will choose the best one.
 
-####Before split:
+#### Before split:
 
 $$
 \text { Gini Impurity }\left(\begin{array}{c}
@@ -252,11 +252,11 @@ P P P T
 \end{array}\right)=1-\left[\left(\frac{3}{4}\right)^{2}+\left(\frac{1}{4}\right)^{2}\right]=0.375 \mid
 $$
 
-####After split:
+#### After split:
 
-#####Impurity of children of ‘screen size=8’
+##### Impurity of children of ‘screen size=8’
 
-######Left (No):
+###### Left (No):
 
 $$
 \text { Gini Impurity }\left(\begin{array}{c}
@@ -265,7 +265,7 @@ P P P
 \end{array}\right)=1-\left[\left(\frac{3}{3}\right)^{2}+(0)^{2}\right]=0
 $$
 
-######Right (Yes):
+###### Right (Yes):
 
 $$
 \text { Gini Impurity }\left(\begin{array}{c}
@@ -274,7 +274,7 @@ T
 \end{array}\right)=1-\left[(0)^{2}+\left(\frac{1}{1}\right)^{2}\right]=0
 $$
 
-######Info gain:
+###### Info gain:
 
 $$
 \begin{aligned}
@@ -286,9 +286,9 @@ $$
 \end{aligned}
 $$
 
-#####Impurity of children of ‘screen size=7’
+##### Impurity of children of ‘screen size=7’
 
-######Left (No):
+###### Left (No):
 
 $$
 \text { Gini Impurity }\left(\begin{array}{c}
@@ -297,7 +297,7 @@ P P T
 \end{array}\right)=1-\left[\left(\frac{2}{3}\right)^{2}+\left(\frac{1}{3}\right)^{2}\right]=0.44
 $$
 
-######Right (Yes):
+###### Right (Yes):
 
 $$
 \text { Gini Impurity }\left(\begin{array}{c}
@@ -306,7 +306,7 @@ P
 \end{array}\right)=1-\left[\left(\frac{1}{1}\right)^{2}+(0)^{2}\right]=0
 $$
 
-######Info gain:
+###### Info gain:
 
 $$
 \begin{array}{l}
@@ -386,7 +386,7 @@ At this stage the algorithm stops since all lower levels nodes are pure and prod
 		M1     | 7 inches     | Yes         |  **?**
 		K1     | 8 inches     | Yes         |  **?**
 
-##Cart algorithm
+## The Cart algorithm
 
 To summarise, the CART algorithm does the following:
 
@@ -438,7 +438,7 @@ To summarise, the CART algorithm does the following:
 
 The above box shows the pseudocode for a decision tree induction algorithm. The algorithm works by expanding the tree using the best split attribute that yields the best information gain. E is a set of data inside a node and F is the set of attributes that we can use to split the data E.
 
-###Discretising continuous variables
+### Discretising continuous variables
 
 Given the following dataset, we want to build a decision tree that can predict whether or not a borrower is going to default on their debt. This type of decision is important for banks to decide upon the eligibility of customers to be lent money. While our dataset is simple, the ideas can be easily expanded into a fully developed scenario for an actual bank.
 
@@ -514,7 +514,7 @@ Annual income ranges £K | Annual income increment £K | Annual income category
   <figcaption><strong>Figure 2.20.</strong>  Top 10 UK actual annual income in 2018, the increments have reversed Pareto distribution.</figcaption>
 </figure>
 
-As can be seen, the increments take a long tailed (skewed) distribution that is not a Gaussian, but more of a reversed Pareto distribution. This is not surprising as the Pareto distribution has historically been used to describe wealth in society. The 80-20 Pareto principle is related to this distribution but is precisely realised when the alpha value is 1.16. It takes the form:
+As can be seen, the increments take a long-tailed (skewed) distribution that is not a Gaussian, but more of a reversed Pareto distribution. This is not surprising as the Pareto distribution has historically been used to describe wealth in society. The 80-20 Pareto principle is related to this distribution but is precisely realised when the alpha value is 1.16. It takes the form:
 
 $$
 \operatorname{Pr}(X>x)=\left\{\begin{array}{c}
@@ -523,13 +523,13 @@ $$
 \end{array} \mid\right.
 $$
 
-Note that the categories’ names {‘Basic, ‘Intermediary L’ Exec’} are arbitrary and could be changed to any values that suit the usage of the model (L, M, H, T stands for Low, Medium, High and Top, respectively).
+Note that the categories’ names {‘Basic, ‘Intermediary’, ’Exec’} are arbitrary and could be changed to any values that suit the usage of the model (L, M, H, T stands for Low, Medium, High and Top, respectively).
 
-##Split for continuous variables
+## Split for continuous variables
 
-**In the examples we have used so far we have seen how to split for features with categorical values. For ‘Screen Size’ we restricted the possibilities into 3 values, making it effectively categorical. We also discretised the ‘Annual Income’ by dealing with 3 ranges of salaries called ‘bands’, also effectively yielding it as categorical.**
+**In the examples we have used so far, we have seen how to split for features with categorical values. For ‘Screen Size’ we restricted the possibilities to 3 values, making it effectively categorical. We also discretised the ‘Annual Income’ by dealing with 3 ranges of salaries called ‘bands’, also effectively yielding it as categorical.**
 
-However, discretisation is not always possible and can restrict the generalisation ability of our models. What we want to be able to do is to allow a continuous variable (such as ‘Annual Income’) to take any value for continuous variables, and we decide from the data what would be the best value to split the data according to. To understand the approach let us look at a tangible example. To deal with a split of continuous features we simply look into its values inside the available dataset. Remember we have, in theory, an infinite number of values so we cannot try them all!  
+However, discretisation is not always possible and can restrict the generalisation ability of our models. What we want to be able to do is to allow a continuous variable (such as ‘Annual Income’) to take any value for continuous variables, and we decide from the data what would be the best value to split the data according to. To understand the approach, let us look at a tangible example. To deal with a split of continuous features, we simply look into its values inside the available dataset. Remember, we have, in theory, an infinite number of values, so we cannot try them all!  
 
 ID | Home owner| Marital status | Annual income | Defaulted borrower | **Possible splits for annual income**|
 ---|-----------|----------------|---------------|--------------------|--------------------------------------|
@@ -548,18 +548,18 @@ Table: Borrowers dataset with possible splits for the Annual Income feature.
 
 1. We need to sort the dataset according to this feature, and we take the split values to be in-between the feature values in the dataset.  
 
-2. We take the in-between values instead of the values themselves because we do not want to make any of the dataset records a boundary case. We do not need to worry about the first and last values since they cannot be a split condition otherwise they yield the feature ineffective- all data is greater than the first value and smaller than the last values. So if we have N records in our dataset (N=10 in the Borrowers dataset), we try N-1 in-between splits. See Table above for the possible splits for annual income after sorting the dataset according to ‘Annual Income’.
+2. We take the in-between values instead of the values themselves because we do not want to make any dataset records a boundary case. We do not need to worry about the first and last values since they cannot be a split condition; otherwise, they yield the feature ineffective- all data is greater than the first value and smaller than the last values. So, if we have N records in our dataset (N=10 in the Borrowers dataset), we try N-1 in-between splits. See Table above for the possible splits for annual income after sorting the dataset according to ‘Annual Income’.
 
-3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. Download this <a href="../exercises/Borrowers-Split-for-Continuous-Values.xlsx" download>Excel spreadsheet</a> for the different Information Gain and Gini Index calculations for the borrowers dataset.
+3. Then we now try to split according to each in-between value, and we calculate the Gini index and information gain for the results. We compare between all the information gain of the different splits, and we take the split that maximises the information gain. Note that all the calculations that we talked about in the previous section apply. Since the original data Gini is not going to vary, we can simply take the split that minimises the Gini index since Information Gain = Gini for parent – Gini for the split. Download this <a href="../exercises/Borrowers-Split-for-Continuous-Values.xlsx" download>Excel spreadsheet</a> for the different Information Gain and Gini Index calculations for the borrowers' dataset.
 
-Figure 2.21 shows the advantage of a test condition for a continuous attributes, the branching of the tree is much simpler and will lead to a more elegant and less cluttered and easy to interpret tree.
+Figure 2.21 shows the advantage of a test condition for a continuous attribute. The branching of the tree is much simpler and will lead to a more elegant, less cluttered and easy-to-interpret tree.
 
 <figure role="group">
-  <img src="../images/DS_IMG032.png" alt="Diagram showing comparing two decision trees (DT) with the continuous attribute of 'annual income'. The left-hand DT has a test condition of 'annual income >£100k' allowing a simple and elegant 'yes' or 'no' branching. The right-hand DT with a condition of 'annual income' leads to more complicated branching." />
+  <img src="../images/DS_IMG032.png" alt="Diagram showing comparing two decision trees (DT) with the continuous attribute of 'annual income'. The left-hand DT has a test condition of 'annual income >£100k', allowing a simple and elegant 'yes' or 'no' branching. The right-hand DT with a condition of 'annual income' leads to more complicated branching." />
   <figcaption><strong>Figure 2.21.</strong>  Test condition for a continuous attribute.</figcaption>
 </figure>
 
-##Other types of impurity measurements
+## Other types of impurity measurements
 
 **There are other impurity measures such as the entropy or the misclassification error. Figure 2.22 below shows the behaviour of these three impurity measures as per two probabilities of two classes.**
 
@@ -570,11 +570,11 @@ We only show one probability on the x axis because the other is just the complem
   <figcaption><strong>Figure 2.22.</strong>  Comparison of different impurity measures.</figcaption>
 </figure>
 
-In fact, these are all valid and you can use any. Albeit an important element of decision tree, induction which must be used, changing the impurity measure between these three measures has a limited effect on the tree structure. In fact, although they vary in range, they produce consistent decision trees. What matters more in the context of decision trees is the use of pruning and pre-pruning. Therefore we will only briefly discuss them here, but you should try to familiarise yourself with these other types of impurity measures from Tan et al (2020), particularly entropy which has applications in a wide range of disciplines.  
+In fact, these are all valid, and you can use any. Albeit an important element of decision tree, induction which must be used, changing the impurity measure between these three measures has a limited effect on the tree structure. In fact, although they vary in range, they produce consistent decision trees. What matters more in the context of decision trees is the use of pruning and pre-pruning. Therefore we will only briefly discuss them here, but you should try to familiarise yourself with these other types of impurity measures from Tan et al (2020), particularly entropy which has applications in a wide range of disciplines.  
 
-The entropy is a measure of chaos in a system. It is also used as a measure of information- in fact, information theory depends heavily on it. In this lesson however, we will concentrate on it as a measure of chaos or surprise. If the set of events or items have a probability peak, i.e. a subset of those items have high probability, then the system is less chaotic and the entropy is small. On the other hand, if the events or items have similar probabilities, without a clear winner, then the system is harder to predict and its chaos or entropy is maximal.  
+The entropy is a measure of chaos in a system. It is also used as a measure of information- in fact, information theory depends heavily on it. In this lesson, however, we will concentrate on it as a measure of chaos or surprise. If the set of events or items have a probability peak, i.e. a subset of those items have high probability, then the system is less chaotic and the entropy is small. On the other hand, if the events or items have similar probabilities, without a clear winner, then the system is harder to predict and its chaos or entropy is maximal.  
 
-This is reflected in figure 2.22 above, where we can see that when the two classes have a probability of 0.5 (remember if p=0.5 then 1-p=0.5) then the entropy is maximal =1. It fades away when one of the classes has high probability and the higher the probability the lower the entropy until it reaches 0, when the probability of either classes is 1 (same for one of the classes probability is close to 0 the other would be close to 1). There is always symmetry in all of those impurity when dealing with a binary class problem, but when it is multi-class this is not guaranteed. Below we contrast Gini and entropy to gain understanding of both.
+This is reflected in Figure 2.22 above, where we can see that when the two classes have a probability of 0.5 (remember if p=0.5 then 1-p=0.5) then the entropy is maximal =1. It fades away when one of the classes has a high probability and the higher the probability the lower the entropy until it reaches 0, when the probability of either class is 1 (same for one of the classes probability is close to 0 the other would be close to 1). There is always symmetry in all of those impurities when dealing with a binary class problem, but when it is multi-class this is not guaranteed. Below we contrast Gini and entropy to gain an understanding of both.
 
 For Class 1 with probability $p$, we want to make sure that:
 
@@ -584,15 +584,15 @@ For Class 1 with probability $p$, we want to make sure that:
 
 Note that $\log p \leq 0$ because $p≤1$. Hence $-\log p \geq 0$.
 
-Note that $-\log p$ is monotonically decreasing function.
+Note that $-\log p$ is a monotonically decreasing function.
 
-Note also that the base of $log$ is normally 2 but any can do as long as we are consistent. The behaviour of $−\log p$ for class C1 and $-\log \left(p^{\prime}\right)$ for class C2 can be seen below. When the probability increases $-\log p$ decreases but it is still positive (to be precise it is non-negative). Note that $-\log \left(p^{\prime}\right)$ is monotonically increasing function with respect to $p$ and is non-negative as well.
+Note also that the base of $log$ is normally 2 but any can do as long as we are consistent. The behaviour of $−\log p$ for class C1 and $-\log \left(p^{\prime}\right)$ for class C2 can be seen below. When the probability increases $-\log p$ decreases, but it is still positive (to be precise it is non-negative). Note that $-\log \left(p^{\prime}\right)$ is a monotonically increasing function with respect to $p$ and is non-negative as well.
 
 ![Two graphs showing the behaviour of −logp for class C1 and −log(p′) for class C2.](images/DS_IMG034.png)
 
 **<p style="text-align: center;">Figure 2.23:** *Behaviour of the term $-p \log p$ which is the entropy for class C1. Note that C1 has a probability $p$ and the figure shows how the entropy of C1 is varying with the probability $p$.*</p>
 
-To take into account both of the points above, the entropy for class C1 will be written as $-p \log p$, which has a behaviour that is described in the left hand side of figure 2.24 below. In addition, since we have two classes then we also need a similar term for the second class C2. Given that C2 has a probability $p^{\prime}=1-p$, its entropy is $(1-p) \log (1-p)$. The behaviour of this term is shown in the right hand side of the figure below.
+To take into account both of the points above, the entropy for class C1 will be written as $-p \log p$, which has a behaviour that is described in the left-hand side of Figure 2.24 below. In addition, since we have two classes we also need a similar term for the second class C2. Given that C2 has a probability $p^{\prime}=1-p$, its entropy is $(1-p) \log (1-p)$. The behaviour of this term is shown on the right-hand side of the figure below.
 
 ![Two graphs. Left: the entropy for class C1= -P*log(p), probability p. The entropy of C1 varies with the probability p. Right: the entropy for class C2= -p'*log(p'), probability p'. The entropy for C2 varies with the probability p.](images/DS_IMG035.png)
 
@@ -607,21 +607,21 @@ $$
 \end{array}
 $$
 
-Its behaviour is shown figure 2.25 below.
+Its behaviour is shown in Figure 2.25 below.
 
 ![Two graphs. Left: the entropy of both classes C1 and C2 who have probabilities p and p′=1−p, respectively. Right: the different components of the entropy fitted together.](images/DS_IMG036.png)
 
 **<p style="text-align: center;">Figure 2.25:** *Left: The entropy of both classes C1 and C2 who have probabilities $p$ and $p^{\prime}=1-p$, respectively. Right: The different components of the entropy fit together.*</p>
 
-Note that we are talking about two classes (events) not two probability distributions. In the case of two probability distributions we use cross-entropy which is outside the scope of this discussion. In general if we have more than $K$ classes, then:
+Note that we are talking about two classes (events), not two probability distributions. In the case of two probability distributions, we use cross-entropy which is outside the scope of this discussion. In general, if we have more than $K$ classes, then:
 
 $$
 \text { Entropy }=-\sum_{i=1}^{K} p_{i} \log p_{i}
 $$
 
-###Comparison of the entropy with Gini Index
+### Comparison of the entropy with the Gini Index
 
-The same idea applies for the Gini index, but it is less complex.
+The same idea applies to the Gini index, but it is less complex.
 
 1. When the probability $p$ is low, the $Gini$ is low. Hence, we simply include $p$ in $Gini$ formula.
 
@@ -637,27 +637,27 @@ To take into account both of the points above, the Gini index should include the
 
 **<p style="text-align: center;">Figure 2.27:** *Left: The Gini impurity for class C1 = $p(1−p)$, C1 has probability $p$. Note that the term $1−p$ replaces the $-\log p$ in the entropy and it is easier to calculate.*</p>
 
-Note that $1−p$ happens to be the probability of class C2 but it is not what is meant here, this becomes clearer when we consider a multi-class situation where the term $(1−p)$ is still used to calculate the impurity of C1 but the probability of C2 is likely to be different due to the involvement of other classes. This coincidence makes the left and right hand sides identical for the binary classes problems. Note that the term has a max of 0.5*0.5=0.25.
+Note that $1−p$ happens to be the probability of class C2 but it is not what is meant here, this becomes clearer when we consider a multi-class situation where the term $(1−p)$ is still used to calculate the impurity of C1 but the probability of C2 is likely to be different due to the involvement of other classes. This coincidence makes the left and right-hand sides identical for the binary class problems. Note that the term has a max of 0.5*0.5=0.25.
 
-In addition, since we have two classes then we need also similar term for the second class. Given that its probability is $p^{\prime}$
+In addition, since we have two classes we need also a similar term for the second class. Given that its probability is $p^{\prime}$
 
 $$
 \operatorname{Gini}=p(1-p)+p^{\prime}\left(1-p^{\prime}\right)
 $$
 
-In the case of Gini impurity it is helpful to realise that $p+p^{\prime}=1$ hence:
+In the case of Gini impurity, it is helpful to realise that $p+p^{\prime}=1$ hence:
 
 $$
 \text { Gini }=p(1-p)+p^{\prime}\left(1-p^{\prime}\right)=\left(p+p^{\prime}\right)-\left(p^{2}+p^{\prime 2}\right)=1-\left(p^{2}+p^{\prime 2}\right)
 $$
 
-Its behaviour is shown in figure 2.28 below:
+Its behaviour is shown in Figure 2.28 below:
 
 ![Two graphs showing the Gini impurity for two classes C1 and C2, with probabilities p and p' respectively.](images/DS_IMG039.png)
 
 **<p style="text-align: center;">Figure 2.28:** *Left: The Gini impurity for two classes C1 and C2 with probabilities $p$ and $p^{\prime}=1-p$ respectively. Note that the Gini impurity has a max of 0.25+0.25=0.5. Right: The different components of the Gini impurity fit together.*</p>
 
-In general if we have more than $K$ classes, then:
+In general, if we have more than $K$ classes, then:
 
 $$
 \text { Gini }=\sum_{i=1}^{K} p_{i}\left(1-p_{i}\right)=1-\sum_{i=1}^{K} p_{i}^{2}
@@ -669,15 +669,15 @@ Figure 2.29 below summarises all of the terms included in both the entropy and G
 
 **<p style="text-align: center;">Figure 2.29:** *The behaviour of the entropy Gini with respect to both class 1 which has probability	$p$ and class 2 which has probability $1−p$.*</p>
 
-Note that the colours are representative of the terms involved in the calculation of both measures. The Gini is represented as red since on $p$ and $1-p$ are involved in its calculations, while the entropy is represented as magenta since all the four terms in blue and red are involved in its calculations (red + blue=magenta).  
+Note that the colours are representative of the terms involved in the calculation of both measures. The Gini is represented as red since $p$ and $1-p$ are involved in its calculations, while the entropy is represented as magenta since all the four terms in blue and red are involved in its calculations (red + blue=magenta).  
 
-Finally the classification error is given as:  
+Finally, the classification error is given as:  
 
 $$
 \text { Classification error }=1-\max \left(p_{i}\right)
 $$
 
-The behaviour of all of the three impurity measures have been already shown in figure 2.22.
+The behaviour of all three impurity measures is shown in Figure 2.22.
 
 !!! abstract "Exercise"
     See the following Jupyter notebook that implements and visualises the above impurity metrics.
