@@ -58,8 +58,8 @@ def plotClassBoundary(clf, X1, X2, y, ax, title='Classes Boundaries',
     # dataset to compare them with the decision regions
     ax.scatter(X1[y == 1], X2[y == 1],     facecolors='none',
                marker='o', edgecolor='r', s=0.8*psize, label='Class1')
-    ax.scatter(X1[y == 0], X2[y == 0],     facecolors='b',
-               marker='+', edgecolor='b', s=1.0*psize, label='Class2')
+    ax.scatter(X1[y == 0], X2[y == 0],    
+               marker='+', s=1.0*psize, label='Class2')
     # The above two lines can be replaced by the below
     # (but you will not be able to change the marker though)
     # ax.scatter(X1, X2, c=Y, edgecolor='k')
