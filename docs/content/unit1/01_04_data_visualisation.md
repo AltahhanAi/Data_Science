@@ -1,7 +1,7 @@
 # Data generation and visualisation
 
 !!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
+	After completing this lesson, you should be able to:
 
 	* undertake data preparation by using visualisation capabilities, using software such as Tableau
 	* differentiate between different visualisation charts, graphs and plots to pick the right one for a specific problem
