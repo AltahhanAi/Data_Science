@@ -93,7 +93,7 @@ Please see Figure 1.4 below. To learn more about the intuition of FT, watch this
 
 The example in this diagram shows the application of the Fourier transform to identify the underlying frequencies in time series data. For a detailed explanation of the diagrams, read example 2.11 on page 82 of <a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">‘Introduction to Data Mining’.</a>
 
-###Dimensionality reduction
+### Dimensionality reduction
 
 Dimensionality reduction techniques are important, as their aim is to find a reduced number of features that can be used to solve the problem – whether it is regression, classification or clustering etc.
 
@@ -104,6 +104,21 @@ Watch the following video for a summary of these techniques, and then read about
 You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22640813_4" target="_blank">transcript (PDF) here</a>.
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
+
+### Feature Selection
+
+We can use a few methods to select relevant features systematically. The good news is that sklearn has these as ready-of-the-shelf functionality that we can tap on. 
+
+We can simply use a statistical test to check how relevant one feature is to the label. This will not take into account the effect of 2 or more features together as a set on the label. Just the effect of one feature. Hence, it is called univariate (not multivariate) feature selection. This method selects the K's most relevant features for the label. It can be used in conjunction with the chi2 test(only use the chi2 test when the features are non-negative).
+
+Another method depends on weighting the features according to some estimator (not a statistical test), such as logistic regression (which we cover later). A main method would be Recursive Feature Elimination techniques. In this method, all features are recursively given importance weights based on fitting a model(estimator) for the problem at hand and then removing the least important features (you can specify how many to remove each time). 
+
+Another method is based on simply trying (either adding or removing) one feature at a time and checking the score of an estimator(there are no importance or relevance scores here). Where we add the feature that results in the highest score (if we are doing a forward selection) or remove the feature that results in the highest score (if we are doing a backward selection).
+
+
+Yet another method depends on the variance of the feature, so we look at the feature itself nothing else. If the feature does not have enough variance then we can eliminate this feature because it does not have enough information to help us differentiate between the different records to deduce a label or to cluster the record. 
+
+Below we talk in more detail about some of these methods, you can also consult <a href="https://scikit-learn.org/stable/modules/feature_selection" target="_blank"> feature_selection</a> in sklearn.
 
 #### Correlation
 
@@ -144,9 +159,10 @@ As another example, Principal Component Analysis (PCA) applies the ideas of Eige
 
 		Given that we have the following attributes {a, b, c, d, e} write the power set for the above set.
 
+
 #### Recursive Feature Elimination
 In this technique, the importance of the features is taken into account to select the features that contribute more to the predictability of the label.
-The idea is to use a model to select the feature recursively and then *examine* how important these features are in predicting the label, then eliminate one or more of them, and again train a model based on the new features subset, then again examine which features contribute less to the predictability of the label to eliminate them. The procedure goes through several iterations depending on the specified number of features that we would like to keep. This method is more efficient than sequential feature selection (discuss next) because the feature importance is already a byproduct of the model-training exercise.
+The idea is to use a model to select the feature recursively and then *examine* how important these features are in predicting the label for the used estimator(model), then eliminate one or more of them, and again train a model based on the new features subset, then again examine which features contribute less to the predictability of the label to eliminate them. The procedure goes through several iterations depending on the specified number of features that we would like to keep. This method is more efficient than sequential feature selection (discuss next) because the feature importance is already a byproduct of the model-training exercise.
 
 #### Sequential Feature Selection
 In this technique, the metric of the model performance (such as its accuracy) is used to judge whether a feature subset is effective in predicting the label. This means that if we have m features, and we want to reduce them into m-1 features, then we need to build/train m separate models corresponding to each eliminated feature and then compare the final model score (such as accuracy) in order to decide which feature to eliminate. This is a backward method. There is also a forward method of adding features instead of removing features.
