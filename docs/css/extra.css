@@ -57,8 +57,12 @@ h1 {
     font-weight: 500 !important;
 }
 
-.md-logo {
+.md-header__button.md-logo {
     display: none;
+}
+
+.md-header__title {
+    margin-left: 0.5rem;
 }
 
 .md-header-nav__title {
@@ -96,12 +100,12 @@ h1 {
 
 .md-sidebar--secondary {
     border: 1px solid var(--md-primary-fg-color) !important;
+    height: 100%;
 }
 
 #customlogo {
     text-align: right;
     height: 50px;
-    width: auto;
 }
 
 #versionIndicator {
@@ -110,7 +114,7 @@ h1 {
     font-size: 12px;
 }
 
-.md-announce__inner {
+.md-banner__inner {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -156,13 +160,62 @@ a.newtab code {
     font-family: inherit;
 }
 
+/*FIGURE CAPTIONS*/
+
+.md-typeset figure {
+    border: 1px solid #eee;
+    width: 100%;
+}
+
+.md-typeset figure img {
+    padding: 16px;
+}
+
 .md-typeset figcaption {
     font-style: normal;
     text-align: left;
-    margin-left: 0;
     max-width: none;
+    background-color: #eee;
+    margin: 0;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.md-typeset figcaption a {
+    color: var(--md-primary-fg-color--dark);
+}
+
+.md-typeset figcaption p {
+    margin-top: 0;
     margin-bottom: 0;
 }
+
+.md-typeset figcaption button.accordion-button {
+    text-decoration: underline;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.md-typeset figcaption div.accordion-panel {
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    padding: 12px;
+    margin-bottom: 6px;
+}
+
+.md-typeset figcaption a {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.md-typeset figcaption a:hover, .md-typeset figcaption a:focus {
+    color: var(--md-primary-fg-color--dark);
+}
+
+/*FIGURE CAPTIONS ---ENDS*/
 
 /* OUTPUT CODE STYLES */
 
@@ -252,25 +305,39 @@ a.newtab code {
     font-size: .7rem;
 }
 
-thead {
-    background: #212121;
+.md-typeset__table table thead, .md-typeset__table table th, .md-typeset table:not([class]) th {
+    background-color: #212121;
     font-weight: bold;
     font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    color: white;
 }
 
-thead th:not(:last-of-type), tbody tr td:not(:last-of-type) {
+.md-typeset table:not([class]) th:not([align]), .md-typeset table:not([class]) td:not([align]) {
+    text-align: center;
+}
+
+th:not(:last-of-type), tr td:not(:last-of-type) {
     border-right: 1px solid #ccc;
 }
 
-tbody tr td {
+tr td {
     border-bottom: 1px solid #ccc;
+}
+
+.md-typeset__table caption {
+    caption-side: bottom;
+    text-align: left;
+    margin-top: 10px;
 }
 
 /* EQUATION LABELS */
 
-span.equation-label {
-    text-align: right;
-    float: right;
-    background-color: white;
-    padding:20px;
+p mjx-math.MJX-TEX mjx-mtext {
+    font-size: 16px;
+}
+
+mjx-math.MJX-TEX mjx-mtext {
+    font-size: 13px;
+    font-family: 'Inter';
 }
