@@ -49,7 +49,7 @@ Below, we show a schematic representation of logistic regression.
 
 We denote $y\left(\mathbf{x}_{n}, \mathbf{w}\right)$ as  $y_{n}$ to simplify the notation.
 
-Logistic models tackle **binary class problems** so we have two potential target outputs. In this case, it is more useful to represent (encode) the target outputs $t_{n}$ as a binary target from the set $\{0,1\}$ which goes along with
+Logistic models tackle **binary class problems** so we have two potential target outputs. In this case, it is more useful to represent (encode) the target outputs $t_{n}$ as a binary target from the set $\{0,1\}$, which goes along with
 the model output $y_{n}$ that is in $[0,1]$ (as per the sigmoid function range).
 
 The **classification decision** can be made based on the value $y_{n}$
@@ -270,7 +270,7 @@ Hence we can extend **any of the previously covered algorithms** for linear regr
 
         Return the final solution $\mathbf{w}$
 
-  Please note that since we have used a non-linear activation function (the sigmoid), there is no direct least squares solution for the logistic regression model. However, since its loss function is concave (can be proven to be quadratic), we can still come up with closed form solution based on Newton-Raphson technique to yield the iterative reweighted least square solution. This is however, outside the scope of our coverage and will not be necessary for the rest of this unit.
+  Please note that since we have used a non-linear activation function (the sigmoid), there is no direct least squares solution for the logistic regression model. However, since its loss function is concave (can be proven to be quadratic), we can still come up with a closed-form solution based on the Newton-Raphson technique to yield the iterative reweighted least square solution. This is, however, outside the scope of our coverage and will not be necessary for the rest of this unit.
 
 ### More about cross entropy
 
@@ -430,10 +430,10 @@ Note that we have calculated the cross entropy log using the e base, not 2, so t
   </figcaption>
 </figure>
 
-###Least square for linear model classification
+### Least square for linear model classification
 
 Applying least squares will get us an estimation of the class label. However, Least Squares is not a good approach to estimate the classes. The issue with this approach is that it is sensitive to outliers. Also, the result of the minimisation will be a value that is not guaranteed to be in [0, 1] so we cannot expect a 1-of-K binary coding to be output by the model which we will talk about in the next section.
 
-##Lesson summary
+## Lesson summary
 
 In this lesson, we have covered another simple, but more powerful linear classification model that utilises a non-linear activation function to perform a linear classification task. Logistic regression is a common technique that has desirable characteristics, including its probabilistic interpretability, and the fact that its update rules are identical to the update rules of a linear regression model. Logistic regression forms an important component for more complex non-linear models, such as neural networks for classification.
