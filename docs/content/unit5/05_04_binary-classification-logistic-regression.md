@@ -410,12 +410,12 @@ Cross Entropy $\tilde{H}\left(\mathbf{w}_{1}\right)=0.01$ (due to some rounding)
 
 Cross Entropy $\tilde{H}\left(\mathbf{w}_{2}\right)=6.48$
 
-Calculating the cross entropy, we can realise that not all values of the predicted classes match the target class and so the cross entropy is higher than 0:
+Calculating the cross entropy, we can realise that not all values of the predicted classes match the target class, and so the cross entropy is higher than 0:
 
 $$
 \widetilde{H}\left(\mathbf{w}_{2}\right)=6.48
 $$
-Note that we have calculated the cross entropy log using the e base, not 2, so the unit is nats not bits(as we did in Unit 2). Regardless of the base of the log, the comparison will hold. We used the base e because it is more natural to do so due to logistic function properties.
+Note that we have calculated the cross entropy log using the e base, not 2, so the unit is nats, not bits(as we did in Unit 2). Regardless of the base of the log, the comparison will hold. Although bits are easier to interpret as a unit of information than nats, we used the base e because it is more natural to do so to stay consistent with the logistic function properties (the properties that we have proven will be slightly changed when we use the base 2 to include log(2)).
 
 !!! abstract "Exercise"
 
