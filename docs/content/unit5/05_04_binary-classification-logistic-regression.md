@@ -1,7 +1,7 @@
 # Binary classification: logistic regression
 
 !!! success "Learning outcomes:"
-	After completing this lesson you should be able to:
+	After completing this lesson, you should be able to:
 
     * understand the basic architecture of logistic regression to tackle binary classification problems
     *	understand the basic and mini-batch learning algorithm of logistic regression
@@ -9,18 +9,18 @@
     *	appreciate that cross entropy loss creates a synergy with logistic regression to yield and update that is identical to the regression
     *	appreciate the strengths and weaknesses of logistic regression.
 
-You might be thinking, regression for classification, this sounds weird! But actually the name is a misnomer. This is **not regression** at all, **it is classification**. The name is used for reasons that will become apparent later, please bear in mind that we are talking about a classification technique not a regression technique.
+You might be thinking, regression for classification, this sounds weird! But actually, the name is a misnomer. This is **not regression**, **it is classification**. The name is used for reasons that will become apparent later. Please bear in mind that we are talking about a classification technique, not a regression technique.
 
 We saw earlier that the perceptron is capable of classifying a linearly separable dataset and we saw that it has a simple step activation function. To move towards more general techniques that can handle non-linearly separable classes, we introduce the logistic regression model.
 
-Logistic regression uses the logistic sigmoid as the activation function (due to which the technique owes the first term of its name), the model is expressed as:
+Logistic regression uses the logistic sigmoid as the activation function (due to which the technique owes the first term of its name); the model is expressed as:
 
 
 $$
 y\left(\mathbf{x}_{n}, \mathbf{w}\right)=g\left(\mathbf{w}^{\top} \boldsymbol{\phi}_{n}\right)
 $$
 
-where $g$ is the sigmoid function that we discussed in Unit 4. Here it is used as an activation function, while in Unit 4 it was discussed in the context of basis functions to map input space into feature space. Nevertheless, the sigmoid is the sigmoid and it is defined as:
+where $g$ is the sigmoid function that we discussed in Unit 4. Here, it is used as an activation function, while in Unit 4, it was discussed in the context of basis functions to map input space into feature space. Nevertheless, the sigmoid is the sigmoid, and it is defined as:
 
 $$
 g(z)=\frac{1}{1+e^{-z}}=\frac{e^{z}}{1+e^{z}}
@@ -28,7 +28,7 @@ $$
 
 here in the context of an activation function $\mathrm{z}$ is the linear decision boundaries given as $\boldsymbol{z}=\mathbf{w}^{\top} \boldsymbol{\phi}_{n} .$
 
-Logistic regression is a widely used classification technique that like the perceptron has linear decision boundaries, but unlike the perceptron goes one step further and employ a non-linear activation functions. The benefit is that we can now bound the range of the output naturally and we can deal with probabilistic decisions instead of crisp decisions. The other benefit is that the activation function employed by the presented technique is differentiable and does not have cusps as in the step activation function. In fact, as shown in figure 5.29, the activation function of the presented technique, namely the logistic function, has somehow a similar but more lenient shape as the step function of the perceptron.
+Logistic regression is a widely used classification technique that, like the perceptron, has linear decision boundaries but, unlike the perceptron, goes one step further and employs a non-linear activation function. The benefit is that we can now bind the range of the output naturally and deal with probabilistic decisions instead of crisp decisions. The other benefit is that the activation function employed by the presented technique is differentiable and does not have cusps as in the step activation function. In fact, as shown in Figure 5.29, the activation function of the presented technique, namely the logistic function, somehow has a similar but more lenient shape to the step function of the perceptron.
 
 <figure role="group">
   <img src="../images/DS_IMG220.png" alt="Graph showing sigmoid activation function with [0, 1] signal range compared to step activation function with {0, 1} signals." />
@@ -37,11 +37,11 @@ Logistic regression is a widely used classification technique that like the perc
   </figcaption>
 </figure>
 
-We should also emphasise here that although both the perceptron and logistic regression have linear decision boundaries, they can become capable of dealing with non-linearly separable classes via feature mapping, i.e. by employing a non-linear basis function as we saw in the previous section. However, there are some non-linear problems where feature mapping do not solve its non-linearity where we need a built-in non-linearity in the model. In addition, as we saw in Unit 4 that fixed basis functions are restrictive in terms of adaptability that we might want to infuse in our models in order to automatically discover the best basis for the problem in hand instead of the analyst choosing the type of the basis needed.
-Below we show schematic representation of logistic regression.
+We should also emphasise here that although both the perceptron and logistic regression have linear decision boundaries, they can become capable of dealing with non-linearly separable classes via feature mapping, i.e. by employing a non-linear basis function as we saw in the previous section. However, there are some non-linear problems where feature mapping does not solve its non-linearity and where we need a built-in non-linearity in the model. In addition, as we saw in Unit 4, fixed basis functions are restrictive in terms of the adaptability that we might want to infuse into our models. This adaptability can be used to automatically discover the best basis for the problem at hand instead of the analyst choosing the type of basis needed.
+Below, we show a schematic representation of logistic regression.
 
 <figure role="group">
-  <img src="../images/DS_IMG152.jpg" alt="Schematic representation of the Logistic Regression as a linear models for classification with basis." />
+  <img src="../images/DS_IMG152.jpg" alt="Schematic representation of the Logistic Regression as linear models for classification with basis." />
   <figcaption>
     <p><strong>Figure 5.30.</strong> Schematic representation of the Logistic Regression as a linear model for classification with basis.</p>
   </figcaption>
@@ -67,9 +67,9 @@ $$
 \frac{d g}{d z}=g(1-g)
 $$
 
-We will interpret the values that we obtain from the logistic function as degree of membership to the positive class, or the probability that the data point belongs to the positive class. So for example if the logistic activation function produces a value of $0.7$ for a data point $\mathbf{x}$ then this is interpreted as $\operatorname{pr}(\mathbf{x} \in C)=0.7$ and $p r(\mathbf{x} \in$ $\neg C)=0.3$ and we can conclude that $\mathbf{x}$ is from class $C$. More formally, we express these quantities as conditional probabilities of the logistic regression discriminative model as $p r(y=1 \mid \mathbf{x})=0.7$ and $\operatorname{pr}(y=0 \mid \mathbf{x})=0.3$. Conditional probabilities $\operatorname{pr}(y=1 \mid \mathbf{x})$ and $p r(y=0 \mid \mathbf{x})$ are called posterior class probabilities.
+We will interpret the values that we obtain from the logistic function as the degree of membership to the positive class or the probability that the data point belongs to the positive class. So, for example if the logistic activation function produces a value of $0.7$ for a data point $\mathbf{x}$ then this is interpreted as $\operatorname{pr}(\mathbf{x} \in C)=0.7$ and $p r(\mathbf{x} \in$ $\neg C)=0.3$ and we can conclude that $\mathbf{x}$ is from class $C$. More formally, we express these quantities as conditional probabilities of the logistic regression discriminative model as $p r(y=1 \mid \mathbf{x})=0.7$ and $\operatorname{pr}(y=0 \mid \mathbf{x})=0.3$. Conditional probabilities $\operatorname{pr}(y=1 \mid \mathbf{x})$ and $p r(y=0 \mid \mathbf{x})$ are called posterior class probabilities.
 
-Logistic regression has strong roots as a probabilistic model. Logistic regression models are in fact **discriminative** models since they come up with estimations of the posterior probabilities $\operatorname{pr}(y=1 \mid \mathbf{x})$. These models are called as such because they discriminate between patterns presented to them. There is another type of probabilistic models that are **generative**, where the probabilities $\operatorname{pr}(\mathbf{x} \mid \mathrm{y}=1)$ are estimated. These are called as such because we can generate data from them.
+Logistic regression has strong roots as a probabilistic model. Logistic regression models are, in fact, **discriminative** models since they come up with estimations of the posterior probabilities $\operatorname{pr}(y=1 \mid \mathbf{x})$. These models are called as such because they discriminate between patterns presented to them. Other types of probabilistic models are **generative**, where the probabilities $\operatorname{pr}(\mathbf{x} \mid \mathrm{y}=1)$ are estimated. These are called as such because we can generate data from them.
 
 The odds of $\mathbf{x}$ being classified as positive is given as:
 
@@ -77,17 +77,17 @@ $$
 \frac{p(y=1 \mid \mathbf{x})}{p(y=0 \mid \mathbf{x})}
 $$
 
-By substituting with the logistic function formula we get:
+By substituting with the logistic function formula, we get:
 
 $$
 \frac{p(y=1 \mid \mathbf{x})}{p(y=0 \mid \mathbf{x})}=\frac{\frac{e^{z}}{1+e^{z}}}{\frac{1}{1+e^{z}}}=e^{z}=e^{\mathbf{w}^{\top} \boldsymbol{\phi}}
 $$
 
-This means that the logistic regression estimates the odds of $\mathbf{x}$ being from the positive class via a simple exponentiation of a linear model. As we shall see later this exponentiation is intimately related to logistic regression with multiple outputs.
+This means that the logistic regression estimates the odds of $\mathbf{x}$ being from the positive class via a simple exponentiation of a linear model. As we shall see later, this exponentiation is intimately related to logistic regression with multiple outputs.
 
 ## Loss function for the logistic regression
 
-First we start by intuition and then we formally define the loss. Here, the trick of the perceptron loss function (multiplying the model output $y_{n}$ by the target class $t_{n}$ ) does not work since the output is a continuum of values in $[ 0,1\left]\right.$ instead of $+1$ and $-1$ (as in the perceptron). The multiplication of $t_{n} y_{n}$ is always non-negative, so the **sign** of $t_{n} y_{n}$ **will not work** to detect the class as it did in the perceptron. Instead we need to look at the **value** of $t_{n} y_{n}$ to deduce the dissimilarity between the model output $y_{n}$ and the target output $t_{n} .$ Therefore, we might think of a loss function as follows:
+First, we start with intuition, and then we formally define the loss. Here, the trick of the perceptron loss function (multiplying the model output $y_{n}$ by the target class $t_{n}$ ) does not work since the output is a continuum of values in $[ 0,1\left]\right.$ instead of $+1$ and $-1$ (as in the perceptron). The multiplication of $t_{n} y_{n}$ is always non-negative, so the **sign** of $t_{n} y_{n}$ **will not work** to detect the class as it did in the perceptron. Instead, we need to look at the **value** of $t_{n} y_{n}$ to deduce the dissimilarity between the model output $y_{n}$ and the target output $t_{n}.$ Therefore, we might think of a loss function as follows:
 
 $$
 \left\{\begin{array}{lll}
@@ -96,7 +96,7 @@ $$
 \end{array}\right.
 $$
 
-However, since $y_{n}$ is a logistic value that has exponentiation, it is easier to take the log of $y_{n}$ which effectively cancels the exponentiation and makes the loss easier to handle. $y_{n}$ and $-\log y_{n}$ are both monotonic and behave similarly in terms of their minima $\left(\log y_{n}\right.$ is always negative because $y_{n}$ is in $[ 0,1 ])$ . So we can use the following loss cases instead:
+However, since $y_{n}$ is a logistic value that has exponentiation, it is easier to take the log of $y_{n}$, which effectively cancels the exponentiation and makes the loss easier to handle. $y_{n}$ and $-\log y_{n}$ are both monotonic and behave similarly in terms of their minima $\left(\log y_{n}\right.$ is always negative because $y_{n}$ is in $[ 0,1 ])$. So we can use the following loss cases instead:
 
 $$
 \left\{\begin{array}{ll}
@@ -112,7 +112,7 @@ $$
 $$
 
 Ok, that was one way to motivate the use of the cross entropy loss. Below we provide the motivation formally via the entropy.
-Recall that the logistic function value is in [0, 1] and that it will be interpreted as a probability. Hence our model prediction
+Recall that the logistic function value is in [0, 1] and that it will be interpreted as a probability. Hence, our model prediction
 
 $$
 y\left(\mathbf{x}_{n}, \mathbf{w}\right)=g\left(\mathbf{w}^{\top} \boldsymbol{\phi}_{n}\right)
@@ -150,8 +150,7 @@ to express that we are interested in how the entropy varies with $\mathbf{w}$ fo
 
 ## Cross entropy
 
-Although the model entropy quantifies the uncertainty in the model's own predictions, it does not tell us anything about how the model is doing in comparison to the actual class. More formally, the entropy gives us no information about how **uncertain** our **class prediction** is relative to the actual class of the data point. Instead, to measure the expected difference between our model predicted class and the **actual class** of a pattern $\mathbf{x}_{n}$, we can use the cross entropy. We will denote the probabilities of the target classes as $t_{n}$ and we note that these will
-take the values of 1 when the data point belongs to the positive class and 0 when it does not. We denote the distribution of the actual class as $\mathrm{T}$ and the prediction distribution as $\mathrm{P}$. Therefore, now we can define the cross
+Although the model entropy quantifies the uncertainty in the model's own predictions, it does not tell us anything about how the model is doing in comparison to the actual class. More formally, the entropy gives us no information about how **uncertain** our **class prediction** is relative to the actual class of the data point. Instead, to measure the expected difference between our model predicted class and the **actual class** of a pattern $\mathbf{x}_{n}$, we can use the cross entropy. We will denote the probabilities of the target classes as $t_{n}$, and we note that these will take the values of 1 when the data point belongs to the positive class and 0 when it does not. We denote the distribution of the actual class as $\mathrm{T}$ and the prediction distribution as $\mathrm{P}$. Therefore, now we can define the cross
 entropy prediction $\mathrm{y}_{n}$ as:
 
 $$
@@ -181,7 +180,7 @@ $$
 
 You can see how we get the gradient in the box below. This is surprising since it is exactly the same as the gradient for the sum of squared errors in a linear regression model. It is a pleasant by-product of the synergy between cross entropy and logistic model that will allow us to greatly simplify the learning procedure of a logistic model.
 
-Since we need to go opposite to the gradient direction the stochastic gradient update is given as
+Since we need to go opposite to the gradient direction, the stochastic gradient update is given as
 
 $$
 \begin{array}{l}
@@ -205,11 +204,11 @@ $$
 \nabla \bar{J}=-\frac{1}{N} \sum_{n=1}^{N}\left(t_{n}-y_{n}\right) \boldsymbol{\phi}_{n}
 $$
 
-Now we need to pause a second here. As we pointed out, this update is identical to a linear regression update without the activation function! The main difference is in how we interpret the results and in how we require our model to work. In linear regression we are trying to come up with a prediction of a **value** $y_{n} .$ In logistic regression we are trying to come up with a **class** $y_{n} .$ The prediction is calculated using the logistic function while in linear regression there is no activation function at all.
+Now we need to pause a second here. As we pointed out, this update is identical to a linear regression update without the activation function! The main difference is in how we interpret the results and in how we require our model to work. In linear regression, we are trying to come up with a prediction of a **value** $y_{n}.$ In logistic regression we are trying to come up with a **class** $y_{n}.$ The prediction is calculated using the logistic function while in linear regression there is no activation function at all.
 
 Hence we can extend **any of the previously covered algorithms** for linear regression to work equally on logistic regression and this is the beauty of it. For example, we can build a regularised stochastic gradient algorithm that uses the above update. We can also come up with a regularised batch update for logistic regression which is shown below. We show the vectorised version of the mini-batch similar to Algorithm 6 " however of course there is a vanilla mini-batch similar to the one for the perceptron and vice-versa (scroll to the right in the box to view all of the algorithm).
 
-!!! algorithm-heading "Algorithm 2: Mini-Batch Stochastic Gradient Descent Updates for Logistic Regression Model with Radial Basis (see previous unit for other possible basis). "
+!!! algorithm-heading "Algorithm 2: Mini-Batch Stochastic Gradient Descent Updates for Logistic Regression Model with Radial Basis (see previous unit for other possible bases). "
 
     **Input:**
 
@@ -282,9 +281,9 @@ $$
 \mathrm{H}(Q)=-\operatorname{pr}(v) \log (p r(v))-(1-p r(v)) \log (1-p r(v))
 $$
 
-The letter $\mathrm{H}$ is eta in Greek which is close to first couple of vowels for the word entropy.
+The letter $\mathrm{H}$ is eta in Greek which is close to the first couple of vowels for the word entropy.
 
-On the other hand, if we have another distribution for the probabilities $p r(v)$ and $1-p r(v)$ then to differentiate between them we add a subscript to denote which distribution we are talking about
+On the other hand, if we have another distribution for the probabilities $p r(v)$ and $1-p r(v)$ then to differentiate between them, we add a subscript to denote which distribution we are talking about
 
 $$
 \begin{array}{l}
@@ -302,7 +301,7 @@ H(P, Q)=-p r_{P}(v) \log \left(p r_{Q}(v)\right)-\left(1-p r_{P}(v)\right) \log 
 \end{array}
 $$
 
-### The gradient of the cross entropy terms from binary class problem
+### The gradient of the cross entropy terms for binary class problem
 
 All gradients are with respect to $\mathbf{w}$
 
@@ -336,16 +335,16 @@ Let us look at the following dataset:
 <figure role="group">
   <img src="../images/DS_IMG153.png" alt="Graph showing example of a binary class dataset." />
   <figcaption>
-    <p><strong>Figure 5.31.</strong> Example of binary class dataset.</p>
+    <p><strong>Figure 5.31.</strong> Example of a binary class dataset.</p>
   </figcaption>
 </figure>
 
-The data has been generated to be separated by the following linear classifier $x_{2}=2 x_{1}-4$ that splits the dataset into two classes. The classifier is shown below in figure 5.32.
+The data has been generated to be separated by the following linear classifier $x_{2}=2 x_{1}-4$ that splits the dataset into two classes. The classifier is shown below in Figure 5.32.
 
 <figure role="group">
   <img src="../images/DS_IMG154.png" alt="Graph showing an example of a binary class dataset with decision boundary." />
   <figcaption>
-    <p><strong>Figure 5.32.</strong> Example of binary class dataset with decision boundary.</p>
+    <p><strong>Figure 5.32.</strong> Example of a binary class dataset with decision boundary.</p>
   </figcaption>
 </figure>
 
@@ -364,14 +363,14 @@ The dataset is given as follows (data has been rounded to the nearest 2 decimal 
 | $x_{0}$  | $x_{1}$  | $x_{2}$ | Actual Class $t$ | $\mathbf{w}_1^\top\mathbf{x}$ | Predicted class $y=g(\mathbf{w}_1^\top\mathbf{x})$ |
 | -------- | -------- | ------- | ---------------- | ----------------------------- | -------------------------------------------------- |
 | 1	       | 30.00	  | 61.67	| 0	               | -5.67	                       | 0.0
-| 1	       | 33.33	  | 51.46	| 1	               | 11.21	                       | 1.0
-| 1	       | 36.67	  | 55.84	| 1	               | 13.49	                       | 1.0
+| 1	       | 33.33	  | 51.46	| 1	               | 11.20	                       | 1.0
+| 1	       | 36.67	  | 55.84	| 1	               | 13.50	                       | 1.0
 | 1	       | 40.00	  | 66.75	| 1	               | 9.25	                       | 1.0
-| 1	       | 43.33	  | 100.36	| 0	               | -17.69	                       | 0.0
+| 1	       | 43.33	  | 100.36	| 0	               | -17.70	                       | 0.0
 | 1	       | 46.67	  | 97.52	| 0	               | -8.18	                       | 0.0
 | 1	       | 50.00	  | 109.93	| 0	               | -13.93	                       | 0.0
-| 1	       | 53.33	  | 92.38	| 1	               | 10.29	                       | 1.0
-| 1	       | 56.67	  | 127.47	| 0	               | -18.14	                       | 0.0
+| 1	       | 53.33	  | 92.38	| 1	               | 10.28	                       | 1.0
+| 1	       | 56.67	  | 127.47	| 0	               | -18.13	                       | 0.0
 | 1	       | 60.00	  | 91.92	| 1	               | 24.08	                       | 1.0
 
 
@@ -396,43 +395,44 @@ The dataset is given as follows:
 
 |   n |   	$x_{0}$ |   $x_{1}$ |   $x_{2}$	| Actual Class $t$ |	$\mathbf{w}_1^\top\mathbf{x}$ | Predicted class $y=g(\mathbf{w}_1^\top\mathbf{x})$ |	${\widetilde{H}}_n\left(\mathbf{w}_1\right)$ |	$\mathbf{w}_2^\top\mathbf{x}$ | Predicted class $y=g(\mathbf{w}_2^\top\mathbf{x})$	| ${\widetilde{H}}_n\left(\mathbf{w}_2\right)$ |
 | --- | ----------- | --------- | --------- | ----| ------ | --- | ---- | ------ | ---- | --- |
-|   0 |   	1	    | 30.00	    | 61.67	    | 0	  | -5.67  | 0.0 |	0.0 | 8.33	 | 1.00	| 12.0 |
-|   1 |   	1	    | 33.33	    | 51.46	    | 1	  | 11.21  | 1.0 |	0.0 | 25.21	 | 1.00	| 0.0 |
-|   2 |   	1	    | 36.67	    | 55.84	    | 1	  | 13.49  | 1.0 |	0.0 | 27.49	 | 1.00	| 0.0 |
-|   3 |   	1	    | 40.00	    | 66.75	    | 1	  | 9.25   | 1.0 |	0.0 | 23.25	 | 1.00	| 0.0 |
-|   4 |   	1	    | 43.33	    | 100.36	| 0	  | -17.69 | 0.0 |	0.0 | -3.69	 | 0.02	| 0.0 |
-|   5 |   	1	    | 46.67	    | 97.52	    | 0	  | -8.18  | 0.0 |	0.0 | 5.82	 | 1.00	| 8.0 |
-|   6 |   	1	    | 50.00	    | 109.93	| 0	  | -13.93 | 0.0 |	0.0 | 0.07	 | 0.52	| 1.0 |
-|   7 |   	1	    | 53.33	    | 92.38	    | 1	  | 10.29  | 1.0 |	0.0 | 24.29	 | 1.00	| 0.0 |
-|   8 |   	1	    | 56.67	    | 127.47	| 0	  | -18.14 | 0.0 |  0.0 | -4.14	 | 0.02	| 0.0 |
-|   9 |   	1	    | 60.00	    | 91.92	    | 1	  | 24.08  | 1.0 |	0.0 | 38.08	 | 1.00	| 0.0 |
+|   0 |   	1	    | 30.00	    | 61.67	    | 0	  | -5.67  | 0.0 |	0.0 | 8.33	 | 1.00	| 3.62 |
+|   1 |   	1	    | 33.33	    | 51.46	    | 1	  | 11.20  | 1.0 |	0.0 | 25.20	 | 1.00	| 0.00 |
+|   2 |   	1	    | 36.67	    | 55.84	    | 1	  | 13.50  | 1.0 |	0.0 | 27.50	 | 1.00	| 0.00 |
+|   3 |   	1	    | 40.00	    | 66.75	    | 1	  | 9.25   | 1.0 |	0.0 | 23.25	 | 1.00	| 0.00 |
+|   4 |   	1	    | 43.33	    | 100.36	    | 0	  | -17.70 | 0.0 |	0.0 | -3.70	 | 0.02	| 0.01 |
+|   5 |   	1	    | 46.67	    | 97.52	    | 0	  | -8.18  | 0.0 |	0.0 | 5.82	 | 1.00	| 2.53 |
+|   6 |   	1	    | 50.00	    | 109.93	    | 0	  | -13.93 | 0.0 |	0.0 | 0.07	 | 0.52	| 0.32 |
+|   7 |   	1	    | 53.33	    | 92.38	    | 1	  | 10.28  | 1.0 |	0.0 | 24.28	 | 1.00	| 0.00 |
+|   8 |   	1	    | 56.67	    | 127.47	    | 0	  | -18.13 | 0.0 |	0.0 | -4.13	 | 0.02	| 0.01 |
+|   9 |   	1	    | 60.00	    | 91.92	    | 1	  | 24.08  | 1.0 |	0.0 | 38.08	 | 1.00	| 0.00 |
 
-Cross Entropy $\tilde{H}\left(\mathbf{w}_{1}\right)=0.0$
+Cross Entropy $\tilde{H}\left(\mathbf{w}_{1}\right)=0.01$ (due to some rounding)
 
-Cross Entropy $\tilde{H}\left(\mathbf{w}_{2}\right)=21.0$
+Cross Entropy $\tilde{H}\left(\mathbf{w}_{2}\right)=6.48$
 
 Calculating the cross entropy, we can realise that not all values of the predicted classes match the target class and so the cross entropy is higher than 0:
 
 $$
-\widetilde{H}\left(\mathbf{w}_{2}\right)=21
+\widetilde{H}\left(\mathbf{w}_{2}\right)=6.48
 $$
+Note that we have calculated the cross entropy log using the e base, not 2, so the unit is nats not bits(as we did in Unit 2). Regardless of the base of the log, the comparison will hold. We used the base e because it is more natural to do so due to logistic function properties.
 
 !!! abstract "Exercise"
 
-    The plots in figure 5.33 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. See the following Jupyter Notebook:
+    The plots in Figure 5.33 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. See the following Jupyter Notebook:
 
     - Download notebook (.ipynb): <a href="../exercises/Exercise3_LogisticRegressionDecsions.ipynb" download>Exercise 3</a>
 
 <figure role="group">
-  <img src="../images/DS_IMG155.png" alt="Two graphs showing an example of a binary dataset. Top: an optimal decision boundary identical with the actual boundary of the dataset, where no misclassification has occurred. Bottom: an example showing the effect of shifting the decision boundaries by changing the bias." />
+  <img src="../images/DS_IMG155.png" alt="Two graphs showing an example of a binary dataset. Top: an optimal decision boundary identical to the actual boundary of the dataset, where no misclassification has occurred. Bottom: an example showing the effect of shifting the decision boundaries by changing the bias." />
   <figcaption>
-    <p><strong>Figure 5.33.</strong> Two graphs showing an example of a binary dataset. Top: an optimal decision boundary identical with the actual boundary of the dataset, no misclassification occurred. Bottom: showing the effect of shifting the decision boundaries by changing the bias. The boxes with red circles show misclassified cases.</p>
+    <p><strong>Figure 5.33.</strong> Two graphs showing an example of a binary dataset. Top: an optimal decision boundary identical to the actual boundary of the dataset, no misclassification occurred. Bottom: showing the effect of shifting the decision boundaries by changing the bias. The boxes with red circles show misclassified cases.</p>
   </figcaption>
 </figure>
 
 ###Least square for linear model classification
 
-Applying least squares will get us an estimation of the class label. However, Least Squares is not a good approach to estimate the classes. The issue with this approach is that it is sensitive to outliers. Also the result of the minimisation will be a value that is not guaranteed to be in [0, 1] so we cannot expect a 1-of-K binary coding to be output by the model which we will talk about in the next section.
+Applying least squares will get us an estimation of the class label. However, Least Squares is not a good approach to estimate the classes. The issue with this approach is that it is sensitive to outliers. Also, the result of the minimisation will be a value that is not guaranteed to be in [0, 1] so we cannot expect a 1-of-K binary coding to be output by the model which we will talk about in the next section.
 
 ##Lesson summary
 
