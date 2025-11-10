@@ -327,8 +327,8 @@ So it can be concluded that it is more likely that the patient has D3 than the o
 
 Please note that P(D1|E1) + P(D2|E1) + P(D3|E1) = 1.
 
-####Example 2: Bayes for multiple evidence
-For this example, assume further evidence has been obtained from the example 1 statistics about symptom E2:
+#### Example 2: Bayes for multiple evidence
+For this example, assume further evidence has been obtained from example 1 statistics about symptom E2:
 
 * 3 patients with D1 have E1 and E2
 * 10 patients with D2 have E1 and E2
@@ -341,42 +341,42 @@ If a patient who has E1 does not have E2 then the probabilities of having diseas
 * P(E1,¬E2|D1) =  ( 5 - 3)/25 = 0.08
 * P(E1,¬E2|D2) = (10-10)/15 = 0.00
 * P(E1,¬E2|D3) = (40-10)/60 = 0.50
-* P(D1|E1,¬E2) = P(E1,¬E2|D1).P(D1)/P(E1,¬E2) =0.08x0.25/0.32=0.0625
-* P(D2|E1,¬E2) = P(E1,¬E2|D2).P(D2)/P(E1,¬E2) =0.00x0.15/0.32=0.000
-* P(D3|E1,¬E2) = P(E1,¬E2|D3).P(D3)/P(E1,¬E2) =0.50x0.60/0.32=0.9375
+* P(D1|E1,¬E2) = P(E1,¬E2|D1).P(D1)/P(E1,¬E2) =0.08x0.25/0.32 = 0.0625
+* P(D2|E1,¬E2) = P(E1,¬E2|D2).P(D2)/P(E1,¬E2) =0.00x0.15/0.32 = 0.000
+* P(D3|E1,¬E2) = P(E1,¬E2|D3).P(D3)/P(E1,¬E2) =0.50x0.60/0.32 = 0.9375
 
-Therefore, with the new evidence that states that the patient does not have symptom E2 the patient is likely to be diagnosed with disease D3. The new evidence also suggests that they cannot have D2 and their chances of catching D1 are low.
+Therefore, with the new evidence that states that the patient does not have symptom E2, the patient is likely to be diagnosed with disease D3. The new evidence also suggests that they cannot have D2, and their chances of catching D1 are low.
 
-####Example 3: Bayes for multiple evidence with conditional independency
-This time assume that further evidence from Example 1 statistics about symptom E2 has been obtained. The information states that:
+#### Example 3: Bayes for multiple evidence with conditional independence
+This time, assume that further evidence from Example 1 statistics about symptom E2 has been obtained. The information states that:
 
 * 15 patients with D1 have E2
 * 15 patients with D2 have E2
 * 24 patients with D3 have E2.  
 
-Note that the numbers for patients with D1 who have both E1 and E2 are not known. Only the numbers of patients who were diagnosed with D1 and have E1 have been provided. Separately, the number of patients who were diagnosed with D1 and who have symptom E2 are available. This is not normally enough to infer anything regarding (E1,¬E2|D1).  
+Note that the numbers for patients with D1 who have both E1 and E2 are not known. Only the number of patients who were diagnosed with D1 and have E1 have been provided. Separately, the number of patients who were diagnosed with D1 and who have symptom E2 are available. This is not normally enough to infer anything regarding (E1,¬E2|D1).  
 
-However, if given further information that E1 and E2 are independents with respect to D1, D2 and D3, this is called conditional independency between E1 and E2 given D1, and it is an important concept in probability theory.
+However, if given further information that E1 and E2 are independent with respect to D1, D2 and D3, this is called conditional independence between E1 and E2 given D1, and it is an important concept in probability theory.
 
 The conditional independency means that knowing that a patient who has D1 (or D2 or D3), shows symptom E1 will not provide information on whether the patient might or might not show E2, and vice versa.  Formally, this guarantees that P(E1,E2|D1) = P(E1|D1).P(E2|D1).  
 
-* P(E1,¬E2|D1) = P(E1|D1).P(¬E2|D1) = (  5/25) x (25-15)/25 = 0.20x0.4=0.08
-* P(E1,¬E2|D2) = P(E1|D2).P(¬E2|D2) = (10/15) x (15-15)/15 = 0.66x0.0=0.00
-* P(E1,¬E2|D3) = P(E1|D3).P(¬E2|D3) = (40/60) x (60-24)/60 = 0.66x0.6=0.396
+* P(E1,¬E2|D1) = P(E1|D1).P(¬E2|D1) = ( 5/25) x (25-15)/25 = 2/25
+* P(E1,¬E2|D2) = P(E1|D2).P(¬E2|D2) = (10/15) x (15-15)/15 = 0.00
+* P(E1,¬E2|D3) = P(E1|D3).P(¬E2|D3) = (40/60) x (60-24)/60 = 4/10
 
 * P(E1,¬E2|D1).P(D1) = (2/25) x (25/100) = 2/100
 * P(E1,¬E2|D2).P(D2) = (0/15) x (15/100) = 0.00
-* P(E1,¬E2|D3).P(D3) = (24/60) x (60/100) = 24/100
+* P(E1,¬E2|D3).P(D3) = (4/10) x (60/100) = 24/100
 
-Although there are 54 patients who have E2, the count for (E1,¬E2) is not available to be able to infer P(E1,¬E2). However the probability of (E1,¬E2) can be worked out from the following:  
+Although there are 54 patients who have E2, the count for (E1,¬E2) is not available to be able to infer P(E1,¬E2). However, the probability of (E1,¬E2) can be worked out from the following:  
 
 * P(D1|E1,¬E2)+P(D2|E1,¬E2)+P(D3|E1,¬E2) = 1
 * P(E1,¬E2|D1).P(D1)+P(E1,¬E2|D2).P(D2)+P(E1,¬E2|D3).P(D3)]/P(E1,¬E2) = 1
-* P(E1,¬E2)=P(E1,¬E2|D1).P(D1)+P(E1,¬E2|D2).P(D2)+P(E1,¬E2|D3).P(D3)= 26/100
+* P(E1,¬E2)=P(E1,¬E2|D1).P(D1)+P(E1,¬E2|D2).P(D2)+P(E1,¬E2|D3).P(D3) = 26/100
 
-Note that this is the same probability that was calculated in example 2 through a direct given count of (E1,¬E2). This also shows that P(E1,¬E2) acts as a normalisation factor. The rest of the calculations are identical to example 2, which shows that conditional independency can compensate lack of individual counts of an evidence.
+Note that this is the same probability that was calculated in example 2 through a direct given count of (E1,¬E2). This also shows that P(E1,¬E2) acts as a normalisation factor. The rest of the calculations are identical to example 2, which shows that conditional independence can compensate for the lack of individual counts of evidence.
 
-Note that the probability framework does not assign a degree to which a symptom exists in a patient; the symptom either exists or not. Of course, there are ways to work around this, but it is outside the scope of what is being discussed here. There is also the idea of assigning priors to the probabilities which is essential in the Bayesian framework, these issues along with other Bayesian methods, such as Naive Bayes and Graphical models will be explored further in the Machine Learning module.
+Note that the probability framework does not assign a degree to which a symptom exists in a patient; the symptom either exists or does not. Of course, there are ways to work around this, but it is outside the scope of what is being discussed here. There is also the idea of assigning priors to the probabilities which is essential in the Bayesian framework, these issues along with other Bayesian methods, such as Naive Bayes and Graphical models will be explored further in the Machine Learning module.
 
 
 ##Measuring the performance
