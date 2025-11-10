@@ -1,0 +1,2679 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Digital Education Service">
+      
+      
+      
+        <link rel="prev" href="../04_01d_simple_linear_model_exercise/">
+      
+      
+        <link rel="next" href="../04_01f_sgd_exercises/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>1e. Approximate solutions - gradient descent - Data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#approximate-solutions-gradient-descent" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+    <div id="versionIndicator"><b>Version:</b> 21.11.23.a</div>
+    <img id="customlogo" src="../../../img/logo.svg" alt="University of Leeds logo.">
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data science" class="md-header__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1e. Approximate solutions - gradient descent
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit1/01_01_what-is-data-science/" class="md-tabs__link">
+          
+  
+  
+  Unit 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit2/02_00_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit3/03_00_clustering_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../04_00_regression_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 5
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data science" class="md-nav__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_01_what-is-data-science/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. What is data science?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_02_the_data_its_quality_and_its_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. The data, its quality and its structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_03_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Data preparation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_04_data_visualisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Data generation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_00_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Decision trees
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Decision trees
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_01_decision_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Decision trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_02_DT_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Decision tree training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_03_DT_vertebrate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. DT training on a vertebrate dataset
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_04_measuring_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Measuring the performance of a classification model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_05_overfitting_underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Overfitting, underfitting and generalisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_00_clustering_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clustering and classification algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Clustering
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Clustering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01_clustering_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01a_two_clusters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Two clusters case
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01b_general_case_multi_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. General case multi clusters: K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01c_clusters_loss_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Clusters loss function: measuring the quality of the cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01d_specifying_K_through/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Specifying K through elbow method
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01e_initialising_centroids/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Initialising the centroids
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01f_mini_batch_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Mini-batch K means++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01g_bisecting_K_means/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1g. Bisecting K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01h_clustering_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1h. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Basic numerical distance-based classification
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Basic numerical distance-based classification
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02a_intro_basic_numerical_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02b_lazy_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Lazy classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02c_K_nearest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. K-nearest neighbour algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02d_choosing_best_k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Choosing best k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02e_classification_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_03_ensemble_methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Ensemble methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_04_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_00_regression_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear and non linear regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Simple Linear Regression Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Simple Linear Regression Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_01a_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Simple linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_01b_example_linear_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Example of linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_01c_loss_error_cos_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Loss, objective, error or cost function for regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_01d_simple_linear_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Simple linear model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    1e. Approximate solutions - gradient descent
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Approximate solutions - gradient descent
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#batch-gradient-descent-for-linear-regression-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Gradient Descent for Linear Regression Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequential-learning-stochastic-gradient-descent-for-linear-regression-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequential Learning: Stochastic Gradient Descent for Linear Regression Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mini-batch-learning-mini-batch-stochastic-gradient-descent-for-linear-regression-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini-Batch Learning: Mini-Batch Stochastic Gradient Descent for Linear Regression Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mini-Batch Learning: Mini-Batch Stochastic Gradient Descent for Linear Regression Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faster-mini-batch-sgd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Faster Mini-Batch SGD
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_01f_sgd_exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Evaluating a regression model via R2 and the RMSE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Linear regression with linear and non-linear basis functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_02a_linear_regression_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_02b_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_02c_linear_basis_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. Linear basis model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_02d_Batch_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Batch learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_02e_linear_regression_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Implementing a stochastic gradient descent with gaussian basis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_02f_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2f. Regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_02g_least_squares_with_basis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2g. Regularisation exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_02h_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2h. Linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_02i_preventing_overfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2i. Preventing overfitting the data and overshooting the loss minimum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_03a_multi_layer_multi_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Non-linear regression via neural networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_4_learning_from_probabilistic_perspective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Learning from a probabilistic perspective
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_05_unit_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Linear and non-Linear classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_02_linear-model-for-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Linear model for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_03_binary-classification-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Binary classification: The perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_04_binary-classification-logistic-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Binary classification: Logistic regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_05_multi-class-problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Multi-class problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_06_non-linear-models_multi-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. Non-linear models: multi-layer perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_07_probabilistic_view_of_loss_function_for_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Probabilistic view of loss function for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_08_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#batch-gradient-descent-for-linear-regression-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Gradient Descent for Linear Regression Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequential-learning-stochastic-gradient-descent-for-linear-regression-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequential Learning: Stochastic Gradient Descent for Linear Regression Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mini-batch-learning-mini-batch-stochastic-gradient-descent-for-linear-regression-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini-Batch Learning: Mini-Batch Stochastic Gradient Descent for Linear Regression Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mini-Batch Learning: Mini-Batch Stochastic Gradient Descent for Linear Regression Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faster-mini-batch-sgd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Faster Mini-Batch SGD
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="approximate-solutions-gradient-descent">Approximate solutions: gradient descent</h1>
+<p><strong>For linear models we saw that we can analytically find a solution via the normal formula by setting the gradient to 0 and solving with respect to <span class="arithmatex">\(\mathbf{W}\)</span>. Such solutions are either not available when we deal with non-linear optimisation or is not desirable due to efficiency requirements. Even if an analytical close form solution is available, the complexity of finding the least squares is <span class="arithmatex">\(O\left(D^{2} \times N\right)\)</span> which is quite expensive when <span class="arithmatex">\(N\)</span> is reasonably large.</strong></p>
+<p>In such cases, it is desirable to find an <strong>approximate solution</strong> for the problem (i.e. an approximation for <span class="arithmatex">\(\mathbf{w}^{*}\)</span>) to come as close as possible to the minimum <strong>without</strong> necessarily finding the <strong>exact solution</strong>. Algorithms that try to achieve this are called approximation algorithms, you will study several of these in the Algorithms Module, including greedy, local search and dynamic programming algorithms. In our case, we will utilise an important and pervasive approximation algorithm that is utilised throughout machine learning. It is not necessary the best approximation algorithm but it is the simplest to understand and to implement.</p>
+<p>This optimisation algorithm is called the gradient descent or steepest descent. This technique aims at iteratively finding the minimum of a function (the loss function <span class="arithmatex">\(\overline{J^{2}}\)</span> in our case). The algorithm starts from any point on the surface of the loss function (i.e. by taking a random initial value for <span class="arithmatex">\(w\)</span>) and then it takes small steps in the direction of the minimum of the function by changing the weights gradually in each step. The direction of the point <span class="arithmatex">\(w^*\)</span> that minimise <span class="arithmatex">\(\overline{J^{2}}\)</span> from any point <span class="arithmatex">\(\mathbf{w}^{(\tau)}\)</span> is always opposite to the gradient of the function at this point <span class="arithmatex">\(-\nabla J^{2}\left(\mathbf{w}^{(\tau)}\right)\)</span>. This is because the gradient of a function always points in a direction opposite to the minimum.</p>
+<p>Please watch the following video on gradient descent.</p>
+<iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/1306e0c0bf4746888652140ccedeac0b1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<p><a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22914201_4" target="_blank">Download transcript (PDF).</a></p>
+<p>Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.</p>
+<p>Here we are talking about a minimum, often complex loss functions have several minima so we will come back to this idea later when we move to the non-linear models towards the end of the unit. We are taking small steps towards the minimum because taking large steps lead to overshooting the minimum or oscillating around it. The size of the step (denoted as <span class="arithmatex">\(η\)</span>) is called the learning rate because it represents how fast a model can learn the solution of the problem. Gradient descent is a numerical optimisation technique so it is an iterative technique that keep working though iterations until it reaches a good enough approximate solution. Reaching a minimum is called <strong>convergence</strong> (a well known concept in calculus).</p>
+<p>Let us start by the basic gradient descent update which takes the following form:</p>
+<div class="arithmatex">\[
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta_{\tau} \nabla \overline{J^{2}}(\mathbf{w})
+\]</div>
+<p>Where <span class="arithmatex">\(\mathbf{w}^{(\tau)}\)</span> represents the weight vector at iteration τ and <strong>this is not exponentiation</strong>. <span class="arithmatex">\(η_τ\)</span> is a learning step that can be varied between iterations to make the algorithms responsive to changes in the loss function terrain. The basic form of the GD is given below (scroll to the right within the box to view all information).</p>
+<div class="admonition algorithm-heading">
+<p class="admonition-title"><strong>Algorithm 2:</strong> Approximation Algorithm: Gradient Descent</p>
+<p><strong>Input:</strong></p>
+<div class="admonition algorithm">
+<p>Input set: <span class="arithmatex">\(\mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\}\)</span>
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p>Labels set: <span class="arithmatex">\(\mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}\)</span>
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+</div>
+<p><strong>Output:</strong> <span class="arithmatex">\(\mathbf{w}\)</span> an approximation for optimum weights <span class="arithmatex">\(\mathbf{w}^{*}\)</span></p>
+<p><span class="arithmatex">\(\mathbf{G D}(\mathbf{X}, \mathbf{t})\)</span>:</p>
+<div class="admonition algorithm">
+<p>Initialise <span class="arithmatex">\(\mathbf{w}\)</span></p>
+<p>For <span class="arithmatex">\(\tau=1: {\tau}\text { max }\)</span></p>
+<div class="admonition algorithm">
+<p><span class="arithmatex">\(\mathbf{w}=\mathbf{w}-\eta_{\tau} \nabla \overline{J^{2}}(\mathbf{w}, \mathbf{X}, \mathbf{t})\)</span>
+<span class="algorithm-line-comment"># <em>obtain the gradient of the loss for current <span class="arithmatex">\(\mathbf{w}\)</span> on the entire training set</em></span></p>
+</div>
+<p>Return the final solution <span class="arithmatex">\(\mathbf{w}\)</span>.</p>
+</div>
+</div>
+<p>There are some optimisation techniques that give us how to vary the learning rate <span class="arithmatex">\(η_τ\)</span> but we have not shown this here for simplicity. Also note that both <span class="arithmatex">\(η_τ\)</span> and <span class="arithmatex">\(τmax\)</span> should be inputs to the algorithm but we omit this to promote simplicity.</p>
+<p>In the next section we will see how to apply the gradient descent algorithm on the linear regression model.</p>
+<h2 id="batch-gradient-descent-for-linear-regression-models">Batch Gradient Descent for Linear Regression Models</h2>
+<p>We will take the gradient of the cost function directly without using its vectorised form but later we develop a vectorised version. We have seen already in a previous section that the gradient of the linear regression loss function takes the form:</p>
+<div class="arithmatex">\[
+\overline{J^{2}}=\frac{1}{2 N} \sum_{n=1}^{N} J_{n}^{2}
+\]</div>
+<div class="arithmatex">\[
+\nabla \bar{J}^{2}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} \nabla J_{n}^{2}(\mathbf{w})
+\]</div>
+<div class="arithmatex">\[
+\nabla \overline{J^{2}}(\mathbf{w})=\frac{1}{2 N} \sum_{n=1}^{N} 2 \nabla J_{n}(\mathbf{w}) J_{n}(\mathbf{w})
+\]</div>
+<p><span class="arithmatex">\(J_{n}(\mathbf{w})=\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)\)</span> and <span class="arithmatex">\(\nabla J_{n}(\mathbf{w})=-\mathbf{x}_{n}\)</span></p>
+<p>hence</p>
+<div class="arithmatex">\[
+\nabla \bar{J}^{2}(\mathbf{w})=-\frac{1}{N} \sum_{n=1}^{N} \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
+\]</div>
+<p>This is an important formula that we will refer back to often. To get a taste of what this gradient entails, we show below what is involved in it:</p>
+<div class="arithmatex">\[
+\nabla \overline{J^{2}}(\mathbf{w})=-\frac{1}{N}\left(\left[\begin{array}{c}
+x_{0} \\
+x_{1} \\
+\vdots \\
+x_{D}
+\end{array}\right]_{1} J_{1}+\left[\begin{array}{c}
+x_{0} \\
+x_{1} \\
+\vdots \\
+x_{D}
+\end{array}\right]_{2} J_{2}+\cdots+\left[\begin{array}{c}
+x_{0} \\
+x_{1} \\
+\vdots \\
+x_{D}
+\end{array}\right]_{N} J_{N}\right)=0
+\]</div>
+<p>Therefore, the gradient descent algorithm for linear regression model, which acts on the entire training set, takes the form:</p>
+<div class="arithmatex">\[
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\nabla \overline{J^{2}}(\mathbf{w})
+\]</div>
+<div class="arithmatex">\[
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}+\frac{1}{N} \sum_{n=1}^{N} \eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)
+\]</div>
+<p>The number of iterations that we need to take in order to reach the minimum depends on <span class="arithmatex">\(η\)</span>. The smaller <span class="arithmatex">\(η\)</span> is the more iterations we need to take, however we need to strike a balance here because if <span class="arithmatex">\(η\)</span> is too big then the algorithm might either oscillate or completely diverge (go away from the minimum). <span class="arithmatex">\(η\)</span> is almost always less than 1, a reasonable value of <span class="arithmatex">\(η=0.01\)</span> for linear regression. For other more complex models <span class="arithmatex">\(η\)</span> may need to take much smaller values. Each sweep through the entire dataset is called an epoch and this is a hyper parameter that we need to set, often between 10 and 100.</p>
+<p>Scroll to the right within the box to see all information.</p>
+<div class="admonition algorithm-heading">
+<p class="admonition-title"><strong>Algorithm 3:</strong> Approximation Algorithm: Batch Gradient Descent (GD) for Linear Regression Model, without vectorisation.</p>
+<p><strong>Input:</strong></p>
+<p>Input set: <span class="arithmatex">\(\mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\}\)</span> each <span class="arithmatex">\(\mathbf{x}_{n}\)</span> is a vector of size <span class="arithmatex">\(D\)</span>
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p>Labels set: <span class="arithmatex">\(\mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}\)</span> each <span class="arithmatex">\(t_{n}\)</span> is a scalar
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p><span class="arithmatex">\(η\)</span>: The learning rate</p>
+<p><span class="arithmatex">\(epcs\)</span>: Max number of epochs</p>
+<p><strong>Output</strong>: <span class="arithmatex">\(\mathbf{w}\)</span> an approximation for optimum weights <span class="arithmatex">\(\mathbf{w}^*\)</span>; a vector of size <span class="arithmatex">\(D+1\)</span></p>
+<p><strong>GD_LRegress</strong> <span class="arithmatex">\((X,t,η,epcs)\)</span>:</p>
+<div class="admonition algorithm">
+<p>Initialise <span class="arithmatex">\(\mathbf{w}\)</span></p>
+<p>For <span class="arithmatex">\(epoch = 1: epcs\)</span></p>
+<div class="admonition algorithm">
+<p><span class="arithmatex">\(\mathbf{w}^{\prime}=\mathbf{0}_{D+1}\)</span></p>
+<p>For <span class="arithmatex">\(n=1:N\)</span></p>
+<div class="admonition algorithm">
+<p><span class="arithmatex">\(\mathbf{x}_{n}=\left[1, \mathbf{x}_{n}^{\top}\right]^{\top}\)</span>
+<span class="algorithm-line-comment"># <em>add a dummy attribute for each <span class="arithmatex">\(x_n\)</span></em></span></p>
+<p><span class="arithmatex">\(\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)\)</span>
+<span class="algorithm-line-comment"># <em>accumulated the changes without committing them</em></span></p>
+</div>
+<p><span class="arithmatex">\(\mathbf{w}=\mathbf{w}+\frac{1}{N} \mathbf{w}^{\prime}\)</span>
+<span class="algorithm-line-comment"># <em>now commit the changes</em></span></p>
+</div>
+<p>Return the final solution <span class="arithmatex">\(\mathbf{w}\)</span>.</p>
+</div>
+</div>
+<p>Note how we accumulate the changes inside a temporary vector <span class="arithmatex">\(\mathbf{w}^{\prime}\)</span> (this is just a vector of size <span class="arithmatex">\(D+1\)</span>) in an epoch and we commit at the end of the epoch. This is why it is called a batch gradient descent algorithm; we are waiting till the end of iterating through full batch of the dataset and then we change <span class="arithmatex">\(\mathbf{w}\)</span>, <em>i.e. we do not change <span class="arithmatex">\(\mathbf{w}\)</span> during the epoch.</em></p>
+<p>This form of batch gradient descent does not take advantage of vectorisation and is slow. For large dataset vectorising the implementation is impractical. However, later on when we talk about mini-batch stochastic gradient descent we will see a way to make a good compromise that will allow us to utilise vectorisation.</p>
+<p>For further reading, see Yoshua Bengio's paper on <a href="https://arxiv.org/pdf/1206.5533.pdf" target="_blank">Practical Recommendations for Gradient-Based Training of Deep Architectures</a>.</p>
+<h2 id="sequential-learning-stochastic-gradient-descent-for-linear-regression-models">Sequential Learning: Stochastic Gradient Descent for Linear Regression Models</h2>
+<p>Please watch the following video on stochastic and mini-batch gradient descent for linear regression.</p>
+<iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/77dfcc5072794031abf501bcd980c56c1d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe>
+
+<p><a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-23082047_4" target="_blank">Download transcript (PDF).</a></p>
+<p>Download the following <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-19081102_4" target="_blank">powerpoint slides</a> used in the video for a summary of what we cover in this unit.</p>
+<p>Batch learning algorithm such as LS Regression or Batch Stochastic Gradient Descent take into account the entirety (the whole batch) of the dataset at once. No intermediate learning occurs. Another way to minimise the loss function is to gradually change the weights towards minimising the loss function instead of going all the way according to the sum of the errors. This is called sequential learning. There are several advantages for this approach. The most obvious advantage is that it allows for a stream of data to be fed into a system and the system can learn live as the data arrives from the stream. The main advantage is that learning can occur immediately for any fed sample and we do not need to wait to see the entirety of the dataset to learn a model.</p>
+<p>Here we need to understand the concept of a learning rate or learning steps denoted as <span class="arithmatex">\(η\)</span>. This hyper parameter specifies how much of the individual step error we want to take into account. In simple linear models this will not make a difference and in fact if assumed that the loss function is convex i.e. it has a global optimum then we can go all the way and adopt the entirety of each step error <span class="arithmatex">\(\left(\mathbf{w}^{\top} \mathbf{x}_{n}-t_{n}\right)\)</span> offline without changing the weights in each step. However, when the concavity of the loss function (existence of global optimum) is not guaranteed and when the loss function has several local optima some of which are really slight valleys (or when it is infested with local optima) then adopting the full error <span class="arithmatex">\(t_{n}-\boldsymbol{y}\left(\mathbf{x}_{n}\right)\)</span> is not a good idea. This is because it will force the model to fall into the nearest local minimum and consequent updates are spent on moving out or into local minima. Bearing in mind that the data is noisy anyway, we would want to utilise the learning step for our benefit to reduce the effect of the noise and help avoid the problem of overfitting. Essentially, we replace the loss function <span class="arithmatex">\(J^{2}\)</span> by <span class="arithmatex">\(J_n^2\)</span>, so after a data point becomes available, we update according to:</p>
+<div class="arithmatex">\[
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta \frac{1}{2} \nabla J_{n}^{2}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}-\eta\left(-\mathbf{x}_{n}\right)\left(t_{n}-\mathbf{w}^{(\tau)^{\top}} \mathbf{x}_{n}\right)
+\]</div>
+<div class="arithmatex">\[
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{(\tau)^{\top}} \mathbf{x}_{n}\right)
+\]</div>
+<p>Where <span class="arithmatex">\(τ\)</span> represents the iteration (or the time step) and η is the learning rate parameter which should be carefully chosen so that it does not lead to divergence or oscillation of the algorithms. This is because effectively we are accounting for only a very small part of the gradient and we need to leave room for gradients of other data points to take effect in later iterations. Note that we added a (-) to go against the gradient direction which will make the changes go in the direction that will minimise the error. A reasonable choice of <span class="arithmatex">\(η\)</span> is to make it proportional to the number of expected data points.</p>
+<p>Stochastic Gradient Descent (SGD) suffers from several issues, mainly its high variance and its short-sighted look into the loss function terrain by considering just one or few data points. The gradient as a vector, has two essential properties that will direct our search for the minimum of the loss. The first is its direction and the second its magnitude. In general, variants of SGD optimisation use the gradient to specify the <strong>direction of changes</strong> in the weight vector, they vary in the way they estimate how much of the magnitude of the gradient to be considered (the <strong>amount of change</strong>). Other optimisation techniques use different direction than that of the gradient altogether, ex. the conjugate gradient of the loss, these however lie outside the scope of our coverage. Vanilla SGD just uses the learning rate <span class="arithmatex">\(η\)</span> to uniformly take a proportion of the gradient magnitude not all of it. But this makes it difficult to calibrate the learning rate because it has to fit all the different terrains of the loss function, so we normally end up reducing <span class="arithmatex">\(η\)</span> and taking lots of steps to converge to the minimum (of course there local and global minimum, but let us not differentiate for a moment).</p>
+<p>There are a lot of variations for the stochastic gradient descent. Mainly they are concerned with tailored learning rate that is responsive to the geometrical aspects of the loss function.</p>
+<ol>
+<li>
+<p>For example we can employ the idea of momentum which changes the learning rate according to a linear combination of the gradient at the current step with the previous update: called Momentum.</p>
+</li>
+<li>
+<p>We can also employ the idea of averaging the weights from all past steps which do not play around with the learning rate, it replaces it by averaging of the weights themselves: called Averaging.</p>
+</li>
+<li>
+<p>We can adapt the learning rate for each individual weight. One way to do that is by keeping a running average for each weight and then we divide the learning rate of each individual weight by the weight running average: called RMSProp.</p>
+</li>
+<li>
+<p>we can also make the learning rate change for each parameter according to how often the parameter is updated. This is particularly applicable for when we have many zeros in our inputs for several attributes quite often- the technical term is sparsity: this approach is called Adagrad.</p>
+</li>
+<li>
+<p>Another idea is to keep a running average of each individual weight but involve both the gradient and the square of the gradient (second moment) of the weight as well as the idea of sparsity in Adagrad: this approach is called adaptive moment-Adam optimisation and is very popular in deep learning. Standard optimisation libraries allow you to choose what type of optimisation you want to use without having to implement it from scratch.</p>
+</li>
+</ol>
+<p>For further reading, see Sebastian Ruder's paper on <a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank">An overview of gradient descent optimization algorithms</a>.</p>
+<p>We will refer to all of these strategies by using a normalisation vector <span class="arithmatex">\(\overline{\boldsymbol{N}}\)</span> that can represent any of the above strategies. To cover the per-weight learning rate adaptation methods, such as the Adagrad and Adam, we need component-wise multiplication <span class="arithmatex">\((\)</span> denoted as <span class="arithmatex">\(\circ)\)</span>.  We can write <span class="arithmatex">\(\frac{1}{\overline{\boldsymbol{N}}} \circ \mathbf{X}_{n}\)</span> to express that we are adjusting the weights components differently, this is a crude way of describing these optimisations but promote simplicity.</p>
+<p>For linear regression we can set <span class="arithmatex">\(η\)</span> to relatively high value such as 0.3 to take into account a good chunk of the errors since we know that the loss function is convex. The loss function is convex since we are taking the squares of weights with no activation function (we will talk more about activation function later in numerical classification). Still, we might want to use a reduced learning rate to cancel some of the noise of the data. Recall that any data will always have some noise in it and reducing the learning rate helps in reducing the risk of model overfitting and helps in reducing the effect of the noise. This is especially relevant when we talk about data streaming where we do not want to take into account all the error of the current input so as not undo completely some previous learning. Also, this brings us to the idea of input normalisation which should be used if possible, for input coming from data streams.</p>
+<p>The idea of a learning step is pervasive in machine learning and can be powerful in tackling some of the overfitting issues that arise when dealing with regression. For example, we can anneal (gradually reduce) the learning step in each step or every b steps in order to hinge towards a global optimum when the loss function is not convex.</p>
+<p>Another important reason to use SG Regression is that it is often faster to converge in practice than LS when we deal with more complex techniques and is more efficient to implement when the size of the dataset or its dimensionality is intractable. This is only for extremely large dataset but something worth putting in mind for future reference.</p>
+<p>We can also apply SGD regression on a static dataset, we get a similar result to the LS regression. However, you should bear in mind that there are quite subtle differences between the two algorithms (the LS Regression and SG Regression). Let us see first SGD Regression on a dataset below.</p>
+<div class="admonition algorithm-heading">
+<p class="admonition-title"><strong>Algorithm 4:</strong> Sequential Learning: Stochastic Gradient Descent for Linear Regression Model.</p>
+<p><strong>Input:</strong></p>
+<p>Input set: <span class="arithmatex">\(\mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\}\)</span> each <span class="arithmatex">\(\mathbf{x}_{n}\)</span> is a vector of size <span class="arithmatex">\(D\)</span>
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p>Labels set: <span class="arithmatex">\(\mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}\)</span> each <span class="arithmatex">\(t_{n}\)</span> is a scalar
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p><span class="arithmatex">\(η\)</span>: The learning rate</p>
+<p><span class="arithmatex">\(epcs\)</span>: Max number of epochs</p>
+<p><strong>Output</strong>: <span class="arithmatex">\(\mathbf{w}\)</span> an approximation for optimum weights <span class="arithmatex">\(\mathbf{w}^*\)</span>; a vector of size <span class="arithmatex">\(D+1\)</span></p>
+<p><strong>SGD_LRegress1</strong> <span class="arithmatex">\((X,t,η,epcs)\)</span>:</p>
+<div class="admonition algorithm">
+<p>Initialise <span class="arithmatex">\(\mathbf{w}\)</span></p>
+<p>For <span class="arithmatex">\(epoch = 1: epcs\)</span></p>
+<div class="admonition algorithm">
+<p>For <span class="arithmatex">\(n=1:N\)</span></p>
+<div class="admonition algorithm">
+<p><span class="arithmatex">\(\mathbf{x}_{n}=\left[1, \mathbf{x}_{n}^{\top}\right]^{\top}\)</span>
+<span class="algorithm-line-comment"># <em>add a dummy attribute for each <span class="arithmatex">\(\mathbf{x}_{n}\)</span></em></span></p>
+<p><span class="arithmatex">\(\mathbf{w}=\mathbf{w}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)\)</span>
+<span class="algorithm-line-comment"># <em>commit the changes in every step</em></span></p>
+</div>
+</div>
+<p>Return the final solution <span class="arithmatex">\(\mathbf{w}\)</span>.</p>
+</div>
+</div>
+<p>Comparing Algorithm 3 and Algorithm 4, it becomes clear that in Algorithm 4 the weights <strong>are</strong> fixed <strong>during</strong> learning. In contrast Algorithm 3 accumulates all the changes of the weights and applies them all at once.</p>
+<h2 id="mini-batch-learning-mini-batch-stochastic-gradient-descent-for-linear-regression-models">Mini-Batch Learning: Mini-Batch Stochastic Gradient Descent for Linear Regression Models</h2>
+<p>Mini-batch SGD algorithm can be used to reach a compromise between sequential and batch gradient methods. To achieve this: the weights changes can be accumulated on-the-sides not for the entire training set but for a limited number of steps b and be committed every b steps. On the extremes when we set <span class="arithmatex">\(b=N\)</span> (wait until all the data finishes) we get an algorithm that is equivalent to the batch gradient descent, while when we set <span class="arithmatex">\(b=1\)</span> we get the stochastic gradient descent. So <span class="arithmatex">\(b\)</span> parametrise a middle ground approach for both cases. Below we show the algorithm.</p>
+<figure role="group">
+  <img src="../images/DS_IMG103.jpg" alt="Surface chart showing stochastic gradient descent (SGD) algorithm behaviour. The SGD takes gradual steps towards the mimimum of the loss function by following the gradient of the loss." />
+  <figcaption><strong>Figure 4.6.</strong> SGD algorithm behaviour: SGD takes gradual steps towards the minimum of the loss function by  following the gradient of the loss. The line shows an example of the paths of a batch gradient descent (blue on the loss surface function and its projection is orange on the loss contour) and stochastic gradient descent algorithms (green on the loss surface function and brown on the loss contours). </figcaption>
+</figure>
+
+<div class="admonition algorithm-heading">
+<p class="admonition-title"><strong>Algorithm 5:</strong> Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model: Vanilla implementation that can be sped up- see next algorithm.</p>
+<p><strong>Input:</strong></p>
+<p>Input set: <span class="arithmatex">\(\mathbf{X}=\left\{\mathbf{x}_{1}, \ldots \mathbf{x}_{N}\right\}\)</span> each <span class="arithmatex">\(\mathbf{x}_{n}\)</span> is a vector of size <span class="arithmatex">\(D\)</span>
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p>Labels set: <span class="arithmatex">\(\mathbf{t}=\left\{t_{1}, \ldots t_{N}\right\}\)</span> each <span class="arithmatex">\(t_{n}\)</span> is a scalar
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p><span class="arithmatex">\(\eta:\)</span> learning rate</p>
+<p><span class="arithmatex">\(b\)</span>: mini-batch size (specifies how frequently we want to update the weights <span class="arithmatex">\(\mathbf{w}\)</span> ).</p>
+<p><span class="arithmatex">\(epcs\)</span>: Number of epochs</p>
+<p><strong>Output</strong>: <span class="arithmatex">\(\mathbf{w}\)</span> an approximation for optimum weights <span class="arithmatex">\(\mathbf{w}^{*}\)</span>; a vector of size <span class="arithmatex">\(D+1\)</span></p>
+<p><strong>SGD_LRegress2</strong><span class="arithmatex">\((X,t,b,η)\)</span>:</p>
+<p>Initialise <span class="arithmatex">\(\mathbf{w}\)</span> and set <span class="arithmatex">\(\mathbf{w}^{\prime}=0\)</span></p>
+<p>For <span class="arithmatex">\(epoch = 1: epcs\)</span></p>
+<div class="admonition algorithm">
+<p>For <span class="arithmatex">\(n=1:N\)</span></p>
+<div class="admonition algorithm">
+<p><span class="arithmatex">\(\mathbf{x}_{\boldsymbol{n}}=\left[\mathbf{1}, \mathbf{x}_{\boldsymbol{n}}^{\top}\right]^{\top}\)</span>
+<span class="algorithm-line-comment"># <em>add a dummy feature for each <span class="arithmatex">\(\mathbf{x}_{n}\)</span></em></span></p>
+<p><span class="arithmatex">\(\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\eta \mathbf{x}_{n}\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)\)</span>            </p>
+<p>If <span class="arithmatex">\(n \% b==0\)</span>
+<span class="algorithm-line-comment"># <em>there is a better condition see the discussion below</em></span></p>
+<div class="admonition algorithm">
+<p><span class="arithmatex">\(\mathbf{w}=\mathbf{w}+\frac{1}{b} \mathbf{w}^{\prime}\)</span></p>
+<p><span class="arithmatex">\(\mathbf{w}^{\prime}=\mathbf{0}\)</span></p>
+</div>
+</div>
+</div>
+<p>Return the final solution <span class="arithmatex">\(w\)</span></p>
+</div>
+<p>The above algorithm utilises the modulus function <span class="arithmatex">\(n \% b\)</span> which will give us the remainder of a division of the data point count <span class="arithmatex">\(n\)</span> by <span class="arithmatex">\(b\)</span> the batch size. When this function <span class="arithmatex">\(n \% b==0\)</span> it means that <span class="arithmatex">\(b\)</span> number of steps has elapsed. For example if <span class="arithmatex">\(N=90\)</span> and we set b=10 then the weights <span class="arithmatex">\(\mathbf{w}\left(\operatorname{not} \mathbf{w}^{\prime}\right)\)</span> will be updated every 10 steps and the updates will be executed 9 times. Note that we accumulate all the changes inside each 10 steps in <span class="arithmatex">\(\mathbf{w}^{\prime}\)</span> and we commit them at the 10<sup>th</sup> step.</p>
+<p>If we have <span class="arithmatex">\(N=94\)</span> and we set <span class="arithmatex">\(b=10\)</span> then the last 4 data points will be left if we just use the condition <span class="arithmatex">\(n \% b==0\)</span>. Therefore, we can adjust as follows:</p>
+<div class="admonition algorithm-heading">
+<p>If <span class="arithmatex">\(n \% b==0\)</span> or <span class="arithmatex">\(n==N:\)</span></p>
+<div class="admonition algorithm">
+<p>If <span class="arithmatex">\(n \% b \neq 0\)</span> then <span class="arithmatex">\(b^{\prime}=n \% b\)</span>
+<span class="algorithm-line-comment"># <em>accommodate the last few points that do not fit a batch</em></span></p>
+<p>Else <span class="arithmatex">\(b^{\prime}=b\)</span></p>
+<p><span class="arithmatex">\(\mathbf{w}=\mathbf{w}+\frac{1}{b} \mathbf{w}^{\prime}\)</span></p>
+<p><span class="arithmatex">\(\mathbf{w}^{\prime}=\mathbf{0}\)</span></p>
+</div>
+</div>
+<p>The condition <span class="arithmatex">\(n \% b==0\)</span> or <span class="arithmatex">\(n==N:\)</span>  or  <span class="arithmatex">\(n==N\)</span> is used to accommodate the last few points that cannot form a full batch. For the same reason we use <span class="arithmatex">\(b^{\prime}=n \% b\)</span> instead of <span class="arithmatex">\(b\)</span>, which will yield <span class="arithmatex">\(b\)</span> when <span class="arithmatex">\(n \% b==0\)</span> and the remainder of the batch (4 in our example) otherwise when <span class="arithmatex">\(n==N\)</span>. we have not include this snippet to keep the algorithm simple.</p>
+<p>Also, we use the weights <span class="arithmatex">\(\mathbf{w}\)</span> in our output estimation <span class="arithmatex">\(\mathbf{w}^{\top} \mathbf{x}_{n}\)</span> in the update rule <span class="arithmatex">\(\mathbf{w}^{\prime}=\mathbf{w}^{\prime}+\frac{1}{N} \eta\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right) \mathbf{x}_{n}\)</span> this is deliberate to guarantee stability. Mini-batch stochastic gradient descent reduce the variance caused by stochastic gradient descent and hence help stabilise the learning process.</p>
+<h3 id="faster-mini-batch-sgd">Faster Mini-Batch SGD</h3>
+<p>The above algorithm is a vanilla algorithm of an SGD mini-batch that can be sped up. The algorithm slows down the process by processing the data points individually in each batch. There is a better approach, can you guess it, take a minute or two to think about it…Ok, it is vectorisation. The idea is as follows. We assume that the size of the batch is <span class="arithmatex">\(b\)</span> and for simplicity that <span class="arithmatex">\(N\)</span> is divisible by <span class="arithmatex">\(b\)</span> the number of mini-batches as <span class="arithmatex">\(q=N / b\)</span> then. Now we can adopt one of two strategies:</p>
+<p><span>1.</span> Define a partition of the training set <span class="arithmatex">\(\{\mathbf{X}, \mathbf{t}\}\)</span> into a set of q mini-batches as follows:</p>
+<figure role="group">
+  <img src="../images/DS_IMG213.png" alt="A formula showing a set of q mini-batches." />
+</figure>
+
+<p>Where <span class="arithmatex">\(\mathbf{X}_{\tau}\)</span> is a matrix of size <span class="arithmatex">\(b \times D\)</span> and <span class="arithmatex">\(\mathbf{t}_{\tau}\)</span> is a vector of size <span class="arithmatex">\(b \times 1\)</span>. The subscript <span class="arithmatex">\(\tau\)</span> represents the iteration where we have <span class="arithmatex">\(\tau=1: q (q\)</span> is how many batches we want to deal with in our dataset <span class="arithmatex">\()\)</span>. We refer to both as a mini-batch of size <span class="arithmatex">\(b\)</span>.</p>
+<p>So, now we sweep through all the mini-batches one after the other in each iteration to cover the whole training set, we call this an epoch. After each epoch we need to shuffle the dataset (or equivalently shuffle the membership assignment in the mini-batches which is what we always do in the implementation). Note that our weights estimation are expected to improve from one batch to another. Moreover, the weights error (cost function) is expected to improve from one epoch to another since we employ normally a learning rate&lt;1. This strategy guarantees stability and efficiency at the same time. We will refer to this strategy as shuffling and partitioning strategy. Note that in this strategy each data point must appear once in one of the min-batches in each epoch.</p>
+<p><span>2.</span> The second strategy is just to draw a random mini-batch <span class="arithmatex">\(X_τ\)</span> and <span class="arithmatex">\(t_τ\)</span> of size b without partitioning which is even more efficient than the first strategy. This is drawing with replacement so the same data point can appear in multiple mini-batches inside the same epoch or may not appear at all in any mini-batch (but the same data point does not appear more than once in the same mini-batch). In this strategy we can decouple the number of mini-batches from the size of the training set, so <span class="arithmatex">\(q \geq N / b\)</span> but it can still provide a general guide on the number of iterations (or mini-batches) the algorithm will go through. This strategy is faster in implementation, but it may lead to less stability than the first strategy, so it is more preferred in large scale learning. It all depends on selecting the trade-off that suits the application.</p>
+<p>Both strategies are amenable for parallelisation, where we feed parts of the process to a different processor. Clearly, we can feed parts of a batch to different core processor but we cannot give different batches to different processor because the idea of the mini-batch is to update the weights directly after each batch and then use the new weights in the next batch. If we give away on this idea then we can distribute different batches on different processors and collect and aggregate the changes afterwards. Such a process will take us back to batch gradient descent. So, the implementation is similar to a min-batch but the effect is a batch gradient descent.</p>
+<p>Both strategies are equivalent in the extremes: when b=1 or when <span class="arithmatex">\(b=N\)</span>. when <span class="arithmatex">\(b=1\)</span> the SGD mini-batch algorithm turns into an SGD algorithm. When <span class="arithmatex">\(b=N\)</span> the SGD mini-batch algorithm becomes a batch SGD algorithm which in turn approximates the least squares but without the overhead of matrix inversion.</p>
+<p>Below we show the final mini-batch algorithm. We have left which strategy to adopt open in the algorithm and we have stated it as ‘Select a mini-batch <span class="arithmatex">\(X_τ,t_τ\)</span> of size <span class="arithmatex">\(b\)</span> from <span class="arithmatex">\(\mathbf{X}, \mathbf{t}: q \geq N / b\)</span> (randomly or by shuffling and partitioning)’. So, this algorithm is actually two different algorithms depending on whether we choose to shuffle and partition the training set or just simply draw a random mini-batch (with replacement).</p>
+<p>We normally decay the learning rate in order to prevent zigzagging around the minimum of the cost function when we start by a high learning rate or to fine tune our final weights.</p>
+<div class="admonition algorithm-heading">
+<p class="admonition-title"><strong>Algorithm 6:</strong> Mini-Batch Stochastic Gradient Descent Updates for Linear Regression Model: with vectorisation.</p>
+<p><strong>Input:</strong></p>
+<p>Input set: design matrix <span class="arithmatex">\(\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top}\)</span> each <span class="arithmatex">\(\mathbf{x}_{n}\)</span> is a vector of size <span class="arithmatex">\(D \quad\)</span>
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p>Labels set: vector <span class="arithmatex">\(\mathbf{t}=\left[t_{1}, \ldots, t_{N}\right]^{\top}\)</span> each <span class="arithmatex">\(t_{n}\)</span> is a scalar
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p><span class="arithmatex">\(b\)</span>: The mini-batch size (specifies how frequently we want to update the weights <span class="arithmatex">\(\mathbf{w}\)</span>).</p>
+<p><span class="arithmatex">\(η_0\)</span>: Initial learning rate</p>
+<p><span class="arithmatex">\(epcs\)</span>: Number of epochs</p>
+<p><strong>Output</strong>: <span class="arithmatex">\(\mathbf{w}\)</span> an approximation for optimum weights <span class="arithmatex">\(\mathbf{w}^*\)</span>; a vector of size <span class="arithmatex">\(D+1\)</span></p>
+<p><strong>SGD_LRegress</strong><span class="arithmatex">\(\left(\mathbf{X}, \mathbf{t}, b, \eta_{0}, e p c s\right)\)</span>:</p>
+<p>Initialise <span class="arithmatex">\(\mathbf{w}\)</span> and <span class="arithmatex">\(η=η_0\)</span></p>
+<p>For <span class="arithmatex">\(epoch = 1:epcs\)</span></p>
+<div class="admonition algorithm">
+<p>For iteration <span class="arithmatex">\(τ=1:q\)</span>
+<span class="algorithm-line-comment"># <em><span class="arithmatex">\(q≥N/ b\)</span></em></span></p>
+<div class="admonition algorithm">
+<p>Select a mini-batch <span class="arithmatex">\(\mathbf{X}_{\tau}, \mathbf{t}_{\tau}\)</span> of size <span class="arithmatex">\(b\)</span> from <span class="arithmatex">\(\mathbf{X}, \mathbf{t}\)</span>
+<span class="algorithm-line-comment"># <em>by sampling or by shuffling &amp; partitioning</em></span></p>
+<p><span class="arithmatex">\(\mathbf{X}_{\tau}=\left[\mathbf{1}_{b}, \mathbf{X}_{\tau}\right]\)</span>
+<span class="algorithm-line-comment"># <em>add dummy feature to the mini-batch</em></span></p>
+<p><span class="arithmatex">\(\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{X}_{\tau}^{\top}\left(\mathbf{t}_{\tau}-\mathbf{X}_{\tau} \mathbf{w}\right)\)</span>            </p>
+</div>
+<p>Decay <span class="arithmatex">\(η\)</span>
+<span class="algorithm-line-comment"># <em>if necessary: ex. ‎<span class="arithmatex">\(η=0.9×η\)</span></em></span></p>
+</div>
+<p>Return the final solution <span class="arithmatex">\(\mathbf{w}\)</span></p>
+</div>
+<p>Stochastic gradient descent, especially the mini-batch version is an excellent tool to tackle large-scale learning and has received recently a considerable attention. Large scale learning is learning from a large dataset with a huge amount of instances available. In such a case, we cannot expect to train on the whole dataset because it is way beyond a single machine capabilities or even the capabilities of a medium cluster of machines. Stochastic gradient descent is an excellent tool because it allows us to simply tackle as much as we can digest in our available hardware. Of course there are several augmentations to the simple (vanilla) SGD in terms of cleverer selection of the data to be processed which goes beyond the basic form presented here. At the same time, parallelisation techniques can be employed to promote efficient parallelised implementation of amortised complexity of <span class="arithmatex">\(\mathcal{O}\left(\log _{r} N\right)\)</span> where <span class="arithmatex">\(N\)</span> is the dataset size or the size of the processed data that can be pulled from a data lake or a data centre and <span class="arithmatex">\(r\)</span> is the number of parallel processors available to the algorithm.</p>
+<p>For further reading, see Prateek et al's paper on <a href="https://www.jmlr.org/papers/volume18/16-595/16-595.pdf" target="_blank">Parallelizing Stochastic Gradient Descent for Least Squares Regression: Mini-batching, Averaging, and Model Misspecification</a>.</p>
+<p>It should be stressed here also that SGD is sensitive to feature scaling and it is recommended to rescale all features in the dataset, as we have discussed in unit 1. This is to avoid one feature overwhelming other features by its high values, especially when the attribute values do not vary that much. The simplest way is to rescale by dividing by the max value of the feature, or to subtract the minimum and divide by the difference between the minimum and the maximum of the feature. We get the min and max either by looking into the dataset or by understanding the domain of the feature. Consulting domain experts who work with the data is also useful to understand the nature of the dataset that we are tackling.</p>
+<p>The above algorithm can be easily adapted when we are dealing with a data stream, all what we need to do is to accumulate <span class="arithmatex">\(\mathbf{X}_{\tau}\)</span> as the data arrives until it is of the required size <span class="arithmatex">\(b\)</span>, and we can even vary the size <span class="arithmatex">\(b\)</span> itself between different iterations. Note that, when <span class="arithmatex">\(b=N\)</span> the algorithm goes back to a vectorised batch stochastic gradient descent which can be applied when the dataset size permits, the resultant weights are still an approximation even if it might be very close to the optimum solution <span class="arithmatex">\(\mathbf{w}^{*}\)</span>.</p>
+<p>To summarise, we emphasise here, contrary to what one might expect, stochastic and mini-batch stochastic gradient descent converge faster than batch gradient descent in practice. This is due to several reasons. One reason is that both stochastic gradient algorithms infuse noise in the update which is quite useful to escape local minima. Another reason is that by nature stochastic algorithms are faster to execute and they execute several updates per clock time in comparison with batch gradient which keeps accumulating the gradients on the side until it sweeps through the whole training set. Assuming that the training set is finite but large, then the roughness of stochastic updates outperforms the more exactness of batch gradient. A third reason is that all gradient descents, even the batch one, do not point exactly to the global minimum instead they roughly point to a direction that will lead us to the minimum. Therefore, it does not make sense to spend a lot of computational power (as in the batch GD) to try to improve the gradient by considering more and more points until we consume the whole training set. Because even then the gradient is not necessarily pointing to the exact direction of the minimum, especially for complex loss function. Although linear regression loss function is quadratic and has a global minimum, nevertheless these issues can still be seen and you can examine them in the next exercise.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © Digital Education Service | University of Leeds
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../javascript/tablecontentsoverride.js"></script>
+      
+        <script src="../../../javascript/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2560 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Digital Education Service">
+      
+      
+      
+        <link rel="prev" href="../03_01_clustering_introduction/">
+      
+      
+        <link rel="next" href="../03_01b_general_case_multi_K/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>1a. Two clusters case - Data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#two-clusters-case" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+    <div id="versionIndicator"><b>Version:</b> 21.11.23.a</div>
+    <img id="customlogo" src="../../../img/logo.svg" alt="University of Leeds logo.">
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data science" class="md-header__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1a. Two clusters case
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit1/01_01_what-is-data-science/" class="md-tabs__link">
+          
+  
+  
+  Unit 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit2/02_00_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../03_00_clustering_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit4/04_00_regression_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 5
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data science" class="md-nav__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_01_what-is-data-science/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. What is data science?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_02_the_data_its_quality_and_its_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. The data, its quality and its structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_03_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Data preparation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_04_data_visualisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Data generation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_00_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Decision trees
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Decision trees
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_01_decision_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Decision trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_02_DT_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Decision tree training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_03_DT_vertebrate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. DT training on a vertebrate dataset
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_04_measuring_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Measuring the performance of a classification model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_05_overfitting_underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Overfitting, underfitting and generalisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_00_clustering_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clustering and classification algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Clustering
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Clustering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01_clustering_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    1a. Two clusters case
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Two clusters case
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#distance-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance metrics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculating-the-centroids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculating the centroids
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assigning-the-data-points-to-the-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assigning the data points to the clusters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distance-measures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance measures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distance measures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jaccard-coefficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jaccard coefficient
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosine-similarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosine similarity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extended-jaccard-coefficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extended Jaccard coefficient
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01b_general_case_multi_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. General case multi clusters: K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01c_clusters_loss_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Clusters loss function: measuring the quality of the cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01d_specifying_K_through/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Specifying K through elbow method
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01e_initialising_centroids/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Initialising the centroids
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01f_mini_batch_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Mini-batch K means++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01g_bisecting_K_means/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1g. Bisecting K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01h_clustering_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1h. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Basic numerical distance-based classification
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Basic numerical distance-based classification
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_02a_intro_basic_numerical_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_02b_lazy_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Lazy classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_02c_K_nearest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. K-nearest neighbour algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_02d_choosing_best_k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Choosing best k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_02e_classification_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_03_ensemble_methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Ensemble methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_04_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_00_regression_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear and non linear regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Simple Linear Regression Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Simple Linear Regression Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01a_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Simple linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01b_example_linear_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Example of linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01c_loss_error_cos_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Loss, objective, error or cost function for regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01d_simple_linear_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Simple linear model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01e_Gradient_decent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Approximate solutions - gradient descent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01f_sgd_exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Evaluating a regression model via R2 and the RMSE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Linear regression with linear and non-linear basis functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02a_linear_regression_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02b_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02c_linear_basis_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. Linear basis model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02d_Batch_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Batch learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02e_linear_regression_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Implementing a stochastic gradient descent with gaussian basis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02f_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2f. Regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02g_least_squares_with_basis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2g. Regularisation exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02h_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2h. Linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02i_preventing_overfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2i. Preventing overfitting the data and overshooting the loss minimum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_03a_multi_layer_multi_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Non-linear regression via neural networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_4_learning_from_probabilistic_perspective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Learning from a probabilistic perspective
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_05_unit_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Linear and non-Linear classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_02_linear-model-for-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Linear model for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_03_binary-classification-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Binary classification: The perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_04_binary-classification-logistic-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Binary classification: Logistic regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_05_multi-class-problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Multi-class problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_06_non-linear-models_multi-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. Non-linear models: multi-layer perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_07_probabilistic_view_of_loss_function_for_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Probabilistic view of loss function for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_08_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#distance-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance metrics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculating-the-centroids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculating the centroids
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assigning-the-data-points-to-the-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assigning the data points to the clusters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distance-measures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance measures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distance measures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jaccard-coefficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jaccard coefficient
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosine-similarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosine similarity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extended-jaccard-coefficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extended Jaccard coefficient
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="two-clusters-case">Two clusters case</h1>
+<p><strong>Let us assume that we pre-specified a number of clusters. The simplest case is two clusters, i.e. a binary clustering problem.</strong></p>
+<p>We start with a feature space that has two attributes <span class="arithmatex">\(f1\)</span> and <span class="arithmatex">\(f2\)</span>. Visualising the dataset looks like figure 3.2 below. It is obvious to our eyes that there are two distinctive groups in this dataset. Note that we have given them all the same colours because our dataset will not tell us the labels: there are no labels. We want to build a technique that can automatically tell us what could be reasonable clusters for the dataset. Bear in mind that we need the technique to be generalisable to higher dimensional space. The 2d space is always convenient because we can easily discern the groups (clusters), but when we move to higher dimensional space, like a 10d input space, then it is not that easy for the human eye to recognise the clusters.</p>
+<figure role="group">
+  <img src="../images/DS_IMG170.png" alt="Graph showing a simple binary clusters dataset." />
+  <figcaption><strong>Figure 3.2.</strong> A simple binary clusters dataset.</figcaption>
+</figure>
+
+<h3 id="distance-metrics">Distance metrics</h3>
+<p>One obvious metric that we can use in order to inspect how close a pair of two data points are to each other is the Euclidian distance. The smaller the distance is, the closer or more similar to each other the two data points are. On the other hand, the further the distance between a pair of data points is, the less similar or close the data points are. The Euclidian distance via Pythagoras theorem for a 2-dimensional space is given as usual by:</p>
+<div class="arithmatex">\[
+d(\mathbf{x}, \mathbf{y})=\sqrt{\left(x_{1}-y_{1}\right)^{2}+\left(x_{2}-y_{2}\right)^{2}}
+\]</div>
+<p>Where we represented attribute 1 with sub index 1 and attribute 2 with sub index 2, note that we need to compare between each pair of points, so it is an intensive comparison that we will need to conduct on the entire dataset.
+OK, now once we have compared all pairs of our dataset (as we said earlier there is no training and testing sets because there are no labels), we need to decide on the centres of our clusters. Note that we have already decided that we have two clusters. Later on, we will see how we can vary the number of clusters.</p>
+<h3 id="calculating-the-centroids">Calculating the centroids</h3>
+<figure role="group">
+  <img src="../images/DS_IMG171.png" alt="Graph showing a simple binary clusters dataset with the centroids initialised to a random point." />
+  <figcaption><strong>Figure 3.3.</strong> The same dataset as figure 3.2, with the centroids initialised to a random point.</figcaption>
+</figure>
+
+<p>Start by assuming that we have two centres that have been given to us, and we want to see how accurate those centres are (it might come to our mind that we should start by looking at the clusters and calculate their centres, but we will come to that in a moment). Figure 3.3 above shows an example of two centres – the red x for the two clusters. Visually, it is clear that both are not in the centres of their respective clusters, but how should we calculate the centres? Please be aware that in clustering terminology, we call the groups clusters, we call the centres centroids and we call the sum of squared errors of each cluster the inertia (from mechanics).</p>
+<p><strong>The key is to average out the attributes for each cluster of data points. This will be done as follows:</strong></p>
+<p><strong>Cluster 1 –</strong> take all the data points in the cluster and average their first attributes <span class="arithmatex">\(f1\)</span> to produce <span class="arithmatex">\(\bar{x}_{1}\)</span> and their second attributes to produce <span class="arithmatex">\(\bar{x}_{2}\)</span>. Now these two constitutes the new centroid of cluster 1, <span class="arithmatex">\(\boldsymbol{c}_{1}=\left(\bar{x}_{1}, \bar{x}_{2}\right)\)</span>.</p>
+<p><strong>Cluster 2 –</strong> same as in cluster 1, produces <span class="arithmatex">\(\boldsymbol{c}_{2}=\left(\overline{\bar{x}}_{1}, \overline{\bar{x}}_{2}\right)\)</span>.</p>
+<p>In general, calculating the centroid is a straightforward averaging of the data points inside the cluster.</p>
+<div class="arithmatex">\[
+c_{i}=\frac{1}{\left|C_{i}\right|} \sum_{\mathbf{x} \in C_{i}} \mathbf{x}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Throughout this lesson, we refer to:</p>
+<ol>
+<li>The centroids with a bold small letter such as <span class="arithmatex">\(\boldsymbol{c}_{i}\)</span> or <span class="arithmatex">\(\boldsymbol{c}^{\prime}\)</span>. It is bold to recognise that, like any point from the input space, each centroid might consist of several components. Each component represents an attribute in the dataset. It is a small letter because it is a point not a set.</li>
+<li>The clusters are denoted as bold capital letters such as <span class="arithmatex">\(\boldsymbol{C}_{i}\)</span>.  It is capital to recognise that it is a set, and it is bold to recognise that it constitutes several attributes.</li>
+<li>The number of data points inside the cluster set <span class="arithmatex">\(\boldsymbol{C}_{i}\)</span> is denoted as <span class="arithmatex">\(\left|\boldsymbol{C}_{i}\right|\)</span> or as <span class="arithmatex">\(N_{i}\)</span> (capital not bold). The two bars are used to denote the count of a set as we saw earlier in unit 1.</li>
+<li>The set of centroids are denoted as <span class="arithmatex">\(\boldsymbol{C} \boldsymbol{t}=\left\{\boldsymbol{c}_{i}\right\}, i=1, \ldots, K\)</span>.</li>
+</ol>
+</div>
+<p>So for example, if we have the following clusters as in figure 3.4 below:</p>
+<figure role="group">
+  <img src="../images/DS_IMG172.png" alt="Left: a simple clusters dataset. Right: Graph showing a clusters visualisation. Cluster 1 datapoints are represented by circles, cluster 2 by triangles. Each centroid is represented as a +." />
+  <figcaption><strong>Figure 3.4.</strong> (Left) Simple clusters dataset. (Right) clusters visualisation, Cluster 1 data points are blue circles, Cluster 2 data points are red triangles. Each centroid is represented as +. Note that the cluster labels are not known a priori, instead they are inferred through a clustering algorithm. The centroid of Cluster 1 is given as (4.,3.) and the centroid for Cluster 2 is given as (6.6,2.3).</figcaption>
+</figure>
+
+<p>Note that the centroids do not necessarily belong to the dataset, although they live in the same space. In fact, they will start as one of the data points in the dataset and then they move around with repetitive updates in the input space. You can think of the centroids as virtual data points or Omni-data points that are floating on the input space of the dataset.</p>
+<p>OK, so now we know how to calculate the centres. What is next?</p>
+<h3 id="assigning-the-data-points-to-the-clusters">Assigning the data points to the clusters</h3>
+<p>We need now to know how to assign the data points to a cluster. To do so, we simply need to compare the distances of each data point in the dataset with each centroid that we have selected, and we assign the data point to the cluster with the shortest distance to its centroid.</p>
+<p>Below in figure 3.5, we show how we start with a dataset without any clusters (or you can think of it as all data points belonging to the same cluster) with the blue circles on the top left image. Then we initialise two random centroids represented as +. We calculate the distance of each data point to these two centroids and compare to find out the minimum which specifies the membership to the cluster corresponding to the centroids (the centroid represents the cluster in that sense). On the top right-hand side, we see how one data point was assigned to the centroid on the top and the rest were assigned to the centroid on the bottom.</p>
+<figure role="group">
+  <img src="../images/DS_IMG173-176.png" alt="Graph showing a step of K-means clustering algorithms on a simple 2D dataset." />
+  <figcaption><strong>Figure 3.5.</strong> Steps of K-means clustering algorithms on a simple 2-d dataset. Each axis represents an attribute. The + represents the means or centroids.</figcaption>
+</figure>
+
+<p>Based on this, we recalculate the centroid and on the bottom left you can see how both centroids were shifted one towards the right (top orange +) and one towards the left (bottom blue +), both gravitating toward the mass of the data. We then reassign the data point to the clusters and we can see that all points to the left become blue triangles and on the right become red circles. Finally, the bottom right image shows the final shift of the centroids to become exactly in the middle of both clusters. That’s great, this is what we wanted.</p>
+<h3 id="distance-measures">Distance measures</h3>
+<p>Note that there are a lot of measures other than the usual Euclidian distance that can be used in conjunction with a clustering algorithm to perform clustering. These include: Minkowski distance, Hamming distance, cosine similarity, Jaccard coefficient, correlation, mutual information. Some of these metrics are similarities and some of them are dissimilarities. Some will work for binary data only and some work for continuous attributes. Any similarity measure can be converted to a dissimilarity measure by inversing its fraction and/or by taking its complement. In general, the word distance or metrics is reserved to be in a mathematical sense, where a metric between two points is defined to have the following three relationships:</p>
+<ol>
+<li>
+<p><strong>Positivity:</strong></p>
+<ol>
+<li><span class="arithmatex">\(d(\mathbf{x}, \mathbf{y}) \geq 0\)</span> for any <span class="arithmatex">\(\mathbf{x}\)</span> and <span class="arithmatex">\(\mathbf{y}\)</span>.</li>
+<li><span class="arithmatex">\(d(\mathbf{x}, \mathbf{y})=0\)</span> only if <span class="arithmatex">\(\mathbf{x}=\mathbf{y}\)</span>.</li>
+</ol>
+</li>
+<li>
+<p><strong>Symmetry:</strong> <span class="arithmatex">\(d(\mathbf{x}, \mathbf{y})=d(\mathbf{y}, \mathbf{x})\)</span> for any <span class="arithmatex">\(\mathbf{x}\)</span> and <span class="arithmatex">\(\mathbf{y}\)</span></p>
+</li>
+<li>
+<p><strong>Triangle inequality:</strong> <span class="arithmatex">\(d(\mathbf{x}, \mathbf{z}) \leq d(\mathbf{x}, \mathbf{y})+d(\mathbf{y}, \mathbf{z})\)</span> for any <span class="arithmatex">\(\mathbf{x}, \boldsymbol{y}\)</span> and <span class="arithmatex">\(\mathbf{z}\)</span></p>
+</li>
+</ol>
+<p>We state here a few of interest, but these are by no means an exhaustive list of them.</p>
+<h4 id="jaccard-coefficient">Jaccard coefficient</h4>
+<p>This is used when we have a binary only dataset (all attributes take either 0 or 1). In this case, we define:  </p>
+<div class="arithmatex">\[
+\operatorname{Jacc}(\mathbf{y}, \mathbf{x})=\frac{f_{11}}{f_{11}+f_{10}+f_{01}}
+\]</div>
+<p>where as you might have guessed:</p>
+<p><span class="arithmatex">\(f_{11}\)</span> is the number of attributes where <strong>x</strong> is 1 and <strong>y</strong> is 1</p>
+<p><span class="arithmatex">\(f_{10}\)</span> is the number of attributes where <strong>x</strong> is 1 and <strong>y</strong> is 0</p>
+<p><span class="arithmatex">\(f_{01}\)</span> is the number of attributes where <strong>x</strong> is 0 and <strong>y</strong> is 1</p>
+<p><span class="arithmatex">\(f_{00}\)</span> is the number of attributes where <strong>x</strong> is 0 and <strong>y</strong> is 0 (this is not used in <span class="arithmatex">\(Jacc\)</span>)</p>
+<p>For example, if we have two records with the following attributes:</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+\mathbf{x}=(1,0,0,0,1,0,1,0,1,1) \\
+\mathbf{y}=(1,0,1,0,0,0,0,0,1,0) \quad \operatorname{Jacc}(\mathbf{y}, \mathbf{x})=\frac{2}{2+3+1}=0.3
+\end{array}
+\]</div>
+<h4 id="cosine-similarity">Cosine similarity</h4>
+<p>This is used mainly to measure the similarity between two documents. Each document is represented as a vector of the frequencies of a specific set of words from a dictionary. So vectors that represent documents are really long (thousands of attributes) all of which are the same size. Each component represents the number of times a corresponding word is stated in the document, regardless of where it is stated. This way we have a vector of natural numbers. To measure the similarity between two documents, we need to ignore the 0 because they are pervasive. The Jaccard may be a candidate but it does not take count, instead we use cosine similarity which is defined as follows:</p>
+<div class="arithmatex">\[
+\cos (\mathbf{x}, \mathbf{y})=\frac{\mathbf{x}^{\top} \mathbf{y}}{\|\mathbf{x}\|\|\mathbf{y}\|}=\frac{\mathbf{x}^{\top} \mathbf{y}}{\sqrt{\left(\mathbf{x}^{\top} \mathbf{x}\right)\left(\mathbf{y}^{\top} \mathbf{y}\right)}}
+\]</div>
+<p>This measures the cosine of the angle between <strong>x</strong> and <strong>y</strong> vectors.
+For example, if we have two vectors with the following attributes:</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+\mathbf{x}=(3,0,0,5,0,0,3,0,2,1,1) \\
+\mathbf{y}=(0,0,8,0,0,2,3,0,0,2,0) \\
+\cos (\mathbf{x}, \mathbf{y})=\frac{\mathbf{x}^{\top} \mathbf{y}}{\|\mathbf{x}\|\|\mathbf{y}\|}=\frac{\mathbf{x}^{\top} \mathbf{y}}{\sqrt{\left(\mathbf{x}^{\top} \mathbf{x}\right)\left(\mathbf{y}^{\top} \mathbf{y}\right)}}=\frac{3 \times 3+2 \times 1}{\left(\sqrt{3^{2}+5^{2}+3^{2}+2^{2}+1^{2}+1^{2}}\right)\left(\sqrt{8^{2}+2^{2}+3^{2}+2^{2}}\right)}=\frac{11}{7 \times 9}=0.175
+\end{array}
+\]</div>
+<h4 id="extended-jaccard-coefficient">Extended Jaccard coefficient</h4>
+<p>This is an extension of Jaccard coefficient for documents data defined as follows:</p>
+<div class="arithmatex">\[
+E J=\frac{\mathbf{x}^{\top} \mathbf{y}}{\mathbf{x}^{\top} \mathbf{x}+\mathbf{y}^{\top} \mathbf{y}-\mathbf{x}^{\top} \mathbf{y}}
+\]</div>
+<p>You can refer to sections 2.4.1-2.4.6 of Tan et al (2019) for more details of other metrics.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © Digital Education Service | University of Leeds
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../javascript/tablecontentsoverride.js"></script>
+      
+        <script src="../../../javascript/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

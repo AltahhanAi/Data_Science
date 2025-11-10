@@ -1,0 +1,2978 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Digital Education Service">
+      
+      
+      
+        <link rel="prev" href="../01_02_the_data_its_quality_and_its_structure/">
+      
+      
+        <link rel="next" href="../01_04_data_visualisation/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>3. Data preparation and visualisation - Data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-preparation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+    <div id="versionIndicator"><b>Version:</b> 21.11.23.a</div>
+    <img id="customlogo" src="../../../img/logo.svg" alt="University of Leeds logo.">
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data science" class="md-header__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. Data preparation and visualisation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_01_what-is-data-science/" class="md-tabs__link">
+          
+  
+  
+  Unit 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit2/02_00_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit3/03_00_clustering_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit4/04_00_regression_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 5
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data science" class="md-nav__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_01_what-is-data-science/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. What is data science?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_02_the_data_its_quality_and_its_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. The data, its quality and its structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    3. Data preparation and visualisation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Data preparation and visualisation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-pre-processing-in-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data pre-processing in context
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-wrangling-and-ways-of-data-pre-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data wrangling and ways of data pre-processing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data wrangling and ways of data pre-processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sampling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#video" class="md-nav__link">
+    <span class="md-ellipsis">
+      Video
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dimensionality-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dimensionality reduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correlation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subset-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subset selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-of-all-subsets-of-a-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set of all subsets of a Set
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursive-feature-elimination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursive Feature Elimination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequential-feature-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequential Feature Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anova-and-hypothesis-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      ANOVA and Hypothesis Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-data-leakage-via-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preventing Data Leakage via Pipelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synonymous-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synonymous features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalisationstandardisation-and-rescaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalisation/standardisation and rescaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standardisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standardisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rescaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rescaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outliers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outliers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-the-label-for-supervised-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying the label for supervised learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-label-unsupervised-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      No label: unsupervised learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dealing-with-missing-ness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dealing with missing-ness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-and-summarisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggregation and summarisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discretion-and-binarisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discretion and binarisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#melting-and-pivoting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Melting and pivoting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_04_data_visualisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Data generation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_00_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Decision trees
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Decision trees
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_01_decision_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Decision trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_02_DT_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Decision tree training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_03_DT_vertebrate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. DT training on a vertebrate dataset
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_04_measuring_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Measuring the performance of a classification model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_05_overfitting_underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Overfitting, underfitting and generalisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_00_clustering_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clustering and classification algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Clustering
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Clustering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01_clustering_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01a_two_clusters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Two clusters case
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01b_general_case_multi_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. General case multi clusters: K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01c_clusters_loss_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Clusters loss function: measuring the quality of the cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01d_specifying_K_through/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Specifying K through elbow method
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01e_initialising_centroids/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Initialising the centroids
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01f_mini_batch_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Mini-batch K means++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01g_bisecting_K_means/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1g. Bisecting K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01h_clustering_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1h. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Basic numerical distance-based classification
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Basic numerical distance-based classification
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02a_intro_basic_numerical_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02b_lazy_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Lazy classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02c_K_nearest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. K-nearest neighbour algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02d_choosing_best_k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Choosing best k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02e_classification_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_03_ensemble_methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Ensemble methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_04_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_00_regression_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear and non linear regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Simple Linear Regression Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Simple Linear Regression Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01a_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Simple linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01b_example_linear_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Example of linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01c_loss_error_cos_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Loss, objective, error or cost function for regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01d_simple_linear_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Simple linear model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01e_Gradient_decent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Approximate solutions - gradient descent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01f_sgd_exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Evaluating a regression model via R2 and the RMSE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Linear regression with linear and non-linear basis functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02a_linear_regression_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02b_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02c_linear_basis_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. Linear basis model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02d_Batch_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Batch learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02e_linear_regression_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Implementing a stochastic gradient descent with gaussian basis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02f_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2f. Regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02g_least_squares_with_basis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2g. Regularisation exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02h_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2h. Linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02i_preventing_overfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2i. Preventing overfitting the data and overshooting the loss minimum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_03a_multi_layer_multi_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Non-linear regression via neural networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_4_learning_from_probabilistic_perspective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Learning from a probabilistic perspective
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_05_unit_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Linear and non-Linear classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_02_linear-model-for-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Linear model for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_03_binary-classification-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Binary classification: The perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_04_binary-classification-logistic-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Binary classification: Logistic regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_05_multi-class-problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Multi-class problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_06_non-linear-models_multi-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. Non-linear models: multi-layer perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_07_probabilistic_view_of_loss_function_for_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Probabilistic view of loss function for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_08_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-pre-processing-in-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data pre-processing in context
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-wrangling-and-ways-of-data-pre-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data wrangling and ways of data pre-processing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data wrangling and ways of data pre-processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sampling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#video" class="md-nav__link">
+    <span class="md-ellipsis">
+      Video
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dimensionality-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dimensionality reduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correlation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subset-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subset selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-of-all-subsets-of-a-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set of all subsets of a Set
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursive-feature-elimination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursive Feature Elimination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequential-feature-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequential Feature Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anova-and-hypothesis-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      ANOVA and Hypothesis Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-data-leakage-via-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preventing Data Leakage via Pipelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synonymous-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synonymous features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalisationstandardisation-and-rescaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalisation/standardisation and rescaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standardisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standardisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rescaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rescaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outliers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outliers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-the-label-for-supervised-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying the label for supervised learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-label-unsupervised-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      No label: unsupervised learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dealing-with-missing-ness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dealing with missing-ness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-and-summarisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggregation and summarisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discretion-and-binarisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discretion and binarisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#melting-and-pivoting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Melting and pivoting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="data-preparation">Data preparation</h1>
+<p>In this lesson you will learn about the different techniques for data preparation.</p>
+<div class="admonition success">
+<p class="admonition-title">Learning outcomes:</p>
+<p>After completing this lesson you should be able to:</p>
+<ul>
+<li>perform data wrangling</li>
+<li>solve data quality issues</li>
+<li>perform feature selection and simple dimensionality reduction</li>
+<li>explain why these techniques are performed and when.</li>
+</ul>
+</div>
+<p><strong>As you saw earlier, data comes in all sorts of formats and shapes and in order to be able to perform any analysis, you would need to make the data suitable for the task at hand.</strong></p>
+<p>There are broadly two main reasons to do this:</p>
+<ol>
+<li>
+<p>The data is often collected separately and detached from the mining task. Often there are specific data techniques that are known to suit the task at hand, so the nature of the techniques dictates some specific data preparation regime that you would want to carry on the data. For example, for some tasks, new features need to be generated from the original features, for some other tasks the shape of the data needs to be changed.</p>
+</li>
+<li>
+<p>Even without consideration of any specific task or technique, often the data can suffer from issues that need to be addressed before any analysis is carried through. These issues include noise, repetition, missing-ness and scalability.</p>
+</li>
+</ol>
+<h2 id="data-pre-processing-in-context">Data pre-processing in context</h2>
+<p>Before we do any processing, we need to understand the specific task, in what way the data will be utilised and in what context. The data can come in a form or format that, if not changed, will make the analysis process itself unnecessarily more difficult. This applies to simple queries or more complicated tasks – they all require an appropriate level of preparation to ensure that the analysis or querying process is smooth.</p>
+<h2 id="data-wrangling-and-ways-of-data-pre-processing">Data wrangling and ways of data pre-processing</h2>
+<p>A data scientist must often wrestle with the data to make it suitable for their needs, a process known as data wrangling. The process somehow involves a bit of haggling and hacking and often, in order to perform the process, the structure and shape of the data needs to be checked and reviewed. This section will give you a quick overview of some of the techniques used.</p>
+<h3 id="sampling">Sampling</h3>
+<p>The concept of sampling is widely used in statistics and data mining. In statistics, the default position is that obtaining the entire data population is often infeasible and physically too expensive. In data mining, processing the entire dataset, even if it is available in some storage, might be too computationally expensive to do.</p>
+<p><a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">Read section 2.3.2 (pp.72-76) of Chapter 2</a> in the text Introduction to Data Mining (Tan et al 2019). This section will give you further information on sampling and the different types of data sampling that can be conducted.</p>
+<p>In both statistics and data mining, a subset of the data is sampled, by selecting some of the rows rather than all of them. Sampling is done randomly to avoid a biased representation of the data, which would be misleading for the model.</p>
+<p>There are several approaches to this randomisation, and the most notable is <strong>stratification</strong>, which is maintaining the distribution of the underlying data when it is sampled. The idea of stratification is commonly used in data science, so understanding it helps in several situations.</p>
+<p>In <strong>proportionally stratified sampling</strong>, sampling is conducted as per the group of objects distribution/ratios in order to preserve the footprint of the original dataset in the sampled dataset.</p>
+<h3 id="example">Example</h3>
+<p>There is a dataset of three classes – A, B and C. The distribution in the original dataset, which contains approximately 10 million records, is roughly:</p>
+<ul>
+<li>A: 65%</li>
+<li>B: 25%</li>
+<li>C: 10%.</li>
+</ul>
+<p>If this data is sampled randomly, without taking into consideration the distribution of the classes, this distribution might change if the randomisation is unlucky.</p>
+<p>If class C is oversampled, the sampled dataset may end up with the distribution of, for example:</p>
+<ul>
+<li>60%</li>
+<li>20%</li>
+<li>20%.</li>
+</ul>
+<p>This would have a knock-on effect on the results of the model. To avoid such a situation, it can be decided in advance to sample, for example, 50% of the entire dataset.</p>
+<p>By sampling 50% of each class separately and then combining the resultant record, the same class distribution of the original dataset (65%, 25% and 10%) would have been maintained, despite having half the number of records. Similarly, if the target is to balance a dataset of two classes to compensate for a rarity of one of the classes then equally stratified sampling can be employed to make sure that there is 50% of both classes.</p>
+<p>The concept of sampling occurs indirectly when the dataset is split into training, testing and validation. When training a model to recognise a class the performance of the model should be evaluated after it has been built or deployed. To do this, the same dataset available for training a model (making it learn from the data) and for evaluating it often has to be utilised. This means that a small proportion of the dataset for testing ought to be set aside, for example, 30%.  </p>
+<p>In this case the scheme for the desired sampling also applies for splitting the data. In particular, the testing data should almost always be representative of the dataset and the proportional stratified sampling approach applied, to set aside a 30% of data that the model will not see during training. Once training finishes, the model is applied as it is, without adjusting on the 30% testing data and the accuracy obtained from the model is reported.  </p>
+<p>This invites discussion on whether several splits need to be performed and the average reported on, as well as how several models or techniques are compared and validated. Both of these topics will be discussed later, along with how to measure the performance of a model in the next couple of units.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure to differentiate between sampling rows and selecting a subset of fields or columns.</p>
+</div>
+<h4 id="video">Video</h4>
+<p>Now watch this video, in which Abdulrahman explains data attributes and objects, types of data and data quality.</p>
+<iframe title="Data Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/3db1a6348efd446696e14a3a53f5ec241d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<p>You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738960_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22589438_4" target="_blank">transcript (PDF) here</a>.</p>
+<p>Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.</p>
+<h3 id="filtering">Filtering</h3>
+<p>Sometimes a feature must be obtained or deduced from other features. This can be done via a simple calculation on some features, or by larger processing of a set of features to obtain better representation for the task in hand.  </p>
+<p>For example, from a set of artefacts, two features are the mass and volume. The density of these artefacts (density=mass/volume) can be deduced, which would be a good predictor to classify items based on the material that they are made of.  </p>
+<p>An example of a more involved process is a Fourier Transformation (FT). FT is used to extract or map the data into a new space. It is well known that if two time series with different frequencies and some noise are combined, a surprisingly chaotic signal would be received (which would be what is normally looked at when a real-time series is dealt with). However, if FT is applied it will show exactly two time series with two different frequencies. This can be used to filter noise and to extract specific information from regarding one of the two time series.</p>
+<p>Please see Figure 1.4 below. To learn more about the intuition of FT, watch this YouTube video: <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">What is the Fourier Transform? A visual introduction.</a></p>
+<p><img alt="Diagram showing the application of the Fourier transform to identify the underlying frequencies in time series data." src="../images/DS_IMG004.png" />
+<strong>Figure 1.4.</strong> Application of the Fourier transform to identify the underlying frequencies in time series data. Source: Tan et al, 2019, p.83, Figure 2.12.</p>
+<p>The example in this diagram shows the application of the Fourier transform to identify the underlying frequencies in time series data. For a detailed explanation of the diagrams, read example 2.11 on page 82 of <a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">‘Introduction to Data Mining’.</a></p>
+<h3 id="dimensionality-reduction">Dimensionality reduction</h3>
+<p>Dimensionality reduction techniques are important, as their aim is to find a reduced number of features that can be used to solve the problem – whether it is regression, classification or clustering etc.</p>
+<p>Watch the following video for a summary of these techniques, and then read about each of them in more detail below.</p>
+<iframe title="Data Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/44615004e8254c01aa86e6264e639e2d1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<p>You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22640813_4" target="_blank">transcript (PDF) here</a>.</p>
+<p>Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.</p>
+<h3 id="feature-selection">Feature Selection</h3>
+<p>We can use a few methods to select relevant features systematically. The good news is that sklearn has these as ready-of-the-shelf functionality that we can tap on. </p>
+<p>We can simply use a statistical test to check how relevant one feature is to the label. This will not take into account the effect of 2 or more features together as a set on the label. Just the effect of one feature. Hence, it is called univariate (not multivariate) feature selection. This method selects the K's most relevant features for the label. It can be used in conjunction with the chi2 test(only use the chi2 test when the features are non-negative).</p>
+<p>Another method depends on weighting the features according to some estimator (not a statistical test), such as logistic regression (which we cover later). A main method would be Recursive Feature Elimination techniques. In this method, all features are recursively given importance weights based on fitting a model(estimator) for the problem at hand and then removing the least important features (you can specify how many to remove each time). </p>
+<p>Another method is based on simply trying (either adding or removing) one feature at a time and checking the score of an estimator(there are no importance or relevance scores here). Where we add the feature that results in the highest score (if we are doing a forward selection) or remove the feature that results in the highest score (if we are doing a backward selection).</p>
+<p>Yet another method depends on the variance of the feature, so we look at the feature itself nothing else. If the feature does not have enough variance then we can eliminate this feature because it does not have enough information to help us differentiate between the different records to deduce a label or to cluster the record. </p>
+<p>Below we talk in more detail about some of these methods, you can also consult <a href="https://scikit-learn.org/stable/modules/feature_selection" target="_blank"> feature_selection</a> in sklearn.</p>
+<h4 id="correlation">Correlation</h4>
+<p>For example, the correlation between the features can be used to select a subset of the original set that has minimal correlation. This is guaranteed to have maximum independence between the features which convey the most important information, without an overlap that is conveyed inside the features that are correlated. </p>
+<h4 id="subset-selection">Subset selection</h4>
+<p>Another example is the subset selection process. This involves removing redundant features, like in the correlation example, and irrelevant features, like the IDs example in the filtering technique.  </p>
+<p>Common sense and domain knowledge can be used, although this is not necessarily always accurate. However, the best way to apply a subset selection process is to systematically eliminate features and test how good or bad the data mining task becomes. If it is not affected or improved, then it is a feature that can be removed. If the performance of the model is reduced, this is an indication that the feature plays an important role in the task, and it needs to stay.  </p>
+<p>There is a drawback here; sometimes, removing one feature alone reduces the performance of the model by magnifying the noise coming from another feature, but removing a few features (a subset of features) will improve the performance of the model. Please note that both the removed and retained features are subsets of the original set of features. The subset that is kept for the data mining task is referred to as the Feature Subset Selection. Therefore, different subsets should be tried rather than just individual features.  </p>
+<p>Yet, trying all possible subsets is often impractical. Consider how many possible subsets there would be for a set of 10 features. Take a couple of minutes to think about it.</p>
+<p>There would be 1024 subsets. Can you work out what the rule for calculating the number of subsets is?</p>
+<p>See the following for <a href="https://scikit-learn.org/stable/modules/feature_selection.html" target="_blank">a set of feature selection techniques available in sklearn</a>.</p>
+<h4 id="set-of-all-subsets-of-a-set">Set of all subsets of a Set</h4>
+<p>Note that the number of features can be hundreds or more, so it becomes impractical to enumerate all of the possible subsets. All the possible subsets of a set are called the power set.  </p>
+<p>So, for example, if there is a set S={a, b, c} then its power set is P(s) = {{a}, {b}, {c}, {a, b}, {a, c}, {b, c}, {a, b, c}, {}}, the cardinality (number of subsets) of this set is 8.</p>
+<p>The number of items in a set is called the cardinality of the set – which seems a fancy name for such a simple concept. However this concept gets more complicated when there is an infinite set, such as the set of integer numbers or the set of rational numbers. Each of these sets has a different density and both are infinite, but both have the same cardinality. If you take the set of real numbers, it has a higher cardinality. In fact, if you take any real interval, all the real numbers inside it can be mapped! For more information on the cardinality of the continuum, read this entry from Britannica: <a href="https://www.britannica.com/science/continuum-hypothesis" target="_blank">Britannica.com: Continuum hypothesis.</a>  </p>
+<p>Figure 1.5 summarises a feature subset selection process, which is a search over all possible feature subsets.</p>
+<p><img alt="Flowchart of a feature subset selection process." src="../images/DS_IMG005.png" />
+<strong>Figure 1.5.</strong> Tan, P., et.al. (2019), Introduction to Data Mining by Second Edition, Pearson.</p>
+<p>As another example, Principal Component Analysis (PCA) applies the ideas of Eigenvectors of a matrix to obtain a new set of features that are more concise and better represent the problem being dealt with. Normally it is not necessarily known what physical measurements the new features represent. Rather, by using PCA it is certain that transforming to the new set of dimensions guarantees a better performance for the model.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Exercise</p>
+<div class="highlight"><pre><span></span><code>Given that we have the following attributes {a, b, c, d, e} write the power set for the above set.
+</code></pre></div>
+</div>
+<h4 id="recursive-feature-elimination">Recursive Feature Elimination</h4>
+<p>In this technique, the importance of the features is taken into account to select the features that contribute more to the predictability of the label.
+The idea is to use a model to select the feature recursively and then <em>examine</em> how important these features are in predicting the label for the used estimator(model), then eliminate one or more of them, and again train a model based on the new features subset, then again examine which features contribute less to the predictability of the label to eliminate them. The procedure goes through several iterations depending on the specified number of features that we would like to keep. This method is more efficient than sequential feature selection (discuss next) because the feature importance is already a byproduct of the model-training exercise.</p>
+<h4 id="sequential-feature-selection">Sequential Feature Selection</h4>
+<p>In this technique, the metric of the model performance (such as its accuracy) is used to judge whether a feature subset is effective in predicting the label. This means that if we have m features, and we want to reduce them into m-1 features, then we need to build/train m separate models corresponding to each eliminated feature and then compare the final model score (such as accuracy) in order to decide which feature to eliminate. This is a backward method. There is also a forward method of adding features instead of removing features.</p>
+<h4 id="anova-and-hypothesis-testing">ANOVA and Hypothesis Testing</h4>
+<p>Analysis of the variance (ANOVA) and hypothesis testing are established statistical methods to understand the significance of the relationship between the dataset features (variables) and the label. In statistical terminology, the dependent variable is the label, and the independent variables(aka factors) are the set of features/attributes in our dataset. The groups are the different feature subsets. The null hypothesis is that two or more feature subsets have the same effect on predicting the label, and the alternate hypothesis is that two different groups indeed have different effects, and one of them will be more effective in predicting(measuring) the label and hence should be preferred to be used over another subset. ANOVA assumes that the label is normally distributed, which might not be the case.</p>
+<p>See the <a href="https://www.tibco.com/reference-center/what-is-analysis-of-variance-anova" target="_blank">following for more details  </a>.</p>
+<h3 id="preventing-data-leakage-via-pipelines">Preventing Data Leakage via Pipelines</h3>
+<p>A common mistake when selecting features via NAOVA, REF or other methods is to do it on the entire dataset, which includes the testing and the training datasets. To avoid this we can use the powerful idea of a pipeline. This technique can also be used to prevent data leakage when we rescale/standardise or impute the missing data.
+See this <a href="https://scikit-learn.org/stable/auto_examples/feature_selection/plot_feature_selection_pipeline.html" target="_blank">pipeline example </a>.</p>
+<h3 id="synonymous-features">Synonymous features</h3>
+<p>Synonymous features are two or more features that are effectively equivalent, or one is deduced directly from the other.  </p>
+<p>It is better to filter out or remove one of them. This is particularly relevant when there is a feature that is synonymous to the label that you are trying to fit a model to predict its value. If there is a direct effective equivalency or close to equivalency between the two features, one of them is the label and the other is assumed to be unknown (or not available in general) for new data points. Then, the synonymous feature must be omitted when a model is built to predict the label. This is because knowing a synonymous feature means knowing the label, and it is unlikely to be available for data points that we want to predict their labels.</p>
+<h3 id="normalisationstandardisation-and-rescaling">Normalisation/standardisation and rescaling</h3>
+<p>Often, one of the most important pre-processing techniques to be performed on the features is normalisation or standardisation and rescaling. This is because the range of one feature can be drastically different than the range of another feature.</p>
+<p>Consider the weight and height of a person. If the height is given in meters and the weight in grams then the weight is going to dominate the height during the model fitting exercise, resulting in marginalising the effect of the height on the prediction or clustering. The simple solution is to convert the height into cm or mm. However, this might marginalise other features. The standard way of dealing with such features is to either normalise them or to rescale them.</p>
+<h3 id="standardisation">Standardisation</h3>
+<p>Standardisation involves calculating the mean x̄ and standard deviation sx of a feature x. This is done by looking into the data that resides inside the feature as samples to calculate these statistical measures. The following transformation is then applied to the data that involves the features x′= (x-x̄)/sx. This is called variable transformation in statistics because it transforms the data from one space to the other. The new features x′ that were calculated out of x has a mean 0 and standard deviation of 1, i.e., it is standardised.</p>
+<h3 id="rescaling">Rescaling</h3>
+<p>Rescaling is similar to standardisation, with some differences. The calculations are x′= (x-xmin)/(xmax - xmin) where xmax and xmin are the maximum and minimum values that x might have, respectively.   </p>
+<p>This guarantees that the range or scale of the new feature is [0 , 1] (between 0 and 1 inclusive, including all the infinitely possible values in between). Another less stable way to rescale is to do x′= x/xmax, which assumes that the minimum value for x is 0, but even if it is not, if the minimum value for x is positive, then the range of the data will be [xmin/xmax , 1].</p>
+<p>Note that if we do not know what {xmin, xmax } values might be (or potentially they can go -+ infinity), then we can take them from the values in the available data itself. However, we have to be careful in how we do this, as it might lead to data leakage when the dataset is rescaled before splitting (into training and testing).</p>
+<h3 id="outliers">Outliers</h3>
+<p>Outliers are those data points that are odd in comparison to the rest of the dataset. Usually, we use distances to recognise outliers, where a data point is considered an outlier if it lies at a relatively far distance from the majority of the data points in a dataset. This is a relative concept and is open for interpretation by the data analyst. Outliers are sometimes easy to recognise via visualisation or graphically when the dimensionality is permissible, while they might be subtle and hard to identify for high-dimensional datasets. One method that we can utilise the Tukey's method, where we look at the difference between the Q1 and Q3, i.e. D=Q3-Q1 percentiles and then categorise any data point that lies &lt; Q1 - D or &gt; Q3 + D as an outlier. See <a href="https://en.wikipedia.org/wiki/Tukey%27s_range_test" target="_blank">Tukey's range </a> for more details. Another method is via Local Outlier Factor; see <a href="https://scikit-learn.org/stable/modules/outlier_detection.html#local-outlier-factor" target="_blank">LOF </a>. Random forest-RF can be used to detect outliers; we will cover RF them in later units.</p>
+<h3 id="specifying-the-label-for-supervised-learning">Specifying the label for supervised learning</h3>
+<p>The label is the answer to the question or problem being solved. Often in supervised learning settings, the dataset contains the features as well as the label for each record.</p>
+<p>An example of this is a dataset that has a set of purchases of customers. From this dataset, a prediction is needed about whether they or someone in their household is pregnant. The dataset would contain a set of purchases for each customer and whether they are pregnant or not – this field would be the label. Later, once a model is fitted that predicts whether a customer is pregnant or not, the model can be utilised for new customers in order to directly offer items related to pregnancy if the customer is predicted to be pregnant.  </p>
+<p>Another example is the Titanic dataset, where the set of features is the information of the passengers, such as their:</p>
+<ul>
+<li>ticket fare</li>
+<li>name</li>
+<li>age</li>
+</ul>
+<p>The label is simply their survival info (binary: survived or did not survive). The task would be to fit a model that estimates if a passenger survived or not based on their information.</p>
+<h3 id="no-label-unsupervised-learning">No label: unsupervised learning</h3>
+<p>Sometimes it is not clear what the label is for the task or the task itself is not to predict a label. Instead, it is to associate a set of items with each other or to cluster the items based on their resemblance to each other. In these cases, unsupervised learning techniques can be utilised which do not require a label. Sometimes the label is simply ignored to gain more insight of the data.</p>
+<h3 id="dealing-with-missing-ness">Dealing with missing-ness</h3>
+<p>This is a common problem for realistic datasets. Most likely, the same information is not obtained for all the objects/people (called data points because they are represented as data points in a multi-dimensional space). For example, the age or the weight of a person may be missing due to human error or due to the information not being required (especially when the data collection process is not automated).</p>
+<p>Sometimes the missing data is completely random and is due to collection issues, but may reveal a tendency related to the underlying object or phenomena that is being analysed. For example, a notion of privacy might prevent people from revealing their information.  </p>
+<p>In this case, the missing-ness issue of the dataset needs to be dealt with. One drastic thing to do is to eliminate any record that has a missing field in it – called a <em>deletion</em>. This would make the dataset more uniform and ready for applying whatever data mining technique intended but at the expense of losing the data points that have missing fields. Such an approach is not usually advised, especially with small or medium datasets. Even if the data is large, if the missing data is not random then removing the related data points can introduce a bias in the model.</p>
+<p>For example, you have a dataset for people’s ages, salaries and marital statuses, which will be used to predict if a person will default on a debt or not. If people with high salaries tend not to reveal their salaries, then removing all data points with a missing salary will introduce a bias in the build model. This will result in much less accurate performance of data mining tasks for people with high salaries.</p>
+<p>Another way to deal with the missing field data is to provide an estimate of this data- called <em>imputation</em>. Imputation is a common method for dealing with data missingness. We should bear in mind that an estimate is not precise, and a loss of accuracy may or may not be introduced to the model via missingness and its treatment. There may be some noise and bias introduced as well. With missing-ness, there is no perfect solution and we may need to try different approaches to test their effectiveness, but at least we should aim not to introduce a bias via our estimate.</p>
+<p>So, how should you estimate? An unbiased estimate would be the mean/average of the feature. Take the entire data for a field – vertically – and calculate the mean for it, replacing all the missing values with this mean. Similarly, for categorical data, we can obtain the most frequent value of the field and then replace missing data with this value. Another approach is to create a new category(value), that we can use as a replacement. One last note about missingness is to mind data leakage via missingness treatment. This can occur due to dealing with missingness before splitting the data into training and testing or via cross-validation (we will talk about CV in later units).</p>
+<h3 id="aggregation-and-summarisation">Aggregation and summarisation</h3>
+<p>When we want to group by a specific field to apply some calculation or summarisation operations, aggregation and summarisation are used. This means the data is gathered and presented in a summarised form. Grouping a dataset by gender and applying a sum or mean of wages to examine inequality between gender wages is an example of these operations.  </p>
+<h3 id="discretion-and-binarisation">Discretion and binarisation</h3>
+<p>These are standard techniques used to convert a continuous attribute which potentially has infinitely many possibilities to an attribute which has a confined number of possibilities. Often this is done to allow more efficient processing or to suit a classification or clustering task in hand.  </p>
+<p><strong>Discretisation</strong> is the process of converting continuous data attribute values into a discrete form. This can be achieved by partitioning the range of values an attribute can take into a finite set of intervals, and then associating each interval with a new discrete value. These new discrete values will substitute any old value that falls within the corresponding interval. For example, if we have an attribute that can take any value in the continuous range [0,9], then once way to discritise this attribute is by partitioning the interval [0,9] into [0,1[, [1,2[, ...[8,9]. Then any old values &gt;= 0 and &lt;1 can be substituted by .5 and any old value &gt;=1 and &lt;2 can be substituted by 1.5 and so on.</p>
+<p><strong>Binarisation</strong> is the process of converting attribute values to binary values - two values (often these are {0, 1} or {-1, 1}). Binarisation is a special case of discretisation. One form of discretisation is called histograms, where the number of occurrences of a range of values in a set of bins is counted. The set of bins replaces the feature, and in this case, one attribute is replaced with as many bins as we have.</p>
+<h3 id="melting-and-pivoting">Melting and pivoting</h3>
+<p>Melting and pivoting are often overlooked operations. When they are applicable, it is important that they are performed to make the shape of the data suitable for further processing. These are often part of a more elaborate operation involving data preparation along with other operations such as sorting etc. Please refer to the next exercise for a full working example in Python.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Exercise</p>
+<p>In this exercise, you will be given a dataset to prepare for further analysis.</p>
+<p>The exercise covers several of the techniques mentioned in this lesson for data preparation and data wrangling. Follow the steps and execute them in order and experience the effect of the data preparation procedure on the data. you can access the code in the data preparation Jupyter Notebook below.</p>
+<ul>
+<li>Download exercise (.ipynb): <a href="../exercises/Exercise2_Data Preparation in Pandas.ipynb" download>Exercise 2</a></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © Digital Education Service | University of Leeds
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../javascript/tablecontentsoverride.js"></script>
+      
+        <script src="../../../javascript/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

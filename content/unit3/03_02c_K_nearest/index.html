@@ -1,0 +1,3222 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Digital Education Service">
+      
+      
+      
+        <link rel="prev" href="../03_02b_lazy_classification/">
+      
+      
+        <link rel="next" href="../03_02d_choosing_best_k/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>2c. K-nearest neighbour algorithm - Data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#k-nearest-neighbour-algorithm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+    <div id="versionIndicator"><b>Version:</b> 21.11.23.a</div>
+    <img id="customlogo" src="../../../img/logo.svg" alt="University of Leeds logo.">
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data science" class="md-header__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2c. K-nearest neighbour algorithm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit1/01_01_what-is-data-science/" class="md-tabs__link">
+          
+  
+  
+  Unit 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit2/02_00_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../03_00_clustering_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit4/04_00_regression_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 5
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data science" class="md-nav__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_01_what-is-data-science/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. What is data science?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_02_the_data_its_quality_and_its_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. The data, its quality and its structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_03_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Data preparation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_04_data_visualisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Data generation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_00_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Decision trees
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Decision trees
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_01_decision_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Decision trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_02_DT_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Decision tree training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_03_DT_vertebrate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. DT training on a vertebrate dataset
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_04_measuring_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Measuring the performance of a classification model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_05_overfitting_underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Overfitting, underfitting and generalisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_00_clustering_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clustering and classification algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Clustering
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Clustering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01_clustering_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01a_two_clusters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Two clusters case
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01b_general_case_multi_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. General case multi clusters: K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01c_clusters_loss_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Clusters loss function: measuring the quality of the cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01d_specifying_K_through/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Specifying K through elbow method
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01e_initialising_centroids/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Initialising the centroids
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01f_mini_batch_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Mini-batch K means++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01g_bisecting_K_means/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1g. Bisecting K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_01h_clustering_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1h. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Basic numerical distance-based classification
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Basic numerical distance-based classification
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_02a_intro_basic_numerical_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_02b_lazy_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Lazy classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    2c. K-nearest neighbour algorithm
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. K-nearest neighbour algorithm
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#partial-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partial matching
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#majority-voting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Majority voting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distance-metric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance metric
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metric-distance-for-nearest-neighbours" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric distance for nearest neighbours
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distance-weighted-voting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance-weighted voting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rescaling-to-improve-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rescaling to improve performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rescaling to improve performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mini-iris" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini-iris
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalised-mini-iris-only-two-decimal-points-are-shown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalised mini-iris (only two decimal points are shown)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knn-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      kNN algorithm
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_02d_choosing_best_k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Choosing best k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_02e_classification_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_03_ensemble_methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Ensemble methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_04_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_00_regression_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear and non linear regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Simple Linear Regression Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Simple Linear Regression Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01a_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Simple linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01b_example_linear_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Example of linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01c_loss_error_cos_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Loss, objective, error or cost function for regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01d_simple_linear_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Simple linear model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01e_Gradient_decent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Approximate solutions - gradient descent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01f_sgd_exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Evaluating a regression model via R2 and the RMSE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Linear regression with linear and non-linear basis functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02a_linear_regression_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02b_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02c_linear_basis_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. Linear basis model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02d_Batch_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Batch learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02e_linear_regression_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Implementing a stochastic gradient descent with gaussian basis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02f_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2f. Regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02g_least_squares_with_basis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2g. Regularisation exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02h_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2h. Linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02i_preventing_overfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2i. Preventing overfitting the data and overshooting the loss minimum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_03a_multi_layer_multi_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Non-linear regression via neural networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_4_learning_from_probabilistic_perspective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Learning from a probabilistic perspective
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_05_unit_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Linear and non-Linear classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_02_linear-model-for-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Linear model for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_03_binary-classification-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Binary classification: The perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_04_binary-classification-logistic-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Binary classification: Logistic regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_05_multi-class-problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Multi-class problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_06_non-linear-models_multi-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. Non-linear models: multi-layer perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_07_probabilistic_view_of_loss_function_for_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Probabilistic view of loss function for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_08_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#partial-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partial matching
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#majority-voting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Majority voting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distance-metric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance metric
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metric-distance-for-nearest-neighbours" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric distance for nearest neighbours
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distance-weighted-voting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance-weighted voting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rescaling-to-improve-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rescaling to improve performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rescaling to improve performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mini-iris" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini-iris
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalised-mini-iris-only-two-decimal-points-are-shown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalised mini-iris (only two decimal points are shown)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knn-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      kNN algorithm
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="k-nearest-neighbour-algorithm">K-nearest neighbour algorithm</h1>
+<p><strong>A less restrictive classifier than the rote classifier is the nearest neighbour classifier, where instead of requiring a perfect match with all the attributes of the instance, we can suffice by matching as much as possible of the attributes. In this case we just pick the instance label that best matches the provided instance.</strong></p>
+<h2 id="partial-matching">Partial matching</h2>
+<p>In this case, if the classifier is presented with the previous instance:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x\)</span>=</td>
+<td>6.1</td>
+<td>2.8</td>
+<td>4.7</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>It will infer that the closest instance from the dataset that matches as much attributes as possible is:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{6}}=\)</span></td>
+<td>6.1</td>
+<td>2.8</td>
+<td>4.7</td>
+<td>1.2</td>
+<td>versicolor</td>
+</tr>
+</tbody>
+</table>
+<p>This dataset instance matches all but one attribute of the presented instance <span class="arithmatex">\(x\)</span>, and the algorithm will infer that the predicted class is versicolor.</p>
+<h2 id="majority-voting">Majority voting</h2>
+<p>But what about when we have more than one match? In this case, we can take a simple vote. For example, the following instance:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x\)</span>=</td>
+<td>6.1</td>
+<td>2.8</td>
+<td>5.5</td>
+<td>1.4</td>
+</tr>
+</tbody>
+</table>
+<p>Multiple matches:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{4}}=\)</span></td>
+<td>6.1</td>
+<td>2.9</td>
+<td>4.7</td>
+<td>1.4</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{5}}=\)</span></td>
+<td>6.1</td>
+<td>3</td>
+<td>4.6</td>
+<td>1.4</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{6}}=\)</span></td>
+<td>6.1</td>
+<td>2.8</td>
+<td>4.7</td>
+<td>1.2</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{7}}=\)</span></td>
+<td>6.1</td>
+<td>2.6</td>
+<td>5.6</td>
+<td>1.4</td>
+<td>virginica</td>
+</tr>
+</tbody>
+</table>
+<p>In this case, it seems intuitive to take versicolor as the class since more matching instances pointed to it as the predicted class. This is called majority vote, so we look at how many instances voted with their labels and we count the labels and pick the label with the highest count. In our simple example, we have 3 versicolor against 1 virginica so versicolor wins.</p>
+<h2 id="distance-metric">Distance metric</h2>
+<p>However, this strategy is incomplete since we might have several instances that partially match the attributes of the provided instance in different ways. For example, if the algorithm is presented with the following instance:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x\)</span>=</td>
+<td>6.1</td>
+<td>2.5</td>
+<td>4.5</td>
+<td>1.4</td>
+</tr>
+</tbody>
+</table>
+<p>There are two records that match the first and last attributes, these are:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{4}}=\)</span></td>
+<td>6.1</td>
+<td>2.9</td>
+<td>4.7</td>
+<td>1.4</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{7}}=\)</span></td>
+<td>6.1</td>
+<td>2.6</td>
+<td>5.6</td>
+<td>1.4</td>
+<td>virginica</td>
+</tr>
+</tbody>
+</table>
+<p>The question is then which matching instance should we choose to be the label of the provided instance versicolor or virginica? This poses the question of which one of these matching instances is closest to the presented instance. If we can specify this quantitatively then we pick the instance from the dataset that are the nearest to the provided instance. This means that we need to utilise a distance that provides quantitative information about how close each instance in the dataset from the provided instance. We can then pick the lowest distance to match best with the provided instance and we pick its label to be the label of the provided instance. For the above example, we can adopt the usual Euclidian distance. And to avoid unnecessary calculations of the square roots we can compare the squared Euclidian distances (since taking the square root will not change the result of the comparison). In this case, the squared distances are:</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+d^{2}\left(\mathbf{x}, \mathbf{x}_{4}\right)=(6.1-6.1)^{2}+(2.5-2.9)^{2}+(4.5-4.7)^{2}+(1.4-1.4)^{2}=0.2 \\
+d^{2}\left(\mathbf{x}, \mathbf{x}_{7}\right)=(6.1-6.1)^{2}+(2.5-2.6)^{2}+(4.5-5.6)^{2}+(1.4-1.4)^{2}=1.2
+\end{array}
+\]</div>
+<p>This means that x_4 is closer to the presented instance than <span class="arithmatex">\(\mathbf{X}_{7}\)</span> and the predicted label (class) will be the class of <span class="arithmatex">\(\mathbf{X}_{4}\)</span> i.e. versicolor.</p>
+<h2 id="metric-distance-for-nearest-neighbours">Metric distance for nearest neighbours</h2>
+<p>We can employ any of the metrics or similarity measures that we have talked about in the previous lesson. Each metric gives a different algorithm power that suits specific problems. For example, we can use cosine similarity to classify documents using nearest neighbours.</p>
+<p>But here again, conceivably, we might have several instances that have the same distance from the provided instance and they have different labels. What would be the label of the provided instance in this case?</p>
+<p>For example, if the algorithm is presented with the following instance:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x\)</span>=</td>
+<td>6.1</td>
+<td>3.5</td>
+<td>4.7</td>
+<td>0.2</td>
+</tr>
+</tbody>
+</table>
+<p>Think about it for a moment… Ok, yes, sure we can just take a count/vote of how many instances have label 1 and how many have label 2, and we take the label that has the highest count.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{1}}=\)</span></td>
+<td>5.1</td>
+<td>3.5</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>setosa</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{3}}=\)</span></td>
+<td>5.5</td>
+<td>3.5</td>
+<td>1.3</td>
+<td>0.2</td>
+<td>setosa</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{4}}=\)</span></td>
+<td>6.1</td>
+<td>2.9</td>
+<td>4.7</td>
+<td>1.4</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{6}}=\)</span></td>
+<td>6.1</td>
+<td>2.8</td>
+<td>4.7</td>
+<td>1.2</td>
+<td>versicolor</td>
+</tr>
+</tbody>
+</table>
+<h2 id="distance-weighted-voting">Distance-weighted voting</h2>
+<p>However, since we introduced the distances, this is an incomplete approach. Although there might not be a direct match between some of the features of the presented instance and the features of the instances in the dataset, but they might still be close to each other. In reality, we would need to take the distances for the entire dataset and then we compare. This by itself can lead to some issues such as efficiency of the technique but it is necessary for numerical dataset. But the more serious issue is that we cannot take the vote of the entire dataset as it is always going to give us the same results based on the frequency of the labels themselves.</p>
+<p>A remedy for this issue is to take the vote of the nearest <span class="arithmatex">\(k\)</span> instance to the presented instance. <span class="arithmatex">\(k\)</span> is a hyper parameter that has an important effect on the predictions of the algorithm. In our case if we take <span class="arithmatex">\(k=4\)</span>, we get the following nearest neighbours for the presented instance:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+<th><span class="arithmatex">\(d^{2}\left(\mathbf{x}, \mathbf{x}_{i}\right)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{6}}=\)</span></td>
+<td>6.1</td>
+<td>2.8</td>
+<td>4.7</td>
+<td>1.2</td>
+<td>versicolor</td>
+<td>1.49</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{5}}=\)</span></td>
+<td>6.1</td>
+<td>3</td>
+<td>4.6</td>
+<td>1.4</td>
+<td>versicolor</td>
+<td>1.7</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{4}}=\)</span></td>
+<td>6.1</td>
+<td>2.9</td>
+<td>4.7</td>
+<td>1.4</td>
+<td>versicolor</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{8}}=\)</span></td>
+<td>6.1</td>
+<td>3</td>
+<td>4.9</td>
+<td>1.8</td>
+<td>virginica</td>
+<td>2.85</td>
+</tr>
+</tbody>
+</table>
+<p>And hence we see that the setosa class is not a participant, since all of its instances are much further than the shown instance above. Therefore, taking the vote of this nearest neighbour algorithm gives us versicolor as the class.</p>
+<p>But again what if the voting instance casted exactly the same count for both labels? For example, choosing <span class="arithmatex">\(k=6\)</span> gives us the following equal voting between versicolor and virginica:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+<th><span class="arithmatex">\(d^{2}\left(\mathbf{x}, \mathbf{x}_{i}\right)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{6}}=\)</span></td>
+<td>6.1</td>
+<td>2.8</td>
+<td>4.7</td>
+<td>1.2</td>
+<td>versicolor</td>
+<td>1.49</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{5}}=\)</span></td>
+<td>6.1</td>
+<td>3</td>
+<td>4.6</td>
+<td>1.4</td>
+<td>versicolor</td>
+<td>1.7</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{4}}=\)</span></td>
+<td>6.1</td>
+<td>2.9</td>
+<td>4.7</td>
+<td>1.4</td>
+<td>versicolor</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{8}}=\)</span></td>
+<td>6.1</td>
+<td>3</td>
+<td>4.9</td>
+<td>1.8</td>
+<td>virginica</td>
+<td>2.85</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{7}}=\)</span></td>
+<td>6.1</td>
+<td>2.6</td>
+<td>5.6</td>
+<td>1.4</td>
+<td>virginica</td>
+<td>3.06</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{9}}=\)</span></td>
+<td>6.5</td>
+<td>3</td>
+<td>5.5</td>
+<td>1.8</td>
+<td>virginica</td>
+<td>3.61</td>
+</tr>
+</tbody>
+</table>
+<p>In this instance we can weigh the votes according to the inverse of their distances, the closer the instance from the dataset to the provided instance, the higher its weight. We multiply the weights with the votes, and we sum the weights to give us a quantification of which label should win to be the best label for the provided instance.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+<th><span class="arithmatex">\(d^{2}\left(\mathbf{x}, \mathbf{x}_{i}\right)\)</span></th>
+<th>weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{6}}=\)</span></td>
+<td>6.1</td>
+<td>2.8</td>
+<td>4.7</td>
+<td>1.2</td>
+<td>versicolor</td>
+<td>1.49</td>
+<td>0.67</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{5}}=\)</span></td>
+<td>6.1</td>
+<td>3</td>
+<td>4.6</td>
+<td>1.4</td>
+<td>versicolor</td>
+<td>1.7</td>
+<td>0.59</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{4}}=\)</span></td>
+<td>6.1</td>
+<td>2.9</td>
+<td>4.7</td>
+<td>1.4</td>
+<td>versicolor</td>
+<td>1.8</td>
+<td>0.56</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{8}}=\)</span></td>
+<td>6.1</td>
+<td>3</td>
+<td>4.9</td>
+<td>1.8</td>
+<td>virginica</td>
+<td>2.85</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{7}}=\)</span></td>
+<td>6.1</td>
+<td>2.6</td>
+<td>5.6</td>
+<td>1.4</td>
+<td>virginica</td>
+<td>3.06</td>
+<td>0.33</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{9}}=\)</span></td>
+<td>6.5</td>
+<td>3</td>
+<td>5.5</td>
+<td>1.8</td>
+<td>virginica</td>
+<td>3.61</td>
+<td>0.28</td>
+</tr>
+</tbody>
+</table>
+<p><strong>weight sum</strong> for versicolor: 1.82</p>
+<p><strong>weight sum</strong> for virginica: 0.96</p>
+<p>In this case the algorithm predicts that the class of the presented instance is versicolor.</p>
+<p>OK, what if the sum of the weights turns out to be the same as you might have pre-empted? Well in this case, we just can pick any label since both have same matching powers for the provided instance. But wait, we can do something else, we can change the distance metric that is used to provide a different perspective on the weights and then pick the label that scored best in two or more measures. However, we will not cover this last point and we suffice by assuming that the designer will pick the best distance measure to match the nature and quality of the dataset under consideration.</p>
+<h2 id="rescaling-to-improve-performance">Rescaling to improve performance</h2>
+<p>There is one more piece here to complete our example coverage of kNN. You might have noticed that it was a bit odd that the virginica class should dominate, since its attribute seems to be closer than versicolor. This is in fact a result of one attribute or feature dominating other features. In particular, note that the PWidth feature is small in comparison with SLength. Hence the contribution of SLength is exaggerated in the calculations and its effect is magnified unnecessarily. We can overcome this phenomena, however, by a simple trick: rescaling. By rescaling, every feature would have its value ranged between [0, 1] which guarantees better overall performance for the kNN algorithm. In fact, being susceptible to the dominance of some features is one of the limitations of kNN. Here, we should overcome this issue by pre-processing.</p>
+<p>Below, we show the rescaling of the mini-iris where we divided each attribute by its maximum. Note how rescaling cuts across instances vertically on the dataset.</p>
+<h3 id="mini-iris">Mini-iris</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{1}}=\)</span></td>
+<td>5.1</td>
+<td>3.5</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>setosa</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{2}}=\)</span></td>
+<td>4.9</td>
+<td>3</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>setosa</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{3}}=\)</span></td>
+<td>5.5</td>
+<td>3.5</td>
+<td>1.3</td>
+<td>0.2</td>
+<td>setosa</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{4}}=\)</span></td>
+<td>6.1</td>
+<td>2.9</td>
+<td>4.7</td>
+<td>1.4</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{5}}=\)</span></td>
+<td>6.1</td>
+<td>3</td>
+<td>4.6</td>
+<td>1.4</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{6}}=\)</span></td>
+<td>6.1</td>
+<td>2.8</td>
+<td>4.7</td>
+<td>1.2</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{7}}=\)</span></td>
+<td>6.1</td>
+<td>2.6</td>
+<td>5.6</td>
+<td>1.4</td>
+<td>virginica</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{8}}=\)</span></td>
+<td>6.1</td>
+<td>3</td>
+<td>4.9</td>
+<td>1.8</td>
+<td>virginica</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{9}}=\)</span></td>
+<td>6.5</td>
+<td>3</td>
+<td>5.5</td>
+<td>1.8</td>
+<td>virginica</td>
+</tr>
+</tbody>
+</table>
+<h3 id="normalised-mini-iris-only-two-decimal-points-are-shown">Normalised mini-iris (only two decimal points are shown)</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{1}}=\)</span></td>
+<td>0.78</td>
+<td>1.00</td>
+<td>0.25</td>
+<td>0.11</td>
+<td>setosa</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{2}}=\)</span></td>
+<td>0.75</td>
+<td>0.86</td>
+<td>0.25</td>
+<td>0.11</td>
+<td>setosa</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{3}}=\)</span></td>
+<td>0.85</td>
+<td>1.00</td>
+<td>0.23</td>
+<td>0.11</td>
+<td>setosa</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{4}}=\)</span></td>
+<td>0.94</td>
+<td>0.83</td>
+<td>0.84</td>
+<td>0.78</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{5}}=\)</span></td>
+<td>0.94</td>
+<td>0.86</td>
+<td>0.82</td>
+<td>0.78</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{6}}=\)</span></td>
+<td>0.94</td>
+<td>0.80</td>
+<td>0.84</td>
+<td>0.67</td>
+<td>versicolor</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{7}}=\)</span></td>
+<td>0.94</td>
+<td>0.74</td>
+<td>1.00</td>
+<td>0.78</td>
+<td>virginica</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{8}}=\)</span></td>
+<td>0.94</td>
+<td>0.86</td>
+<td>0.88</td>
+<td>1.00</td>
+<td>virginica</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{9}}=\)</span></td>
+<td>1.00</td>
+<td>0.86</td>
+<td>0.98</td>
+<td>1.00</td>
+<td>virginica</td>
+</tr>
+</tbody>
+</table>
+<p>Now, if we take the k=6 nearest neighbour, we get a different result which is as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>S length</th>
+<th>S width</th>
+<th>P length</th>
+<th>P width</th>
+<th>species</th>
+<th><span class="arithmatex">\(d^{2}\left(\mathbf{x}, \mathbf{x}_{i}\right)\)</span></th>
+<th>weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{6}}=\)</span></td>
+<td>0.94</td>
+<td>0.80</td>
+<td>0.84</td>
+<td>0.67</td>
+<td>versicolor</td>
+<td>0.349</td>
+<td>2.87</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{1}}=\)</span></td>
+<td>0.78</td>
+<td>1.00</td>
+<td>0.25</td>
+<td>0.11</td>
+<td>setosa</td>
+<td>0.371</td>
+<td>2.7</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{3}}=\)</span></td>
+<td>0.85</td>
+<td>1.00</td>
+<td>0.23</td>
+<td>0.11</td>
+<td>setosa</td>
+<td>0.377</td>
+<td>2.65</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{2}}=\)</span></td>
+<td>0.75</td>
+<td>0.86</td>
+<td>0.25</td>
+<td>0.11</td>
+<td>setosa</td>
+<td>0.402</td>
+<td>2.49</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{5}}=\)</span></td>
+<td>0.94</td>
+<td>0.86</td>
+<td>0.82</td>
+<td>0.78</td>
+<td>versicolor</td>
+<td>0.465</td>
+<td>2.15</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}_{\mathbf{4}}=\)</span></td>
+<td>0.94</td>
+<td>0.83</td>
+<td>0.84</td>
+<td>0.78</td>
+<td>versicolor</td>
+<td>0.475</td>
+<td>2.11</td>
+</tr>
+</tbody>
+</table>
+<p><strong>weight sum k=6</strong> for versicolor: 2.87  +  2.15  +  2.11 =  7.13</p>
+<p><strong>weight sum k=6</strong> for setosa: 2.7  +  2.65  +  2.49  =  7.84</p>
+<p>This means that eventually the algorithm should classify the given instance as setosa.</p>
+<h2 id="knn-algorithm">kNN algorithm</h2>
+<p>To summarise, in the k-nearest neighbour classification technique, we look at <span class="arithmatex">\(k\)</span> of the nearest neighbours to the presented data point and we take a simple (possibly weighted) vote to classify the data point <span class="arithmatex">\(x\)</span> based on the classes of its closest neighbours <span class="arithmatex">\(\mathbf{y}_{i} i=1, \ldots k\)</span>. We must consider rescaling as kNN is susceptible to issues related to feature dominance. Note that this is a classification techniques, i.e. there are a set of <span class="arithmatex">\(K\)</span> labels representing the classes that are already provided in the dataset (differentiate between <span class="arithmatex">\(k\)</span> and <span class="arithmatex">\(K\)</span>). Unlike clustering, where we do not have these labels available and instead the algorithms will come up with cluster labels to represent the clusters. kNN can produce decision boundaries of arbitrary shape. This gives it a lot of power to express complex problems, albeit a simple algorithm by nature. In comparison with decision trees, kNN gives far more flexibility of representing complex decision boundaries. kNN face difficulties when dealing with missing values for some of the attributes. Irrelevant features can distort some important distance metric which in turn reduce the effectiveness of kNN. The kNN algorithm is shown below.</p>
+<div class="admonition algorithm-heading">
+<p class="admonition-title">Algorithms 4: k-nearest neighbours</p>
+<p><strong>Input:</strong></p>
+<p>Input training set <span class="arithmatex">\(\mathbf{X}=\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots, \mathbf{x}_{\mathrm{N}}\right\}\)</span></p>
+<p>Corresponding target labels <span class="arithmatex">\(\boldsymbol{t}=\left\{t_{1}, t_{2}, \ldots, t_{N}\right\}\)</span></p>
+<p>Input test set <span class="arithmatex">\(\mathbf{X}^{\prime}=\left\{\mathbf{x}_{1}^{\prime}, \mathbf{x}_{2}^{\prime}, \ldots, \mathbf{x}_{S}^{\prime}\right\}\)</span> S is the size of the test set.</p>
+<p><span class="arithmatex">\(k\)</span>: The number of neighbours.</p>
+<p><strong>Output</strong>: Class Labels <span class="arithmatex">\(\boldsymbol{C}=\left\{y_{1}, y_{2}, \ldots, y_{S}\right\}\)</span> for the test set <span class="arithmatex">\(\mathbf{X}^{\prime}\)</span> where <span class="arithmatex">\(y_{n} \in\left\{l_{1}, \ldots, l_{K}\right\}\)</span></p>
+<p><span class="arithmatex">\(\mathbf{k N N}\left(\mathbf{X}, \boldsymbol{t}, \mathbf{X}^{\prime}, k\right)\)</span>:</p>
+<div class="admonition algorithm">
+<p><strong>For</strong> each <span class="arithmatex">\(\mathbf{x}_{i}^{\prime}\)</span> in <span class="arithmatex">\(\mathbf{X}^{\prime}\)</span></p>
+<div class="admonition algorithm">
+<p><strong>For</strong> each <span class="arithmatex">\(\mathbf{x}_{j}\)</span> in <span class="arithmatex">\(\mathbf{X}\)</span></p>
+<div class="admonition algorithm">
+<p><strong>Compute</strong> <span class="arithmatex">\(d\left(\mathbf{x}_{i}^{\prime}, \mathbf{x}_{j}\right)=\mathbf{x}_{j}^{\top} \mathbf{x}_{i}^{\prime}\)</span><span style="float: right;"># or other appropriate distance for the problem in hand</span></p>
+<p><strong>Select</strong> the set of <span class="arithmatex">\(k\)</span> nearest neighbours <span class="arithmatex">\(\boldsymbol{D}_{i}\)</span> for <span class="arithmatex">\(\mathbf{X}_{i}^{\prime}\)</span></p>
+<p><span class="arithmatex">\(y_{i}=\max _{l} \sum_{\left(\mathrm{x}_{j}, t_{j}\right) \in \boldsymbol{D}_{i}} I\left(t_{j}=l\right)\)</span>            </p>
+</div>
+</div>
+<p><strong>return</strong> <span class="arithmatex">\(\left\{y_{i}\right\} \quad i=1, \ldots, S\)</span></p>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © Digital Education Service | University of Leeds
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../javascript/tablecontentsoverride.js"></script>
+      
+        <script src="../../../javascript/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

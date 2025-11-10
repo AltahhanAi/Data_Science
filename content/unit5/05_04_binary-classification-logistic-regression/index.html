@@ -1,0 +1,3022 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Digital Education Service">
+      
+      
+      
+        <link rel="prev" href="../05_03_binary-classification-perceptron/">
+      
+      
+        <link rel="next" href="../05_05_multi-class-problems/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>4. Binary classification: Logistic regression - Data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#binary-classification-logistic-regression" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+    <div id="versionIndicator"><b>Version:</b> 21.11.23.a</div>
+    <img id="customlogo" src="../../../img/logo.svg" alt="University of Leeds logo.">
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data science" class="md-header__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. Binary classification: Logistic regression
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit1/01_01_what-is-data-science/" class="md-tabs__link">
+          
+  
+  
+  Unit 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit2/02_00_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit3/03_00_clustering_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit4/04_00_regression_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../05_01_linear-non-linear-classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 5
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data science" class="md-nav__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_01_what-is-data-science/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. What is data science?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_02_the_data_its_quality_and_its_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. The data, its quality and its structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_03_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Data preparation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_04_data_visualisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Data generation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_00_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Decision trees
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Decision trees
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_01_decision_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Decision trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_02_DT_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Decision tree training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_03_DT_vertebrate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. DT training on a vertebrate dataset
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_04_measuring_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Measuring the performance of a classification model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_05_overfitting_underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Overfitting, underfitting and generalisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2/02_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_00_clustering_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clustering and classification algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Clustering
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Clustering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01_clustering_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01a_two_clusters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Two clusters case
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01b_general_case_multi_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. General case multi clusters: K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01c_clusters_loss_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Clusters loss function: measuring the quality of the cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01d_specifying_K_through/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Specifying K through elbow method
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01e_initialising_centroids/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Initialising the centroids
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01f_mini_batch_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Mini-batch K means++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01g_bisecting_K_means/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1g. Bisecting K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01h_clustering_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1h. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Basic numerical distance-based classification
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Basic numerical distance-based classification
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02a_intro_basic_numerical_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02b_lazy_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Lazy classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02c_K_nearest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. K-nearest neighbour algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02d_choosing_best_k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Choosing best k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02e_classification_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_03_ensemble_methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Ensemble methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_04_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_00_regression_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear and non linear regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Simple Linear Regression Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Simple Linear Regression Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01a_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Simple linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01b_example_linear_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Example of linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01c_loss_error_cos_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Loss, objective, error or cost function for regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01d_simple_linear_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Simple linear model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01e_Gradient_decent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Approximate solutions - gradient descent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01f_sgd_exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Evaluating a regression model via R2 and the RMSE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Linear regression with linear and non-linear basis functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02a_linear_regression_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02b_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02c_linear_basis_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. Linear basis model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02d_Batch_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Batch learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02e_linear_regression_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Implementing a stochastic gradient descent with gaussian basis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02f_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2f. Regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02g_least_squares_with_basis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2g. Regularisation exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02h_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2h. Linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02i_preventing_overfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2i. Preventing overfitting the data and overshooting the loss minimum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_03a_multi_layer_multi_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Non-linear regression via neural networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_4_learning_from_probabilistic_perspective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Learning from a probabilistic perspective
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_05_unit_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_01_linear-non-linear-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Linear and non-Linear classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_02_linear-model-for-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Linear model for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_03_binary-classification-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Binary classification: The perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    4. Binary classification: Logistic regression
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Binary classification: Logistic regression
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#loss-function-for-the-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loss function for the logistic regression
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross entropy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-by-minimising-the-cross-entropy-for-one-data-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning by minimising the cross entropy for one data point
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Learning by minimising the cross entropy for one data point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-about-cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      More about cross entropy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-gradient-of-the-cross-entropy-terms-for-binary-class-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The gradient of the cross entropy terms for binary class problem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logistic-regression-example-with-cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logistic regression example with cross entropy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logistic regression example with cross entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#least-square-for-linear-model-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Least square for linear model classification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_05_multi-class-problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Multi-class problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_06_non-linear-models_multi-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. Non-linear models: multi-layer perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_07_probabilistic_view_of_loss_function_for_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Probabilistic view of loss function for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_08_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#loss-function-for-the-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loss function for the logistic regression
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross entropy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-by-minimising-the-cross-entropy-for-one-data-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning by minimising the cross entropy for one data point
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Learning by minimising the cross entropy for one data point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-about-cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      More about cross entropy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-gradient-of-the-cross-entropy-terms-for-binary-class-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The gradient of the cross entropy terms for binary class problem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logistic-regression-example-with-cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logistic regression example with cross entropy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logistic regression example with cross entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#least-square-for-linear-model-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Least square for linear model classification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="binary-classification-logistic-regression">Binary classification: logistic regression</h1>
+<div class="admonition success">
+<p class="admonition-title">Learning outcomes:</p>
+<p>After completing this lesson, you should be able to:</p>
+<ul>
+<li>understand the basic architecture of logistic regression to tackle binary classification problems</li>
+<li>understand the basic and mini-batch learning algorithm of logistic regression</li>
+<li>understand why we need to use the cross-entropy as a loss function for logistic regression</li>
+<li>appreciate that cross entropy loss creates a synergy with logistic regression to yield and update that is identical to the regression</li>
+<li>appreciate the strengths and weaknesses of logistic regression.</li>
+</ul>
+</div>
+<p>You might be thinking, regression for classification, this sounds weird! But actually, the name is a misnomer. This is <strong>not regression</strong>, <strong>it is classification</strong>. The name is used for reasons that will become apparent later. Please bear in mind that we are talking about a classification technique, not a regression technique.</p>
+<p>We saw earlier that the perceptron is capable of classifying a linearly separable dataset and we saw that it has a simple step activation function. To move towards more general techniques that can handle non-linearly separable classes, we introduce the logistic regression model.</p>
+<p>Logistic regression uses the logistic sigmoid as the activation function (due to which the technique owes the first term of its name); the model is expressed as:</p>
+<div class="arithmatex">\[
+y\left(\mathbf{x}_{n}, \mathbf{w}\right)=g\left(\mathbf{w}^{\top} \boldsymbol{\phi}_{n}\right)
+\]</div>
+<p>where <span class="arithmatex">\(g\)</span> is the sigmoid function that we discussed in Unit 4. Here, it is used as an activation function, while in Unit 4, it was discussed in the context of basis functions to map input space into feature space. Nevertheless, the sigmoid is the sigmoid, and it is defined as:</p>
+<div class="arithmatex">\[
+g(z)=\frac{1}{1+e^{-z}}=\frac{e^{z}}{1+e^{z}}
+\]</div>
+<p>here in the context of an activation function <span class="arithmatex">\(\mathrm{z}\)</span> is the linear decision boundaries given as <span class="arithmatex">\(\boldsymbol{z}=\mathbf{w}^{\top} \boldsymbol{\phi}_{n} .\)</span></p>
+<p>Logistic regression is a widely used classification technique that, like the perceptron, has linear decision boundaries but, unlike the perceptron, goes one step further and employs a non-linear activation function. The benefit is that we can now bind the range of the output naturally and deal with probabilistic decisions instead of crisp decisions. The other benefit is that the activation function employed by the presented technique is differentiable and does not have cusps as in the step activation function. In fact, as shown in Figure 5.29, the activation function of the presented technique, namely the logistic function, somehow has a similar but more lenient shape to the step function of the perceptron.</p>
+<figure role="group">
+  <img src="../images/DS_IMG220.png" alt="Graph showing sigmoid activation function with [0, 1] signal range compared to step activation function with {0, 1} signals." />
+  <figcaption>
+    <p><strong>Figure 5.29.</strong> Sigmoid activation function with [0, 1] signal range compared to step activation function with {0, 1} signals.</p>
+  </figcaption>
+</figure>
+
+<p>We should also emphasise here that although both the perceptron and logistic regression have linear decision boundaries, they can become capable of dealing with non-linearly separable classes via feature mapping, i.e. by employing a non-linear basis function as we saw in the previous section. However, there are some non-linear problems where feature mapping does not solve its non-linearity and where we need a built-in non-linearity in the model. In addition, as we saw in Unit 4, fixed basis functions are restrictive in terms of the adaptability that we might want to infuse into our models. This adaptability can be used to automatically discover the best basis for the problem at hand instead of the analyst choosing the type of basis needed.
+Below, we show a schematic representation of logistic regression.</p>
+<figure role="group">
+  <img src="../images/DS_IMG152.jpg" alt="Schematic representation of the Logistic Regression as linear models for classification with basis." />
+  <figcaption>
+    <p><strong>Figure 5.30.</strong> Schematic representation of the Logistic Regression as a linear model for classification with basis.</p>
+  </figcaption>
+</figure>
+
+<p>We denote <span class="arithmatex">\(y\left(\mathbf{x}_{n}, \mathbf{w}\right)\)</span> as  <span class="arithmatex">\(y_{n}\)</span> to simplify the notation.</p>
+<p>Logistic models tackle <strong>binary class problems</strong> so we have two potential target outputs. In this case, it is more useful to represent (encode) the target outputs <span class="arithmatex">\(t_{n}\)</span> as a binary target from the set <span class="arithmatex">\(\{0,1\}\)</span>, which goes along with
+the model output <span class="arithmatex">\(y_{n}\)</span> that is in <span class="arithmatex">\([0,1]\)</span> (as per the sigmoid function range).</p>
+<p>The <strong>classification decision</strong> can be made based on the value <span class="arithmatex">\(y_{n}\)</span></p>
+<p>if <span class="arithmatex">\(y_{n} \geq 0.5 \quad\)</span> then <span class="arithmatex">\(\quad\)</span> predicted class <span class="arithmatex">\(=1\)</span></p>
+<p>if <span class="arithmatex">\(y_{n}&lt;0.5 \quad\)</span> then <span class="arithmatex">\(\quad\)</span> predicted class <span class="arithmatex">\(=0\)</span></p>
+<p>The main characteristics of a logistic function are twofold:</p>
+<ol>
+<li>it is naturally normalised because its value is confined to [0, 1]</li>
+<li>it is differentiable and has an appealing rule for differentiation that is related to z: <span class="arithmatex">\(\frac{d g(z)}{d z}=\)</span> <span class="arithmatex">\(g(z)(1-g(z))\)</span> which can be written for brevity as:</li>
+</ol>
+<div class="arithmatex">\[
+\frac{d g}{d z}=g(1-g)
+\]</div>
+<p>We will interpret the values that we obtain from the logistic function as the degree of membership to the positive class or the probability that the data point belongs to the positive class. So, for example if the logistic activation function produces a value of <span class="arithmatex">\(0.7\)</span> for a data point <span class="arithmatex">\(\mathbf{x}\)</span> then this is interpreted as <span class="arithmatex">\(\operatorname{pr}(\mathbf{x} \in C)=0.7\)</span> and <span class="arithmatex">\(p r(\mathbf{x} \in\)</span> <span class="arithmatex">\(\neg C)=0.3\)</span> and we can conclude that <span class="arithmatex">\(\mathbf{x}\)</span> is from class <span class="arithmatex">\(C\)</span>. More formally, we express these quantities as conditional probabilities of the logistic regression discriminative model as <span class="arithmatex">\(p r(y=1 \mid \mathbf{x})=0.7\)</span> and <span class="arithmatex">\(\operatorname{pr}(y=0 \mid \mathbf{x})=0.3\)</span>. Conditional probabilities <span class="arithmatex">\(\operatorname{pr}(y=1 \mid \mathbf{x})\)</span> and <span class="arithmatex">\(p r(y=0 \mid \mathbf{x})\)</span> are called posterior class probabilities.</p>
+<p>Logistic regression has strong roots as a probabilistic model. Logistic regression models are, in fact, <strong>discriminative</strong> models since they come up with estimations of the posterior probabilities <span class="arithmatex">\(\operatorname{pr}(y=1 \mid \mathbf{x})\)</span>. These models are called as such because they discriminate between patterns presented to them. Other types of probabilistic models are <strong>generative</strong>, where the probabilities <span class="arithmatex">\(\operatorname{pr}(\mathbf{x} \mid \mathrm{y}=1)\)</span> are estimated. These are called as such because we can generate data from them.</p>
+<p>The odds of <span class="arithmatex">\(\mathbf{x}\)</span> being classified as positive is given as:</p>
+<div class="arithmatex">\[
+\frac{p(y=1 \mid \mathbf{x})}{p(y=0 \mid \mathbf{x})}
+\]</div>
+<p>By substituting with the logistic function formula, we get:</p>
+<div class="arithmatex">\[
+\frac{p(y=1 \mid \mathbf{x})}{p(y=0 \mid \mathbf{x})}=\frac{\frac{e^{z}}{1+e^{z}}}{\frac{1}{1+e^{z}}}=e^{z}=e^{\mathbf{w}^{\top} \boldsymbol{\phi}}
+\]</div>
+<p>This means that the logistic regression estimates the odds of <span class="arithmatex">\(\mathbf{x}\)</span> being from the positive class via a simple exponentiation of a linear model. As we shall see later, this exponentiation is intimately related to logistic regression with multiple outputs.</p>
+<h2 id="loss-function-for-the-logistic-regression">Loss function for the logistic regression</h2>
+<p>First, we start with intuition, and then we formally define the loss. Here, the trick of the perceptron loss function (multiplying the model output <span class="arithmatex">\(y_{n}\)</span> by the target class <span class="arithmatex">\(t_{n}\)</span> ) does not work since the output is a continuum of values in <span class="arithmatex">\([ 0,1\left]\right.\)</span> instead of <span class="arithmatex">\(+1\)</span> and <span class="arithmatex">\(-1\)</span> (as in the perceptron). The multiplication of <span class="arithmatex">\(t_{n} y_{n}\)</span> is always non-negative, so the <strong>sign</strong> of <span class="arithmatex">\(t_{n} y_{n}\)</span> <strong>will not work</strong> to detect the class as it did in the perceptron. Instead, we need to look at the <strong>value</strong> of <span class="arithmatex">\(t_{n} y_{n}\)</span> to deduce the dissimilarity between the model output <span class="arithmatex">\(y_{n}\)</span> and the target output <span class="arithmatex">\(t_{n}.\)</span> Therefore, we might think of a loss function as follows:</p>
+<div class="arithmatex">\[
+\left\{\begin{array}{lll}
+\text { if } t_{n}=1 &amp; \text { then use } &amp; t_{n} y_{n} \\
+\text { if } t_{n}=0 &amp; \text { then use } &amp; \left(1-t_{n}\right)\left(1-y_{n}\right)
+\end{array}\right.
+\]</div>
+<p>However, since <span class="arithmatex">\(y_{n}\)</span> is a logistic value that has exponentiation, it is easier to take the log of <span class="arithmatex">\(y_{n}\)</span>, which effectively cancels the exponentiation and makes the loss easier to handle. <span class="arithmatex">\(y_{n}\)</span> and <span class="arithmatex">\(-\log y_{n}\)</span> are both monotonic and behave similarly in terms of their minima <span class="arithmatex">\(\left(\log y_{n}\right.\)</span> is always negative because <span class="arithmatex">\(y_{n}\)</span> is in <span class="arithmatex">\([ 0,1 ])\)</span>. So we can use the following loss cases instead:</p>
+<div class="arithmatex">\[
+\left\{\begin{array}{ll}
+\text { if } t_{n}=1 &amp; \text { then use } &amp; -t_{n} \log y_{n} \\
+\text { if } t_{n}=0 &amp; \text { then use } &amp; -\left(1-t_{n}\right) \log \left(1-y_{n}\right)
+\end{array}\right.
+\]</div>
+<p>We can combine both as follows:</p>
+<div class="arithmatex">\[
+-t_{n} \log \left(y_{n}\right)-\left(1-t_{n}\right) \log \left(1-y_{n}\right)
+\]</div>
+<p>Ok, that was one way to motivate the use of the cross entropy loss. Below we provide the motivation formally via the entropy.
+Recall that the logistic function value is in [0, 1] and that it will be interpreted as a probability. Hence, our model prediction</p>
+<div class="arithmatex">\[
+y\left(\mathbf{x}_{n}, \mathbf{w}\right)=g\left(\mathbf{w}^{\top} \boldsymbol{\phi}_{n}\right)
+\]</div>
+<div class="arithmatex">\[
+\text { represents the probability that } \mathbf{x}_{n} \text { belongs to class } C \text { i.e. }
+\]</div>
+<div class="arithmatex">\[
+p r_{p}\left(\mathbf{x}_{n} \in C\right)=y_{n}
+\]</div>
+<div class="arithmatex">\[
+p r_{p}\left(\mathbf{x}_{n} \notin C\right)=1-y_{n}
+\]</div>
+<p>We can now write the entropy (which represents the uncertainty) of <span class="arithmatex">\(y_n\)</span> class prediction as</p>
+<div class="arithmatex">\[
+H\left(y_{n}\right)=-y_{n} \log \left(y_{n}\right)-\left(1-y_{n}\right) \log \left(1-y_{n}\right)
+\]</div>
+<p>The entropy measures how uncertain our prediction is with respect to our model probabilities and it does not use any external answers. So, for example if <span class="arithmatex">\(y_{n}=0.99\)</span> then the model is pretty confident that the data point <span class="arithmatex">\(\mathbf{x}_{n}\)</span>
+belongs to Class 1 and the entropy of the model regarding this classification is minimal in this case <span class="arithmatex">\(0.08\)</span>. On the other hand, when <span class="arithmatex">\(y_{n}=0.51\)</span> then although the prediction is still that the data point <span class="arithmatex">\(\mathbf{x}_{n}\)</span> belongs to Class 1, the model is far less confident about its own prediction and the entropy in this case is maximal <span class="arithmatex">\(0.999\)</span>.</p>
+<p>Since <span class="arithmatex">\(y_{n}\)</span> is a function of <span class="arithmatex">\(\mathbf{w}\)</span> and <span class="arithmatex">\(\mathbf{x}_{n}\)</span> the entropy is also a function of them and can be denoted as:</p>
+<div class="arithmatex">\[
+H_{n}(\mathbf{w})=-y_{n} \log \left(y_{n}\right)-\left(1-y_{n}\right) \log \left(1-y_{n}\right)
+\]</div>
+<p>to express that we are interested in how the entropy varies with <span class="arithmatex">\(\mathbf{w}\)</span> for data point <span class="arithmatex">\(\mathbf{x}_{n}\)</span>.</p>
+<h2 id="cross-entropy">Cross entropy</h2>
+<p>Although the model entropy quantifies the uncertainty in the model's own predictions, it does not tell us anything about how the model is doing in comparison to the actual class. More formally, the entropy gives us no information about how <strong>uncertain</strong> our <strong>class prediction</strong> is relative to the actual class of the data point. Instead, to measure the expected difference between our model predicted class and the <strong>actual class</strong> of a pattern <span class="arithmatex">\(\mathbf{x}_{n}\)</span>, we can use the cross entropy. We will denote the probabilities of the target classes as <span class="arithmatex">\(t_{n}\)</span>, and we note that these will take the values of 1 when the data point belongs to the positive class and 0 when it does not. We denote the distribution of the actual class as <span class="arithmatex">\(\mathrm{T}\)</span> and the prediction distribution as <span class="arithmatex">\(\mathrm{P}\)</span>. Therefore, now we can define the cross
+entropy prediction <span class="arithmatex">\(\mathrm{y}_{n}\)</span> as:</p>
+<div class="arithmatex">\[
+\widetilde{H}_{n}(\mathbf{w})=-t_{n} \log \left(y_{n}\right)-\left(1-t_{n}\right) \log \left(1-y_{n}\right)
+\]</div>
+<p>This is read as the cross-entropy (uncertainty) of our model prediction <span class="arithmatex">\(y_{n}\)</span> relative to the actual class <span class="arithmatex">\(t_{n} .\)</span> Note how cross entropy replaces the probabilities of the model prediction in the entropy formula by the probabilities of the actual class.</p>
+<p>The cross entropy for the whole training set is given as:</p>
+<div class="arithmatex">\[
+\widetilde{H}(\mathbf{w})=\sum_{n=1}^{N} \widetilde{H}_{n}(\mathbf{w})
+\]</div>
+<h2 id="learning-by-minimising-the-cross-entropy-for-one-data-point">Learning by minimising the cross entropy for one data point</h2>
+<p>Cross entropy creates a <strong>synergy</strong> with the logistic function. Together they produce updates that are identical to a linear regression update (hence the name), which is the main stamp of logistic regression as we shall see shortly.</p>
+<p>Now we take the gradient for one data point <span class="arithmatex">\(\mathbf{x}_{n}\)</span> to get</p>
+<div class="arithmatex">\[
+\begin{array}{c}
+\nabla \widetilde{H}_{n}(\mathbf{w})=-\nabla\left(t_{n} \log y_{n}\right)-\nabla\left(\left(1-t_{n}\right) \log \left(1-y_{n}\right)\right) \\
+\nabla \widetilde{H}_{n}(\mathbf{w})=-\boldsymbol{\phi}_{n}\left(y_{n}-t_{n}\right)
+\end{array}
+\]</div>
+<p>You can see how we get the gradient in the box below. This is surprising since it is exactly the same as the gradient for the sum of squared errors in a linear regression model. It is a pleasant by-product of the synergy between cross entropy and logistic model that will allow us to greatly simplify the learning procedure of a logistic model.</p>
+<p>Since we need to go opposite to the gradient direction, the stochastic gradient update is given as</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}+\eta\left(t_{n}-y_{n}\right) \boldsymbol{\phi}_{n} \\
+\mathbf{w}^{(\tau+1)}=\mathbf{w}^{(\tau)}+\eta\left(t_{n}-g\left(\mathbf{w}^{\top} \boldsymbol{\phi}_{n}\right)\right) \boldsymbol{\phi}_{n}
+\end{array}
+\]</div>
+<p>Now we are also in a position to be able to define a loss function that summarises the cross entropies of all data points in the dataset and average them:</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+\bar{J}=\frac{1}{N} \sum_{n=1}^{N} \widetilde{H}_{n}(\mathbf{w}) \\
+\bar{J}=-\frac{1}{N} \sum_{n=1}^{N}\left[t_{n} \log \left(y_{n}\right)+\left(1-t_{n}\right) \log \left(1-y_{n}\right)\right]
+\end{array}
+\]</div>
+<p>and the gradient for the loss function is given as</p>
+<div class="arithmatex">\[
+\nabla \bar{J}=-\frac{1}{N} \sum_{n=1}^{N}\left(t_{n}-y_{n}\right) \boldsymbol{\phi}_{n}
+\]</div>
+<p>Now we need to pause a second here. As we pointed out, this update is identical to a linear regression update without the activation function! The main difference is in how we interpret the results and in how we require our model to work. In linear regression, we are trying to come up with a prediction of a <strong>value</strong> <span class="arithmatex">\(y_{n}.\)</span> In logistic regression we are trying to come up with a <strong>class</strong> <span class="arithmatex">\(y_{n}.\)</span> The prediction is calculated using the logistic function while in linear regression there is no activation function at all.</p>
+<p>Hence we can extend <strong>any of the previously covered algorithms</strong> for linear regression to work equally on logistic regression and this is the beauty of it. For example, we can build a regularised stochastic gradient algorithm that uses the above update. We can also come up with a regularised batch update for logistic regression which is shown below. We show the vectorised version of the mini-batch similar to Algorithm 6 " however of course there is a vanilla mini-batch similar to the one for the perceptron and vice-versa (scroll to the right in the box to view all of the algorithm).</p>
+<div class="admonition algorithm-heading">
+<p class="admonition-title">Algorithm 2: Mini-Batch Stochastic Gradient Descent Updates for Logistic Regression Model with Radial Basis (see previous unit for other possible bases). </p>
+<p><strong>Input:</strong></p>
+<div class="admonition algorithm">
+<p>Input set: design matrix <span class="arithmatex">\(\mathbf{X}=\left[\mathbf{x}_{1}^{\top}, \ldots, \mathbf{x}_{N}^{\top}\right]^{\top}\)</span> each <span class="arithmatex">\(\mathbf{x}_{n}\)</span> is a vector of size <span class="arithmatex">\(D \quad\)</span>
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p>Labels set: vector <span class="arithmatex">\(\mathbf{t}=\left[t_{1}, \ldots, t_{N}\right]^{\top}\)</span> each <span class="arithmatex">\(t_{n}\)</span> is a scalar
+<span class="algorithm-line-comment"># <em>Training set</em></span></p>
+<p><span class="arithmatex">\(b\)</span>: The mini-batch size (specifies how frequently we want to update the weights <span class="arithmatex">\(\mathbf{w}\)</span> ).</p>
+<p><span class="arithmatex">\(\eta_{0}\)</span>: Initial learning rate</p>
+<p><span class="arithmatex">\(epcs\)</span>: Number of epochs</p>
+<p><span class="arithmatex">\(\boldsymbol{\mu}_{j}: M\)</span> Basis centres, each is a vector of size <span class="arithmatex">\(D\)</span></p>
+<p><span class="arithmatex">\(\boldsymbol{\Sigma}\)</span> : Covariance matrix of size <span class="arithmatex">\(\mathrm{D} \times \mathrm{D}\)</span></p>
+</div>
+<p><strong>Output:</strong> <span class="arithmatex">\(\mathbf{w}\)</span> an approximation for optimum weights <span class="arithmatex">\(\mathbf{w}^{*}\)</span>; a vector of size <span class="arithmatex">\(M+1\)</span></p>
+<p><strong>Logistic regression</strong>(<span class="arithmatex">\(\mathbf{X}\)</span>,<span class="arithmatex">\(\mathbf{t}\)</span>,<span class="arithmatex">\(b\)</span>,<span class="arithmatex">\(\eta_{0}\)</span>,<span class="arithmatex">\(epcs\)</span>):</p>
+<div class="admonition algorithm">
+<p>Initialise <span class="arithmatex">\(\mathbf{w}\)</span> and <span class="arithmatex">\(\eta=\eta_{0}\)</span></p>
+<p>For <span class="arithmatex">\(epoch =\ 1:\ epcs\)</span></p>
+<div class="admonition algorithm">
+<p>For iteration <span class="arithmatex">\(\tau=1:q\)</span>
+<span class="algorithm-line-comment"># <em><span class="arithmatex">\(q\geq N/\ b\)</span></em></span></p>
+<div class="admonition algorithm">
+<p>Select a mini-batch <span class="arithmatex">\(\mathbf{X}_\tau,\mathbf{t}_\tau\)</span> of size <span class="arithmatex">\(b\)</span> from <span class="arithmatex">\(\mathbf{X},\mathbf{t}\)</span>
+<span class="algorithm-line-comment"># <em>by sampling or by shuffling &amp; partitioning</em></span></p>
+<p>Map <span class="arithmatex">\(\mathbf{x}_{\tau}\)</span> to <span class="arithmatex">\(\mathbf{\Phi}_{\tau}\)</span>
+<span class="algorithm-line-comment"># <em><span class="arithmatex">\(\phi_{j}\left(\mathbf{x}_{n}\right)=e^{-\frac{1}{2}\left(\mathbf{x}_{n}-\mu_{j}\right)^{\top} \mathbf{x}\left(\mathbf{x}_{n}-\mu_{j}\right)} j=1, \ldots, M\)</span></em></span></p>
+<p><span class="arithmatex">\(\mathbf{\Phi}_{\tau}=\left[\mathbf{1}_{b}, \mathbf{\Phi}_{\tau}\right]\)</span>
+<span class="algorithm-line-comment"># <em>add dummy feature to the mini-batch</em></span></p>
+<p><span class="arithmatex">\(\boldsymbol{z}=\boldsymbol{\Phi}_{\tau} \mathbf{w}\)</span>
+<span class="algorithm-line-comment"># <em>get linear model for the batch</em></span></p>
+<p><span class="arithmatex">\(y_{\tau}=\frac{1}{1+e^{-z}}\)</span>
+<span class="algorithm-line-comment"># <em>take the logistic for batch linear model</em></span></p>
+<p><span class="arithmatex">\(\mathbf{w}=\mathbf{w}+\eta \frac{1}{b} \mathbf{\Phi}_{\tau}^{\top}\left(\mathbf{t}_{\tau}-\boldsymbol{y}_{\tau}\right)\)</span>
+<span class="algorithm-line-comment"># <em>now update</em></span></p>
+</div>
+<p>Decay <span class="arithmatex">\(\eta\)</span>
+<span class="algorithm-line-comment"># <em>if necessary</em></span></p>
+</div>
+<p>Return the final solution <span class="arithmatex">\(\mathbf{w}\)</span></p>
+</div>
+</div>
+<p>Please note that since we have used a non-linear activation function (the sigmoid), there is no direct least squares solution for the logistic regression model. However, since its loss function is concave (can be proven to be quadratic), we can still come up with a closed-form solution based on the Newton-Raphson technique to yield the iterative reweighted least square solution. This is, however, outside the scope of our coverage and will not be necessary for the rest of this unit.</p>
+<h3 id="more-about-cross-entropy">More about cross entropy</h3>
+<p>Recall that the entropy (which is the clutter or uncertainty) of a random variable <span class="arithmatex">\(V\)</span> that can take either of two outcomes <span class="arithmatex">\(v\)</span>
+and <span class="arithmatex">\(\neg v\)</span> (Bernoulli) as per a distribution <span class="arithmatex">\(Q\)</span> is defined as</p>
+<div class="arithmatex">\[
+\mathrm{H}(Q)=-\operatorname{pr}(v) \log (p r(v))-(1-p r(v)) \log (1-p r(v))
+\]</div>
+<p>The letter <span class="arithmatex">\(\mathrm{H}\)</span> is eta in Greek which is close to the first couple of vowels for the word entropy.</p>
+<p>On the other hand, if we have another distribution for the probabilities <span class="arithmatex">\(p r(v)\)</span> and <span class="arithmatex">\(1-p r(v)\)</span> then to differentiate between them, we add a subscript to denote which distribution we are talking about</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+H(Q)=-p r_{Q}(v) \log \left(p r_{Q}(v)\right)-\left(1-p r_{Q}(v)\right) \log \left(1-p r_{Q}(v)\right) \\
+H(P)=-p r_{P}(v) \log \left(p r_{P}(v)\right)-\left(1-p r_{P}(v)\right) \log \left(1-p r_{P}(v)\right)
+\end{array}
+\]</div>
+<p>Now we might be interested to know the relative entropy of <span class="arithmatex">\(\mathrm{P}\)</span> with respect to <span class="arithmatex">\(\mathrm{Q}\)</span> or vice versa. i.e. when we want to know how much the entropy of <span class="arithmatex">\(V\)</span> in <span class="arithmatex">\(\mathrm{P}\)</span> differs from the entropy of <span class="arithmatex">\(V\)</span> in <span class="arithmatex">\(\mathrm{Q}\)</span> then we can look at the cross entropy defined as</p>
+<div class="arithmatex">\[
+\begin{array}{c}
+H(P, Q)=-E_{Q}\left[\log p r_{P}(v)\right] \\
+H(P, Q)=-p r_{P}(v) \log \left(p r_{Q}(v)\right)-\left(1-p r_{P}(v)\right) \log \left(1-p r_{Q}(v)\right)
+\end{array}
+\]</div>
+<h3 id="the-gradient-of-the-cross-entropy-terms-for-binary-class-problem">The gradient of the cross entropy terms for binary class problem</h3>
+<p>All gradients are with respect to <span class="arithmatex">\(\mathbf{w}\)</span></p>
+<div class="arithmatex">\[
+\begin{array}{c}
+\tilde{H}_{n}(\mathbf{w})=-t_{n} \log \left(y_{n}\right)-\left(1-t_{n}\right) \log \left(1-y_{n}\right) \\
+\nabla \widetilde{H}_{n}(\mathbf{w})=-\underbrace{t_{n} \nabla \log \left(y_{n}\right)}_{\text {term } 1}-\underbrace{\left(1-t_{n}\right) \nabla \log \left(1-y_{n}\right)}_{\text {term } 2}
+\end{array}
+\]</div>
+<p>However, we have <span class="arithmatex">\(y_{n}=g\left(\mathbf{w}^{\top} \boldsymbol{\phi}_{n}\right)\)</span> and  <span class="arithmatex">\(\nabla y_{n}=y_{n}\left(1-y_{n}\right) \boldsymbol{\phi}_{n}\)</span> as per the derivative for logistic function.</p>
+<div class="arithmatex">\[
+\begin{array}{c}
+\underbrace{t_{n} \nabla \log \left(y_{n}\right)}_{\text {term } 1}=t_{n} \frac{\nabla y_{n}}{y_{n}}=t_{n} \frac{y_{n}\left(1-y_{n}\right) \boldsymbol{\phi}_{n}}{y_{n}}=t_{n}\left(1-y_{n}\right) \boldsymbol{\phi}_{n} \\
+\underbrace{\left(1-t_{n}\right) \nabla \log \left(1-y_{n}\right)}_{\text {term } 2}=\left(1-t_{n}\right) \frac{-\nabla y_{n}}{\left(1-y_{n}\right)}=-\left(1-t_{n}\right) \frac{y_{n}\left(1-y_{n}\right) \boldsymbol{\phi}_{n}}{1-y_{n}}=-\left(1-t_{n}\right) y_{n} \boldsymbol{\phi}_{n} \\
+\nabla \widetilde{H}_{n}(\mathbf{w})=-\underbrace{t_{n}\left(1-y_{n}\right) \boldsymbol{\phi}_{n}}_{\text {term } 1}+\underbrace{\left(1-t_{n}\right) y_{n} \boldsymbol{\phi}_{n}}_{\text {term } 2} \\
+\nabla \widetilde{H}_{n}(\mathbf{w})=-\left(t_{n}-y_{n}\right) \boldsymbol{\phi}_{n}
+\end{array}
+\]</div>
+<div class="admonition abstract">
+<p class="admonition-title">Exercise</p>
+<p>Please see the previous exercise to compare logistic with the perceptron. Also see the following Jupyter notebook for more insight into logistic regression.</p>
+<ul>
+<li>Download exercise (.ipynb): <a href="../exercises/Exercise4_LogisticRegressionSKLearn.ipynb" download>Exercise 4</a></li>
+</ul>
+</div>
+<h2 id="logistic-regression-example-with-cross-entropy">Logistic regression example with cross entropy</h2>
+<p>Let us look at the following dataset:</p>
+<figure role="group">
+  <img src="../images/DS_IMG153.png" alt="Graph showing example of a binary class dataset." />
+  <figcaption>
+    <p><strong>Figure 5.31.</strong> Example of a binary class dataset.</p>
+  </figcaption>
+</figure>
+
+<p>The data has been generated to be separated by the following linear classifier <span class="arithmatex">\(x_{2}=2 x_{1}-4\)</span> that splits the dataset into two classes. The classifier is shown below in Figure 5.32.</p>
+<figure role="group">
+  <img src="../images/DS_IMG154.png" alt="Graph showing an example of a binary class dataset with decision boundary." />
+  <figcaption>
+    <p><strong>Figure 5.32.</strong> Example of a binary class dataset with decision boundary.</p>
+  </figcaption>
+</figure>
+
+<p>Data points under the line satisfy <span class="arithmatex">\(-x_{2}+2 x_{1}-4 \geq 0\)</span> and are classified as positive and data points that are above the line satisfy <span class="arithmatex">\(-x_{2}+2 x_{1}-4&lt;0\)</span> are classified as negative (positive represented as + and negative represented as a circle <span class="arithmatex">\(\mathrm{O}\)</span> in the figures). Let us build a logistic regression classifier based on the linear model provided.</p>
+<div class="arithmatex">\[
+\mathrm{g}\left(\mathbf{w}_{1}^{\top} \mathbf{x}\right)=\frac{1}{1+\boldsymbol{e}^{-\mathbf{w}_{1}^{\top} \mathbf{x}}}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{w}_{1}^{\top}=[-4,+2,-1], \mathbf{x}=\left[x_{0}, x_{1}, x_{2}\right]^{\top}
+\]</div>
+<p>The dataset is given as follows (data has been rounded to the nearest 2 decimal places):</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(x_{0}\)</span></th>
+<th><span class="arithmatex">\(x_{1}\)</span></th>
+<th><span class="arithmatex">\(x_{2}\)</span></th>
+<th>Actual Class <span class="arithmatex">\(t\)</span></th>
+<th><span class="arithmatex">\(\mathbf{w}_1^\top\mathbf{x}\)</span></th>
+<th>Predicted class <span class="arithmatex">\(y=g(\mathbf{w}_1^\top\mathbf{x})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.00</td>
+<td>61.67</td>
+<td>0</td>
+<td>-5.67</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>33.33</td>
+<td>51.46</td>
+<td>1</td>
+<td>11.20</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>36.67</td>
+<td>55.84</td>
+<td>1</td>
+<td>13.50</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>40.00</td>
+<td>66.75</td>
+<td>1</td>
+<td>9.25</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>43.33</td>
+<td>100.36</td>
+<td>0</td>
+<td>-17.70</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>46.67</td>
+<td>97.52</td>
+<td>0</td>
+<td>-8.18</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>50.00</td>
+<td>109.93</td>
+<td>0</td>
+<td>-13.93</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>53.33</td>
+<td>92.38</td>
+<td>1</td>
+<td>10.28</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>56.67</td>
+<td>127.47</td>
+<td>0</td>
+<td>-18.13</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>60.00</td>
+<td>91.92</td>
+<td>1</td>
+<td>24.08</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>Now if we utilise the concept of cross entropy, we can easily realise that all values of the predicted classes match exactly the target class and the cross entropy is 0.</p>
+<div class="arithmatex">\[
+\tilde{H}\left(\mathbf{w}_{1}\right)=0
+\]</div>
+<p>On the other hand, if we come up with a different linear discriminant such as <span class="arithmatex">\(x_{2}=2 x_{1}+10\)</span> which has the same slope as before but with a different intercept we get:</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+\mathrm{g}\left(\mathbf{w}_{2}^{\top} \mathbf{x}\right)=\frac{1}{1+\boldsymbol{e}^{-\mathbf{w}_{2}^{\top} \mathbf{x}}} \\
+\mathbf{w}_{2}^{\top}=[10,+2,-1]
+\end{array}
+\]</div>
+<p>The dataset is given as follows:</p>
+<div class="wide-fit-table-override"></div>
+
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th><span class="arithmatex">\(x_{0}\)</span></th>
+<th><span class="arithmatex">\(x_{1}\)</span></th>
+<th><span class="arithmatex">\(x_{2}\)</span></th>
+<th>Actual Class <span class="arithmatex">\(t\)</span></th>
+<th><span class="arithmatex">\(\mathbf{w}_1^\top\mathbf{x}\)</span></th>
+<th>Predicted class <span class="arithmatex">\(y=g(\mathbf{w}_1^\top\mathbf{x})\)</span></th>
+<th><span class="arithmatex">\({\widetilde{H}}_n\left(\mathbf{w}_1\right)\)</span></th>
+<th><span class="arithmatex">\(\mathbf{w}_2^\top\mathbf{x}\)</span></th>
+<th>Predicted class <span class="arithmatex">\(y=g(\mathbf{w}_2^\top\mathbf{x})\)</span></th>
+<th><span class="arithmatex">\({\widetilde{H}}_n\left(\mathbf{w}_2\right)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>30.00</td>
+<td>61.67</td>
+<td>0</td>
+<td>-5.67</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>8.33</td>
+<td>1.00</td>
+<td>3.62</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>33.33</td>
+<td>51.46</td>
+<td>1</td>
+<td>11.20</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>25.20</td>
+<td>1.00</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>36.67</td>
+<td>55.84</td>
+<td>1</td>
+<td>13.50</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>27.50</td>
+<td>1.00</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>40.00</td>
+<td>66.75</td>
+<td>1</td>
+<td>9.25</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>23.25</td>
+<td>1.00</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>43.33</td>
+<td>100.36</td>
+<td>0</td>
+<td>-17.70</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>-3.70</td>
+<td>0.02</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>46.67</td>
+<td>97.52</td>
+<td>0</td>
+<td>-8.18</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>5.82</td>
+<td>1.00</td>
+<td>2.53</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1</td>
+<td>50.00</td>
+<td>109.93</td>
+<td>0</td>
+<td>-13.93</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.07</td>
+<td>0.52</td>
+<td>0.32</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>53.33</td>
+<td>92.38</td>
+<td>1</td>
+<td>10.28</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>24.28</td>
+<td>1.00</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>56.67</td>
+<td>127.47</td>
+<td>0</td>
+<td>-18.13</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>-4.13</td>
+<td>0.02</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1</td>
+<td>60.00</td>
+<td>91.92</td>
+<td>1</td>
+<td>24.08</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>38.08</td>
+<td>1.00</td>
+<td>0.00</td>
+</tr>
+</tbody>
+</table>
+<p>Cross Entropy <span class="arithmatex">\(\tilde{H}\left(\mathbf{w}_{1}\right)=0.01\)</span> (due to some rounding)</p>
+<p>Cross Entropy <span class="arithmatex">\(\tilde{H}\left(\mathbf{w}_{2}\right)=6.48\)</span></p>
+<p>Calculating the cross entropy, we can realise that not all values of the predicted classes match the target class, and so the cross entropy is higher than 0:</p>
+<p>$$
+\widetilde{H}\left(\mathbf{w}_{2}\right)=6.48
+$$
+Note that we have calculated the cross entropy log using the e base, not 2, so the unit is nats, not bits(as we did in Unit 2). Regardless of the base of the log, the comparison will hold. Although bits are easier to interpret as a unit of information than nats, we used the base e because it is more natural to do so to stay consistent with the logistic function properties (the properties that we have proven will be slightly changed when we use the base 2 to include log(2)).</p>
+<div class="admonition abstract">
+<p class="admonition-title">Exercise</p>
+<p>The plots in Figure 5.33 below show visually the effect of shifting the linear border of the logistic model, due to which 3 data points have been misclassified (the data points with a box and circle). So we can notice how misclassifying these data points raised the cross entropy relatively significantly. See the following Jupyter Notebook:</p>
+<ul>
+<li>Download notebook (.ipynb): <a href="../exercises/Exercise3_LogisticRegressionDecsions.ipynb" download>Exercise 3</a></li>
+</ul>
+</div>
+<figure role="group">
+  <img src="../images/DS_IMG155.png" alt="Two graphs showing an example of a binary dataset. Top: an optimal decision boundary identical to the actual boundary of the dataset, where no misclassification has occurred. Bottom: an example showing the effect of shifting the decision boundaries by changing the bias." />
+  <figcaption>
+    <p><strong>Figure 5.33.</strong> Two graphs showing an example of a binary dataset. Top: an optimal decision boundary identical to the actual boundary of the dataset, no misclassification occurred. Bottom: showing the effect of shifting the decision boundaries by changing the bias. The boxes with red circles show misclassified cases.</p>
+  </figcaption>
+</figure>
+
+<h3 id="least-square-for-linear-model-classification">Least square for linear model classification</h3>
+<p>Applying least squares will get us an estimation of the class label. However, Least Squares is not a good approach to estimate the classes. The issue with this approach is that it is sensitive to outliers. Also, the result of the minimisation will be a value that is not guaranteed to be in [0, 1] so we cannot expect a 1-of-K binary coding to be output by the model which we will talk about in the next section.</p>
+<h2 id="lesson-summary">Lesson summary</h2>
+<p>In this lesson, we have covered another simple, but more powerful linear classification model that utilises a non-linear activation function to perform a linear classification task. Logistic regression is a common technique that has desirable characteristics, including its probabilistic interpretability, and the fact that its update rules are identical to the update rules of a linear regression model. Logistic regression forms an important component for more complex non-linear models, such as neural networks for classification.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © Digital Education Service | University of Leeds
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../javascript/tablecontentsoverride.js"></script>
+      
+        <script src="../../../javascript/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2822 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Digital Education Service">
+      
+      
+      
+        <link rel="prev" href="../02_04_measuring_performance/">
+      
+      
+        <link rel="next" href="../02_06_unit_references/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>3. Overfitting, underfitting and generalisation - Data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overfitting-underfitting-and-generalisation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+    <div id="versionIndicator"><b>Version:</b> 21.11.23.a</div>
+    <img id="customlogo" src="../../../img/logo.svg" alt="University of Leeds logo.">
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data science" class="md-header__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. Overfitting, underfitting and generalisation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit1/01_01_what-is-data-science/" class="md-tabs__link">
+          
+  
+  
+  Unit 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../02_00_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit3/03_00_clustering_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit4/04_00_regression_classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-tabs__link">
+          
+  
+  
+  Unit 5
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data science" class="md-nav__button md-logo" aria-label="Data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_01_what-is-data-science/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. What is data science?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_02_the_data_its_quality_and_its_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. The data, its quality and its structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_03_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Data preparation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_04_data_visualisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Data generation and visualisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1/01_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_00_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Decision trees
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Decision trees
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_01_decision_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Decision trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_02_DT_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Decision tree training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_03_DT_vertebrate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. DT training on a vertebrate dataset
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_04_measuring_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Measuring the performance of a classification model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    3. Overfitting, underfitting and generalisation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Overfitting, underfitting and generalisation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#training-and-testing-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training and testing sets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Training and testing sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proportions-of-training-and-testing-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proportions of training and testing sets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splitting-with-stratification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splitting with stratification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-validation-model-testing-model-selection-and-model-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross validation, model testing, model selection and model comparison
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross validation, model testing, model selection and model comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cross-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-selection-with-cross-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model selection with cross validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-evaluation-of-cross-validated-selected-model-with-hyper-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model evaluation of cross-validated selected model with hyper parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-of-cross-validation-selected-model-with-grid-search-for-hyper-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation of cross validation selected model with grid search for hyper parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-evaluation-with-nested-cross-validation-and-hyper-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model evaluation with nested cross validation and hyper parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-comparison-with-cross-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model comparison with cross validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overfitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overfitting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overfitting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-overfitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples of overfitting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples of overfitting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overfitting-of-decision-trees-on-the-noisy-gaussian-data-yellow-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overfitting of decision trees on the noisy Gaussian data (yellow points)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-trees-with-no-overfitting-for-the-same-noisy-gaussian-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decision trees with no overfitting for the same noisy Gaussian data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#underfitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Underfitting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_00_clustering_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clustering and classification algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Clustering
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Clustering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01_clustering_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01a_two_clusters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Two clusters case
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01b_general_case_multi_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. General case multi clusters: K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01c_clusters_loss_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Clusters loss function: measuring the quality of the cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01d_specifying_K_through/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Specifying K through elbow method
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01e_initialising_centroids/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Initialising the centroids
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01f_mini_batch_K/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Mini-batch K means++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01g_bisecting_K_means/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1g. Bisecting K-means algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_01h_clustering_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1h. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Basic numerical distance-based classification
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Basic numerical distance-based classification
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02a_intro_basic_numerical_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02b_lazy_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Lazy classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02c_K_nearest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. K-nearest neighbour algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02d_choosing_best_k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Choosing best k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_02e_classification_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Lesson summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_03_ensemble_methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Ensemble methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3/03_04_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_00_regression_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear and non linear regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Simple Linear Regression Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Simple Linear Regression Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01a_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1a. Simple linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01b_example_linear_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1b. Example of linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01c_loss_error_cos_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1c. Loss, objective, error or cost function for regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01d_simple_linear_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1d. Simple linear model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01e_Gradient_decent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1e. Approximate solutions - gradient descent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_01f_sgd_exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1f. Evaluating a regression model via R2 and the RMSE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Linear regression with linear and non-linear basis functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02a_linear_regression_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2a. Linear regression with linear and non-linear basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02b_basis_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2b. Basis functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02c_linear_basis_model_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2c. Linear basis model exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02d_Batch_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2d. Batch learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02e_linear_regression_training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2e. Implementing a stochastic gradient descent with gaussian basis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02f_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2f. Regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02g_least_squares_with_basis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2g. Regularisation exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02h_linear_regression_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2h. Linear regression models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_02i_preventing_overfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2i. Preventing overfitting the data and overshooting the loss minimum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_03a_multi_layer_multi_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Non-linear regression via neural networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_4_learning_from_probabilistic_perspective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Learning from a probabilistic perspective
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_05_unit_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Unit summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4/04_06_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unit 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unit 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_01_linear-non-linear-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Linear and non-Linear classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_02_linear-model-for-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Linear model for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_03_binary-classification-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Binary classification: The perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_04_binary-classification-logistic-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Binary classification: Logistic regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_05_multi-class-problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Multi-class problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_06_non-linear-models_multi-perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. Non-linear models: multi-layer perceptron
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_07_probabilistic_view_of_loss_function_for_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Probabilistic view of loss function for classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5/05_08_unit_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8. Unit references
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#training-and-testing-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training and testing sets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Training and testing sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proportions-of-training-and-testing-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proportions of training and testing sets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splitting-with-stratification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splitting with stratification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-validation-model-testing-model-selection-and-model-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross validation, model testing, model selection and model comparison
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross validation, model testing, model selection and model comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cross-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-selection-with-cross-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model selection with cross validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-evaluation-of-cross-validated-selected-model-with-hyper-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model evaluation of cross-validated selected model with hyper parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-of-cross-validation-selected-model-with-grid-search-for-hyper-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation of cross validation selected model with grid search for hyper parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-evaluation-with-nested-cross-validation-and-hyper-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model evaluation with nested cross validation and hyper parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-comparison-with-cross-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model comparison with cross validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overfitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overfitting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overfitting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-overfitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples of overfitting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples of overfitting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overfitting-of-decision-trees-on-the-noisy-gaussian-data-yellow-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overfitting of decision trees on the noisy Gaussian data (yellow points)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-trees-with-no-overfitting-for-the-same-noisy-gaussian-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decision trees with no overfitting for the same noisy Gaussian data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#underfitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Underfitting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="overfitting-underfitting-and-generalisation">Overfitting, underfitting and generalisation</h1>
+<div class="admonition success">
+<p class="admonition-title">Learning outcomes:</p>
+<p>After completing this lesson you should be able to:</p>
+<ul>
+<li>
+<p>understand the root cause for overfitting and underfitting</p>
+</li>
+<li>
+<p>take steps to mitigate the problem of overfitting and underfitting</p>
+</li>
+<li>
+<p>pick a suitable cross validation technique to obtain a more accurate measure for the model performance</p>
+</li>
+<li>
+<p>employ cross validation with hyper parameter optimisation.</p>
+</li>
+</ul>
+</div>
+<p><strong>We saw earlier that our decision tree model was perfectly capable of classifying animals according to our simple dataset, without any mistakes. There was no misclassification occurring. However, this is not always the case. The accuracy of the model was partly due to the simple and deterministic nature of the dataset that we handled and because it is based on clear-cut biological findings.</strong></p>
+<p>As we mentioned in unit 1, datasets are often far from perfect. This can be due to data collection deficiencies, as well as the intrinsic errors and noise of the underlying phenomena that the dataset records.  This will make coming up with a perfect model not only impossible, but actually <strong>undesirable</strong>. For example, some labels might be incorrect, or some features inaccurately measured or captured via a device with deficiencies. In cases such as these, if our model comes up with perfect answers for all the training examples, it almost always means that it captured not only the essential relationship between the features and the class, but also the noise and errors in the data. This is <strong>undesirable</strong>, and can lead to serious problems later when we want to use the model to predict the class of a data point that it has <strong>not seen</strong> before (during training).</p>
+<p>Using the training set to come up with a <strong>general</strong> relationship between the features and the class that can be utilised to later classify <strong>unseen</strong> examples is called <strong>model generalisation</strong>. This generalisation ability is crucial to the success of the model if it is to become a part of comprehensive software solution. Two main problems that can prevent a model from generalisation are <strong>overfitting</strong> and <strong>underfitting</strong>. In this context then we need to come up with metrics that are capable of capturing misclassification by the model and its generalisation ability by capturing the misclassification errors of unseen data points.</p>
+<h2 id="training-and-testing-sets">Training and testing sets</h2>
+<p><strong>Because of the potential problems mentioned above, we often need to do the same performance measurement for the training set and on another separate dataset that we call the test set.</strong></p>
+<p>In order to measure the performance for the test set we need to have the labels available in the same manner that they are in the training set. Remember, classification is a supervised learning problem so we have the answers (labels) available during training and test, but not when we actually use the model to predict unknown labels. If we do not have separate training and test sets, we can simply <strong>partition</strong> our dataset into two sets, with one acting as a <strong>training set</strong> and the other as a <strong>test set</strong>. Note that the term partition indicates that there is no overlap between the training and test set.  </p>
+<h3 id="proportions-of-training-and-testing-sets">Proportions of training and testing sets</h3>
+<p>Unless there is abundance in the data that captures a simple classification model, or there is already a dataset set aside for testing, we often want to split the original dataset into training and testing sets. The proportion or percentage of the split can be any as along as the training data captures all the different patterns the classes can have. Often we specify a 70% to 30% split for the training and testing respectively.</p>
+<figure role="group">
+  <img src="../images/DS_IMG028.png" alt="Bar graph showing common choice for training and testing proportions of the original dataset. Training is 70%. Testing is 30%." />
+  <figcaption><strong>Figure 2.70.</strong> Common choice for Training and Testing proportions of the original dataset. </figcaption>
+</figure>
+
+<h2 id="splitting-with-stratification">Splitting with stratification</h2>
+<p><strong>When we split we need to take into account the distribution of the labels in the dataset. We want to reserve the structure of the original dataset in the partitioned training and test sets.</strong></p>
+<p>One way to guarantee this property is by <strong>stratified sampling</strong>. Stratification allows us to preserve the classes’ distribution. So for example if we have binary classes {Class1, Class2} with the first class occupying 60% of the dataset and the second class occupying 40% of the dataset, then when we split with stratification into training and test sets, the distribution of classes {Class1, Class2} inside the training set is 60% to 40% and the same also true for the distribution of the classes inside the test set.  </p>
+<figure role="group">
+  <img src="../images/DS_IMG027.png" alt="Stacked columns figure shows stratification for training 70% and testing 30% sets for two classes." />
+  <figcaption><strong>Figure 2.71.</strong> Class1 and Class2 are distributed into 60%, 40% in the original dataset and the same percentage kept (through stratification) for the partitioned training and testing sets resulting in the percentages shown in the figure. </figcaption>
+</figure>
+
+<h2 id="cross-validation-model-testing-model-selection-and-model-comparison">Cross validation, model testing, model selection and model comparison</h2>
+<p><strong>Model testing is the process of testing to see how good the generalisation ability of the model is.</strong></p>
+<p>We use one of the splitting regimes mentioned above, i.e. randomised splitting or with stratification. What we would like to speak about here is how to choose a good hyper parameter for a model. This is called model selection. In model selection we are normally talking about the same classification technique (such as decision trees), but we are interested in which decision tree is best for our problem. In model comparison we are talking about different techniques (such as decision trees vs. k-nearest neighbours) and we would like to come to a conclusion about which technique is the best.</p>
+<h3 id="cross-validation">Cross validation</h3>
+<p>Cross validation is an elaborate testing technique that is useful to balance out the different patterns that might exist in our data. Think about it, when we select a testing set we might be lucky and get a test set that the model is particularly good at predicting its instances, while it may not be as good for other instances. To balance out the ability of the model on different patterns that underline the instances, we can repeatedly select different testing sets and take the average of the testing results to be a more representative value for the performance of the model. Cross validation is one example of this strategy, where we partition our dataset into a number of subsets with equal instances. We hold out a subset for testing, we train on the rest of the subsets, we repeat for all subsets then we take the average. We call those subsets folds.  </p>
+<p>For example, let us assume that we have a dataset S. To perform a 3 folds cross validation on it we partition our data into 3 almost equal subsets of <span class="arithmatex">\(S_{1}, S_{2}, S_{3}\)</span> where we have <span class="arithmatex">\(S=\left\{S_{1} \cup S_{2} \cup S_{3}\right\}\)</span>. Now we train the model on subset <span class="arithmatex">\(\left\{S_{1} \cup S_{2}\right\}\)</span> while we test the trained model on subset <span class="arithmatex">\(S_{3}\)</span> which will give a generalisation error <span class="arithmatex">\(Err(S3)\)</span>.</p>
+<p>We repeat the process by training on subsets <span class="arithmatex">\(\left\{S_{1} \cup S_{3}\right\}\)</span> and test on subset <span class="arithmatex">\(S_{2}\)</span> to obtain the generalisation error <span class="arithmatex">\(\operatorname{Err}\left(S_{2}\right)\)</span>, then we train on subsets <span class="arithmatex">\(\left\{S_{2} \cup S_{3}\right\}\)</span> and test on subset <span class="arithmatex">\(S_{1}\)</span> to obtain the generalisation error <span class="arithmatex">\(\operatorname{Err}\left(S_{1}\right)\)</span>. We then average all the tests to obtain <span class="arithmatex">\(\operatorname{Err}(S)\)</span>. We can also look into the standard deviation to see how much variation is there in our dataset with respect to our model’s ability to generalise. Figure 2.72 below shows this process. For more details, please have a look at Algorithm 3.2 and 3.3 of Tan et al (2020).</p>
+<figure role="group">
+  <img src="../images/DS_IMG086.png" alt="Diagram of a three-folds cross-validation (CV) test. The dataset is partitioned into three almost equal subsets (folds). A fold is tested, the other folds are trained. The process is repeated for all folds, before an average is taken." />
+  <figcaption><strong>Figure 2.72.</strong> 3 folds cross-validation example. </figcaption>
+</figure>
+
+<h3 id="model-selection">Model selection</h3>
+<p>Model selection is the process of selecting the best model for the problem at hand, from among several other possible models of similar prediction powers. For example, we can build several decision trees with different depths for the same problem, and each tree would have its own properties and prediction strength. The depth of the DT is an example of what we call a hyper parameter. It is called so because changing this parameter fundamentally changes the properties of the model. The question would be then which one is the best for the problem in hand. We often first perform <strong>model selection</strong> to pick the best candidate of a set of models and then we do <strong>model comparison</strong> to pick a final model that corresponds to the best technique. We will talk about model comparison in a later section.</p>
+<p>Model selection can be performed mainly in two ways. One approach is to evaluate a set of possible models by enumerating through a set of discrete or discretised hyper parameters values. We will have to then evaluate each one separately and compare between them all to arrive to the best value among these pre-defined values. This is the approach that we will take in this module.</p>
+<p>Another approach is to sample from a set of potential models and come up with an algorithm that will help us to find a good estimation of the hyper parameters. This approach will be covered in the Machine Learning module. A third and best approach is to analytically find the best hyper parameter value by analysing the problem and coming up with automated process to give us the best model among many others (and potentially infinite number of models). This is sometimes possible with the Bayesian approach where the hyper parameters (the mean and variance) can be found by performing an expectation maximisation process to find the best hyper parameter. Then we can integrate out (marginalising) the possible hyper parameters values to come up with an estimation of the performance of the model. A method called Bayesian processes is an example of such analytical approach. However, this approach is not always possible due to the difficulties that arises with the mathematical integrals. Again, we will study this type of problem in the Machine Learning module.</p>
+<h3 id="model-selection-with-cross-validation">Model selection with cross validation</h3>
+<p>In model selection especially when we do not have enough data, we can use cross validation to aid in the process of selecting the best hyper parameter. We first start by splitting the data into folds (ex. 3 folds). Let us assume that we have hyper parameter <span class="arithmatex">\(h\)</span> (ex. tree depth) with values <span class="arithmatex">\(v_{1}\)</span> and <span class="arithmatex">\(v_{2}\)</span> (ex. Depth = 5 and Depth = 10) and we would like to know what value we should pick for our model. In this case, we can set <span class="arithmatex">\(h=v_{1}\)</span> and training the model on subsets <span class="arithmatex">\(\left\{S_{1} \cup S_{2}\right\}\)</span> while we test the trained model on subset <span class="arithmatex">\(S_{3}\)</span> which will give a generalisation error <span class="arithmatex">\(\operatorname{Err}_{v 1}\left(S_{3}\right)\)</span>.</p>
+<p>We repeat the process by training on subsets <span class="arithmatex">\(\left\{S_{1} \cup S_{3}\right\}\)</span> and test on subset <span class="arithmatex">\(S_{2}\)</span> to obtain the generalisation error <span class="arithmatex">\(\operatorname{Err}_{v 1}\left(S_{2}\right)\)</span>, then we train on subsets
+<span class="arithmatex">\(\left\{S_{2} \cup S_{3}\right\}\)</span> and test on subset <span class="arithmatex">\(S_{1}\)</span> to obtain the generalisation error <span class="arithmatex">\(\operatorname{Err}_{v 1}\left(S_{1}\right)\)</span>. We then average all the tests with hyper parameter <span class="arithmatex">\(h\)</span> value of <span class="arithmatex">\(v_{1}\)</span> to obtain <span class="arithmatex">\(\operatorname{Err}_{v 1}\)</span> of our model. We repeat the same process for hyper parameter value <span class="arithmatex">\(v_{2}\)</span> to obtain <span class="arithmatex">\(\operatorname{Err}_{v 2}(S)\)</span> we then compare <span class="arithmatex">\(\operatorname{Err}_{v 1}(S)\)</span> and <span class="arithmatex">\(\operatorname{Err}_{v 2}\)</span> and we pick the value that minimises the error, i.e. we pick the value with the least error. Figure 2.73 below summarises the model selection for hyper parameter <span class="arithmatex">\(h\)</span>.  </p>
+<figure role="group">
+  <img src="../images/DS_IMG087.png" alt="Diagram of cross-validation (CV) for hyper parameters h = v1, v2." />
+  <figcaption><strong>Figure 2.73.</strong>  Model Selection with 3 folds cross-validation example. </figcaption>
+</figure>
+
+<h3 id="model-evaluation-of-cross-validated-selected-model-with-hyper-parameters">Model evaluation of cross-validated selected model with hyper parameters</h3>
+<p>After we have selected the best parameters for our model, we want to evaluate the performance of the model. A pitfall would be to use the averaged cross validation error as an indication for the performance of the model. This a biased estimation of the generalisation ability of our model because we have already used the validation data to select the best hyper parameters. Therefore, we need to reserve a portion of the dataset for this final evaluation of the resultant selected model. Figure 2.74 below shows this complete process.</p>
+<p><img alt="Diagram of cross-validation (CV) for hyper parameter h with independent evaluation (test) set S3." src="../images/DS_IMG088.png" /></p>
+<p><strong><p style="text-align: center;">Figure 2.74.</strong> <em>Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as model <span class="arithmatex">\(_{\dot{v}}\)</span>. Note that <span class="arithmatex">\(\dot{v}\)</span> takes the best value of <span class="arithmatex">\(\left\{v_{1}, v_{2}\right\}\)</span> that minimises the average errors <span class="arithmatex">\(\operatorname{\dot{Err}}_{v_{1}}, \operatorname{\dot{Err}}_{v_{2}}\)</span>. So for example, if we assume that <span class="arithmatex">\(\operatorname{\dot{Err}}_{v_{1}}&gt;\operatorname{\dot{Err}}_{v_{2}}\)</span> then <span class="arithmatex">\(\dot{v}=v_{2}\)</span>.</em></p></p>
+<h3 id="evaluation-of-cross-validation-selected-model-with-grid-search-for-hyper-parameters">Evaluation of cross validation selected model with grid search for hyper parameters</h3>
+<p>When we have multiple hyper parameters and we want to select the best combination of values for them, we can employ several search techniques. Here we can take two approaches. One simple approach is to perform an exhaustive search of all the possible combinations of the hyper parameters. We evaluate the models that stem from them and we select the model with the least generalisation error or highest overall accuracy. This is called grid search because each hyper parameter adds a dimension to a grid of possible values.</p>
+<p>For example, if we have three hyper parameters the first with 5 values, the second with 5 values and the third with 2 values, then the number of combinations of these values is <span class="arithmatex">\(5×5×2=100\)</span> different combinations. So in this approach we need to evaluate all of these values to select the best model among them. There are less computationally expensive but inexact methods that we can employ to search for close to optimal values. These include hill climbing, simulated annealing some of these search methods will be covered in the Algorithms module.</p>
+<p><img alt="Diagram of cross-validation (CV) for hyper parameters  (h, h') with test set s3." src="../images/DS_IMG089.png" /></p>
+<p><strong><p style="text-align: center;">Figure 2.75.</strong> <em>Model Selection with 3 folds cross-validation and an outer split to facilitate an independent test set for evaluating the final resultant model denoted as model <span class="arithmatex">\(_{\dot{v}}\)</span>. Note that <span class="arithmatex">\(\dot{v}\)</span> takes the best value of <span class="arithmatex">\(\left\{v_{1}, v_{2}\right\}\)</span> that minimises the average errors <span class="arithmatex">\(\operatorname{\dot{Err}}_{v_{1}}, \operatorname{\dot{Err}}_{v_{2}}\)</span>. So for example if we assume that <span class="arithmatex">\(\operatorname{\dot{Err}}_{v_{1}}&gt;\operatorname{\dot{Err}}_{v_{2}}\)</span> then <span class="arithmatex">\(\dot{v}=v_{2}\)</span>.</em></p></p>
+<h3 id="model-evaluation-with-nested-cross-validation-and-hyper-parameters">Model evaluation with nested cross validation and hyper parameters</h3>
+<p>We have shown how to evaluate a selected model on an unseen data in the previous section. However, we should note that this estimation is still a reflection of the model performance only one part of the dataset. But what if we wanted to estimate the performance on all the dataset without seeing the data? Before we show how, it should be clear in your mind that we will not be able to show an overall unbiased performance on all the available data for a particular model. We can however get an estimation by averaging the performances of all possible models that stem from the different parts of the dataset. So this section is not for model selection, it is just for model evaluation.</p>
+<p>This is where  nested cross validation comes to the rescue. The idea now is that we split our data into folds and we use cross validation to evaluate the performance of the model on an <strong>unseen</strong> dataset while we use the rest of the data to perform another inner cross validation to select the best parameters. This is called nested cross validation. Note that we cannot use this to select a model (we have already done that in each inner CV) we use it just to come up with an unbiased estimate of the generalisation ability of a technique. There are no specific hyper parameters that we will get out of this procedure. Note, however that you can still use the outer splitting regime without the use of outer cross validation to get a final performance on an unseen test set for a particular selected best model hyper parameters, but bear in mind that this estimation is still a reflection on only part of the dataset. The figure below shows this procedure.</p>
+<p><img alt="Diagram of nested cross-validation (CV) for hyper parameter h with independent evaluations S1, S2, S3." src="../images/DS_IMG090.png" /></p>
+<p><strong><p style="text-align: center;">Figure 2.76.</strong> <em>Nested Cross Validation Evaluation selected models, both inner and outer cross-validation have 3 folds. Note that we have <span class="arithmatex">\(3×3×2\)</span> models to be trained and this can be consuming and computational expensive depending on the size of the dataset.</em></p></p>
+<p>For simplicity of presentation, the hyper parameter <span class="arithmatex">\(h\)</span> is assumed to have two different values that it can take <span class="arithmatex">\(\left\{v_{1}, v_{2}\right\}\)</span>. Each fold of the outer CV has an inner CV process that will be executed inside it to suggest a best value for the hyper parameter <span class="arithmatex">\(h\)</span>. As we saw earlier an inner CV gives its own best value for <span class="arithmatex">\(h\)</span> that stems from its error comparisons.  Since we have 3 –fold outer CV we get 3 values which might all be <span class="arithmatex">\(v_{1}\)</span> or <span class="arithmatex">\(v_{2}\)</span> or a mix of both (ex. <span class="arithmatex">\(v_{1}\)</span>, <span class="arithmatex">\(v_{1}\)</span> and <span class="arithmatex">\(v_{2}\)</span>). We have represented the best values of the three outer folds as <span class="arithmatex">\(\dot{v}, \ddot{v}\)</span> and <span class="arithmatex">\(\dddot{v}\)</span> (ex. <span class="arithmatex">\(\dot{v}=v_{1}, \ddot{v}=v_{1}, \dddot v=v_{2}\)</span>). These values in turn give us 3 (possibly different) models <span class="arithmatex">\(\operatorname{model}_{\dot{v}},\)</span> model <span class="arithmatex">\(_{\ddot{v}}\)</span> and model <span class="arithmatex">\(_{\dddot{v}}\)</span>, therefore, the final results is an average of the errors or accuracy of the 3 different models. We can take a vote on the best value of h to produce a final model (ex. <span class="arithmatex">\(v_{1}\)</span>) but the final averaged errors is not guaranteed to be unbiased unless we do yet another third CV process.</p>
+<p><img alt="Diagram of nested cross-validation (CV) on grid search hyper parameters (h, h') with test set S1, S2, S3." src="../images/DS_IMG091.png" /></p>
+<p><strong><p style="text-align: center;">Figure 2.77.</strong> <em>Nested cross-validation evaluation for grid-search model selection, both inner and outer cross-validation have 3 folds. Note that we have <span class="arithmatex">\(3×3×4\)</span> models to be trained and this can be consuming and computational expensive depending on the size of the dataset.</em></p></p>
+<p>For simplicity of presentation, the two hyper parameters <span class="arithmatex">\(h\)</span> and <span class="arithmatex">\(h'\)</span> are assumed to have two different values <span class="arithmatex">\(\left\{v_{1}, v_{2}\right\}\)</span> and <span class="arithmatex">\(\left\{v_{1}^{\prime}, v_{2}^{\prime}\right\}\)</span> that they can take respectively. Each fold of the outer CV has an inner CV process that will be executed inside it to suggest a best value for the hyper parameter <span class="arithmatex">\(\left(h, h^{\prime}\right)\)</span>. In the grid search process we take all the possible combinations of the hyper parameters values. So in our simple case we have <span class="arithmatex">\(2×2\)</span> possible combinations. Note that this has an exponential growth rate. So, if we have 5 hyper parameters, each with 3 values then to perform the grid search we need to consider <span class="arithmatex">\(3^{5}=243\)</span> combinations, i.e. we have 243 models to train. So grid search for this case can quickly becomes intractable.  If we take into account also an outer and an inner CV operations that we would like to perform to obtain unbiased results then the results would be <span class="arithmatex">\(3×3×243=2187\)</span>
+models to train. The bottom line is that we have to be careful on how many models we are training when we use exhaustive search methods such as the grid search. There are cheaper but inexact methods that we can employ to search for close to optimal values. This include hill climbing, simulated annealing some of these search methods will be covered in the Algorithms module.</p>
+<p>As we saw earlier an inner CV gives its own best value for <span class="arithmatex">\(h\)</span> that stems from its error comparisons.  Since we have 3 –fold outer CV we get 3 values which might all be v1 or v2 or a mix of both (ex. <span class="arithmatex">\(v1\)</span>, <span class="arithmatex">\(v1\)</span> and <span class="arithmatex">\(v2\)</span>). We have represented the best values of the three outer folds as <span class="arithmatex">\(\dot{v}, \ddot{v}\)</span> and <span class="arithmatex">\(\ddot{v}(e x . \dot{v}=v 1, \ddot{v}=v 1, \dddot v=v 2)\)</span>. These values in turn give us 3 (possibly different) models model <span class="arithmatex">\(_{\dot{v}}\)</span>, model <span class="arithmatex">\(_{\ddot{v}}\)</span> and model <span class="arithmatex">\(_{\ddot{v}}\)</span>, therefore, the final result is an average of the errors or accuracy of the 3 different models. We can take a vote on the best value of <span class="arithmatex">\(h\)</span> to produce a final model (ex. <span class="arithmatex">\(v1\)</span>) but the final averaged errors is not guaranteed to be unbiased unless we do yet another third CV process.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Exercise</p>
+<p>See the following Jupyter notebook exercise on nested CV:</p>
+<ul>
+<li>Download exercise (.ipynb): <a href="../exercises/Exercise3_plot_nested_cross_validation_iris.ipynb" download>Nested CV</a></li>
+</ul>
+</div>
+<h3 id="model-comparison-with-cross-validation">Model comparison with cross validation</h3>
+<p>When we want to compare the performance of different techniques (like a decision tree and k-nn), we differentiate between two different cases. The first is when we are comparing on the same dataset. In this case, we can use the results of an evaluation process directly as we did in earlier sections. The difference is that we have different techniques instead of the same technique with different hyper parameters.</p>
+<p>Cross validation is a suitable strategy to balance out the performance of the model on all types of patterns that exist in our dataset. The strategy is similar to what we have done for model selection. So first we split the data into testing and training. We keep the testing part for testing the different models and compare between them we take the model selection approach whether with grid search if we have multiple hyper parameters and we select the best candidate of each techniques. If we want to evaluate the expected performance of each model we take the evaluation approach of selected models. In this case we might not necessarily come with a particular model unless we do some voting regime. Then we compare the performances of the evaluation and come up with a final performance of a preferred technique.  </p>
+<p>We divide as before into K folds and we try different hyper parameters values until we come up with best set of hyper parameters for Model 1 that uses Techniques 1, we refer to is as Model(Tech1), then we repeat the same process of choosing the best combination of hyper parameters for Model(Tech2). Now we cross validate both models on the outer loop by testing them on <span class="arithmatex">\(\mathrm{S}_{1}, \mathrm{~S}_{2}\)</span> and <span class="arithmatex">\(\mathrm{S}_{3}\)</span> folds and we finally come up with the average performances and we pick the technique with the best average.  </p>
+<p>On the other hand, in case we are comparing the performance of two techniques on two <strong>different datasets</strong>, then it is less obvious how to choose among the different techniques. This issue often arises when we do benchmarking of different techniques on two different datasets; one of them is already performed earlier and we want to add insight onto the techniques’ properties by applying them on a different problem. In this case, we need to employ statistically comparisons on the significance of the variation of the results. Please refer to section 3.9 of  Tan et al (2019) for more details.</p>
+<p>See the following video on RapidMiner grid search procedure for selecting multiple hyper parameters for a model. The example shows how to optimise the depth of the tree along with the minimum leaf size.</p>
+<iframe title="Decision tree optimisation in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/e7c71cb44ef94e2388465125134182c71d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<p><a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22787202_4" target="_blank">Download transcript (PDF).</a></p>
+<h2 id="overfitting">Overfitting</h2>
+<p><strong>Overfitting occurs when we keep trying to improve the performance of the model to the extent that the model starts to capture the noise in addition to the actual relationship between the features and the class.</strong></p>
+<p>It is expected that the performance for the test set would be slightly lower (roughly &lt; 5%) than the training set (in other words the error in the test set is higher than that of the training set) even when the model does not suffer from overfitting. However, if we realise that there is a relatively large difference between the two then it is a sign that overfitting has occurred during training.</p>
+<h3 id="examples-of-overfitting">Examples of overfitting</h3>
+<p>Below we see an example of overfitting. The data can be classified by rectilinear decision boundaries that are specified by four conditions, however due to the noise that we added by spreading out some of the class C1 points and overly trying to isolate and classify those pockets, the tree in turn is overly grown and has become unnecessarily complex. Bear in mind that there is no perfect solution here. Due to noise there will be always inaccuracy that occurs in the classification decision of the tree and we just need to live with them.  </p>
+<h4 id="overfitting-of-decision-trees-on-the-noisy-gaussian-data-yellow-points">Overfitting of decision trees on the noisy Gaussian data (yellow points)</h4>
+<figure role="group">
+  <img src="../images/DS_IMG092.png" alt="Graph showing overfitting of decision trees (DT) on noisy Gaussian data." />
+  <figcaption><strong>Figure 2.78.</strong>  DT with lots of branching to accommodate the noise that we added to the Gaussian data. </figcaption>
+</figure>
+
+<figure role="group">
+  <img src="../images/DS_IMG094.png" alt="Decision tree (DT) with no overfitting for the same noisy Gaussian data." />
+  <figcaption><strong>Figure 2.79.</strong> The decision boundaries of the DT shows how the tree is trying to isolate pockets of data to decrease the training error. </figcaption>
+</figure>
+
+<h4 id="decision-trees-with-no-overfitting-for-the-same-noisy-gaussian-data">Decision trees with no overfitting for the same noisy Gaussian data</h4>
+<figure role="group">
+  <img src="../images/DS_IMG093.png" alt="Decision tree (DT) with lots of branching to accomodate noise added to Gaussian data." />
+  <figcaption><strong>Figure 2.80.</strong>  Overfitting is solved by reducing the maximum depth and confining the splitting of leafs to a minimum of around 240 points for 10% (pro rata) of the 5400x2 data points. Note that this is problem specific and it shows that it is hard to overcome overfitting specifically with DT. </figcaption>
+</figure>
+
+<figure role="group">
+  <img src="../images/DS_IMG095.png" alt="Graph showing decision tree (DT) ignoring the noise of Gaussian data and isolating a smaller rectangle of Gaussian data." />
+  <figcaption><strong>Figure 2.81.</strong> DT ignores the noise in the Gaussian data and just isolate the Gaussian data in a rectangle. </figcaption>
+</figure>
+
+<p>Figures 2.78 - 2.81 above are important to show the signs or symptoms of overfitting. As it can be seen, the training error is successfully decreased when we overly grow the tree, however the testing error (the more precise indicator of the generalisation ability of the model) has actually remained more or less the same. The elbow shape of the testing error is a clear indicator of overfitting and the reasonable size of the tree lies exactly around the elbow (angle) itself. So for this example the angle lies on around 4 (the number of conditions/nodes required to classify the data).</p>
+<div class="admonition abstract">
+<p class="admonition-title">Exercise</p>
+<p>See the following Jupyter notebook exercise on DT overfitting:</p>
+<ul>
+<li>Download exercise (.ipynb): <a href="../exercises/Exercise4_DecisionTrees_Boundaries_Strengths_Limitations_Overfitting.ipynb" download>DT overfitting</a></li>
+</ul>
+</div>
+<p>On the other hand, overfitting can occur when we excessively add data horizontally. In other words if we increase the number of attributes that are not really needed to make a decision then potentially the tree will over grow and the training error will be reduced without reducing the testing error. So the symptoms of overfitting are the same but the underlying cause is different. In the first the data is noisy in the second the attributes are unnecessary. Figure 2.82 below shows this phenomena.</p>
+<figure role="group">
+  <img src="../images/DS_IMG096.png" alt="Line graph showing the phenomenon of overfitting with decision tree (DT) training and testing." />
+  <figcaption><strong>Figure 2.82.</strong> Decision trees training and testing with phenomenon of overfitting. Note how when we increase the max depth of the tree the testing error forked from the training error which continued to deceivingly decrease, while in reality the testing error were increased for depth . </figcaption>
+</figure>
+
+<h3 id="underfitting">Underfitting</h3>
+<p>Underfitting occurs when we build a decision tree that is incapable of addressing the problem sufficiently. An example of underfitting for decision trees is when we prematurely stop growing the tree on level 2 while the optimal number of levels is 5. Another example is when the tree is severely pre-pruned to have few branches and its performance becomes inadequate.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Exercise</p>
+<p>Please perform the following Jupyter notebook exercise on the Iris dataset that wraps up the unit:</p>
+<ul>
+<li>Download exercise (.ipynb): <a href="../exercises/Exercise5_Decision_Trees_on_iris.ipynb" download>DT on Iris</a></li>
+</ul>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Exercise</p>
+<div class="highlight"><pre><span></span><code> Now try to do the same thing in RapidMiner. It is fun and easier.
+</code></pre></div>
+</div>
+<h2 id="lesson-summary">Lesson summary</h2>
+<p><strong>In this lesson we have covered the common problems of overfitting and underfitting, and seen how we can detect these problems and address them.</strong></p>
+<p>We used cross validation to come up with an accurate measure for the performance of our model and its prediction ability. We have seen how the elbow method can provide an effective way to detect overfitting, and we can use a simple early stopping technique to overcome it.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © Digital Education Service | University of Leeds
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../javascript/tablecontentsoverride.js"></script>
+      
+        <script src="../../../javascript/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
