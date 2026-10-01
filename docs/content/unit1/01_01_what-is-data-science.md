@@ -211,6 +211,9 @@ VID-019:
 
 <p align="center"><iframe title="Data Science Introduction" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=f610cef6-c927-42a9-93dd-b45700b3bd9a&autoplay=false&offerviewer=false&interactivity=none&showtitle=false&showbrand=false&captions=false&hideoverlay=false" allowfullscreen msallowfullscreen allow="autoplay; fullscreen"></iframe></p>
 
+<p align="center"><iframe title="Data Science Introduction" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=f610cef6-c927-42a9-93dd-b45700b3bd9a" allowfullscreen msallowfullscreen allow="autoplay; fullscreen"></iframe></p>
+
+
 You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18739454_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18826023_4" target="_blank">transcript (PDF) here</a>.
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
