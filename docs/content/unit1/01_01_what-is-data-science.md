@@ -126,7 +126,7 @@ It allows you to apply the techniques you are studying to the data easily and in
 
 This, and similar tools such as Weka, allow you to create a data mining model (prototype) quickly without having to use a programming language to do it. You can still integrate it with other programming languages, such as Python. Bear in mind, though, that the flexibility and control offered by a programming language cannot be matched by such a tool.
 
-!!! warning "Installing RapidMiner"
+<!-- !!! warning "Installing RapidMiner"
     To install RapidMiner, follow the instructions below:
 
     * Go to the <a href="https://altair.com/altair-rapidminer" target="_blank">RapidMiner website</a>.
@@ -136,50 +136,63 @@ This, and similar tools such as Weka, allow you to create a data mining model (p
     * When prompted, enter your University of Leeds email address (you will not get a student license if you do not use your official University of Leeds email), and the details requested, then select the download button.
     * This will take you to the downloads page. Select your operating system and follow the installation instructions. Note that you need a Java virtual machine on your machine. As it stands, at the time of writing, RapidMiner needs Java 8 and will not work if you have only Java 11. If you have both, you will need to specify Java 8 as your default Java version.
 
-    Installation in Windows is straightforward. In Linux, it may need a couple of tweaks, and the steps for installation are below (the Linux flavour shown is Ubuntu).
+    Installation in Windows is straightforward. In Linux, it may need a couple of tweaks, and the steps for installation are below (the Linux flavour shown is Ubuntu). -->
+
+!!! warning "Installing Altair AI Studio (formerly RapidMiner Studio)"
+    RapidMiner Studio is now called **Altair AI Studio**, following the acquisition of RapidMiner by Altair. To install it with the free student licence, follow the steps below.
+
+    * **Step 1: Create an Altair One account.** Follow the <a href="https://community.altair.com/discussion/33652/access-and-use-the-free-altair-student-edition-step-1-create-an-altair-one-account" target="_blank">account creation guide</a> and register with your official University of Leeds email address (you will not get a student licence if you use a personal email address).
+    * **Wait for verification.** Your academic credentials must be verified before you can generate your licence key. This is usually quick but can take 1 to 3 days, so please do this well before you need the software. You will be notified by email.
+    * **Step 2: Get your licence key.** Once verified, follow the <a href="https://community.altair.com/discussion/33613/access-and-use-the-free-altair-student-edition-step-2-obtaining-your-altair-student-edition-license-key" target="_blank">licence key guide</a> to obtain your Student Edition key from the Altair One Marketplace.
+    * **Step 3: Download and install.** Follow the <a href="https://community.altair.com/discussion/34118/access-and-use-the-free-altair-student-edition-step-3-download-and-install-a-software-from-within-the-student-edition-bundle-of-your-choice" target="_blank">download guide</a>. Select your operating system and choose **Altair AI Studio** (not "RapidMiner Studio").
+    * **Step 4: Activate the licence.** Follow the <a href="https://community.altair.com/discussion/34065/access-and-use-the-free-altair-student-edition-step-4-activate-the-software-with-license-key" target="_blank">activation guide</a>. Mac users should also see the <a href="https://community.altair.com/discussion/33209/steps-to-activate-ai-studio-with-the-altair-student-edition-license-key-from-altair-one-com-in-mac-os-apple-and-other-related-ai-studio-troubleshooting" target="_blank">Mac instructions</a>.
+    * The licence lasts one year and can be renewed for free.
+
+    For a summary of all four steps, see the <a href="https://community.altair.com/discussion/63801/step-by-step-guide-install-activate-altair-ai-studio-student-edition-via-altairone-com" target="_blank">Student Edition guide</a>, and for general help see the <a href="https://docs.rapidminer.com/latest/studio/installation/index.html" target="_blank">installation documentation</a>.
+
+    Installation in Windows is straightforward. In Linux, you need to install a Java 11 runtime first (the installation package does not include one), and make sure `JAVA_HOME` points to it or that `java` is on your `PATH`. Then unzip the download and run `./AI-Studio.sh` from that folder. The steps for installation are below (the Linux flavour shown is Ubuntu).
 
     To start RapidMiner:
         ```
-        bash ~/Downloads/rapidminer-studio/RapidMiner-Studio.sh
+        bash ~/Downloads/ai-studio/AI-Studio.sh
         ```
 
-    You will need to change the path to RapidMiner-Studio.sh if you have stored RapidMiner in a different folder.
+    You will need to change the path to RapidMiner-Studio.sh if you have stored RapidMiner in a different folder. Make sure the folder path does not contain `+` or `%` characters.
 
     If RapidMiner refuses to start, then try the following steps:
 
-    1. Make sure that you install Java 8 (even if you have Java 11)
+    1. Make sure that a Java 11 runtime is installed (the Linux package does not include one):
         ```
-        sudo apt install openjdk-8-jre-headless
+        sudo apt install openjdk-11-jre
         ```
 
-    2. Make sure that Java 8 is your default version  
+    2. If you have several Java versions installed, make sure that Java 11 is your default version:  
         ```
         sudo update-alternatives --config java
         ```
 
         You will see a series of options similar to those below; select whichever option corresponds to your Java 8 and hit enter. In this case, it would be option 2.
 				```
-				a@aa:~ sudo update-alternatives --config java
-				There are two choices for the alternative Java (providing /usr/bin/java).
-				Selection |Path                                           |  Priority  | Status
-				----------|-----------------------------------------------|------------|-----------
-				*0        |/usr/lib/jvn/java-11-openjdk-amd64/bin/java    |    1111    | auto mode
-				1         |/usr/lib/jvn/java-11-openjdk-amd64/bin/java    |    1111    | manual mode
-				2         |/usr/lib/jvn/java-8-openjdk-amd64//jre/bin/java|    1086    | manual mode
-				Press <enter> to keep the current choice[*], or type selection number: 2
+				Selection    Path                                         Priority   Status
+                ------------------------------------------------------------
+                * 0            /usr/lib/jvm/java-17-openjdk-amd64/bin/java   1711      auto mode
+                1            /usr/lib/jvm/java-11-openjdk-amd64/bin/java   1111      manual mode
+                2            /usr/lib/jvm/java-17-openjdk-amd64/bin/java   1711      manual mode
+
+                Press <enter> to keep the current choice[*], or type selection number: 1
 				```
 
-    3. If RapidMiner is still not starting and you do not use assistive technology in java 8 and do not want to install it, then edit the accessibility.properties file:
+    3. Alternatively, point `JAVA_HOME` at your Java 11 installation instead of changing the default:
         ```
-        sudo nano /etc/java-8-openjdk/accessibility.properties
+        export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
         ```
 
     4. Start RapidMiner
-      ```
-       bash ~/Downloads/rapidminer-studio/RapidMiner-Studio.sh
-       ```
+        ```
+        bash ~/Downloads/ai-studio/AI-Studio.sh
+        ```
 
-##Data pipeline and mining process (CRISP, ETL)
+## Data pipeline and mining process (CRISP, ETL)
 
 **This module will focus on the cross-industry standard process (CRISP) model of the data mining process, which is outlined in Figure 1.3 below.**
 
@@ -197,7 +210,7 @@ CRISP is a widely used analytical model. It is an open standard process model th
 
 Note that everything revolves around the data, which is central to the whole process. The data dictates and influences almost everything, including what can and cannot be done, i.e. the task.
 
-##Data mining tasks
+## Data mining tasks
 
 **There are several types of data mining tasks that dictate which type of techniques can be employed to model the data and develop the required prediction or modelling.**
 
@@ -218,7 +231,7 @@ You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
-###Classification
+### Classification
 
 Classification is the most important and prevalent type of task a data scientist normally performs. The idea is to view the problem in terms of a set of known, predefined classes. The dataset reveals the class, sometimes called the label, of each individual record, which usually represents a physical or virtual entity such as a car, disease or level of success.  
 
@@ -234,11 +247,11 @@ Clustering is the second prevailing task performed by a data scientist. In this 
 
 For example, a set of social media users could be categorised into clusters of strongly connected groups based on their likes of specific kinds of products in order to target them with relevant adverts.
 
-###Regression
+### Regression
 
 Regression is the task of developing a specific value rather than a class for a record. For example, to identify the price of a house based on a set of its features, such as address, number of bedrooms, square footage, floors, open kitchen aspects, en-suits, etc. In this case, a dataset of houses with their prices (label) is needed and a model needs to be built that predicts house prices, which can be used later with new houses coming to the market to correctly estimate their values.  
 
-##Supervised learning vs unsupervised learning
+## Supervised learning vs unsupervised learning
 
 **You might have realised that there is an important difference between classification and clustering; in classification, the classes are known, while in clustering, they are not.**
 
@@ -255,9 +268,9 @@ To allow it to learn by itself, it still needs to be provided with suitable lear
 
 From this example, you can see that learning is more generic and will achieve real intelligence with time, while programming precise steps forces the programmer to solve a problem.  When this programming happens, the device will only implement the programmed solution; however, when the agent is provided with the capability of learning, it is equipped with more intelligence. This will make it more powerful and useful (at least for the time being, you will see more in-depth discussions of the issues of ethics of AI in a separate module).
 
-##Systems and unit testing vs model testing
+## Systems and unit testing vs model testing
 
-###System testing
+### System testing
 
 This is testing whether a system is working as intended. It normally investigates the integration of different components and whether there are any issues that might arise due to integrity. This can be due to:
 
@@ -267,11 +280,11 @@ This is testing whether a system is working as intended. It normally investigate
 
 These types of faults can be categorised into accidental, logical, flow, and implementational.  
 
-###Unit testing
+### Unit testing
 
 Unit testing is testing an individual module or component of a system. As with system testing, it is normally conducted for logical or implementation errors regarding the intended functionality of the unit. This type of testing is more prevalent and occurs several times in the life of the component, whenever there is a change to its functionality or coding.  
 
-###Model testing
+### Model testing
 
 Note that systems and unit testing are not likely to be performed by a data scientist. The likely testing activity that a data scientist is going to perform is model testing.
 
@@ -279,7 +292,7 @@ Model testing depends on the task at hand, whether it is classification, cluster
 
 Often, when dealing with graphical user interface (GUI) based data mining tools such as RapidMiner (or other industry-used tools you may come across, such as Weka), the concern will be on raising the model performance by changing its parameters or the technique used. Alternatively, several techniques are employed and their performance compared. Model testing is not concerned with whether the coding for a technique is working properly, but whether the model is capturing the internal mechanism of the data generation process or whether it is able to differentiate between a set of different classes.  
 
-##Types of models: generative vs discriminative
+## Types of models: generative vs discriminative
 
 **The previous points all lead to the idea of types of models. There are several ways to categorise a data mining model. For example, the models may be categorised by task, such as a classification model, clustering model or a regression model.**
 
@@ -387,7 +400,7 @@ Note that this is the same probability that was calculated in example 2 through 
 Note that the probability framework does not assign a degree to which a symptom exists in a patient; the symptom either exists or does not. Of course, there are ways to work around this, but it is outside the scope of what is being discussed here. There is also the idea of assigning priors to the probabilities, which is essential in the Bayesian framework. These issues, along with other Bayesian methods, such as Naive Bayes and Graphical models, will be explored further in the Machine Learning module.
 
 
-##Measuring the performance
+## Measuring the performance
 
 **A way to measure the performance of any prediction or data mining model that is developed must be specified. The metrics will depend on the type of the data mining task that is performed.**
 

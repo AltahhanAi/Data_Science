@@ -1,10 +1,10 @@
-#Preventing overfitting the data and overshooting the loss minimum
+# Preventing overfitting the data and overshooting the loss minimum
 
 **In this section we tackle overfitting for stochastic gradient decent algorithms. We provide several mechanisms to prevent overfitting. The first goes to the level of the loss function itself via regularisation similar to what we have covered earlier. The second is via a combination of sweeps through the dataset (epochs) as well as weight decay and early stopping.**
 
 At the same time these techniques are suitable to prevent overshooting the global minimum of the loss function (if there is one). Remember in SGD we are going in steps towards the minimum of the loss function. On the way, our algorithm might overshoot the minimum and keep fluctuating around it. This is often due to a high learning rate. Overshooting the global minimum and ending up in a local minimum is another problem that we often face with more complex models such as neural networks. In fact, overcoming local minima and the fact that a neural network loss function is infested with these local minima are among the main motivation for the next subsection.
 
-###Regularised multi-output least squares for linear regression model ‎with basis
+## Regularised multi-output least squares for linear regression model ‎ with basis
 
 For the least squares we can regularise it by using the vectorised form of the loss function on the whole training set as follows:
 
@@ -57,7 +57,7 @@ Which is the regularised normal equation as above for multi-output linear regres
         **Return** $\mathbf{W}^{*}$
 
 
-###Regularised multi-output stochastic gradient descent for linear regression model ‎with basis
+## Regularised multi-output stochastic gradient descent for linear regression model ‎ with basis
 
 Similarly, the above can be done on a multi-output regression.
 
@@ -92,7 +92,7 @@ $$
 
 Before we state the regularised mini-batch SGD we would like to add few more techniques to our arsenal against overfitting.
 
-###Early stopping and learning rate decay
+## Early stopping and learning rate decay
 
 One of the main tools to prevent overfitting is regularisation as we saw earlier.
 
@@ -165,7 +165,9 @@ The final regularised mini-batch SGD algorithm that is fortified against overfit
 
 Note that we did not have an algorithm for the least squares because we cannot do it for multi-layer non-linear neural network. In all of the algorithms for mini-batch we have given them number 6 (6, 6', 6'') the ‘ signifies the stage of the algorithm, where they cover: linear, linear with basis, linear with basis and multi-outputs, respectively.
 
-See Angela Meyer's paper for an idea why we might want to use multi-output models even if our target is a single value:  <a href="https://arxiv.org/ftp/arxiv/papers/2012/2012.03074.pdf" target="_blank">Multi-target normal behaviour models for wind farm condition monitoring</a>.
+<!-- See Angela Meyer's paper for an idea why we might want to use multi-output models even if our target is a single value:  <a href="https://arxiv.org/ftp/arxiv/papers/2012/2012.03074.pdf" target="_blank">Multi-target normal behaviour models for wind farm condition monitoring</a>. -->
+
+See Angela Meyer's paper for an idea why we might want to use multi-output models even if our target is a single value:  <a href="https://doi.org/10.1016/j.apenergy.2021.117342" target="_blank">Multi-target normal behaviour models for wind farm condition monitoring</a>.
 
 Note that arXiv papers are not necessarily peer-reviewed, so we need to be mindful not to take the findings for granted (even with peer-reviewed papers we might occasionally find some flaws). Researchers often publish in arXiv as a first step because it is a faster means to get feedback on their research, and often they would submit to a reputable journal later. The journal peer-review publications process takes a long time, sometimes more than a couple of years. Since the AI field moves very quickly, this warrants the use of arXiv but with caution.
 
@@ -176,7 +178,7 @@ Note that arXiv papers are not necessarily peer-reviewed, so we need to be mindf
     - Download exercise (.ipynb):   <a href="../exercises/Exercise7_Multi_Output_Linear_Regression.ipynb" target="_blank" download>Exercise 7</a>
 
 
-##Multi-layer multi-output linear regression models
+## Multi-layer multi-output linear regression models
 
 We will prove that the above model is actually equivalent to a multi-output linear regression model. First, we denote the weight matrix that links the input features with the first set of linear models (called the hidden layer) as $\dot{\mathbf{W}}$ and it is of dimension $3×(M+1)$. Next, we denote the weight matrix that links the hidden linear models with the output models (called output layer) as $\ddot{\mathbf{W}}$ and it is of dimension $2×(3+1)$.
 

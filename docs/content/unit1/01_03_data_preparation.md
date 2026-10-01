@@ -26,11 +26,14 @@ Before we do any processing, we need to understand the specific task, in what wa
 
 A data scientist must often wrestle with the data to make it suitable for their needs, a process known as data wrangling. The process somehow involves a bit of haggling and hacking and often, in order to perform the process, the structure and shape of the data needs to be checked and reviewed. This section will give you a quick overview of some of the techniques used.
 
-###Sampling
+### Sampling
 
 The concept of sampling is widely used in statistics and data mining. In statistics, the default position is that obtaining the entire data population is often infeasible and physically too expensive. In data mining, processing the entire dataset, even if it is available in some storage, might be too computationally expensive to do.
 
-<a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank">Read section 2.3.2 (pp.72-76) of Chapter 2</a> in the text Introduction to Data Mining (Tan et al 2019). This section will give you further information on sampling and the different types of data sampling that can be conducted.
+<!-- <a href="https://bibliu.com/app/#/view/books/9780273775324/pdf2htmlex/index.html" target="_blank"> -->
+
+<a href="https://leeds.alma.exlibrisgroup.com/leganto/public/44LEE_INST/citation/36143863230005181?auth=SAML" target="_blank">
+Read section 2.3.2 (pp.72-76) of Chapter 2</a> in the text Introduction to Data Mining (Tan et al 2019). This section will give you further information on sampling and the different types of data sampling that can be conducted.
 
 In both statistics and data mining, a subset of the data is sampled, by selecting some of the rows rather than all of them. Sampling is done randomly to avoid a biased representation of the data, which would be misleading for the model.
 
@@ -68,7 +71,7 @@ This invites discussion on whether several splits need to be performed and the a
 
 	 Make sure to differentiate between sampling rows and selecting a subset of fields or columns.
 
-####Video
+#### Video
 
 Now watch this video, in which Abdulrahman explains data attributes and objects, types of data and data quality.
 

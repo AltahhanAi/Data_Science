@@ -1,4 +1,4 @@
-#Evaluating a regression model via R2 and the RMSE
+# Evaluating a regression model via R2 and the RMSE
 
 Besides using the loss mean of squared errors to drive the learning process, we can utilise it to measure the performance of the learned model. The problem with this approach is that the squares give inflated estimation of the error. To deal with this, we can use the root mean sum of squared errors (RMSE) instead to measure the model performance. Please distinguish between performance measure and the loss function, although they are related we often use easy to differentiate continuous function as the loss, while for regression performance evaluation we can use any whole-measure to give a point evaluation for the model. RMSE is given as:
 

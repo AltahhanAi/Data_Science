@@ -2,9 +2,15 @@
 
 Bengio, Y. 2012. Practical Recommendations for Gradient-based Training of Deep Architectures. Available online at <a href="https://arxiv.org/pdf/1206.5533.pdf" target="_blank">https://arxiv.org/pdf/1206.5533.pdf</a>.
 
-Bishop, C M. 2006. Pattern Recognition and Machine Learning (Information Science and Statistics), chapters 3 and 5, Springer-Verlag, Berlin, Heidelberg. Online version can be found <a href="http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf" target="_blank">here</a>.
+<!-- Bishop, C M. 2006. Pattern Recognition and Machine Learning (Information Science and Statistics), chapters 3 and 5, Springer-Verlag, Berlin, Heidelberg. Online version can be found <a href="http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf" target="_blank">here</a>. -->
+<!-- 
+Bishop, C M. 2006. Pattern Recognition and Machine Learning (Information Science and Statistics), chapters 3 and 5, Springer-Verlag, Berlin, Heidelberg. Online version can be found <a href="https://leeds.alma.exlibrisgroup.com/leganto/public/44LEE_INST/citation/13613985720005181?auth=SAML" target="_blank">here</a>. -->
 
-Meyer, A. 2020. Multi-target normal behaviour models for wind farm condition monitoring. Available online at <a href="https://arxiv.org/ftp/arxiv/papers/2012/2012.03074.pdf" target="_blank">https://arxiv.org/ftp/arxiv/papers/2012/2012.03074.pdf</a>.
+Bishop, C M and Bishop, H. 2024. Deep Learning: Foundations and Concepts, chapters 4 and 6 to 9, Springer, Cham. Online version can be found <a href="https://www.bishopbook.com" target="_blank">here</a>.
+
+<!-- Meyer, A. 2020. Multi-target normal behaviour models for wind farm condition monitoring. Available online at <a href="https://arxiv.org/ftp/arxiv/papers/2012/2012.03074.pdf" target="_blank">https://arxiv.org/ftp/arxiv/papers/2012/2012.03074.pdf</a>. -->
+
+Meyer, A. 2020. Multi-target normal behaviour models for wind farm condition monitoring. Available online at <a href="https://doi.org/10.1016/j.apenergy.2021.117342" target="_blank">https://doi.org/10.1016/j.apenergy.2021.117342</a>.
 
 Prateek J; Netrapalli, P; Kakade, S M; Kidambi, R and Sidford, A. . 2018. Parallelizing Stochastic Gradient Descent for Least Squares Regression: Mini-Batching, Averaging, and Model Misspecification. Journal of Machine Learning Research, 18 pp 1-42. Available online at <a href="https://www.jmlr.org/papers/volume18/16-595/16-595.pdf" target="_blank">https://www.jmlr.org/papers/volume18/16-595/16-595.pdf</a>.
 
