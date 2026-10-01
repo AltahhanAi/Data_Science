@@ -10,7 +10,9 @@
 
 Watch this video to learn more about the concepts of ensemble methods.
 
-<iframe title="Ensemble techniques" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/bb7cdadc4c234bd0be580d279c4f80c71d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- <iframe title="Ensemble techniques" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/bb7cdadc4c234bd0be580d279c4f80c71d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Ensemble methods" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=9047c103-78fd-4ea2-8831-b45f00577c01" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22912989_4" target="_blank">Download transcript (PDF).</a>
 

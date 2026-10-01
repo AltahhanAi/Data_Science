@@ -125,8 +125,10 @@ Table: Mammals class dataset with necessary and sufficient features.
 
 Watch this video to see how we can easily build a decision tree model in RapidMiner.
 
-<iframe title="DBuilding a decision tree in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/c1f13a30982f4e99a3bcce27fd16e77d1d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
+<!-- <iframe title="DBuilding a decision tree in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/c1f13a30982f4e99a3bcce27fd16e77d1d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe> -->
+
+ <div style="text-align: center;"><iframe title="DBuilding a vertebrate decision tree in RapidMiner" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=6c56f00d-f2b2-4ac5-a5a1-b455011616d6" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22735112_4" target="_blank">Download transcript (PDF).</a>
 

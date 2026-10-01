@@ -8,7 +8,9 @@ This optimisation algorithm is called the gradient descent or steepest descent. 
 
 Please watch the following video on gradient descent.
 
-<iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/1306e0c0bf4746888652140ccedeac0b1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- <iframe title="Gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/1306e0c0bf4746888652140ccedeac0b1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Approximate solutions: Gradient descent" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=13846bc6-d812-4c17-89d0-b44b0074b136" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22914201_4" target="_blank">Download transcript (PDF).</a>
 
@@ -165,12 +167,13 @@ This form of batch gradient descent does not take advantage of vectorisation and
 
 For further reading, see Yoshua Bengio's paper on <a href="https://arxiv.org/pdf/1206.5533.pdf" target="_blank">Practical Recommendations for Gradient-Based Training of Deep Architectures</a>.
 
-##Sequential Learning: Stochastic Gradient Descent for Linear Regression Models
+## Incremental Learning: Stochastic Gradient Descent for Linear Regression Models
 
 Please watch the following video on stochastic and mini-batch gradient descent for linear regression.
 
-<iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/77dfcc5072794031abf501bcd980c56c1d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
+<!-- <iframe title="Stochastic gradient descent" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/77dfcc5072794031abf501bcd980c56c1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Stochastic gradient descent" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=b896a951-fcef-4c86-ab1d-b45c01044eb6" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-23082047_4" target="_blank">Download transcript (PDF).</a>
 

@@ -72,7 +72,12 @@ This invites discussion on whether several splits need to be performed and the a
 
 Now watch this video, in which Abdulrahman explains data attributes and objects, types of data and data quality.
 
-<iframe title="Data Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/3db1a6348efd446696e14a3a53f5ec241d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- <iframe title="Data Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/3db1a6348efd446696e14a3a53f5ec241d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+
+<div style="text-align: center;">
+  <iframe title="Data Part 1" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=353113f1-b45f-4650-bbbd-b4490125f9f7" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+</div>
 
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738960_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22589438_4" target="_blank">transcript (PDF) here</a>.
 
@@ -98,8 +103,12 @@ The example in this diagram shows the application of the Fourier transform to id
 Dimensionality reduction techniques are important, as their aim is to find a reduced number of features that can be used to solve the problem – whether it is regression, classification or clustering etc.
 
 Watch the following video for a summary of these techniques, and then read about each of them in more detail below.
+<!-- 
+<iframe title="Data Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/44615004e8254c01aa86e6264e639e2d1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
 
-<iframe title="Data Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/44615004e8254c01aa86e6264e639e2d1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+
+<div style="text-align: center;"><iframe title="Data Part 2" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=f857077f-0162-45eb-908b-b42000b4a35a" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
+
 
 You can also download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18738966_4" target="_blank">slides shown in the video (PPT)</a> and the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22640813_4" target="_blank">transcript (PDF) here</a>.
 

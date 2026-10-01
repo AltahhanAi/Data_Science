@@ -2,7 +2,9 @@
 
 In the following video, Abdulrahman explains the clusters loss function.
 
-<iframe title="Cluster analysis 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/ebef1d39bfeb489f8f3645cd19d9e5411d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- <iframe title="Cluster analysis 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/ebef1d39bfeb489f8f3645cd19d9e5411d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Cluster analysis 1: Clusters loss function" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=6c855318-5eeb-4996-bba5-b44a0003598b" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22912092_4" target="_blank">Download transcript (PDF).</a>
 

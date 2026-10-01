@@ -203,7 +203,7 @@ Note that everything revolves around the data, which is central to the whole pro
 
 First, watch the following video, in which Abdulrahman Altahhan introduces data science in more detail. Then move on to read about the different types of data mining tasks.
 
-VID-019:
+<!-- VID-019: -->
 
 <!-- <p align="center"><iframe title="Data Science Introduction" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/89c81b0df9f8407786d7b8eea7fa93c01d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></p> -->
 <!-- 

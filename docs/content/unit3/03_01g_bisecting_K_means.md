@@ -55,7 +55,9 @@ Below in figure 3.11, we show results of bisecting K-means on the problem that w
 
 # Agglomerative clustering
 
-<iframe title="Cluster analysis 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/2271688c6f5a48a080976624fc23fc921d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- <iframe title="Cluster analysis 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src=" https://mymedia.leeds.ac.uk/Mediasite/Play/2271688c6f5a48a080976624fc23fc921d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Cluster analysis 2: Agglomerative clustering" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=7f30fdc4-8054-4564-b019-b457011f36c8" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22866513_4" target="_blank">Download transcript (PDF).</a>
 
@@ -128,11 +130,14 @@ We can measure the distances between the clusters via the distances between thei
 
 Please refer to section 5.3 of Tan et al 2019.
 
-##Evaluating clusters via cohesion and separation
+## Evaluating clusters via cohesion and separation
 
 Evaluating clusters is an important step towards improving and comparing different clustering algorithms as well as to improve the obtained clusters. Mainly, we can adopt two approaches for cluster evaluation; supervised approach or unsupervised approach.
 
-<iframe title="Clusters part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/a5ca83a89dd543bc9a13b33b046f427b1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- 
+<iframe title="Clusters part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/a5ca83a89dd543bc9a13b33b046f427b1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Clusters analysis 3: Evaluating clusters via cohesion and separation" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=7efa88aa-5629-4fe7-a66c-b44800510cf3" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22866512_4" target="_blank">Download transcript (PDF).</a>
 
@@ -140,7 +145,7 @@ You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-1882642
 
 Slides are reproduced from Tan et al (2019), <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/index.php#item4" target="_blank">Introduction to Data Mining</a>, with kind permission of the authors.
 
-###Supervised measures
+### Supervised measures
 
 We can evaluate clusters by utilising class labels if we have them. Please note that we only use those labels for evaluation and not to come up with the clusters. In other words we do not feed the labels to the clustering algorithms, clustering algorithms are all unsupervised learning algorithms so they do not need categorical labels. We can, however, use categorical labels if they are available in order to evaluate the clusters to see whether they correspond well with the labels.
 

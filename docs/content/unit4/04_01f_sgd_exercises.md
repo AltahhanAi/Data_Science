@@ -31,18 +31,24 @@ You can download the spreadsheets Abdulrahman refers to in the videos below:
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22591869_4" target="_blank">Comprehensive example with feature mapping (.xlsx) </a>
 
-<iframe title="video 6 (Example of a linear regression model, part 1) " width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/031ebb9609ad4e4882c3f0ab85781e3e1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- <iframe title="video 6 (Example of a linear regression model, part 1) " width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/031ebb9609ad4e4882c3f0ab85781e3e1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Example of a linear regression model, part 1" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=197331aa-ff2d-494a-acc9-b45d00b1ade3" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22914403_4" target="_blank">Download transcript (PDF).</a>
+<!-- 
+ <iframe title="video 7 (Example of a linear regression model, part 2) " width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/8d4658ebca5e45619f40502216b597ea1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
 
- <iframe title="video 7 (Example of a linear regression model, part 2) " width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/8d4658ebca5e45619f40502216b597ea1d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<div style="text-align: center;"><iframe title="Example of a linear regression model, part 2" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=f4e80af7-888d-42cc-a3e6-b45f018a0805" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
  <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22914404_4" target="_blank">Download transcript (PDF).</a>
 
-<iframe title="video 8 (Example of a linear regression model, part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/1d7e63fe54454aaaa93a7669c613a7e41d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- <iframe title="video 8 (Example of a linear regression model, part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/1d7e63fe54454aaaa93a7669c613a7e41d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Example of a linear regression model, part 3" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=25b03f01-8723-4aab-81b0-b45a0021569a" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22914409_4" target="_blank">Download transcript (PDF).</a>  
 
-##Simple linear regression models: lesson summary
+## Simple linear regression models: lesson summary
 
 In this lesson you have learnt about simple linear regression models, and their coefficient that maps into weights. You have understood the generalisation from one dimension of input into multi-dimensional input space. You have seen how to utilise loss function effectively in order to solve the linear regression problem exactly via least squares, and approximately via the gradient descent. In addition, you have learnt how to address sequential learning problems by utilising the ideas of mini-batch learning.

@@ -198,8 +198,10 @@ This operation will produce a vector of size $N$ each component of it is $t_{n}-
 
 Watch the following video on the concepts of regression.
 
-<iframe title="Linear and non-Linear Models for Regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/bb75e23264d641bcb3c1902cd95434fc1d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
+<!-- <iframe title="Linear and non-Linear Models for Regression" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/bb75e23264d641bcb3c1902cd95434fc1d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Linear and non-Linear Models for Regression" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=8d060274-97f2-4d44-9467-b458017a53a9" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22913188_4" target="_blank">Download transcript (PDF).</a>
 

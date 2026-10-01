@@ -4,18 +4,23 @@
 
 The following three videos will provide an overview of the material in this section. You can then go on to read about decision tree training in more detail.
 
-<iframe title="Data Science U2: Decision Tree Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/65dd12803fd342c4bbeb689923d654cf1d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
+<!-- <iframe title="Data Science U2: Decision Tree Part 1" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/65dd12803fd342c4bbeb689923d654cf1d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Decision tree training, Part 1" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=2224b476-044e-4216-8b33-b45900302c25" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-21866476_4" target="_blank">Download transcript (PDF).</a>
 
-<iframe title="Data Science U2: Decision Tree Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6a7dd193cb36414083fda5897a350ef31d" allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
+<!-- <iframe title="Data Science U2: Decision Tree Part 2" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/6a7dd193cb36414083fda5897a350ef31d" allowfullscreen msallowfullscreen
+ allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Decision tree training, Part 2" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=2c16abf0-02be-4909-a78e-b44d0104540c" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22772607_4" target="_blank">Download transcript (PDF).</a>
 
-<iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/fe863a77c67c4a6c962ba3f93ff6e9131d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- <iframe title="Data Science U2: Decision Tree Part 3" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/fe863a77c67c4a6c962ba3f93ff6e9131d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
 
+<div style="text-align: center;"><iframe title="Decision tree training, Part 3" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=e0924a01-48f6-44a2-a877-b44c016e9c51" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22734600_4" target="_blank">Download transcript (PDF).</a>
 
 You can download the <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-18797978_4" target="_blank">slides shown in the videos</a>

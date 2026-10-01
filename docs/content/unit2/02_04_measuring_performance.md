@@ -18,10 +18,11 @@ We will start by classification of a binary class problem, and we will generalis
 
 In the following video, Abdulrahman talks through a comprehensive example of a decision tree with different metrics:
 
-<iframe title="Data Science U2: Metrics in perspective" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/5675daf44d55453b8fe9300a8c7060b51d
+<!-- <iframe title="Data Science U2: Metrics in perspective" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/5675daf44d55453b8fe9300a8c7060b51d
 " allowfullscreen msallowfullscreen
- allow="fullscreen"></iframe>
+ allow="fullscreen"></iframe> -->
 
+<div style="text-align: center;"><iframe title="Measuring the performance" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=1cc72750-fddd-4cc9-bc01-b44200163f65" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-21817781_4" target="_blank">Download transcript (PDF).</a>
 
 ##Measuring the performance of a binary class model

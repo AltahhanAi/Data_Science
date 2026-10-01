@@ -140,7 +140,9 @@ On the other hand, in case we are comparing the performance of two techniques on
 
 See the following video on RapidMiner grid search procedure for selecting multiple hyper parameters for a model. The example shows how to optimise the depth of the tree along with the minimum leaf size.
 
-<iframe title="Decision tree optimisation in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/e7c71cb44ef94e2388465125134182c71d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe>
+<!-- <iframe title="Decision tree optimisation in RapidMiner" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/e7c71cb44ef94e2388465125134182c71d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe> -->
+
+<div style="text-align: center;"><iframe title="Decision tree optimisation in RapidMiner" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/embed.aspx?id=b277828e-c979-4615-96ba-b4550098dbfd" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></div>
 
 <a href="https://minerva.leeds.ac.uk/bbcswebdav/xid-22787202_4" target="_blank">Download transcript (PDF).</a>
 
