@@ -206,10 +206,10 @@ First, watch the following video, in which Abdulrahman Altahhan introduces data 
 VID-019:
 
 <!-- <p align="center"><iframe title="Data Science Introduction" width="450" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/89c81b0df9f8407786d7b8eea7fa93c01d" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></p> -->
+<!-- 
+<p align="center"><iframe title="Data Science Introduction" width="650" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f610cef6-c927-42a9-93dd-b45700b3bd9a" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></p> -->
 
-<p align="center"><iframe title="Data Science Introduction" width="650" height="300" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f610cef6-c927-42a9-93dd-b45700b3bd9a" allowfullscreen msallowfullscreen allow="fullscreen"></iframe></p>
-
-<p align="center"><iframe title="Data Science Introduction" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=f610cef6-c927-42a9-93dd-b45700b3bd9a&autoplay=false&offerviewer=false&interactivity=none&showtitle=false&showbrand=false&captions=false&hideoverlay=false" allowfullscreen msallowfullscreen allow="autoplay; fullscreen"></iframe></p>
+<!-- <p align="center"><iframe title="Data Science Introduction" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=f610cef6-c927-42a9-93dd-b45700b3bd9a&autoplay=false&offerviewer=false&interactivity=none&showtitle=false&showbrand=false&captions=false&hideoverlay=false" allowfullscreen msallowfullscreen allow="autoplay; fullscreen"></iframe></p> -->
 
 <p align="center"><iframe title="Data Science Introduction" width="650" height="366" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://leeds.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=f610cef6-c927-42a9-93dd-b45700b3bd9a" allowfullscreen msallowfullscreen allow="autoplay; fullscreen"></iframe></p>
 
